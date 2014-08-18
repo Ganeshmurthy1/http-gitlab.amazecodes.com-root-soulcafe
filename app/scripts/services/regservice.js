@@ -29,6 +29,13 @@ angular.module('sassApp')
             });
 	    	
 	    };
+	    dataFactory.VerifyMobile = function (param) {
+	    	//console.log(param);
+	    	return $http.post(urlBase + 'verify', param).then(function(response) {
+                return response;
+            });
+	    	
+	    };
 	    dataFactory.addEducationData = function (param) {
 	    	// console.log(param);
 	    	return $http.post(urlBase + 'add_education', param).then(function(response) {

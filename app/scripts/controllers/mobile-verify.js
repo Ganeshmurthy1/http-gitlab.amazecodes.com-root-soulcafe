@@ -8,10 +8,34 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('MobileVerifyCtrl', function ($scope) {
+  .controller('MobileVerifyCtrl', function ($scope, regService, $location, localStorageService) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+    
+    $scope.mobileVerify = function() {
+    	var authData = localStorageService.get('authorizationData');
+    	var phn = new Object();
+    	phn.user_id = authData.user_id;
+    	phn.act_code = $scope.act_code;
+    	  regService.VerifyMobile(phn).then(function(response) {
+    		  console.log(response);
+    		  if (response.data == 'true') {
+    			  console.log('success');
+    			  $location.path('/dashboard');
+    			  
+    			  
+  			}
+    		  else {
+    			  $scope.errMessage = response.data;
+    		  }
+
+                  $scope.savedSuccessfully = true;
+                  $scope.message = "User has been registered successfully, you will be redicted to login page in 2 seconds.";
+                  // startTimer();
+
+              });
+      };
   });
