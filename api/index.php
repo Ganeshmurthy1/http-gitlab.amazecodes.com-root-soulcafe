@@ -9,6 +9,8 @@ $app->post('/add_education', 'addEducation');
 $app->post('/add_contact', 'addContact');
 $app->post('/add_currentposition', 'addCurrentPosition');
 $app->post('/add_pastposition', 'addPastPosition');
+$app->post('/update_user', 'updateUser');
+
 $app->get('/usersAll/:id', 'getAllUsers');
 
 
@@ -215,6 +217,21 @@ function addPastPosition() {
 	}
 
 }
+echo 'true';
+}
+
+function updateUser() {		
+	$sql = "Update users SET status=1 WHERE user_id=:user_id";
+      try {
+        $db = getConnection();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("user_id", $user->user_id);
+        $stmt->execute();
+    
+        //$app->redirect('login.html');
+      } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+      }
 echo 'true';
 }
 

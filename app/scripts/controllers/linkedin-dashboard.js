@@ -15,6 +15,9 @@ angular.module('sassApp')
       'Karma'
     ];
 
+    var authData = localStorageService.get('authorizationData');
+        $scope.user_id = authData.user_id;
+
 	  $scope.firstName = $rootScope.firstName;
     $scope.lastName = $rootScope.lastName;
     $scope.profilePic = $rootScope.profilePic;
@@ -109,7 +112,7 @@ angular.module('sassApp')
           // console.log(response.data);
           if (response.data == 'true') {
             console.log('success'); 
-            $location.path('/linkedin-success');
+            // $location.path('/linkedin-success');
           }
           else {
             console.log('failed');
@@ -122,7 +125,7 @@ angular.module('sassApp')
           // console.log(response.data);
           if (response.data == 'true') {
             console.log('success'); 
-             $location.path('/linkedin-success');
+             // $location.path('/linkedin-success');
           }
           else {
             console.log('failed');
@@ -135,7 +138,7 @@ angular.module('sassApp')
           // console.log(response.data);
           if (response.data == 'true') {
             console.log('success');
-             $location.path('/linkedin-success'); 
+             // $location.path('/linkedin-success'); 
           }
           else {
             console.log('failed');
@@ -147,15 +150,27 @@ angular.module('sassApp')
         regService.addPastPositionData($scope.pastPosition).then(function(response) {
           if (response.data == 'true') {
             console.log('success'); 
-             $location.path('/linkedin-success');
+             // $location.path('/linkedin-success');
           }
           else {
             console.log('failed');
           }
         });
       }
+      regService.updateUser($scope.user_id).then(function(response) {
+          // console.log(response.data);
+          if (response.data == 'true') {
+            console.log('success'); 
+             $location.path('/linkedin-success');
+          }
+          else {
+            console.log('failed');
+          }
+        });
+
     };
 
+    
     $scope.connections = [];
 
     $scope.getConnections = function(){

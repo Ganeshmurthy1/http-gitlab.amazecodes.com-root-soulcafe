@@ -355,6 +355,7 @@ header {
 }
 .cnt-wraper {
   position:relative;
+  margin: 10px 10px;
 }
 .top-navigation {
   position: absolute;
@@ -571,4 +572,11 @@ footer {
   font-weight:bold;
   margin-top:20px;
   color:#FFFFFF;
+}
+
+.align{
+  text-align: left !important;
+}
+.data-align{
+  padding-top:7px;
 }

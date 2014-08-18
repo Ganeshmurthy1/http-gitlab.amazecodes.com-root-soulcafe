@@ -59,6 +59,13 @@ angular.module('sassApp')
 	    		console.log(response);
                 return response;
             });
+         };
+        dataFactory.updateUser = function (param) {
+	    	console.log(param);
+	    	return $http.post(urlBase + 'update_user', param).then(function(response) {
+	    		console.log(response);
+                return response;
+            });
 	    	
 	    };
 		dataFactory.getFbFriendsCount = function () {
