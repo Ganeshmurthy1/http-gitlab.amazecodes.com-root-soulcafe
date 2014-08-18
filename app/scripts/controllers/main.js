@@ -8,10 +8,94 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', function ($scope,$facebook, regService, localStorageService, $location) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+    $scope.isLoggedIn = false;
+    $scope.login = function() {
+      $facebook.login().then(function() {
+    	//  makePromiseWithSon();
+        refresh();
+      });
+    };
+    function validateUser(param) {
+    	
+    	var result = new Object();
+	    result.status = true;
+	    result.message = '';
+	    if (param.total_friends < 80) {
+	    	result.status = false;
+		    result.message = 'You dont have enough friends in your facebook profile';
+		}	    
+	    if (param.relationship_status == 'Married' || param.relationship_status == 'In a relationship' || param.relationship_status == 'Engaged' || param.relationship_status == 'In an open relationship' || param.relationship_status == 'Its complicated') {
+	    	result.status = false;
+		    result.message = 'Your Relationship status is not suitable for an account in Soulcafe';
+		}
+	    var d1 = new Date(param.birthday);
+    	var d2 = new Date();
+		var diff = d2.getFullYear()-d1.getFullYear();
+	    if (param.gender == 'male') {
+	    	if (diff < 24) {
+	    		result.status = false;
+			    result.message = 'You have to be above 24 years old to register in soulcafe';				
+			}
+			
+		}
+	    if (param.gender == 'female') {
+	    	if (diff < 22) {
+	    		result.status = false;
+			    result.message = 'You have to be above 22 years old to register in soulcafe';				
+			}
+			
+		}
+	    
+    	return result;
+    	
+    }
+    function refresh() {
+      $facebook.api('/me').then( 
+        function(response) {
+          $scope.welcomeMsg = 'Welcome ' + response.name;
+          regService.getFbUserStatus(response).then(function (results) {  
+          console.log(results.data);  	        
+	        if (results.data != 'false') { //login 
+				console.log('login');
+				localStorageService.set('authorizationData', {
+	                fb_id: response.id,
+	                user_id: results.data.user_id,
+	                userName: response.first_name
+	            });
+				var authData = localStorageService.get('authorizationData');
+				console.log(authData);
+				$location.path('/dashboard');
+			}
+	        else {// register//	        	        	
+	        		regService.getFbFriendsCount().then(function(data) {
+	                console.log(data);
+	                response.total_friends = data.summary.total_count;
+	                var res = validateUser(response);
+	                if (res.status) {
+	                	$location.path('register-user');
+					}
+	                else {
+	                	localStorageService.set('signupDeniedMessage', res);
+	                	$location.path('/signup-denied');
+	                }
+	                
+	                
+	                
+	            });
+	        }
+  	    });
+          
+        });
+
+    }
+    
+   
+    //refresh();
+    
   });
