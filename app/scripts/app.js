@@ -15,7 +15,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'linkedinServices'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -26,6 +27,18 @@ angular
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
+      })
+      .when('/linkedin', {
+        templateUrl: 'views/linkedin.html',
+        controller: 'LinkedinCtrl'
+      })
+      .when('/linkedin-dashboard', {
+        templateUrl: 'views/linkedin-dashboard.html',
+        controller: 'LinkedinDashboardCtrl'
+      })
+      .when('/linkedin-success', {
+        templateUrl: 'views/linkedin-success.html',
+        controller: 'LinkedinSuccessCtrl'
       })
       .otherwise({
         redirectTo: '/'

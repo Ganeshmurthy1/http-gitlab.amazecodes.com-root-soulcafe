@@ -13,7 +13,8 @@
     "angular-animate": "1.2.16",
     "angular-touch": "1.2.16",
     "angular-route": "1.2.16",
-    "sass-bootstrap": "~3.0.2"
+    "sass-bootstrap": "~3.0.2",
+    "angular-linkedin-api": "*"
   },
   "devDependencies": {
     "angular-mocks": "1.2.16",

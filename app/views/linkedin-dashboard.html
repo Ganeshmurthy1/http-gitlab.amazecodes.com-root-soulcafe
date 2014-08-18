@@ -1,0 +1,73 @@
+<div class="container-fixed">
+	<h1>Hi, {{firstName}} {{lastName}}</h1>
+	<a href="{{userprofile.publicProfileUrl}}" target="_blank"> 
+		<img class="img-polaroid" ng-src="{{userprofile.pictureUrl}}"/>
+	</a>
+</div>
+<!-- <button ng-click="getConnections()"  type="button" class="btn btn-primary">Connections</button> -->
+<div class="container">
+	<div class="form-group">
+		<label class="col-sm-6 control-label" style="font-size:20px;font-weight:bold;margin-top:20px;">Education Details</label>
+		<div class="col-sm-12 row">
+			<div class="col-lg-3" style="font-size:18px;font-weight:bold;">School Name </div>
+			<div class="col-lg-3" style="font-size:18px;font-weight:bold;">Field Of Study</div>
+			<div class="col-lg-2" style="font-size:18px;font-weight:bold;">End Date</div>
+			<div class="col-lg-4" style="font-size:18px;font-weight:bold;">Start Date</div>
+		</div>
+		<div class="col-sm-12 row"  ng-repeat="edu in education">
+			<div class="col-lg-3">{{edu.schoolName }}</div>
+			<div class="col-lg-3">{{edu.fieldOfStudy}}</div>
+			<div class="col-lg-2">{{edu.endDate}}</div>
+			<div class="col-lg-4">{{ edu.startDate}}</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-6 control-label" style="font-size:20px;font-weight:bold;margin-top:25px;">Contact Details</label>
+		<div class="col-sm-12 row">
+			<div class="col-lg-3" style="font-size:18px;font-weight:bold;">Mobile Type </div>
+			<div class="col-lg-3" style="font-size:18px;font-weight:bold;">Mobile Number</div>
+		</div>
+		<div class="col-sm-12 row"  ng-repeat="cnct in contact">
+			<div class="col-lg-3">{{cnct.phoneNumber }}</div>
+			<div class="col-lg-3">{{cnct.phoneType}}</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-6 control-label" style="font-size:20px;font-weight:bold;margin-top:25px;">Current Position Details</label>
+		<div class="col-sm-12 row">
+			<div class="col-lg-3" style="font-size:18px;font-weight:bold;">Compant Name </div>
+			<div class="col-lg-3" style="font-size:18px;font-weight:bold;">Title</div>
+			<div class="col-lg-2" style="font-size:18px;font-weight:bold;">Start Month</div>
+			<div class="col-lg-2" style="font-size:18px;font-weight:bold;">Start Year</div>
+		</div>
+		<div class="col-sm-12 row"  ng-repeat="cp in currentPosition">
+			<div class="col-lg-3">{{cp.company }}</div>
+			<div class="col-lg-3">{{cp.title}}</div>
+			<div class="col-lg-2">{{cp.month}}</div>
+			<div class="col-lg-2">{{ cp.year}}</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-6 control-label" style="font-size:20px;font-weight:bold;margin-top:25px;">Past Position Details</label>
+		<div class="col-sm-12 row">
+			<div class="col-lg-2" style="font-size:18px;font-weight:bold;">Compant Name </div>
+			<div class="col-lg-2" style="font-size:18px;font-weight:bold;">Title</div>
+			<div class="col-lg-2" style="font-size:18px;font-weight:bold;">Start Month</div>
+			<div class="col-lg-2" style="font-size:18px;font-weight:bold;">Start Year</div>
+			<div class="col-lg-2" style="font-size:18px;font-weight:bold;">End Month</div>
+			<div class="col-lg-2" style="font-size:18px;font-weight:bold;">End Year</div>
+		</div>
+		<div class="col-sm-12 row"  ng-repeat="pp in pastPosition">
+			<div class="col-lg-2">{{pp.company }}</div>
+			<div class="col-lg-2">{{pp.title}}</div>
+			<div class="col-lg-2">{{pp.smonth}}</div>
+			<div class="col-lg-2">{{ pp.syear}}</div>
+			<div class="col-lg-2">{{pp.emonth}}</div>
+			<div class="col-lg-2">{{ pp.eyear}}</div>
+		</div>
+	</div>
+</div>
+<button ng-click="addData()"  type="button" class="btn btn-primary ">Update Profile</button>
+
+
+

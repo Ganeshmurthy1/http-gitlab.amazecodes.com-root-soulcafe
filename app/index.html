@@ -39,7 +39,12 @@
        ga('create', 'UA-XXXXX-X');
        ga('send', 'pageview');
     </script>
-
+    <script type="text/javascript" src="http://platform.linkedin.com/in.js">
+        //here goes the api key, and the callback function
+        api_key: 75ckjn95bgi4uv
+        onLoad: onLinkedInLoad
+        authorize: true
+    </script>
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.min.js"></script>
@@ -69,14 +74,18 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/sass-bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/ng-facebook/ngFacebook.js"></script>
+    <script src="bower_components/angular-linkedin-api/linkedin-api-module.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+        <script src="scripts/linkedin.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/linkedin.js"></script>
+        <script src="scripts/controllers/linkedin-dashboard.js"></script>
+        <script src="scripts/controllers/linkedin-success.js"></script>
         <!-- endbuild -->
 </body>
 </html>
