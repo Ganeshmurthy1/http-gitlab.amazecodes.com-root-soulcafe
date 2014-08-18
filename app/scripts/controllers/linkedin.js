@@ -34,6 +34,7 @@ angular.module('sassApp')
                 $rootScope.phoneNumbers = $rootScope.userprofile.values[0].phoneNumbers;
                 
                 $rootScope.threeCurrentPositions = $rootScope.userprofile.values[0].threeCurrentPositions;
+                $rootScope.profilePic = $rootScope.userprofile.values[0].pictureUrl;
                 console.log($rootScope.threeCurrentPositions);
                 $rootScope.threePastPositions = $rootScope.userprofile.values[0].threePastPositions;
                 console.log($rootScope.threePastPositions);

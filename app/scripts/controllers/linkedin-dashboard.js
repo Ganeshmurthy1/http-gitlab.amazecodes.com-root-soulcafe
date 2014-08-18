@@ -15,8 +15,9 @@ angular.module('sassApp')
       'Karma'
     ];
 
-	$scope.firstName = $rootScope.firstName;
+	  $scope.firstName = $rootScope.firstName;
     $scope.lastName = $rootScope.lastName;
+    $scope.profilePic = $rootScope.profilePic;
   
     if($rootScope.educations != undefined) {
       var totalEdu = $rootScope.educations._total;
