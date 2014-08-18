@@ -14,9 +14,11 @@ angular.module('sassApp')
       'AngularJS',
       'Karma'
     ];
-
+   $scope.id={};
+   var uid = new Object();
     var authData = localStorageService.get('authorizationData');
-        $scope.user_id = authData.user_id;
+       uid.user_id = authData.user_id;
+       $scope.id = uid;
 
 	  $scope.firstName = $rootScope.firstName;
     $scope.lastName = $rootScope.lastName;
@@ -157,7 +159,7 @@ angular.module('sassApp')
           }
         });
       }
-      regService.updateUser($scope.user_id).then(function(response) {
+      regService.updateUser($scope.id).then(function(response) {
           // console.log(response.data);
           if (response.data == 'true') {
             console.log('success'); 

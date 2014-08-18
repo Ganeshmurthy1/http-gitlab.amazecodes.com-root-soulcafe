@@ -255,18 +255,19 @@ echo 'true';
 }
 
 function updateUser() {		
-	$sql = "Update users SET status=1 WHERE user_id=:user_id";
+	$request = Slim::getInstance()->request();
+	$user = json_decode($request->getBody());
+	$sql = "Update users SET linked_update=1 WHERE user_id=:user_id";
       try {
         $db = getConnection();
         $stmt = $db->prepare($sql);
         $stmt->bindParam("user_id", $user->user_id);
         $stmt->execute();
-    
+    	echo 'true';
         //$app->redirect('login.html');
       } catch(PDOException $e) {
         echo '{"error":{"text":'. $e->getMessage() .'}}';
       }
-echo 'true';
 }
 
 function getConnection() {
