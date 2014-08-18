@@ -46,6 +46,10 @@ angular
         templateUrl: 'views/dashboard.html',
         controller: 'DashboardCtrl'
       })
+      .when('/mobile-verify', {
+        templateUrl: 'views/mobile-verify.html',
+        controller: 'MobileVerifyCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
