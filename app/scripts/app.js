@@ -46,6 +46,10 @@ angular
         templateUrl: 'views/dashboard.html',
         controller: 'DashboardCtrl'
       })
+      .when('/signup-denied', {
+        templateUrl: 'views/signup-denied.html',
+        controller: 'SignupDeniedCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -26,4 +26,8 @@ angular.module('sassApp')
       }
       
     getUSerdata();
+
+     $scope.updateWithLinkedin = function() {
+      $location.path('/linkedin');
+    };
   });
