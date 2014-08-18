@@ -5,6 +5,7 @@ require 'Slim/Slim.php';
 $app = new Slim();
 $app->get('/users/:id', 'getUsers');
 $app->post('/add_user', 'addUser');
+$app->post('/verify', 'verifyUser');
 $app->post('/add_education', 'addEducation');
 $app->post('/add_contact', 'addContact');
 $app->post('/add_currentposition', 'addCurrentPosition');
@@ -59,6 +60,7 @@ function addUser() {
 	  if(!isset($wine->user_id)) {    
 	   if(is_numeric($user->mobile) and strlen($user->mobile) >= 10) {	  
 	       $mobile_rand = rand(11111, 99999);
+	       $name = $user->first_name. ' ' . $user->last_name;
 	    
         	$sql = "INSERT INTO users (fb_id, first_name, last_name, email, gender, birthdate, hometown, location, relationship_status, mobile, act_code) VALUES (:fb_id, :first_name, :last_name, :email, :gender, :birthdate, :hometown, :location, :relationship_status, :mobile, :act_code)";
         	try {
@@ -77,13 +79,13 @@ function addUser() {
         		$stmt->bindParam("act_code", $mobile_rand);
         		$stmt->execute();
         		
-        		
+        		$my_name = $user->first_name .'%20' . $user->last_name;
         		// Get cURL resource
         		$curl = curl_init();
         		// Set some options - we are passing in a useragent too here
         		curl_setopt_array($curl, array(
         		CURLOPT_RETURNTRANSFER => 1,
-        		CURLOPT_URL => 'http://bulksms.marketsolutions.co.in/sendsms?uname=thumbamon&pwd=thumbamon123&senderid=TUMBMN&to=' . $user->mobile . '&msg=Dear%20Jiby%20John,%20%20Thank%20you%20for%20your%20donation%20amount%20of%20INR.%20' .$mobile_rand . '/-%20towards%20Tithe%20Collection%20of%20MOSC%20Diocese%20of%20Thumpamon.%20Best%20Regards,%20Dio.%20Office,%20Thumpamon&route=T',
+        		CURLOPT_URL => 'http://bulksms.marketsolutions.co.in/sendsms?uname=thumbamon&pwd=thumbamon123&senderid=TUMBMN&to=' . $user->mobile . '&msg=Dear%20' . $my_name . ',%20%20Thank%20you%20for%20your%20donation%20amount%20of%20INR.%20' .$mobile_rand . '/-%20towards%20Tithe%20Collection%20of%20MOSC%20Diocese%20of%20Thumpamon.%20Best%20Regards,%20Dio.%20Office,%20Thumpamon&route=T',
         		CURLOPT_USERAGENT => 'Jiby Sample cURL Request'
         		));
         		// Send the request & save response to $resp
@@ -105,6 +107,38 @@ function addUser() {
 	    echo 'Mobile number already exist';
 	  }
 }
+
+function verifyUser() {
+  $request = Slim::getInstance()->request();
+  $user = json_decode($request->getBody());
+
+  $sql = "select act_code FROM users where user_id = :user_id ORDER BY user_id";
+
+  $db = getConnection();
+  $stmt = $db->prepare($sql);
+  $stmt->bindParam("user_id", $user->user_id);
+  $stmt->execute();
+  $wine = $stmt->fetchObject();
+  $db = null;
+  if($wine->act_code == $user->act_code) {
+    
+      $sql = "Update users SET status=1 WHERE user_id=:user_id";
+      try {
+        $db = getConnection();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("user_id", $user->user_id);
+        $stmt->execute();
+        echo 'true';
+        //$app->redirect('login.html');
+      } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+      }
+  }    
+  else {
+    echo 'Wrong Activation Code  ';
+  }
+}
+
 
 function addEducation() {
 	$request = Slim::getInstance()->request();
@@ -221,7 +255,7 @@ echo 'true';
 function getConnection() {
 	$dbhost="localhost";
 	$dbuser="root";
-	$dbpass="abhik123";
+	$dbpass="123";
 	$dbname="soulcafe";
 	$dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);	
 	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
