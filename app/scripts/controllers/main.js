@@ -118,7 +118,7 @@ angular.module('sassApp')
   			            });
   						var authData = localStorageService.get('authorizationData');
   		  				console.log(authData);
-  		  				$location.path('/dashboard');
+  		  				$location.path('/mobile-verify');
   					}
   				  
   			  });

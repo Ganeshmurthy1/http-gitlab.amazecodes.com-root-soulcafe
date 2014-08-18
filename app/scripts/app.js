@@ -49,6 +49,10 @@ angular
       .when('/signup-denied', {
         templateUrl: 'views/signup-denied.html',
         controller: 'SignupDeniedCtrl'
+	  })
+      .when('/mobile-verify', {
+        templateUrl: 'views/mobile-verify.html',
+        controller: 'MobileVerifyCtrl'
       })
       .otherwise({
         redirectTo: '/'

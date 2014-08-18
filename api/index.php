@@ -57,28 +57,50 @@ function addUser() {
 	  $wine = $stmt->fetchObject();
 	  $db = null;
 	  if(!isset($wine->user_id)) {    
-	 
-    	$sql = "INSERT INTO users (fb_id, first_name, last_name, email, gender, birthdate, hometown, location, relationship_status, mobile) VALUES (:fb_id, :first_name, :last_name, :email, :gender, :birthdate, :hometown, :location, :relationship_status, :mobile)";
-    	try {
-    		$db = getConnection();
-    		$stmt = $db->prepare($sql);  
-    		$stmt->bindParam("fb_id", $user->id);
-    		$stmt->bindParam("first_name", $user->first_name);
-    		$stmt->bindParam("last_name", $user->last_name);
-    		$stmt->bindParam("email", $user->email);
-    		$stmt->bindParam("gender", $user->gender);
-    		$stmt->bindParam("birthdate", $user->birthday);
-    		$stmt->bindParam("hometown", $user->hometown->name);
-    		$stmt->bindParam("location", $user->location->name);
-    		$stmt->bindParam("relationship_status", $user->relationship_status);
-    		$stmt->bindParam("mobile", $user->mobile);
-    		$stmt->execute();
-    		echo 'true';
-    		//$app->redirect('login.html');
-    	} catch(PDOException $e) {
-    		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
-    	}
-	  }
+	   if(is_numeric($user->mobile) and strlen($user->mobile) >= 10) {	  
+	       $mobile_rand = rand(11111, 99999);
+	    
+        	$sql = "INSERT INTO users (fb_id, first_name, last_name, email, gender, birthdate, hometown, location, relationship_status, mobile, act_code) VALUES (:fb_id, :first_name, :last_name, :email, :gender, :birthdate, :hometown, :location, :relationship_status, :mobile, :act_code)";
+        	try {
+        		$db = getConnection();
+        		$stmt = $db->prepare($sql);  
+        		$stmt->bindParam("fb_id", $user->id);
+        		$stmt->bindParam("first_name", $user->first_name);
+        		$stmt->bindParam("last_name", $user->last_name);
+        		$stmt->bindParam("email", $user->email);
+        		$stmt->bindParam("gender", $user->gender);
+        		$stmt->bindParam("birthdate", $user->birthday);
+        		$stmt->bindParam("hometown", $user->hometown->name);
+        		$stmt->bindParam("location", $user->location->name);
+        		$stmt->bindParam("relationship_status", $user->relationship_status);
+        		$stmt->bindParam("mobile", $user->mobile);
+        		$stmt->bindParam("act_code", $mobile_rand);
+        		$stmt->execute();
+        		
+        		
+        		// Get cURL resource
+        		$curl = curl_init();
+        		// Set some options - we are passing in a useragent too here
+        		curl_setopt_array($curl, array(
+        		CURLOPT_RETURNTRANSFER => 1,
+        		CURLOPT_URL => 'http://bulksms.marketsolutions.co.in/sendsms?uname=thumbamon&pwd=thumbamon123&senderid=TUMBMN&to=' . $user->mobile . '&msg=Dear%20Jiby%20John,%20%20Thank%20you%20for%20your%20donation%20amount%20of%20INR.%20' .$mobile_rand . '/-%20towards%20Tithe%20Collection%20of%20MOSC%20Diocese%20of%20Thumpamon.%20Best%20Regards,%20Dio.%20Office,%20Thumpamon&route=T',
+        		CURLOPT_USERAGENT => 'Jiby Sample cURL Request'
+        		));
+        		// Send the request & save response to $resp
+        		$resp = curl_exec($curl);
+        		// Close request to clear up some resources
+        		curl_close($curl);
+        		
+        		
+        		echo 'true';
+        	} catch(PDOException $e) {
+        		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+        	}
+	   }
+	   else {
+	     echo 'Mobile number not valid';
+	   }
+      }	  
 	  else {
 	    echo 'Mobile number already exist';
 	  }
