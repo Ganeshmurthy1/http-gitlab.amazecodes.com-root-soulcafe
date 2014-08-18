@@ -78,7 +78,13 @@ angular.module('sassApp')
 	                response.total_friends = data.summary.total_count;
 	                var res = validateUser(response);
 	                if (res.status) {
-	                	$location.path('register-user');
+	                	 $scope.fbdata = response;
+	                	 if(response.gender == 'male') {
+	                		 $scope.male = true;
+	                	 } else {
+	                		 $scope.female = true;
+	                	 }
+	                     $scope.isLoggedIn = true;
 					}
 	                else {
 	                	localStorageService.set('signupDeniedMessage', res);
@@ -94,6 +100,40 @@ angular.module('sassApp')
         });
 
     }
+    
+    $scope.signUp = function() {
+
+  	  regService.registerUser($scope.fbdata).then(function(response) {
+  		  console.log(response);
+  		  if (response.data == 'true') {
+  			  console.log('success');
+  			  regService.getFbUserStatus($scope.fbdata).then(function (results) {
+  				  console.log(results.data);
+  				  if (results.data != 'false') { //login 
+  						console.log('login');
+  						localStorageService.set('authorizationData', {
+  			                fb_id: $scope.fbdata.id,
+  			                user_id: results.data.user_id,
+  			                userName: response.first_name
+  			            });
+  						var authData = localStorageService.get('authorizationData');
+  		  				console.log(authData);
+  		  				$location.path('/dashboard');
+  					}
+  				  
+  			  });
+  			  
+			}
+  		  else {
+  			  $scope.errMessage = response.data;
+  		  }
+
+                $scope.savedSuccessfully = true;
+                $scope.message = "User has been registered successfully, you will be redicted to login page in 2 seconds.";
+                // startTimer();
+
+            });
+    };
     
    
     //refresh();

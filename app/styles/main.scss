@@ -424,30 +424,30 @@ input {
     opacity: 0;
   }
 }
+.radiomaskselected {
+	background-color: #7f5529;
+}
 
 #radio-male, #radio-female {
   width: 40px;
   height: 40px;
 }
 
-#radio-male + .radio-mask {
+#radio-male  .radio-mask {
   height: 43px;
   background-image: url(../images/male.png);
   background-position: center 10px;
 }
 
-#radio-female + .radio-mask {
+#radio-female  .radio-mask {
   height: 43px;
   background-image: url(../images/female.png);
   background-position: center 10px;
 }
 
-#radio-male:checked + .radio-mask {
-  background-color: #7f5529;
-  background-image: url(../images/male-r.png);
-}
 
-#radio-female:checked + .radio-mask {
+
+#radio-female .radio-mask-selected {
   background-color: #7f5529;
   background-image: url(../images/female-r.png);
 }
