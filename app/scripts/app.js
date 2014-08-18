@@ -16,7 +16,7 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'linkedinServices'
+    'linkedinServices',
     'ngFacebook',
     'LocalStorageModule',
   ])
@@ -41,6 +41,7 @@ angular
       .when('/linkedin-success', {
         templateUrl: 'views/linkedin-success.html',
         controller: 'LinkedinSuccessCtrl'
+      })
       .when('/dashboard', {
         templateUrl: 'views/dashboard.html',
         controller: 'DashboardCtrl'
