@@ -38,7 +38,7 @@ angular.module('sassApp')
     	var d2 = new Date();
 		var diff = d2.getFullYear()-d1.getFullYear();
 	    if (param.gender == 'male') {
-	    	if (diff < 24) {
+	    	if (diff < 22) {
 	    		result.status = false;
 			    result.message = 'You have to be above 24 years old to register in soulcafe';				
 			}
@@ -120,7 +120,8 @@ angular.module('sassApp')
   						var authData = localStorageService.get('authorizationData');
   		  				console.log(authData);
   		  				$scope.loggedin = true;
-  		  				$location.path('/mobile-verify');
+  		  				// $location.path('/mobile-verify');
+  		  				 $location.path('/dashboard');
   					}
   				  
   			  });

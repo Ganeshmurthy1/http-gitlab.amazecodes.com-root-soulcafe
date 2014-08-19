@@ -13,7 +13,7 @@ $app->post('/add_pastposition', 'addPastPosition');
 $app->post('/update_user', 'updateUser');
 
 $app->get('/usersAll/:id', 'getAllUsers');
-
+$app->get('/linkedinUsers/:id', 'getLinkedinUsers');
 
 $app->run();
 
@@ -45,6 +45,54 @@ function getAllUsers($id) {
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
+}
+
+
+function getLinkedinUsers($id) {
+  $sqlEdu = "select * FROM education where user_id = :id ORDER BY user_id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sqlEdu);
+    $stmt->bindParam("id", $id);
+    $stmt->execute();
+    $wineEdu = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+     // echo json_encode($wineEdu);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  $sqlCp = "select * FROM currentPosition where user_id = :id ORDER BY user_id";
+   try {
+    $db = getConnection();
+    $stmt = $db->prepare($sqlCp);
+    $stmt->bindParam("id", $id);
+    $stmt->execute();
+    $wineCp = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    // echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  $sqlPp = "select * FROM pastPosition where user_id = :id ORDER BY user_id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sqlPp);
+    $stmt->bindParam("id", $id);
+    $stmt->execute();
+    $winePp = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    // echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  // $merged = array_merge(Object($wineEdu),Object($wineCp),Object($winePp));
+     $op = new stdClass();
+     $op->edu = $wineEdu;
+     $op->cp = $wineCp;
+     $op->pp = $winePp;
+      echo json_encode($op);
+//  $obj_merged = (object) array_merge((array) $wineEdu, (array) $wineCp, (array) $winePp);
+ // echo json_encode($obj_merged);
 }
 
 function addUser() {
@@ -81,19 +129,19 @@ function addUser() {
         		$stmt->bindParam("act_code", $mobile_rand);
         		$stmt->execute();
         		
-        		$my_name = $user->first_name .'%20' . $user->last_name;
-        		// Get cURL resource
-        		$curl = curl_init();
-        		// Set some options - we are passing in a useragent too here
-        		curl_setopt_array($curl, array(
-        		CURLOPT_RETURNTRANSFER => 1,
-        		CURLOPT_URL => 'http://bulksms.marketsolutions.co.in/sendsms?uname=thumbamon&pwd=thumbamon123&senderid=TUMBMN&to=' . $user->mobile . '&msg=Dear%20' . $my_name . ',%20%20Thank%20you%20for%20your%20donation%20amount%20of%20INR.%20' .$mobile_rand . '/-%20towards%20Tithe%20Collection%20of%20MOSC%20Diocese%20of%20Thumpamon.%20Best%20Regards,%20Dio.%20Office,%20Thumpamon&route=T',
-        		CURLOPT_USERAGENT => 'Jiby Sample cURL Request'
-        		));
-        		// Send the request & save response to $resp
-        		$resp = curl_exec($curl);
-        		// Close request to clear up some resources
-        		curl_close($curl);
+        		// $my_name = $user->first_name .'%20' . $user->last_name;
+        		// // Get cURL resource
+        		// $curl = curl_init();
+        		// // Set some options - we are passing in a useragent too here
+        		// curl_setopt_array($curl, array(
+        		// CURLOPT_RETURNTRANSFER => 1,
+        		// CURLOPT_URL => 'http://bulksms.marketsolutions.co.in/sendsms?uname=thumbamon&pwd=thumbamon123&senderid=TUMBMN&to=' . $user->mobile . '&msg=Dear%20' . $my_name . ',%20%20Thank%20you%20for%20your%20donation%20amount%20of%20INR.%20' .$mobile_rand . '/-%20towards%20Tithe%20Collection%20of%20MOSC%20Diocese%20of%20Thumpamon.%20Best%20Regards,%20Dio.%20Office,%20Thumpamon&route=T',
+        		// CURLOPT_USERAGENT => 'Jiby Sample cURL Request'
+        		// ));
+        		// // Send the request & save response to $resp
+        		// $resp = curl_exec($curl);
+        		// // Close request to clear up some resources
+        		// curl_close($curl);
         		
         		
         		echo 'true';

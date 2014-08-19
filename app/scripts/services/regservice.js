@@ -10,7 +10,7 @@
 angular.module('sassApp')
   .factory('regService', ['$http', '$facebook', function($http, $facebook) {
 
-	    var urlBase = '/Soulcafe/api/';
+	    var urlBase = '/SASS/api/';
 	    var dataFactory = {};
 
 	    dataFactory.getChannelList = function () {
@@ -79,8 +79,13 @@ angular.module('sassApp')
 	    	return $facebook.api('/me/friends');
 	    };
 	    dataFactory.getUserDetails = function (uid) {
-	    	console.log(uid);
+	    	// console.log(uid);
 	    	var fbUrl = urlBase + 'usersAll/' + uid;
+	        return $http.get(fbUrl);
+	    };
+	    dataFactory.getLinkedinUserDetails = function (uid) {
+	    	console.log(uid);
+	    	var fbUrl = urlBase + 'linkedinUsers/' + uid;
 	        return $http.get(fbUrl);
 	    };
 	    return dataFactory;
