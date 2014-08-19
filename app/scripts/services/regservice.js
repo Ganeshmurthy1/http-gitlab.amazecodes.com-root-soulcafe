@@ -10,7 +10,7 @@
 angular.module('sassApp')
   .factory('regService', ['$http', '$facebook', function($http, $facebook) {
 
-	    var urlBase = '/SASS/api/';
+	    var urlBase = '/Soulcafe/api/';
 	    var dataFactory = {};
 
 	    dataFactory.getChannelList = function () {

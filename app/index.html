@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css styles/vendor.css -->
+    <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.css" />
     <!-- endbower -->
@@ -24,9 +24,11 @@
     <!-- Add your site or application content here -->
 
     <header>
-      <div class="container">
+      <div class="container" ng-controller="LoginCtrl">
       <div class="row">
-      <div class="col-xs-3 text-col-xs-right pull-right"><a class="btn btn-primary btn-lg">login</a></div>
+      <div class="col-xs-3 text-col-xs-right pull-right"><a class="btn btn-primary btn-lg" ng-hide="loggedin">login</a>
+      	<a class="btn btn-primary btn-lg" ng-show="loggedin" ng-click="logout()">Logout</a>
+      </div>
       <div class="col-xs-6 pull-right text-col-xs-center"><img src="images/logo.png" class="img-responsive"></div>
         <div class="col-xs-3 col-sm-3 pull-right">
           
@@ -159,6 +161,7 @@
         <script src="scripts/controllers/dashboard.js"></script>
         <script src="scripts/controllers/signup-denied.js"></script>
         <script src="scripts/controllers/mobile-verify.js"></script>
+        <script src="scripts/controllers/login.js"></script>
         <!-- endbuild -->
 </body>
 </html>
