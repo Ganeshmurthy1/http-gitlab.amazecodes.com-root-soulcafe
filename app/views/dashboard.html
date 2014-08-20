@@ -1,12 +1,15 @@
 <div class="container" style="margin:10px 10px;">
+	<div class="row">
+		<label class="col-sm-3 control-label heading">Personal Details</label>	
+	</div>
 <form name="fbdataform" class="form-horizontal group-border-dashed"  style="border-radius: 0px;" data-ng-submit="signUp(fbdataform.$valid)">
-		
+	
 	<div class="form-group row">
 		<label class="col-sm-1 col-sm-offset-2 control-label align">First Name</label>
 		<div class="col-sm-5">
 			<div class="col-sm-6 data-align">{{userData.first_name}}</div>
 		</div>
-		<button class="col-sm-3 btn btn-primary" ng-click="updateWithLinkedin()"  type="button">Update Profile With Linkedin</button>
+		<button class="col-sm-3 btn btn-primary" ng-hide="updateButton" ng-click="updateWithLinkedin()"  type="button">Update Profile With Linkedin</button>
 	</div>
 	<div class="form-group">
 		<label class="col-sm-1 col-sm-offset-2 control-label align">Last Name</label>
@@ -40,8 +43,51 @@
 		<label class="col-sm-1 col-sm-offset-2 control-label align">Relationship Status</label>
 		<div class="col-sm-6 data-align">{{userData.relationship_status}}</div>
 	</div></br></br>
-	
-
 </form>
+</div>
+<div class="container" style="margin-bottom:20px;">
+	<div class="form-group">
+		<label class="col-sm-3 control-label heading">Education Details</label>
+		<div class="col-sm-12 row">
+			<div class="col-lg-3 heading1">School Name </div>
+			<div class="col-lg-3 heading1">Field Of Study</div>
+			<div class="col-lg-2 heading1">End Date</div>
+			<div class="col-lg-4 heading1">Start Date</div>
+		</div>
+		<div class="col-sm-12 row"  ng-repeat="edu in linkedinData.edu">
+			<div class="col-lg-3">{{edu.schoolName }}</div>
+			<div class="col-lg-3">{{edu.fieldOfStudy}}</div>
+			<div class="col-lg-2">{{edu.endDate}}</div>
+			<div class="col-lg-4">{{ edu.startDate}}</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-3 control-label heading">Current Job</label>
+		<div class="col-sm-12 row">
+			<div class="col-lg-3 heading1">Compant Name </div>
+			<div class="col-lg-3 heading1">Title</div>
+			<div class="col-lg-2 heading1">Start Date</div>
+		</div>
+		<div class="col-sm-12 row"  ng-repeat="cp in linkedinData.cp">
+			<div class="col-lg-3">{{cp.company }}</div>
+			<div class="col-lg-3">{{cp.title}}</div>
+			<div class="col-lg-2">{{ cp.startDate}}</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-3 control-label heading">Past Job Details</label>
+		<div class="col-sm-12 row">
+			<div class="col-lg-2 heading1">Compant Name </div>
+			<div class="col-lg-2 heading1">Title</div>
+			<div class="col-lg-2 heading1">Start Date</div>
+			<div class="col-lg-2 heading1">End Date</div>
+		</div>
+		<div class="col-sm-12 row"  ng-repeat="pp in linkedinData.pp">
+			<div class="col-lg-2">{{pp.company }}</div>
+			<div class="col-lg-2">{{pp.title}}</div>
+			<div class="col-lg-2">{{pp.startDate}}</div>
+			<div class="col-lg-2">{{ pp.endDate}}</div>
+		</div>
+	</div>
 </div>
 

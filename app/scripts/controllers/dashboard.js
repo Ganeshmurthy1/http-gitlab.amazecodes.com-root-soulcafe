@@ -14,8 +14,10 @@ angular.module('sassApp')
       'AngularJS',
       'Karma'
     ];
-    
-    
+
+
+
+    $scope.updateButton = 'false';
 
     function getUSerdata() {
     	var authData = localStorageService.get('authorizationData');
@@ -30,6 +32,8 @@ angular.module('sassApp')
             // console.log(results.data);
             $scope.linkedinData = results.data;
              console.log($scope.linkedinData);
+             $scope.updateButton = 'true';
+
           });
       
         }   	

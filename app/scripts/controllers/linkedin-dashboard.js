@@ -163,7 +163,7 @@ angular.module('sassApp')
           // console.log(response.data);
           if (response.data == 'true') {
             console.log('success'); 
-             $location.path('/linkedin-success');
+             $location.path('/dashboard');
           }
           else {
             console.log('failed');

@@ -8,13 +8,13 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('MainCtrl', function ($scope,$facebook, regService, localStorageService, $location) {
+  .controller('MainCtrl', function ($scope, $rootScope, $facebook, regService, localStorageService, $location) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-    $scope.isLoggedIn = false;
+   
     $scope.login = function() {
       $facebook.login().then(function() {
     	//  makePromiseWithSon();
@@ -70,8 +70,9 @@ angular.module('sassApp')
 	            });
 				var authData = localStorageService.get('authorizationData');
 				console.log(authData);
-				$scope.loggedin = true;
+				//$scope.loggedin = true;
 				$location.path('/dashboard');
+				 $rootScope.loggedin = true;
 			}
 	        else {// register//	        	        	
 	        		regService.getFbFriendsCount().then(function(data) {
@@ -86,6 +87,7 @@ angular.module('sassApp')
 	                		 $scope.female = true;
 	                	 }
 	                     $scope.isLoggedIn = true;
+
 					}
 	                else {
 	                	localStorageService.set('signupDeniedMessage', res);
@@ -104,6 +106,10 @@ angular.module('sassApp')
     
     $scope.signUp = function() {
 
+    if($scope.fbdata.id == null){
+    	$scope.errMessage = "Login with Facebook";
+    }
+    else{
   	  regService.registerUser($scope.fbdata).then(function(response) {
   		  console.log(response);
   		  if (response.data == 'true') {
@@ -119,8 +125,10 @@ angular.module('sassApp')
   			            });
   						var authData = localStorageService.get('authorizationData');
   		  				console.log(authData);
-  		  				$scope.loggedin = true;
-  		  				// $location.path('/mobile-verify');
+  		  				//$scope.loggedin= true;
+  		  				$rootScope.loggedin = true;
+					   
+					  		  				// $location.path('/mobile-verify');
   		  				 $location.path('/dashboard');
   					}
   				  
@@ -136,6 +144,7 @@ angular.module('sassApp')
                 // startTimer();
 
             });
+		}
     };
     
    
