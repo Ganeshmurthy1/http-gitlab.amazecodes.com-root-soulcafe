@@ -1,0 +1,52 @@
+<div class="container" style="margin-left:500px;">
+	<div class="row headingWrap">
+		<label class="col-sm-3 control-label heading">Sign Up</label>	
+	</div>
+	<form name="fbdataform" class="form-horizontal group-border-dashed"  style="border-radius: 0px;" data-ng-submit="signUp(fbdataform.$valid)">                        
+        <div class="padding-bottom col-sm-6 clear">
+            <div class="pull-left padding-right line-height40">I am a</div>
+            <div class="pull-left padding-right"><div class=" form-control-holder " id="radio-male" >
+            <input type="radio" name="RadioGroup1" value="male"  checked="checked" id="radio-male"> 
+           	<div class='radio-mask' ng-class="{radiomaskselected:male}"></div>
+            </div>
+            </div>
+            <div class="pull-left"><div class=" form-control-holder" id="radio-female" >
+            <input type="radio" name="RadioGroup1" value="female" id="radio-female">
+            <div class='radio-mask' ng-class="{radiomaskselected:female}"></div>
+            </div></div>
+            <div class="clearfix"></div>
+                        
+        </div>
+        <div class="padding-bottom col-sm-6 clear">
+        	<input type="text" name="name" class="form-control" data-ng-model="fbdata.first_name" placeholder="First Name" required>
+        </div>
+        <div class="padding-bottom col-sm-6 clear">
+        	<input type="text" name="last_name" class="form-control" data-ng-model="fbdata.last_name" placeholder="Last Name" required>
+        </div>
+        <div class="padding-bottom col-sm-6 clear">
+        	<input type="text" name="birthdate" class="form-control" data-ng-model="fbdata.birthday" placeholder="Birthday" required>
+        </div>
+        <div class="padding-bottom col-sm-6 clear">
+        	<input type="text" name="home_town"   class="form-control" data-ng-model="fbdata.hometown.name" placeholder="Home Town" required>
+        </div>
+        <div class="padding-bottom col-sm-6 clear">
+        	<input type="text" name="location"  class="form-control" data-ng-model="fbdata.location.name" placeholder="Location" required>
+        </div>
+        <div class="padding-bottom col-sm-6 clear">
+        	<input type="email" name="email" class="form-control" data-ng-model="fbdata.email" placeholder="Email" required>
+        </div>
+        <div class="padding-bottom col-sm-6 clear">
+        	<input type="text" name="mobile" class="form-control" data-ng-model="fbdata.mobile" placeholder="Mobile" required>
+        </div>
+        <div class="padding-bottom col-sm-6 clear">
+        	<input type="text" name="relationship" class="form-control" data-ng-model="fbdata.relationship_status" placeholder="Relationship Status" required>
+        </div>
+            
+        <h4>{{errMessage}}</h4>
+        <div class="col-sm-3 clear buttonWrap">
+        	<input type="submit" value="submit" ng-disabled="fbdataform.$invalid" class="btn btn-lg btn-primary btn-block ">
+        </div>
+                    
+                    
+                  </form>
+</div>

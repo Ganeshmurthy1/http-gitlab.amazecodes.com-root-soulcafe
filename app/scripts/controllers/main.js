@@ -19,6 +19,7 @@ angular.module('sassApp')
       $facebook.login().then(function() {
     	//  makePromiseWithSon();
         refresh();
+        
       });
     };
     function validateUser(param) {
@@ -71,6 +72,7 @@ angular.module('sassApp')
 				var authData = localStorageService.get('authorizationData');
 				console.log(authData);
 				//$scope.loggedin = true;
+
 				$location.path('/dashboard');
 				 $rootScope.loggedin = true;
 			}
@@ -81,12 +83,16 @@ angular.module('sassApp')
 	                var res = validateUser(response);
 	                if (res.status) {
 	                	 $scope.fbdata = response;
+	                	 localStorageService.set('facebookData', {fbdata:response});
+	                     //  var fbbbbdata = localStorageService.get('facebookData');
+						 // console.log(fbbbbdata);
+						  $location.path('/signup');
 	                	 if(response.gender == 'male') {
 	                		 $scope.male = true;
 	                	 } else {
 	                		 $scope.female = true;
 	                	 }
-	                     $scope.isLoggedIn = true;
+	                     $rootScope.isLoggedIn = true;
 
 					}
 	                else {
