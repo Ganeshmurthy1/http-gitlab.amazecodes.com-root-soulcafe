@@ -1,0 +1,219 @@
+.wrapper {
+  background: #fff;
+}
+
+.topbar {
+  z-index: 12;
+  padding: 8px 0;
+  position: relative;
+  ul {
+    &.loginbar {
+      margin: 0;
+      > li {
+        display: inline;
+        list-style: none;
+        position: relative;
+        padding-bottom: 15px;
+        > a {
+          color: #7c8082;
+          font-size: 11px;
+          text-transform: uppercase;
+          &:hover {
+            color: #7c8082;
+            font-size: 11px;
+            text-transform: uppercase;
+          }
+        }
+      }
+      li {
+        i.fa {
+          color: #bbb;
+        }
+        &.topbar-devider {
+          top: -1px;
+          padding: 0;
+          font-size: 8px;
+          position: relative;
+          margin: 0 9px 0 5px;
+          font-family: Tahoma;
+          border-right: solid 1px #bbb;
+        }
+      }
+    }
+    &.lenguages {
+      top: 25px;
+      left: -5px;
+      display: none;
+      padding: 4px 0;
+      padding-left: 0;
+      list-style: none;
+      min-width: 100px;
+      position: absolute;
+      background: #f0f0f0;
+    }
+  }
+  li:hover ul.lenguages {
+    display: block;
+  }
+  ul.lenguages {
+    &:after {
+      top: -4px;
+      width: 0;
+      height: 0;
+      left: 8px;
+      content: " ";
+      display: block;
+      position: absolute;
+      border-bottom: 6px solid #f0f0f0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-left-style: inset;
+      /*FF fixes*/
+      border-right-style: inset;
+      /*FF fixes*/
+    }
+    li {
+      a {
+        color: #555;
+        display: block;
+        font-size: 10px;
+        padding: 2px 12px;
+        margin-bottom: 1px;
+        text-transform: uppercase;
+      }
+      &.active a i {
+        color: #999;
+        float: right;
+        margin-top: 2px;
+      }
+      a:hover, &.active a {
+        background: #fafafa;
+      }
+      a:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+/*Lenguages*/
+
+/*Top Bar v1 (login, search etc.)
+------------------------------------*/
+
+.topbar-v1 {
+  background: #fdfdfd;
+  border-bottom: solid 1px #f0f0f0;
+  ul {
+    margin: 0;
+  }
+  .top-v1-contacts {
+    li {
+      color: #666;
+      padding: 5px 0;
+      font-size: 12px;
+      margin-right: 15px;
+      display: inline-block;
+    }
+    i {
+      color: #999;
+      font-size: 13px;
+      margin-right: 3px;
+    }
+  }
+  .top-v1-data {
+    text-align: right;
+    li {
+      padding: 5px 11px;
+      display: inline-block;
+      border-right: solid 1px #eee;
+      &:first-child {
+        border-left: solid 1px #eee;
+      }
+      a {
+        font-size: 12px;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+      i {
+        color: #777;
+        font-size: 13px;
+      }
+      a:hover i {
+        color: #72c02c;
+      }
+    }
+  }
+}
+
+/*Top Contacts*/
+
+/*Top Data*/
+
+/*Responsive Topbar v1*/
+@media (max-width: 992px) {
+  .topbar-v1 {
+    ul {
+      text-align: center !important;
+    }
+    .top-v1-contacts {
+      margin: 10px 0;
+    }
+    .top-v1-data li {
+      top: 1px;
+      padding: 6px 16px;
+      margin-left: -5px;
+      position: relative;
+      border: solid 1px #eee;
+    }
+  }
+}
+
+/*Header Default
+------------------------------------*/
+
+.header1 {
+  z-index: 99;
+  position: relative;
+  border-bottom: solid 2px #eee;
+  .navbar {
+    margin: 0;
+    min-height: inherit;
+  }
+  .navbar-default {
+    border: none;
+    background: none;
+  }
+  .navbar-collapse {
+    position: relative;
+    /*max-height: inherit;*/
+  }
+  .navbar-brand {
+    z-index: 1;
+    top: -10px;
+    position: relative;
+    padding: 0 10px 10px;
+  }
+  .navbar-default .navbar-nav > {
+    li > a {
+      color: #687074;
+      font-size: 15px;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+    .active > a {
+      color: #72c02c;
+    }
+  }
+}
+
+/*Brand*/
+
+/*Navbar Brand*/
+@media (max-width: 992px) {
+  .header1 .navbar-brand {
+    top: 0;
+    height: 40px;
+  }
+}

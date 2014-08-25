@@ -9,11 +9,13 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/bootstrap-theme.css">
+     <link rel="stylesheet" href="styles/profile.css">
     <!-- endbuild -->
   </head>
   <body ng-app="sassApp">
@@ -24,7 +26,7 @@
     <!-- Add your site or application content here -->
     <div></div>
 
-    <header>
+    <!-- <header>
       <div class="container" ng-controller="LoginCtrl">
       <div class="row">
       <div class="col-xs-3 text-col-xs-right pull-right"><a class="btn btn-primary btn-lg" ng-hide="loggedin" >login</a>
@@ -46,13 +48,13 @@
       <div class="clearfix"></div>
     </div>
     </div>
-</header>
+</header> -->
 <!--HEADER END-->
 
       <div ng-view="" class = "cnt-wraper"></div>
 <!--FOOTER START-->
 
-<footer>
+<!-- <footer>
   <div class="container">
       <div class="row">
           <div class="col-sm-6 col-md-3 padding-top-bottom"><img src="images/footer-logo.png" class="img-responsive"></div>
@@ -79,8 +81,8 @@
             </div>
         </div>
   </div>
-</footer>
-<div class="copyright-strip bg-color-coffe line-height24">
+</footer> -->
+<!-- <div class="copyright-strip bg-color-coffe line-height24">
   <div class="container text-color-white ">
       <div class="row">
         <div class=" text-col-xs-center text-col-sm-left text-col-md-center col-sm-6 col-md-6 col-md-offset-3  padding-top-bottom-5 text-center">
@@ -96,7 +98,7 @@
             <div class="clearfix"></div>
       </div>
     </div>
-</div>
+</div> -->
       
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -164,6 +166,7 @@
         <script src="scripts/controllers/mobile-verify.js"></script>
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/controllers/signup.js"></script>
+        <script src="scripts/controllers/profile.js"></script>
         <!-- endbuild -->
 </body>
 </html>
