@@ -134,11 +134,11 @@
   }
 }
 
-.navbar-default! .navbar-nav > .active > a, .navbar-brand!, .navbar-nav! > li > a {}
+/*.navbar-default! .navbar-nav > .active > a, .navbar-brand!, .navbar-nav! > li > a {}
 
 .navbar-static-top, .navbar-fixed-top, .navbar-fixed-bottom {
   border-radius: 0;
-}
+}*/
 
 .alert {
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
@@ -455,10 +455,10 @@ input {
   width: auto;
 }
 
-.navbar-toggle {
+/*.navbar-toggle {
   display: block;
   float: none;
-}
+}*/
 
 @media (min-width: 768px) {
   .modal-dialog {
