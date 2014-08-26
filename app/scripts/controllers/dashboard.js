@@ -21,7 +21,7 @@ angular.module('sassApp')
 
     function getUSerdata() {
     	var authData = localStorageService.get('authorizationData');
-    	console.log(authData.user_id);
+    	console.log(authData);
     	regService.getUserDetails(authData.user_id).then(function (results) {
     		//console.log(results.data);
     		$scope.userData = results.data; 

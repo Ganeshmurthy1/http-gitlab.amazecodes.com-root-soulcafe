@@ -9,8 +9,42 @@ $app->post('/add_currentposition', 'addCurrentPosition');
 $app->post('/add_pastposition', 'addPastPosition');
 $app->post('/update_user', 'updateUser');
 
-$app->get('/usersAll/:id', 'getAllUsers');
+$app->get('/usersAll/:id', 'checkUser', 'getAllUsers');
 $app->get('/linkedinUsers/:id', 'getLinkedinUsers');
+
+function checkUser() { 
+  $headers = apache_request_headers();
+ // echo $headers['authorization'];
+  $split = explode(' ', $headers['authorization']);
+  $token = $split[1];
+  $role = 2;
+  $sql = "select user_id FROM users where user_role = :role and access_tocken = :token";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("role", $role);
+    $stmt->bindParam("token", $token);
+    $stmt->execute();
+    $wine = $stmt->fetchObject();
+    $db = null;
+    //echo json_encode($wine);
+    if($wine == false) {
+      $app = Slim::getInstance();
+      $app->status(400);
+      $result = array("status" => "error", "message" => "You need a valid API key.");
+      echo json_encode($result);
+      $app->stop();    
+  
+    }
+  
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  
+
+  //echo json_encode($headers);
+
+}
 
 function getUsers($id) {
 	$sql = "select user_id FROM users where fb_id = :id ORDER BY user_id";
@@ -21,7 +55,24 @@ function getUsers($id) {
         $stmt->execute();
         $wine = $stmt->fetchObject();
         $db = null;
-        echo json_encode($wine);
+        if(isset($wine)) {
+          $token = bin2hex(openssl_random_pseudo_bytes(16));
+          $sql = "Update users SET access_tocken=:token WHERE fb_id=:user_id";
+          try {
+            $db = getConnection();
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam("token", $token);
+            $stmt->bindParam("user_id", $id);
+            $stmt->execute();
+            
+            $wine->token = $token;
+            echo json_encode($wine);
+          } catch(PDOException $e) {
+            echo '{"error":{"text":'. $e->getMessage() .'}}';
+          }
+          
+        }
+        
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
@@ -106,8 +157,9 @@ function addUser() {
 	   if(is_numeric($user->mobile) and strlen($user->mobile) >= 10) {	  
 	       $mobile_rand = rand(11111, 99999);
 	       $name = $user->first_name. ' ' . $user->last_name;
+	       $role = 2;
 	    
-        	$sql = "INSERT INTO users (fb_id, first_name, last_name, email, gender, birthdate, hometown, location, relationship_status, mobile, act_code) VALUES (:fb_id, :first_name, :last_name, :email, :gender, :birthdate, :hometown, :location, :relationship_status, :mobile, :act_code)";
+        	$sql = "INSERT INTO users (fb_id, first_name, last_name, email, gender, birthdate, hometown, location, relationship_status, mobile, act_code, user_role) VALUES (:fb_id, :first_name, :last_name, :email, :gender, :birthdate, :hometown, :location, :relationship_status, :mobile, :act_code)";
         	try {
         		$db = getConnection();
         		$stmt = $db->prepare($sql);  
@@ -122,6 +174,7 @@ function addUser() {
         		$stmt->bindParam("relationship_status", $user->relationship_status);
         		$stmt->bindParam("mobile", $user->mobile);
         		$stmt->bindParam("act_code", $mobile_rand);
+        		$stmt->bindParam("user_role", $role);
         		$stmt->execute();
         		
         		// $my_name = $user->first_name .'%20' . $user->last_name;
