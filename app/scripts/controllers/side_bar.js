@@ -9,6 +9,9 @@
  */
 angular.module('sassApp')
   .controller('SideBarCtrl', function ($scope) {
+
+$scope.SideBar = 'views/side_bar.html';
+
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
