@@ -67,6 +67,14 @@ angular
         templateUrl: 'views/profile_comments.html',
         controller: 'ProfileCommentsCtrl'
       })
+      .when('/side_menu', {
+        templateUrl: 'views/side_menu.html',
+        controller: 'SideMenuCtrl'
+      })
+      .when('/side_bar', {
+        templateUrl: 'views/side_bar.html',
+        controller: 'SideBarCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
