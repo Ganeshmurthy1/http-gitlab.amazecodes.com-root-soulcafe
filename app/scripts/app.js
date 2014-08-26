@@ -76,11 +76,12 @@ angular
     $facebookProvider.setAppId('278995965634637');
     $facebookProvider.setPermissions("email,user_likes,user_birthday,user_relationships,user_work_history,user_hometown,user_location,user_friends");
     
-    $httpProvider.interceptors.push(function($q, $location) {
+    $httpProvider.interceptors.push(function($q, $location, localStorageService) {
         return {
             'responseError': function(response) {
                 if(response.status === 401 || response.status === 403) {
-                    $location.path('/login');
+                	localStorageService.clearAll();
+                    $location.path('/');
                     return $q.reject(response);
                 }
                 else {

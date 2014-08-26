@@ -17,12 +17,12 @@ function checkUser() {
  // echo $headers['authorization'];
   $split = explode(' ', $headers['authorization']);
   $token = $split[1];
-  $role = 2;
-  $sql = "select user_id FROM users where user_role = :role and access_tocken = :token";
+  $user_id  = $split[3];
+  $sql = "select user_id FROM users where user_id = :user_id and access_tocken = :token";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
-    $stmt->bindParam("role", $role);
+    $stmt->bindParam("user_id", $user_id);
     $stmt->bindParam("token", $token);
     $stmt->execute();
     $wine = $stmt->fetchObject();
@@ -30,7 +30,7 @@ function checkUser() {
     //echo json_encode($wine);
     if($wine == false) {
       $app = Slim::getInstance();
-      $app->status(400);
+      $app->status(401);
       $result = array("status" => "error", "message" => "You need a valid API key.");
       echo json_encode($result);
       $app->stop();    
@@ -47,7 +47,7 @@ function checkUser() {
 }
 
 function getUsers($id) {
-	$sql = "select user_id FROM users where fb_id = :id ORDER BY user_id";
+	$sql = "select user_id,user_role FROM users where fb_id = :id ORDER BY user_id";
 	try {
 		$db = getConnection();
         $stmt = $db->prepare($sql);
@@ -55,7 +55,7 @@ function getUsers($id) {
         $stmt->execute();
         $wine = $stmt->fetchObject();
         $db = null;
-        if(isset($wine)) {
+        if($wine != false) {
           $token = bin2hex(openssl_random_pseudo_bytes(16));
           $sql = "Update users SET access_tocken=:token WHERE fb_id=:user_id";
           try {
@@ -66,13 +66,13 @@ function getUsers($id) {
             $stmt->execute();
             
             $wine->token = $token;
-            echo json_encode($wine);
+            //echo json_encode($wine);
           } catch(PDOException $e) {
             echo '{"error":{"text":'. $e->getMessage() .'}}';
           }
           
         }
-        
+        echo json_encode($wine);
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
@@ -159,7 +159,7 @@ function addUser() {
 	       $name = $user->first_name. ' ' . $user->last_name;
 	       $role = 2;
 	    
-        	$sql = "INSERT INTO users (fb_id, first_name, last_name, email, gender, birthdate, hometown, location, relationship_status, mobile, act_code, user_role) VALUES (:fb_id, :first_name, :last_name, :email, :gender, :birthdate, :hometown, :location, :relationship_status, :mobile, :act_code)";
+        	$sql = "INSERT INTO users (fb_id, first_name, last_name, email, gender, birthdate, hometown, location, relationship_status, mobile, act_code, user_role) VALUES (:fb_id, :first_name, :last_name, :email, :gender, :birthdate, :hometown, :location, :relationship_status, :mobile, :act_code, :user_role)";
         	try {
         		$db = getConnection();
         		$stmt = $db->prepare($sql);  

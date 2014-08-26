@@ -43,7 +43,8 @@ angular.module('sassApp')
   			                fb_id: $scope.fbdata.id,
   			                user_id: results.data.user_id,
   			                userName: response.first_name,
-  			                token: results.data.token
+  			                token: results.data.token,
+  			                user_role: results.data.user_role
   			            });
   						var accessLevels = routingConfig.accessLevels
   				        , userRoles = routingConfig.userRoles;
