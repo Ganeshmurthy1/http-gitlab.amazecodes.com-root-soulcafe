@@ -19,6 +19,7 @@ angular
     'linkedinServices',
     'ngFacebook',
     'LocalStorageModule',
+    'perfect_scrollbar'
   ])
   .config(function ($routeProvider, $facebookProvider) {
     $routeProvider
