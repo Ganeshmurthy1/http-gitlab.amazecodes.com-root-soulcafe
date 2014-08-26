@@ -63,6 +63,10 @@ angular
         templateUrl: 'views/profile.html',
         controller: 'ProfileCtrl'
       })
+      .when('/profile_comments', {
+        templateUrl: 'views/profile_comments.html',
+        controller: 'ProfileCommentsCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

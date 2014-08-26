@@ -25,6 +25,7 @@ p,
 li,
 li a { 
    color: #555;
+   margin-left: 2px;
 }
 
 a {
