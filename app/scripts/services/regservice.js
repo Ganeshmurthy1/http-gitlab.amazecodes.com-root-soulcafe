@@ -8,14 +8,30 @@
  * Factory in the acslSoulcafeApp.
  */
 angular.module('sassApp')
-  .factory('regService', ['$http', '$facebook', function($http, $facebook) {
+  .factory('regService', ['$http', '$facebook', 'localStorageService', function($http, $facebook, localStorageService) {
 
 	    var urlBase = '/SASS/api/';
 	    var dataFactory = {};
-
-	    dataFactory.getChannelList = function () {
-	        return $http.get(urlBase);
-	    };
+	    
+	    var accessLevels = routingConfig.accessLevels
+        , userRoles = routingConfig.userRoles;
+         
+        
+        //console.log(currentUser);
+	    dataFactory.authorize = function(accessLevel, role) {
+	    	var currentUser = localStorageService.get('user') || { username: '', role: userRoles.public };
+            if(role === undefined)
+                role = currentUser.role;
+            console.log(accessLevel);
+            console.log(role);
+            return accessLevel.bitMask & role.bitMask;
+        };
+        
+        dataFactory.isLoggedIn = function(user) {
+            if(user === undefined)
+                user = currentUser;
+            return user.role.title == userRoles.user.title || user.role.title == userRoles.admin.title;
+        };
 	    dataFactory.getFbUserStatus = function (param) {
 	    	console.log(param);
 	    	var fbUrl = urlBase + 'users/' + param.id;
