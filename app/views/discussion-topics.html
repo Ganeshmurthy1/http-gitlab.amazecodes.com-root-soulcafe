@@ -1,1 +1,83 @@
-<p>This is the discussion-topics view.</p>
+<div class="wrapper">
+    <!--=== Header ===-->    
+  <div data-ng-controller="HeaderCtrl" data-ng-include="Header">
+</div>
+    <!--=== End Header ===-->  
+
+
+
+
+    <!--=== Profile ===-->
+    <div class="profile container content" style="border-color:red">
+        <div class="row">
+            <!--Left Sidebar-->
+            <div data-ng-controller="SideBarCtrl" data-ng-include="SideBar">
+            </div>
+            <!--End Left Sidebar-->
+            
+            <div class="col-md-9">
+                <!--Profile Body-->
+                <div class="profile-body">
+                <!-- Discussion Topics -->
+                <div class="headline"><h1 class="heading-sm">Discussion Topics</h1></div>
+                     <div class="row">
+                    <div class="col-md-6">
+                        <div class="alert fade in backWhite">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h4>Info! Important Message!</h4>
+                            <p>Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
+                            <p>
+                                 <li style="list-style:none;"><a href="#/discussion"><i class="fa fa-comments" style="margin-right:5px;"></i>Comments</a></li>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="alert fade in backWhite">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h4>Info! Important Message!</h4>
+                            <p>Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
+                            <p>
+                               <li style="list-style:none;"><a href="#/discussion"><i class="fa fa-comments" style="margin-right:5px;"></i>Comments</a></li>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="alert  fade in backWhite">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h4>Info! Important Message!</h4>
+                            <p>Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
+                            <p>
+                                <li style="list-style:none;"><a href="#/discussion"><i class="fa fa-comments" style="margin-right:5px;"></i>Comments</a></li>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="alert fade in backWhite">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h4>Info! Important Message!</h4>
+                            <p>Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
+                            <p>
+                                <li style="list-style:none;"><a href="#/discussion"><i class="fa fa-comments" style="margin-right:5px;"></i>Comments</a></li>
+                            </p>
+                        </div>
+                    </div>  
+                </div>
+
+                <!-- End  Discussion Topics -->
+                </div>
+                <!--End Profile Body-->
+            </div>
+		 </div>
+	</div>
+	 <!--===End Profile ===-->
+
+<!--=== Footer ===-->
+ <div data-ng-controller="FooterCtrl" data-ng-include="Footer">
+</div>
+
+<!--=== End Footer ===-->
+
+</div>
+ <!--=== End Wrapper ===-->
