@@ -42,8 +42,16 @@ angular.module('sassApp')
   						localStorageService.set('authorizationData', {
   			                fb_id: $scope.fbdata.id,
   			                user_id: results.data.user_id,
-  			                userName: response.first_name
+  			                userName: response.first_name,
+  			                token: results.data.token,
+  			                user_role: results.data.user_role
   			            });
+  						var accessLevels = routingConfig.accessLevels
+  				        , userRoles = routingConfig.userRoles;
+  						localStorageService.set('user', {
+  							 username: response.first_name,
+  							 role: userRoles.user
+  				         });
   						var authData = localStorageService.get('authorizationData');
   		  				console.log(authData);
   		  				//$scope.loggedin= true;
