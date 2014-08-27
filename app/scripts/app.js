@@ -87,6 +87,18 @@ angular
         templateUrl: 'views/side_bar.html',
         controller: 'SideBarCtrl'
       })
+      .when('/discussion-list', {
+        templateUrl: 'views/discussion-list.html',
+        controller: 'DiscussionListCtrl'
+      })
+      .when('/discussion-topics', {
+        templateUrl: 'views/discussion-topics.html',
+        controller: 'DiscussionTopicsCtrl'
+      })
+      .when('/discussion', {
+        templateUrl: 'views/discussion.html',
+        controller: 'DiscussionCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
