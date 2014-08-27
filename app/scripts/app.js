@@ -87,6 +87,11 @@ angular
         templateUrl: 'views/side_bar.html',
         controller: 'SideBarCtrl'
       })
+      .when('/admin-add-discussion', {
+        templateUrl: 'views/admin-add-discussion.html',
+        controller: 'AdminAddDiscussionCtrl',
+        access:      access.user
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -120,7 +125,10 @@ angular.module('sassApp').run( function($rootScope, $location, $http, regService
 			 username: '',
 			 role: userRoles.public
          });
-	    }
+	 }
+	 localStorageService.set('apiContext', {
+		 base_path: '/SASS/api/',
+     });
 	$rootScope.$on("$routeChangeStart", function (event, next, current) {
         $rootScope.error = null;
         console.log(next.access);
