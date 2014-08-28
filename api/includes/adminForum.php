@@ -1,5 +1,19 @@
 <?php 
 $app->post('/admin_add_discussion', 'checkUser', 'adminAddDiscussion');
+$app->post('/admin_get_discussion', 'checkUser', 'adminGetDiscussion');
+$app->post('/admin_get_discussion_total', 'checkUser', 'adminGetDiscussionTotal');
+$app->get('/admin_delete_discussion/:id', 'checkUser', 'adminDeleteDiscussion');
+$app->get('/admin_activate_discussion/:id', 'checkUser', 'adminActivateDiscussion');
+$app->get('/admin_deactivate_discussion/:id', 'checkUser', 'adminDeActivateDiscussion');
+
+$app->get('/admin_get_topic_this/:id', 'checkUser', 'adminGetTopicThis');
+$app->get('/admin_get_topic_total/:id', 'checkUser', 'adminGetTopicTotal');
+$app->post('/admin_get_topic', 'checkUser', 'adminGetTopic');
+$app->post('/admin_add_topic', 'checkUser', 'adminAddTopic');
+
+$app->get('/admin_delete_topic/:id', 'checkUser', 'adminDeleteTopic');
+$app->get('/admin_activate_topic/:id', 'checkUser', 'adminActivateTopic');
+$app->get('/admin_deactivate_topic/:id', 'checkUser', 'adminDeActivateTopic');
 
 function adminAddDiscussion() {
   $request = Slim::getInstance()->request();
@@ -66,5 +80,227 @@ function checkValidDiscussion($forum) {
   return $result;
 }
 
+function adminGetDiscussion() {
+  
+  $request = Slim::getInstance()->request();
+  $forum = json_decode($request->getBody());
+  $sqlCp = "select * FROM DiscussionBoard ORDER BY CreatedDate desc";
+  $lm = ' Limit ' . $forum->start . ',' . $forum->limit;
+  $sqlCp .= $lm;
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sqlCp);
+    //$stmt->bindParam("start", $forum->start);
+   // $stmt->bindParam("limit", $forum->limit);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  //echo json_encode($wine);
+}
+
+function adminGetDiscussionTotal() {
+
+  $sql = "select count(1) as total FROM DiscussionBoard";
+	try {
+		$db = getConnection();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("id", $id);
+        $stmt->execute();
+        $wine = $stmt->fetchObject();
+        $db = null;       
+        //echo $total = $wine->'count(1)';
+        echo json_encode($wine);
+	} catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+	}
+
+}
+
+function adminDeleteDiscussion($id) {
+  $sql = "Delete from DiscussionBoard  WHERE DiscussionBoardId=:id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("id", $id);
+    $stmt->execute();
+    echo 'true';    
+    //echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  
+}
+
+function adminActivateDiscussion($id) {
+  $sql = "Update DiscussionBoard SET status=1 WHERE DiscussionBoardId=:id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("id", $id);
+    $stmt->execute();
+    echo 'true';
+    //echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
+}
+
+function adminDeActivateDiscussion($id) {
+  $sql = "Update DiscussionBoard SET status=0 WHERE DiscussionBoardId=:id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("id", $id);
+    $stmt->execute();
+    echo 'true';
+    //echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
+}
+
+function adminGetTopicThis($id) {
+
+  $sql = "select * FROM DiscussionBoard where 	DiscussionBoardId=:id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("id", $id);
+    $stmt->execute();
+    $wine = $stmt->fetchObject();
+    $db = null;
+    //echo $total = $wine->'count(1)';
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
+}
+
+
+function adminGetTopicTotal($id) {
+
+  $sql = "select count(1) as total FROM DiscussionBoardTopic where 	DiscussionBoardId=:id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("id", $id);
+    $stmt->execute();
+    $wine = $stmt->fetchObject();
+    $db = null;
+    //echo $total = $wine->'count(1)';
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
+}
+
+function adminGetTopic() {
+  
+  $request = Slim::getInstance()->request();
+  $forum = json_decode($request->getBody());
+  $sqlCp = "select * FROM DiscussionBoardTopic where DiscussionBoardId=:id ORDER BY CreatedDate desc";
+  $lm = ' Limit ' . $forum->start . ',' . $forum->limit;
+  $sqlCp .= $lm;
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sqlCp);
+    $stmt->bindParam("id", $forum->discussId);
+   // $stmt->bindParam("limit", $forum->limit);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  //echo json_encode($wine);
+}
+
+
+function adminAddTopic() {
+  $request = Slim::getInstance()->request();
+  $forum = json_decode($request->getBody());
+  $headers = apache_request_headers();
+  // echo $headers['authorization'];
+
+    $split = explode(' ', $headers['authorization']);
+    $user_id  = $split[3];
+    $tdate = date('Y-m-d h:i:s');
+    //echo $forum->restriction;
+    
+    $status = 1;
+    $sql = "INSERT INTO DiscussionBoardTopic (DiscussionBoardId, TopicTitle, TopicDescription, CreatedBy, CreatedDate, Status) VALUES (:discussId, :topic, :description, :CreatedBy, :CreatedDate, :status)";
+    try {
+      $db = getConnection();
+      $stmt = $db->prepare($sql);
+      $stmt->bindParam("discussId", $forum->discussId);
+      $stmt->bindParam("topic", $forum->title);
+      $stmt->bindParam("description", $forum->description);
+      $stmt->bindParam("CreatedBy", $user_id);
+      $stmt->bindParam("CreatedDate", $tdate);
+      $stmt->bindParam("status", $status);      
+
+      $stmt->execute();
+
+
+      echo 'true';
+    } catch(PDOException $e) {
+      echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
+ 
+}
+
+function adminDeleteTopic($id) {
+  $sql = "Delete from DiscussionBoardTopic  WHERE DiscussionTopicId=:id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("id", $id);
+    $stmt->execute();
+    echo 'true';
+    //echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
+}
+
+function adminActivateTopic($id) {
+  $sql = "Update DiscussionBoardTopic SET status=1 WHERE DiscussionTopicId=:id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("id", $id);
+    $stmt->execute();
+    echo 'true';
+    //echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
+}
+
+function adminDeActivateTopic($id) {
+  $sql = "Update DiscussionBoardTopic SET status=0 WHERE DiscussionTopicId=:id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("id", $id);
+    $stmt->execute();
+    echo 'true';
+    //echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
+}
 
 ?>

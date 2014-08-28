@@ -2,27 +2,28 @@
 
 /**
  * @ngdoc function
- * @name sassApp.controller:AdminAddDiscussionCtrl
+ * @name sassApp.controller:AdminAddTopicCtrl
  * @description
- * # AdminAddDiscussionCtrl
+ * # AdminAddTopicCtrl
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('AdminAddDiscussionCtrl', function ($scope, $location, adminDiscussion) {
+  .controller('AdminAddTopicCtrl', function ($scope, adminDiscussion, $routeParams) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-    $scope.adminAddDiscussion = function() {
-    	console.log($scope.discussion);
-    	adminDiscussion.addDiscussion($scope.discussion).then(function(response) {
+    $scope.adminAddTopic = function() {
+    	$scope.topic.discussId = $routeParams.discussId;
+    	console.log($scope.topic);
+    	adminDiscussion.addTopic($scope.topic).then(function(response) {
 		  console.log(response);
 		  if (response.data == 'true') {
 			  $scope.savedSuccessfully = true;
               $scope.successmessage = "Forum added sucessfully.";
               $scope.errMessage = false;
-              $scope.discussion = false;
+              $scope.topic = false;
 		  }
 		  else {
 			  $scope.successmessage = false;
@@ -32,6 +33,4 @@ angular.module('sassApp')
 
 
     };
-    
-   
   });

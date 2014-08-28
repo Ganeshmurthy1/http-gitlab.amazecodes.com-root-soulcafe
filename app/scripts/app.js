@@ -19,7 +19,8 @@ angular
     'linkedinServices',
     'ngFacebook',
     'LocalStorageModule',
-    'perfect_scrollbar'
+    'perfect_scrollbar',
+    'ui.bootstrap' 
   ])
   .config(function ($routeProvider, $facebookProvider, $locationProvider, $httpProvider) {
 	
@@ -103,6 +104,20 @@ angular
         templateUrl: 'views/admin-add-discussion.html',
         controller: 'AdminAddDiscussionCtrl',
         access:      access.user
+      })
+      .when('/admin-discussion-list', {
+        templateUrl: 'views/admin-discussion-list.html',
+        controller: 'AdminDiscussionListCtrl',
+        access:      access.user
+      })
+      .when('/admin-topic-list', {
+        templateUrl: 'views/admin-topic-list.html',
+        controller: 'AdminTopicListCtrl',
+        access:      access.user
+      })
+      .when('/admin-add-topic', {
+        templateUrl: 'views/admin-add-topic.html',
+        controller: 'AdminAddTopicCtrl'
       })
       .otherwise({
         redirectTo: '/'
