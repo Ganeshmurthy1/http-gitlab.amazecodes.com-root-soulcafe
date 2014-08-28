@@ -20,49 +20,31 @@
                 <div class="profile-body">
                 <!-- Discussion Topics -->
                 <div class="headline"><h1 class="heading-sm">Discussion Topics</h1></div>
-                     <div class="row">
-                    <div class="col-md-6">
+                     
+                <div class="row">
+                <div data-ng-repeat="discussion in discussions">
+               <!--  {{as=$index}} -->
+               
+             
+                        <div class="col-md-6">
                         <div class="alert fade in backWhite">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <h4>Info! Important Message!</h4>
-                            <p>Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
+                            <h4>{{discussion.TopicTitle}}</h4>
+                            <p>{{discussion.TopicDescription}}.{{$index%2}}</p>
                             <p>
                                  <li style="list-style:none;"><a href="#/discussion"><i class="fa fa-comments" style="margin-right:5px;"></i>Comments</a></li>
                             </p>
                         </div>
+                        </div> 
+                   </div>
+
+                 <sapn ng-if='$index%2!==0' >
                     </div>
-                    <div class="col-md-6">
-                        <div class="alert fade in backWhite">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <h4>Info! Important Message!</h4>
-                            <p>Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
-                            <p>
-                               <li style="list-style:none;"><a href="#/discussion"><i class="fa fa-comments" style="margin-right:5px;"></i>Comments</a></li>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="alert  fade in backWhite">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <h4>Info! Important Message!</h4>
-                            <p>Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
-                            <p>
-                                <li style="list-style:none;"><a href="#/discussion"><i class="fa fa-comments" style="margin-right:5px;"></i>Comments</a></li>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="alert fade in backWhite">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <h4>Info! Important Message!</h4>
-                            <p>Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
-                            <p>
-                                <li style="list-style:none;"><a href="#/discussion"><i class="fa fa-comments" style="margin-right:5px;"></i>Comments</a></li>
-                            </p>
-                        </div>
-                    </div>  
+                    <div class="row">
+                    
+                </sapn>
+
+                      
+
                 </div>
 
                 <!-- End  Discussion Topics -->

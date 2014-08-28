@@ -111,5 +111,14 @@ angular.module('sassApp')
 	    	var fbUrl = urlBase + 'linkedinUsers/' + uid;
 	        return $http.get(fbUrl);
 	    };
+
+	    //fahad
+	      dataFactory.getdiscussionTopicDetails = function (discussionid) {	     
+	    	return $http.get(urlBase + 'discussionTopicAll/'+discussionid).then(function(response) {	    		
+                return response;
+            });
+	    	
+	    };
+
 	    return dataFactory;
 	}]);
