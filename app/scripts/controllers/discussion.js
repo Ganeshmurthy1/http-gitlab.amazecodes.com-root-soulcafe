@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('DiscussionCtrl', function ($scope,$routeParams) {
+  .controller('DiscussionCtrl', function ($scope,$routeParams,regService) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -17,5 +17,16 @@ angular.module('sassApp')
 
 
     console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaa",$routeParams.topic);
+      regService.getdiscussionTopicComments($routeParams.topic).then(function (results) {
+
+     	console.log("susess");
+     	  $scope.comments = results.data; 
+
+     	
+     	  console.log("datassss",$scope.comments);
+
+     });
+
+
      ;
   });

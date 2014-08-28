@@ -112,9 +112,15 @@ angular.module('sassApp')
 	        return $http.get(fbUrl);
 	    };
 
-	    //fahad
 	      dataFactory.getdiscussionTopicDetails = function (discussionid) {	     
 	    	return $http.get(urlBase + 'discussionTopicAll/'+discussionid).then(function(response) {	    		
+                return response;
+            });
+	    	
+	    };
+
+	      dataFactory.getdiscussionTopicComments = function (topic) {	     
+	    	return $http.get(urlBase + 'discussionTopicComments/'+topic).then(function(response) {	    		
                 return response;
             });
 	    	

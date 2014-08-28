@@ -13,6 +13,7 @@ $app->get('/usersAll/:id', 'checkUser', 'getAllUsers');
 $app->get('/linkedinUsers/:id', 'getLinkedinUsers');
 $app->get('/discussionAll', 'checkUser', 'getAllDiscussions');
 $app->get('/discussionTopicAll/:DiscussionBoardId', 'getAllDiscussionsTopics');
+$app->get('/discussionTopicComments/:topic', 'getdiscussionTopicComments');
 
 
 function checkUser() { 
@@ -397,6 +398,24 @@ function getAllDiscussionsTopics($DiscussionBoardId) {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
 }
+
+
+function getdiscussionTopicComments($topic) {
+  $sql = "SELECT discussionboardcomments.CommentDateTime, discussionboardcomments.UserId, discussionboardcomments.Comment ,discussionboardcomments.CommentId,users.first_name, (select count(1) from discussionborardlikes where discussionboardcomments.CommentId=discussionborardlikes.CommentId ) as likes FROM discussionboardcomments INNER JOIN users ON discussionboardcomments.UserId=users.User_Id where DiscussionTopicId=:topic";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("topic", $topic);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);;
+    $db = null;
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}
+
+
 
 
 ?>
