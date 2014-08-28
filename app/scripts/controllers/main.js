@@ -71,6 +71,8 @@ angular.module('sassApp')
 	                token: results.data.token,
 	                user_role: results.data.user_role
 	            });
+				
+				// JS authentication
 				var accessLevels = routingConfig.accessLevels
 		        , userRoles = routingConfig.userRoles;
 				localStorageService.set('user', {

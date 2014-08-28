@@ -9,8 +9,11 @@
  */
 angular.module('sassApp')
   .factory('regService', ['$http', '$facebook', 'localStorageService', function($http, $facebook, localStorageService) {
-
-	    var urlBase = '/SASS/api/';
+	   
+	    localStorageService.set('apiContext', {
+			 base_path: '/SASS/api/',
+	    });	  
+	    var urlBase = localStorageService.get('apiContext').base_path;
 	    var dataFactory = {};
 	    
 	    var accessLevels = routingConfig.accessLevels
