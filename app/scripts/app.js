@@ -152,10 +152,7 @@ angular.module('sassApp').run( function($rootScope, $location, $http, regService
 			 username: '',
 			 role: userRoles.public
          });
-	 }
-	 localStorageService.set('apiContext', {
-		 base_path: '/SASS/api/',
-     });
+	 }	
 	$rootScope.$on("$routeChangeStart", function (event, next, current) {
         $rootScope.error = null;
         console.log(next.access);
