@@ -48,6 +48,8 @@ angular.module('sassApp')
             var diff = d2.getFullYear()-d1.getFullYear();
             console.log(diff); 
             for (var i = 0; i < $scope.discussionData.length; i++) {
+
+              $scope.discussionData[i].join = 0;
               // console.log("AAAAA");
               // console.log($scope.discussionData[i].Restricted);
               if( $scope.discussionData[i].Restricted == 0){
@@ -57,9 +59,53 @@ angular.module('sassApp')
               }
               else
               {
-                
-              }
+                console.log("Abhik");
+                // if(diff < $scope.discussionData[i].RestrictedAge){
+                //     $scope.discussionData[i].join="true";
+                // }
+                // if($scope.userData.gender === $scope.discussionData[i].RestrictedGender){
+                //   $scope.discussionData[i].join="true";
+                // }
+                // if($scope.userData.location === $scope.discussionData[i].RestrictedLocation){
+                //   $scope.discussionData[i].join="true";
+                // }
+                if($scope.discussionData[i].RestrictedAge == null){
+                  console.log("AbhikAge");
+                  if($scope.discussionData[i].RestrictedGender == null){
+                    console.log("AbhikGender");
+                     if($scope.discussionData[i].RestrictedLocation == null){
+
+                        $scope.discussionData[i].join=1;
+                     }else if ($scope.userData.location === $scope.discussionData[i].RestrictedLocation) {
+                        $scope.discussionData[i].join=1;
+                        console.log("AbhikElse");
+                     };
+                    }else if ($scope.userData.gender === $scope.discussionData[i].RestrictedGender) {
+                    if ($scope.discussionData[i].RestrictedLocation == null) {
+                       $scope.discussionData[i].join=1;
+                    }else if ($scope.userData.location === $scope.discussionData[i].RestrictedLocation) {
+                      console.log("AbhikGenderLocationElse");
+                        $scope.discussionData[i].join=1;
+                    };
+                  };
+                }else if (diff >= $scope.discussionData[i].RestrictedAge) {
+                    if ($scope.discussionData[i].RestrictedGender == null) {
+                       if($scope.discussionData[i].RestrictedLocation == null){
+                          $scope.discussionData[i].join=1;
+                        } else if ($scope.userData.location === $scope.discussionData[i].RestrictedLocation) {
+                          $scope.discussionData[i].join=1;
+                        };
+                    }else if ($scope.userData.gender === $scope.discussionData[i].RestrictedGender) {
+                        if($scope.discussionData[i].RestrictedLocation == null){
+                          $scope.discussionData[i].join=1;
+                        } else if ($scope.userData.location === $scope.discussionData[i].RestrictedLocation) {
+                          $scope.discussionData[i].join=1;
+                        };
+                    };
+                };
+              };
             };
-         });
+        
       });
   });
+});
