@@ -60,15 +60,7 @@ angular.module('sassApp')
               else
               {
                 console.log("Abhik");
-                // if(diff < $scope.discussionData[i].RestrictedAge){
-                //     $scope.discussionData[i].join="true";
-                // }
-                // if($scope.userData.gender === $scope.discussionData[i].RestrictedGender){
-                //   $scope.discussionData[i].join="true";
-                // }
-                // if($scope.userData.location === $scope.discussionData[i].RestrictedLocation){
-                //   $scope.discussionData[i].join="true";
-                // }
+                
                 if($scope.discussionData[i].RestrictedAge == null){
                   console.log("AbhikAge");
                   if($scope.discussionData[i].RestrictedGender == null){
