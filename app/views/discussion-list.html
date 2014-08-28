@@ -17,10 +17,10 @@
             	<div class="headline"><h1 class="heading-sm">Discussion Block</h1></div>
                 <div class="alert fade in margin-bottom-40" ng-repeat="diss in discussionData">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <h4>Oh snap! You got an error!</h4>
-                    <p>Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
+                    <h4>{{diss.Topic}}</h4>
+                    <p>{{diss.Description}}</p>
                     <p>
-                        <a class="btn-u btn-u-sea" href="#/discussion-topics">Join</a>
+                        <a class="btn-u btn-u-sea" ng-disabled="1" href="#/discussion-topics">Join</a>
                     </p>
                 </div>
             </div>
