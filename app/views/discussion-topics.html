@@ -23,15 +23,13 @@
                      
                 <div class="row">
                 <div data-ng-repeat="discussion in discussions">
-               <!--  {{as=$index}} -->
-               
-             
+
                         <div class="col-md-6">
                         <div class="alert fade in backWhite">
                             <h4>{{discussion.TopicTitle}}</h4>
-                            <p>{{discussion.TopicDescription}}.{{$index%2}}</p>
+                            <p>{{discussion.TopicDescription}}</p>
                             <p>
-                                 <li style="list-style:none;"><a href="#/discussion"><i class="fa fa-comments" style="margin-right:5px;"></i>Comments</a></li>
+                                 <li style="list-style:none;"><a href="#/discussion?topic={{discussion.DiscussionTopicId}}"><i class="fa fa-comments" style="margin-right:5px;"></i>Comments</a></li>
                             </p>
                         </div>
                         </div> 
