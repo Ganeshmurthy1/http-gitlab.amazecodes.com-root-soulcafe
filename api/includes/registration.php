@@ -12,6 +12,8 @@ $app->post('/update_user', 'updateUser');
 $app->get('/usersAll/:id', 'checkUser', 'getAllUsers');
 $app->get('/linkedinUsers/:id', 'getLinkedinUsers');
 $app->get('/discussionAll', 'checkUser', 'getAllDiscussions');
+$app->get('/discussionTopicAll/:DiscussionBoardId', 'getAllDiscussionsTopics');
+
 
 function checkUser() { 
   $headers = apache_request_headers();
@@ -372,6 +374,21 @@ function getAllDiscussions() {
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);;
+    $db = null;
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}
+
+function getAllDiscussionsTopics($DiscussionBoardId) {
+  $sql = "select * FROM discussionboardtopic where DiscussionBoardId =:DiscussionBoardId";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("DiscussionBoardId", $DiscussionBoardId);
     $stmt->execute();
     $wine = $stmt->fetchAll(PDO::FETCH_OBJ);;
     $db = null;
