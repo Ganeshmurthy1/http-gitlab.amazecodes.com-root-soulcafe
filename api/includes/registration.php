@@ -11,6 +11,7 @@ $app->post('/update_user', 'updateUser');
 
 $app->get('/usersAll/:id', 'checkUser', 'getAllUsers');
 $app->get('/linkedinUsers/:id', 'getLinkedinUsers');
+$app->get('/discussionAll', 'checkUser', 'getAllDiscussions');
 
 function checkUser() { 
   $headers = apache_request_headers();
@@ -365,5 +366,20 @@ function updateUser() {
         echo '{"error":{"text":'. $e->getMessage() .'}}';
       }
 }
+
+function getAllDiscussions() {
+  $sql = "select * FROM DiscussionBoard";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);;
+    $db = null;
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}
+
 
 ?>

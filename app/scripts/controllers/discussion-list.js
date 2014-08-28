@@ -32,6 +32,34 @@ angular.module('sassApp')
   //     }
   //    getUSerdata();
     	
-
- 
+  
+    
+     regService.getDiscussionDetails().then(function (results) {
+       // console.log(results.data);
+       $scope.discussionData = results.data;
+       console.log($scope.discussionData.length);
+       var authData = localStorageService.get('authorizationData');
+         regService.getUserDetails(authData.user_id).then(function (results) {
+            console.log(results.data);
+            $scope.userData = results.data; 
+            console.log($scope.userData.birthdate);
+            var d1 = new Date($scope.userData.birthdate);
+            var d2 = new Date();
+            var diff = d2.getFullYear()-d1.getFullYear();
+            console.log(diff); 
+            for (var i = 0; i < $scope.discussionData.length; i++) {
+              // console.log("AAAAA");
+              // console.log($scope.discussionData[i].Restricted);
+              if( $scope.discussionData[i].Restricted == 0){
+                $scope.discussionData[i].join="true";
+                // console.log("Anbh");
+                console.log($scope.discussionData[i].join);
+              }
+              else
+              {
+                
+              }
+            };
+         });
+      });
   });

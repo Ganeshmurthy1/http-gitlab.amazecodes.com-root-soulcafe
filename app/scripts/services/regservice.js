@@ -91,6 +91,13 @@ angular.module('sassApp')
             });
 	    	
 	    };
+	    dataFactory.getDiscussionDetails = function () {
+	    	return $http.get(urlBase + 'discussionAll').then(function(response) {
+	    		console.log(response);
+                return response;
+            });
+	    	
+	    };
 		dataFactory.getFbFriendsCount = function () {
 	    	return $facebook.api('/me/friends');
 	    };
