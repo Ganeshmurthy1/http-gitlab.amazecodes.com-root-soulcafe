@@ -19,7 +19,8 @@ angular
     'linkedinServices',
     'ngFacebook',
     'LocalStorageModule',
-    'perfect_scrollbar'
+    'perfect_scrollbar',
+    'ui.bootstrap' 
   ])
   .config(function ($routeProvider, $facebookProvider, $locationProvider, $httpProvider) {
 	
@@ -99,6 +100,25 @@ angular
         templateUrl: 'views/discussion.html',
         controller: 'DiscussionCtrl'
       })
+      .when('/admin-add-discussion', {
+        templateUrl: 'views/admin-add-discussion.html',
+        controller: 'AdminAddDiscussionCtrl',
+        access:      access.user
+      })
+      .when('/admin-discussion-list', {
+        templateUrl: 'views/admin-discussion-list.html',
+        controller: 'AdminDiscussionListCtrl',
+        access:      access.user
+      })
+      .when('/admin-topic-list', {
+        templateUrl: 'views/admin-topic-list.html',
+        controller: 'AdminTopicListCtrl',
+        access:      access.user
+      })
+      .when('/admin-add-topic', {
+        templateUrl: 'views/admin-add-topic.html',
+        controller: 'AdminAddTopicCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -132,7 +152,10 @@ angular.module('sassApp').run( function($rootScope, $location, $http, regService
 			 username: '',
 			 role: userRoles.public
          });
-	    }
+	 }
+	 localStorageService.set('apiContext', {
+		 base_path: '/SASS/api/',
+     });
 	$rootScope.$on("$routeChangeStart", function (event, next, current) {
         $rootScope.error = null;
         console.log(next.access);

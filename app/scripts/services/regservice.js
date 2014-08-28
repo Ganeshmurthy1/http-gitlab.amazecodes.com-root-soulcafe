@@ -9,7 +9,8 @@
  */
 angular.module('sassApp')
   .factory('regService', ['$http', '$facebook', 'localStorageService', function($http, $facebook, localStorageService) {
-
+	  	
+	  
 	    var urlBase = '/SASS/api/';
 	    var dataFactory = {};
 	    

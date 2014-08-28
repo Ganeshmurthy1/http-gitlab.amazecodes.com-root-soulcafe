@@ -1,3 +1,18 @@
+<div class="wrapper">
+    <!--=== Header ===-->    
+  <div data-ng-controller="HeaderCtrl" data-ng-include="Header">
+</div>
+    <!--=== End Header ===-->  
+    
+        <!--=== Profile ===-->
+    <div class="profile container content" style="border-color:red">
+        <div class="row">
+            <!--Left Sidebar-->
+            <div data-ng-controller="SideBarCtrl" data-ng-include="SideBar">
+            </div>
+            <!--End Left Sidebar-->
+	
+	<div class="col-md-9">
 <div class="container" style="margin:10px 10px;">
 	<div class="row">
 		<label class="col-sm-3 control-label heading">Personal Details</label>	
@@ -90,4 +105,21 @@
 		</div>
 	</div>
 </div>
+</div>
+        </div><!--/end row-->
+    </div><!--/container-->    
+    <!--=== End Profile ===-->
+
+<!--=== Footer ===-->
+ <div data-ng-controller="FooterCtrl" data-ng-include="Footer">
+</div>
+
+<!--=== End Footer ===-->
+
+
+
+
+    
+</div>
+ <!-- End wrapper -->
 
