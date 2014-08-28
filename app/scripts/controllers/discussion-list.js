@@ -88,7 +88,7 @@ angular.module('sassApp')
                         $scope.discussionData[i].join="true";
                     };
                   };
-                }else if (diff >= $scope.discussionData[i].RestrictedAge) {
+                }else if (diff <= $scope.discussionData[i].RestrictedAge) {
                     if ($scope.discussionData[i].RestrictedGender == null) {
                        if($scope.discussionData[i].RestrictedLocation == null){
                           $scope.discussionData[i].join="true";
