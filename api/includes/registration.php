@@ -401,6 +401,11 @@ function getAllDiscussionsTopics($DiscussionBoardId) {
 
 
 function getdiscussionTopicComments($topic) {
+
+   $headers = apache_request_headers();
+   $split = explode(' ', $headers['authorization']);
+  $user_id  = $split[3];
+
   $sql = "SELECT discussionboardcomments.CommentDateTime, discussionboardcomments.UserId, discussionboardcomments.Comment ,discussionboardcomments.CommentId,users.first_name, (select count(1) from discussionborardlikes where discussionboardcomments.CommentId=discussionborardlikes.CommentId ) as likes FROM discussionboardcomments INNER JOIN users ON discussionboardcomments.UserId=users.User_Id where DiscussionTopicId=:topic";
   try {
     $db = getConnection();

@@ -17,12 +17,11 @@ angular.module('sassApp')
 
 
     console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaa",$routeParams.topic);
+
       regService.getdiscussionTopicComments($routeParams.topic).then(function (results) {
 
      	console.log("susess");
      	  $scope.comments = results.data; 
-
-     	
      	  console.log("datassss",$scope.comments);
 
      });
