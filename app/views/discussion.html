@@ -38,12 +38,16 @@
                                         </h4>
                                         <p>{{comment.Comment}}.</p>
                                         <ul class="list-inline results-list pull-left">
-                                            <li><a href="#">{{comment.likes}} Likes</a></li>
+                                            <li><a href="#">{{comment.likes}} Likes{{a=comment.likeflag}}</a></li>
                                          
                                         </ul>    
                                         <ul class="list-inline pull-right">
-                                 
-                                            <li><a href="#"><i class="expand-list rounded-x fa fa-heart"></i></a></li>
+
+            <!-- <button ng-disabled="comment.likeflag<=0"></button> -->
+                                         <li><a href="">
+                                    <i data-ng-hide={{comment.likeflag==1}}  class="expand-list rounded-x fa fa-heart" data-ng-click="expression"></i><a></li>
+
+                         
                                            
                                         </ul>
                                     </div>

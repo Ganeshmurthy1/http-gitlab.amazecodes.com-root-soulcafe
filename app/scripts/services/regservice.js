@@ -119,12 +119,55 @@ angular.module('sassApp')
 	    	
 	    };
 
+	    //getdiscussionListTopicName
+
+	     dataFactory.getdiscussionListTopicName = function (topicid) {	
+	     	return $http.get(urlBase + 'getdiscussionListTopicName/'+ topicid).then(function(response) {
+                return response;
+            });	
+	    };
+
+	      //getdiscussionTopicName
+
+	     dataFactory.getdiscussionTopicName = function (topicid) {	
+	     	return $http.get(urlBase + 'getdiscussionTopicName/'+ topicid).then(function(response) {
+                return response;
+            });	
+	    };
+
+
+
 	      dataFactory.getdiscussionTopicComments = function (topic) {	     
 	    	return $http.get(urlBase + 'discussionTopicComments/'+topic).then(function(response) {	    		
                 return response;
             });
 	    	
 	    };
+
+	     dataFactory.setCommentsLike = function (commentId) {	     
+	    	return $http.get(urlBase + 'setCommentLikes/'+commentId).then(function(response) {	    		
+                return response;
+            });
+	    	
+	    };
+
+	     dataFactory.saveComments = function (comment) {	
+	     	return $http.post(urlBase + 'setCommentLikes', comment).then(function(response) {
+                return response;
+            });	
+	    };
+	    
+  	
+  	 dataFactory.saveDiscussionboardAbuse = function (param) {	
+	     	return $http.post(urlBase + 'saveDiscussionboardabuse', param).then(function(response) {
+                return response;
+            });	
+	    };
+	    
+
+
+
+	    // setCommentLikes/:commentId
 
 	    return dataFactory;
 	}]);
