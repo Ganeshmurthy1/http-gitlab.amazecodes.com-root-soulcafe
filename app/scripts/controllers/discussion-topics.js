@@ -17,13 +17,21 @@ angular.module('sassApp')
 
     console.log($routeParams.discussionid);
      $scope.discussionid=$routeParams.discussionid;
-     regService.getdiscussionTopicDetails($scope.discussionid).then(function (results) {
 
-     	console.log("susess");
-     	  $scope.discussions = results.data; 
-     	  console.log("datassss",$scope.discussions);
+
+    regService.getdiscussionListTopicName($scope.discussionid).then(function (results) {
+
+        $scope.topicName = results.data[0].Topic;    
+        console.log("TOPIc name ", $scope.topicName);    
 
      });
 
 
-  });
+     regService.getdiscussionTopicDetails($scope.discussionid).then(function (results) {
+
+     	  $scope.discussions = results.data;      	
+
+     });
+
+
+});

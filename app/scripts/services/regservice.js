@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * @ngdoc service
  * @name acslSoulcafeApp.regService
@@ -15,8 +14,7 @@ angular.module('sassApp')
 	    
 	    var accessLevels = routingConfig.accessLevels
         , userRoles = routingConfig.userRoles;
-         
-        
+                 
         //console.log(currentUser);
 	    dataFactory.authorize = function(accessLevel, role) {
 	    	var currentUser = localStorageService.get('user') || { username: '', role: userRoles.public };
@@ -130,6 +128,8 @@ angular.module('sassApp')
 	      //getdiscussionTopicName
 
 	     dataFactory.getdiscussionTopicName = function (topicid) {	
+
+	     	console.log("Toic id",topicid);
 	     	return $http.get(urlBase + 'getdiscussionTopicName/'+ topicid).then(function(response) {
                 return response;
             });	

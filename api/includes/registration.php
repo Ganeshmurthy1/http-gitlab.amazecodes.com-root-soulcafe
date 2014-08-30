@@ -20,7 +20,7 @@ $app->get('/discussionTopicAll/:DiscussionBoardId', 'getAllDiscussionsTopics');
 $app->get('/discussionTopicComments/:topic', 'getdiscussionTopicComments');
 
 $app->get('/getdiscussionListTopicName/:topicId', 'getdiscussionListTopicName');
-$app->get('/getdiscussionListName/:topicId', 'getdiscussionListName');
+$app->get('/getdiscussionTopicName/:topicId', 'getdiscussionTopicName');
 
 
 
@@ -438,7 +438,7 @@ function setCommentLikes($commentId) {
    $split = explode(' ', $headers['authorization']);
    $user_id  = $split[3];
 
-  // $likeDateTime=;
+  $likeDateTime= date("Y-m-d");
 
   $sql = "INSERT INTO discussionborardlikes (CommentId, UserId, LikeDateTime) VALUES (:commentId, :userId, :likeDateTime)";
   try {
@@ -500,7 +500,7 @@ function saveComments() {
    $headers = apache_request_headers();
    $split = explode(' ', $headers['authorization']);
    $user_id  = $split[3];
-   // $cmtDateTime=  ;
+   $cmtDateTime=  date("Y-m-d") ;
    $IsValid=0;
 
     $sql = "INSERT INTO discussionboardcomments (DiscussionTopicId, UserId, Comment,CommentDateTime,IsValid) VALUES ( :topicId,:userId ,:comment ,:cmtDateTime,:IsValid )";
@@ -526,7 +526,7 @@ function saveComments() {
     $headers = apache_request_headers();
     $split = explode(' ', $headers['authorization']);
     $user_id  = $split[3];
-    // $reportedDate= ;
+    $reportedDate= date("Y-m-d");
     $sql = "INSERT INTO discussionboardabuse (CommentId, ReportedBy,Comments,ReportedDate) VALUES ( :commentId,:reportedBy ,:comment ,:reportedDate )";
       try {
         $db = getConnection();
@@ -536,11 +536,13 @@ function saveComments() {
         $stmt->bindParam("comment", $user->comment);
         $stmt->bindParam("reportedDate", $reportedDate);
         $stmt->execute();
-      echo 'true';
+       echo 'true';
         //$app->redirect('login.html');
       } catch(PDOException $e) {
         echo '{"error":{"text":'. $e->getMessage() .'}}';
       }
+    }
+
 
 
 

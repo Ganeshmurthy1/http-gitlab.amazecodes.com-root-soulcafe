@@ -21,6 +21,13 @@ angular.module('sassApp')
      $scope.userId=authData.user_id;
      console.log("user id is ....................",$scope.userId)
 
+      regService.getdiscussionTopicName($routeParams.topic).then(function (results) {
+
+        $scope.topicName = results.data[0].TopicTitle;        
+
+     });
+
+
       regService.getdiscussionTopicComments($routeParams.topic).then(function (results) {
 
      	console.log("susess");
