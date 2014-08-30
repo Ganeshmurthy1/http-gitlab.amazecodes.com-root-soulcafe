@@ -16,26 +16,62 @@ angular.module('sassApp')
     ];
 
 
-    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaa",$routeParams.topic);
+    
      var authData = localStorageService.get('authorizationData');
      $scope.userId=authData.user_id;
-     console.log("user id is ....................",$scope.userId)
+    
 
       regService.getdiscussionTopicName($routeParams.topic).then(function (results) {
-
         $scope.topicName = results.data[0].TopicTitle;        
-
-     });
+        });
 
 
       regService.getdiscussionTopicComments($routeParams.topic).then(function (results) {
-
-     	console.log("susess");
      	  $scope.comments = results.data; 
-     	  console.log("datassss",$scope.comments);
-
-     });
+            });
 
 
-     ;
+
+
+    $scope.abuseReport = function(arg) {
+        regService.saveDiscussionboardAbuse(arg).then(function (results) {
+         console.log("aaaaaa");
+            });
+        };
+
+
+    $scope.commentLike = function(arg) {
+       console.log("commentLike",arg);
+        regService.setCommentsLike(arg).then(function (results) {
+         console.log("aaaaaa");
+            });
+        };
+
+        $scope.addcomment = function() {
+
+          var comm=$scope.comment;
+        
+
+          var args = [
+                 {
+                  topicId: $routeParams.topic,
+                  comment:$scope.comment
+                }
+              ];
+
+      
+        console.log(args);
+
+        regService.saveComments(args).then(function (results) {
+         // console.log("aaaaaa");
+
+
+         console.log(results);
+            });
+
+
+
+        };
+
+    
   });

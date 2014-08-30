@@ -155,14 +155,14 @@ angular.module('sassApp')
 	    };
 
 	     dataFactory.saveComments = function (comment) {	
-	     	return $http.post(urlBase + 'setCommentLikes', comment).then(function(response) {
+	     	return $http.post(urlBase + 'saveComments', comment).then(function(response) {
                 return response;
             });	
 	    };
 	    
   	
   	 dataFactory.saveDiscussionboardAbuse = function (param) {	
-	     	return $http.post(urlBase + 'saveDiscussionboardabuse', param).then(function(response) {
+	     	return $http.get(urlBase + 'saveDiscussionboardabuse/'+ param).then(function(response) {
                 return response;
             });	
 	    };

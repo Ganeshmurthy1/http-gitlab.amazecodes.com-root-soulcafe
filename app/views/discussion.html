@@ -5,8 +5,6 @@
     <!--=== End Header ===-->  
 
 
-
-
     <!--=== Profile ===-->
     <div class="profile container content" style="border-color:red">
         <div class="row">
@@ -38,14 +36,17 @@
                                         </h4>
                                         <p>{{comment.Comment}}.</p>
                                         <ul class="list-inline results-list pull-left">
-                                            <li><a href="#">{{comment.likes}} Likes{{a=comment.likeflag}}</a></li>
+                                            <li><a href="#">{{comment.likes}} Likes</a></li>
                                          
                                         </ul>    
                                         <ul class="list-inline pull-right">
 
-            <!-- <button ng-disabled="comment.likeflag<=0"></button> -->
-                                         <li><a href="">
+           
+                                <li><a href="" data-ng-click="commentLike({{comment.CommentId}})">
                                     <i data-ng-hide={{comment.likeflag==1}}  class="expand-list rounded-x fa fa-heart" data-ng-click="expression"></i><a></li>
+
+
+                                    <li><a href="" data-ng-click="abuseReport({{comment.CommentId}})"><i class="expand-list rounded-x fa fa-retweet"></i></a></li>
 
                          
                                            
@@ -53,15 +54,30 @@
                                     </div>
                                 </div><!--/end media media v2--> 
                                 
-                       
+                                                   
+                            </div><!-- comment  -->
+
+                              <div class="media media-v2">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object rounded-x" src="assets/img/testimonials/img2.jpg" alt="">
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">
+                                            <strong><a href="#">me</a></strong>
+                                            
+                                        </h4>
+                                         <section style="width=100%;">   
+                                <textarea rows="3" data-ng-model="comment"></textarea>
+                            </section>
+                                       <button data-ng-click="addcomment()" class="btn-u btn-u-blue">Submit</button>
+                                        <ul class="list-inline pull-right">
+                                           
+                                        </ul>
+                                    </div>
+                                </div><!--/end media media v2--> 
 
 
 
-                            
-
-                              
-                               
-                            </div>
                         </div>  
 
 				</div>

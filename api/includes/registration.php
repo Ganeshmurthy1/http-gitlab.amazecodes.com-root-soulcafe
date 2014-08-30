@@ -9,10 +9,11 @@ $app->post('/add_currentposition', 'addCurrentPosition');
 $app->post('/add_pastposition', 'addPastPosition');
 $app->post('/update_user', 'updateUser');
 $app->post('/saveComments', 'saveComments');
-$app->post('/saveDiscussionboardabuse', 'saveDiscussionboardabuse');
 
 
 
+
+$app->get('/saveDiscussionboardabuse/:commenitid', 'saveDiscussionboardabuse');
 $app->get('/usersAll/:id', 'checkUser', 'getAllUsers');
 $app->get('/linkedinUsers/:id', 'getLinkedinUsers');
 $app->get('/discussionAll', 'checkUser', 'getAllDiscussions');
@@ -501,39 +502,45 @@ function saveComments() {
    $split = explode(' ', $headers['authorization']);
    $user_id  = $split[3];
    $cmtDateTime=  date("Y-m-d") ;
-   $IsValid=0;
+   $IsValid=1;
+   $SeqNo=1;
 
-    $sql = "INSERT INTO discussionboardcomments (DiscussionTopicId, UserId, Comment,CommentDateTime,IsValid) VALUES ( :topicId,:userId ,:comment ,:cmtDateTime,:IsValid )";
-  try {
-   $stmt = $db->prepare($sql);  
-    $stmt->bindParam("topicId", $comments->topicId);
+  $sql = "INSERT INTO discussionboardcomments (DiscussionTopicId, UserId,SeqNo, Comment,CommentDateTime,IsValid) VALUES ( :topicId,:userId ,:SeqNo,:comment ,:cmtDateTime,:IsValid )";
+  
+
+      try {
+        $db = getConnection();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("topicId", $comments->topicId);
     $stmt->bindParam("userId", $user_id);
+    $stmt->bindParam("SeqNo", $SeqNo);
     $stmt->bindParam("comment", $comments->comment);
     $stmt->bindParam("cmtDateTime", $cmtDateTime);
-       $stmt->bindParam("IsValid", $IsValid);
-    $stmt->execute();
-      } catch(PDOException $e) {
+    $stmt->bindParam("IsValid", $IsValid);
+        $stmt->execute();
+       echo 'true';
+        //$app->redirect('login.html');
+      } 
+ catch(PDOException $e) {
         echo '{"error":{"text":'. $e->getMessage() .'}}';
       }
   }
 
   
-
-
-  function saveDiscussionboardabuse() {   
+  function saveDiscussionboardabuse($commenitid) {   
     $request = Slim::getInstance()->request();
     $comment = json_decode($request->getBody());
     $headers = apache_request_headers();
     $split = explode(' ', $headers['authorization']);
     $user_id  = $split[3];
     $reportedDate= date("Y-m-d");
-    $sql = "INSERT INTO discussionboardabuse (CommentId, ReportedBy,Comments,ReportedDate) VALUES ( :commentId,:reportedBy ,:comment ,:reportedDate )";
+    $sql = "INSERT INTO discussionboardabuse (CommentId, ReportedBy,ReportedDate) VALUES ( :commentId,:reportedBy ,:reportedDate )";
       try {
         $db = getConnection();
         $stmt = $db->prepare($sql);
-        $stmt->bindParam("commentId", $comment->commenitid);
+        $stmt->bindParam("commentId", $commenitid);
         $stmt->bindParam("reportedBy", $user_id);
-        $stmt->bindParam("comment", $user->comment);
+       
         $stmt->bindParam("reportedDate", $reportedDate);
         $stmt->execute();
        echo 'true';
