@@ -21,7 +21,7 @@
                     <!--Service Block v3-->
                     <div class="panel panel-profile">
                             <div class="panel-heading overflow-h">
-                                <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments"></i>Topic Name</h2>
+                                <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments"></i>{{topicName}}</h2>
                             
                             </div>
                             <div class="panel-body margin-bottom-50" data-ng-repeat="comment in comments">
@@ -38,12 +38,16 @@
                                         </h4>
                                         <p>{{comment.Comment}}.</p>
                                         <ul class="list-inline results-list pull-left">
-                                            <li><a href="#">{{comment.likes}} Likes</a></li>
+                                            <li><a href="#">{{comment.likes}} Likes{{a=comment.likeflag}}</a></li>
                                          
                                         </ul>    
                                         <ul class="list-inline pull-right">
-                                 
-                                            <li><a href="#"><i class="expand-list rounded-x fa fa-heart"></i></a></li>
+
+            <!-- <button ng-disabled="comment.likeflag<=0"></button> -->
+                                         <li><a href="">
+                                    <i data-ng-hide={{comment.likeflag==1}}  class="expand-list rounded-x fa fa-heart" data-ng-click="expression"></i><a></li>
+
+                         
                                            
                                         </ul>
                                     </div>

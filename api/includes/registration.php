@@ -8,6 +8,10 @@ $app->post('/add_contact', 'addContact');
 $app->post('/add_currentposition', 'addCurrentPosition');
 $app->post('/add_pastposition', 'addPastPosition');
 $app->post('/update_user', 'updateUser');
+$app->post('/saveComments', 'saveComments');
+$app->post('/saveDiscussionboardabuse', 'saveDiscussionboardabuse');
+
+
 
 $app->get('/usersAll/:id', 'checkUser', 'getAllUsers');
 $app->get('/linkedinUsers/:id', 'getLinkedinUsers');
@@ -15,6 +19,12 @@ $app->get('/discussionAll', 'checkUser', 'getAllDiscussions');
 $app->get('/discussionTopicAll/:DiscussionBoardId', 'getAllDiscussionsTopics');
 $app->get('/discussionTopicComments/:topic', 'getdiscussionTopicComments');
 
+$app->get('/getdiscussionListTopicName/:topicId', 'getdiscussionListTopicName');
+$app->get('/getdiscussionTopicName/:topicId', 'getdiscussionTopicName');
+
+
+
+$app->get('/setCommentLikes/:commentId', 'setCommentLikes');
 
 function checkUser() { 
   $headers = apache_request_headers();
@@ -401,11 +411,19 @@ function getAllDiscussionsTopics($DiscussionBoardId) {
 
 
 function getdiscussionTopicComments($topic) {
-  $sql = "SELECT discussionboardcomments.CommentDateTime, discussionboardcomments.UserId, discussionboardcomments.Comment ,discussionboardcomments.CommentId,users.first_name, (select count(1) from discussionborardlikes where discussionboardcomments.CommentId=discussionborardlikes.CommentId ) as likes FROM discussionboardcomments INNER JOIN users ON discussionboardcomments.UserId=users.User_Id where DiscussionTopicId=:topic";
-  try {
-    $db = getConnection();
+
+   $headers = apache_request_headers();
+   $split = explode(' ', $headers['authorization']);
+   $user_id  = $split[3];
+
+   $sql = "SELECT DBC.CommentDateTime, DBC.UserId, DBC.Comment ,DBC.CommentId,users.first_name, (select count(1) from discussionborardlikes DBL where DBL.CommentId=DBC.CommentId ) as likes,
+(select count(1) from discussionborardlikes DBL where DBL.CommentId=DBC.CommentId and DBL.UserId=:userId or DBC.UserId=DBL.UserId) as likeflag
+FROM discussionboardcomments DBC INNER JOIN users ON DBC.UserId=users.User_Id where DiscussionTopicId=:topic" ;
+ try {   
+    $db = getConnection();   
     $stmt = $db->prepare($sql);
-    $stmt->bindParam("topic", $topic);
+    $stmt->bindParam("topic", $topic);    
+    $stmt->bindParam("userId", $user_id);
     $stmt->execute();
     $wine = $stmt->fetchAll(PDO::FETCH_OBJ);;
     $db = null;
@@ -414,6 +432,116 @@ function getdiscussionTopicComments($topic) {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
 }
+
+function setCommentLikes($commentId) {
+ $headers = apache_request_headers();
+   $split = explode(' ', $headers['authorization']);
+   $user_id  = $split[3];
+
+  $likeDateTime= date("Y-m-d");
+
+  $sql = "INSERT INTO discussionborardlikes (CommentId, UserId, LikeDateTime) VALUES (:commentId, :userId, :likeDateTime)";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);  
+    $stmt->bindParam("commentId", $commentId);
+    $stmt->bindParam("userId", $user_id);
+    $stmt->bindParam("likeDateTime", $likeDateTime);
+   
+    $stmt->execute();
+    
+    //$app->redirect('login.html');
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+
+
+echo 'true';
+}
+
+
+
+function getdiscussionListTopicName($topicId) {
+   $sql = "SELECT Topic from discussionboard where DiscussionBoardId=:disTopicId" ;
+   try {   
+      $db = getConnection();   
+      $stmt = $db->prepare($sql);
+      $stmt->bindParam("disTopicId", $topicId);    
+      $stmt->execute();
+      $wine = $stmt->fetchAll(PDO::FETCH_OBJ);;
+      $db = null;
+      echo json_encode($wine);
+    } catch(PDOException $e) {
+      echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+    }
+  }
+
+
+function getdiscussionTopicName($topicId) {
+   $sql = "SELECT TopicTitle from discussionboardtopic where DiscussionTopicId=:disTopicId" ;
+   try {   
+      $db = getConnection();   
+      $stmt = $db->prepare($sql);
+      $stmt->bindParam("disTopicId", $topicId);    
+      $stmt->execute();
+      $wine = $stmt->fetchAll(PDO::FETCH_OBJ);;
+      $db = null;
+      echo json_encode($wine);
+    } catch(PDOException $e) {
+      echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+    }
+  }
+
+
+function saveComments() {   
+  $request = Slim::getInstance()->request();
+  $comments = json_decode($request->getBody());
+
+   $headers = apache_request_headers();
+   $split = explode(' ', $headers['authorization']);
+   $user_id  = $split[3];
+   $cmtDateTime=  date("Y-m-d") ;
+   $IsValid=0;
+
+    $sql = "INSERT INTO discussionboardcomments (DiscussionTopicId, UserId, Comment,CommentDateTime,IsValid) VALUES ( :topicId,:userId ,:comment ,:cmtDateTime,:IsValid )";
+  try {
+   $stmt = $db->prepare($sql);  
+    $stmt->bindParam("topicId", $comments->topicId);
+    $stmt->bindParam("userId", $user_id);
+    $stmt->bindParam("comment", $comments->comment);
+    $stmt->bindParam("cmtDateTime", $cmtDateTime);
+       $stmt->bindParam("IsValid", $IsValid);
+    $stmt->execute();
+      } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+      }
+  }
+
+  
+
+
+  function saveDiscussionboardabuse() {   
+    $request = Slim::getInstance()->request();
+    $comment = json_decode($request->getBody());
+    $headers = apache_request_headers();
+    $split = explode(' ', $headers['authorization']);
+    $user_id  = $split[3];
+    $reportedDate= date("Y-m-d");
+    $sql = "INSERT INTO discussionboardabuse (CommentId, ReportedBy,Comments,ReportedDate) VALUES ( :commentId,:reportedBy ,:comment ,:reportedDate )";
+      try {
+        $db = getConnection();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("commentId", $comment->commenitid);
+        $stmt->bindParam("reportedBy", $user_id);
+        $stmt->bindParam("comment", $user->comment);
+        $stmt->bindParam("reportedDate", $reportedDate);
+        $stmt->execute();
+       echo 'true';
+        //$app->redirect('login.html');
+      } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+      }
+    }
 
 
 

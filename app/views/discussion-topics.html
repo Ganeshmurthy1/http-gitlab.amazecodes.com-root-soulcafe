@@ -19,7 +19,7 @@
                 <!--Profile Body-->
                 <div class="profile-body">
                 <!-- Discussion Topics -->
-                <div class="headline"><h1 class="heading-sm">Discussion Topics</h1></div>
+                <div class="headline"><h1 class="heading-sm">{{topicName}}</h1></div>
                      
                 <div class="row">
                 <div data-ng-repeat="discussion in discussions">
@@ -37,11 +37,8 @@
 
                  <sapn ng-if='$index%2!==0' >
                     </div>
-                    <div class="row">
-                    
-                </sapn>
-
-                      
+                    <div class="row">  
+                </sapn>  
 
                 </div>
 
