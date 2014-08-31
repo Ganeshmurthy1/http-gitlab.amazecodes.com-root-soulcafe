@@ -418,7 +418,7 @@ function getdiscussionTopicComments($topic) {
    $user_id  = $split[3];
 
    $sql = "SELECT DBC.CommentDateTime, DBC.UserId, DBC.Comment ,DBC.CommentId,users.first_name, (select count(1) from discussionborardlikes DBL where DBL.CommentId=DBC.CommentId ) as likes,
-(select count(1) from discussionborardlikes DBL where DBL.CommentId=DBC.CommentId and DBL.UserId=:userId or DBC.UserId=DBL.UserId) as likeflag
+(select count(1) from discussionborardlikes DBL where DBL.CommentId=DBC.CommentId and DBL.UserId=:userId and DBC.UserId=DBL.UserId) as likeflag
 FROM discussionboardcomments DBC INNER JOIN users ON DBC.UserId=users.User_Id where DiscussionTopicId=:topic" ;
  try {   
     $db = getConnection();   
@@ -508,10 +508,10 @@ function saveComments() {
   $sql = "INSERT INTO discussionboardcomments (DiscussionTopicId, UserId,SeqNo, Comment,CommentDateTime,IsValid) VALUES ( :topicId,:userId ,:SeqNo,:comment ,:cmtDateTime,:IsValid )";
   
 
-      try {
-        $db = getConnection();
-        $stmt = $db->prepare($sql);
-        $stmt->bindParam("topicId", $comments->topicId);
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("topicId", $comments->topicId);
     $stmt->bindParam("userId", $user_id);
     $stmt->bindParam("SeqNo", $SeqNo);
     $stmt->bindParam("comment", $comments->comment);
