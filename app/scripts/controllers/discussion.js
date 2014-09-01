@@ -15,13 +15,12 @@ angular.module('sassApp')
       'Karma'
     ];
 
+      $scope.hide=true;
 
-  
      var authData = localStorageService.get('authorizationData');
 
      $scope.userId=authData.user_id;
     
-
       regService.getdiscussionTopicName($routeParams.topic).then(function (results) {
         $scope.topicName = results.data[0].TopicTitle;        
         });
@@ -37,7 +36,13 @@ angular.module('sassApp')
     $scope.abuseReport = function(arg) {
         regService.saveDiscussionboardAbuse(arg).then(function (results) {
          console.log("aaaaaa");
+          $scope.hide=false;
+          $scope.abuseSuccessMessage="Comment Reported";
+
             });
+
+       
+
         };
 
 

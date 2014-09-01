@@ -17,7 +17,13 @@
                 <!--Profile Body-->
                 <div class="profile-body">  
                     <!--Service Block v3-->
+
+                    <div class="alert alert-success fade in" ng-hide="hide">{{abuseSuccessMessage}}</div>
+
                     <div class="panel panel-profile">
+
+                   
+
                             <div class="panel-heading overflow-h">
                                 <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments"></i>{{topicName}}</h2>
                             
@@ -45,11 +51,15 @@
                                 <li><a href="" data-ng-click="commentLike({{comment.CommentId}})">
                                     <i data-ng-hide={{comment.likeflag==1}} class="expand-list rounded-x fa fa-heart" data-ng-click="expression"></i><a></li>
 
+                                <li><a href="#" >
+                                    <i data-ng-show={{comment.likeflag==1}} class="icon-custom icon-sm rounded-2x icon-bg-u fa fa-thumbs-o-up" ></i><a></li>
+
+
+
 
                                     <li><a href="" data-ng-click="abuseReport({{comment.CommentId}})"><i class="expand-list rounded-x fa fa-retweet"></i></a></li>
 
-                         
-                                           
+        
                                         </ul>
                                     </div>
                                 </div><!--/end media media v2--> 
@@ -61,22 +71,20 @@
                                     <a class="pull-left" href="#">
                                         <img class="media-object rounded-x" src="images/testimonials/img2.jpg" alt="">
                                     </a>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">
-                                            <strong><a href="#">me</a></strong>
-                                            
-                                        </h4>
-                                         <section style="width=100%;">   
-                                <textarea rows="3" data-ng-model="comment"></textarea>
-                            </section>
-                                       <button data-ng-click="addcomment()" class="btn-u btn-u-blue">Submit</button>
-                                        <ul class="list-inline pull-right">
-                                           
-                                        </ul>
-                                    </div>
+                                <div class="media-body">
+                                            <h4 class="media-heading">
+                                                <strong><a href="#">me</a></strong>
+                                            </h4>
+                                    <form id="sky-form4" class="sky-form" name="adminDiscussion">
+                                        <fieldset>     
+                                            <label class="textarea">
+                                                 <textarea rows="4" name="message" id="message" data-ng-model="comment" ></textarea>
+                                            </label>
+                                            <button data-ng-click="addcomment()" class="btn-u btn-u-blue">Submit</button>
+                                        </fieldset>
+                                    </form>
+                                 </div>
                                 </div><!--/end media media v2--> 
-
-
 
                         </div>  
 

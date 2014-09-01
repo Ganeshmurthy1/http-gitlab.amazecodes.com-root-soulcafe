@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('HeaderCtrl', function ($scope) {
+  .controller('HeaderCtrl', function ($scope,$location) {
 
 $scope.Header = 'views/header.html';
 
@@ -17,4 +17,15 @@ $scope.Header = 'views/header.html';
       'AngularJS',
       'Karma'
     ];
+
+
+
+
+$scope.discussion=function()
+{
+	$location.path('/discussion-list');
+}
+
+
+
   });
