@@ -22,7 +22,7 @@ angular
     'perfect_scrollbar',
     'ui.bootstrap' 
   ])
-  .config(function ($routeProvider, $facebookProvider, $locationProvider, $httpProvider) {
+  .config(['$routeProvider', '$facebookProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $facebookProvider, $locationProvider, $httpProvider) {
 	
 	var access = routingConfig.accessLevels;
 	console.log(access);
@@ -60,12 +60,12 @@ angular
       .when('/signup-denied', {
         templateUrl: 'views/signup-denied.html',
         controller: 'SignupDeniedCtrl',
-        access:      access.user
+        access:      access.anon
 	  })
       .when('/mobile-verify', {
         templateUrl: 'views/mobile-verify.html',
         controller: 'MobileVerifyCtrl',
-        access:      access.user
+        access:      access.anon
       })
       .when('/signup', {
         templateUrl: 'views/signup.html',
@@ -125,6 +125,10 @@ angular
         controller: 'AdminTopicViewCtrl',
         access:      access.user
       })
+      .when('/add-topic', {
+        templateUrl: 'views/add-topic.html',
+        controller: 'AddTopicCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -145,7 +149,7 @@ angular
             }
         }
     });
-  });
+  }]);
 
 angular.module('sassApp').run( function($rootScope, $location, $http, regService, localStorageService) {
 	  // Load the facebook SDK asynchronously
@@ -189,6 +193,6 @@ angular.module('sassApp').run( function($rootScope, $location, $http, regService
 	   }());
 	});
 
-angular.module('sassApp').config(function($httpProvider) {
+angular.module('sassApp').config(['$httpProvider', function($httpProvider) {
     $httpProvider.interceptors.push('authInterceptorService');
-});
+}]);

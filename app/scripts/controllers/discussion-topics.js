@@ -15,22 +15,13 @@ angular.module('sassApp')
       'Karma'
     ];
 
-    console.log($routeParams.discussionid);
-     $scope.discussionid=$routeParams.discussionid;
-
-
+    $scope.discussionid=$routeParams.discussionid;
     regService.getdiscussionListTopicName($scope.discussionid).then(function (results) {
-
         $scope.topicName = results.data[0].Topic;    
-        console.log("TOPIc name ", $scope.topicName);    
-
-     });
-
+      });
 
      regService.getdiscussionTopicDetails($scope.discussionid).then(function (results) {
-
      	  $scope.discussions = results.data;      	
-
      });
 
 

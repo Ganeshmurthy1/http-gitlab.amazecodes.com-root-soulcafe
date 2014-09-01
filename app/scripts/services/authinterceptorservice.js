@@ -18,7 +18,7 @@ angular.module('sassApp')
 
 	        var authData = localStorageService.get('authorizationData');
 	        if (authData) {
-	            config.headers.Authorization = 'Bearer ' + authData.token + ' user_id ' + authData.user_id;
+	            config.headers.authorization = 'Bearer ' + authData.token + ' user_id ' + authData.user_id;
 	        }
 
 	        return config;
