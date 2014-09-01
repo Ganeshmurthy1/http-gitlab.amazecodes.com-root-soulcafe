@@ -18,6 +18,7 @@ angular.module('sassApp')
 
     
      var authData = localStorageService.get('authorizationData');
+     
      $scope.userId=authData.user_id;
     
 
