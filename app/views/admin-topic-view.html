@@ -4,7 +4,6 @@
 </div>
     <!--=== End Header ===-->  
 
-
     <!--=== Profile ===-->
     <div class="profile container content" style="border-color:red">
         <div class="row">
@@ -15,16 +14,10 @@
             
             <div class="col-md-9">
                 <!--Profile Body-->
-                <div class="profile">
+                <div class="profile">  
                 <div class="profile-body">  
                     <!--Service Block v3-->
-
-                    <div class="alert alert-success fade in" ng-hide="hide">{{abuseSuccessMessage}}</div>
-
                     <div class="panel panel-profile">
-
-                   
-
                             <div class="panel-heading overflow-h">
                                 <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments"></i>{{topicName}}</h2>
                             
@@ -32,7 +25,7 @@
                             <div class="panel-body margin-bottom-50" >
                                 
 
-                                <div class="media media-v2" data-ng-repeat="comment in comments">
+                                <div class="media media-v2 margin-bottom-20" data-ng-repeat="comment in comments">
                                     <a class="pull-left" href="#">
                                         <img class="media-object rounded-x" src="images/testimonials/img2.jpg" alt="">
                                     </a>
@@ -49,18 +42,9 @@
                                         <ul class="list-inline pull-right">
 
            
-                                <li><a href="" data-ng-click="commentLike({{comment.CommentId}})">
-                                    <i data-ng-hide={{comment.likeflag==1}} class="expand-list rounded-x fa fa-heart" data-ng-click="expression"></i><a></li>
-
-                                <li><a href="#" >
-                                    <i data-ng-show={{comment.likeflag==1}} class="icon-custom icon-sm rounded-2x icon-bg-u fa fa-thumbs-o-up" ></i><a></li>
-
-
-
-
-                                    <li><a href="" data-ng-click="abuseReport({{comment.CommentId}})"><i class="expand-list rounded-x fa fa-retweet"></i></a></li>
-
-        
+			                                <li><a href="" data-ng-click="commentLike({{comment.CommentId}})">
+			                                    <i data-ng-hide={{comment.likeflag==1}} class="expand-list rounded-x fa fa-heart" data-ng-click="expression"></i><a></li>
+			        
                                         </ul>
                                     </div>
                                 </div><!--/end media media v2--> 
@@ -85,28 +69,25 @@
                                         </fieldset>
                                     </form>
                                  </div>
-                                </div><!--/end media media v2--> 
+                                </div>
+
+
 
                         </div>  
 
 				</div>
-                </div>
+			</div>
                 <!--End Profile Body-->
             </div>
-        </div><!--/end row-->
-    </div><!--/container-->    
-    <!--=== End Profile ===-->
+        </div>
 
+    </div>
+    <!--=== End Profile ===-->
 
 <!--=== Footer ===-->
  <div data-ng-controller="FooterCtrl" data-ng-include="Footer">
 </div>
-
 <!--=== End Footer ===-->
 
-
-
-
-    
 </div>
- <!-- End wrapper -->
+<!--=== End Wrapper ===-->

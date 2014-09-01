@@ -15,63 +15,43 @@ angular.module('sassApp')
       'Karma'
     ];
 
+    $scope.hide=true;
+    var authData = localStorageService.get('authorizationData');
 
+    $scope.userId=authData.user_id;
+    getForumComments();
     
-     var authData = localStorageService.get('authorizationData');
-     $scope.userId=authData.user_id;
-    
-
+    function getForumComments() {
       regService.getdiscussionTopicName($routeParams.topic).then(function (results) {
         $scope.topicName = results.data[0].TopicTitle;        
         });
 
-
       regService.getdiscussionTopicComments($routeParams.topic).then(function (results) {
-     	  $scope.comments = results.data; 
+        $scope.comments = results.data; 
             });
-
-
-
+    }
 
     $scope.abuseReport = function(arg) {
         regService.saveDiscussionboardAbuse(arg).then(function (results) {
-         console.log("aaaaaa");
+          $scope.hide=false;
+          $scope.abuseSuccessMessage="Comment Reported";
             });
         };
 
 
     $scope.commentLike = function(arg) {
-       console.log("commentLike",arg);
         regService.setCommentsLike(arg).then(function (results) {
-         console.log("aaaaaa");
+          getForumComments();
+         
             });
         };
 
         $scope.addcomment = function() {
-
-          var comm=$scope.comment;
-        
-
-          var args = [
-                 {
-                  topicId: $routeParams.topic,
-                  comment:$scope.comment
-                }
-              ];
-
-      
-        console.log(args);
-
-        regService.saveComments(args).then(function (results) {
-         // console.log("aaaaaa");
-
-
-         console.log(results);
+            var args=new Object();
+            args.topicId=$routeParams.topic;
+            args.comment=$scope.comment;
+            regService.saveComments(args).then(function (results) {
+              getForumComments();
             });
-
-
-
         };
-
-    
   });

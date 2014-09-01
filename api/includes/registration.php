@@ -14,18 +14,18 @@ $app->post('/saveComments', 'saveComments');
 
 
 
-$app->get('/getProffesionaldetails/:id', 'checkUser', 'get_Proffesionaldetails');
-
-$app->get('/saveDiscussionboardabuse/:commenitid', 'saveDiscussionboardabuse');
 $app->get('/usersAll/:id', 'checkUser', 'getAllUsers');
 $app->get('/linkedinUsers/:id', 'getLinkedinUsers');
-$app->get('/discussionAll', 'checkUser', 'getAllDiscussions');
-$app->get('/discussionTopicAll/:DiscussionBoardId', 'getAllDiscussionsTopics');
-$app->get('/discussionTopicComments/:topic', 'getdiscussionTopicComments');
 
-$app->get('/getdiscussionListTopicName/:topicId', 'getdiscussionListTopicName');
-$app->get('/getdiscussionTopicName/:topicId', 'getdiscussionTopicName');
+$app->get('/saveDiscussionboardabuse/:commenitid','checkUser', 'saveDiscussionboardabuse');
+$app->get('/discussionAll', 'checkUser','checkUser', 'getAllDiscussions');
+$app->get('/discussionTopicAll/:DiscussionBoardId','checkUser', 'getAllDiscussionsTopics');
+$app->get('/discussionTopicComments/:topic','checkUser', 'getdiscussionTopicComments');
+$app->get('/getdiscussionListTopicName/:topicId', 'checkUser','getdiscussionListTopicName');
+$app->get('/getdiscussionTopicName/:topicId','checkUser', 'getdiscussionTopicName');
+$app->get('/setCommentLikes/:commentId','checkUser', 'setCommentLikes');
 
+$app->post('/saveComments','checkUser','saveComments');
 
 
 $app->get('/setCommentLikes/:commentId', 'setCommentLikes');
@@ -33,9 +33,18 @@ $app->get('/setCommentLikes/:commentId', 'setCommentLikes');
 function checkUser() { 
   $headers = apache_request_headers();
  // echo $headers['authorization'];
-  $split = explode(' ', $headers['authorization']);
-  $token = $split[1];
-  $user_id  = $split[3];
+  $token = '';
+  $user_id  = '';
+ if (isset($headers['authorization'])) {
+   $split = explode(' ', $headers['authorization']);
+   $token = $split[1];
+   $user_id  = $split[3];
+ }
+  else if (isset($headers['Authorization'])) {
+    $split = explode(' ', $headers['Authorization']);
+    $token = $split[1];
+    $user_id  = $split[3];
+  }
   $sql = "select user_id FROM users where user_id = :user_id and access_tocken = :token";
   try {
     $db = getConnection();
@@ -112,7 +121,6 @@ function getAllUsers($id) {
 }
 
 
-
 function getLinkedinUsers($id) {
   $sqlEdu = "select * FROM education where user_id = :id ORDER BY user_id";
   try {
@@ -150,14 +158,14 @@ function getLinkedinUsers($id) {
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
-  $merged = array_merge(Object($wineEdu),Object($wineCp),Object($winePp));
-     // $op = new stdClass();
-     // $op->edu = $wineEdu;
-     // $op->cp = $wineCp;
-     // $op->pp = $winePp;
+  // $merged = array_merge(Object($wineEdu),Object($wineCp),Object($winePp));
+     $op = new stdClass();
+     $op->edu = $wineEdu;
+     $op->cp = $wineCp;
+     $op->pp = $winePp;
       echo json_encode($op);
- $obj_merged = (object) array_merge((array) $wineEdu, (array) $wineCp, (array) $winePp);
- echo json_encode($obj_merged);
+//  $obj_merged = (object) array_merge((array) $wineEdu, (array) $wineCp, (array) $winePp);
+ // echo json_encode($obj_merged);
 }
 
 function addUser() {
@@ -300,10 +308,67 @@ function addlinkedinData() {
     echo '{"error":{"text":'. $e->getMessage() .'}}'; 
   }
 
-// }
+function addCurrentPosition() {
+	$request = Slim::getInstance()->request();
+	$user = json_decode($request->getBody());
+	// print_r( $user );
+	
+	foreach($user as $obj) {
+		if (isset($obj->month) and isset($obj->year)){
+			$sDate = $obj->month . '-' . $obj->year;
+		}
+	$sql = "INSERT INTO currentPosition (company, startDate, title,user_id) VALUES (:company, :startDate, :title,:user_id)";
+	try {
+		$db = getConnection();
+		$stmt = $db->prepare($sql);  
+		$stmt->bindParam("company", $obj->company);
+		$stmt->bindParam("startDate", $sDate);
+		$stmt->bindParam("title", $obj->title); 
+		$stmt->bindParam("user_id", $obj->user_id);
+		$stmt->execute();
+		
+		//$app->redirect('login.html');
+	} catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+	}
+
+}
+echo 'true';
 }
 
+function addPastPosition() {
+	$request = Slim::getInstance()->request();
+	$user = json_decode($request->getBody());
+	// print_r( $user );
+	
+	foreach($user as $obj) {
+		if (isset($obj->smonth) and isset($obj->syear)){
+			$sDate = $obj->smonth . '-' . $obj->syear;
+		}
+		if (isset($obj->emonth) and isset($obj->eyear)){
+			$eDate =  $obj->emonth . '-' . $obj->eyear;
+		}
+		
+		
+	$sql = "INSERT INTO pastPosition (company, startDate, endDate, title,user_id) VALUES (:company, :startDate, :endDate, :title,:user_id)";
+	try {
+		$db = getConnection();
+		$stmt = $db->prepare($sql);  
+		$stmt->bindParam("company", $obj->company);
+		$stmt->bindParam("startDate", $sDate);
+		$stmt->bindParam("endDate",$eDate);
+		$stmt->bindParam("title", $obj->title); 
+		$stmt->bindParam("user_id", $obj->user_id);
+		$stmt->execute();
+		
+		//$app->redirect('login.html');
+	} catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+	}
 
+}
+echo 'true';
+}
 
 function updateUser($user_id) {		
 	// $request = Slim::getInstance()->request();
@@ -322,7 +387,7 @@ function updateUser($user_id) {
 }
 
 function getAllDiscussions() {
-  $sql = "select * FROM DiscussionBoard";
+  $sql = "select * FROM DiscussionBoard where ApprovalStatus=1";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
@@ -336,7 +401,7 @@ function getAllDiscussions() {
 }
 
 function getAllDiscussionsTopics($DiscussionBoardId) {
-  $sql = "select * FROM discussionboardtopic where DiscussionBoardId =:DiscussionBoardId";
+  $sql = "select * FROM DiscussionBoardTopic where DiscussionBoardId =:DiscussionBoardId and Status=1";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
@@ -357,9 +422,9 @@ function getdiscussionTopicComments($topic) {
    $split = explode(' ', $headers['authorization']);
    $user_id  = $split[3];
 
-   $sql = "SELECT DBC.CommentDateTime, DBC.UserId, DBC.Comment ,DBC.CommentId,users.first_name, (select count(1) from discussionborardlikes DBL where DBL.CommentId=DBC.CommentId ) as likes,
-(select count(1) from discussionborardlikes DBL where DBL.CommentId=DBC.CommentId and DBL.UserId=:userId and DBC.UserId=DBL.UserId) as likeflag
-FROM discussionboardcomments DBC INNER JOIN users ON DBC.UserId=users.User_Id where DiscussionTopicId=:topic" ;
+   $sql = "SELECT DBC.CommentDateTime, DBC.UserId, DBC.Comment ,DBC.CommentId,users.first_name, (select count(1) from DiscussionBorardLikes DBL where DBL.CommentId=DBC.CommentId ) as likes,
+(select count(1) from DiscussionBorardLikes DBL where DBL.CommentId=DBC.CommentId and DBL.UserId=:userId and DBC.UserId=DBL.UserId) as likeflag
+FROM DiscussionBoardComments DBC INNER JOIN users ON DBC.UserId=users.User_Id where DiscussionTopicId=:topic" ;
  try {   
     $db = getConnection();   
     $stmt = $db->prepare($sql);
@@ -381,7 +446,7 @@ function setCommentLikes($commentId) {
 
   $likeDateTime= date("Y-m-d");
 
-  $sql = "INSERT INTO discussionborardlikes (CommentId, UserId, LikeDateTime) VALUES (:commentId, :userId, :likeDateTime)";
+  $sql = "INSERT INTO DiscussionBorardLikes (CommentId, UserId, LikeDateTime) VALUES (:commentId, :userId, :likeDateTime)";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);  
@@ -403,7 +468,7 @@ echo 'true';
 
 
 function getdiscussionListTopicName($topicId) {
-   $sql = "SELECT Topic from discussionboard where DiscussionBoardId=:disTopicId" ;
+   $sql = "SELECT Topic from DiscussionBoard where DiscussionBoardId=:disTopicId" ;
    try {   
       $db = getConnection();   
       $stmt = $db->prepare($sql);
@@ -419,7 +484,7 @@ function getdiscussionListTopicName($topicId) {
 
 
 function getdiscussionTopicName($topicId) {
-   $sql = "SELECT TopicTitle from discussionboardtopic where DiscussionTopicId=:disTopicId" ;
+   $sql = "SELECT TopicTitle from DiscussionBoardTopic where DiscussionTopicId=:disTopicId" ;
    try {   
       $db = getConnection();   
       $stmt = $db->prepare($sql);
@@ -445,7 +510,7 @@ function saveComments() {
    $IsValid=1;
    $SeqNo=1;
 
-  $sql = "INSERT INTO discussionboardcomments (DiscussionTopicId, UserId,SeqNo, Comment,CommentDateTime,IsValid) VALUES ( :topicId,:userId ,:SeqNo,:comment ,:cmtDateTime,:IsValid )";
+  $sql = "INSERT INTO DiscussionBoardComments (DiscussionTopicId, UserId,SeqNo, Comment,CommentDateTime,IsValid) VALUES ( :topicId,:userId ,:SeqNo,:comment ,:cmtDateTime,:IsValid )";
   
 
   try {
@@ -474,7 +539,7 @@ function saveComments() {
     $split = explode(' ', $headers['authorization']);
     $user_id  = $split[3];
     $reportedDate= date("Y-m-d");
-    $sql = "INSERT INTO discussionboardabuse (CommentId, ReportedBy,ReportedDate) VALUES ( :commentId,:reportedBy ,:reportedDate )";
+    $sql = "INSERT INTO DiscussionBoardAbuse (CommentId, ReportedBy,ReportedDate) VALUES ( :commentId,:reportedBy ,:reportedDate )";
       try {
         $db = getConnection();
         $stmt = $db->prepare($sql);

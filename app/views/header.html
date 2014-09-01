@@ -4,22 +4,11 @@
             <div class="container">
                 <!-- Topbar Navigation -->
                 <ul class="loginbar pull-right">
-                    <li>
-                        <i class="fa fa-globe"></i>
-                        <a>Languages</a>
-                        <ul class="lenguages">
-                            <li class="active">
-                                <a href="#">English <i class="fa fa-check"></i></a> 
-                            </li>
-                            <li><a href="#">Spanish</a></li>
-                            <li><a href="#">Russian</a></li>
-                            <li><a href="#">German</a></li>
-                        </ul>
-                    </li>
-                    <li class="topbar-devider"></li>   
+                    
+                    
                     <li><a href="page_faq.html">Help</a></li>  
                     <li class="topbar-devider"></li>   
-                    <li><a href="page_login.html">Login</a></li>   
+                    <li data-ng-controller="LoginCtrl"><a href="#" data-ng-click="logout()">Logout</a></li>   
                 </ul>
                 <!-- End Topbar Navigation -->
             </div>
@@ -48,170 +37,35 @@
                             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
                                 Home
                             </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="index.html">Option 1: Default Page</a></li>
-                                <li><a href="One-Page/index.html">Option 2: One Page Template</a></li>                                
-                                <li><a href="page_home1.html">Option 3: Layer Slider</a></li>
-                                <li><a href="page_home2.html">Option 4: Revolution Slider</a></li>                                
-                            </ul>
+                           
                         </li>
                         <!-- End Home -->
 
                         <!-- Pages -->                        
-                        <li class="dropdown active">
+                        <li class="dropdown">
                             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
                                 Pages
                             </a>
-                            <ul class="dropdown-menu">
-                                <!-- About Pages -->
-                                <li class="dropdown-submenu">
-                                    <a href="javascript:void(0);">About Pages</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="page_about1.html">About Us</a></li>
-                                        <li><a href="page_about.html">About Basic</a></li>
-                                    </ul>                                
-                                </li>
-                                <!-- End About Pages -->
 
-                                <!-- Profile Pages -->
-                                <li class="dropdown-submenu active">
-                                    <a href="javascript:void(0);">Profile Dashboard Pages</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="active"><a href="profile.html">Profile Main Page</a></li>
-                                        <li><a href="profile_me.html">Profile Overview</a></li>
-                                        <li><a href="profile_users.html">Profile Users</a></li>
-                                        <li><a href="profile_projects.html">Profile Projects</a></li>
-                                    </ul>                                
-                                </li>
-                                <!-- End Profile Pages -->
-
-                                <!-- Job Pages -->
-                                <li class="dropdown-submenu">
-                                    <a href="javascript:void(0);">Job Pages</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="page_jobs.html">Jobs Main Page</a></li>                                
-                                        <li><a href="page_jobs_inner.html">Jobs Description Default</a></li>                                
-                                        <li><a href="page_jobs_inner1.html">Jobs Description Basic</a></li>                                
-                                        <li><a href="page_jobs_inner2.html">Jobs Description Min</a></li>                                
-                                    </ul>                                
-                                </li>
-                                <!-- End Job Pages -->
-
-                                <!-- Email Tempaltes -->
-                                <li class="dropdown-submenu">
-                                    <a href="javascript:void(0);">Email Templates</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="dropdown-submenu">
-                                            <a href="javascript:void(0);">Email Corporate</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a target="_blank" href="email-templates/corporate/email_corporate_aqua.html">Corporate Aqua Color</a></li>
-                                                <li><a target="_blank" href="email-templates/corporate/email_corporate_blue.html">Corporate Blue Color</a></li>
-                                                <li><a target="_blank" href="email-templates/corporate/email_corporate_brown.html">Corporate Brown Color</a></li>
-                                                <li><a target="_blank" href="email-templates/corporate/email_corporate_dark_blue.html">Corporate Dark Blue Color</a></li>
-                                                <li><a target="_blank" href="email-templates/corporate/email_corporate_green.html">Corporate Green Color</a></li>
-                                            </ul>                                
-                                        </li>
-                                        <li class="dropdown-submenu">
-                                            <a href="javascript:void(0);">Email Flat</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a target="_blank" href="email-templates/flat/email_flat_aqua.html">Flat Aqua Color</a></li>
-                                                <li><a target="_blank" href="email-templates/flat/email_flat_blue.html">Flat Blue Color</a></li>
-                                                <li><a target="_blank" href="email-templates/flat/email_flat_brown.html">Flat Brown Color</a></li>
-                                                <li><a target="_blank" href="email-templates/flat/email_flat_dark_blue.html">Flat Dark Blue Color</a></li>
-                                                <li><a target="_blank" href="email-templates/flat/email_flat_green.html">Flat Green Color</a></li>
-                                            </ul>                                
-                                        </li>
-                                        <li class="dropdown-submenu">
-                                            <a href="javascript:void(0);">Email Modern</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a target="_blank" href="email-templates/modern/email_modern_aqua.html">Modern Aqua Color</a></li>
-                                                <li><a target="_blank" href="email-templates/modern/email_modern_blue.html">Modern Blue Color</a></li>
-                                                <li><a target="_blank" href="email-templates/modern/email_modern_brown.html">Modern Brown Color</a></li>
-                                                <li><a target="_blank" href="email-templates/modern/email_modern_dark_blue.html">Modern Dark Blue Color</a></li>
-                                                <li><a target="_blank" href="email-templates/modern/email_modern_green.html">Modern Green Color</a></li>
-                                            </ul>                                
-                                        </li>
-                                    </ul>                                
-                                </li>
-
-                                <li class="dropdown-submenu">
-                                    <a href="javascript:void(0);">Service Pages</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="page_services.html">Our Services</a></li>
-                                        <li><a href="page_services1.html">Our Services Basic</a></li>
-                                    </ul>                                
-                                </li>
-                                <!-- End Email Tempaltes -->
-
-                                <!-- Funny Boxes -->
-                                <li><a href="page_funny_boxes.html">Funny Boxes</a></li>
-                                <!-- End Funny Boxes -->
-
-                                <!-- Pricing Tables -->
-                                <li class="dropdown-submenu">
-                                    <a href="javascript:void(0);">Pricing Tables</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="page_pricing_flat.html">Flat Pricing Tables</a></li>                                    
-                                        <li><a href="page_pricing_light.html">Light Pricing Tables</a></li>
-                                        <li><a href="page_pricing_mega.html">Mega Pricing Tables</a></li>
-                                        <li><a href="page_pricing.html">Default Pricing Tables</a></li>
-                                    </ul>                                
-                                </li>
-                                <!-- End Pricing Tables -->
-
-                                <!-- Invoice Page -->
-                                <li><a href="page_invoice.html">Invoice Page</a></li>
-                                <!-- End Invoice Page -->
-
-                                <!-- Search Results -->
-                                <li class="dropdown-submenu">
-                                    <a href="javascript:void(0);">Search Results</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="page_search_inner.html">Default Search Results</a></li>
-                                        <li><a href="page_search_table.html">Search Result Tables</a></li>
-                                    </ul>                                
-                                </li>
-                                <!-- End Search Results -->
-
-                                <!-- Coming Soon -->
-                                <li><a href="page_coming_soon.html">Coming Soon</a></li>
-                                <!-- End Coming Soon -->
-
-                                <!-- FAQs Pages -->
-                                <li class="dropdown-submenu">
-                                    <a href="javascript:void(0);">FAQs Pages</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="page_faq1.html">FAQs Page</a></li>
-                                        <li><a href="page_faq.html">FAQs Basic</a></li>
-                                    </ul>                                
-                                </li>
-                                <!-- End FAQs Pages -->
-                            </ul>
+                         
                         </li>
                         <!-- End Pages -->
 
-                        <!-- Features -->
+                        <!-- Discussion -->
                         <li class="dropdown">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" data-ng-click="discussion()">
                                Discussion
                             </a>
                             
                         </li>
-                        <!-- End Features -->
+                        <!-- End Discussion -->
 
                         <!-- Portfolio -->
                         <li class="dropdown">
                             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
                                 Portfolio
                             </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="portfolio_text_blocks.html">Portfolio Text Blocks</a></li>
-                                <li><a href="portfolio_2_column.html">Portfolio 2 Columns</a></li>
-                                <li><a href="portfolio_3_column.html">Portfolio 3 Columns</a></li>
-                                <li><a href="portfolio_4_column.html">Portfolio 4 Columns</a></li>
-                                <li><a href="portfolio_item.html">Portfolio Item Option 1</a></li>
-                                <li><a href="portfolio_item1.html">Portfolio Item Option 2</a></li>
-                            </ul>
+                          
                         </li>
                         <!-- Ens Portfolio -->
 
@@ -220,18 +74,7 @@
                             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
                                 Blog
                             </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="blog_page.html">Blog Page</a></li>
-                                <li><a href="blog_large.html">Blog Large</a></li>
-                                <li><a href="blog_medium.html">Blog Medium</a></li>
-                                <li><a href="blog_full_width.html">Blog Full Width</a></li>
-                                <li><a href="blog_timeline.html">Blog Timeline</a></li>
-                                <li><a href="blog_masonry_3col.html">Masonry Grid Blog</a></li>
-                                <li><a href="blog_right_sidebar.html">Blog Right Sidebar</a></li>
-                                <li><a href="blog_left_sidebar.html">Blog Left Sidebar</a></li>
-                                <li><a href="blog_item_option1.html">Blog Item Option 1</a></li>
-                                <li><a href="blog_item_option2.html">Blog Item Option 2</a></li>
-                            </ul>
+                          
                         </li>
                         <!-- End Blog -->
 
@@ -240,27 +83,10 @@
                             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
                                 Contacts
                             </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="page_contact1.html">Contacts Default</a></li>
-                                <li><a href="page_contact2.html">Contacts Option 1</a></li>
-                                <li><a href="page_contact3.html">Contacts Option 2</a></li>
-                            </ul>
+                          
                         </li>                    
                         <!-- End Contacts -->
 
-                        <!-- Search Block -->
-                        <!-- <li>
-                            <i class="search fa fa-search search-btn"></i>
-                            <div class="search-open">
-                                <div class="input-group animated fadeInDown">
-                                    <input type="text" class="form-control" placeholder="Search">
-                                    <span class="input-group-btn">
-                                        <button class="btn-u" type="button">Go</button>
-                                    </span>
-                                </div>
-                            </div>    
-                        </li> -->
-                        <!-- End Search Block -->
                     </ul>
                 </div><!--navbar-collapse-->
             </div>    
