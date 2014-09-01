@@ -26,7 +26,7 @@ angular.module('sassApp')
 	}
 
  $scope.signUp = function() {
-
+      console.log("Abhik1");
     if($scope.fbdata.id == null){
     	$scope.errMessage = "Login with Facebook";
     }

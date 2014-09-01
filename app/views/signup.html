@@ -2,7 +2,7 @@
 	<div class="row headingWrap">
 		<label class="col-sm-3 control-label heading">Sign Up</label>	
 	</div>
-	<form name="fbdataform" class="form-horizontal group-border-dashed"  style="border-radius: 0px;" >                        
+	<form name="fbdataform" class="form-horizontal group-border-dashed"  style="border-radius: 0px;" data-ng-submit="signUp(fbdataform.$valid)" >                        
         <div class="padding-bottom col-sm-6 clear">
             <div class="pull-left padding-right line-height40">I am a</div>
             <div class="pull-left padding-right"><div class=" form-control-holder " id="radio-male" >
@@ -44,7 +44,7 @@
             
         <h4>{{errMessage}}</h4>
         <div class="col-sm-3 clear buttonWrap">
-        	<input type="submit" value="submit" ng-disabled="fbdataform.$invalid" class="btn btn-lg btn-primary btn-block " data-ng-submit="signUp(fbdataform.$valid)">
+        	<input type="submit" value="submit" ng-disabled="fbdataform.$invalid" class="btn btn-lg btn-primary btn-block " >
         </div>
                     
                     

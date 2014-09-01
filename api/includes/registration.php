@@ -3,15 +3,18 @@
 $app->get('/users/:id', 'getUsers');
 $app->post('/add_user', 'addUser');
 $app->post('/verify', 'verifyUser');
-$app->post('/add_education', 'addEducation');
-$app->post('/add_contact', 'addContact');
-$app->post('/add_currentposition', 'addCurrentPosition');
-$app->post('/add_pastposition', 'addPastPosition');
+
+
+$app->post('/add_linkedinData', 'addlinkedinData');
+
+
 $app->post('/update_user', 'updateUser');
 $app->post('/saveComments', 'saveComments');
 
 
 
+
+$app->get('/getProffesionaldetails/:id', 'checkUser', 'get_Proffesionaldetails');
 
 $app->get('/saveDiscussionboardabuse/:commenitid', 'saveDiscussionboardabuse');
 $app->get('/usersAll/:id', 'checkUser', 'getAllUsers');
@@ -109,6 +112,7 @@ function getAllUsers($id) {
 }
 
 
+
 function getLinkedinUsers($id) {
   $sqlEdu = "select * FROM education where user_id = :id ORDER BY user_id";
   try {
@@ -146,14 +150,14 @@ function getLinkedinUsers($id) {
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
-  // $merged = array_merge(Object($wineEdu),Object($wineCp),Object($winePp));
-     $op = new stdClass();
-     $op->edu = $wineEdu;
-     $op->cp = $wineCp;
-     $op->pp = $winePp;
+  $merged = array_merge(Object($wineEdu),Object($wineCp),Object($winePp));
+     // $op = new stdClass();
+     // $op->edu = $wineEdu;
+     // $op->cp = $wineCp;
+     // $op->pp = $winePp;
       echo json_encode($op);
-//  $obj_merged = (object) array_merge((array) $wineEdu, (array) $wineCp, (array) $winePp);
- // echo json_encode($obj_merged);
+ $obj_merged = (object) array_merge((array) $wineEdu, (array) $wineCp, (array) $winePp);
+ echo json_encode($obj_merged);
 }
 
 function addUser() {
@@ -252,127 +256,63 @@ function verifyUser() {
   }
 }
 
-
-function addEducation() {
-	$request = Slim::getInstance()->request();
-	$user = json_decode($request->getBody());
-	// print_r( $user );
-	
-	foreach($user as $obj) {
-	$sql = "INSERT INTO education (schoolName, fieldOfStudy, endDate, startDate,user_id) VALUES (:schoolName, :fieldOfStudy, :endDate, :startDate,:user_id)";
-	try {
-		$db = getConnection();
-		$stmt = $db->prepare($sql);  
-		$stmt->bindParam("schoolName", $obj->schoolName);
-		$stmt->bindParam("fieldOfStudy", $obj->fieldOfStudy);
-		$stmt->bindParam("endDate", $obj->endDate);
-		$stmt->bindParam("startDate", $obj->startDate);
-		$stmt->bindParam("user_id", $obj->user_id);
-		$stmt->execute();
-		
-		//$app->redirect('login.html');
-	} catch(PDOException $e) {
-		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
-	}
-
-}
-echo 'true';
+function get_Proffesionaldetails($id) {
+  $sql = "select * FROM ProfessionalDetails where UserId = :id ORDER BY UserId";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("id", $id);
+    $stmt->execute();
+    $wine = $stmt->fetchObject();
+    $db = null;
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
 }
 
-function addContact() {
-	$request = Slim::getInstance()->request();
-	$user = json_decode($request->getBody());
-	// print_r( $user );
-	
-	foreach($user as $obj) {
-	$sql = "INSERT INTO phone (phoneNumber, phoneType,user_id) VALUES (:phoneNumber, :phoneType,:user_id)";
-	try {
-		$db = getConnection();
-		$stmt = $db->prepare($sql);  
-		$stmt->bindParam("phoneNumber", $obj->phoneNumber);
-		$stmt->bindParam("phoneType", $obj->phoneType);
-		$stmt->bindParam("user_id", $obj->user_id);
-		$stmt->execute();
-		
-		//$app->redirect('login.html');
-	} catch(PDOException $e) {
-		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
-	}
+function addlinkedinData() {
+  $request = Slim::getInstance()->request();
+  $user = json_decode($request->getBody());
+  //
+   //print_r( $user );
+   $currentEmployment = $user->values[0]->threeCurrentPositions->values[0]->company->name;
+   // print $currentEmployment;
+   $highestEducation = $user->values[0]->educations->values[0]->degree . ' - '  . $user->values[0]->educations->values[0]->fieldOfStudy;
+  $endorsedSkills = $user->values[0]->skills->values[0]->skill->name . ','  .$user->values[0]->skills->values[1]->skill->name. ','  .$user->values[0]->skills->values[2]->skill->name. ','  .$user->values[0]->skills->values[3]->skill->name. ','  .$user->values[0]->skills->values[4]->skill->name;
+  // foreach($user as $obj) {
+      $headers = apache_request_headers();
+      $split = explode(' ', $headers['authorization']);
+      $user_id  = $split[3];
 
-}
-echo 'true';
-}
+  $sql = "INSERT INTO ProfessionalDetails (UserId, CurrentEmployment, HighestEducation, Endorsedskills) VALUES (:UserId, :CurrentEmployment, :HighestEducation, :Endorsedskills)";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);  
+    $stmt->bindParam("UserId", $user_id);
+    $stmt->bindParam("CurrentEmployment", $currentEmployment);
+    $stmt->bindParam("HighestEducation", $highestEducation);
+    $stmt->bindParam("Endorsedskills", $endorsedSkills);
+    $stmt->execute();
+    updateUser($user_id);
+    //$app->redirect('login.html');
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
 
-function addCurrentPosition() {
-	$request = Slim::getInstance()->request();
-	$user = json_decode($request->getBody());
-	// print_r( $user );
-	
-	foreach($user as $obj) {
-		if (isset($obj->month) and isset($obj->year)){
-			$sDate = $obj->month . '-' . $obj->year;
-		}
-	$sql = "INSERT INTO currentPosition (company, startDate, title,user_id) VALUES (:company, :startDate, :title,:user_id)";
-	try {
-		$db = getConnection();
-		$stmt = $db->prepare($sql);  
-		$stmt->bindParam("company", $obj->company);
-		$stmt->bindParam("startDate", $sDate);
-		$stmt->bindParam("title", $obj->title); 
-		$stmt->bindParam("user_id", $obj->user_id);
-		$stmt->execute();
-		
-		//$app->redirect('login.html');
-	} catch(PDOException $e) {
-		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
-	}
-
-}
-echo 'true';
+// }
 }
 
-function addPastPosition() {
-	$request = Slim::getInstance()->request();
-	$user = json_decode($request->getBody());
-	// print_r( $user );
-	
-	foreach($user as $obj) {
-		if (isset($obj->smonth) and isset($obj->syear)){
-			$sDate = $obj->smonth . '-' . $obj->syear;
-		}
-		if (isset($obj->emonth) and isset($obj->eyear)){
-			$eDate =  $obj->emonth . '-' . $obj->eyear;
-		}
-		
-		
-	$sql = "INSERT INTO pastPosition (company, startDate, endDate, title,user_id) VALUES (:company, :startDate, :endDate, :title,:user_id)";
-	try {
-		$db = getConnection();
-		$stmt = $db->prepare($sql);  
-		$stmt->bindParam("company", $obj->company);
-		$stmt->bindParam("startDate", $sDate);
-		$stmt->bindParam("endDate",$eDate);
-		$stmt->bindParam("title", $obj->title); 
-		$stmt->bindParam("user_id", $obj->user_id);
-		$stmt->execute();
-		
-		//$app->redirect('login.html');
-	} catch(PDOException $e) {
-		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
-	}
 
-}
-echo 'true';
-}
 
-function updateUser() {		
-	$request = Slim::getInstance()->request();
-	$user = json_decode($request->getBody());
+function updateUser($user_id) {		
+	// $request = Slim::getInstance()->request();
+	// $user = json_decode($request->getBody());
 	$sql = "Update users SET linked_update=1 WHERE user_id=:user_id";
       try {
         $db = getConnection();
         $stmt = $db->prepare($sql);
-        $stmt->bindParam("user_id", $user->user_id);
+        $stmt->bindParam("user_id", $user_id);
         $stmt->execute();
     	echo 'true';
         //$app->redirect('login.html');

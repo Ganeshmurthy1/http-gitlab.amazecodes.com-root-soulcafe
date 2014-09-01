@@ -3,112 +3,254 @@
   <div data-ng-controller="HeaderCtrl" data-ng-include="Header">
 </div>
     <!--=== End Header ===-->  
-    
-        <!--=== Profile ===-->
+
+
+
+
+    <!--=== Profile ===-->
     <div class="profile container content" style="border-color:red">
         <div class="row">
             <!--Left Sidebar-->
             <div data-ng-controller="SideBarCtrl" data-ng-include="SideBar">
             </div>
             <!--End Left Sidebar-->
-	
-	<div class="col-md-9">
-<div class="container" style="margin:10px 10px;">
-	<div class="row">
-		<label class="col-sm-3 control-label heading">Personal Details</label>	
-	</div>
-<form name="fbdataform" class="form-horizontal group-border-dashed"  style="border-radius: 0px;" data-ng-submit="signUp(fbdataform.$valid)">
-	
-	<div class="form-group row">
-		<label class="col-sm-1 col-sm-offset-2 control-label align">First Name</label>
-		<div class="col-sm-5">
-			<div class="col-sm-6 data-align">{{userData.first_name}}</div>
-		</div>
-		<button class="col-sm-3 btn btn-primary" ng-hide="updateButton" ng-click="updateWithLinkedin()"  type="button">Update Profile With Linkedin</button>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-1 col-sm-offset-2 control-label align">Last Name</label>
-		<div class="col-sm-6 data-align">{{userData.last_name}}</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-1 col-sm-offset-2 control-label align">Birthdate</label>
-		<div class="col-sm-6 data-align">{{userData.birthdate}}</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-1 col-sm-offset-2 control-label align">Gender</label>
-		<div class="col-sm-6 data-align">{{userData.gender}}</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-1 col-sm-offset-2 control-label align">Home town</label>
-		<div class="col-sm-6 data-align">{{userData.hometown}}</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-1 col-sm-offset-2 control-label align">Location</label>
-		<div class="col-sm-6 data-align">{{userData.location}}</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-1 col-sm-offset-2 control-label align">Email</label>
-		<div class="col-sm-6 data-align">{{userData.email}}</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-1 col-sm-offset-2 control-label align">Mobile</label>
-		<div class="col-sm-6 data-align">{{userData.mobile}}</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-1 col-sm-offset-2 control-label align">Relationship Status</label>
-		<div class="col-sm-6 data-align">{{userData.relationship_status}}</div>
-	</div></br></br>
-</form>
-</div>
-<div class="container" style="margin-bottom:20px;">
-	<div class="form-group">
-		<label class="col-sm-3 control-label heading">Education Details</label>
-		<div class="col-sm-12 row">
-			<div class="col-lg-3 heading1">School Name </div>
-			<div class="col-lg-3 heading1">Field Of Study</div>
-			<div class="col-lg-2 heading1">End Date</div>
-			<div class="col-lg-4 heading1">Start Date</div>
-		</div>
-		<div class="col-sm-12 row"  ng-repeat="edu in linkedinData.edu">
-			<div class="col-lg-3">{{edu.schoolName }}</div>
-			<div class="col-lg-3">{{edu.fieldOfStudy}}</div>
-			<div class="col-lg-2">{{edu.endDate}}</div>
-			<div class="col-lg-4">{{ edu.startDate}}</div>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-3 control-label heading">Current Job</label>
-		<div class="col-sm-12 row">
-			<div class="col-lg-3 heading1">Compant Name </div>
-			<div class="col-lg-3 heading1">Title</div>
-			<div class="col-lg-2 heading1">Start Date</div>
-		</div>
-		<div class="col-sm-12 row"  ng-repeat="cp in linkedinData.cp">
-			<div class="col-lg-3">{{cp.company }}</div>
-			<div class="col-lg-3">{{cp.title}}</div>
-			<div class="col-lg-2">{{ cp.startDate}}</div>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-3 control-label heading">Past Job Details</label>
-		<div class="col-sm-12 row">
-			<div class="col-lg-2 heading1">Compant Name </div>
-			<div class="col-lg-2 heading1">Title</div>
-			<div class="col-lg-2 heading1">Start Date</div>
-			<div class="col-lg-2 heading1">End Date</div>
-		</div>
-		<div class="col-sm-12 row"  ng-repeat="pp in linkedinData.pp">
-			<div class="col-lg-2">{{pp.company }}</div>
-			<div class="col-lg-2">{{pp.title}}</div>
-			<div class="col-lg-2">{{pp.startDate}}</div>
-			<div class="col-lg-2">{{ pp.endDate}}</div>
-		</div>
-	</div>
-</div>
-</div>
+            
+            <div class="col-md-9">
+                <!--Profile Body-->
+                <div class="profile-body">
+                    <!--Service Block v3-->
+                    <div class="row margin-bottom-10">
+                        <div class="col-sm-6 sm-margin-bottom-20">
+                            <div class="service-block-v3 servive-block-u">
+                                <i class="icon-users"></i>
+                                
+                                <span class="counter" style="margin-bottom:20px;">{{userData.first_name}} {{userData.last_name}}</span>
+                                <span style="color:#FFFFFF;font-size:15px;">Email-Id - {{userData.email}}</span>
+                                <p style="color:#FFFFFF;font-size:15px;margin-top:20px;">Mobile No. - {{userData.mobile}}</p>
+                                <p style="color:#FFFFFF;font-size:15px;">RelationShip Status - {{userData.relationship_status}}</p>
+                                <div class="clearfix margin-bottom-10"></div>
+                                
+                                           
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-6">
+                            <div class="service-block-v3 servive-block-blue">
+                                <i class="icon-screen-desktop"></i>
+                                <h3 style="color:#FFFFFF;">Proffesional Details</h3>
+                                 <a href="#" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs pull-right"  ng-hide="updateButton" ng-href="#/linkedin">Update Profile</a>
+                                <p style="color:#FFFFFF;font-size:15px;">Current Employment - {{proffesionalDetails.data.CurrentEmployment}}</p>
+                                <p style="color:#FFFFFF;font-size:15px;margin-top:10px;">Highest Education - {{proffesionalDetails.data.HighestEducation}}</p>
+                                 <p style="color:#FFFFFF;font-size:15px;margin-top:13px;">Endorsed Skills - {{proffesionalDetails.data.Endorsedskills}}</p>
+                                        
+                            </div>
+                        </div>
+                    </div><!--/end row-->
+                    <!--End Service Block v3-->
+
+                    <hr>
+
+                    <div class="row margin-bottom-20">
+                           <!--Alert-->
+                        <div class="col-sm-6 sm-margin-bottom-30">
+                            <div class="panel panel-profile">
+                                <div class="panel-heading overflow-h">
+                                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-send"></i> Alarm Notification</h2>
+                                    <a href="#"><i class="fa fa-cog pull-right"></i></a>
+                                </div>
+                           
+
+                                <perfect-scrollbar class="panel-body contentHolder" wheel-propagation="true" wheel-speed="50" >
+
+                                    <div class="alert-blocks alert-blocks-pending alert-dismissable">
+                                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                        <img class="rounded-x" src="images/testimonials/img3.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong class="color-yellow">Pending... <small class="pull-right"><em>Just now</em></small></strong> 
+                                            <p>Your friend request has been sent.</p>
+                                        </div>    
+                                    </div>
+                                    <div class="alert-blocks alert-blocks-success alert-dismissable">
+                                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                        <img class="rounded-x" src="images/testimonials/img2.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong class="color-green">Accepted. <small class="pull-right"><em>7 hours ago</em></small></strong> 
+                                            <p>Your friend request has been accepted.</p>
+                                        </div>    
+                                    </div>
+                                    <div class="alert-blocks alert-blocks-info alert-dismissable">
+                                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                        <i class="icon-custom rounded-x icon-bg-blue fa fa-bolt"></i>
+                                        <div class="overflow-h">
+                                            <strong class="color-blue">Info <small class="pull-right"><em>2 days ago</em></small></strong> 
+                                            <p>Your friend request has been denied :)</p>
+                                        </div>    
+                                    </div>
+                                    <div class="alert-blocks alert-blocks-error alert-dismissable">
+                                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                        <img class="rounded-x" src="images/testimonials/img6.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong class="color-red">Denied! <small class="pull-right"><em>2 days ago</em></small></strong> 
+                                            <p>Your friend request has been denied.</p>
+                                        </div>    
+                                    </div>
+                                    <div class="alert-blocks alert-dismissable">
+                                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                        <i class="icon-custom rounded-x icon-bg-dark fa fa-magic"></i>
+                                        <div class="overflow-h">
+                                            <strong class="color-dark">Default <small class="pull-right"><em>Just now</em></small></strong> 
+                                            <p><strong>Adam Johnson's</strong> friend request pending..</p>
+                                        </div>    
+                                    </div>
+                                    <div class="alert-blocks alert-blocks-pending alert-dismissable">
+                                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                        <i class="icon-custom rounded-x icon-bg-yellow fa fa-info"></i>
+                                        <div class="overflow-h">
+                                            <strong class="color-yellow">Pending <small class="pull-right"><em>Just now</em></small></strong> 
+                                            <p><strong>Adam Johnson's</strong> friend request pending..</p>
+                                        </div>    
+                                    </div>
+                                
+
+                                </perfect-scrollbar>  
+
+                               
+                            </div>
+                        </div>
+                        <!--End Alert-->
+                         <div class="col-sm-6">
+                            <div class="panel panel-profile">
+                                <div class="panel-heading overflow-h">
+                                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments-o"></i> Discussions</h2>
+                                    <a href="#/profile_comments" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs pull-right">View All</a>
+                                </div>
+                        
+                                <perfect-scrollbar class="panel-body contentHolder" wheel-propagation="true" wheel-speed="50" >
+
+                                    <div class="comment">
+                                        <img src="images/testimonials/img6.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong>Taylor Lee<small class="pull-right"> 25m</small></strong> 
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                            <ul class="list-inline comment-list">
+                                                <li><i class="fa fa-heart"></i> <a href="#">23</a></li>
+                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
+                                            </ul>
+                                        </div>    
+                                    </div>
+                                    <div class="comment">
+                                        <img src="images/testimonials/img2.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong>Miranda Clarsson<small class="pull-right"> 44m</small></strong> 
+                                            <p>Donec cursus, orci non posuere luctus, risus massa luctus nisi, sit amet cursus leo massa id arcu. Nunc tincidunt magna sit amet sapien congue.</p>
+                                            <ul class="list-inline comment-list">
+                                                <li><i class="fa fa-heart"></i> <a href="#">23</a></li>
+                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
+                                            </ul>
+                                        </div>    
+                                    </div>
+                                    <div class="comment">
+                                        <img src="images/testimonials/img4.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong>Natasha Kolnikova<small class="pull-right"> 7h</small></strong> 
+                                            <p>Suspendisse est est, sollicitudin eget auctor et, pharetra eu sapien. Mauris mollis libero ac auctor iaculis.</p>
+                                            <ul class="list-inline comment-list">
+                                                <li><i class="fa fa-heart"></i> <a href="#">23</a></li>
+                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
+                                            </ul>
+                                        </div>    
+                                    </div>
+                                    <div class="comment">
+                                        <img src="images/testimonials/img1.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong>Mikel Andrews<small class="pull-right"> 15h</small></strong> 
+                                            <p>Nam ut dolor cursus nibh aliquet bibendum in eget risus.</p>
+                                            <ul class="list-inline comment-list">
+                                                <li><i class="fa fa-heart"></i> <a href="#">20</a></li>
+                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
+                                            </ul>
+                                        </div>    
+                                    </div>
+                                    <div class="comment">
+                                        <img src="images/testimonials/img7.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong>Edward Rooster<small class="pull-right"> 1d</small></strong> 
+                                            <p>Nam ut dolor cursus nibh aliquet bibendum in eget risus. Mauris mollis libero ac auctor iaculis.</p>
+                                            <ul class="list-inline comment-list">
+                                                <li><i class="fa fa-heart"></i> <a href="#">23</a></li>
+                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
+                                            </ul>
+                                        </div>    
+                                    </div>
+                                
+
+                         </perfect-scrollbar>  
+                               
+                            </div>    
+                        </div>
+                        
+                    </div><!--/end row-->
+                    </div>
+                    <hr>
+                    
+                    <!--Profile Blog-->
+                     <div class="panel panel-profile">
+                        <div class="panel-heading overflow-h">
+                            <h2 class="panel-title heading-sm pull-left"><i class="fa fa-tasks"></i>Contacts</h2>
+                            <a href="profile_users.html" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs pull-right">View All</a>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="profile-blog blog-border">
+                                        <img class="rounded-x" src="images/testimonials/img1.jpg" alt="">
+                                        <div class="name-location">
+                                            <strong>Mikel Andrews</strong>
+                                            <span><i class="fa fa-map-marker"></i><a href="#">California,</a> <a href="#">US</a></span>
+                                        </div>
+                                        <div class="clearfix margin-bottom-20"></div>    
+                                        <p>Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
+                                        <hr>
+                                        <ul class="list-inline share-list">
+                                            <li><i class="fa fa-bell"></i><a href="#">12 Notifications</a></li>
+                                            <li><i class="fa fa-group"></i><a href="#">54 Followers</a></li>
+                                            <li><i class="fa fa-twitter"></i><a href="#">Retweet</a></li>
+                                        </ul>
+                                    </div>
+                                </div>        
+
+                                <div class="col-sm-6">
+                                    <div class="profile-blog blog-border">
+                                        <img class="rounded-x" src="images/testimonials/img4.jpg" alt="">
+                                        <div class="name-location">
+                                            <strong>Natasha Kolnikova</strong>
+                                            <span><i class="fa fa-map-marker"></i><a href="#">Moscow,</a> <a href="#">Russia</a></span>
+                                        </div>
+                                        <div class="clearfix margin-bottom-20"></div>    
+                                        <p>Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
+                                        <hr>
+                                        <ul class="list-inline share-list">
+                                            <li><i class="fa fa-bell"></i><a href="#">37 Notifications</a></li>
+                                            <li><i class="fa fa-group"></i><a href="#">46 Followers</a></li>
+                                            <li><i class="fa fa-twitter"></i><a href="#">Retweet</a></li>
+                                        </ul>
+                                    </div> 
+                                </div>    
+                            </div>
+                        </div>        
+                    </div><!--/end row   
+                    <!--End Profile Blog-->
+
+                    <hr>
+
+                    
+                </div>
+                <!--End Profile Body-->
+            </div>
         </div><!--/end row-->
     </div><!--/container-->    
     <!--=== End Profile ===-->
+
 
 <!--=== Footer ===-->
  <div data-ng-controller="FooterCtrl" data-ng-include="Footer">
@@ -122,4 +264,3 @@
     
 </div>
  <!-- End wrapper -->
-
