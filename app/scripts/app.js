@@ -90,15 +90,18 @@ angular
       })
       .when('/discussion-list', {
         templateUrl: 'views/discussion-list.html',
-        controller: 'DiscussionListCtrl'
+        controller: 'DiscussionListCtrl',
+        access:      access.user
       })
       .when('/discussion-topics', {
         templateUrl: 'views/discussion-topics.html',
-        controller: 'DiscussionTopicsCtrl'
+        controller: 'DiscussionTopicsCtrl',
+        access:      access.user
       })
       .when('/discussion', {
         templateUrl: 'views/discussion.html',
-        controller: 'DiscussionCtrl'
+        controller: 'DiscussionCtrl',
+        access:      access.user
       })
       .when('/admin-add-discussion', {
         templateUrl: 'views/admin-add-discussion.html',
