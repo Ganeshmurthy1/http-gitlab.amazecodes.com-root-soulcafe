@@ -30,9 +30,18 @@ $app->post('/saveComments','checkUser','saveComments');
 function checkUser() { 
   $headers = apache_request_headers();
  // echo $headers['authorization'];
-  $split = explode(' ', $headers['authorization']);
-  $token = $split[1];
-  $user_id  = $split[3];
+  $token = '';
+  $user_id  = '';
+ if (isset($headers['authorization'])) {
+   $split = explode(' ', $headers['authorization']);
+   $token = $split[1];
+   $user_id  = $split[3];
+ }
+  else if (isset($headers['Authorization'])) {
+    $split = explode(' ', $headers['Authorization']);
+    $token = $split[1];
+    $user_id  = $split[3];
+  }
   $sql = "select user_id FROM users where user_id = :user_id and access_tocken = :token";
   try {
     $db = getConnection();
@@ -414,7 +423,7 @@ function getAllDiscussionsTopics($DiscussionBoardId) {
 function getdiscussionTopicComments($topic) {
 
    $headers = apache_request_headers();
-   $split = explode(' ', $headers['authorization']);
+   $split = explode(' ', $headers['Authorization']);
    $user_id  = $split[3];
 
    $sql = "SELECT DBC.CommentDateTime, DBC.UserId, DBC.Comment ,DBC.CommentId,users.first_name, (select count(1) from DiscussionBorardLikes DBL where DBL.CommentId=DBC.CommentId ) as likes,

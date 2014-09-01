@@ -22,7 +22,7 @@ angular
     'perfect_scrollbar',
     'ui.bootstrap' 
   ])
-  .config(function ($routeProvider, $facebookProvider, $locationProvider, $httpProvider) {
+  .config(['$routeProvider', '$facebookProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $facebookProvider, $locationProvider, $httpProvider) {
 	
 	var access = routingConfig.accessLevels;
 	console.log(access);
@@ -145,7 +145,7 @@ angular
             }
         }
     });
-  });
+  }]);
 
 angular.module('sassApp').run( function($rootScope, $location, $http, regService, localStorageService) {
 	  // Load the facebook SDK asynchronously
@@ -189,6 +189,6 @@ angular.module('sassApp').run( function($rootScope, $location, $http, regService
 	   }());
 	});
 
-angular.module('sassApp').config(function($httpProvider) {
+angular.module('sassApp').config(['$httpProvider', function($httpProvider) {
     $httpProvider.interceptors.push('authInterceptorService');
-});
+}]);
