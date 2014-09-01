@@ -60,12 +60,12 @@ angular
       .when('/signup-denied', {
         templateUrl: 'views/signup-denied.html',
         controller: 'SignupDeniedCtrl',
-        access:      access.user
+        access:      access.anon
 	  })
       .when('/mobile-verify', {
         templateUrl: 'views/mobile-verify.html',
         controller: 'MobileVerifyCtrl',
-        access:      access.user
+        access:      access.anon
       })
       .when('/signup', {
         templateUrl: 'views/signup.html',
