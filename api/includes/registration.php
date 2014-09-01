@@ -382,7 +382,7 @@ function updateUser() {
 }
 
 function getAllDiscussions() {
-  $sql = "select * FROM DiscussionBoard";
+  $sql = "select * FROM DiscussionBoard where ApprovalStatus=1";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
@@ -396,7 +396,7 @@ function getAllDiscussions() {
 }
 
 function getAllDiscussionsTopics($DiscussionBoardId) {
-  $sql = "select * FROM DiscussionBoardTopic where DiscussionBoardId =:DiscussionBoardId";
+  $sql = "select * FROM DiscussionBoardTopic where DiscussionBoardId =:DiscussionBoardId and Status=1";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
