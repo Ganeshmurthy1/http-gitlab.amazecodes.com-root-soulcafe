@@ -113,7 +113,9 @@ angular.module('sassApp')
 	        return $http.get(fbUrl);
 	    };
 
-	      dataFactory.getdiscussionTopicDetails = function (discussionid) {	     
+
+
+	    dataFactory.getdiscussionTopicDetails = function (discussionid) {	     
 	    	return $http.get(urlBase + 'discussionTopicAll/'+discussionid).then(function(response) {	    		
                 return response;
             });
@@ -131,8 +133,6 @@ angular.module('sassApp')
 	      //getdiscussionTopicName
 
 	     dataFactory.getdiscussionTopicName = function (topicid) {	
-
-	     	console.log("Toic id",topicid);
 	     	return $http.get(urlBase + 'getdiscussionTopicName/'+ topicid).then(function(response) {
                 return response;
             });	
@@ -168,9 +168,6 @@ angular.module('sassApp')
 	    };
 	    
 
-
-
-	    // setCommentLikes/:commentId
 
 	    return dataFactory;
 	}]);

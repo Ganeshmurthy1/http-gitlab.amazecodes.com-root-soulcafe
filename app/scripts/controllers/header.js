@@ -19,12 +19,10 @@ $scope.Header = 'views/header.html';
     ];
 
 
-
-
-$scope.discussion=function()
-{
-	$location.path('/discussion-list');
-}
+	$scope.discussion=function()
+		{
+			$location.path('/discussion-list');
+		}
 
 
 
