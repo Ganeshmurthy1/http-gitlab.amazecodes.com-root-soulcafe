@@ -40,6 +40,13 @@ angular.module('sassApp')
        console.log($scope.discussionData.length);
        var authData = localStorageService.get('authorizationData');
          regService.getUserDetails(authData.user_id).then(function (results) {
+            regService.getDiscussionListStatus().then(function (res) {
+              console.log(res);
+              if (res.data.DiscussionBoardId != '') {
+                  var joinFlag = true;
+
+              };
+            
             console.log(results.data);
             $scope.userData = results.data; 
             console.log($scope.userData.birthdate);
@@ -48,6 +55,7 @@ angular.module('sassApp')
             var diff = d2.getFullYear()-d1.getFullYear();
             console.log(diff); 
             for (var i = 0; i < $scope.discussionData.length; i++) {
+
 
               // $scope.discussionData[i].join = 0;
               // console.log("AAAAA");
@@ -97,13 +105,16 @@ angular.module('sassApp')
                 };
               };
             };
-        
+        });
       });
   });
 
-function joinButtonClick(){
-  regService.add().then(function(response) {
-   // console.log(response);
+$scope.joinButtonClick = function(id){
+  console.log(id);
+  // $scope.discussionId = id;
+  console.log($scope.discussionId);
+  regService.joinDiscussion(id).then(function(response) {
+   console.log(response);
     
   });
 }

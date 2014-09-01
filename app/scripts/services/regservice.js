@@ -45,6 +45,18 @@ angular.module('sassApp')
                 return response;
             });	    	
 	    };
+	    dataFactory.getDiscussionListStatus = function () {
+	    	return $http.get(urlBase + 'get_DiscussionListStatus').then(function(response) {
+                return response;
+            });	    	
+	    };
+	    dataFactory.joinDiscussion = function (param) {
+	    	//console.log(param);
+	    	
+	    	return $http.get(urlBase + 'join_discussion/'+ param).then(function(response) {
+                return response;
+            });	    	
+	    };
 	    dataFactory.addLinkedinDataf = function (param) {
 	    	//console.log(param);
 	    	return $http.post(urlBase + 'add_linkedinData', param).then(function(response) {

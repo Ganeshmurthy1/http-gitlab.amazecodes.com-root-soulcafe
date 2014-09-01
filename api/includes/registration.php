@@ -8,7 +8,9 @@ $app->post('/add_contact', 'addContact');
 $app->post('/add_currentposition', 'addCurrentPosition');
 $app->post('/add_pastposition', 'addPastPosition');
 $app->post('/update_user', 'updateUser');
+$app->get('/join_discussion/:id', 'joinDiscussion');
 
+$app->get('/get_DiscussionListStatus', 'getDiscussionListStatus');
 $app->get('/usersAll/:id', 'checkUser', 'getAllUsers');
 $app->get('/linkedinUsers/:id', 'getLinkedinUsers');
 $app->post('/add_linkedinData', 'addlinkedinData');
@@ -479,7 +481,7 @@ function getdiscussionTopicName($topicId) {
       $stmt = $db->prepare($sql);
       $stmt->bindParam("disTopicId", $topicId);    
       $stmt->execute();
-      $wine = $stmt->fetchAll(PDO::FETCH_OBJ);;
+      $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
       $db = null;
       echo json_encode($wine);
     } catch(PDOException $e) {
@@ -639,5 +641,50 @@ function AddTopic() {
 
 }
 
+
+function joinDiscussion($id) {
+  $request = Slim::getInstance()->request();
+  $user = json_decode($request->getBody());
+  // print_r( $user );
+   $headers = apache_request_headers();
+   $split = explode(' ', $headers['authorization']);
+   $user_id  = $split[3];
+   $cdate = date('Y-m-d h:i:s');
+  $sql = "INSERT INTO DiscussionBoardUsers (DiscussionBoardId, UserId,JoinedDate) VALUES (:DiscussionBoardId, :UserId,:JoinedDate)";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);  
+    $stmt->bindParam("DiscussionBoardId", $id);
+    $stmt->bindParam("UserId",  $user_id );
+    $stmt->bindParam("JoinedDate",  $cdate);
+    $stmt->execute();
+    
+    //$app->redirect('login.html');
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+echo 'true';
+}
+
+function getDiscussionListStatus() {
+ 
+  // print_r( $user );
+   $headers = apache_request_headers();
+   $split = explode(' ', $headers['authorization']);
+   $user_id  = $split[3];
+   
+  $sql = "select DiscussionBoardId from DiscussionBoardUsers where UserId = :user_id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);  
+    $stmt->bindParam("user_id",  $user_id );
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+     $db = null;
+      echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+}
 
 ?>
