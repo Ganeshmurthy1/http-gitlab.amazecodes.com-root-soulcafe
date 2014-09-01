@@ -16,9 +16,9 @@ angular.module('sassApp')
     ];
 
 
-    
+  
      var authData = localStorageService.get('authorizationData');
-     
+
      $scope.userId=authData.user_id;
     
 
@@ -42,6 +42,7 @@ angular.module('sassApp')
 
 
     $scope.commentLike = function(arg) {
+      
        console.log("commentLike",arg);
         regService.setCommentsLike(arg).then(function (results) {
          console.log("aaaaaa");
@@ -52,14 +53,10 @@ angular.module('sassApp')
 
           var comm=$scope.comment;
         
+        var args=new Object();
 
-          var args = [
-                 {
-                  topicId: $routeParams.topic,
-                  comment:$scope.comment
-                }
-              ];
-
+args.topicId=$routeParams.topic;
+args.comment=$scope.comment;
       
         console.log(args);
 
