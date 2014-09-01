@@ -10,4 +10,24 @@ function getConnection() {
 	return $dbh;
 }
 
+function getLoginUserId() {
+  $headers = apache_request_headers();
+  // echo $headers['authorization'];
+  $token = '';
+  $user_id  = '';
+  if (isset($headers['authorization'])) {
+    $split = explode(' ', $headers['authorization']);
+    $token = $split[1];
+    $user_id  = $split[3];
+  }
+  else if (isset($headers['Authorization'])) {
+    $split = explode(' ', $headers['Authorization']);
+    $token = $split[1];
+    $user_id  = $split[3];
+  }
+  
+  return $user_id;
+  
+}
+
 ?>
