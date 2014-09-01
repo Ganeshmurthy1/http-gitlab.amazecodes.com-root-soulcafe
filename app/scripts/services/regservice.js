@@ -147,6 +147,12 @@ angular.module('sassApp')
 	    };
 	    
 
+	      dataFactory.addTopic = function (param) {	
+	     	return $http.post(urlBase + 'add_topic', param).then(function(response) {
+                return response;
+            });	
+	    };
+
 
 	    return dataFactory;
 	}]);
