@@ -376,7 +376,7 @@ echo 'true';
 
 
 function getAllDiscussions() {
-  $sql = "select * FROM DiscussionBoard where ApprovalStatus=1";
+  $sql = "select * FROM DiscussionBoard where Status=1";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
