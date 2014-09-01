@@ -8,24 +8,24 @@ $app->post('/add_contact', 'addContact');
 $app->post('/add_currentposition', 'addCurrentPosition');
 $app->post('/add_pastposition', 'addPastPosition');
 $app->post('/update_user', 'updateUser');
-$app->post('/saveComments', 'saveComments');
 
-
-
-
-$app->get('/saveDiscussionboardabuse/:commenitid', 'saveDiscussionboardabuse');
 $app->get('/usersAll/:id', 'checkUser', 'getAllUsers');
 $app->get('/linkedinUsers/:id', 'getLinkedinUsers');
-$app->get('/discussionAll', 'checkUser', 'getAllDiscussions');
-$app->get('/discussionTopicAll/:DiscussionBoardId', 'getAllDiscussionsTopics');
-$app->get('/discussionTopicComments/:topic', 'getdiscussionTopicComments');
-
-$app->get('/getdiscussionListTopicName/:topicId', 'getdiscussionListTopicName');
-$app->get('/getdiscussionTopicName/:topicId', 'getdiscussionTopicName');
 
 
 
-$app->get('/setCommentLikes/:commentId', 'setCommentLikes');
+
+$app->get('/saveDiscussionboardabuse/:commenitid','checkUser', 'saveDiscussionboardabuse');
+$app->get('/discussionAll', 'checkUser','checkUser', 'getAllDiscussions');
+$app->get('/discussionTopicAll/:DiscussionBoardId','checkUser', 'getAllDiscussionsTopics');
+$app->get('/discussionTopicComments/:topic','checkUser', 'getdiscussionTopicComments');
+$app->get('/getdiscussionListTopicName/:topicId', 'checkUser','getdiscussionListTopicName');
+$app->get('/getdiscussionTopicName/:topicId','checkUser', 'getdiscussionTopicName');
+$app->get('/setCommentLikes/:commentId','checkUser', 'setCommentLikes');
+
+$app->post('/saveComments','checkUser','saveComments');
+
+
 
 function checkUser() { 
   $headers = apache_request_headers();
