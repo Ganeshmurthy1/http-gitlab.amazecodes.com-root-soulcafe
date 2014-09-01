@@ -565,11 +565,23 @@ function addlinkedinData() {
   $request = Slim::getInstance()->request();
   $user = json_decode($request->getBody());
   //
-   //print_r( $user );
-   $currentEmployment = $user->values[0]->threeCurrentPositions->values[0]->company->name;
+  $currentEmployment = '';
+  $highestEducation = '';
+  $endorsedSkills = '';
+  if (isset($user->values[0]->threeCurrentPositions->values[0]->company->name)) {
+    $currentEmployment = $user->values[0]->threeCurrentPositions->values[0]->company->name;
+  }
+  
+  if (isset($user->values[0]->educations->values[0]->degree) and isset($user->values[0]->educations->values[0]->fieldOfStudy)) {
+    $highestEducation = $user->values[0]->educations->values[0]->degree . ' - '  . $user->values[0]->educations->values[0]->fieldOfStudy;
+  }
+  if (isset($user->values[0]->skills->values[0]->skill->name) and isset($user->values[0]->skills->values[1]->skill->name)) {
+     $endorsedSkills = $user->values[0]->skills->values[0]->skill->name . ','  .$user->values[0]->skills->values[1]->skill->name;
+  }
+  
    // print $currentEmployment;
-   $highestEducation = $user->values[0]->educations->values[0]->degree . ' - '  . $user->values[0]->educations->values[0]->fieldOfStudy;
-  $endorsedSkills = $user->values[0]->skills->values[0]->skill->name . ','  .$user->values[0]->skills->values[1]->skill->name. ','  .$user->values[0]->skills->values[2]->skill->name. ','  .$user->values[0]->skills->values[3]->skill->name. ','  .$user->values[0]->skills->values[4]->skill->name;
+  
+  //$endorsedSkills = $user->values[0]->skills->values[0]->skill->name . ','  .$user->values[0]->skills->values[1]->skill->name. ','  .$user->values[0]->skills->values[2]->skill->name. ','  .$user->values[0]->skills->values[3]->skill->name. ','  .$user->values[0]->skills->values[4]->skill->name;
   // foreach($user as $obj) {
       $headers = apache_request_headers();
       $split = explode(' ', $headers['authorization']);
