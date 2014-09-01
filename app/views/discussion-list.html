@@ -21,7 +21,7 @@
                     <p>{{diss.Description}}</p>
                     <p>
 
-                        <a class="btn-u btn-u-sea" ng-show="diss.join" href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}">Join</a>
+                        <a class="btn-u btn-u-sea" ng-click="joinButtonClick()" ng-show="diss.join" href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}">Join</a>
 
 
                     </p>
