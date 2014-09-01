@@ -14,6 +14,7 @@ angular.module('sassApp')
       'AngularJS',
       'Karma'
     ];
+    $scope.discussId = $routeParams.discussId;
     $scope.adminAddTopic = function() {
     	$scope.topic.discussId = $routeParams.discussId;
     	console.log($scope.topic);
