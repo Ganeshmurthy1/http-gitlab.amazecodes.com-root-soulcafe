@@ -25,16 +25,15 @@ angular.module('sassApp')
     	regService.getUserDetails(authData.user_id).then(function (results) {
     		//console.log(results.data);
     		$scope.userData = results.data; 
-
+        console.log($scope.userData);
          if ($scope.userData.linked_update == 1){
+           $scope.updateButton = 'true';
            console.log("Abhik");
-          regService.getLinkedinUserDetails($scope.userData.user_id).then(function (results) {
-            // console.log(results.data);
-            $scope.linkedinData = results.data;
-             console.log($scope.linkedinData);
-             $scope.updateButton = 'true';
-
-          });
+          regService.getLinkedinProffesionaldetails(authData.user_id).then(function(response) {
+                  // console.log(response);
+                  $scope.proffesionalDetails = response;
+                  console.log($scope.proffesionalDetails);
+                });
       
         }   	
     	});
@@ -43,7 +42,10 @@ angular.module('sassApp')
     
     getUSerdata();
 
-     $scope.updateWithLinkedin = function() {
-      $location.path('/linkedin');
-    };
+    //  $scope.updateWithLinkedin = function() {
+    //   console.log("AAAAAAAAAAAAAAAAAAAA");
+    //   $location.path('/linkedin');
+    // };
   });
+// var authData = localStorageService.get('authorizationData');
+                

@@ -30,8 +30,10 @@ angular.module('sassApp')
 	    if (param.total_friends < 80) {
 	    	result.status = false;
 		    result.message = 'You dont have enough friends in your facebook profile';
-		}	    
-	    if (param.relationship_status == 'Married' || param.relationship_status == 'In a relationship' || param.relationship_status == 'Engaged' || param.relationship_status == 'In an open relationship' || param.relationship_status == 'Its complicated') {
+		}	 
+	   // param.relationship_status = param.relationship_status.replace(/'/g, "\\'");
+	    console.log(param.relationship_status);
+	    if (param.relationship_status == 'Married' || param.relationship_status == 'In a relationship' || param.relationship_status == 'Engaged' || param.relationship_status == 'In an open relationship' || param.relationship_status == 'It\'s complicated' || param.relationship_status == 'In a civil union') {
 	    	result.status = false;
 		    result.message = 'Your Relationship status is not suitable for an account in Soulcafe';
 		}

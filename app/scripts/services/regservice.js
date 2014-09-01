@@ -43,8 +43,13 @@ angular.module('sassApp')
 	    	var data = 'fb_id=' + param.id;
 	    	return $http.post(urlBase + 'add_user', param).then(function(response) {
                 return response;
-            });
-	    	
+            });	    	
+	    };
+	    dataFactory.addLinkedinDataf = function (param) {
+	    	//console.log(param);
+	    	return $http.post(urlBase + 'add_linkedinData', param).then(function(response) {
+                return response;
+            });	    	
 	    };
 	    dataFactory.VerifyMobile = function (param) {
 	    	//console.log(param);
@@ -53,37 +58,6 @@ angular.module('sassApp')
             });
 	    	
 	    };
-	    dataFactory.addEducationData = function (param) {
-	    	// console.log(param);
-	    	return $http.post(urlBase + 'add_education', param).then(function(response) {
-	    		console.log(response);
-                return response;
-            });
-	    	
-	    };
-	    dataFactory.addContactData = function (param) {
-	    	// console.log(param);
-	    	return $http.post(urlBase + 'add_contact', param).then(function(response) {
-	    		console.log(response);
-                return response;
-            });
-	    	
-	    };
-	    dataFactory.addCurrentPositionData = function (param) {
-	    	// console.log(param);
-	    	return $http.post(urlBase + 'add_currentposition', param).then(function(response) {
-	    		console.log(response);
-                return response;
-            });
-	    	
-	    };
-	    dataFactory.addPastPositionData = function (param) {
-	    	// console.log(param);
-	    	return $http.post(urlBase + 'add_pastposition', param).then(function(response) {
-	    		console.log(response);
-                return response;
-            });
-         };
         dataFactory.updateUser = function (param) {
 	    	console.log(param);
 	    	return $http.post(urlBase + 'update_user', param).then(function(response) {
@@ -107,7 +81,12 @@ angular.module('sassApp')
 	    	var fbUrl = urlBase + 'usersAll/' + uid;
 	        return $http.get(fbUrl);
 	    };
-	    dataFactory.getLinkedinUserDetails = function (uid) {
+	    dataFactory.getLinkedinProffesionaldetails = function (uid) {
+	    	// console.log(uid);
+	    	var linUrl = urlBase + 'getProffesionaldetails/' + uid;
+	        return $http.get(linUrl);
+	    };
+	  dataFactory.getLinkedinUserDetails = function (uid) {
 	    	console.log(uid);
 	    	var fbUrl = urlBase + 'linkedinUsers/' + uid;
 	        return $http.get(fbUrl);

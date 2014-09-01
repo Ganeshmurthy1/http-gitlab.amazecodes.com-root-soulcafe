@@ -59,24 +59,24 @@ angular.module('sassApp')
               }
               else
               {
-                console.log("Abhik");
+                // console.log("Abhik");
                 
                 if($scope.discussionData[i].RestrictedAge == null){
-                  console.log("AbhikAge");
+                  // console.log("AbhikAge");
                   if($scope.discussionData[i].RestrictedGender == null){
-                    console.log("AbhikGender");
+                    // console.log("AbhikGender");
                      if($scope.discussionData[i].RestrictedLocation == null){
 
                         $scope.discussionData[i].join="true";
                      }else if ($scope.userData.location === $scope.discussionData[i].RestrictedLocation) {
                         $scope.discussionData[i].join="true";
-                        console.log("AbhikElse");
+                        // console.log("AbhikElse");
                      };
                     }else if ($scope.userData.gender === $scope.discussionData[i].RestrictedGender) {
                     if ($scope.discussionData[i].RestrictedLocation == null) {
                        $scope.discussionData[i].join="true";
                     }else if ($scope.userData.location === $scope.discussionData[i].RestrictedLocation) {
-                      console.log("AbhikGenderLocationElse");
+                      // console.log("AbhikGenderLocationElse");
                         $scope.discussionData[i].join="true";
                     };
                   };
