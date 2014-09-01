@@ -117,7 +117,13 @@ angular
       })
       .when('/admin-add-topic', {
         templateUrl: 'views/admin-add-topic.html',
-        controller: 'AdminAddTopicCtrl'
+        controller: 'AdminAddTopicCtrl',
+        access:      access.user
+      })
+      .when('/admin-topic-view', {
+        templateUrl: 'views/admin-topic-view.html',
+        controller: 'AdminTopicViewCtrl',
+        access:      access.user
       })
       .otherwise({
         redirectTo: '/'
