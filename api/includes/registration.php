@@ -396,7 +396,7 @@ function getAllDiscussions() {
 }
 
 function getAllDiscussionsTopics($DiscussionBoardId) {
-  $sql = "select * FROM discussionboardtopic where DiscussionBoardId =:DiscussionBoardId";
+  $sql = "select * FROM DiscussionBoardTopic where DiscussionBoardId =:DiscussionBoardId";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
@@ -417,9 +417,9 @@ function getdiscussionTopicComments($topic) {
    $split = explode(' ', $headers['authorization']);
    $user_id  = $split[3];
 
-   $sql = "SELECT DBC.CommentDateTime, DBC.UserId, DBC.Comment ,DBC.CommentId,users.first_name, (select count(1) from discussionborardlikes DBL where DBL.CommentId=DBC.CommentId ) as likes,
-(select count(1) from discussionborardlikes DBL where DBL.CommentId=DBC.CommentId and DBL.UserId=:userId and DBC.UserId=DBL.UserId) as likeflag
-FROM discussionboardcomments DBC INNER JOIN users ON DBC.UserId=users.User_Id where DiscussionTopicId=:topic" ;
+   $sql = "SELECT DBC.CommentDateTime, DBC.UserId, DBC.Comment ,DBC.CommentId,users.first_name, (select count(1) from DiscussionBorardLikes DBL where DBL.CommentId=DBC.CommentId ) as likes,
+(select count(1) from DiscussionBorardLikes DBL where DBL.CommentId=DBC.CommentId and DBL.UserId=:userId and DBC.UserId=DBL.UserId) as likeflag
+FROM DiscussionBoardComments DBC INNER JOIN users ON DBC.UserId=users.User_Id where DiscussionTopicId=:topic" ;
  try {   
     $db = getConnection();   
     $stmt = $db->prepare($sql);
@@ -441,7 +441,7 @@ function setCommentLikes($commentId) {
 
   $likeDateTime= date("Y-m-d");
 
-  $sql = "INSERT INTO discussionborardlikes (CommentId, UserId, LikeDateTime) VALUES (:commentId, :userId, :likeDateTime)";
+  $sql = "INSERT INTO DiscussionBorardLikes (CommentId, UserId, LikeDateTime) VALUES (:commentId, :userId, :likeDateTime)";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);  
@@ -463,7 +463,7 @@ echo 'true';
 
 
 function getdiscussionListTopicName($topicId) {
-   $sql = "SELECT Topic from discussionboard where DiscussionBoardId=:disTopicId" ;
+   $sql = "SELECT Topic from DiscussionBoard where DiscussionBoardId=:disTopicId" ;
    try {   
       $db = getConnection();   
       $stmt = $db->prepare($sql);
@@ -479,7 +479,7 @@ function getdiscussionListTopicName($topicId) {
 
 
 function getdiscussionTopicName($topicId) {
-   $sql = "SELECT TopicTitle from discussionboardtopic where DiscussionTopicId=:disTopicId" ;
+   $sql = "SELECT TopicTitle from DiscussionBoardTopic where DiscussionTopicId=:disTopicId" ;
    try {   
       $db = getConnection();   
       $stmt = $db->prepare($sql);
@@ -505,7 +505,7 @@ function saveComments() {
    $IsValid=1;
    $SeqNo=1;
 
-  $sql = "INSERT INTO discussionboardcomments (DiscussionTopicId, UserId,SeqNo, Comment,CommentDateTime,IsValid) VALUES ( :topicId,:userId ,:SeqNo,:comment ,:cmtDateTime,:IsValid )";
+  $sql = "INSERT INTO DiscussionBoardComments (DiscussionTopicId, UserId,SeqNo, Comment,CommentDateTime,IsValid) VALUES ( :topicId,:userId ,:SeqNo,:comment ,:cmtDateTime,:IsValid )";
   
 
   try {
@@ -534,7 +534,7 @@ function saveComments() {
     $split = explode(' ', $headers['authorization']);
     $user_id  = $split[3];
     $reportedDate= date("Y-m-d");
-    $sql = "INSERT INTO discussionboardabuse (CommentId, ReportedBy,ReportedDate) VALUES ( :commentId,:reportedBy ,:reportedDate )";
+    $sql = "INSERT INTO DiscussionBoardAbuse (CommentId, ReportedBy,ReportedDate) VALUES ( :commentId,:reportedBy ,:reportedDate )";
       try {
         $db = getConnection();
         $stmt = $db->prepare($sql);
