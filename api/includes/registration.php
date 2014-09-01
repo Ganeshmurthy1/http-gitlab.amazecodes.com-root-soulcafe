@@ -25,6 +25,7 @@ $app->get('/setCommentLikes/:commentId','checkUser', 'setCommentLikes');
 
 $app->post('/saveComments','checkUser','saveComments');
 
+$app->post('/add_topic', 'checkUser', 'AddTopic');
 
 
 function checkUser() { 
@@ -550,6 +551,38 @@ function saveComments() {
       }
     }
 
+function AddTopic() {
+  $request = Slim::getInstance()->request();
+  $forum = json_decode($request->getBody());
+  $headers = apache_request_headers();
+  // echo $headers['authorization'];
+
+    $split = explode(' ', $headers['authorization']);
+    $user_id  = $split[3];
+    $tdate = date('Y-m-d h:i:s');
+    //echo $forum->restriction;
+    
+    $status = 0;
+    $sql = "INSERT INTO DiscussionBoardTopic (DiscussionBoardId, TopicTitle, TopicDescription, CreatedBy, CreatedDate, Status) VALUES (:discussId, :topic, :description, :CreatedBy, :CreatedDate, :status)";
+    try {
+      $db = getConnection();
+      $stmt = $db->prepare($sql);
+      $stmt->bindParam("discussId", $forum->discussId);
+      $stmt->bindParam("topic", $forum->title);
+      $stmt->bindParam("description", $forum->description);
+      $stmt->bindParam("CreatedBy", $user_id);
+      $stmt->bindParam("CreatedDate", $tdate);
+      $stmt->bindParam("status", $status);      
+
+      $stmt->execute();
+
+
+      echo 'true';
+    } catch(PDOException $e) {
+      echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
+ 
+}
 
 
 

@@ -125,6 +125,10 @@ angular
         controller: 'AdminTopicViewCtrl',
         access:      access.user
       })
+      .when('/add-topic', {
+        templateUrl: 'views/add-topic.html',
+        controller: 'AddTopicCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
