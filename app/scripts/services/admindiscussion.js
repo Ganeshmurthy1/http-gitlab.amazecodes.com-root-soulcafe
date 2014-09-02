@@ -115,13 +115,10 @@ angular.module('sassApp')
 	    	var fbUrl = urlBase + 'admin_deactivate_topic/' + param;
 	        return $http.get(fbUrl);
 	    };
-
-
-	      dataFactory.adminAbuseList = function () {	
+	    dataFactory.adminAbuseList = function () {	
 	      	var abuseListUrl = urlBase + 'adminAbuseList';
 	        return $http.get(abuseListUrl);
-	     	
-            });	
+	 
 	    };
 	    
 	    
