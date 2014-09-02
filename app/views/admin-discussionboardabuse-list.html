@@ -1,0 +1,77 @@
+<div class="wrapper">
+    <!--=== Header ===-->    
+  <div data-ng-controller="HeaderCtrl" data-ng-include="Header">
+</div>
+    <!--=== End Header ===-->  
+
+    <!--=== Profile ===-->
+    <div class="profile container content" style="border-color:red">
+        <div class="row">
+            <!--Left Sidebar-->
+            <div data-ng-controller="SideBarCtrl" data-ng-include="SideBar">
+            </div>
+            <!--End Left Sidebar-->
+           <!-- Begin Content -->
+            <div class="col-md-9">
+                <!--Basic Table-->
+              
+
+                <div class="headline"><h2>Table Examples</h2></div>
+                  
+                
+                <!--Basic Table-->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>CommentId</th>
+                            <th class="hidden-sm">ReportedBy</th>
+                            <th>Comments</th>
+                             <th>discussionboardtopic</th>
+                            <th>discussionboardtopic</th>
+                            <th>ReportedDate</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Mark</td>
+                            <td class="hidden-sm">Otto</td>
+                            <td>@mdo</td><td>@mdo</td> <td>@mdo</td><td>@mdo</td>
+                            <td><span class="label label-warning">Expiring</span>
+
+                            <span class="label label-success">Success</span></td>                          
+                        </tr>
+
+                          <tr>
+                            <td>1</td>
+                            <td>Mark</td>
+                            <td class="hidden-sm">Otto</td>
+                            <td>@mdo</td><td>@mdo</td> <td>@mdo</td><td>@mdo</td>
+                            <td><span class="label label-warning">Expiring</span>
+                            
+                            <span class="label label-success">Success</span></td>                          
+                        </tr>
+                       
+                     
+                    </tbody>
+                </table>
+                <!--End Basic Table-->
+
+        
+            </div>
+            <!-- End Content -->
+        </div>
+
+    </div>
+    <!--=== End Profile ===-->
+
+<!--=== Footer ===-->
+ <div data-ng-controller="FooterCtrl" data-ng-include="Footer">
+</div>
+<!--=== End Footer ===-->
+
+</div>
+<!--=== End Wrapper ===-->

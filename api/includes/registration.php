@@ -15,7 +15,6 @@ $app->get('/usersAll/:id', 'checkUser', 'getAllUsers');
 $app->get('/linkedinUsers/:id', 'getLinkedinUsers');
 $app->post('/add_linkedinData', 'addlinkedinData');
 
-
 $app->get('/getProffesionaldetails/:id', 'checkUser', 'get_Proffesionaldetails');
 $app->get('/saveDiscussionboardabuse/:commenitid','checkUser', 'saveDiscussionboardabuse');
 $app->get('/discussionAll', 'checkUser','checkUser', 'getAllDiscussions');

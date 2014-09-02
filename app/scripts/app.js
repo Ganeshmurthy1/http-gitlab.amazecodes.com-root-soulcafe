@@ -129,6 +129,10 @@ angular
         templateUrl: 'views/add-topic.html',
         controller: 'AddTopicCtrl'
       })
+      .when('/admin-discussionboardAbuse-list', {
+        templateUrl: 'views/admin-discussionboardabuse-list.html',
+        controller: 'AdminDiscussionboardabuseListCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
