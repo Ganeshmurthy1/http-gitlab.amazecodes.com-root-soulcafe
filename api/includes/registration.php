@@ -378,10 +378,17 @@ echo 'true';
 
 
 function getAllDiscussions() {
-  $sql = "select * FROM DiscussionBoard where Status=1";
+
+  $headers = apache_request_headers();
+   $split = explode(' ', $headers['authorization']);
+   $user_id  = $split[3];
+  $sql = "select * ,(select count(1) from discussionboardusers DBU where DBU.DiscussionBoardId=DB.DiscussionBoardId and DBU.UserId=:user ) as flag FROM DiscussionBoard DB where Status=1";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
+
+    $stmt->bindParam("user", $user_id);
+
     $stmt->execute();
     $wine = $stmt->fetchAll(PDO::FETCH_OBJ);;
     $db = null;
@@ -414,7 +421,7 @@ function getdiscussionTopicComments($topic) {
    $user_id  = $split[3];
 
    $sql = "SELECT DBC.CommentDateTime, DBC.UserId, DBC.Comment ,DBC.CommentId,users.first_name, (select count(1) from DiscussionBorardLikes DBL where DBL.CommentId=DBC.CommentId ) as likes,
-(select count(1) from DiscussionBorardLikes DBL where DBL.CommentId=DBC.CommentId and DBL.UserId=:userId and DBC.UserId=DBL.UserId) as likeflag
+(select count(1) from DiscussionBorardLikes DBL where DBL.CommentId=DBC.CommentId and DBL.UserId=:userId ) as likeflag
 FROM DiscussionBoardComments DBC INNER JOIN users ON DBC.UserId=users.User_Id where DiscussionTopicId=:topic" ;
  try {   
     $db = getConnection();   

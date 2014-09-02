@@ -32,9 +32,10 @@ angular.module('sassApp')
   //     }
   //    getUSerdata();
     	
-  
+  $scope.showd=false;
     
      regService.getDiscussionDetails().then(function (results) {
+
        console.log(results.data);
        $scope.discussionData = results.data;
        console.log($scope.discussionData.length);
@@ -42,6 +43,12 @@ angular.module('sassApp')
          regService.getUserDetails(authData.user_id).then(function (results) {
             regService.getDiscussionListStatus().then(function (res) {
               console.log(res);
+
+
+              //check
+              $scope.DiscussionJoin=res.data;
+              console.log("the 1st one ?????????????????????????",$scope.DiscussionJoin[2].DiscussionBoardId)
+
               if (res.data.DiscussionBoardId != '') {
                   var joinFlag = true;
 
@@ -61,6 +68,13 @@ angular.module('sassApp')
               // console.log("AAAAA");
               // console.log($scope.discussionData[i].Restricted);
               if( $scope.discussionData[i].Restricted == 0){
+
+              // for (var x in $scope.DiscussionJoin) {
+              //     console.log("inside for loop " ,$scope.DiscussionJoin[x].DiscussionBoardId);
+                
+              //   }
+
+
                 $scope.discussionData[i].join="true";
                 // console.log("Anbh");
                 console.log($scope.discussionData[i].join);
@@ -88,7 +102,8 @@ angular.module('sassApp')
                         $scope.discussionData[i].join="true";
                     };
                   };
-                }else if (diff <= $scope.discussionData[i].RestrictedAge) {
+                }else if (diff <=$scope.discussionData[i].RestrictedAge) {
+
                     if ($scope.discussionData[i].RestrictedGender == null) {
                        if($scope.discussionData[i].RestrictedLocation == null){
                           $scope.discussionData[i].join="true";
@@ -96,6 +111,7 @@ angular.module('sassApp')
                           $scope.discussionData[i].join="true";
                         };
                     }else if ($scope.userData.gender === $scope.discussionData[i].RestrictedGender) {
+                      alert("age not ok");
                         if($scope.discussionData[i].RestrictedLocation == null){
                           $scope.discussionData[i].join="true";
                         } else if ($scope.userData.location === $scope.discussionData[i].RestrictedLocation) {
@@ -107,6 +123,9 @@ angular.module('sassApp')
             };
         });
       });
+
+
+
   });
 
 $scope.joinButtonClick = function(id){
