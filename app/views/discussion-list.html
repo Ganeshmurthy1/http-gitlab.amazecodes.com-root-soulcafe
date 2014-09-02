@@ -18,10 +18,12 @@
                 <div class="alert fade in margin-bottom-40" ng-repeat="diss in discussionData">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h4>{{diss.Topic}}</h4>
-                    <p>{{diss.Description}}</p>
+                    <p>{{diss.Description}}ohhh{{diss.DiscussionBoardId}}</p>
                     <p>
 
-                        <a class="btn-u btn-u-sea" ng-click="joinButtonClick(diss.DiscussionBoardId)" ng-show="diss.join" href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}">Join</a>
+                        <a class="btn-u btn-u-sea" ng-click="joinButtonClick(diss.DiscussionBoardId)" ng-show="diss.join" href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}">Join{{diss.DiscussionBoardId}}</a>
+
+                      <!--    <a class="btn-u btn-u-sea" ng-click="joinButtonClick(diss.DiscussionBoardId)" ng-hide="diss.join  && flag" href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}">Joinsss{{diss.DiscussionBoardId}}</a> -->
 
 
                     </p>

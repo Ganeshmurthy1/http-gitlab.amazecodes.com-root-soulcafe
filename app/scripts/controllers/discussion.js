@@ -15,6 +15,9 @@ angular.module('sassApp')
       'Karma'
     ];
 
+
+  
+
     $scope.hide=true;
     var authData = localStorageService.get('authorizationData');
 
@@ -42,6 +45,7 @@ angular.module('sassApp')
     $scope.commentLike = function(arg) {
         regService.setCommentsLike(arg).then(function (results) {
           getForumComments();
+         
          
             });
         };
