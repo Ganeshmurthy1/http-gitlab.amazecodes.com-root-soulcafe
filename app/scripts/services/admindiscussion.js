@@ -29,10 +29,24 @@ angular.module('sassApp')
                 return response;
             });	    	
 	    };
+	    dataFactory.getdiscussionTopicDetail = function (param) {
+	    	// console.log(param);
+	    	return $http.get(urlBase + 'admin_get_discussion_topic/' + param).then(function(response) {
+	    		//console.log(response);
+                return response;
+            });	    	
+	    };
 	    
 	    dataFactory.getAdminDiscussion = function (param) {
 	    	// console.log(param);
 	    	return $http.post(urlBase + 'admin_get_discussion', param).then(function(response) {
+	    		//console.log(response);
+                return response;
+            });	    	
+	    };
+	    dataFactory.updatediscussionTopicDetail = function (param) {
+	    	// console.log(param);
+	    	return $http.post(urlBase + 'update_discussion_TopicDetail', param).then(function(response) {
 	    		//console.log(response);
                 return response;
             });	    	
