@@ -59,4 +59,19 @@ angular.module('sassApp')
               getForumComments();
             });
         };
+
+
+     $scope.deleteComment = function(commentId) {
+      console.log("comment id is  ...." ,commentId);
+
+            regService.deleteComment(commentId).then(function (results) {
+
+              console.log("delete success full");
+ getForumComments();
+
+            });
+        };
+
+
+
   });
