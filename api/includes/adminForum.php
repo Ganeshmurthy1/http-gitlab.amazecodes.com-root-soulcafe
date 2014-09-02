@@ -15,9 +15,8 @@ $app->get('/admin_delete_topic/:id', 'checkUser', 'adminDeleteTopic');
 $app->get('/admin_activate_topic/:id', 'checkUser', 'adminActivateTopic');
 $app->get('/admin_deactivate_topic/:id', 'checkUser', 'adminDeActivateTopic');
 $app->get('/adminAbuseList', 'checkUser', 'adminAbuseList');
-
-
-
+$app->get('/admin_get_discussion_topic/:id', 'checkUser', 'adminGetDiscussionTopic');
+$app->post('/update_discussion_TopicDetail', 'checkUser', 'updatediscussionTopicDetail');
 
 function adminAddDiscussion() {
   $request = Slim::getInstance()->request();
@@ -307,7 +306,45 @@ function adminDeActivateTopic($id) {
 
 }
 
+function adminGetDiscussionTopic($id) {
 
+  $sql = "select * FROM DiscussionBoard where   DiscussionBoardId=:id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("id", $id);
+    $stmt->execute();
+    $wine = $stmt->fetchObject();
+    $db = null;
+    //echo $total = $wine->'count(1)';
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
+}
+function updatediscussionTopicDetail() {
+  $request = Slim::getInstance()->request();
+  $user = json_decode($request->getBody());
+    // print_r($user);
+    $sql = " UPDATE `DiscussionBoard` SET `Topic`= :topic,`Description`=:description,`Restricted`=:resticted,`RestrictedGender`=:restictedGender,`RestrictedAge`=:restictedAge,`RestrictedLocation`=:restictedLocation where DiscussionBoardId = :disscussionId";
+    try {
+      $db = getConnection();
+      $stmt = $db->prepare($sql);
+      $stmt->bindParam("topic", $user->Topic);
+      $stmt->bindParam("description", $user->Description);     
+      $stmt->bindParam("resticted", $user->Restricted); 
+      $stmt->bindParam("restictedGender", $user->RestrictedGender); 
+      $stmt->bindParam("restictedAge", $user->RestrictedAge); 
+       $stmt->bindParam("restictedLocation", $user->RestrictedLocation); 
+        $stmt->bindParam("disscussionId", $user->discussId); 
+      $stmt->execute();
+      echo 'true';
+    } catch(PDOException $e) {
+      echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
+ 
+}
 
 function adminAbuseList() {
   
@@ -328,8 +365,6 @@ function adminAbuseList() {
   }
   //echo json_encode($wine);
 }
-
-
 
 
 ?>

@@ -96,16 +96,52 @@ angular.module('sassApp')
                      if($scope.discussionData[i].RestrictedLocation == null){
 
                         $scope.discussionData[i].join="true";
+                        for (var x  in $scope.DiscussionJoin) {
+                            console.log("inside for loop " ,$scope.DiscussionJoin[x].DiscussionBoardId);
+                            if ($scope.discussionData[i].DiscussionBoardId == $scope.DiscussionJoin[x].DiscussionBoardId ){
+                              console.log("Inside if");
+                              $scope.discussionData[i].join="false";
+                              $scope.discussionData[i].view="true";
+                            }
+                        
+                          }
                      }else if ($scope.userData.location === $scope.discussionData[i].RestrictedLocation) {
                         $scope.discussionData[i].join="true";
+                          for (var x  in $scope.DiscussionJoin) {
+                            console.log("inside for loop " ,$scope.DiscussionJoin[x].DiscussionBoardId);
+                            if ($scope.discussionData[i].DiscussionBoardId == $scope.DiscussionJoin[x].DiscussionBoardId ){
+                              console.log("Inside if");
+                              $scope.discussionData[i].join="false";
+                              $scope.discussionData[i].view="true";
+                            }
+                        
+                          }
                         // console.log("AbhikElse");
                      };
                     }else if ($scope.userData.gender === $scope.discussionData[i].RestrictedGender) {
                     if ($scope.discussionData[i].RestrictedLocation == null) {
                        $scope.discussionData[i].join="true";
+                       for (var x  in $scope.DiscussionJoin) {
+                            console.log("inside for loop " ,$scope.DiscussionJoin[x].DiscussionBoardId);
+                            if ($scope.discussionData[i].DiscussionBoardId == $scope.DiscussionJoin[x].DiscussionBoardId ){
+                              console.log("Inside if");
+                              $scope.discussionData[i].join="false";
+                              $scope.discussionData[i].view="true";
+                            }
+                        
+                          }
                     }else if ($scope.userData.location === $scope.discussionData[i].RestrictedLocation) {
                       // console.log("AbhikGenderLocationElse");
                         $scope.discussionData[i].join="true";
+                        for (var x  in $scope.DiscussionJoin) {
+                            console.log("inside for loop " ,$scope.DiscussionJoin[x].DiscussionBoardId);
+                            if ($scope.discussionData[i].DiscussionBoardId == $scope.DiscussionJoin[x].DiscussionBoardId ){
+                              console.log("Inside if");
+                              $scope.discussionData[i].join="false";
+                              $scope.discussionData[i].view="true";
+                            }
+                        
+                          }
                     };
                   };
                 }else if (diff >=$scope.discussionData[i].RestrictedAge) {
@@ -113,15 +149,51 @@ angular.module('sassApp')
                     if ($scope.discussionData[i].RestrictedGender == null) {
                        if($scope.discussionData[i].RestrictedLocation == null){
                           $scope.discussionData[i].join="true";
+                          for (var x  in $scope.DiscussionJoin) {
+                            console.log("inside for loop " ,$scope.DiscussionJoin[x].DiscussionBoardId);
+                            if ($scope.discussionData[i].DiscussionBoardId == $scope.DiscussionJoin[x].DiscussionBoardId ){
+                              console.log("Inside if");
+                              $scope.discussionData[i].join="false";
+                              $scope.discussionData[i].view="true";
+                            }
+                        
+                          }
                         } else if ($scope.userData.location === $scope.discussionData[i].RestrictedLocation) {
                           $scope.discussionData[i].join="true";
+                          for (var x  in $scope.DiscussionJoin) {
+                            console.log("inside for loop " ,$scope.DiscussionJoin[x].DiscussionBoardId);
+                            if ($scope.discussionData[i].DiscussionBoardId == $scope.DiscussionJoin[x].DiscussionBoardId ){
+                              console.log("Inside if");
+                              $scope.discussionData[i].join="false";
+                              $scope.discussionData[i].view="true";
+                            }
+                        
+                          }
                         };
                     }else if ($scope.userData.gender === $scope.discussionData[i].RestrictedGender) {
                       // alert("age not ok");
                         if($scope.discussionData[i].RestrictedLocation == null){
                           $scope.discussionData[i].join="true";
+                          for (var x  in $scope.DiscussionJoin) {
+                            console.log("inside for loop " ,$scope.DiscussionJoin[x].DiscussionBoardId);
+                            if ($scope.discussionData[i].DiscussionBoardId == $scope.DiscussionJoin[x].DiscussionBoardId ){
+                              console.log("Inside if");
+                              $scope.discussionData[i].join="false";
+                              $scope.discussionData[i].view="true";
+                            }
+                        
+                          }
                         } else if ($scope.userData.location === $scope.discussionData[i].RestrictedLocation) {
                           $scope.discussionData[i].join="true";
+                          for (var x  in $scope.DiscussionJoin) {
+                            console.log("inside for loop " ,$scope.DiscussionJoin[x].DiscussionBoardId);
+                            if ($scope.discussionData[i].DiscussionBoardId == $scope.DiscussionJoin[x].DiscussionBoardId ){
+                              console.log("Inside if");
+                              $scope.discussionData[i].join="false";
+                              $scope.discussionData[i].view="true";
+                            }
+                        
+                          }
                         };
                     };
                 };

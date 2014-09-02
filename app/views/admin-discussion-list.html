@@ -19,6 +19,7 @@
                     <p>{{discussion.Description}}</p>
                     <p>
                         <a class="btn-u " href="#/admin-topic-list?discussId={{discussion.DiscussionBoardId}}">View</a>
+                        <a class="btn-u btn-u-blue" href="#/admin-discussion-edit?discussId={{discussion.DiscussionBoardId}}">Edit</a>
                     	<a class="btn-u btn-u-green"  data-ng-hide="{{discussion.Status == 1}}" data-ng-click="activateForum(discussion.DiscussionBoardId)">Activate</a>
                         <a class="btn-u btn-u-brown" data-ng-show="{{discussion.Status == 1}}" data-ng-click="deactivateForum(discussion.DiscussionBoardId)">Deactivate</a>
                         <a class="btn-u btn-u-red"  data-ng-click="deleteForum(discussion.DiscussionBoardId)" >Delete</a>
