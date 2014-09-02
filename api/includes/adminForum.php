@@ -14,6 +14,10 @@ $app->post('/admin_add_topic', 'checkUser', 'adminAddTopic');
 $app->get('/admin_delete_topic/:id', 'checkUser', 'adminDeleteTopic');
 $app->get('/admin_activate_topic/:id', 'checkUser', 'adminActivateTopic');
 $app->get('/admin_deactivate_topic/:id', 'checkUser', 'adminDeActivateTopic');
+$app->get('/adminAbuseList', 'checkUser', 'adminAbuseList');
+
+
+
 
 function adminAddDiscussion() {
   $request = Slim::getInstance()->request();
@@ -302,5 +306,30 @@ function adminDeActivateTopic($id) {
   }
 
 }
+
+
+
+function adminAbuseList() {
+  
+
+  // $sqlCp = "select * FROM DiscussionBoardTopic where DiscussionBoardId=:id ORDER BY CreatedDate desc";
+ 
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sqlCp);
+    $stmt->bindParam("id", $forum->discussId);
+   // $stmt->bindParam("limit", $forum->limit);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  //echo json_encode($wine);
+}
+
+
+
 
 ?>
