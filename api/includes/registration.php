@@ -382,7 +382,7 @@ function getAllDiscussions() {
   $headers = apache_request_headers();
    $split = explode(' ', $headers['authorization']);
    $user_id  = $split[3];
-  $sql = "select * ,(select count(1) from discussionboardusers DBU where DBU.DiscussionBoardId=DB.DiscussionBoardId and DBU.UserId=:user ) as flag FROM DiscussionBoard DB where Status=1";
+  $sql = "select * ,(select count(1) from DiscussionBoardUsers DBU where DBU.DiscussionBoardId=DB.DiscussionBoardId and DBU.UserId=:user ) as flag FROM DiscussionBoard DB where Status=1";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);

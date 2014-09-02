@@ -16,25 +16,26 @@ angular.module('sassApp')
     ];
   //   $scope.userData = {};
   //   function getUSerdata() {
-  //   	var authData = localStorageService.get('authorizationData');
-  //   	// console.log(authData);
-  //   	regService.getUserDetails(authData.user_id).then(function (results) {
-  //   		// console.log(results.data);
-  //   		$scope.userData = results.data; 
-  //   		console.log($scope.userData.birthdate);
-  //   		 var d1 = new Date($scope.userData.birthdate);
+  //    var authData = localStorageService.get('authorizationData');
+  //    // console.log(authData);
+  //    regService.getUserDetails(authData.user_id).then(function (results) {
+  //      // console.log(results.data);
+  //      $scope.userData = results.data; 
+  //      console.log($scope.userData.birthdate);
+  //       var d1 = new Date($scope.userData.birthdate);
   // console.log($scope.userData.birthdate);
-  //   	var d2 = new Date();
-		// var diff = d2.getFullYear()-d1.getFullYear();
-		// console.log(diff);	
-  //   	});
+  //    var d2 = new Date();
+    // var diff = d2.getFullYear()-d1.getFullYear();
+    // console.log(diff); 
+  //    });
     
   //     }
   //    getUSerdata();
-    	
-  
+      
+  $scope.showd=false;
     
      regService.getDiscussionDetails().then(function (results) {
+
        console.log(results.data);
        $scope.discussionData = results.data;
        console.log($scope.discussionData.length);
@@ -46,7 +47,7 @@ angular.module('sassApp')
 
               //check
               $scope.DiscussionJoin=res.data;
-              console.log("the 1st one ?????????????????????????",$scope.DiscussionJoin[2].DiscussionBoardId)
+              console.log("the 1st one ?????????????????????????",$scope.DiscussionJoin[0].DiscussionBoardId)
 
               if (res.data.DiscussionBoardId != '') {
                   var joinFlag = true;
@@ -62,19 +63,25 @@ angular.module('sassApp')
             console.log(diff); 
             for (var i = 0; i < $scope.discussionData.length; i++) {
 
-
+              $scope.discussionData[i].view="false";
               // $scope.discussionData[i].join = 0;
               // console.log("AAAAA");
               // console.log($scope.discussionData[i].Restricted);
               if( $scope.discussionData[i].Restricted == 0){
-
-              // for (var x in $scope.DiscussionJoin) {
-              //     console.log("inside for loop " ,$scope.DiscussionJoin[x].DiscussionBoardId);
-                
-              //   }
-
-
+                // console.log($scope.DiscussionJoin.length);
                 $scope.discussionData[i].join="true";
+              for (var x  in $scope.DiscussionJoin) {
+                  console.log("inside for loop " ,$scope.DiscussionJoin[x].DiscussionBoardId);
+                  if ($scope.discussionData[i].DiscussionBoardId == $scope.DiscussionJoin[x].DiscussionBoardId ){
+                    console.log("Inside if");
+                    $scope.discussionData[i].join="false";
+                    $scope.discussionData[i].view="true";
+                  }
+              
+                }
+
+
+                
                 // console.log("Anbh");
                 console.log($scope.discussionData[i].join);
               }
@@ -101,7 +108,8 @@ angular.module('sassApp')
                         $scope.discussionData[i].join="true";
                     };
                   };
-                }else if (diff >= $scope.discussionData[i].RestrictedAge) {
+                }else if (diff >=$scope.discussionData[i].RestrictedAge) {
+
                     if ($scope.discussionData[i].RestrictedGender == null) {
                        if($scope.discussionData[i].RestrictedLocation == null){
                           $scope.discussionData[i].join="true";
@@ -109,7 +117,7 @@ angular.module('sassApp')
                           $scope.discussionData[i].join="true";
                         };
                     }else if ($scope.userData.gender === $scope.discussionData[i].RestrictedGender) {
-                      alert("age not ok");
+                      // alert("age not ok");
                         if($scope.discussionData[i].RestrictedLocation == null){
                           $scope.discussionData[i].join="true";
                         } else if ($scope.userData.location === $scope.discussionData[i].RestrictedLocation) {
@@ -121,6 +129,9 @@ angular.module('sassApp')
             };
         });
       });
+
+
+
   });
 
 $scope.joinButtonClick = function(id){
