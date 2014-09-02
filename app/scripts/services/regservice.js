@@ -166,5 +166,12 @@ angular.module('sassApp')
 	    };
 
 
+	     dataFactory.deleteComment = function (param) {	
+	     	return $http.get(urlBase + 'deleteComment/'+ param).then(function(response) {
+                return response;
+            });	
+	    };
+
+
 	    return dataFactory;
 	}]);

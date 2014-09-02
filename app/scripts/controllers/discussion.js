@@ -54,6 +54,7 @@ angular.module('sassApp')
             var args=new Object();
             args.topicId=$routeParams.topic;
             args.comment=$scope.comment;
+            $scope.comment="";
             regService.saveComments(args).then(function (results) {
               getForumComments();
             });

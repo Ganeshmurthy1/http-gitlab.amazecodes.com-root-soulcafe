@@ -29,6 +29,9 @@ $app->post('/saveComments','checkUser','saveComments');
 
 $app->post('/add_topic', 'checkUser', 'AddTopic');
 
+$app->get('/deleteComment/:commentId','checkUser', 'deleteComment');
+
+
 function checkUser() { 
   $headers = apache_request_headers();
  // echo $headers['authorization'];
@@ -693,5 +696,24 @@ function getDiscussionListStatus() {
     echo '{"error":{"text":'. $e->getMessage() .'}}'; 
   }
 }
+
+
+
+function deleteComment($commentId) {
+
+  $sql = "DELETE FROM discussionboardcomments WHERE CommentId=:commentId ";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);  
+    $stmt->bindParam("commentId", $commentId);  
+    $stmt->execute();
+   
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+echo 'true';
+}
+
+
 
 ?>
