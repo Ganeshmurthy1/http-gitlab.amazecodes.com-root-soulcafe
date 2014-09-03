@@ -6,6 +6,7 @@ $app = new Slim();
 require 'includes/dbconnection.php';
 require 'includes/registration.php';
 require 'includes/adminForum.php';
+require 'includes/utils.php';
 
 $app->run();
 
