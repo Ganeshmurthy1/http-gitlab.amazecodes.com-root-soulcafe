@@ -24,11 +24,14 @@ $app->get('/getdiscussionListTopicName/:topicId', 'checkUser','getdiscussionList
 $app->get('/getdiscussionTopicName/:topicId','checkUser', 'getdiscussionTopicName');
 $app->get('/setCommentLikes/:commentId','checkUser', 'setCommentLikes');
 
+
 $app->post('/saveComments','checkUser','saveComments');
 
 $app->post('/add_topic', 'checkUser', 'AddTopic');
 
 $app->get('/deleteComment/:commentId','checkUser', 'deleteComment');
+$app->get('/get_Profile_Detail','checkUser', 'getProfileDetail');
+$app->post('/update_Profile_Detail', 'checkUser', 'updateProfileDetail');
 
 
 function checkUser() { 
@@ -424,7 +427,7 @@ function getdiscussionTopicComments($topic) {
 
    $sql = "SELECT DBC.CommentDateTime, DBC.UserId, DBC.Comment ,DBC.CommentId,users.first_name, (select count(1) from DiscussionBorardLikes DBL where DBL.CommentId=DBC.CommentId ) as likes,
 (select count(1) from DiscussionBorardLikes DBL where DBL.CommentId=DBC.CommentId and DBL.UserId=:userId ) as likeflag ,(select count(1) from DiscussionBoardComments DSB where DSB.CommentId=DBC.CommentId and DSB.UserId=:userId ) as deleteflag
-FROM DiscussionBoardComments DBC INNER JOIN users ON DBC.UserId=users.User_Id where DiscussionTopicId=:topic" ;
+FROM DiscussionBoardComments DBC INNER JOIN users ON DBC.UserId=users.User_Id where DiscussionTopicId=:topic and DBC.IsValid = 1" ;
  try {   
     $db = getConnection();   
     $stmt = $db->prepare($sql);
@@ -713,6 +716,59 @@ function deleteComment($commentId) {
 echo 'true';
 }
 
+function getProfileDetail() {
+ 
+  // print_r( $user );
+   $headers = apache_request_headers();
+   $split = explode(' ', $headers['authorization']);
+   $user_id  = $split[3];
+   
+  $sql = "select u.user_id, u.first_name, u.last_name,u.email, u.relationship_status, u.mobile,pd.CurrentEmployment,pd.HighestEducation,pd.Endorsedskills from users AS u left join ProfessionalDetails As pd on u.user_id = pd.UserId where u.user_id=:user_id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);  
+    $stmt->bindParam("user_id",  $user_id );
+    $stmt->execute();
+    $wine = $stmt->fetchObject();
+     $db = null;
+      echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+}
+
+function updateProfileDetail() {   
+  $request = Slim::getInstance()->request();
+  $user = json_decode($request->getBody());
+
+  $headers = apache_request_headers();
+  $split = explode(' ', $headers['authorization']);
+  $user_id  = $split[3];
+    // print_r($user);
+  $sqlusers = "update users  set first_name=:first_name,last_name=:last_name,email=:email,mobile=:mobile where user_id = :user_id ";
+   $sqlpd = "update ProfessionalDetails set CurrentEmployment = :CurrentEmployment,Endorsedskills=:Endorsedskills,HighestEducation=:HighestEducation where UserId = :user_id ";  
+      try {
+        $db = getConnection();
+        $stmt = $db->prepare($sqlusers);
+        $stmt->bindParam("user_id", $user_id);
+        $stmt->bindParam("first_name", $user->first_name);
+        $stmt->bindParam("last_name", $user->last_name);
+        $stmt->bindParam("email", $user->email);
+        $stmt->bindParam("mobile", $user->mobile);
+        $stmt->execute();
+
+        $stmtpd = $db->prepare($sqlpd);
+        $stmtpd->bindParam("user_id", $user_id);
+        $stmtpd->bindParam("CurrentEmployment", $user->CurrentEmployment);
+        $stmtpd->bindParam("Endorsedskills", $user->Endorsedskills);
+        $stmtpd->bindParam("HighestEducation", $user->HighestEducation);
+        $stmtpd->execute();
+      echo 'true';
+        //$app->redirect('login.html');
+      } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+      }
+ }
 
 
 ?>

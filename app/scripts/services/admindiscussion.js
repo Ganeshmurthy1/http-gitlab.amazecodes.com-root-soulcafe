@@ -116,11 +116,26 @@ angular.module('sassApp')
 	        return $http.get(fbUrl);
 	    };
 	    dataFactory.adminAbuseList = function () {	
-	      	var abuseListUrl = urlBase + 'adminAbuseList';
-	        return $http.get(abuseListUrl);
+	      	return $http.get(urlBase + 'adminAbuseList').then(function(response) {
+	    		//console.log(response);
+                return response;
+            });	 
 	 
 	    };
-	    
+	    dataFactory.updateAppropriate = function (param) {
+	    	// console.log(param);
+	    	return $http.get(urlBase + 'update_Appropriate/'+ param).then(function(response) {
+	    		//console.log(response);
+                return response;
+            });	    	
+	    };
+	    dataFactory.updateInAppropriate = function (param) {
+	    	// console.log(param);
+	    	return $http.get(urlBase + 'update_InAppropriate/'+ param).then(function(response) {
+	    		//console.log(response);
+                return response;
+            });	    	
+	    };
 	    
 	    return dataFactory;
 	}]);

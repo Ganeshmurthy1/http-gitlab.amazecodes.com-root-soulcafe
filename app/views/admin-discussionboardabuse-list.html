@@ -23,7 +23,6 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>#</th>
                             <th>CommentId</th>
                             <th class="hidden-sm">ReportedBy</th>
                             <th>Comments</th>
@@ -34,27 +33,23 @@
 
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody ng-repeat=" abusedetails in disscusionAbuseDetails">
                         <tr>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td class="hidden-sm">Otto</td>
-                            <td>@mdo</td><td>@mdo</td> <td>@mdo</td><td>@mdo</td>
-                            <td><span class="label label-warning">Expiring</span>
-
-                            <span class="label label-success">Success</span></td>                          
+                            <td>{{abusedetails.CommentId}}</td>
+                            <td class="hidden-sm">{{abusedetails.ReportedBy}}</td>
+                            <td>{{abusedetails.Comments}}</td> 
+                            <td>{{abusedetails.Topic}}</td>
+                            <td>{{abusedetails.TopicTitle}}</td>
+                            <td>{{abusedetails.ReportedDate}}</td>
+                            <td>
+                                <a class="btn-u btn-u-blue" href="#/discussion?topic={{abusedetails.DiscussionTopicId}}"><i class="fa fa-file-text-o"></i></a>
+                                <a class="btn-u btn-u-green" ng-click="appropriateButtonClick(abusedetails.CommentId)"><i class="fa fa-check"></i></a>
+                                <a class="btn-u btn-u-red" ng-click="inappropriateButtonClick(abusedetails.CommentId)"><i class="fa fa-times"></i></a>
+                                <!-- <a href="#" class="btn-u">Appropriate</a>
+                                <a href="#" class="btn-u btn-u-red">InAppropriate</a>
+                                 -->
+                            </td>                          
                         </tr>
-
-                          <tr>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td class="hidden-sm">Otto</td>
-                            <td>@mdo</td><td>@mdo</td> <td>@mdo</td><td>@mdo</td>
-                            <td><span class="label label-warning">Expiring</span>
-                            
-                            <span class="label label-success">Success</span></td>                          
-                        </tr>
-                       
                      
                     </tbody>
                 </table>

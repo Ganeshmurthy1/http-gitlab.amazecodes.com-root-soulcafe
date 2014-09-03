@@ -17,6 +17,8 @@ $app->get('/admin_deactivate_topic/:id', 'checkUser', 'adminDeActivateTopic');
 $app->get('/adminAbuseList', 'checkUser', 'adminAbuseList');
 $app->get('/admin_get_discussion_topic/:id', 'checkUser', 'adminGetDiscussionTopic');
 $app->post('/update_discussion_TopicDetail', 'checkUser', 'updatediscussionTopicDetail');
+$app->get('/update_Appropriate/:id', 'checkUser', 'updateAppropriate');
+$app->get('/update_InAppropriate/:id', 'checkUser', 'updateInAppropriate');
 
 function adminAddDiscussion() {
   $request = Slim::getInstance()->request();
@@ -349,16 +351,15 @@ function updatediscussionTopicDetail() {
 function adminAbuseList() {
   
 
-  // $sqlCp = "select * FROM DiscussionBoardTopic where DiscussionBoardId=:id ORDER BY CreatedDate desc";
- 
+   $sql = "select DBA.CommentId, DBA.ReportedBy, DBA.Comments, DBA.ReportedDate,DBC.DiscussionTopicId,DBT.TopicTitle,DBT.DiscussionBoardId,DB.Topic from DiscussionBoardAbuse As DBA Inner Join DiscussionBoardComments As DBC Inner join DiscussionBoardTopic As DBT Inner Join DiscussionBoard As DB ON DBA.CommentId =DBC.CommentId and DBC.DiscussionTopicId = DBT.DiscussionTopicId and DB.DiscussionBoardId = DBT.DiscussionBoardId ORDER BY DBA.ReportedDate desc ";
   try {
     $db = getConnection();
-    $stmt = $db->prepare($sqlCp);
-    $stmt->bindParam("id", $forum->discussId);
-   // $stmt->bindParam("limit", $forum->limit);
+    $stmt = $db->prepare($sql);
+    // $stmt->bindParam("id", $id);
     $stmt->execute();
     $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
     $db = null;
+    //echo $total = $wine->'count(1)';
     echo json_encode($wine);
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
@@ -366,5 +367,37 @@ function adminAbuseList() {
   //echo json_encode($wine);
 }
 
+function updateAppropriate($id) {
+  // $sql = "UPDATE `DiscussionBoardAbuse` As `DBA`, `DiscussionBoardComments` As `DBC` SET DBA.Status= "1", DBC.IsValid = "1" where DBA.CommentId = :id";
+  $sql = " update DiscussionBoardAbuse As DBA inner join DiscussionBoardComments As DBC on DBA.CommentId = DBC.CommentId set DBA.Status= 1, DBC.IsValid = 1 where DBA.CommentId = :id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("id", $id);
+    $stmt->execute();
+    echo 'true';
+    //echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
+}
+
+
+function updateInAppropriate($id) {
+  
+  $sql = "update DiscussionBoardAbuse As DBA inner join DiscussionBoardComments As DBC on DBA.CommentId = DBC.CommentId set DBA.Status= 0, DBC.IsValid = 0 where DBA.CommentId = :id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("id", $id);
+    $stmt->execute();
+    echo 'true';
+    //echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
+}
 
 ?>

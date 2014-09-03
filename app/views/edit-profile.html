@@ -1,0 +1,92 @@
+<div class="wrapper">
+    <!--=== Header ===-->    
+  <div data-ng-controller="HeaderCtrl" data-ng-include="Header">
+</div>
+    <!--=== End Header ===-->  
+
+
+
+
+    <!--=== Profile ===-->
+    <div class="profile container content" style="border-color:red">
+        <div class="row">
+            <!--Left Sidebar-->
+            <div data-ng-controller="SideBarCtrl" data-ng-include="SideBar">
+            </div>
+            <!--End Left Sidebar-->
+            
+            <div class="col-md-9">
+                <!--Profile Body-->
+                <div class="headline"><h1 class="heading-sm">Edit Profile</h1></div>
+                <!-- Basic Form -->
+                <form name="editprofileform" class="panel panel-blue margin-bottom-40" ng-submit="saveButtonClick(editprofileform.$invalid)">
+                    <!-- <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-tasks"></i> Basic Form</h3>
+                    </div> -->
+                    <div class="panel-body">                                                      
+                        <form class="margin-bottom-40" role="form">
+                            <div class="form-group row">
+                                <label class="col-lg-2 control-label">First Name</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" name="name" ng-model="profileDetail.first_name">
+                                </div>
+                            </div>
+                           <div class="form-group row">
+                                <label class="col-lg-2 control-label">Last Name</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" name="name" ng-model="profileDetail.last_name">
+                                </div>
+                            </div>
+                           <div class="form-group row">
+                                <label class="col-lg-2 control-label">Email</label>
+                                <div class="col-lg-6">
+                                    <input type="email" class="form-control" name="email1" ng-model="profileDetail.email">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-2 control-label">Mobile Number</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" name="mobile" ng-model="profileDetail.mobile">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-2 control-label">RelationShip Status</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" name="relationship" ng-model="profileDetail.relationship_status" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-2 control-label">Current Employment</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" name="cemployee" ng-model="profileDetail.CurrentEmployment">
+                                </div>
+                            </div>
+                             <div class="form-group row">
+                                <label class="col-lg-2 control-label">Highest Education</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" name="education" ng-model="profileDetail.HighestEducation">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-2 control-label">Endorsed Skills</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" name="skill" ng-model="profileDetail.Endorsedskills">
+                                </div>
+                            </div>
+                            <h4>{{errMessage}}</h4>
+                            <button type="submit" class="btn-u btn-u-blue" ng-disabled="editprofileform.$invalid">Save</button>
+                        </form>
+                    </div>
+                </form>
+                <!-- End Basic Form -->
+            </div>
+        </div>
+    </div>
+     <!--=== End Profile ===-->
+    <!--=== Footer ===-->
+	<div data-ng-controller="FooterCtrl" data-ng-include="Footer">
+	</div>
+
+	<!--=== End Footer ===-->
+
+</div>

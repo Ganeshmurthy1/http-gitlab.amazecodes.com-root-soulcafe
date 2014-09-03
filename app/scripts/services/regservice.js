@@ -171,7 +171,19 @@ angular.module('sassApp')
                 return response;
             });	
 	    };
-
+	    dataFactory.getProfileDetail = function () {	
+	     	return $http.get(urlBase + 'get_Profile_Detail').then(function(response) {
+                return response;
+            });	
+	    };
+	    dataFactory.updateProfileDetail = function (param) {
+	    	console.log(param);
+	    	return $http.post(urlBase + 'update_Profile_Detail', param).then(function(response) {
+	    		// console.log(response);
+                return response;
+            });
+	    	
+	    };
 
 	    return dataFactory;
 	}]);

@@ -134,16 +134,23 @@ angular
       })
       .when('/add-topic', {
         templateUrl: 'views/add-topic.html',
-        controller: 'AddTopicCtrl'
+        controller: 'AddTopicCtrl',
+        access:      access.user
       })
       .when('/admin-discussion-edit', {
         templateUrl: 'views/admin-discussion-edit.html',
         controller: 'AdminDiscussionEditCtrl',
         access:      access.user
       })
-	  .when('/admin-discussionboardAbuse-list', {
+	     .when('/admin-discussionboardAbuse-list', {
         templateUrl: 'views/admin-discussionboardabuse-list.html',
-        controller: 'AdminDiscussionboardabuseListCtrl'
+        controller: 'AdminDiscussionboardabuseListCtrl',
+        access:      access.user
+      })
+      .when('/edit-profile', {
+        templateUrl: 'views/edit-profile.html',
+        controller: 'EditProfileCtrl',
+        access:      access.user
       })
       .otherwise({
         redirectTo: '/'
