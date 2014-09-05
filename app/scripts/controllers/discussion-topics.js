@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('DiscussionTopicsCtrl', function ($routeParams,$scope,localStorageService,regService) {
+  .controller('DiscussionTopicsCtrl', function ($routeParams,$scope,localStorageService,regService,$location) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -24,5 +24,20 @@ angular.module('sassApp')
      	  $scope.discussions = results.data;      	
      });
 
+     regService.getTotalMembers($scope.discussionid).then(function (results) {
+        $scope.total = results.data[0].total; 
+        console.log( $scope.total);       
+     });
 
+     $scope.removeUser = function(){
+      regService.removeUser($scope.discussionid).then(function (results) {
+        $scope.res = results.data; 
+        // console.log( $scope.res); 
+        if ($scope.res == 'true') {
+          $location.path('/discussion-list');
+        }     
+      }); 
+
+     }
+  
 });

@@ -15,9 +15,12 @@
             <div class="col-md-9">
 
             	<div class="headline"><h1 class="heading-sm">Discussion Block</h1></div>
+                <div class="row pull-right">
+                    <a class="btn-u btn-u-default glow " href="#/add-forum">Request For New forum</a>
+                </div> 
                 <div class="alert fade in margin-bottom-40" ng-repeat="diss in discussionData">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <h4>{{diss.Topic}}</h4>
+                    <h4><a href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}">{{diss.Topic}}</a></h4>
                     <p>{{diss.Description}}</p>
                     <p>
 

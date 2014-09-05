@@ -103,9 +103,6 @@ angular.module('sassApp')
 	    	var fbUrl = urlBase + 'linkedinUsers/' + uid;
 	        return $http.get(fbUrl);
 	    };
-
-
-
 	    dataFactory.getdiscussionTopicDetails = function (discussionid) {	     
 	    	return $http.get(urlBase + 'discussionTopicAll/'+discussionid).then(function(response) {	    		
                 return response;
@@ -184,6 +181,26 @@ angular.module('sassApp')
             });
 	    	
 	    };
-
+	    dataFactory.addUserDiscussion = function (param) {
+	    	// console.log(param);
+	    	return $http.post(urlBase + 'add_User_Discussion', param).then(function(response) {
+	    		//console.log(response);
+                return response;
+            });
+	    	
+	    };
+	    dataFactory.getTotalMembers = function (discussionid) {	     
+	    	return $http.get(urlBase + 'get_Total_Members/'+discussionid).then(function(response) {	    		
+                return response;
+            });
+	    	
+	    };
+	    dataFactory.removeUser = function (discussionid) {	     
+	    	return $http.get(urlBase + 'remove_User/'+discussionid).then(function(response) {	    		
+                return response;
+            });
+	    	
+	    };
+	    
 	    return dataFactory;
 	}]);

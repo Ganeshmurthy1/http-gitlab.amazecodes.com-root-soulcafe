@@ -31,8 +31,9 @@ $app->post('/add_topic', 'checkUser', 'AddTopic');
 
 $app->get('/deleteComment/:commentId','checkUser', 'deleteComment');
 $app->get('/get_Profile_Detail','checkUser', 'getProfileDetail');
-$app->post('/update_Profile_Detail', 'checkUser', 'updateProfileDetail');
-
+$app->post('/add_User_Discussion', 'checkUser', 'addUserDiscussion');
+$app->get('/get_Total_Members/:DiscussionBoardId','checkUser', 'getTotalMembers');
+$app->get('/remove_User/:DiscussionBoardId','checkUser', 'removeUser');
 
 function checkUser() { 
   $headers = apache_request_headers();
@@ -769,6 +770,85 @@ function updateProfileDetail() {
         echo '{"error":{"text":'. $e->getMessage() .'}}';
       }
  }
+
+function addUserDiscussion() {
+  $request = Slim::getInstance()->request();
+  $forum = json_decode($request->getBody());
+  $headers = apache_request_headers();
+  // echo $headers['authorization'];
+  $valid = checkValidDiscussion($forum);
+  if($valid['status']) {
+    $split = explode(' ', $headers['authorization']);
+    $user_id  = $split[3];
+    $tdate = date('Y-m-d h:i:s');
+    //echo $forum->restriction;
+    $restriction = 0;
+    if(isset($forum->restriction)) {
+      if($forum->restriction != '') {
+        $restriction = 1;
+      }
+      
+    }
+    $status = 0;
+    $sql = "INSERT INTO DiscussionBoard (Topic, Description, StartDate, CreatedBy, CreatedDate, Restricted, RestrictedGender, RestrictedAge, RestrictedLocation, status) VALUES (:Topic, :Description, :StartDate, :CreatedBy, :CreatedDate, :Restricted, :RestrictedGender, :RestrictedAge, :RestrictedLocation, :status)";
+    try {
+      $db = getConnection();
+      $stmt = $db->prepare($sql);
+      $stmt->bindParam("Topic", $forum->title);
+      $stmt->bindParam("Description", $forum->description);
+      $stmt->bindParam("StartDate", $tdate);
+      $stmt->bindParam("CreatedBy", $user_id);
+      $stmt->bindParam("CreatedDate", $tdate);
+      $stmt->bindParam("Restricted", $restriction);
+      $stmt->bindParam("RestrictedGender", $forum->gender);
+      $stmt->bindParam("RestrictedAge", $forum->age);
+      $stmt->bindParam("RestrictedLocation", $forum->location);
+      $stmt->bindParam("status", $status);
+      $stmt->execute();
+  
+  
+      echo 'true';
+    } catch(PDOException $e) {
+      echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
+  }
+  else {
+    echo $valid['message'];
+  }
+}
+
+function getTotalMembers($DiscussionBoardId) {
+  $sql = "SELECT count(DiscussionBoardId) as total FROM `DiscussionBoardUsers` where DiscussionBoardId = :DiscussionBoardId";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("DiscussionBoardId", $DiscussionBoardId);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}
+
+function removeUser($DiscussionBoardId) {
+  $headers = apache_request_headers();
+  $split = explode(' ', $headers['authorization']);
+  $user_id  = $split[3];
+  $sql = "DELETE FROM `DiscussionBoardUsers` WHERE DiscussionBoardId =:DiscussionBoardId and UserId =:user_id ";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("DiscussionBoardId", $DiscussionBoardId);
+    $stmt->bindParam("user_id", $user_id);
+    $stmt->execute();
+    
+    echo 'true';
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}
 
 
 ?>

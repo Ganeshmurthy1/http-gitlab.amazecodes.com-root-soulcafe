@@ -152,6 +152,10 @@ angular
         controller: 'EditProfileCtrl',
         access:      access.user
       })
+      .when('/add-forum', {
+        templateUrl: 'views/add-forum.html',
+        controller: 'AddForumCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

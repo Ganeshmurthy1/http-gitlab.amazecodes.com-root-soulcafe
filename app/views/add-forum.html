@@ -1,0 +1,92 @@
+<div class="wrapper">
+    <!--=== Header ===-->    
+  <div data-ng-controller="HeaderCtrl" data-ng-include="Header">
+</div>
+    <!--=== End Header ===-->  
+
+
+
+
+    <!--=== Profile ===-->
+    <div class="profile container content" style="border-color:red">
+        <div class="row">
+            <!--Left Sidebar-->
+            <div data-ng-controller="SideBarCtrl" data-ng-include="SideBar">
+            </div>
+            <!--End Left Sidebar-->
+            
+            <div class="col-md-9">
+            <div class="headline"><h2 class="heading-sm">Create Discussion</h2></div>
+            <div class="row pull-right"> <a class="btn-u btn-u-default glow " href="#/discussion-list">Discussion Board List</a></div>
+            <form id="sky-form4" class="sky-form" name="userDiscussion" data-ng-submit="addDiscussion(userDiscussion.$valid)">
+            <div class="alert alert-danger fade in" data-ng-show="errMessage">{{errMessage}}</div>
+            <div class="alert alert-success fade in" data-ng-show="successmessage">{{successmessage}}</div>
+            <fieldset>                
+                        <section>
+                            <label class="label">Discussion Form</label>
+                            <label class="input">
+                                <input type="text" name="subject" id="subject" data-ng-model="discussion.title" required>
+                            </label>
+                        </section>
+                        
+                        <section>
+                            <label class="label">Description</label>
+                            <label class="textarea">
+                                <textarea rows="4" name="message" id="message" data-ng-model="discussion.description" required></textarea>
+                            </label>
+                        </section>  
+                        <section >
+                        <label class="checkbox state-success">
+							<input type="checkbox" name="checkbox" data-ng-model="discussion.restriction">
+							<i></i>
+							Restricted Discussion
+							</label>  
+						</section>  
+						<div class="row" data-ng-show="discussion.restriction">
+						<section class="col col-4">
+                            <label class="select">
+                                <select name="gender" data-ng-model="discussion.gender">
+                                    <option disabled="" selected="" value="0">Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <i></i>
+                            </label>
+                        </section> 
+                        <section class="col col-4">
+                                <label class="input">
+                                    <input type="number" name="name" placeholder="Age Limit" data-ng-model="discussion.age">
+                                </label>
+                       </section>
+                       <section class="col col-4">
+                                <label class="input">
+                                    <input type="text" name="name" placeholder="Location" data-ng-model="discussion.location">
+                                </label>
+                       </section>
+                      </div>
+                    </fieldset>
+                    <footer>
+                        <button class="btn-u" type="submit" ng-disabled="addDiscussion.$invalid" data-ng-submit="addDiscussion(userDiscussion.$valid)">Submit</button>
+                        <button onclick="window.history.back();" class="btn-u btn-u-default" type="button">Back</button>
+                    </footer>
+            </form>
+
+            
+        </div><!--/end row-->
+    </div><!--/container-->    
+    <!--=== End Profile ===-->
+
+
+<!--=== Footer ===-->
+ <div data-ng-controller="FooterCtrl" data-ng-include="Footer">
+</div>
+
+<!--=== End Footer ===-->
+
+
+
+
+    
+</div>
+ <!-- End wrapper -->

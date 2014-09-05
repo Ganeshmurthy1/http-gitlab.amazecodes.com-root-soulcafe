@@ -19,8 +19,12 @@
                 <!--Profile Body-->
                 <div class="profile-body">
                 <!-- Discussion Topics -->
-                 <div class="row pull-right"><a class="btn-u btn-u-default glow " href="#/add-topic?discussId={{discussionid}}">Request For New Topic</a></div> 
+                 <div class="row pull-right">
+                    <a class="btn-u btn-u-default glow " ng-click="removeUser()">Get Removed</a>
+                    <a class="btn-u btn-u-default glow " href="#/add-topic?discussId={{discussionid}}">Request For New Topic</a>
+                </div> 
                 <div class="headline"><h1 class="heading-sm">{{topicName}}</h1></div>
+                 <div class="headline"><h3 class="heading-sm">Total Members : {{total}}</h3></div>
                     
                 <div class="row">
                 <div data-ng-repeat="discussion in discussions">
