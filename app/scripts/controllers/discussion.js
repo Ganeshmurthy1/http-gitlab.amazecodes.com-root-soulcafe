@@ -15,6 +15,34 @@ angular.module('sassApp')
       'Karma'
     ];
 
+      $scope.ratings = [{
+            current: 1,
+            max: 5
+        }];
+
+        regService.getRating($routeParams.topic).then(function (results) {
+             // console.log(results);
+             if(results.data.rating == 0){
+                $scope.ratings = [{
+               current: 1,
+                 max: 5
+                 }];
+             }else{
+              $scope.ratings.current = parseInt(results.data.rating);
+              console.log($scope.ratings.current);
+              $scope.ratings = [{
+               current: $scope.ratings.current,
+                 max: 5
+                 }];
+             }
+              
+        });
+
+       
+
+        $scope.getSelectedRating = function(rating) {
+            console.log(rating);
+        };
 
   
 
@@ -72,6 +100,14 @@ angular.module('sassApp')
             });
         };
 
+$scope.addRating = function(rating){
+  console.log(rating);
+  rating.topicId = $routeParams.topic;
+  console.log(rating);
+      regService.updateRating(rating).then(function (results) {
+             console.log(results);
+        });
+}
 
 
   });

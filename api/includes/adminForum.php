@@ -19,6 +19,9 @@ $app->get('/admin_get_discussion_topic/:id', 'checkUser', 'adminGetDiscussionTop
 $app->post('/update_discussion_TopicDetail', 'checkUser', 'updatediscussionTopicDetail');
 $app->get('/update_Appropriate/:id', 'checkUser', 'updateAppropriate');
 $app->get('/update_InAppropriate/:id', 'checkUser', 'updateInAppropriate');
+$app->get('/get_forum/:DiscussionBoardId', 'checkUser', 'getforum');
+$app->post('/edit_forum', 'checkUser', 'editforum');
+
 
 function adminAddDiscussion() {
   $request = Slim::getInstance()->request();
@@ -400,4 +403,42 @@ function updateInAppropriate($id) {
 
 }
 
+function getforum($DiscussionBoardId) {
+  // $headers = apache_request_headers();
+  // $split = explode(' ', $headers['authorization']);
+  // $user_id  = $split[3];
+  $sql = "SELECT DiscussionBoardId,Topic,Description FROM `DiscussionBoard` WHERE DiscussionBoardId =:DiscussionBoardId";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("DiscussionBoardId", $DiscussionBoardId);
+    $stmt->execute();
+    $wine = $stmt->fetchObject();
+    $db = null;
+   echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}
+
+
+function editforum() {
+   $request = Slim::getInstance()->request();
+  $user = json_decode($request->getBody());
+  // print_r($user->Topic);
+  $sql = "Update DiscussionBoard SET Topic=:topic,Description=:description WHERE DiscussionBoardId=:id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("topic",$user->Topic);
+    $stmt->bindParam("description",$user->Description);
+    $stmt->bindParam("id",$user->DiscussionBoardId);
+    $stmt->execute();
+    echo 'true';
+    //echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
+}
 ?>

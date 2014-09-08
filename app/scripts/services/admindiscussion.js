@@ -136,6 +136,18 @@ angular.module('sassApp')
                 return response;
             });	    	
 	    };
-	    
+	    dataFactory.getforum = function (discussionid) {	     
+	    	return $http.get(urlBase + 'get_forum/'+discussionid).then(function(response) {	    		
+                return response;
+            });
+	    	
+	    };
+	    dataFactory.editforum = function (param) {	  
+	    console.log(param);   
+	    	return $http.post(urlBase + 'edit_forum', param).then(function(response) {	    		
+                return response;
+            });
+	    	
+	    };
 	    return dataFactory;
 	}]);

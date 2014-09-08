@@ -34,6 +34,11 @@ $app->get('/get_Profile_Detail','checkUser', 'getProfileDetail');
 $app->post('/add_User_Discussion', 'checkUser', 'addUserDiscussion');
 $app->get('/get_Total_Members/:DiscussionBoardId','checkUser', 'getTotalMembers');
 $app->get('/remove_User/:DiscussionBoardId','checkUser', 'removeUser');
+$app->get('/get_Total_Comments/:DiscussionBoardId','checkUser', 'getTotalComments');
+$app->get('/user_Joined/:DiscussionBoardId','checkUser', 'userJoined');
+$app->post('/update_Rating', 'checkUser', 'updateRating');
+$app->get('/get_Rating/:topicId', 'checkUser','getRating');
+
 
 function checkUser() { 
   $headers = apache_request_headers();
@@ -850,5 +855,72 @@ function removeUser($DiscussionBoardId) {
   }
 }
 
+function getTotalComments($DiscussionBoardId) {
+  $sql = "SELECT DBT.DiscussionTopicId,count(DBC.DiscussionTopicId) As TotalComments FROM DiscussionBoardTopic As DBT inner join DiscussionBoardComments As DBC on DBC.DiscussionTopicId = DBT.DiscussionTopicId WHERE DiscussionBoardId = :DiscussionBoardId group by DBC.DiscussionTopicId ";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("DiscussionBoardId", $DiscussionBoardId);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}
 
+function userJoined($DiscussionBoardId) {
+  $headers = apache_request_headers();
+  $split = explode(' ', $headers['authorization']);
+  $user_id  = $split[3];
+  $sql = "SELECT count(1) as total FROM `DiscussionBoardUsers` where DiscussionBoardId = :DiscussionBoardId and UserId = :user_id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("DiscussionBoardId", $DiscussionBoardId);
+     $stmt->bindParam("user_id", $user_id);
+    $stmt->execute();
+    $wine = $stmt->fetchObject();
+    $db = null;
+     echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}
+
+
+function updateRating() {
+  $request = Slim::getInstance()->request();
+  $user = json_decode($request->getBody());
+  $sql = "UPDATE DiscussionBoardTopic set rating=:rating where DiscussionTopicId = :DiscussionTopicId";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("DiscussionTopicId", $user->topicId);
+     $stmt->bindParam("rating", $user->current);
+    $stmt->execute();
+    
+     echo 'true';
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}
+
+
+
+function getRating($topicId) {
+   $sql = "SELECT rating from DiscussionBoardTopic where DiscussionTopicId=:disTopicId" ;
+   try {   
+      $db = getConnection();   
+      $stmt = $db->prepare($sql);
+      $stmt->bindParam("disTopicId", $topicId);    
+      $stmt->execute();
+      $wine = $stmt->fetchObject();
+      $db = null;
+      echo json_encode($wine);
+    } catch(PDOException $e) {
+      echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+    }
+  }
 ?>

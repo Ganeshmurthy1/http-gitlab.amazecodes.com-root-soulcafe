@@ -28,6 +28,24 @@
                                 <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments"></i>{{topicName}}</h2>
                             
                             </div>
+
+    <!-- <rating ng-model="rate" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
+            <div class="col-md-2">
+                <span ng-repeat="rating in ratings">
+                    <div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)" ng-click="ratingHide()">
+                    </div>
+                </span>
+            </div> -->
+
+            
+              
+              <div class="col-md-2">
+                <span ng-repeat="rating in ratings"><div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)" ng-click="addRating(rating)"></div></span>
+                </div>              
+            
+
+
+
                             <div class="panel-body margin-bottom-50" >
                                 
 

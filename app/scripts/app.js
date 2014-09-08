@@ -20,7 +20,8 @@ angular
     'ngFacebook',
     'LocalStorageModule',
     'perfect_scrollbar',
-    'ui.bootstrap' 
+    'ui.bootstrap',
+    'ui.utils'
   ])
   .config(['$routeProvider', '$facebookProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $facebookProvider, $locationProvider, $httpProvider) {
 	
@@ -155,6 +156,11 @@ angular
       .when('/add-forum', {
         templateUrl: 'views/add-forum.html',
         controller: 'AddForumCtrl'
+      })
+      .when('/edit-forum', {
+        templateUrl: 'views/edit-forum.html',
+        controller: 'EditForumCtrl',
+        access:      access.user
       })
       .otherwise({
         redirectTo: '/'

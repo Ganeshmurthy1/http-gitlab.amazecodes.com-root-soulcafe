@@ -20,8 +20,8 @@
                 <div class="profile-body">
                 <!-- Discussion Topics -->
                  <div class="row pull-right">
-                    <a class="btn-u btn-u-default glow " ng-click="removeUser()">Get Removed</a>
-                    <a class="btn-u btn-u-default glow " href="#/add-topic?discussId={{discussionid}}">Request For New Topic</a>
+                    <a class="btn-u btn-u-default glow " ng-click="removeUser()" ng-hide="disable">Get Removed</a>
+                    <a class="btn-u btn-u-default glow " href="#/add-topic?discussId={{discussionid}}" ng-hide="disable">Add New Topic</a>
                 </div> 
                 <div class="headline"><h1 class="heading-sm">{{topicName}}</h1></div>
                  <div class="headline"><h3 class="heading-sm">Total Members : {{total}}</h3></div>
@@ -34,7 +34,7 @@
                             <h4>{{discussion.TopicTitle}}</h4>
                             <p>{{discussion.TopicDescription}}</p>
                             <p>
-                                 <li style="list-style:none;"><a href="#/discussion?topic={{discussion.DiscussionTopicId}}"><i class="fa fa-comments" style="margin-right:5px;"></i>Comments</a></li>
+                                 <li style="list-style:none;"><a href="#/discussion?topic={{discussion.DiscussionTopicId}}" ng-hide="disable"><i class="fa fa-comments" style="margin-right:5px;"></i>Comments ({{discussion.totalComments}})</a></li>
                             </p>
                         </div>
                         </div> 

@@ -201,6 +201,29 @@ angular.module('sassApp')
             });
 	    	
 	    };
+	    dataFactory.getTotalComments = function (discussionid) {	     
+	    	return $http.get(urlBase + 'get_Total_Comments/'+discussionid).then(function(response) {	    		
+                return response;
+            });
+	    	
+	    };
+	    dataFactory.userJoined = function (discussionid) {	     
+	    	return $http.get(urlBase + 'user_Joined/'+discussionid).then(function(response) {	    		
+                return response;
+            });
+	    	
+	    };
+	    dataFactory.updateRating = function (rating) {	     
+	    	return $http.post(urlBase + 'update_Rating',rating).then(function(response) {	    		
+                return response;
+            });
+	    	
+	    };
+	    dataFactory.getRating = function (topicid) {	
+	     	return $http.get(urlBase + 'get_Rating/'+ topicid).then(function(response) {
+                return response;
+            });	
+	    };
 	    
 	    return dataFactory;
 	}]);

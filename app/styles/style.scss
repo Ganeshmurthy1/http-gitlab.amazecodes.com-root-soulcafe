@@ -3723,3 +3723,32 @@ body.dark .tp-banner-container .btn-u.btn-brd.btn-u-light {
 .backWhite{
   background-color:#FFFFFF;
 }
+
+
+star {
+  size: 200px;
+}
+
+.rating {
+  color: #a9a9a9;
+  margin: 0;
+  padding: 0;
+}
+
+ul.rating {
+  display: inline-block;
+}
+
+.rating {
+  li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 1px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .filled {
+    color: rgb(245, 156, 43);
+  }
+}

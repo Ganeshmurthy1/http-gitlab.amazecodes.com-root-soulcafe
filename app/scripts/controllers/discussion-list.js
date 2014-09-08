@@ -70,6 +70,7 @@ angular.module('sassApp')
               if( $scope.discussionData[i].Restricted == 0){
                 // console.log($scope.DiscussionJoin.length);
                 $scope.discussionData[i].join="true";
+                $scope.discussionData[i].show="true";
               for (var x  in $scope.DiscussionJoin) {
                   console.log("inside for loop " ,$scope.DiscussionJoin[x].DiscussionBoardId);
                   if ($scope.discussionData[i].DiscussionBoardId == $scope.DiscussionJoin[x].DiscussionBoardId ){
@@ -96,6 +97,7 @@ angular.module('sassApp')
                      if($scope.discussionData[i].RestrictedLocation == null){
 
                         $scope.discussionData[i].join="true";
+                        $scope.discussionData[i].show="true";
                         for (var x  in $scope.DiscussionJoin) {
                             console.log("inside for loop " ,$scope.DiscussionJoin[x].DiscussionBoardId);
                             if ($scope.discussionData[i].DiscussionBoardId == $scope.DiscussionJoin[x].DiscussionBoardId ){
@@ -107,6 +109,7 @@ angular.module('sassApp')
                           }
                      }else if ($scope.userData.location === $scope.discussionData[i].RestrictedLocation) {
                         $scope.discussionData[i].join="true";
+                        $scope.discussionData[i].show="true";
                           for (var x  in $scope.DiscussionJoin) {
                             console.log("inside for loop " ,$scope.DiscussionJoin[x].DiscussionBoardId);
                             if ($scope.discussionData[i].DiscussionBoardId == $scope.DiscussionJoin[x].DiscussionBoardId ){
@@ -121,6 +124,7 @@ angular.module('sassApp')
                     }else if ($scope.userData.gender === $scope.discussionData[i].RestrictedGender) {
                     if ($scope.discussionData[i].RestrictedLocation == null) {
                        $scope.discussionData[i].join="true";
+                       $scope.discussionData[i].show="true";
                        for (var x  in $scope.DiscussionJoin) {
                             console.log("inside for loop " ,$scope.DiscussionJoin[x].DiscussionBoardId);
                             if ($scope.discussionData[i].DiscussionBoardId == $scope.DiscussionJoin[x].DiscussionBoardId ){
@@ -133,6 +137,7 @@ angular.module('sassApp')
                     }else if ($scope.userData.location === $scope.discussionData[i].RestrictedLocation) {
                       // console.log("AbhikGenderLocationElse");
                         $scope.discussionData[i].join="true";
+                        $scope.discussionData[i].show="true";
                         for (var x  in $scope.DiscussionJoin) {
                             console.log("inside for loop " ,$scope.DiscussionJoin[x].DiscussionBoardId);
                             if ($scope.discussionData[i].DiscussionBoardId == $scope.DiscussionJoin[x].DiscussionBoardId ){
@@ -149,6 +154,7 @@ angular.module('sassApp')
                     if ($scope.discussionData[i].RestrictedGender == null) {
                        if($scope.discussionData[i].RestrictedLocation == null){
                           $scope.discussionData[i].join="true";
+                          $scope.discussionData[i].show="true";
                           for (var x  in $scope.DiscussionJoin) {
                             console.log("inside for loop " ,$scope.DiscussionJoin[x].DiscussionBoardId);
                             if ($scope.discussionData[i].DiscussionBoardId == $scope.DiscussionJoin[x].DiscussionBoardId ){
@@ -160,6 +166,7 @@ angular.module('sassApp')
                           }
                         } else if ($scope.userData.location === $scope.discussionData[i].RestrictedLocation) {
                           $scope.discussionData[i].join="true";
+                          $scope.discussionData[i].show="true";
                           for (var x  in $scope.DiscussionJoin) {
                             console.log("inside for loop " ,$scope.DiscussionJoin[x].DiscussionBoardId);
                             if ($scope.discussionData[i].DiscussionBoardId == $scope.DiscussionJoin[x].DiscussionBoardId ){
@@ -174,6 +181,7 @@ angular.module('sassApp')
                       // alert("age not ok");
                         if($scope.discussionData[i].RestrictedLocation == null){
                           $scope.discussionData[i].join="true";
+                          $scope.discussionData[i].show="true";
                           for (var x  in $scope.DiscussionJoin) {
                             console.log("inside for loop " ,$scope.DiscussionJoin[x].DiscussionBoardId);
                             if ($scope.discussionData[i].DiscussionBoardId == $scope.DiscussionJoin[x].DiscussionBoardId ){
@@ -185,6 +193,7 @@ angular.module('sassApp')
                           }
                         } else if ($scope.userData.location === $scope.discussionData[i].RestrictedLocation) {
                           $scope.discussionData[i].join="true";
+                          $scope.discussionData[i].show="true";
                           for (var x  in $scope.DiscussionJoin) {
                             console.log("inside for loop " ,$scope.DiscussionJoin[x].DiscussionBoardId);
                             if ($scope.discussionData[i].DiscussionBoardId == $scope.DiscussionJoin[x].DiscussionBoardId ){

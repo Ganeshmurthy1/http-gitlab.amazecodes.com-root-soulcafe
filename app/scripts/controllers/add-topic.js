@@ -29,7 +29,7 @@ angular.module('sassApp')
 
 		  if (response.data == 'true') {
 			  $scope.savedSuccessfully = true;
-              $scope.successmessage = "Forum added sucessfully.";
+              $scope.successmessage = "The topic will be posted soon after review.";
               $scope.errMessage = false;
               $scope.topic = false;
 		  }

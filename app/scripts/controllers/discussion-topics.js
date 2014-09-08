@@ -16,18 +16,54 @@ angular.module('sassApp')
     ];
 
     $scope.discussionid=$routeParams.discussionid;
-    regService.getdiscussionListTopicName($scope.discussionid).then(function (results) {
-        $scope.topicName = results.data[0].Topic;    
+    regService.getdiscussionListTopicName($scope.discussionid).then(function (topicTotal) {
+      console.log(topicTotal);
+        $scope.topicName = topicTotal.data[0].Topic;    
       });
 
      regService.getdiscussionTopicDetails($scope.discussionid).then(function (results) {
-     	  $scope.discussions = results.data;      	
+         console.log(results);
+     	  $scope.discussions = results.data; 
+
+
+      regService.getTotalComments($scope.discussionid).then(function (comments) {
+         console.log(comments);
+        $scope.totalComments = comments.data; 
+ 
+       for (var i = 0; i < $scope.discussions.length; i++) {
+        // console.log("AA");
+     
+           if($scope.discussions[i].DiscussionTopicId == $scope.totalComments[i].DiscussionTopicId){
+            // console.log("AAA");
+                $scope.discussions[i].totalComments = $scope.totalComments[i].TotalComments;
+        }
+       
+        // console.log( $scope.discussions[i].DiscussionTopicId);
+      };
+      // console.log( $scope.discussions);
+     
      });
 
-     regService.getTotalMembers($scope.discussionid).then(function (results) {
-        $scope.total = results.data[0].total; 
+
+     });
+
+     regService.getTotalMembers($scope.discussionid).then(function (totalMembers) {
+         console.log(totalMembers);
+        $scope.total = totalMembers.data[0].total; 
         console.log( $scope.total);       
      });
+
+     regService.userJoined($scope.discussionid).then(function (res) {
+      console.log("Abhik");
+         console.log(res.data.total);
+         if(res.data.total == 1){
+          $scope.disable = "false";
+         }else{
+          $scope.disable = "true";
+         }
+             
+     });
+
 
      $scope.removeUser = function(){
       regService.removeUser($scope.discussionid).then(function (results) {
