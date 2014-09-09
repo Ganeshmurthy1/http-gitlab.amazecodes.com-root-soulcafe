@@ -65,8 +65,8 @@ angular
 	  })
       .when('/mobile-verify', {
         templateUrl: 'views/mobile-verify.html',
-        controller: 'MobileVerifyCtrl',
-        access:      access.anon
+        controller: 'MobileVerifyCtrl'
+        
       })
       .when('/signup', {
         templateUrl: 'views/signup.html',

@@ -67,7 +67,21 @@ angular.module('sassApp')
               // $scope.discussionData[i].join = 0;
               // console.log("AAAAA");
               // console.log($scope.discussionData[i].Restricted);
-              if( $scope.discussionData[i].Restricted == 0){
+
+
+
+
+
+              $scope.isAdmin = false;
+                var authData = localStorageService.get('authorizationData');
+
+
+
+              if(authData.user_role == 1) {
+                  $scope.isAdmin = true;
+                  $scope.discussionData[i].join="false";
+                $scope.discussionData[i].show="true";
+              }else if( $scope.discussionData[i].Restricted == 0){
                 // console.log($scope.DiscussionJoin.length);
                 $scope.discussionData[i].join="true";
                 $scope.discussionData[i].show="true";
@@ -224,6 +238,5 @@ $scope.joinButtonClick = function(id){
     
   });
 }
-
 
 });

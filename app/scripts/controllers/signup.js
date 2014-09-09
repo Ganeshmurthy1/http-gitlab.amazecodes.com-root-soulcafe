@@ -57,8 +57,8 @@ angular.module('sassApp')
   		  				//$scope.loggedin= true;
   		  				$rootScope.loggedin = true;
 					   
-					  		  				// $location.path('/mobile-verify');
-  		  				 $location.path('/dashboard');
+					  		 $location.path('/mobile-verify');
+  		  				 // $location.path('/dashboard');
   					}
   				  
   			  });

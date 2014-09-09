@@ -53,17 +53,24 @@ angular.module('sassApp')
         console.log( $scope.total);       
      });
 
-     regService.userJoined($scope.discussionid).then(function (res) {
-      console.log("Abhik");
-         console.log(res.data.total);
-         if(res.data.total == 1){
-          $scope.disable = "false";
-         }else{
-          $scope.disable = "true";
-         }
-             
-     });
 
+     $scope.isAdmin = false;
+     var authData = localStorageService.get('authorizationData');
+     if(authData.user_role == 1) {
+        $scope.isAdmin = true;
+         $scope.disable = "false";
+      }else{
+       regService.userJoined($scope.discussionid).then(function (res) {
+        console.log("Abhik");
+           console.log(res.data.total);
+           if(res.data.total == 1){
+            $scope.disable = "false";
+           }else{
+            $scope.disable = "true";
+           }
+               
+       });
+     }
 
      $scope.removeUser = function(){
       regService.removeUser($scope.discussionid).then(function (results) {

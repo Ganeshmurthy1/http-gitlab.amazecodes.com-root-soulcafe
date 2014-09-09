@@ -214,19 +214,19 @@ function addUser() {
             $stmt->bindParam("user_role", $role);
             $stmt->execute();
             
-            // $my_name = $user->first_name .'%20' . $user->last_name;
-            // // Get cURL resource
-            // $curl = curl_init();
-            // // Set some options - we are passing in a useragent too here
-            // curl_setopt_array($curl, array(
-            // CURLOPT_RETURNTRANSFER => 1,
-            // CURLOPT_URL => 'http://bulksms.marketsolutions.co.in/sendsms?uname=thumbamon&pwd=thumbamon123&senderid=TUMBMN&to=' . $user->mobile . '&msg=Dear%20' . $my_name . ',%20%20Thank%20you%20for%20your%20donation%20amount%20of%20INR.%20' .$mobile_rand . '/-%20towards%20Tithe%20Collection%20of%20MOSC%20Diocese%20of%20Thumpamon.%20Best%20Regards,%20Dio.%20Office,%20Thumpamon&route=T',
-            // CURLOPT_USERAGENT => 'Jiby Sample cURL Request'
-            // ));
-            // // Send the request & save response to $resp
-            // $resp = curl_exec($curl);
-            // // Close request to clear up some resources
-            // curl_close($curl);
+            $my_name = $user->first_name .'%20' . $user->last_name;
+            // Get cURL resource
+            $curl = curl_init();
+            // Set some options - we are passing in a useragent too here
+            curl_setopt_array($curl, array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL => 'http://bulksms.marketsolutions.co.in/sendsms?uname=thumbamon&pwd=thumbamon123&senderid=TUMBMN&to=' . $user->mobile . '&msg=Dear%20' . $my_name . ',%20%20Thank%20you%20for%20your%20donation%20amount%20of%20INR.%20' .$mobile_rand . '/-%20towards%20Tithe%20Collection%20of%20MOSC%20Diocese%20of%20Thumpamon.%20Best%20Regards,%20Dio.%20Office,%20Thumpamon&route=T',
+            CURLOPT_USERAGENT => 'Jiby Sample cURL Request'
+            ));
+            // Send the request & save response to $resp
+            $resp = curl_exec($curl);
+            // Close request to clear up some resources
+            curl_close($curl);
             
             
             echo 'true';
@@ -583,8 +583,9 @@ function addlinkedinData() {
   $request = Slim::getInstance()->request();
   $user = json_decode($request->getBody());
   //
-   //print_r( $user );
+   // print_r( $user->values[0]->threeCurrentPositions->values[0]->title );
    $currentEmployment = $user->values[0]->threeCurrentPositions->values[0]->company->name;
+   $currentRole = $user->values[0]->threeCurrentPositions->values[0]->title;
    // print $currentEmployment;
    $highestEducation = $user->values[0]->educations->values[0]->degree . ' - '  . $user->values[0]->educations->values[0]->fieldOfStudy;
   $endorsedSkills = $user->values[0]->skills->values[0]->skill->name . ','  .$user->values[0]->skills->values[1]->skill->name. ','  .$user->values[0]->skills->values[2]->skill->name. ','  .$user->values[0]->skills->values[3]->skill->name. ','  .$user->values[0]->skills->values[4]->skill->name;
@@ -593,12 +594,13 @@ function addlinkedinData() {
       $split = explode(' ', $headers['authorization']);
       $user_id  = $split[3];
 
-  $sql = "INSERT INTO ProfessionalDetails (UserId, CurrentEmployment, HighestEducation, Endorsedskills) VALUES (:UserId, :CurrentEmployment, :HighestEducation, :Endorsedskills)";
+  $sql = "INSERT INTO ProfessionalDetails (UserId, CurrentEmployment, CurrentRole, HighestEducation, Endorsedskills) VALUES (:UserId, :CurrentEmployment, :CurrentRole, :HighestEducation, :Endorsedskills)";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);  
     $stmt->bindParam("UserId", $user_id);
     $stmt->bindParam("CurrentEmployment", $currentEmployment);
+    $stmt->bindParam("CurrentRole", $currentRole);
     $stmt->bindParam("HighestEducation", $highestEducation);
     $stmt->bindParam("Endorsedskills", $endorsedSkills);
     $stmt->execute();
