@@ -21,7 +21,8 @@ angular.module('sassApp')
 
     function getUSerdata() {
     	var authData = localStorageService.get('authorizationData');
-    	console.log(authData);
+    	
+     
     	regService.getUserDetails(authData.user_id).then(function (results) {
     		//console.log(results.data);
     		$scope.userData = results.data; 
@@ -46,6 +47,8 @@ angular.module('sassApp')
     //   console.log("AAAAAAAAAAAAAAAAAAAA");
     //   $location.path('/linkedin');
     // };
+
+    // console.log("graph.facebook.com/"+authData.fb_id+"/picture");
   });
 // var authData = localStorageService.get('authorizationData');
                 

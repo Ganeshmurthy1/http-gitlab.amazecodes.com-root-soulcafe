@@ -39,7 +39,7 @@ angular.module('sassApp')
 	        return $http.get(fbUrl);
 	    };
 	    dataFactory.registerUser = function (param) {
-	    	//console.log(param);
+	    	console.log(param);
 	    	var data = 'fb_id=' + param.id;
 	    	return $http.post(urlBase + 'add_user', param).then(function(response) {
                 return response;
@@ -223,6 +223,23 @@ angular.module('sassApp')
 	     	return $http.get(urlBase + 'get_Rating/'+ topicid).then(function(response) {
                 return response;
             });	
+	    };
+	     dataFactory.getPicture = function () {	
+	     	return $http.get(urlBase + 'get_Picture').then(function(response) {
+                return response;
+            });	
+	    };
+	    dataFactory.getProfilePictures = function (discussionid) {	     
+	    	return $http.get(urlBase + 'get_ProfilePictures/'+discussionid).then(function(response) {	    		
+                return response;
+            });
+	    	
+	    };
+	    dataFactory.getPicturesComments = function (topicid) {	     
+	    	return $http.get(urlBase + 'get_PicturesComments/'+topicid).then(function(response) {	    		
+                return response;
+            });
+	    	
 	    };
 	    
 	    return dataFactory;

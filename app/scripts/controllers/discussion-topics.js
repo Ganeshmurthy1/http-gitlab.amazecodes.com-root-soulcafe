@@ -25,6 +25,24 @@ angular.module('sassApp')
          console.log(results);
      	  $scope.discussions = results.data; 
 
+      regService.getProfilePictures($scope.discussionid).then(function (images) {
+         // console.log(images);
+        $scope.profileImages = images.data; 
+        console.log( $scope.profileImages);  
+      for (var j = 0; j < $scope.profileImages.length; j++) {
+        // console.log("AA");
+     
+           if($scope.discussions[j].DiscussionTopicId == $scope.profileImages[j].DiscussionTopicId){
+            console.log("AAA");
+                $scope.discussions[j].Picture = $scope.profileImages[j].Picture;
+        }else{
+          $scope.discussions[j].Picture = null;
+        }
+       
+        
+      };   
+      console.log( $scope.discussions);  
+     });
 
       regService.getTotalComments($scope.discussionid).then(function (comments) {
          console.log(comments);

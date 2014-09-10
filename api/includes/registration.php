@@ -38,7 +38,9 @@ $app->get('/get_Total_Comments/:DiscussionBoardId','checkUser', 'getTotalComment
 $app->get('/user_Joined/:DiscussionBoardId','checkUser', 'userJoined');
 $app->post('/update_Rating', 'checkUser', 'updateRating');
 $app->get('/get_Rating/:topicId', 'checkUser','getRating');
-
+$app->get('/get_Picture', 'checkUser','getPicture');
+$app->get('/get_ProfilePictures/:DiscussionBoardId','checkUser', 'getProfilePictures');
+$app->get('/get_PicturesComments/:topicId','checkUser', 'getPicturesComments');
 
 function checkUser() { 
   $headers = apache_request_headers();
@@ -196,7 +198,7 @@ function addUser() {
          $name = $user->first_name. ' ' . $user->last_name;
          $role = 2;
       
-          $sql = "INSERT INTO users (fb_id, first_name, last_name, email, gender, birthdate, hometown, location, relationship_status, mobile, act_code, user_role) VALUES (:fb_id, :first_name, :last_name, :email, :gender, :birthdate, :hometown, :location, :relationship_status, :mobile, :act_code, :user_role)";
+          $sql = "INSERT INTO users (fb_id, first_name, last_name, email, gender, birthdate, hometown, location, relationship_status, mobile, act_code, user_role,Picture) VALUES (:fb_id, :first_name, :last_name, :email, :gender, :birthdate, :hometown, :location, :relationship_status, :mobile, :act_code, :user_role,:Picture)";
           try {
             $db = getConnection();
             $stmt = $db->prepare($sql);  
@@ -212,6 +214,8 @@ function addUser() {
             $stmt->bindParam("mobile", $user->mobile);
             $stmt->bindParam("act_code", $mobile_rand);
             $stmt->bindParam("user_role", $role);
+            $stmt->bindParam("Picture", $user->pic->data->url);
+            
             $stmt->execute();
             
             $my_name = $user->first_name .'%20' . $user->last_name;
@@ -925,4 +929,60 @@ function getRating($topicId) {
       echo '{"error":{"text":'. $e->getMessage() .'}}'; 
     }
   }
+
+function getPicture() {
+  $headers = apache_request_headers();
+  $split = explode(' ', $headers['authorization']);
+  $user_id  = $split[3];
+  $sql = "SELECT Picture from users where user_id = :user_id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("user_id", $user_id);
+    $stmt->execute();
+    $wine = $stmt->fetchObject();
+    $db = null;
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}
+
+function getProfilePictures($DiscussionBoardId) {
+  // $headers = apache_request_headers();
+  // $split = explode(' ', $headers['authorization']);
+  // $user_id  = $split[3];
+  $sql = "SELECT DBT.DiscussionTopicId,u.Picture from DiscussionBoardTopic As DBT left join users as u on DBT.CreatedBy = u.user_id where DBT.DiscussionBoardId =:DiscussionBoardId and DBT.Status=1 ";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("DiscussionBoardId", $DiscussionBoardId);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+     echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}
+
+function getPicturesComments($topicId) {
+  // $headers = apache_request_headers();
+  // $split = explode(' ', $headers['authorization']);
+  // $user_id  = $split[3];
+  $sql = "SELECT DBC.CommentId, DBC.DiscussionTopicId,u.Picture  FROM `DiscussionBoardComments` as DBC join users as u on DBC.UserId=u.user_id WHERE DBC.DiscussionTopicId =:topicId and DBC.IsValid=1";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("topicId", $topicId);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+     echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}
+
+
 ?>

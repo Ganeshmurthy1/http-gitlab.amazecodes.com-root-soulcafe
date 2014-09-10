@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('SideBarCtrl', function ($scope, localStorageService) {
+  .controller('SideBarCtrl', function ($scope, localStorageService,regService) {
 
 $scope.SideBar = 'views/side_bar.html';
 
@@ -22,6 +22,9 @@ $scope.SideBar = 'views/side_bar.html';
     if(authData.user_role == 1) {
     	$scope.isAdmin = true;
     }
-    
-    
+   
+   regService.getPicture().then(function(response) {
+            $scope.pic=response.data; 
+            // console.log($scope.pic.Picture);
+    });
   });

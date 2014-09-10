@@ -37,8 +37,7 @@ angular.module('sassApp')
              }
               
         });
-
-       
+         
 
         $scope.getSelectedRating = function(rating) {
             console.log(rating);
@@ -59,6 +58,24 @@ angular.module('sassApp')
 
       regService.getdiscussionTopicComments($routeParams.topic).then(function (results) {
         $scope.comments = results.data; 
+
+        regService.getPicturesComments($routeParams.topic).then(function (results) {
+             $scope.picture=results.data;
+            for (var j = 0; j < $scope.picture.length; j++) {
+        // console.log("AA");
+     
+           if($scope.comments[j].CommentId == $scope.picture[j].CommentId){
+            console.log("AAA");
+                $scope.comments[j].Picture = $scope.picture[j].Picture;
+        }else{
+          $scope.comments[j].Picture = null;
+        }
+       
+        
+      }; 
+         console.log($scope.comments);     
+        });
+       
             });
     }
 
@@ -109,5 +126,9 @@ $scope.addRating = function(rating){
         });
 }
 
+ regService.getPicture().then(function(response) {
+            $scope.pic=response.data; 
+            // console.log($scope.pic.Picture);
+    });
 
   });

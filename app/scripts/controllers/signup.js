@@ -16,9 +16,12 @@ angular.module('sassApp')
     ];
     console.log("Abhikkkk");
     var data = localStorageService.get('facebookData');
-	console.log(data.fbdata);
+	// console.log(data.fbdata);
 	$scope.fbdata = data.fbdata;
-	console.log($scope.fbdata);
+	// console.log($scope.fbdata);
+   var fbpic = localStorageService.get('fbpicture');
+   $scope.fbdata.pic = fbpic.fbpicture;
+   console.log($scope.fbdata);
 	if($scope.fbdata.gender == 'male') {
 	     $scope.male = true;
 	} else {

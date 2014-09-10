@@ -30,8 +30,15 @@
                 <div data-ng-repeat="discussion in discussions">
 
                         <div class="col-md-6">
+
                         <div class="alert fade in backWhite">
-                            <h4>{{discussion.TopicTitle}}</h4>
+                            <div class="media media-v2" style="float:left;margin: 0 !important;
+    padding: 0 !important;">
+                            <a class="pull-left" href="#">
+                                        <img class="media-object rounded-x" ng-src="{{discussion.Picture}}" alt="">
+                                    </a>
+                                </div>
+                            <h4>Topic: {{discussion.TopicTitle}}</h4>
                             <p>{{discussion.TopicDescription}}</p>
                             <p>
                                  <li style="list-style:none;"><a href="#/discussion?topic={{discussion.DiscussionTopicId}}" ng-hide="disable" style="color:blue"><i class="fa fa-comments" style="margin-right:5px;"></i>Comments ({{discussion.totalComments}})</a></li>

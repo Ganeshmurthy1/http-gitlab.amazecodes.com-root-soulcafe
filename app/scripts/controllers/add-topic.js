@@ -25,7 +25,10 @@ angular.module('sassApp')
 
     	regService.addTopic($scope.topic).then(function(response) {
 
-		  console.log(response);
+		  console.log("response object"+response);
+
+
+
 
 		  if (response.data == 'true') {
 			  $scope.savedSuccessfully = true;
