@@ -54,6 +54,8 @@ angular.module('sassApp')
            if($scope.discussions[i].DiscussionTopicId == $scope.totalComments[i].DiscussionTopicId){
             // console.log("AAA");
                 $scope.discussions[i].totalComments = $scope.totalComments[i].TotalComments;
+        }else{
+          $scope.discussions[i].totalComments = 0;
         }
        
         // console.log( $scope.discussions[i].DiscussionTopicId);
