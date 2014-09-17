@@ -21,8 +21,9 @@ $scope.SideBar = 'views/side_bar.html';
     var authData = localStorageService.get('authorizationData');
     if(authData.user_role == 1) {
     	$scope.isAdmin = true;
+      $scope.isUser = true;
     }
-   
+    
    regService.getPicture().then(function(response) {
             $scope.pic=response.data; 
             // console.log($scope.pic.Picture);

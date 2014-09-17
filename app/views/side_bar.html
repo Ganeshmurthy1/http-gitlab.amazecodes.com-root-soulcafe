@@ -1,6 +1,10 @@
 <div class="col-md-3 md-margin-bottom-40">
                 <img class="img-responsive profile-img margin-bottom-20" ng-src="{{pic.Picture}}"></img>
-
+            <div style="clear:both;" data-ng-show="isUser">
+                <h4 style="background-color:#ed719e;padding:5px;text-align:center;color:black;margin-bottom:10px;"><a style="color:black;">Check Compatiblity</a></h4>
+                <h4 style="background-color:#ed719e;padding:5px;text-align:center;color:black;margin-bottom:10px;"><a style="color:black;">Send GTKY</a></h4>
+                <h4 style="background-color:#ed719e;padding:5px;text-align:center;color:black;margin-bottom:10px;"><a style="color:black;">Report Abuse</a></h4>
+            </div>
                 <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1" data-ng-show="isAdmin">
                     <li class="list-group-item active">
                         <a href="profile.html"><i class="fa fa-bar-chart-o"></i> Manage Soulcafe</a>
@@ -18,23 +22,100 @@
                 </ul>   
 
                 <div class="panel-heading-v2 overflow-h">
-                    <h2 class="heading-xs pull-left"><i class="fa fa-bar-chart-o"></i> Task Progress</h2>
+                    <h2 class="heading-xs pull-left"><i class="fa fa-bar-chart-o"></i> Verification Progress</h2>
                     <a href="#"><i class="fa fa-cog pull-right"></i></a>
                 </div>
-                <h3 class="heading-xs">Profile Completeness <span class="pull-right">92%</span></h3>
+                <h3 class="heading-xs">Facebook Verification <span class="pull-right">92%</span></h3>
                 <div class="progress progress-u progress-xxs">
                     <div style="width: 92%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="92" role="progressbar" class="progress-bar progress-bar-u">
                     </div>
                 </div>
-                <h3 class="heading-xs">linkedin Completeness <span class="pull-right">85%</span></h3>
+                <h3 class="heading-xs">Linkedin Verification  <span class="pull-right">85%</span></h3>
                 <div class="progress progress-u progress-xxs">
                     <div style="width: 85%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="85" role="progressbar" class="progress-bar progress-bar-blue">
                     </div>
                 </div>
-            
-
+                 <h3 class="heading-xs">Phone Verification <span class="pull-right">92%</span></h3>
+                <div class="progress progress-u progress-xxs">
+                    <div style="width: 92%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="92" role="progressbar" class="progress-bar progress-bar-u">
+                    </div>
+                </div>
+                 <h3 class="heading-xs">Physical Id Verification <span class="pull-right">92%</span></h3>
+                <div class="progress progress-u progress-xxs">
+                    <div style="width: 92%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="92" role="progressbar" class="progress-bar progress-bar-u">
+                    </div>
+                </div>
                 <hr>
+                <div class="">
+                            <div class="panel panel-profile">
+                                <div class="panel-heading overflow-h">
+                                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments-o"></i> Discussions</h2>
+                                    <a href="#/profile_comments" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs pull-right">View All</a>
+                                </div>
+                        
+                                <perfect-scrollbar class="panel-body contentHolder" wheel-propagation="true" wheel-speed="50" >
 
+                                    <div class="comment">
+                                        <img src="images/testimonials/img6.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong>Taylor Lee<small class="pull-right"> 25m</small></strong> 
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                            <ul class="list-inline comment-list">
+                                                <li><i class="fa fa-heart"></i> <a href="#">23</a></li>
+                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
+                                            </ul>
+                                        </div>    
+                                    </div>
+                                    <div class="comment">
+                                        <img src="images/testimonials/img2.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong>Miranda Clarsson<small class="pull-right"> 44m</small></strong> 
+                                            <p>Donec cursus, orci non posuere luctus, risus massa luctus nisi, sit amet cursus leo massa id arcu. Nunc tincidunt magna sit amet sapien congue.</p>
+                                            <ul class="list-inline comment-list">
+                                                <li><i class="fa fa-heart"></i> <a href="#">23</a></li>
+                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
+                                            </ul>
+                                        </div>    
+                                    </div>
+                                    <div class="comment">
+                                        <img src="images/testimonials/img4.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong>Natasha Kolnikova<small class="pull-right"> 7h</small></strong> 
+                                            <p>Suspendisse est est, sollicitudin eget auctor et, pharetra eu sapien. Mauris mollis libero ac auctor iaculis.</p>
+                                            <ul class="list-inline comment-list">
+                                                <li><i class="fa fa-heart"></i> <a href="#">23</a></li>
+                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
+                                            </ul>
+                                        </div>    
+                                    </div>
+                                    <div class="comment">
+                                        <img src="images/testimonials/img1.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong>Mikel Andrews<small class="pull-right"> 15h</small></strong> 
+                                            <p>Nam ut dolor cursus nibh aliquet bibendum in eget risus.</p>
+                                            <ul class="list-inline comment-list">
+                                                <li><i class="fa fa-heart"></i> <a href="#">20</a></li>
+                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
+                                            </ul>
+                                        </div>    
+                                    </div>
+                                    <div class="comment">
+                                        <img src="images/testimonials/img7.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong>Edward Rooster<small class="pull-right"> 1d</small></strong> 
+                                            <p>Nam ut dolor cursus nibh aliquet bibendum in eget risus. Mauris mollis libero ac auctor iaculis.</p>
+                                            <ul class="list-inline comment-list">
+                                                <li><i class="fa fa-heart"></i> <a href="#">23</a></li>
+                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
+                                            </ul>
+                                        </div>    
+                                    </div>
+                                
+
+                         </perfect-scrollbar>  
+                               
+                            </div>    
+                        </div>
                 <!--Notification-->
                <!--  <div class="panel-heading-v2 overflow-h">
                     <h2 class="heading-xs pull-left"><i class="fa fa-bell-o"></i> Notification</h2>

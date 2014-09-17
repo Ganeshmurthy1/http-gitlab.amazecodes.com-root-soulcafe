@@ -218,19 +218,19 @@ function addUser() {
             
             $stmt->execute();
             
-            $my_name = $user->first_name .'%20' . $user->last_name;
-            // Get cURL resource
-            $curl = curl_init();
-            // Set some options - we are passing in a useragent too here
-            curl_setopt_array($curl, array(
-            CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_URL => 'http://bulksms.marketsolutions.co.in/sendsms?uname=thumbamon&pwd=thumbamon123&senderid=TUMBMN&to=' . $user->mobile . '&msg=Dear%20' . $my_name . ',%20%20Thank%20you%20for%20your%20donation%20amount%20of%20INR.%20' .$mobile_rand . '/-%20towards%20Tithe%20Collection%20of%20MOSC%20Diocese%20of%20Thumpamon.%20Best%20Regards,%20Dio.%20Office,%20Thumpamon&route=T',
-            CURLOPT_USERAGENT => 'Jiby Sample cURL Request'
-            ));
-            // Send the request & save response to $resp
-            $resp = curl_exec($curl);
-            // Close request to clear up some resources
-            curl_close($curl);
+            // $my_name = $user->first_name .'%20' . $user->last_name;
+            // // Get cURL resource
+            // $curl = curl_init();
+            // // Set some options - we are passing in a useragent too here
+            // curl_setopt_array($curl, array(
+            // CURLOPT_RETURNTRANSFER => 1,
+            // CURLOPT_URL => 'http://bulksms.marketsolutions.co.in/sendsms?uname=thumbamon&pwd=thumbamon123&senderid=TUMBMN&to=' . $user->mobile . '&msg=Dear%20' . $my_name . ',%20%20Thank%20you%20for%20your%20donation%20amount%20of%20INR.%20' .$mobile_rand . '/-%20towards%20Tithe%20Collection%20of%20MOSC%20Diocese%20of%20Thumpamon.%20Best%20Regards,%20Dio.%20Office,%20Thumpamon&route=T',
+            // CURLOPT_USERAGENT => 'Jiby Sample cURL Request'
+            // ));
+            // // Send the request & save response to $resp
+            // $resp = curl_exec($curl);
+            // // Close request to clear up some resources
+            // curl_close($curl);
             
             
             echo 'true';
@@ -862,7 +862,7 @@ function removeUser($DiscussionBoardId) {
 }
 
 function getTotalComments($DiscussionBoardId) {
-  $sql = "SELECT DBT.DiscussionTopicId,count(DBC.DiscussionTopicId) As TotalComments FROM DiscussionBoardTopic As DBT inner join DiscussionBoardComments As DBC on DBC.DiscussionTopicId = DBT.DiscussionTopicId WHERE DiscussionBoardId = :DiscussionBoardId group by DBC.DiscussionTopicId ";
+  $sql = "SELECT dbt.DiscussionTopicId,count(dbc.DiscussionTopicId) as TotalComments from DiscussionBoardTopic as dbt Left Join DiscussionBoardComments as dbc on dbc.DiscussionTopicId=dbt.DiscussionTopicId where dbt.DiscussionBoardId=:DiscussionBoardId and dbt.status=1 group by dbt.DiscussionTopicId order by dbt.DiscussionTopicId ";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);

@@ -96,18 +96,17 @@ angular.module('sassApp')
 	                if (res.status) {
 	                	 $scope.fbdata = response;
 	                	 localStorageService.set('facebookData', {fbdata:response});
-	      //                 var fbbbbdata = localStorageService.get('facebookData');
+
+				 $facebook.api("/me/picture?redirect=0&height=200&type=normal&width=200").then(function(resp) {
+				      	console.log(resp);
+				       	$scope.fbpicture = resp;
+					    localStorageService.set('fbpicture', {fbpicture:resp});
+					 //   var fbbbbdata = localStorageService.get('fbpicture');
+						// console.log(fbbbbdata);
+				  });
+
+	                     //  var fbbbbdata = localStorageService.get('facebookData');
 						 // console.log(fbbbbdata);
-	$facebook.api("/me/fields=picture.width(800).height(800)").then(function(resp) {
-      	console.log(resp);
-       	$scope.fbpicture = resp;
-	    localStorageService.set('fbpicture', {fbpicture:resp});
-	 //   var fbbbbdata = localStorageService.get('fbpicture');
-		// console.log(fbbbbdata);
-      },
-      function(err) {
-        $scope.welcomeMsg = "Please log in";
-      });
 						  $location.path('/signup');
 	                	 if(response.gender == 'male') {
 	                		 $scope.male = true;
@@ -129,9 +128,6 @@ angular.module('sassApp')
   	    });
           
         });
-
-
-
 
     }
     

@@ -162,6 +162,10 @@ angular
         controller: 'EditForumCtrl',
         access:      access.user
       })
+      .when('/dashboard-anon', {
+        templateUrl: 'views/dashboard-anon.html',
+        controller: 'DashboardAnonCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
