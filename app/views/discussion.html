@@ -65,10 +65,10 @@
                                         </ul>    
                                         <ul class="list-inline pull-right">
 
-
-                               <a href="" data-ng-show="{{comment.deleteflag}}"data-ng-click="deleteComment({{comment.CommentId}})"
+							<li>
+                               <a href="" data-ng-show="{{comment.deleteflag}}"data-ng-click="deleteComment({{comment.CommentId}})">
                                 <i class="icon-custom  icon-lg rounded-2x icon-color-u fa fa-trash-o"></i></a>
-                               
+                               </li>
            
                                 <li><a href="" data-ng-click="commentLike({{comment.CommentId}})">
                                     <i data-ng-hide={{comment.likeflag==1}} class="expand-list rounded-x fa fa-heart" ></i><a></li>

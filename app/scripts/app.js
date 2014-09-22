@@ -169,7 +169,7 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-    $facebookProvider.setAppId('278995965634637');
+    $facebookProvider.setAppId('273647349502832');
     $facebookProvider.setPermissions("email,user_likes,user_birthday,user_relationships,user_work_history,user_hometown,user_location,user_friends");
     
     $httpProvider.interceptors.push(function($q, $location, localStorageService) {
