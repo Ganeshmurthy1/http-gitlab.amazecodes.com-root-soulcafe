@@ -49,6 +49,7 @@ angular.module('sassApp')
     // };
 
     // console.log("graph.facebook.com/"+authData.fb_id+"/picture");
+    
   });
 // var authData = localStorageService.get('authorizationData');
-                
+        
