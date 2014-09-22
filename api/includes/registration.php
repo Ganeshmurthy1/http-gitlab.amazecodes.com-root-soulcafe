@@ -715,7 +715,7 @@ function getDiscussionListStatus() {
 
 function deleteComment($commentId) {
 
-  $sql = "DELETE FROM discussionboardcomments WHERE CommentId=:commentId ";
+  $sql = "DELETE FROM DiscussionBoardComments WHERE CommentId=:commentId ";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);  
