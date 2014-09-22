@@ -20,8 +20,8 @@ angular
     'ngFacebook',
     'LocalStorageModule',
     'perfect_scrollbar',
-    'ui.bootstrap',
-    'ui.utils'
+    'ui.bootstrap'
+    
   ])
   .config(['$routeProvider', '$facebookProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $facebookProvider, $locationProvider, $httpProvider) {
 	

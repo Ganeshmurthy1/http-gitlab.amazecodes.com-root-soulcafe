@@ -41,7 +41,7 @@ $app->get('/get_Rating/:topicId', 'checkUser','getRating');
 $app->get('/get_Picture', 'checkUser','getPicture');
 $app->get('/get_ProfilePictures/:DiscussionBoardId','checkUser', 'getProfilePictures');
 $app->get('/get_PicturesComments/:topicId','checkUser', 'getPicturesComments');
-
+$app->post('/update_Profile_Detail', 'checkUser', 'updateProfileDetail');
 function checkUser() { 
   $headers = apache_request_headers();
  // echo $headers['authorization'];
