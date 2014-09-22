@@ -22,7 +22,7 @@ function adminAddDiscussion() {
   // echo $headers['authorization'];
   $valid = checkValidDiscussion($forum);
   if($valid['status']) {
-    $split = explode(' ', $headers['authorization']);
+    $split = explode(' ', $headers['Authorization']);
     $user_id  = $split[3];
     $tdate = date('Y-m-d h:i:s');
     //echo $forum->restriction;
@@ -231,7 +231,7 @@ function adminAddTopic() {
   $headers = apache_request_headers();
   // echo $headers['authorization'];
 
-    $split = explode(' ', $headers['authorization']);
+    $split = explode(' ', $headers['Authorization']);
     $user_id  = $split[3];
     $tdate = date('Y-m-d h:i:s');
     //echo $forum->restriction;
