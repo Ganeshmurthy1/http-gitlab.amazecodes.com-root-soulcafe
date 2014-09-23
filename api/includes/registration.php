@@ -41,7 +41,7 @@ $app->get('/get_Rating/:topicId', 'checkUser','getRating');
 $app->get('/get_Picture', 'checkUser','getPicture');
 $app->get('/get_ProfilePictures/:DiscussionBoardId','checkUser', 'getProfilePictures');
 $app->get('/get_PicturesComments/:topicId','checkUser', 'getPicturesComments');
-
+$app->post('/update_Profile_Detail', 'checkUser', 'updateProfileDetail');
 function checkUser() { 
   $headers = apache_request_headers();
  // echo $headers['authorization'];
@@ -432,7 +432,7 @@ function getAllDiscussionsTopics($DiscussionBoardId) {
 function getdiscussionTopicComments($topic) {
 
    $headers = apache_request_headers();
-   $split = explode(' ', $headers['Authorization']);
+   $split = explode(' ', $headers['authorization']);
    $user_id  = $split[3];
 
    $sql = "SELECT DBC.CommentDateTime, DBC.UserId, DBC.Comment ,DBC.CommentId,users.first_name, (select count(1) from DiscussionBorardLikes DBL where DBL.CommentId=DBC.CommentId ) as likes,
@@ -454,7 +454,7 @@ FROM DiscussionBoardComments DBC INNER JOIN users ON DBC.UserId=users.User_Id wh
 
 function setCommentLikes($commentId) {
  $headers = apache_request_headers();
-   $split = explode(' ', $headers['Authorization']);
+   $split = explode(' ', $headers['authorization']);
    $user_id  = $split[3];
 
   $likeDateTime= date("Y-m-d");
@@ -517,7 +517,7 @@ function saveComments() {
   $comments = json_decode($request->getBody());
 
    $headers = apache_request_headers();
-   $split = explode(' ', $headers['Authorization']);
+   $split = explode(' ', $headers['authorization']);
    $user_id  = $split[3];
    $cmtDateTime=  date("Y-m-d") ;
    $IsValid=1;
@@ -549,7 +549,7 @@ function saveComments() {
     $request = Slim::getInstance()->request();
     $comment = json_decode($request->getBody());
     $headers = apache_request_headers();
-    $split = explode(' ', $headers['Authorization']);
+    $split = explode(' ', $headers['authorization']);
     $user_id  = $split[3];
     $reportedDate= date("Y-m-d");
     $sql = "INSERT INTO DiscussionBoardAbuse (CommentId, ReportedBy,ReportedDate) VALUES ( :commentId,:reportedBy ,:reportedDate )";
@@ -587,28 +587,15 @@ function addlinkedinData() {
   $request = Slim::getInstance()->request();
   $user = json_decode($request->getBody());
   //
-
-  $currentEmployment = '';
-  $highestEducation = '';
-  $endorsedSkills = '';
-  if (isset($user->values[0]->threeCurrentPositions->values[0]->company->name)) {
-    $currentEmployment = $user->values[0]->threeCurrentPositions->values[0]->company->name;
-  }
-  
-  if (isset($user->values[0]->educations->values[0]->degree) and isset($user->values[0]->educations->values[0]->fieldOfStudy)) {
-    $highestEducation = $user->values[0]->educations->values[0]->degree . ' - '  . $user->values[0]->educations->values[0]->fieldOfStudy;
-  }
-  if (isset($user->values[0]->skills->values[0]->skill->name) and isset($user->values[0]->skills->values[1]->skill->name)) {
-     $endorsedSkills = $user->values[0]->skills->values[0]->skill->name . ','  .$user->values[0]->skills->values[1]->skill->name;
-  }
-  
-
+   // print_r( $user->values[0]->threeCurrentPositions->values[0]->title );
+   $currentEmployment = $user->values[0]->threeCurrentPositions->values[0]->company->name;
+   $currentRole = $user->values[0]->threeCurrentPositions->values[0]->title;
    // print $currentEmployment;
-  
-  //$endorsedSkills = $user->values[0]->skills->values[0]->skill->name . ','  .$user->values[0]->skills->values[1]->skill->name. ','  .$user->values[0]->skills->values[2]->skill->name. ','  .$user->values[0]->skills->values[3]->skill->name. ','  .$user->values[0]->skills->values[4]->skill->name;
+   $highestEducation = $user->values[0]->educations->values[0]->degree . ' - '  . $user->values[0]->educations->values[0]->fieldOfStudy;
+  $endorsedSkills = $user->values[0]->skills->values[0]->skill->name . ','  .$user->values[0]->skills->values[1]->skill->name. ','  .$user->values[0]->skills->values[2]->skill->name. ','  .$user->values[0]->skills->values[3]->skill->name. ','  .$user->values[0]->skills->values[4]->skill->name;
   // foreach($user as $obj) {
       $headers = apache_request_headers();
-      $split = explode(' ', $headers['Authorization']);
+      $split = explode(' ', $headers['authorization']);
       $user_id  = $split[3];
 
   $sql = "INSERT INTO ProfessionalDetails (UserId, CurrentEmployment, CurrentRole, HighestEducation, Endorsedskills) VALUES (:UserId, :CurrentEmployment, :CurrentRole, :HighestEducation, :Endorsedskills)";
@@ -651,7 +638,7 @@ function AddTopic() {
   $headers = apache_request_headers();
   // echo $headers['authorization'];
 
-  $split = explode(' ', $headers['Authorization']);
+  $split = explode(' ', $headers['authorization']);
   $user_id  = $split[3];
   $tdate = date('Y-m-d h:i:s');
   //echo $forum->restriction;
@@ -684,7 +671,7 @@ function joinDiscussion($id) {
   $user = json_decode($request->getBody());
   // print_r( $user );
    $headers = apache_request_headers();
-   $split = explode(' ', $headers['Authorization']);
+   $split = explode(' ', $headers['authorization']);
    $user_id  = $split[3];
    $cdate = date('Y-m-d h:i:s');
   $sql = "INSERT INTO DiscussionBoardUsers (DiscussionBoardId, UserId,JoinedDate) VALUES (:DiscussionBoardId, :UserId,:JoinedDate)";
@@ -707,7 +694,7 @@ function getDiscussionListStatus() {
  
   // print_r( $user );
    $headers = apache_request_headers();
-   $split = explode(' ', $headers['Authorization']);
+   $split = explode(' ', $headers['authorization']);
    $user_id  = $split[3];
    
   $sql = "select DiscussionBoardId from DiscussionBoardUsers where UserId = :user_id";
@@ -728,7 +715,7 @@ function getDiscussionListStatus() {
 
 function deleteComment($commentId) {
 
-  $sql = "DELETE FROM discussionboardcomments WHERE CommentId=:commentId ";
+  $sql = "DELETE FROM DiscussionBoardComments WHERE CommentId=:commentId ";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);  
