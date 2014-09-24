@@ -92,7 +92,7 @@ function adminGetDiscussion() {
   
   $request = Slim::getInstance()->request();
   $forum = json_decode($request->getBody());
-  $sqlCp = "select * FROM DiscussionBoard ORDER BY CreatedDate desc";
+  $sqlCp = "select db.DiscussionBoardId,db.Topic,db.Description,db.CreatedBy,db.Status,u.Picture from DiscussionBoard as db left join users as u on db.CreatedBy=u.user_id order by db.CreatedBy desc";
   $lm = ' Limit ' . $forum->start . ',' . $forum->limit;
   $sqlCp .= $lm;
   try {
@@ -214,7 +214,7 @@ function adminGetTopic() {
   
   $request = Slim::getInstance()->request();
   $forum = json_decode($request->getBody());
-  $sqlCp = "select * FROM DiscussionBoardTopic where DiscussionBoardId=:id ORDER BY CreatedDate desc";
+  $sqlCp = "select dbt.DiscussionTopicId, dbt.DiscussionBoardId, dbt.TopicTitle, dbt.TopicDescription, dbt.CreatedBy, dbt.Status, u.Picture FROM DiscussionBoardTopic as dbt left join users as u on dbt.CreatedBy = u.user_id where DiscussionBoardId=:id ORDER BY CreatedDate desc";
   $lm = ' Limit ' . $forum->start . ',' . $forum->limit;
   $sqlCp .= $lm;
   try {

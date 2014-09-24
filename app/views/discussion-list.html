@@ -18,20 +18,21 @@
                 <div class="row pull-right">
                     <a class="btn-u btn-u-default glow " href="#/add-forum">Request For New forum</a>
                 </div> 
-                <div class="alert fade in margin-bottom-40" ng-repeat="diss in discussionData">
-                    <div ng-show="diss.show">
+                <div class="alert fade in margin-bottom-40" ng-repeat="diss in discussionData" ng-show="diss.show">
+                    
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <a class="pull-right" href="#/edit-forum?id={{diss.DiscussionBoardId}}"><i class="fa fa-pencil" style="margin-right:5px;" data-ng-show="isAdmin"></i></a>
-                    <h4><a href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}">{{diss.Topic}}</a></h4>
-                    <p>{{diss.Description}}</p>
+                    <h4><a href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}">Topic Name - {{diss.Topic}}</a></h4>
+                    <p>Description - {{diss.Description}}</p>
+                    <p>Total Member - {{diss.totalmem}}</p>
                     <p>
                         <a class="btn-u btn-u-sea" ng-click="joinButtonClick(diss.DiscussionBoardId)" ng-show="diss.join" href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}">Join</a>
                          <a class="btn-u btn-u-sea"  ng-show="diss.view" href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}">View</a>
+                          <a class="btn-u btn-u-default glow " ng-click="removeUser(diss)" ng-show="diss.view">Get Removed</a>
                       <!--    <a class="btn-u btn-u-sea" ng-click="joinButtonClick(diss.DiscussionBoardId)" ng-hide="diss.join  && flag" href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}">Joinsss{{diss.DiscussionBoardId}}</a> -->
 
 
                     </p>
-                </div>
+               
                 </div>
             </div>
         </div>

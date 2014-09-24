@@ -1,3 +1,9 @@
+
+ <!--=== Header ===-->    
+  <div data-ng-controller="HeaderCtrl" data-ng-include="Header">
+</div>
+    <!--=== End Header ===--> 
+
 <div class="container" style="margin-left:500px;">
 	<div class="row headingWrap">
 		<label class="col-sm-3 control-label heading">Sign Up</label>	
@@ -37,7 +43,7 @@
         <div class="padding-bottom col-md-5 clear">
             <div  ng-class="{ 'has-error' : fbdataform.birthday.$invalid && !fbdataform.birthday.$pristine || fbdataform.birthday.$invalid  && submitted }">
                 <p class="input-group">
-                    <input type="text" name="birthday" class="form-control" datepicker-popup="{{format}}" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" data-ng-model="fbdata.birthday" />
+                    <input type="text" name="birthday" class="form-control" datepicker-popup="{{format}}" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" data-ng-model="fbdata.birthday" required/>
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
@@ -74,7 +80,7 @@
 
         	<input type="text" name="mobile" class="form-control" data-ng-model="fbdata.mobile" placeholder="Mobile" ng-minlength="10" ng-maxlength="11" required>
 
-            <p ng-show="(fbdataform.mobile.$invalid && !fbdataform.mobile.$pristine) || (fbdataform.mobile.$invalid  && submitted) " class="help-block">Add Mobile Number.</p>
+            <p ng-show="(fbdataform.mobile.$invalid && !fbdataform.mobile.$pristine) || (fbdataform.mobile.$invalid  && submitted) " class="help-block">Add Valid Mobile Number.</p>
             </div>
         </div>
         <div class="padding-bottom col-md-5 clear">
@@ -82,14 +88,19 @@
 
         	<input type="text" name="relationship" class="form-control" data-ng-model="fbdata.relationship_status" placeholder="Relationship Status" required>
 
-            <p ng-show="(fbdataform.relationship.$invalid && !fbdataform.relationship.$pristine) || (fbdataform.relationship.$invalid  && submitted) " class="help-block">Add RelationShip relationship_status.</p>
+            <p ng-show="(fbdataform.relationship.$invalid && !fbdataform.relationship.$pristine) || (fbdataform.relationship.$invalid  && submitted) " class="help-block">Add RelationShip Status.</p>
             </div>
         </div>   
-        <!-- <h4>{{errMessage}}</h4> -->
+        <h4>{{errMessage}}</h4>
         <div class="col-md-3 clear buttonWrap">
-        	<input type="submit" value="submit" class="btn btn-lg btn-primary btn-block " >
+        	<input type="submit" value="submit" ng-click="submitted=true" class="btn btn-lg btn-primary btn-block " >
         </div>
                     
                     
                   </form>
 </div>
+<!--=== Footer ===-->
+ <div data-ng-controller="FooterCtrl" data-ng-include="Footer">
+</div>
+
+<!--=== End Footer ===-->

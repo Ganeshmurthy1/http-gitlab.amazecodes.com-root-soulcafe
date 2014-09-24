@@ -241,6 +241,10 @@ angular.module('sassApp')
             });
 	    	
 	    };
-	    
+	    dataFactory.getTotalMemberFromAllDiscussion = function () {	
+	     	return $http.get(urlBase + 'get_TotalMemberFromAllDiscussion').then(function(response) {
+                return response;
+            });	
+	    };
 	    return dataFactory;
 	}]);

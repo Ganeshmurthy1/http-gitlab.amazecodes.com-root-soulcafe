@@ -22,6 +22,12 @@
 			
 			
                 <div class="funny-boxes funny-boxes-left-orange" data-ng-repeat = "topic in topics" data-ng-hide="topic.deleted">
+                    <div class="media media-v2" style="float:left;margin: 0 !important;
+                                    padding: 0 !important;">
+                    <a class="pull-left" href="#">
+                        <img class="media-object rounded-x" ng-src="{{topic.Picture}}" alt="">
+                    </a>
+                     </div>
                     <h4>{{topic.TopicTitle}}</h4>
                     <p>{{topic.TopicDescription}}</p>
                     <p>

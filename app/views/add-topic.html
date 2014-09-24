@@ -21,8 +21,8 @@
             <form id="sky-form4" class="sky-form" name="adminTopic" data-ng-submit="AddTopic(adminTopic.$valid)">
             
             <fieldset>                
-            <div class="alert alert-danger fade in" data-ng-show="errMessage">{{errMessage}}</div>
-            <div class="alert alert-success fade in" data-ng-show="successmessage">{{successmessage}}</div>
+            <!-- <div class="alert alert-danger fade in" data-ng-show="errMessage">{{errMessage}}</div>
+            <div class="alert alert-success fade in" data-ng-show="successmessage">{{successmessage}}</div> -->
                         <section>
                             <label class="label">Discussion Topic</label>
                             <label class="input">
@@ -40,8 +40,9 @@
 					
                     </fieldset>
                     <footer>
-                        <button class="btn-u" type="submit" ng-disabled="adminAddDiscussion.$invalid" data-ng-submit="AddDiscussion">Submit</button>
+                        <button class="btn-u" type="submit" ng-disabled="adminAddDiscussion.$invalid">Submit</button>
                         <button onclick="window.history.back();" class="btn-u btn-u-default" type="button">Back</button>
+
                     </footer>
             </form>
 

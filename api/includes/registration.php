@@ -42,6 +42,8 @@ $app->get('/get_Picture', 'checkUser','getPicture');
 $app->get('/get_ProfilePictures/:DiscussionBoardId','checkUser', 'getProfilePictures');
 $app->get('/get_PicturesComments/:topicId','checkUser', 'getPicturesComments');
 $app->post('/update_Profile_Detail', 'checkUser', 'updateProfileDetail');
+$app->get('/get_TotalMemberFromAllDiscussion','checkUser', 'getTotalMemberFromAllDiscussion');
+
 function checkUser() { 
   $headers = apache_request_headers();
  // echo $headers['authorization'];
@@ -984,5 +986,19 @@ function getPicturesComments($topicId) {
   }
 }
 
+function getTotalMemberFromAllDiscussion() {
+  $sql = "SELECT db.DiscussionBoardId,count(dbu.DiscussionBoardId) as TotalMember from DiscussionBoard db left join DiscussionBoardUsers dbu on db.DiscussionBoardId=dbu.DiscussionBoardId where db.status = 1 group by db.DiscussionBoardId";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("DiscussionBoardId", $DiscussionBoardId);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}
 
 ?>

@@ -14,9 +14,12 @@ angular.module('sassApp')
       'AngularJS',
       'Karma'
     ];
+
+   
+
     function getAdminForum() {
     	adminDiscussion.getAdminDiscussionTotal().then(function (total) {
-    		console.log(total.data);
+    		// console.log(total.data);
     		 $scope.totalItems = total.data.total;          	
     	});
     	
@@ -28,7 +31,7 @@ angular.module('sassApp')
     	param.limit = $scope.pagePerItem;
     	
     	adminDiscussion.getAdminDiscussion(param).then(function (results) {
-    		//console.log(results.data);
+    	    // console.log(results.data);
     		$scope.discussions = results.data;          	
     	});
     	

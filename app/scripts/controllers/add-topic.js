@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('AddTopicCtrl', function ($scope,regService,$routeParams) {
+  .controller('AddTopicCtrl', function ($scope,$location,regService,$routeParams) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -32,7 +32,8 @@ angular.module('sassApp')
 
 		  if (response.data == 'true') {
 			  $scope.savedSuccessfully = true;
-              $scope.successmessage = "The topic will be posted soon after review.";
+              alert("The topic will be posted soon after review.");
+              $location.path('/discussion-list');
               $scope.errMessage = false;
               $scope.topic = false;
 		  }
@@ -47,3 +48,4 @@ angular.module('sassApp')
 
 
   });
+

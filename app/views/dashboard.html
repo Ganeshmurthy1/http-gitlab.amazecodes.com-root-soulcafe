@@ -39,8 +39,16 @@
                         <div class="col-sm-6" style="min-height:225px;">
                             <div class="service-block-v3 servive-block-blue" style="min-height:250px;">
                                 <i class="icon-screen-desktop"></i>
-                                <h3 style="color:#FFFFFF;">Proffesional Details</h3>
-                                 <a href="#" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs pull-right"  ng-hide="updateButton" ng-href="#/linkedin">Update Profile</a>
+                                <h3 style="color:#FFFFFF;float:left;margin-right:5px;">Proffesional Details</h3>
+                                 <!-- <a href="#" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs pull-right"  ng-hide="updateButton" ng-href="#/linkedin">Update Profile</a> -->
+                                 <div class="container" id="appBody">
+                                    <div class="container-fixed">
+                                        <div class="hero-unit" style="margin-top:10px;" ng-hide="updateButton">
+                                            <!-- <p>Please sign in with your LinkedIn account. How cool is that?</p> -->
+                                            <script type="in/Login" ></script>
+                                        </div>
+                                    </div>
+                                </div>
                                 <p style="color:#FFFFFF;font-size:15px;">Current Employment - {{proffesionalDetails.data.CurrentEmployment}}</p>
                                 <p style="color:#FFFFFF;font-size:15px;">Current Role - {{proffesionalDetails.data.CurrentRole}}</p>
                                 <p style="color:#FFFFFF;font-size:15px;margin-top:10px;">Highest Education - {{proffesionalDetails.data.HighestEducation}}</p>

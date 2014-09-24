@@ -97,10 +97,10 @@ angular.module('sassApp')
 	                	 $scope.fbdata = response;
 	                	 localStorageService.set('facebookData', {fbdata:response});
 
-				 $facebook.api("/me/picture?redirect=0&height=200&type=normal&width=200").then(function(resp) {
-				      	console.log(resp);
-				       	$scope.fbpicture = resp;
-					    localStorageService.set('fbpicture', {fbpicture:resp});
+				 $facebook.api("/me/picture?redirect=0&height=200&type=normal&width=200").then(function(pic) {
+				      	console.log(pic);
+				       	$scope.fbpicture = pic;
+					    localStorageService.set('fbpicture', {fbpicture:pic});
 					 //   var fbbbbdata = localStorageService.get('fbpicture');
 						// console.log(fbbbbdata);
 				  });
@@ -118,7 +118,10 @@ angular.module('sassApp')
 					}
 	                else {
 	                	localStorageService.set('signupDeniedMessage', res);
-	                	$location.path('/signup-denied');
+	                	// $location.path('/signup-denied');
+	                	var deniedMessage = localStorageService.get('signupDeniedMessage');
+    					$scope.message = deniedMessage.message;
+	                	alert("Sorry you are not qualified for an account in Soulcafe , " +$scope.message);
 	                }
 	                
 	                

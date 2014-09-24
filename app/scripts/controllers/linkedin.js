@@ -14,9 +14,9 @@ angular.module('sassApp')
       'AngularJS',
       'Karma'
     ];
-
+    
      $scope.getUserProfile = function () {
-
+         
         linkedinService.getProfile(function(err, result){
             if(err){
                 console.log('error occured');

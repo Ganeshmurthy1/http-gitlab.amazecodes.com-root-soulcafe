@@ -22,7 +22,8 @@ angular.module('sassApp')
 		  console.log(response);
 		  if (response.data == 'true') {
 			  $scope.savedSuccessfully = true;
-              $scope.successmessage = "Forum added sucessfully.";
+              alert("The Forum will be posted soon after review.");
+              $location.path('/discussion-list');
               $scope.errMessage = false;
               $scope.discussion = false;
 		  }

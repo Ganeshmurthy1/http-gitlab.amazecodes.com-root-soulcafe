@@ -16,15 +16,17 @@ angular.module('sassApp')
     ];
 
     $scope.discussionid=$routeParams.discussionid;
+    // console.log($scope.discussionid);
     regService.getdiscussionListTopicName($scope.discussionid).then(function (topicTotal) {
       console.log(topicTotal);
         $scope.topicName = topicTotal.data[0].Topic;    
       });
 
      regService.getdiscussionTopicDetails($scope.discussionid).then(function (results) {
-         console.log(results);
+         // console.log(results);
      	  $scope.discussions = results.data; 
-
+  // console.log($scope.discussions);
+  // console.log($scope.discussions[0].TopicTitle);
       regService.getProfilePictures($scope.discussionid).then(function (images) {
          // console.log(images);
         $scope.profileImages = images.data; 
@@ -74,10 +76,7 @@ angular.module('sassApp')
 
      $scope.isAdmin = false;
      var authData = localStorageService.get('authorizationData');
-     if(authData.user_role == 1) {
-        $scope.isAdmin = true;
-         $scope.disable = "false";
-      }else{
+      
        regService.userJoined($scope.discussionid).then(function (res) {
         console.log("Abhik");
            console.log(res.data.total);
@@ -88,7 +87,6 @@ angular.module('sassApp')
            }
                
        });
-     }
 
      $scope.removeUser = function(){
       regService.removeUser($scope.discussionid).then(function (results) {
@@ -100,5 +98,15 @@ angular.module('sassApp')
       }); 
 
      }
+
+    $scope.joinButtonClick = function(id){
+       $scope.disable = "false";
+      console.log(id);
+      regService.joinDiscussion(id).then(function(response) {
+       console.log(response);
+        
+      });
+    }
+
   
 });
