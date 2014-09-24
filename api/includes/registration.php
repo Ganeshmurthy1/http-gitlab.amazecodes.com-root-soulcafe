@@ -70,11 +70,11 @@ function checkUser() {
     $db = null;
     //echo json_encode($wine);
     if($wine == false) {
-      $app = Slim::getInstance();
-      $app->status(401);
-      $result = array("status" => "error", "message" => "You need a valid API key.");
-      echo json_encode($result);
-      $app->stop();    
+     $app = Slim::getInstance();
+     $app->status(401);
+     $result = array("status" => "error", "message" => "You need a valid API key.");
+     echo json_encode($result);
+     $app->stop();    
   
     }
   
@@ -396,9 +396,7 @@ echo 'true';
 
 function getAllDiscussions() {
 
-  $headers = apache_request_headers();
-   $split = explode(' ', $headers['authorization']);
-   $user_id  = $split[3];
+  $user_id  = getUserId();
   $sql = "select * ,(select count(1) from DiscussionBoardUsers DBU where DBU.DiscussionBoardId=DB.DiscussionBoardId and DBU.UserId=:user ) as flag FROM DiscussionBoard DB where Status=1";
   try {
     $db = getConnection();
@@ -433,9 +431,7 @@ function getAllDiscussionsTopics($DiscussionBoardId) {
 
 function getdiscussionTopicComments($topic) {
 
-   $headers = apache_request_headers();
-   $split = explode(' ', $headers['authorization']);
-   $user_id  = $split[3];
+   $user_id  = getUserId();
 
    $sql = "SELECT DBC.CommentDateTime, DBC.UserId, DBC.Comment ,DBC.CommentId,users.first_name, (select count(1) from DiscussionBorardLikes DBL where DBL.CommentId=DBC.CommentId ) as likes,
 (select count(1) from DiscussionBorardLikes DBL where DBL.CommentId=DBC.CommentId and DBL.UserId=:userId ) as likeflag ,(select count(1) from DiscussionBoardComments DSB where DSB.CommentId=DBC.CommentId and DSB.UserId=:userId ) as deleteflag
@@ -455,10 +451,7 @@ FROM DiscussionBoardComments DBC INNER JOIN users ON DBC.UserId=users.User_Id wh
 }
 
 function setCommentLikes($commentId) {
- $headers = apache_request_headers();
-   $split = explode(' ', $headers['authorization']);
-   $user_id  = $split[3];
-
+  $user_id  = getUserId();
   $likeDateTime= date("Y-m-d");
 
   $sql = "INSERT INTO DiscussionBorardLikes (CommentId, UserId, LikeDateTime) VALUES (:commentId, :userId, :likeDateTime)";
@@ -518,9 +511,7 @@ function saveComments() {
   $request = Slim::getInstance()->request();
   $comments = json_decode($request->getBody());
 
-   $headers = apache_request_headers();
-   $split = explode(' ', $headers['authorization']);
-   $user_id  = $split[3];
+   $user_id  = getUserId();
    $cmtDateTime=  date("Y-m-d") ;
    $IsValid=1;
    $SeqNo=1;
@@ -550,9 +541,7 @@ function saveComments() {
   function saveDiscussionboardabuse($commenitid) {   
     $request = Slim::getInstance()->request();
     $comment = json_decode($request->getBody());
-    $headers = apache_request_headers();
-    $split = explode(' ', $headers['authorization']);
-    $user_id  = $split[3];
+    $user_id  = getUserId();
     $reportedDate= date("Y-m-d");
     $sql = "INSERT INTO DiscussionBoardAbuse (CommentId, ReportedBy,ReportedDate) VALUES ( :commentId,:reportedBy ,:reportedDate )";
       try {
@@ -594,11 +583,9 @@ function addlinkedinData() {
    $currentRole = $user->values[0]->threeCurrentPositions->values[0]->title;
    // print $currentEmployment;
    $highestEducation = $user->values[0]->educations->values[0]->degree . ' - '  . $user->values[0]->educations->values[0]->fieldOfStudy;
-  $endorsedSkills = $user->values[0]->skills->values[0]->skill->name . ','  .$user->values[0]->skills->values[1]->skill->name. ','  .$user->values[0]->skills->values[2]->skill->name. ','  .$user->values[0]->skills->values[3]->skill->name. ','  .$user->values[0]->skills->values[4]->skill->name;
+   $endorsedSkills = $user->values[0]->skills->values[0]->skill->name . ','  .$user->values[0]->skills->values[1]->skill->name. ','  .$user->values[0]->skills->values[2]->skill->name. ','  .$user->values[0]->skills->values[3]->skill->name. ','  .$user->values[0]->skills->values[4]->skill->name;
   // foreach($user as $obj) {
-      $headers = apache_request_headers();
-      $split = explode(' ', $headers['authorization']);
-      $user_id  = $split[3];
+  $user_id  = getUserId();
 
   $sql = "INSERT INTO ProfessionalDetails (UserId, CurrentEmployment, CurrentRole, HighestEducation, Endorsedskills) VALUES (:UserId, :CurrentEmployment, :CurrentRole, :HighestEducation, :Endorsedskills)";
   try {
@@ -637,11 +624,7 @@ function updateUser($user_id) {
 function AddTopic() {
   $request = Slim::getInstance()->request();
   $forum = json_decode($request->getBody());
-  $headers = apache_request_headers();
-  // echo $headers['authorization'];
-
-  $split = explode(' ', $headers['authorization']);
-  $user_id  = $split[3];
+  $user_id  = getUserId();
   $tdate = date('Y-m-d h:i:s');
   //echo $forum->restriction;
 
@@ -672,9 +655,7 @@ function joinDiscussion($id) {
   $request = Slim::getInstance()->request();
   $user = json_decode($request->getBody());
   // print_r( $user );
-   $headers = apache_request_headers();
-   $split = explode(' ', $headers['authorization']);
-   $user_id  = $split[3];
+   $user_id  = getUserId();
    $cdate = date('Y-m-d h:i:s');
   $sql = "INSERT INTO DiscussionBoardUsers (DiscussionBoardId, UserId,JoinedDate) VALUES (:DiscussionBoardId, :UserId,:JoinedDate)";
   try {
@@ -695,9 +676,7 @@ echo 'true';
 function getDiscussionListStatus() {
  
   // print_r( $user );
-   $headers = apache_request_headers();
-   $split = explode(' ', $headers['authorization']);
-   $user_id  = $split[3];
+  $user_id  = getUserId();
    
   $sql = "select DiscussionBoardId from DiscussionBoardUsers where UserId = :user_id";
   try {
@@ -733,9 +712,7 @@ echo 'true';
 function getProfileDetail() {
  
   // print_r( $user );
-   $headers = apache_request_headers();
-   $split = explode(' ', $headers['authorization']);
-   $user_id  = $split[3];
+   $user_id  = getUserId();
    
   $sql = "select u.user_id, u.first_name, u.last_name,u.email, u.relationship_status, u.mobile,pd.CurrentEmployment,pd.HighestEducation,pd.Endorsedskills from users AS u left join ProfessionalDetails As pd on u.user_id = pd.UserId where u.user_id=:user_id";
   try {
@@ -755,9 +732,7 @@ function updateProfileDetail() {
   $request = Slim::getInstance()->request();
   $user = json_decode($request->getBody());
 
-  $headers = apache_request_headers();
-  $split = explode(' ', $headers['authorization']);
-  $user_id  = $split[3];
+  $user_id  = getUserId();
     // print_r($user);
   $sqlusers = "update users  set first_name=:first_name,last_name=:last_name,email=:email,mobile=:mobile where user_id = :user_id ";
    $sqlpd = "update ProfessionalDetails set CurrentEmployment = :CurrentEmployment,Endorsedskills=:Endorsedskills,HighestEducation=:HighestEducation where UserId = :user_id ";  
@@ -791,8 +766,7 @@ function addUserDiscussion() {
   // echo $headers['authorization'];
   $valid = checkValidDiscussion($forum);
   if($valid['status']) {
-    $split = explode(' ', $headers['authorization']);
-    $user_id  = $split[3];
+    $user_id  = getUserId();
     $tdate = date('Y-m-d h:i:s');
     //echo $forum->restriction;
     $restriction = 0;
@@ -846,9 +820,7 @@ function getTotalMembers($DiscussionBoardId) {
 }
 
 function removeUser($DiscussionBoardId) {
-  $headers = apache_request_headers();
-  $split = explode(' ', $headers['authorization']);
-  $user_id  = $split[3];
+  $user_id  = getUserId();
   $sql = "DELETE FROM `DiscussionBoardUsers` WHERE DiscussionBoardId =:DiscussionBoardId and UserId =:user_id ";
   try {
     $db = getConnection();
@@ -879,9 +851,7 @@ function getTotalComments($DiscussionBoardId) {
 }
 
 function userJoined($DiscussionBoardId) {
-  $headers = apache_request_headers();
-  $split = explode(' ', $headers['authorization']);
-  $user_id  = $split[3];
+  $user_id  = getUserId();
   $sql = "SELECT count(1) as total FROM `DiscussionBoardUsers` where DiscussionBoardId = :DiscussionBoardId and UserId = :user_id";
   try {
     $db = getConnection();
@@ -933,9 +903,7 @@ function getRating($topicId) {
   }
 
 function getPicture() {
-  $headers = apache_request_headers();
-  $split = explode(' ', $headers['authorization']);
-  $user_id  = $split[3];
+  $user_id  = getUserId();
   $sql = "SELECT Picture from users where user_id = :user_id";
   try {
     $db = getConnection();

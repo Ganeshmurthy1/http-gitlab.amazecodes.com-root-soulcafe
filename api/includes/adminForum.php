@@ -26,12 +26,11 @@ $app->post('/edit_forum', 'checkUser', 'editforum');
 function adminAddDiscussion() {
   $request = Slim::getInstance()->request();
   $forum = json_decode($request->getBody());
-  $headers = apache_request_headers();
+  
   // echo $headers['authorization'];
   $valid = checkValidDiscussion($forum);
   if($valid['status']) {
-    $split = explode(' ', $headers['authorization']);
-    $user_id  = $split[3];
+    $user_id  = getUserId();
     $tdate = date('Y-m-d h:i:s');
     //echo $forum->restriction;
     $restriction = 0;
@@ -236,12 +235,8 @@ function adminGetTopic() {
 function adminAddTopic() {
   $request = Slim::getInstance()->request();
   $forum = json_decode($request->getBody());
-  $headers = apache_request_headers();
-  // echo $headers['authorization'];
-
-    $split = explode(' ', $headers['authorization']);
-    $user_id  = $split[3];
-    $tdate = date('Y-m-d h:i:s');
+  $user_id  = getUserId();
+  $tdate = date('Y-m-d h:i:s');
     //echo $forum->restriction;
     
     $status = 1;

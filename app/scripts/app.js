@@ -21,7 +21,6 @@ angular
     'LocalStorageModule',
     'perfect_scrollbar',
     'ui.bootstrap'
-    
   ])
   .config(['$routeProvider', '$facebookProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $facebookProvider, $locationProvider, $httpProvider) {
 	

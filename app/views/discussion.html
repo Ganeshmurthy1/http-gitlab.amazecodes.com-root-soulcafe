@@ -28,6 +28,15 @@
                                 <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments"></i>{{topicName}}</h2>
                             
                             </div>
+
+    <!-- <rating ng-model="rate" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
+            <div class="col-md-2">
+                <span ng-repeat="rating in ratings">
+                    <div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)" ng-click="ratingHide()">
+                    </div>
+                </span>
+            </div> -->
+
             
               
               <div class="col-md-2">
@@ -56,11 +65,10 @@
                                         </ul>    
                                         <ul class="list-inline pull-right">
 
-
+							<li>
                                <a href="" data-ng-show="{{comment.deleteflag}}"data-ng-click="deleteComment({{comment.CommentId}})">
-                                <i class="fa fa-trash-o fa-lg"></i>
-</a>
-                               
+                                <i class="icon-custom rounded-2x icon-color-u fa fa-trash-o"></i></a>
+                               </li>
            
                                 <li><a href="" data-ng-click="commentLike({{comment.CommentId}})">
                                     <i data-ng-hide={{comment.likeflag==1}} class="expand-list rounded-x fa fa-heart" ></i><a></li>
