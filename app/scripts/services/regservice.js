@@ -10,7 +10,7 @@ angular.module('sassApp')
   .factory('regService', ['$http', '$facebook', 'localStorageService', function($http, $facebook, localStorageService) {
 	   
 	    localStorageService.set('apiContext', {
-			 base_path: '/Soulcafe/api/',
+			 base_path: '/SASS/api/',
 	    });	  
 	    var urlBase = localStorageService.get('apiContext').base_path;
 	    var dataFactory = {};
