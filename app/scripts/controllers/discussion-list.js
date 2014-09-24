@@ -254,7 +254,21 @@ $scope.removeUser = function(id){
         if ($scope.res == 'true') {
           $scope.discussionData[id.sr-1].join="true";
           $scope.discussionData[id.sr-1].view="false";
-          $location.path('/discussion-list');
+          regService.getTotalMemberFromAllDiscussion().then(function(mem) {
+               // console.log(mem);
+               $scope.totalmem = mem.data;
+               // console.log($scope.totalmem);
+               for (var z  in $scope.discussionData) {
+                for (var y  in $scope.totalmem) {
+                if($scope.discussionData[z].DiscussionBoardId == $scope.totalmem[y].DiscussionBoardId){
+                  // console.log("AAAAAAAAAA");
+                  $scope.discussionData[z].totalmem = $scope.totalmem[y].TotalMember;
+                }
+                }
+                // console.log($scope.discussionData);
+              }
+              });
+          // $location.path('/discussion-list');
         }     
       }); 
 
