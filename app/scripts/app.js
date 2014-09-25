@@ -165,6 +165,10 @@ angular
         templateUrl: 'views/dashboard-anon.html',
         controller: 'DashboardAnonCtrl'
       })
+      .when('/side_bar_anon', {
+        templateUrl: 'views/side_bar_anon.html',
+        controller: 'SideBarAnonCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

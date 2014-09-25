@@ -28,4 +28,9 @@ $scope.SideBar = 'views/side_bar.html';
             $scope.pic=response.data; 
             // console.log($scope.pic.Picture);
     });
+
+   regService.getDiscussionDetails().then(function (results) {
+
+       $scope.discussionData = results.data;
+    });
   });

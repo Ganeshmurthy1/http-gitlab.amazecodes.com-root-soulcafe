@@ -11,7 +11,7 @@
     <div class="profile container content" style="border-color:red">
         <div class="row">
             <!--Left Sidebar-->
-            <div data-ng-controller="SideBarCtrl" data-ng-include="SideBar">
+            <div data-ng-controller="SideBarAnonCtrl" data-ng-include="SideBarAnon">
             </div>
             <!--End Left Sidebar-->
             
@@ -20,7 +20,7 @@
 
 
                  <!-- Our Clients -->
-         <div id="clients-flexslider" class="flexslider home clients">
+         <!-- <div id="clients-flexslider" class="flexslider home clients">
             <div class="headline"><h2>Our Clients</h2></div>    
             <ul class="slides" style="width:3400%; transition-duration:1s; transform-style:translate3d(0px, 0px, 0px);">
                 <li style="width: 125.667px; float: left; display: block;">
@@ -126,7 +126,7 @@
                     </a>
                 </li>
             </ul>
-        </div> <!--/flexslider
+        </div> --> <!--/flexslider
         <!-- End Our Clients -->
 
 
@@ -170,9 +170,10 @@
                    
                     </div>
                     <hr>
-                                        
+                  <div id="vis" class="demo"></div>                      
                 </div>
                 <!--End Profile Body-->
+
             </div>
         </div><!--/end row-->
     </div><!--/container-->    
