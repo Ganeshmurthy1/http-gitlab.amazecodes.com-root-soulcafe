@@ -169,6 +169,11 @@ angular
         templateUrl: 'views/side_bar_anon.html',
         controller: 'SideBarAnonCtrl'
       })
+      .when('/admin-bad-list', {
+        templateUrl: 'views/admin-bad-list.html',
+        controller: 'AdminBadListCtrl',
+        access:      access.user
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -435,7 +435,7 @@ function getdiscussionTopicComments($topic) {
 
    $sql = "SELECT DBC.CommentDateTime, DBC.UserId, DBC.Comment ,DBC.CommentId,users.first_name, (select count(1) from DiscussionBorardLikes DBL where DBL.CommentId=DBC.CommentId ) as likes,
 (select count(1) from DiscussionBorardLikes DBL where DBL.CommentId=DBC.CommentId and DBL.UserId=:userId ) as likeflag ,(select count(1) from DiscussionBoardComments DSB where DSB.CommentId=DBC.CommentId and DSB.UserId=:userId ) as deleteflag
-FROM DiscussionBoardComments DBC INNER JOIN users ON DBC.UserId=users.User_Id where DiscussionTopicId=:topic and DBC.IsValid = 1" ;
+FROM DiscussionBoardComments DBC INNER JOIN users ON DBC.UserId=users.User_Id where DiscussionTopicId=:topic and DBC.IsValid = 1 and DBC.profane=0" ;
  try {   
     $db = getConnection();   
     $stmt = $db->prepare($sql);
@@ -511,12 +511,25 @@ function saveComments() {
   $request = Slim::getInstance()->request();
   $comments = json_decode($request->getBody());
 
-   $user_id  = getUserId();
-   $cmtDateTime=  date("Y-m-d") ;
-   $IsValid=1;
-   $SeqNo=1;
+  $user_id  = getUserId();
+  $cmtDateTime=  date("Y-m-d") ;
+  $IsValid=1;
+  $SeqNo=1;
+  
+  $profane = 0;
+  $bwb = new BWB();
+  $ok = $bwb->has_bad_words($comments->comment);
+  if ($ok) {
+    $profane = 1;
+    echo 'profane';
+  }
+  
+  $comment_santized = $bwb->sanitizeString($comments->comment);
+  //var_dump($ok);
+  
+  //exit();
 
-  $sql = "INSERT INTO DiscussionBoardComments (DiscussionTopicId, UserId,SeqNo, Comment,CommentDateTime,IsValid) VALUES ( :topicId,:userId ,:SeqNo,:comment ,:cmtDateTime,:IsValid )";
+  $sql = "INSERT INTO DiscussionBoardComments (DiscussionTopicId, UserId,SeqNo, Comment,CommentDateTime,IsValid,profane) VALUES ( :topicId,:userId ,:SeqNo,:comment ,:cmtDateTime,:IsValid, :profane )";
   
 
   try {
@@ -525,14 +538,15 @@ function saveComments() {
     $stmt->bindParam("topicId", $comments->topicId);
     $stmt->bindParam("userId", $user_id);
     $stmt->bindParam("SeqNo", $SeqNo);
-    $stmt->bindParam("comment", $comments->comment);
+    $stmt->bindParam("comment", $comment_santized);
     $stmt->bindParam("cmtDateTime", $cmtDateTime);
     $stmt->bindParam("IsValid", $IsValid);
-        $stmt->execute();
-       echo 'true';
+    $stmt->bindParam("profane", $profane);
+    $stmt->execute();
+    //   echo 'true';
         //$app->redirect('login.html');
       } 
- catch(PDOException $e) {
+  catch(PDOException $e) {
         echo '{"error":{"text":'. $e->getMessage() .'}}';
       }
   }
