@@ -19,115 +19,25 @@
             	<h1 style="background-color:#ed719e;padding:5px;text-align:center;">Motto I Live By - "Dare To Follow Your Dream"</h1>
 
 
-                 <!-- Our Clients -->
-         <!-- <div id="clients-flexslider" class="flexslider home clients">
-            <div class="headline"><h2>Our Clients</h2></div>    
-            <ul class="slides" style="width:3400%; transition-duration:1s; transform-style:translate3d(0px, 0px, 0px);">
-                <li style="width: 125.667px; float: left; display: block;">
-                    <a href="#">
-                        <img src="images/clients/hp_grey.png" alt=""> 
-                        <img src="images/clients/hp.png" class="color-img" alt="">
-                    </a>
-                </li>
-                <li style="width: 125.667px; float: left; display: block;">
-                    <a href="#">
-                        <img src="images/clients/igneus_grey.png" alt=""> 
-                        <img src="images/clients/igneus.png" class="color-img" alt="">
-                    </a>
-                </li>
-                <li style="width: 125.667px; float: left; display: block;">
-                    <a href="#">
-                        <img src="images/clients/vadafone_grey.png" alt=""> 
-                        <img src="images/clients/vadafone.png" class="color-img" alt="">
-                    </a>
-                </li>
-                <li style="width: 125.667px; float: left; display: block;">
-                    <a href="#">
-                        <img src="images/clients/walmart_grey.png" alt=""> 
-                        <img src="images/clients/walmart.png" class="color-img" alt="">
-                    </a>
-                </li>
-                <li style="width: 125.667px; float: left; display: block;">
-                    <a href="#">
-                        <img src="images/clients/shell_grey.png" alt=""> 
-                        <img src="images/clients/shell.png" class="color-img" alt="">
-                    </a>
-                </li>
-                <li style="width: 125.667px; float: left; display: block;">
-                    <a href="#">
-                        <img src="images/clients/natural_grey.png" alt=""> 
-                        <img src="images/clients/natural.png" class="color-img" alt="">
-                    </a>
-                </li>
-                <li style="width: 125.667px; float: left; display: block;">
-                    <a href="#">
-                        <img src="images/clients/aztec_grey.png" alt=""> 
-                        <img src="images/clients/aztec.png" class="color-img" alt="">
-                    </a>
-                </li>
-                <li style="width: 125.667px; float: left; display: block;">
-                    <a href="#">
-                        <img src="images/clients/gamescast_grey.png" alt=""> 
-                        <img src="images/clients/gamescast.png" class="color-img" alt="">
-                    </a>
-                </li>
-                <li style="width: 125.667px; float: left; display: block;">
-                    <a href="#">
-                        <img src="images/clients/cisco_grey.png" alt=""> 
-                        <img src="images/clients/cisco.png" class="color-img" alt="">
-                    </a>
-                </li>
-                <li style="width: 125.667px; float: left; display: block;">
-                    <a href="#">
-                        <img src="images/clients/everyday_grey.png" alt=""> 
-                        <img src="images/clients/everyday.png" class="color-img" alt="">
-                    </a>
-                </li>
-                <li style="width: 125.667px; float: left; display: block;">
-                    <a href="#">
-                        <img src="images/clients/cocacola_grey.png" alt=""> 
-                        <img src="images/clients/cocacola.png" class="color-img" alt="">
-                    </a>
-                </li>
-                <li style="width: 125.667px; float: left; display: block;">
-                    <a href="#">
-                        <img src="images/clients/spinworkx_grey.png" alt=""> 
-                        <img src="images/clients/spinworkx.png" class="color-img" alt="">
-                    </a>
-                </li>
-                <li style="width: 125.667px; float: left; display: block;">
-                    <a href="#">
-                        <img src="images/clients/shell_grey.png" alt=""> 
-                        <img src="images/clients/shell.png" class="color-img" alt="">
-                    </a>
-                </li>
-                <li style="width: 125.667px; float: left; display: block;">
-                    <a href="#">
-                        <img src="images/clients/natural_grey.png" alt=""> 
-                        <img src="images/clients/natural.png" class="color-img" alt="">
-                    </a>
-                </li>
-                <li style="width: 125.667px; float: left; display: block;">
-                    <a href="#">
-                        <img src="images/clients/gamescast_grey.png" alt=""> 
-                        <img src="images/clients/gamescast.png" class="color-img" alt="">
-                    </a>
-                </li>
-                <li style="width: 125.667px; float: left; display: block;">
-                    <a href="#">
-                        <img src="images/clients/everyday_grey.png" alt=""> 
-                        <img src="images/clients/everyday.png" class="color-img" alt="">
-                    </a>
-                </li>
-                <li style="width: 125.667px; float: left; display: block;">
-                    <a href="#">
-                        <img src="images/clients/spinworkx_grey.png" alt=""> 
-                        <img src="images/clients/spinworkx.png" class="color-img" alt="">
-                    </a>
-                </li>
-            </ul>
-        </div> --> <!--/flexslider
-        <!-- End Our Clients -->
+                 
+<div style="background-color: #eee; font-size:18px">
+
+    <div class="photo-container" data-my-carousel data-carousel-class="photo-carousel" data-on-page-upcoming="loadPage(page, tmplCb)" data-give-carousel-to="onCarouselAvailable(carousel)">
+      <div class="photo-grid span12">
+       
+        <span data-ng-repeat="photo in photos">
+          <img ng-src="{{getPhotoUrl(photo)}}">
+         
+        </span>
+      </div>
+    </div>
+    <a style="float: left;" data-ng-show="hasPrevious()" data-ng-click="previous()">&lt;&lt; Previous</a>
+    <span style="float: left;" data-ng-hide="hasPrevious()">&lt;&lt; Previous</span>
+    <a style="float: left;" data-ng-show="hasNext()" data-ng-click="next()">Next &gt;&gt;</a>
+    <span style="float: left;" data-ng-hide="hasNext()">Next &gt;&gt;</span>
+
+    
+  </div>
 
 
 

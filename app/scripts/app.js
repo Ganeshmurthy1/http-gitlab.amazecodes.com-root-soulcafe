@@ -20,7 +20,8 @@ angular
     'ngFacebook',
     'LocalStorageModule',
     'perfect_scrollbar',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'fundoo.directives'
   ])
   .config(['$routeProvider', '$facebookProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $facebookProvider, $locationProvider, $httpProvider) {
 	
@@ -168,6 +169,14 @@ angular
       .when('/side_bar_anon', {
         templateUrl: 'views/side_bar_anon.html',
         controller: 'SideBarAnonCtrl'
+      })
+      .when('/admin_inappropriate_comments', {
+        templateUrl: 'views/admin_inappropriate_comments.html',
+        controller: 'AdminInappropriateCommentsCtrl'
+      })
+      .when('/admin-inappropriate-comments', {
+        templateUrl: 'views/admin-inappropriate-comments.html',
+        controller: 'AdminInappropriateCommentsCtrl'
       })
       .otherwise({
         redirectTo: '/'

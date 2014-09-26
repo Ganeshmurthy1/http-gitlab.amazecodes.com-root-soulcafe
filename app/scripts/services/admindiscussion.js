@@ -149,5 +149,12 @@ angular.module('sassApp')
             });
 	    	
 	    };
+	    dataFactory.adminInappropriateComment = function () {	
+	      	return $http.get(urlBase + 'adminInappropriateComment').then(function(response) {
+	    		//console.log(response);
+                return response;
+            });	 
+	      };
 	    return dataFactory;
 	}]);
+

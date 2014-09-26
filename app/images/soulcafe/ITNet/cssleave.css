@@ -1,0 +1,90 @@
+/***********************************************/
+/* emx_nav_left.css                            */
+/* Use with template Halo_leftNav.html         */
+/***********************************************/
+
+/***********************************************/
+/* HTML tag styles                             */
+/***********************************************/
+html {
+overflow: auto;
+}
+body{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:9pt;
+	color: #333333;
+	line-height: 1.166;	
+	margin: 0px;
+	padding: 0px;
+	background: #ffffff;
+}
+#wrapper {
+position: relative;
+margin:0px auto 0px auto;
+width:850px;
+height: 1900;
+z-index: 0;
+}
+/*
+#wrapper {
+position: relative;
+margin:0px auto 0px auto;
+width:950px;
+}
+*/
+/******* hyperlink and anchor tag styles *******/
+
+a:link, a:visited{
+	color: #000000;
+	text-decoration: none;
+}
+
+a:hover{
+	text-decoration: none;
+	color:Red;
+}
+
+
+
+/***********************************************/
+/* Layout Divs                                 */
+/***********************************************/
+#toplayer {
+	position:absolute;
+	width:1200px;
+	height:121px;
+	z-index:0;
+	left: 10px;
+	top: -2px;
+}
+
+
+
+#marqueetop {
+	position:absolute;
+	width:950px;
+	height:22px;
+	z-index:0;
+	left: 6px;
+	top: 149px;
+	background-color:Lime;
+}
+
+
+
+.buttonColor
+{
+    background-color:Green;
+    border-top: 1px solid Green;
+    border-bottom: 1px solid Green;
+    border-left: 1px solid Green;
+    border-right: 1px solid Green;
+    color:#FFC0FF;
+}
+
+.commonfont
+{
+    font-family:Arial, Helvetica, sans-serif;
+	font-size:9pt;
+}
+

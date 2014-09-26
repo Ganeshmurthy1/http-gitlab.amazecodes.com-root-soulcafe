@@ -16,7 +16,7 @@ $app->get('/linkedinUsers/:id', 'getLinkedinUsers');
 $app->post('/add_linkedinData', 'addlinkedinData');
 
 $app->get('/getProffesionaldetails/:id', 'checkUser', 'get_Proffesionaldetails');
-$app->get('/saveDiscussionboardabuse/:commenitid','checkUser', 'saveDiscussionboardabuse');
+$app->post('/saveDiscussionBoardAbuse','checkUser', 'save_DiscussionBoardAbuse');
 $app->get('/discussionAll', 'checkUser','checkUser', 'getAllDiscussions');
 $app->get('/discussionTopicAll/:DiscussionBoardId','checkUser', 'getAllDiscussionsTopics');
 $app->get('/discussionTopicComments/:topic','checkUser', 'getdiscussionTopicComments');
@@ -538,19 +538,20 @@ function saveComments() {
   }
 
   
-  function saveDiscussionboardabuse($commenitid) {   
+  function save_DiscussionBoardAbuse() { 
     $request = Slim::getInstance()->request();
-    $comment = json_decode($request->getBody());
-    $user_id  = getUserId();
+    $user = json_decode($request->getBody());
+    // print_r($user);
+     $user_id  = getUserId();
     $reportedDate= date("Y-m-d");
-    $sql = "INSERT INTO DiscussionBoardAbuse (CommentId, ReportedBy,ReportedDate) VALUES ( :commentId,:reportedBy ,:reportedDate )";
+    $sql = "INSERT INTO DiscussionBoardAbuse (CommentId, ReportedBy,Comments,ReportedDate) VALUES ( :commentId,:reportedBy,:Comments,:reportedDate )";
       try {
         $db = getConnection();
         $stmt = $db->prepare($sql);
-        $stmt->bindParam("commentId", $commenitid);
+        $stmt->bindParam("commentId", $user->CommentId);
         $stmt->bindParam("reportedBy", $user_id);
-       
-        $stmt->bindParam("reportedDate", $reportedDate);
+        $stmt->bindParam("Comments", $user->Comment);
+        $stmt->bindParam("reportedDate",$reportedDate);
         $stmt->execute();
        echo 'true';
         //$app->redirect('login.html');
