@@ -23,7 +23,10 @@ $scope.Header = 'views/header.html';
 		{
 			$location.path('/discussion-list');
 		}
-
+	$scope.home=function()
+	{
+		$location.path('/dashboard');
+	}
 
 
   });

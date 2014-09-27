@@ -21,7 +21,7 @@ $app->get('/update_Appropriate/:id', 'checkUser', 'updateAppropriate');
 $app->get('/update_InAppropriate/:id', 'checkUser', 'updateInAppropriate');
 $app->get('/get_forum/:DiscussionBoardId', 'checkUser', 'getforum');
 $app->post('/edit_forum', 'checkUser', 'editforum');
-
+$app->get('/adminInappropriateComment', 'checkUser', 'adminInappropriateComment');
 
 $app->post('/admin_get_bad_list', 'checkUser', 'adminGetBadList');
 $app->get('/admin_not_spam/:id', 'checkUser', 'adminNotASpam');
@@ -441,6 +441,7 @@ function editforum() {
 
 }
 
+
 function adminGetBadList() {
 
   $request = Slim::getInstance()->request();
@@ -457,11 +458,32 @@ function adminGetBadList() {
     $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
     $db = null;
     echo json_encode($wine);
+    } catch(PDOException $e) {
+      echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
+    //echo json_encode($wine);
+ }
+
+function adminInappropriateComment() {
+  
+
+   $sql = "SELECT dbc.CommentId,dbc.Comment,dba.ReportedBy,dba.ReportedDate,dbt.DiscussionTopicId,dbt.TopicTitle FROM DiscussionBoardComments as dbc left join DiscussionBoardAbuse as dba  on dbc.CommentId=dba.CommentId left join DiscussionBoardTopic as dbt on dbc.DiscussionTopicId = dbt.DiscussionTopicId where dbc.IsValid = 0";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    // $stmt->bindParam("id", $id);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    //echo $total = $wine->'count(1)';
+
+    echo json_encode($wine);
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
   //echo json_encode($wine);
 }
+
 function adminNotASpam($id) {
  $sql = "Update DiscussionBoardComments SET profane=0 WHERE CommentId=:id";
   try {

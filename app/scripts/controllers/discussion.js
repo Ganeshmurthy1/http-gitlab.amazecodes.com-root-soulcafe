@@ -80,7 +80,8 @@ angular.module('sassApp')
     }
 
     $scope.abuseReport = function(arg) {
-        regService.saveDiscussionboardAbuse(arg).then(function (results) {
+      console.log(arg);
+        regService.saveDiscussionBoardAbuse(arg).then(function (results) {
           $scope.hide=false;
           $scope.abuseSuccessMessage="Comment Reported";
             });

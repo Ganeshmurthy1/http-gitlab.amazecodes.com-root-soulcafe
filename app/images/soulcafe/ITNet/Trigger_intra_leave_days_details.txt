@@ -1,0 +1,104 @@
+﻿-- ================================================
+-- Template generated from Template Explorer using:
+-- Create Trigger (New Menu).SQL
+--
+-- Use the Specify Values for Template Parameters 
+-- command (Ctrl-Shift-M) to fill in the parameter 
+-- values below.
+--
+-- See additional Create Trigger templates for more
+-- examples of different Trigger statements.
+--
+-- This block of comments will not be included in
+-- the definition of the function.
+-- ================================================
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Sebastian John
+-- Create date: 22-07-2010
+-- Description:	Update Leave balances
+-- =============================================
+ALTER TRIGGER dbo.TRI_IDU_INTRA_LEAVE_BALANCE 
+   ON  dbo.intra_leave_days_details 
+   AFTER INSERT,DELETE,UPDATE
+AS 
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	
+	
+	SET NOCOUNT ON;
+	
+	DECLARE @tableVar TABLE
+	(	
+		emp_docno			NVARCHAR(20),
+		sapleave_days		INT,
+		hrnetleave_days		INT,
+		sick_days			INT,
+		maternity_days		INT
+	)
+	
+	INSERT INTO @tableVar
+	(	emp_docno,
+		sapleave_days,
+		hrnetleave_days,
+		sick_days,
+		maternity_days
+	)
+	SELECT	emp_docno,
+			SUM(asper_sap_leave_days)		 AS sapleave_days,
+			SUM(asper_hrnet_leave_days) AS hrnetleave_days,
+			SUM(sick_days)				 AS sick_days,
+			SUM(maternity_days)		 AS maternity_days
+	FROM deleted
+	GROUP BY emp_docno
+	ORDER BY emp_docno
+	
+	
+	UPDATE 	intra_leave_balance
+    SET asper_sap_total_leave_days		= asper_sap_total_leave_days	- tv.sapleave_days,
+		asper_hrnet_total_leave_days	= asper_hrnet_total_leave_days  - tv.hrnetleave_days,
+		asper_total_sick_days			= asper_total_sick_days			- tv.sick_days,
+		asper_total_maternity_days		= asper_total_maternity_days	- tv.maternity_days
+	FROM @tableVar tv, intra_leave_balance il
+	WHERE  tv.emp_docno = il.emp_docno    		
+	
+	DELETE FROM @tableVar
+	
+--------------------------------------------
+
+	INSERT INTO @tableVar
+	(	emp_docno,
+		sapleave_days,
+		hrnetleave_days,
+		sick_days,
+		maternity_days
+	)
+	SELECT	emp_docno,
+			SUM(asper_sap_leave_days)	AS sapleave_days,
+			SUM(asper_hrnet_leave_days) AS hrnetleave_days,
+			SUM(sick_days)				AS sick_days,
+			SUM(maternity_days)			AS maternity_days
+	FROM inserted
+	GROUP BY emp_docno
+	ORDER BY emp_docno
+	
+	
+	UPDATE 	intra_leave_balance
+    SET asper_sap_total_leave_days		= asper_sap_total_leave_days	+ tv.sapleave_days,
+		asper_hrnet_total_leave_days	= asper_hrnet_total_leave_days  + tv.hrnetleave_days,
+		asper_total_sick_days			= asper_total_sick_days			+ tv.sick_days,
+		asper_total_maternity_days		= asper_total_maternity_days	+ tv.maternity_days
+	FROM @tableVar tv, intra_leave_balance il
+	WHERE  tv.emp_docno = il.emp_docno    		
+	
+    -- Insert statements for trigger here
+
+END
+GO
+
+
+

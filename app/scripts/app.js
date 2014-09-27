@@ -20,7 +20,8 @@ angular
     'ngFacebook',
     'LocalStorageModule',
     'perfect_scrollbar',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'fundoo.directives'
   ])
   .config(['$routeProvider', '$facebookProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $facebookProvider, $locationProvider, $httpProvider) {
 	
@@ -173,6 +174,10 @@ angular
         templateUrl: 'views/admin-bad-list.html',
         controller: 'AdminBadListCtrl',
         access:      access.user
+      })      
+      .when('/admin-inappropriate-comments', {
+        templateUrl: 'views/admin-inappropriate-comments.html',
+        controller: 'AdminInappropriateCommentsCtrl'
       })
       .otherwise({
         redirectTo: '/'

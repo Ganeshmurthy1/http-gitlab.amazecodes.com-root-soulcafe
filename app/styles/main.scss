@@ -609,3 +609,36 @@ svg{
   height:100% !important;
   width: 100% !important;
 }
+
+.photo-carousel {
+        width: 420px;
+        height: 120px;
+      }
+      .carousel-class {
+        margin: 0 auto;
+        width: 650px;
+        position: relative;
+      }
+      .carousel-class span.link, .carousel-class a {
+        display: inline-block;
+        position: absolute;
+        top: 35px;
+      }
+      .photo-container {
+        width: 500px;
+        height: 125px;;
+        margin: 0 auto;
+      }
+      .photo-grid img {
+        width: 80px;
+        height: 80px;
+      }
+      .photo-container1 {
+        width: 500px;
+        height: 125px;;
+        margin: 0 auto;
+      }
+      .photo-carousel1 {
+        width: 420px;
+        height: 120px;
+      }

@@ -1,0 +1,149 @@
+SELECT dbc.CommentId,dbc.Comment,dba.ReportedBy,dba.ReportedDate,dbt.DiscussionTopicId,dbt.TopicTitle FROM DiscussionBoardComments as dbc left join DiscussionBoardAbuse as dba  on dbc.CommentId=dba.CommentId left join DiscussionBoardTopic as dbt on dbc.DiscussionTopicId = dbt.DiscussionTopicId where dbc.IsValid = 0
+
+
+SELECT dbc.CommentId,dbc.Comment,dba.ReportedBy,dba.ReportedDate,dbt.DiscussionTopicId,dbt.TopicTitle FROM DiscussionBoardComments as dbc left join DiscussionBoardAbuse as dba  on dbc.CommentId=dba.CommentId left join DiscussionBoardTopic as dbt on dbc.DiscussionTopicId = dbt.DiscussionTopicId where dbc.IsValid = 0
+
+
+
+
+
+<div class="row margin-bottom-20">
+                           <!--Alert-->
+                        <div class="col-sm-6 sm-margin-bottom-30">
+                            <div class="panel panel-profile">
+                                <div class="panel-heading overflow-h">
+                                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-send"></i> Alarm Notification</h2>
+                                    <a href="#"><i class="fa fa-cog pull-right"></i></a>
+                                </div>
+                           
+
+                                <perfect-scrollbar class="panel-body contentHolder" wheel-propagation="true" wheel-speed="50" >
+
+                                    <div class="alert-blocks alert-blocks-pending alert-dismissable">
+                                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                        <img class="rounded-x" src="images/testimonials/img3.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong class="color-yellow">Pending... <small class="pull-right"><em>Just now</em></small></strong> 
+                                            <p>Your friend request has been sent.</p>
+                                        </div>    
+                                    </div>
+                                    <div class="alert-blocks alert-blocks-success alert-dismissable">
+                                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                        <img class="rounded-x" src="images/testimonials/img2.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong class="color-green">Accepted. <small class="pull-right"><em>7 hours ago</em></small></strong> 
+                                            <p>Your friend request has been accepted.</p>
+                                        </div>    
+                                    </div>
+                                    <div class="alert-blocks alert-blocks-info alert-dismissable">
+                                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                        <i class="icon-custom rounded-x icon-bg-blue fa fa-bolt"></i>
+                                        <div class="overflow-h">
+                                            <strong class="color-blue">Info <small class="pull-right"><em>2 days ago</em></small></strong> 
+                                            <p>Your friend request has been denied :)</p>
+                                        </div>    
+                                    </div>
+                                    <div class="alert-blocks alert-blocks-error alert-dismissable">
+                                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                        <img class="rounded-x" src="images/testimonials/img6.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong class="color-red">Denied! <small class="pull-right"><em>2 days ago</em></small></strong> 
+                                            <p>Your friend request has been denied.</p>
+                                        </div>    
+                                    </div>
+                                    <div class="alert-blocks alert-dismissable">
+                                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                        <i class="icon-custom rounded-x icon-bg-dark fa fa-magic"></i>
+                                        <div class="overflow-h">
+                                            <strong class="color-dark">Default <small class="pull-right"><em>Just now</em></small></strong> 
+                                            <p><strong>Adam Johnson's</strong> friend request pending..</p>
+                                        </div>    
+                                    </div>
+                                    <div class="alert-blocks alert-blocks-pending alert-dismissable">
+                                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                        <i class="icon-custom rounded-x icon-bg-yellow fa fa-info"></i>
+                                        <div class="overflow-h">
+                                            <strong class="color-yellow">Pending <small class="pull-right"><em>Just now</em></small></strong> 
+                                            <p><strong>Adam Johnson's</strong> friend request pending..</p>
+                                        </div>    
+                                    </div>
+                                
+
+                                </perfect-scrollbar>  
+
+                               
+                            </div>
+                        </div>
+                        <!--End Alert-->
+                         <div class="col-sm-6">
+                            <div class="panel panel-profile">
+                                <div class="panel-heading overflow-h">
+                                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments-o"></i> Discussions</h2>
+                                    <a href="#/profile_comments" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs pull-right">View All</a>
+                                </div>
+                        
+                                <perfect-scrollbar class="panel-body contentHolder" wheel-propagation="true" wheel-speed="50" >
+
+                                    <div class="comment">
+                                        <img src="images/testimonials/img6.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong>Taylor Lee<small class="pull-right"> 25m</small></strong> 
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                            <ul class="list-inline comment-list">
+                                                <li><i class="fa fa-heart"></i> <a href="#">23</a></li>
+                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
+                                            </ul>
+                                        </div>    
+                                    </div>
+                                    <div class="comment">
+                                        <img src="images/testimonials/img2.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong>Miranda Clarsson<small class="pull-right"> 44m</small></strong> 
+                                            <p>Donec cursus, orci non posuere luctus, risus massa luctus nisi, sit amet cursus leo massa id arcu. Nunc tincidunt magna sit amet sapien congue.</p>
+                                            <ul class="list-inline comment-list">
+                                                <li><i class="fa fa-heart"></i> <a href="#">23</a></li>
+                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
+                                            </ul>
+                                        </div>    
+                                    </div>
+                                    <div class="comment">
+                                        <img src="images/testimonials/img4.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong>Natasha Kolnikova<small class="pull-right"> 7h</small></strong> 
+                                            <p>Suspendisse est est, sollicitudin eget auctor et, pharetra eu sapien. Mauris mollis libero ac auctor iaculis.</p>
+                                            <ul class="list-inline comment-list">
+                                                <li><i class="fa fa-heart"></i> <a href="#">23</a></li>
+                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
+                                            </ul>
+                                        </div>    
+                                    </div>
+                                    <div class="comment">
+                                        <img src="images/testimonials/img1.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong>Mikel Andrews<small class="pull-right"> 15h</small></strong> 
+                                            <p>Nam ut dolor cursus nibh aliquet bibendum in eget risus.</p>
+                                            <ul class="list-inline comment-list">
+                                                <li><i class="fa fa-heart"></i> <a href="#">20</a></li>
+                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
+                                            </ul>
+                                        </div>    
+                                    </div>
+                                    <div class="comment">
+                                        <img src="images/testimonials/img7.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong>Edward Rooster<small class="pull-right"> 1d</small></strong> 
+                                            <p>Nam ut dolor cursus nibh aliquet bibendum in eget risus. Mauris mollis libero ac auctor iaculis.</p>
+                                            <ul class="list-inline comment-list">
+                                                <li><i class="fa fa-heart"></i> <a href="#">23</a></li>
+                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
+                                            </ul>
+                                        </div>    
+                                    </div>
+                                
+
+                         </perfect-scrollbar>  
+                               
+                            </div>    
+                        </div>
+                        
+                    </div><!--/end row-->

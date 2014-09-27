@@ -148,9 +148,9 @@ angular.module('sassApp')
             });	
 	    };
 	    
-  	
-  	 dataFactory.saveDiscussionboardAbuse = function (param) {	
-	     	return $http.get(urlBase + 'saveDiscussionboardabuse/'+ param).then(function(response) {
+  	 dataFactory.saveDiscussionBoardAbuse = function (param) {	
+  	 		console.log(param);
+	     	return $http.post(urlBase + 'saveDiscussionBoardAbuse', param).then(function(response) {
                 return response;
             });	
 	    };
