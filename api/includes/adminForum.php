@@ -349,7 +349,7 @@ function updatediscussionTopicDetail() {
 function adminAbuseList() {
   
 
-   $sql = "select DBA.CommentId, DBA.ReportedBy, DBA.Comments, DBA.ReportedDate,DBC.DiscussionTopicId,DBT.TopicTitle,DBT.DiscussionBoardId,DB.Topic from DiscussionBoardAbuse As DBA Inner Join DiscussionBoardComments As DBC Inner join DiscussionBoardTopic As DBT Inner Join DiscussionBoard As DB ON DBA.CommentId =DBC.CommentId and DBC.DiscussionTopicId = DBT.DiscussionTopicId and DB.DiscussionBoardId = DBT.DiscussionBoardId ORDER BY DBA.ReportedDate desc ";
+   $sql = "select DBA.CommentId, DBA.ReportedBy, DBA.Comments, DBA.ReportedDate,DBC.DiscussionTopicId,DBT.TopicTitle,DBT.DiscussionBoardId,DB.Topic from DiscussionBoardAbuse As DBA Inner Join DiscussionBoardComments As DBC Inner join DiscussionBoardTopic As DBT Inner Join DiscussionBoard As DB ON DBA.CommentId =DBC.CommentId and DBC.DiscussionTopicId = DBT.DiscussionTopicId and DB.DiscussionBoardId = DBT.DiscussionBoardId where DBA.Spam=1 ORDER BY DBA.ReportedDate desc ";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
@@ -384,7 +384,7 @@ function updateAppropriate($id) {
 
 function updateInAppropriate($id) {
   
-  $sql = "update DiscussionBoardAbuse As DBA inner join DiscussionBoardComments As DBC on DBA.CommentId = DBC.CommentId set DBA.Status= 0, DBC.IsValid = 0 where DBA.CommentId = :id";
+  $sql = "update DiscussionBoardAbuse As DBA inner join DiscussionBoardComments As DBC on DBA.CommentId = DBC.CommentId set DBA.Status= 0,DBA.Spam= 0, DBC.IsValid = 0 where DBA.CommentId = :id";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
@@ -439,7 +439,7 @@ function editforum() {
 function adminInappropriateComment() {
   
 
-   $sql = "SELECT dbc.CommentId,dbc.Comment,dba.ReportedBy,dba.ReportedDate,dbt.DiscussionTopicId,dbt.TopicTitle FROM DiscussionBoardComments as dbc left join DiscussionBoardAbuse as dba  on dbc.CommentId=dba.CommentId left join DiscussionBoardTopic as dbt on dbc.DiscussionTopicId = dbt.DiscussionTopicId where dbc.IsValid = 0";
+   $sql = "SELECT dba.CommentId,dba.Comments,dba.ReportedBy,dba.ReportedDate,dbt.DiscussionTopicId,dbt.TopicTitle from  DiscussionBoardAbuse as dba left join DiscussionBoardComments as dbc on dba.CommentId=dbc.CommentId left join DiscussionBoardTopic as dbt on  dbc.DiscussionTopicId = dbt.DiscussionTopicId where dba.Spam = 0";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);

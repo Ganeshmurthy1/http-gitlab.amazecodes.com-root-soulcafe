@@ -136,11 +136,12 @@ angular.module('sassApp')
     ];
     return {
       getPhotos: function(page) {
+        console.log(page);
         // Ideally, go off and fetch the next page of data fromt he server, but we'll do it locally in the sample
         return pages[page];
       },
       getPhotoUrl: function(photo) {
-        console.log("Photo",photo);
+        // console.log("Photo",photo);
         return 'http://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '_s.jpg';
       }
     };

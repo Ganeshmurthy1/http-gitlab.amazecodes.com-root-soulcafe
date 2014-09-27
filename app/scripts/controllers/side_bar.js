@@ -33,4 +33,19 @@ $scope.SideBar = 'views/side_bar.html';
 
        $scope.discussionData = results.data;
     });
+   $scope.profileverify = '50%';
+    var authData = localStorageService.get('authorizationData');
+      regService.getUserDetails(authData.user_id).then(function (results) {
+        //console.log(results.data);
+        $scope.userData = results.data; 
+        // console.log($scope.userData);
+         if ($scope.userData.linked_update == 1){
+           $scope.thumbup = 'false';
+           $scope.profileverify = '75%';
+           // console.log("Abhik");
+         }else{
+           $scope.thumbup = 'true';
+         }
+      });
+
   });
