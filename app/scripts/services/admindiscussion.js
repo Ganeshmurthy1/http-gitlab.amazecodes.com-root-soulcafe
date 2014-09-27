@@ -149,6 +149,24 @@ angular.module('sassApp')
             });
 	    	
 	    };
+    
+	    dataFactory.getAdminBadList = function () {
+	    	// console.log(param);
+	    	return $http.post(urlBase + 'admin_get_bad_list').then(function(response) {
+	    		//console.log(response);
+                return response;
+            });	    	
+	    };
+	    dataFactory.adminNotASpam = function (param) {
+	    	//console.log(param);
+	    	var fbUrl = urlBase + 'admin_not_spam/' + param;
+	        return $http.get(fbUrl);
+	    };
+	    dataFactory.adminMarkAsSpam = function (param) {
+	    	//console.log(param);
+	    	var fbUrl = urlBase + 'admin_mark_spam/' + param;
+	        return $http.get(fbUrl);
+	    };
 	    dataFactory.adminInappropriateComment = function () {	
 	      	return $http.get(urlBase + 'adminInappropriateComment').then(function(response) {
 	    		//console.log(response);

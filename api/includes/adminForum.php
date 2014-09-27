@@ -23,6 +23,10 @@ $app->get('/get_forum/:DiscussionBoardId', 'checkUser', 'getforum');
 $app->post('/edit_forum', 'checkUser', 'editforum');
 $app->get('/adminInappropriateComment', 'checkUser', 'adminInappropriateComment');
 
+$app->post('/admin_get_bad_list', 'checkUser', 'adminGetBadList');
+$app->get('/admin_not_spam/:id', 'checkUser', 'adminNotASpam');
+$app->get('/admin_mark_spam/:id', 'checkUser', 'adminMarkSpam');
+
 function adminAddDiscussion() {
   $request = Slim::getInstance()->request();
   $forum = json_decode($request->getBody());
@@ -436,6 +440,30 @@ function editforum() {
   }
 
 }
+
+
+function adminGetBadList() {
+
+  $request = Slim::getInstance()->request();
+  $forum = json_decode($request->getBody());
+  $sqlCp = "select dc.*, u.first_name, u.Picture, dp.TopicTitle from DiscussionBoardComments dc JOIN users u on dc.UserId=u.user_id JOIN DiscussionBoardTopic dp ON dc.DiscussionTopicId=dp.DiscussionTopicId where dc.profane=1";
+  //$lm = ' Limit ' . $forum->start . ',' . $forum->limit;
+  //$sqlCp .= $lm;
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sqlCp);
+    //$stmt->bindParam("start", $forum->start);
+    // $stmt->bindParam("limit", $forum->limit);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    echo json_encode($wine);
+    } catch(PDOException $e) {
+      echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
+    //echo json_encode($wine);
+ }
+
 function adminInappropriateComment() {
   
 
@@ -448,10 +476,42 @@ function adminInappropriateComment() {
     $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
     $db = null;
     //echo $total = $wine->'count(1)';
+
     echo json_encode($wine);
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
   //echo json_encode($wine);
 }
+
+function adminNotASpam($id) {
+ $sql = "Update DiscussionBoardComments SET profane=0 WHERE CommentId=:id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("id", $id);
+    $stmt->execute();
+    echo 'true';
+    //echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
+}
+
+function adminMarkSpam($id) {
+  $sql = "Delete from DiscussionBoardComments  WHERE CommentId=:id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("id", $id);
+    $stmt->execute();
+    echo 'true';
+    //echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
+}
+
 ?>

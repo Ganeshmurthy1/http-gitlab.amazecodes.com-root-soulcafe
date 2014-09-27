@@ -102,6 +102,13 @@ angular.module('sassApp')
             args.comment=$scope.comment;
             $scope.comment="";
             regService.saveComments(args).then(function (results) {
+            	if(results.data == 'profane') {
+            		$scope.errMessage = "Your comment will be posted only after moderation";
+            	}
+            	else {
+            		$scope.errMessage ='';
+            	}
+            console.log(results.data);
               getForumComments();
             });
         };

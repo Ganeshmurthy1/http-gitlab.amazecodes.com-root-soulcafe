@@ -170,10 +170,11 @@ angular
         templateUrl: 'views/side_bar_anon.html',
         controller: 'SideBarAnonCtrl'
       })
-      .when('/admin_inappropriate_comments', {
-        templateUrl: 'views/admin_inappropriate_comments.html',
-        controller: 'AdminInappropriateCommentsCtrl'
-      })
+      .when('/admin-bad-list', {
+        templateUrl: 'views/admin-bad-list.html',
+        controller: 'AdminBadListCtrl',
+        access:      access.user
+      })      
       .when('/admin-inappropriate-comments', {
         templateUrl: 'views/admin-inappropriate-comments.html',
         controller: 'AdminInappropriateCommentsCtrl'
