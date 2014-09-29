@@ -136,7 +136,7 @@ angular.module('sassApp')
     ];
     return {
       getPhotos: function(page) {
-        console.log(page);
+        // console.log(page);
         // Ideally, go off and fetch the next page of data fromt he server, but we'll do it locally in the sample
         return pages[page];
       },

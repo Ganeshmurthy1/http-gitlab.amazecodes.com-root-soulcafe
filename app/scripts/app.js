@@ -179,6 +179,30 @@ angular
         templateUrl: 'views/admin-inappropriate-comments.html',
         controller: 'AdminInappropriateCommentsCtrl'
       })
+      .when('/superadmin-profile', {
+        templateUrl: 'views/superadmin-profile.html',
+        controller: 'SuperadminProfileCtrl'
+      })
+      .when('/side-bar-superadmin', {
+        templateUrl: 'views/side-bar-superadmin.html',
+        controller: 'SideBarSuperadminCtrl'
+      })
+      .when('/superadmin-message', {
+        templateUrl: 'views/superadmin-message.html',
+        controller: 'SuperadminMessageCtrl'
+      })
+      .when('/superadmin-blockuser', {
+        templateUrl: 'views/superadmin-blockuser.html',
+        controller: 'SuperadminBlockuserCtrl'
+      })
+      .when('/superadmin-admin', {
+        templateUrl: 'views/superadmin-admin.html',
+        controller: 'SuperadminAdminCtrl'
+      })
+      .when('/superadmin-add-admin', {
+        templateUrl: 'views/superadmin-add-admin.html',
+        controller: 'SuperadminAddAdminCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

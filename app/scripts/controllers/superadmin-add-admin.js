@@ -2,18 +2,16 @@
 
 /**
  * @ngdoc function
- * @name sassApp.controller:SideBarAnonCtrl
+ * @name sassApp.controller:SuperadminAddAdminCtrl
  * @description
- * # SideBarAnonCtrl
+ * # SuperadminAddAdminCtrl
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('SideBarAnonCtrl', function ($scope) {
+  .controller('SuperadminAddAdminCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-    $scope.SideBarAnon = 'views/side_bar_anon.html';
-    $scope.thumbup='true';
   });
