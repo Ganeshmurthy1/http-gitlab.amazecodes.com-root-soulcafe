@@ -37,23 +37,23 @@ angular.module('sassApp')
 	    	result.status = false;
 		    result.message = 'Your Relationship status is not suitable for an account in Soulcafe';
 		}
-	    var d1 = new Date(param.birthday);
-    	var d2 = new Date();
-		var diff = d2.getFullYear()-d1.getFullYear();
-	    if (param.gender == 'male') {
-	    	if (diff < 22) {
-	    		result.status = false;
-			    result.message = 'You have to be above 24 years old to register in soulcafe';				
-			}
+	 //    var d1 = new Date(param.birthday);
+  //   	var d2 = new Date();
+		// var diff = d2.getFullYear()-d1.getFullYear();
+	 //    if (param.gender == 'male') {
+	 //    	if (diff < 22) {
+	 //    		result.status = false;
+		// 	    result.message = 'You have to be above 24 years old to register in soulcafe';				
+		// 	}
 			
-		}
-	    if (param.gender == 'female') {
-	    	if (diff < 22) {
-	    		result.status = false;
-			    result.message = 'You have to be above 22 years old to register in soulcafe';				
-			}
+		// }
+	 //    if (param.gender == 'female') {
+	 //    	if (diff < 22) {
+	 //    		result.status = false;
+		// 	    result.message = 'You have to be above 22 years old to register in soulcafe';				
+		// 	}
 			
-		}
+		// }
 	    
     	return result;
     	
@@ -101,8 +101,8 @@ angular.module('sassApp')
 				      	console.log(pic);
 				       	$scope.fbpicture = pic;
 					    localStorageService.set('fbpicture', {fbpicture:pic});
-					 //   var fbbbbdata = localStorageService.get('fbpicture');
-						// console.log(fbbbbdata);
+					   var fbbbbdata = localStorageService.get('fbpicture');
+						console.log(fbbbbdata);
 				  });
 
 	                     //  var fbbbbdata = localStorageService.get('facebookData');

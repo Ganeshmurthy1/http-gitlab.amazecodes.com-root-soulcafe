@@ -21,7 +21,8 @@ angular
     'LocalStorageModule',
     'perfect_scrollbar',
     'ui.bootstrap',
-    'fundoo.directives'
+    'fundoo.directives',
+    'angularFileUpload'
   ])
   .config(['$routeProvider', '$facebookProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $facebookProvider, $locationProvider, $httpProvider) {
 	

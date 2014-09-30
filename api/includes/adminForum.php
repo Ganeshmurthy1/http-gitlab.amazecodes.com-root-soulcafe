@@ -26,7 +26,7 @@ $app->get('/adminInappropriateComment', 'checkUser', 'adminInappropriateComment'
 $app->post('/admin_get_bad_list', 'checkUser', 'adminGetBadList');
 $app->get('/admin_not_spam/:id', 'checkUser', 'adminNotASpam');
 $app->get('/admin_mark_spam/:id', 'checkUser', 'adminMarkSpam');
-
+$app->post('/image_upload', 'imageupload');
 function adminAddDiscussion() {
   $request = Slim::getInstance()->request();
   $forum = json_decode($request->getBody());
@@ -45,7 +45,7 @@ function adminAddDiscussion() {
       
     }
     
-    $sql = "INSERT INTO DiscussionBoard (Topic, Description, StartDate, CreatedBy, CreatedDate, Restricted, RestrictedGender, RestrictedAge, RestrictedLocation) VALUES (:Topic, :Description, :StartDate, :CreatedBy, :CreatedDate, :Restricted, :RestrictedGender, :RestrictedAge, :RestrictedLocation)";
+    $sql = "INSERT INTO DiscussionBoard (Topic, Description, StartDate, CreatedBy, CreatedDate, Restricted, RestrictedGender, RestrictedAge, RestrictedLocation,Image) VALUES (:Topic, :Description, :StartDate, :CreatedBy, :CreatedDate, :Restricted, :RestrictedGender, :RestrictedAge, :RestrictedLocation,:image)";
     try {
       $db = getConnection();
       $stmt = $db->prepare($sql);
@@ -58,6 +58,7 @@ function adminAddDiscussion() {
       $stmt->bindParam("RestrictedGender", $forum->gender);
       $stmt->bindParam("RestrictedAge", $forum->age);
       $stmt->bindParam("RestrictedLocation", $forum->location);
+      $stmt->bindParam("image", $forum->image);
   
       $stmt->execute();
   
@@ -514,4 +515,25 @@ function adminMarkSpam($id) {
 
 }
 
+function imageupload() {
+
+ if ( !empty( $_FILES ) ) {
+
+    $tempPath = $_FILES[ 'file' ][ 'tmp_name' ];
+    print $uploadPath = dirname(dirname( __FILE__ )) . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . $_FILES[ 'file' ][ 'name' ];
+
+    move_uploaded_file( $tempPath, $uploadPath );
+  
+    $answer = array( 'answer' => 'File transfer completed' );
+    $json = json_encode( $answer );
+
+    echo $json;
+
+} else {
+
+    echo 'No files';
+
+}
+
+}
 ?>
