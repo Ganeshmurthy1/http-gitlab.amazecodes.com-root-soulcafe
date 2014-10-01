@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('DashboardCtrl',['$scope','$rootScope','$location','linkedinService','localStorageService','regService', 'FlickrApi', function ($scope, $rootScope, $location, linkedinService, localStorageService, regService, flickr) {
+  .controller('DashboardCtrl',['$scope','$rootScope','$location','linkedinService','localStorageService','regService', 'FlickrApi','profileOperations', function ($scope, $rootScope, $location, linkedinService, localStorageService, regService, flickr,profileOperations) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -92,6 +92,11 @@ angular.module('sassApp')
       $scope.hideEdit="false";
          }
 
+      profileOperations.getUserMatch().then(function(response) {
+      
+      console.log(response);    
+         $scope.recommendation=response.data;         
+      });
  
 
    }]).factory('FlickrApi', function() {

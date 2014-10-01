@@ -36,7 +36,7 @@ angular.module('sassApp')
     
      regService.getDiscussionDetails().then(function (results) {
 
-       // console.log(results.data);
+       console.log(results.data);
        $scope.discussionData = results.data;
        // console.log($scope.discussionData.length);
        var authData = localStorageService.get('authorizationData');

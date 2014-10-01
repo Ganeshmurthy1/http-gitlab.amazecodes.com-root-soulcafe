@@ -224,8 +224,8 @@ angular.module('sassApp')
                 return response;
             });	
 	    };
-	     dataFactory.getPicture = function () {	
-	     	return $http.get(urlBase + 'get_Picture').then(function(response) {
+	     dataFactory.getPicture = function (id) {	
+	     	return $http.get(urlBase + 'get_Picture/'+ id).then(function(response) {
                 return response;
             });	
 	    };

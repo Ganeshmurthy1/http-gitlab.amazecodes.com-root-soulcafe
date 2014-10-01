@@ -40,7 +40,7 @@
      
        <div class="row">
         <div class="col-md-9" style="margin-bottom: 40px">
-                    <div class="col-md-6"> <input type="file" nv-file-select="" uploader="uploader" single /><br/></div>
+                    <div class="col-md-6"> <input type="file" nv-file-select="" uploader="uploader" single required/><br/></div>
                    <div class="col-md-1">                                   
                 <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
                             <span class="glyphicon glyphicon-upload"></span>Upload

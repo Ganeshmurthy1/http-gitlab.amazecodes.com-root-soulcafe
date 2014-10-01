@@ -24,7 +24,7 @@ $scope.SideBar = 'views/side_bar.html';
       $scope.isUser = true;
     }
     
-   regService.getPicture().then(function(response) {
+   regService.getPicture(authData.user_id).then(function(response) {
             $scope.pic=response.data; 
             // console.log($scope.pic.Picture);
     });

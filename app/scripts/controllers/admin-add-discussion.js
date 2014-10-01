@@ -15,11 +15,13 @@ angular.module('sassApp')
       'Karma'
     ];
     $scope.adminAddDiscussion = function() {
-    	console.log($scope.discussion);
-      $scope.discussion.image=$scope.image;
-      console.log($scope.image);
-    	adminDiscussion.addDiscussion($scope.discussion).then(function(response) {
-		  console.log(response);
+
+        if($scope.image != null) {
+    	   console.log($scope.discussion);
+           $scope.discussion.image=$scope.image;
+           console.log($scope.image);
+    	   adminDiscussion.addDiscussion($scope.discussion).then(function(response) {
+		   console.log(response);
 		  if (response.data == 'true') {
 			  $scope.savedSuccessfully = true;
               $scope.successmessage = "Forum added sucessfully.";
@@ -31,6 +33,10 @@ angular.module('sassApp')
 			  $scope.errMessage = response.data;
 		  }
        });
+    } else {
+        $scope.successmessage = false;
+        $scope.errMessage = "Please Upload the File";
+    }
 
 
     };

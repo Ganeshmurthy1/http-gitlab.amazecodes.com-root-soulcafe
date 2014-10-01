@@ -8,14 +8,14 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('DashboardAnonCtrl',['$scope','$location','localStorageService','regService', 'FlickrApi', function ($scope, $location, localStorageService, regService,flickr) {
+  .controller('DashboardAnonCtrl',['$scope','$location','localStorageService','regService', 'FlickrApi','$routeParams', function ($scope, $location, localStorageService, regService,flickr,$routeParams) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
 
-
+     $scope.user_id = $routeParams.user_id;
 
     $scope.updateButton = 'false';
 
@@ -23,14 +23,14 @@ angular.module('sassApp')
     	var authData = localStorageService.get('authorizationData');
     	
      
-    	regService.getUserDetails(authData.user_id).then(function (results) {
+    	regService.getUserDetails($scope.user_id).then(function (results) {
     		//console.log(results.data);
     		$scope.userData = results.data; 
         console.log($scope.userData);
          if ($scope.userData.linked_update == 1){
            $scope.updateButton = 'true';
            console.log("Abhik");
-          regService.getLinkedinProffesionaldetails(authData.user_id).then(function(response) {
+          regService.getLinkedinProffesionaldetails($scope.user_id).then(function(response) {
                   // console.log(response);
                   $scope.proffesionalDetails = response;
                   console.log($scope.proffesionalDetails);

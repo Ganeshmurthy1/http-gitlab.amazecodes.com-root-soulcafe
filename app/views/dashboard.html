@@ -157,7 +157,13 @@
                                     </div> 
                                 </div>    
                             </div>
-                        </div>        
+                        </div>  
+                        <div class="panel-body">
+                            <h2 class="panel-title heading-sm pull-left"><i class="fa fa-tasks"></i>Users Recommendations</h2>
+                            <div class="panel-body row" ng-repeat="rec in recommendation">
+                                <h3><a href="#/dashboard-anon?user_id={{rec.user_id}}">{{rec.first_name}} {{rec.last_name}}</a></h3>
+                            </div>  
+                        </div>    
                     </div><!--/end row   
                     <!--End Profile Blog-->
 

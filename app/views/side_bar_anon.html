@@ -1,9 +1,12 @@
 <div class="col-md-3 md-margin-bottom-40">
-                <img class="img-responsive profile-img margin-bottom-20" src="images/5.jpg"></img>
+                <img class="img-responsive profile-img margin-bottom-20" ng-src="{{pic.Picture}}" alt=""></img>
             <div style="clear:both;">
                 <h4 style="background-color:#ed719e;padding:5px;text-align:center;color:black;margin-bottom:10px;"><a style="color:black;">Check Compatiblity</a></h4>
-                <h4 style="background-color:#ed719e;padding:5px;text-align:center;color:black;margin-bottom:10px;"><a style="color:black;">Send GTKY</a></h4>
-                <h4 style="background-color:#ed719e;padding:5px;text-align:center;color:black;margin-bottom:10px;"><a style="color:black;">Report Abuse</a></h4>
+                <div ng-hide="GTKY">
+               <a style="color:black;" ng-click="sendGTKY()"> <h4 style="background-color:#ed719e;padding:5px;text-align:center;color:black;margin-bottom:10px;">Send GTKY</h4></a></div>
+               <div ng-show="GTKY">
+               <a style="color:black;"> <h4 style="background-color:#ed719e;padding:5px;text-align:center;color:black;margin-bottom:10px;">GTKY Already Send</h4></a></div>
+                <h4 style="background-color:#ed719e;padding:5px;text-align:center; color:black; margin-bottom:10px;"><a style="color:black;">Report Abuse</a></h4>
             </div>  
 
                 <div class="panel-heading-v2 overflow-h">
@@ -28,9 +31,9 @@
                     <img class="img-responsive profile-img margin-bottom-20" src="images/stamp1.jpg"></img>
                     <i class="fa fa-thumbs-down fa-2x" style="margin-left:20%;color:red;"></i>
                 </div>
-                <h3 class="heading-xs">Profile Verification <span class="pull-right">50%</span></h3>
+                 <h3 class="heading-xs">Profile Verification <span class="pull-right">{{profileverify}}</span></h3>
                 <div class="progress progress-u progress-xxs">
-                    <div style="width:50%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="92" role="progressbar" class="progress-bar progress-bar-u">
+                    <div style="width:{{profileverify}}" aria-valuemax="100" aria-valuemin="0" aria-valuenow="92" role="progressbar" class="progress-bar progress-bar-u">
                     </div>
                 </div>
                 <h3 class="heading-xs">Questionnaire Status  <span class="pull-right">0%</span></h3>
