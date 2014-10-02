@@ -31,5 +31,17 @@ angular.module('sassApp')
                 return response;
             });  
      };
+    dataFactory.addAbuseUser = function (param) { 
+          return $http.post(urlBase + 'add_AbuseUser',param).then(function(response) {
+          //console.log(response);
+                return response;
+            });  
+     };
+    dataFactory.checkAbuseUser = function (id) { 
+          return $http.get(urlBase + 'check_AbuseUser/'+ id).then(function(response) {
+          //console.log(response);
+                return response;
+            });  
+     };
     return dataFactory;
   }]);

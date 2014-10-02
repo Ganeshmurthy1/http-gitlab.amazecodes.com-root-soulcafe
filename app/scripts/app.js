@@ -204,6 +204,14 @@ angular
         templateUrl: 'views/superadmin-add-admin.html',
         controller: 'SuperadminAddAdminCtrl'
       })
+      .when('/confirmGTKY', {
+        templateUrl: 'views/confirmgtky.html',
+        controller: 'ConfirmgtkyCtrl'
+      })
+      .when('/report-abuse-user', {
+        templateUrl: 'views/report-abuse-user.html',
+        controller: 'ReportAbuseUserCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

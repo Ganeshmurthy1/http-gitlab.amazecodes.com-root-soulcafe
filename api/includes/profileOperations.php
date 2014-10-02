@@ -3,6 +3,8 @@
 $app->get('/get_UserMatch', 'getUserMatch');
 $app->post('/add_GTKYRequest', 'addGTKYRequest');
 $app->get('/check_GTKYRequest/:id', 'checkGTKYRequest');
+$app->post('/add_AbuseUser', 'addAbuseUser');
+$app->get('/check_AbuseUser/:id', 'checkAbuseUser');
 
 function getUserMatch() {
  
@@ -77,10 +79,8 @@ function addGTKYRequest() {
   }
  }
 
- function checkGTKYRequest($id) {
- 
-
-  $user_id  = getUserId();
+function checkGTKYRequest($id) {
+   $user_id  = getUserId();
    
   $sql = "select * from Buddies where BuddyId = :id and Status = 0";
   try {
@@ -102,5 +102,58 @@ function addGTKYRequest() {
   }
 
 }
-?>
+
+function addAbuseUser() {
+  $request = Slim::getInstance()->request();
+  $user = json_decode($request->getBody());
+  $user_id  = getUserId();
+
+  
+   $cmtDateTime=  date("Y-m-d") ;
+   $status  = 0;
+  
+  $sql = "Insert into ReportAbuseUser (SenderId,UserId,Message,AddedDate) values (:SenderId,:UserId,:Message,:AddedDate)";
+  
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);  
+    $stmt->bindParam("SenderId", $user_id);
+    $stmt->bindParam("UserId", $user->id);
+    $stmt->bindParam("Message", $user->message);
+    $stmt->bindParam("AddedDate", $cmtDateTime);
+    $stmt->execute();
+
+
+    echo 'true';
+    //$app->redirect('login.html');
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+ }
+
+
+function checkAbuseUser($id) {
+   $user_id  = getUserId();
+   
+  $sql = "select * from ReportAbuseUser where UserId = :id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);  
+    $stmt->bindParam("id",  $id );
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+     $db = null;
+
+     if($wine == null){
+     echo '1';
+     }else{
+      echo '0';
+     }
+      // echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+
+}
+
 

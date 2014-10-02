@@ -6,7 +6,8 @@
                <a style="color:black;" ng-click="sendGTKY()"> <h4 style="background-color:#ed719e;padding:5px;text-align:center;color:black;margin-bottom:10px;">Send GTKY</h4></a></div>
                <div ng-show="GTKY">
                <a style="color:black;"> <h4 style="background-color:#ed719e;padding:5px;text-align:center;color:black;margin-bottom:10px;">GTKY Already Send</h4></a></div>
-                <h4 style="background-color:#ed719e;padding:5px;text-align:center; color:black; margin-bottom:10px;"><a style="color:black;">Report Abuse</a></h4>
+               <div ng-hide="abuseHide">
+                <a style="color:black;" ng-click="reportAbuse()"><h4 style="background-color:#ed719e;padding:5px;text-align:center; color:black; margin-bottom:10px;">Report Abuse</h4></a></div>
             </div>  
 
                 <div class="panel-heading-v2 overflow-h">

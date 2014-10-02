@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('SideBarAnonCtrl', function ($scope,localStorageService,regService,$routeParams,profileOperations) {
+  .controller('SideBarAnonCtrl', function ($scope,$location,localStorageService,regService,$routeParams,profileOperations) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -44,14 +44,16 @@ angular.module('sassApp')
       });
       $scope.UserId={};
       $scope.sendGTKY = function(){
-        $scope.UserId.id = $routeParams.user_id;
-         profileOperations.addGTKYRequest($scope.UserId).then(function(response) {
-          console.log(response.data);
-          if (response.data = 'true'){
-            $scope.GTKY ="true";
-            alert("Friend Request Has been send");
-          }            
-        });
+        // $scope.UserId.id = $routeParams.user_id;
+        //  profileOperations.addGTKYRequest($scope.UserId).then(function(response) {
+        //   console.log(response.data);
+        //   if (response.data = 'true'){
+        //     $scope.GTKY ="true";
+        //     alert("Friend Request Has been send");
+        //   }            
+        // });
+
+$location.path('/confirmGTKY');
       };
 
   profileOperations.checkGTKYRequest($scope.user_id).then(function(resp) {
@@ -69,7 +71,24 @@ angular.module('sassApp')
           console.log("Outside");      
         });
 
+  profileOperations.checkAbuseUser($scope.user_id).then(function(abuse) {
+          console.log(abuse.data);
+          $scope.chkabuse = abuse.data;
+          console.log($scope.chkabuse);
+          $scope.a='ok';
+          if ($scope.chkabuse == 1){
+            $scope.abuseHide ="false";
+            console.log("False");
+          }else if( $scope.chkabuse == 0) {
+            $scope.abuseHide ="true";
+            console.log("True");
+          } 
+          console.log("Outside");      
+        });
 
+$scope.reportAbuse = function(){
+  $location.path('/report-abuse-user');
+ };
 
 
   });
