@@ -38,7 +38,7 @@ $app->get('/get_Total_Comments/:DiscussionBoardId','checkUser', 'getTotalComment
 $app->get('/user_Joined/:DiscussionBoardId','checkUser', 'userJoined');
 $app->post('/update_Rating', 'checkUser', 'updateRating');
 $app->get('/get_Rating/:topicId', 'checkUser','getRating');
-$app->get('/get_Picture', 'checkUser','getPicture');
+$app->get('/get_Picture/:id', 'checkUser','getPicture');
 $app->get('/get_ProfilePictures/:DiscussionBoardId','checkUser', 'getProfilePictures');
 $app->get('/get_PicturesComments/:topicId','checkUser', 'getPicturesComments');
 $app->post('/update_Profile_Detail', 'checkUser', 'updateProfileDetail');
@@ -917,13 +917,13 @@ function getRating($topicId) {
     }
   }
 
-function getPicture() {
-  $user_id  = getUserId();
-  $sql = "SELECT Picture from users where user_id = :user_id";
+function getPicture($id) {
+  // $user_id  = getUserId();
+  $sql = "SELECT Picture from users where user_id = :id";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
-    $stmt->bindParam("user_id", $user_id);
+    $stmt->bindParam("id", $id);
     $stmt->execute();
     $wine = $stmt->fetchObject();
     $db = null;

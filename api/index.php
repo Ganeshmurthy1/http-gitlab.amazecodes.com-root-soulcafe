@@ -8,6 +8,7 @@ require 'includes/registration.php';
 require 'includes/adminForum.php';
 require 'includes/utils.php';
 require 'includes/BWB.php';
+require 'includes/profileOperations.php';
 $app->run();
 
 ?>

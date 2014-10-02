@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('DashboardCtrl',['$scope','$rootScope','$location','linkedinService','localStorageService','regService', 'FlickrApi', function ($scope, $rootScope, $location, linkedinService, localStorageService, regService, flickr) {
+  .controller('DashboardCtrl',['$scope','$rootScope','$location','linkedinService','localStorageService','regService', 'FlickrApi','profileOperations', function ($scope, $rootScope, $location, linkedinService, localStorageService, regService, flickr,profileOperations) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -92,6 +92,11 @@ angular.module('sassApp')
       $scope.hideEdit="false";
          }
 
+      profileOperations.getUserMatch().then(function(response) {
+      
+      console.log(response);    
+         $scope.recommendation=response.data;         
+      });
  
 
    }]).factory('FlickrApi', function() {
@@ -136,11 +141,12 @@ angular.module('sassApp')
     ];
     return {
       getPhotos: function(page) {
+        // console.log(page);
         // Ideally, go off and fetch the next page of data fromt he server, but we'll do it locally in the sample
         return pages[page];
       },
       getPhotoUrl: function(photo) {
-        console.log("Photo",photo);
+        // console.log("Photo",photo);
         return 'http://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '_s.jpg';
       }
     };

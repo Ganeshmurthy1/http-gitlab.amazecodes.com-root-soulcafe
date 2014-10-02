@@ -39,6 +39,12 @@ angular.module('sassApp')
 
     	  adminDiscussion.updateInAppropriate(commentId).then(function (response) {
 	    	 	console.log(response);
+          
+            adminDiscussion.adminAbuseList().then(function (response) {
+          console.log(response);
+          $scope.disscusionAbuseDetails = response.data;
+        });
+          
 	    	});
 
     }

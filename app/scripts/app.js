@@ -21,7 +21,8 @@ angular
     'LocalStorageModule',
     'perfect_scrollbar',
     'ui.bootstrap',
-    'fundoo.directives'
+    'fundoo.directives',
+    'angularFileUpload'
   ])
   .config(['$routeProvider', '$facebookProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $facebookProvider, $locationProvider, $httpProvider) {
 	
@@ -178,6 +179,38 @@ angular
       .when('/admin-inappropriate-comments', {
         templateUrl: 'views/admin-inappropriate-comments.html',
         controller: 'AdminInappropriateCommentsCtrl'
+      })
+      .when('/superadmin-profile', {
+        templateUrl: 'views/superadmin-profile.html',
+        controller: 'SuperadminProfileCtrl'
+      })
+      .when('/side-bar-superadmin', {
+        templateUrl: 'views/side-bar-superadmin.html',
+        controller: 'SideBarSuperadminCtrl'
+      })
+      .when('/superadmin-message', {
+        templateUrl: 'views/superadmin-message.html',
+        controller: 'SuperadminMessageCtrl'
+      })
+      .when('/superadmin-blockuser', {
+        templateUrl: 'views/superadmin-blockuser.html',
+        controller: 'SuperadminBlockuserCtrl'
+      })
+      .when('/superadmin-admin', {
+        templateUrl: 'views/superadmin-admin.html',
+        controller: 'SuperadminAdminCtrl'
+      })
+      .when('/superadmin-add-admin', {
+        templateUrl: 'views/superadmin-add-admin.html',
+        controller: 'SuperadminAddAdminCtrl'
+      })
+      .when('/confirmGTKY', {
+        templateUrl: 'views/confirmgtky.html',
+        controller: 'ConfirmgtkyCtrl'
+      })
+      .when('/report-abuse-user', {
+        templateUrl: 'views/report-abuse-user.html',
+        controller: 'ReportAbuseUserCtrl'
       })
       .otherwise({
         redirectTo: '/'

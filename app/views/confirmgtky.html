@@ -1,0 +1,51 @@
+<div class="wrapper">
+    <!--=== Header ===-->    
+  <div data-ng-controller="HeaderCtrl" data-ng-include="Header">
+</div>
+    <!--=== End Header ===-->  
+
+
+
+
+    <!--=== Profile ===-->
+    <div class="profile container content" style="border-color:red">
+        <div class="row">
+            <!--Left Sidebar-->
+            <div data-ng-controller="SideBarAnonCtrl" data-ng-include="SideBarAnon">
+            </div>
+            <!--End Left Sidebar-->
+           
+            <div class="col-md-9">
+            	
+            	<div class="alert fade in margin-bottom-40">
+ 
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                     <h2> Do you want us to send a "Get To Know" request to the person for you?</h2>
+            <p> Once the request is accepted you could have one to one interactions and understand each other better.</p>
+                </div>
+                <div class="pull-right">
+                 <button type="button" class="btn-u" data-ng-click="confirmGTKY()">Yes</button>
+                 <a ng-click="notNow()" class="btn-u btn-u-default" type="button">Not Now</a>
+             </div>
+
+           
+              
+
+            </div>
+        </div><!--/end row-->
+    </div><!--/container-->    
+    <!--=== End Profile ===-->
+
+
+<!--=== Footer ===-->
+ <div data-ng-controller="FooterCtrl" data-ng-include="Footer">
+</div>
+
+<!--=== End Footer ===-->
+
+
+
+
+    
+</div>
+ <!-- End wrapper -->
