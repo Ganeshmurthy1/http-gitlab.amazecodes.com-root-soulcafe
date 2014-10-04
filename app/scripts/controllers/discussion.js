@@ -58,20 +58,18 @@ angular.module('sassApp')
 
       regService.getdiscussionTopicComments($routeParams.topic).then(function (results) {
         $scope.comments = results.data; 
-
+console.log( $scope.comments);
         regService.getPicturesComments($routeParams.topic).then(function (results) {
              $scope.picture=results.data;
-            for (var j = 0; j < $scope.picture.length; j++) {
-        // console.log("AA");
-     
-           if($scope.comments[j].CommentId == $scope.picture[j].CommentId){
-            console.log("AAA");
-                $scope.comments[j].Picture = $scope.picture[j].Picture;
-        }else{
-          $scope.comments[j].Picture = null;
-        }
-       
+             console.log( $scope.picture);
+             for (var a in $scope.comments){
+        for (var j = 0; j <  $scope.picture.length; j++) {
         
+        if($scope.comments[a].CommentId == $scope.picture[j].CommentId){
+            console.log("AAA");
+                $scope.comments[a].Picture = $scope.picture[j].Picture;
+        }
+        }; 
       }; 
          console.log($scope.comments);     
         });
@@ -134,7 +132,7 @@ $scope.addRating = function(rating){
         });
 }
 
- regService.getPicture().then(function(response) {
+ regService.getPicture($scope.userId).then(function(response) {
             $scope.pic=response.data; 
             // console.log($scope.pic.Picture);
     });
