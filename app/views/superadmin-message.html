@@ -1,6 +1,6 @@
 <div class="wrapper">
     <!--=== Header ===-->    
-  <div data-ng-controller="HeaderCtrl" data-ng-include="Header">
+  <div data-ng-controller="AdminheaderCtrl" data-ng-include="Header">
 </div>
     <!--=== End Header ===-->  
 
@@ -16,30 +16,17 @@
             <!--End Left Sidebar-->
             
             <div class="col-md-9">
-            	<h1>Super Admin Message</h1>
-            	<a class="btn-u pull-right">Send New</a>
-            	<!--Basic Table-->
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th width="10%">Sr No.</th>
-                            <th >Message</th>
-                            <th>Action</th>
-                             
+             <div class="headline"><h2>Messages</h2></div>
+            	 <div class="funny-boxes funny-boxes-top-sea" data-ng-repeat = "com in comm" data-ng-hide="discussion.deleted">
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Message 1</td>
-                            <td><a class="btn-u">Reply</a></td>
-                                                      
-                        </tr>
-                     
-                    </tbody>
-                </table>
-                <!--End Basic Table-->
+                   
+                    <h4>{{com.sender}} has reported {{com.user}} as an abusing user</h4>
+                    <p>{{com.Message}}</p>
+                    <p>
+                        <a class="btn-u btn-u-red" href="#/">View {{com.user}}</a>
+                        
+                    </p>
+                </div>     
 
 
 

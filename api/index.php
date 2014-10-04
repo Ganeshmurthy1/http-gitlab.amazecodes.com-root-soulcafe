@@ -9,6 +9,7 @@ require 'includes/adminForum.php';
 require 'includes/utils.php';
 require 'includes/BWB.php';
 require 'includes/profileOperations.php';
+require 'includes/adminOperations.php';
 $app->run();
 
 ?>

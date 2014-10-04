@@ -182,7 +182,8 @@ angular
       })
       .when('/superadmin-profile', {
         templateUrl: 'views/superadmin-profile.html',
-        controller: 'SuperadminProfileCtrl'
+        controller: 'SuperadminProfileCtrl',
+        access:      access.admin
       })
       .when('/side-bar-superadmin', {
         templateUrl: 'views/side-bar-superadmin.html',
@@ -211,6 +212,21 @@ angular
       .when('/report-abuse-user', {
         templateUrl: 'views/report-abuse-user.html',
         controller: 'ReportAbuseUserCtrl'
+      })
+      .when('/admin', {
+        templateUrl: 'views/admin.html',
+        controller: 'AdminCtrl',
+        access:      access.anon
+      })
+      .when('/admin-userlist', {
+        templateUrl: 'views/admin-userlist.html',
+        controller: 'AdminUserlistCtrl',
+        access:      access.admin
+      })
+      .when('/admin-blocked-users', {
+        templateUrl: 'views/admin-blocked-users.html',
+        controller: 'AdminBlockedUsersCtrl',
+        access:      access.admin
       })
       .otherwise({
         redirectTo: '/'

@@ -8,10 +8,12 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('SuperadminProfileCtrl', function ($scope) {
+  .controller('SuperadminProfileCtrl', function ($scope, adminOperations, localStorageService) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+    var authData = localStorageService.get('authorizationData');
+	console.log(authData);
   });
