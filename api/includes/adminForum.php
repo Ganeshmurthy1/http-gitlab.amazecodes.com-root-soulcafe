@@ -275,16 +275,11 @@ function adminAddTopic() {
       $stmtFN->bindParam("ViewStatus", $viewstatus);
       $stmtFN->bindParam("AddedDate", $tdate);
       $stmtFN->execute();
-
-
-      // echo 'true';
+       // echo 'true';
     } catch(PDOException $e) {
       echo '{"error":{"text":'. $e->getMessage() .'}}';
     }
-
-
     }
-
 
     $sql = "INSERT INTO DiscussionBoardTopic (DiscussionBoardId, TopicTitle, TopicDescription, CreatedBy, CreatedDate, Status) VALUES (:discussId, :topic, :description, :CreatedBy, :CreatedDate, :status)";
     try {

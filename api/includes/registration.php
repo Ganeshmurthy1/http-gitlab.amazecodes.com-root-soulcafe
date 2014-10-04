@@ -454,9 +454,26 @@ function setCommentLikes($commentId) {
   $user_id  = getUserId();
   $likeDateTime= date("Y-m-d");
 
+    $sqlUsr = "SELECT first_name,last_name from users where user_id =:user_id";
+    try {
+      $db = getConnection();
+      $stmtUsr = $db->prepare($sqlUsr);
+      $stmtUsr->bindParam("user_id",$user_id);
+      $stmtUsr->execute();
+      $wineUsr = $stmtUsr->fetchAll(PDO::FETCH_OBJ);
+      $db = null;
+    //echo $total = $wine->'count(1)';
+     // echo json_encode($wineUsr);
+       $fname = $wineUsr[0]->first_name;
+        $lname = $wineUsr[0]->last_name;
+      // echo 'true';
+    } catch(PDOException $e) {
+      echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
+
    $viewstatus = 0;
-   $message = 'The user liked your comment.';
-   $sqlCommentUser = "SELECT UserId from DiscussionBoardComments where CommentId = :commentid";
+   
+   $sqlCommentUser = "SELECT UserId,Comment from DiscussionBoardComments where CommentId = :commentid";
     try {
       $db = getConnection();
       $stmtCommentUser = $db->prepare($sqlCommentUser);
@@ -473,6 +490,8 @@ function setCommentLikes($commentId) {
     }
 
     foreach($wineCUser as $obj) {
+      $comment = $obj->Comment;
+      $message = $fname.' '.$lname.' has liked your comment "'.$comment.'".';
         $sqlFN = "INSERT INTO ForumNotification (UserId,Message,ViewStatus,AddedDate) VALUES (:UserId, :Message, :ViewStatus, :AddedDate)";
     try {
       $db = getConnection();
@@ -488,12 +507,7 @@ function setCommentLikes($commentId) {
     } catch(PDOException $e) {
       echo '{"error":{"text":'. $e->getMessage() .'}}';
     }
-
-
     }
-
-
-
 
   $sql = "INSERT INTO DiscussionBorardLikes (CommentId, UserId, LikeDateTime) VALUES (:commentId, :userId, :likeDateTime)";
   try {
@@ -566,12 +580,27 @@ function saveComments() {
   }
   
   $comment_santized = $bwb->sanitizeString($comments->comment);
-  //var_dump($ok);
   
-  //exit();
+    $sqlUsr = "SELECT first_name,last_name from users where user_id =:user_id";
+    try {
+      $db = getConnection();
+      $stmtUsr = $db->prepare($sqlUsr);
+      $stmtUsr->bindParam("user_id",$user_id);
+      $stmtUsr->execute();
+      $wineUsr = $stmtUsr->fetchAll(PDO::FETCH_OBJ);
+      $db = null;
+    //echo $total = $wine->'count(1)';
+     // echo json_encode($wineUsr);
+       $fname = $wineUsr[0]->first_name;
+        $lname = $wineUsr[0]->last_name;
+      // echo 'true';
+    } catch(PDOException $e) {
+      echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
+
     $viewstatus = 0;
-    $message = 'The '.$comment_santized.' comment got added to Topic.';
-    $sqlTopicUser = "SELECT distinct UserId from DiscussionBoardComments where DiscussionTopicId =:topicid";
+    
+    $sqlTopicUser = "SELECT distinct dbc.UserId,dbc.DiscussionTopicId,dbt.TopicTitle from DiscussionBoardComments as dbc inner join DiscussionBoardTopic as dbt on dbc.DiscussionTopicId = dbt.DiscussionTopicId where dbc.DiscussionTopicId =:topicid";
     try {
       $db = getConnection();
       $stmtTopicUser = $db->prepare($sqlTopicUser);
@@ -588,6 +617,8 @@ function saveComments() {
     }
 
     foreach($wineTopicUser as $obj) {
+      $tname = $obj->TopicTitle;
+      $message = $fname.' '.$lname.' has commented on the topic '.$tname.'.';
         $sqlFN = "INSERT INTO ForumNotification (UserId,Message,ViewStatus,AddedDate) VALUES (:UserId, :Message, :ViewStatus, :AddedDate)";
     try {
       $db = getConnection();
@@ -597,18 +628,11 @@ function saveComments() {
       $stmtFN->bindParam("ViewStatus", $viewstatus);
       $stmtFN->bindParam("AddedDate", $cmtDateTime);
       $stmtFN->execute();
-
-
-      // echo 'true';
+       // echo 'true';
     } catch(PDOException $e) {
       echo '{"error":{"text":'. $e->getMessage() .'}}';
     }
-
-
     }
-
-
-
   $sql = "INSERT INTO DiscussionBoardComments (DiscussionTopicId, UserId,SeqNo, Comment,CommentDateTime,IsValid,profane) VALUES ( :topicId,:userId ,:SeqNo,:comment ,:cmtDateTime,:IsValid, :profane )";
   try {
     $db = getConnection();
