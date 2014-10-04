@@ -240,11 +240,52 @@ function adminGetTopic() {
 function adminAddTopic() {
   $request = Slim::getInstance()->request();
   $forum = json_decode($request->getBody());
+   $user = json_decode($request->getBody());
+   // print_r($user->discussId);
   $user_id  = getUserId();
   $tdate = date('Y-m-d h:i:s');
     //echo $forum->restriction;
-    
-    $status = 1;
+   $status = 1;
+   $viewstatus = 0;
+   $title = $forum->title;
+   $message = 'The '.$title.'is got added to Forum.';
+   $sqlUser = "SELECT UserId from DiscussionBoardUsers where DiscussionBoardId = :id";
+    try {
+      $db = getConnection();
+      $stmtUser = $db->prepare($sqlUser);
+      $stmtUser->bindParam("id", $user->discussId);
+      $stmtUser->execute();
+      $wineUser = $stmtUser->fetchAll(PDO::FETCH_OBJ);
+      $db = null;
+    //echo $total = $wine->'count(1)';
+     // echo json_encode($wineUser);
+      // print_r($wineUser);
+      // echo 'true';
+    } catch(PDOException $e) {
+      echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
+
+    foreach($wineUser as $obj) {
+        $sqlFN = "INSERT INTO ForumNotification (UserId,Message,ViewStatus,AddedDate) VALUES (:UserId, :Message, :ViewStatus, :AddedDate)";
+    try {
+      $db = getConnection();
+      $stmtFN = $db->prepare($sqlFN);
+      $stmtFN->bindParam("UserId", $obj->UserId);
+      $stmtFN->bindParam("Message", $message);
+      $stmtFN->bindParam("ViewStatus", $viewstatus);
+      $stmtFN->bindParam("AddedDate", $tdate);
+      $stmtFN->execute();
+
+
+      // echo 'true';
+    } catch(PDOException $e) {
+      echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
+
+
+    }
+
+
     $sql = "INSERT INTO DiscussionBoardTopic (DiscussionBoardId, TopicTitle, TopicDescription, CreatedBy, CreatedDate, Status) VALUES (:discussId, :topic, :description, :CreatedBy, :CreatedDate, :status)";
     try {
       $db = getConnection();
