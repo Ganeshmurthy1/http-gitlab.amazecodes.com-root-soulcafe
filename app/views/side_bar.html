@@ -17,7 +17,7 @@
     </div>    
     <div class="notice_pop col-md-6" data-ng-show="popup">    
     	<div class="alert alert-success fade in no-bottom" data-ng-repeat = "message in messages">
-    	<a href="#/{{Link}}" style="display:block; text-decoration:none;">
+    	<a href="#/{{message.Link}}" style="display:block; text-decoration:none;">
             <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
             {{message.Message}}
              {{message.mess}}

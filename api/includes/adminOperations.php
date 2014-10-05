@@ -375,7 +375,7 @@ function MarkMessage() {
       $user_id  = getUserId();
       $cmtDateTime=  date("Y-m-d") ;   
       $view_stat = 0;
-      $link = 'my-message';  
+      $link = 'my-messages';  
     
       $sql = "INSERT INTO Messages (SenderId, UserId,Message, AddedDate,ViewStatus,Link) VALUES ( :SenderId,:UserId ,:Message,:AddedDate ,:ViewStatus,:Link)";
     
