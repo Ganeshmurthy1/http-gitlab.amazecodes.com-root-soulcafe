@@ -473,7 +473,7 @@ function setCommentLikes($commentId) {
 
    $viewstatus = 0;
    
-   $sqlCommentUser = "SELECT UserId,Comment from DiscussionBoardComments where CommentId = :commentid";
+   $sqlCommentUser = "SELECT UserId,Comment,DiscussionTopicId from DiscussionBoardComments where CommentId = :commentid";
     try {
       $db = getConnection();
       $stmtCommentUser = $db->prepare($sqlCommentUser);
@@ -491,8 +491,10 @@ function setCommentLikes($commentId) {
 
     foreach($wineCUser as $obj) {
       $comment = $obj->Comment;
+      $id = $obj->DiscussionTopicId;
+      $link = 'discussion?id='.$id;
       $message = $fname.' '.$lname.' has liked your comment "'.$comment.'".';
-        $sqlFN = "INSERT INTO ForumNotification (UserId,Message,ViewStatus,AddedDate) VALUES (:UserId, :Message, :ViewStatus, :AddedDate)";
+        $sqlFN = "INSERT INTO ForumNotification (UserId,Message,ViewStatus,AddedDate,Link) VALUES (:UserId, :Message, :ViewStatus, :AddedDate, :Link)";
     try {
       $db = getConnection();
       $stmtFN = $db->prepare($sqlFN);
@@ -500,6 +502,7 @@ function setCommentLikes($commentId) {
       $stmtFN->bindParam("Message", $message);
       $stmtFN->bindParam("ViewStatus", $viewstatus);
       $stmtFN->bindParam("AddedDate", $likeDateTime);
+      $stmtFN->bindParam("Link", $link);
       $stmtFN->execute();
 
 
@@ -618,8 +621,10 @@ function saveComments() {
 
     foreach($wineTopicUser as $obj) {
       $tname = $obj->TopicTitle;
+      $id = $obj->DiscussionTopicId;
+      $link = 'discussion?id='.$id;
       $message = $fname.' '.$lname.' has commented on the topic '.$tname.'.';
-        $sqlFN = "INSERT INTO ForumNotification (UserId,Message,ViewStatus,AddedDate) VALUES (:UserId, :Message, :ViewStatus, :AddedDate)";
+        $sqlFN = "INSERT INTO ForumNotification (UserId,Message,ViewStatus,AddedDate,Link) VALUES (:UserId, :Message, :ViewStatus, :AddedDate,:Link)";
     try {
       $db = getConnection();
       $stmtFN = $db->prepare($sqlFN);
@@ -627,6 +632,7 @@ function saveComments() {
       $stmtFN->bindParam("Message", $message);
       $stmtFN->bindParam("ViewStatus", $viewstatus);
       $stmtFN->bindParam("AddedDate", $cmtDateTime);
+      $stmtFN->bindParam("Link", $link);
       $stmtFN->execute();
        // echo 'true';
     } catch(PDOException $e) {

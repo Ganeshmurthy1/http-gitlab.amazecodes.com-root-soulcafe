@@ -45,6 +45,49 @@ function adminAddDiscussion() {
       
     }
     
+    $sqlUser = "select * from users where user_id Not IN(select user_id from users where user_id=:user_id)";
+    try {
+      $db = getConnection();
+      $stmtUser = $db->prepare($sqlUser);
+      $stmtUser->bindParam("user_id", $user_id);
+      $stmtUser->execute();
+      $wineUser = $stmtUser->fetchAll(PDO::FETCH_OBJ);
+      $db = null;
+    //echo $total = $wine->'count(1)';
+     // echo json_encode($wineUser);
+      // print_r($wineUser);
+      // echo 'true';
+    } catch(PDOException $e) {
+      echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
+    $status=0;
+    $DateTime=  date("Y-m-d") ;
+    foreach($wineUser as $obj) {
+      $forumname = $forum->title;
+      $link = 'discussion-list';
+      $message ='New forum '.$forumname.' got added.';
+        $sqlSN = "Insert into SystemNotification (userId,Message,ViewStatus,AddedDate,Link) values (:userId,:Message,:ViewStatus,:AddedDate,:Link)";
+    try {
+      $db = getConnection();
+      $stmtSN = $db->prepare($sqlSN);  
+      $stmtSN->bindParam("userId", $obj->user_id);
+      $stmtSN->bindParam("Message", $message);
+      $stmtSN->bindParam("ViewStatus", $status);
+      $stmtSN->bindParam("AddedDate", $DateTime);
+      $stmtSN->bindParam("Link", $link);
+      $stmtSN->execute();
+       // echo 'true';
+    } catch(PDOException $e) {
+      echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
+    }
+
+
+
+
+
+
+
     $sql = "INSERT INTO DiscussionBoard (Topic, Description, StartDate, CreatedBy, CreatedDate, Restricted, RestrictedGender, RestrictedAge, RestrictedLocation,Image) VALUES (:Topic, :Description, :StartDate, :CreatedBy, :CreatedDate, :Restricted, :RestrictedGender, :RestrictedAge, :RestrictedLocation,:image)";
     try {
       $db = getConnection();
@@ -266,7 +309,9 @@ function adminAddTopic() {
     }
 
     foreach($wineUser as $obj) {
-        $sqlFN = "INSERT INTO ForumNotification (UserId,Message,ViewStatus,AddedDate) VALUES (:UserId, :Message, :ViewStatus, :AddedDate)";
+      $id=$user->discussId;
+      $link = 'discussion-topics?id='.$id;
+        $sqlFN = "INSERT INTO ForumNotification (UserId,Message,ViewStatus,AddedDate,Link) VALUES (:UserId, :Message, :ViewStatus, :AddedDate,:Link)";
     try {
       $db = getConnection();
       $stmtFN = $db->prepare($sqlFN);
@@ -274,6 +319,7 @@ function adminAddTopic() {
       $stmtFN->bindParam("Message", $message);
       $stmtFN->bindParam("ViewStatus", $viewstatus);
       $stmtFN->bindParam("AddedDate", $tdate);
+      $stmtFN->bindParam("Link", $link);
       $stmtFN->execute();
        // echo 'true';
     } catch(PDOException $e) {

@@ -57,18 +57,25 @@ $location.path('/confirmGTKY');
       };
 
   profileOperations.checkGTKYRequest($scope.user_id).then(function(resp) {
-          console.log(resp.data);
-          $scope.chkuser = resp.data;
-          console.log($scope.chkuser);
-          $scope.a='ok';
-          if ($scope.chkuser == 1){
-            $scope.GTKY ="false";
-            console.log("False");
-          }else if( $scope.chkuser == 0) {
+          console.log(resp.data[0]);
+          $scope.chkuser = resp.data[0];
+          if ($scope.chkuser == null){
+            console.log("Abhik Null");
             $scope.GTKY ="true";
-            console.log("True");
-          } 
-          console.log("Outside");      
+            $scope.GTKY1 ="false";
+            $scope.GTKY2 ="false";
+          }else if( $scope.chkuser.Status == 0) {
+            console.log("Abhik Status 0");
+             $scope.GTKY ="false";
+            $scope.GTKY1 ="true";
+            $scope.GTKY2 ="false";
+          }else if($scope.chkuser.Status == 1){
+            console.log("Abhik Status 1");
+              $scope.GTKY ="false";
+            $scope.GTKY1 ="false";
+            $scope.GTKY2 ="true";
+          }
+          // console.log("Outside");      
         });
 
   profileOperations.checkAbuseUser($scope.user_id).then(function(abuse) {

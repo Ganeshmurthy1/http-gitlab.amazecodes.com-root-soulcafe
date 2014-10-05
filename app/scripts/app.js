@@ -228,6 +228,10 @@ angular
         controller: 'AdminBlockedUsersCtrl',
         access:      access.admin
       })
+      .when('/accept-gtky', {
+        templateUrl: 'views/accept-gtky.html',
+        controller: 'AcceptGtkyCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

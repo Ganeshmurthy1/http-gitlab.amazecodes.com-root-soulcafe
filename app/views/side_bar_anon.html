@@ -2,10 +2,12 @@
                 <img class="img-responsive profile-img margin-bottom-20" ng-src="{{pic.Picture}}" alt=""></img>
             <div style="clear:both;">
                 <h4 style="background-color:#ed719e;padding:5px;text-align:center;color:black;margin-bottom:10px;"><a style="color:black;">Check Compatiblity</a></h4>
-                <div ng-hide="GTKY">
+                <div ng-show="GTKY">
                <a style="color:black;" ng-click="sendGTKY()"> <h4 style="background-color:#ed719e;padding:5px;text-align:center;color:black;margin-bottom:10px;">Send GTKY</h4></a></div>
-               <div ng-show="GTKY">
+               <div ng-show="GTKY1">
                <a style="color:black;"> <h4 style="background-color:#ed719e;padding:5px;text-align:center;color:black;margin-bottom:10px;">GTKY Already Send</h4></a></div>
+               <div ng-show="GTKY2">
+               <a style="color:black;"> <h4 style="background-color:#ed719e;padding:5px;text-align:center;color:black;margin-bottom:10px;">Send Message</h4></a></div>
                <div ng-hide="abuseHide">
                 <a style="color:black;" ng-click="reportAbuse()"><h4 style="background-color:#ed719e;padding:5px;text-align:center; color:black; margin-bottom:10px;">Report Abuse</h4></a></div>
             </div>  

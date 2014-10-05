@@ -1,0 +1,47 @@
+<div class="wrapper">
+    <!--=== Header ===-->    
+  <div data-ng-controller="HeaderCtrl" data-ng-include="Header">
+</div>
+    <!--=== End Header ===-->  
+
+
+
+
+    <!--=== Profile ===-->
+    <div class="profile container content" style="border-color:red">
+        <div class="row">
+            <!--Left Sidebar-->
+            <div data-ng-controller="SideBarCtrl" data-ng-include="SideBar">
+            </div>
+            <!--End Left Sidebar-->
+            
+            <div class="col-md-9">
+
+                   <div class="alert fade in margin-bottom-40" ng-repeat="gtky in GTKYrequest">
+ 
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                     <h2>{{gtky.first_name}} {{gtky.last_name}} wants to be your friend. </h2>
+           				 <div class="pull-right">
+                 <button type="button" class="btn-u" data-ng-click="acceptButtonClick(gtky.SenderId)">Accept</button>
+                 <a ng-click="rejectButtonClick(gtky.SenderId)" class="btn-u btn-u-default" type="button">Reject</a>
+             </div>
+                </div>
+               
+      
+                  
+                    
+            </div>
+            <!--End Profile Body-->
+        </div>
+    </div><!--/end row-->
+        
+    <!--=== End Profile ===-->
+
+
+<!--=== Footer ===-->
+ <div data-ng-controller="FooterCtrl" data-ng-include="Footer">
+</div>
+
+<!--=== End Footer ===-->
+</div>
+ <!-- End wrapper -->

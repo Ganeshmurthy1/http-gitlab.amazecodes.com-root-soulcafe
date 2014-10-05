@@ -43,5 +43,23 @@ angular.module('sassApp')
                 return response;
             });  
      };
+     dataFactory.getUserSendedGTKY = function () { 
+          return $http.get(urlBase + 'get_UserSendedGTKY').then(function(response) {
+          //console.log(response);
+                return response;
+            });  
+     };
+     dataFactory.acceptGTKY = function (id) { 
+          return $http.get(urlBase + 'accept_GTKY/'+ id).then(function(response) {
+          //console.log(response);
+                return response;
+            });  
+     };
+     dataFactory.rejectGTKY = function (id) { 
+          return $http.get(urlBase + 'reject_GTKY/'+ id).then(function(response) {
+          //console.log(response);
+                return response;
+            });  
+     };
     return dataFactory;
   }]);
