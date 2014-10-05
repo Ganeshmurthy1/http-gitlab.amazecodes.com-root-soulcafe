@@ -228,6 +228,15 @@ angular
         controller: 'AdminBlockedUsersCtrl',
         access:      access.admin
       })
+      .when('/my-messages', {
+        templateUrl: 'views/my-messages.html',
+        controller: 'MyMessagesCtrl',
+        access:      access.user
+      })
+      .when('/reply-message', {
+        templateUrl: 'views/reply-message.html',
+        controller: 'ReplyMessageCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -15,6 +15,13 @@ $app->get('/get_total_forum_message/:id', 'getTotalForumMessage');
 
 $app->get('/sys_mark_message', 'sysMarkMessage');
 $app->get('/mark_message', 'MarkMessage');
+$app->get('/forum_mark_message', 'ForumMarkMessage');
+
+$app->get('/get_my_message', 'getMyMessage');
+
+$app->get('/get_picture_name/:id', 'checkUser','getPictureName');
+
+$app->post('/sent_message','checkUser','sentMessage');
 
 function checkAdminLogin() {
   $request = Slim::getInstance()->request();
@@ -237,7 +244,7 @@ function sysMarkMessage() {
 function MarkMessage() {
   $user_id  = getUserId();
 
-  $sql = "SELECT Message as mes from Messages where UserId=:user_id and ViewStatus=0 order by AddedDate desc";
+  $sql = "SELECT u.first_name, m.* from Messages m JOIN users u on m.SenderId=u.user_id where m.UserId=:user_id and m.ViewStatus=0 order by m.AddedDate desc";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
@@ -245,7 +252,13 @@ function MarkMessage() {
     $stmt->execute();
     $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
     $db = null;
+    //print_r($wine);
     //echo $total = $wine->'count(1)';
+    for ($i=0; $i<count($wine); $i++) {
+      //print $wine[$i]->Message;
+      $wine[$i]->mess = $wine[$i]->first_name . ' has sent you a message';
+      unset($wine[$i]->Message);
+    }
 
     echo json_encode($wine);
   } catch(PDOException $e) {
@@ -253,7 +266,40 @@ function MarkMessage() {
   }
 
 
-    $sql = "Update Messages SET ViewStatus=1 WHERE userId=:id";
+//     $sql = "Update Messages SET ViewStatus=1 WHERE userId=:id";
+//     try {
+//       $db = getConnection();
+//       $stmt = $db->prepare($sql);
+//       $stmt->bindParam("id", $user_id);
+//       $stmt->execute();
+//       //echo 'true';
+//       //echo json_encode($wine);
+//     } catch(PDOException $e) {
+//       echo '{"error":{"text":'. $e->getMessage() .'}}';
+//     }
+
+  }
+  
+  function ForumMarkMessage() {
+    $user_id  = getUserId();
+  
+    $sql = "SELECT * from ForumNotification where UserId=:user_id and ViewStatus=0 order by AddedDate desc";
+    try {
+      $db = getConnection();
+      $stmt = $db->prepare($sql);
+      $stmt->bindParam("user_id", $user_id);
+      $stmt->execute();
+      $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+      $db = null;
+      //echo $total = $wine->'count(1)';
+  
+      echo json_encode($wine);
+    } catch(PDOException $e) {
+      echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
+  
+  
+    $sql = "Update ForumNotification SET ViewStatus=1 WHERE userId=:id";
     try {
       $db = getConnection();
       $stmt = $db->prepare($sql);
@@ -264,5 +310,91 @@ function MarkMessage() {
     } catch(PDOException $e) {
       echo '{"error":{"text":'. $e->getMessage() .'}}';
     }
-
+  
   }
+  
+  function getMyMessage() {
+    $user_id  = getUserId();
+  
+    $sql = "SELECT u.first_name, u.Picture, m.* from Messages m JOIN users u on m.SenderId=u.user_id where m.UserId=:user_id order by m.AddedDate desc";
+    try {
+      $db = getConnection();
+      $stmt = $db->prepare($sql);
+      $stmt->bindParam("user_id", $user_id);
+      $stmt->execute();
+      $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+      $db = null;
+      //print_r($wine);
+      //echo $total = $wine->'count(1)';
+      for ($i=0; $i<count($wine); $i++) {
+        //print $wine[$i]->Message;
+        $wine[$i]->mess = $wine[$i]->first_name . ' has sent you a message';
+       // unset($wine[$i]->Message);
+      }
+  
+      echo json_encode($wine);
+    } catch(PDOException $e) {
+      echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
+  
+  
+    //     $sql = "Update Messages SET ViewStatus=1 WHERE userId=:id";
+    //     try {
+    //       $db = getConnection();
+    //       $stmt = $db->prepare($sql);
+    //       $stmt->bindParam("id", $user_id);
+    //       $stmt->execute();
+    //       //echo 'true';
+    //       //echo json_encode($wine);
+    //     } catch(PDOException $e) {
+    //       echo '{"error":{"text":'. $e->getMessage() .'}}';
+    //     }
+  
+    }
+    
+    function getPictureName($id) {
+      // $user_id  = getUserId();
+      $sql = "SELECT Picture, first_name from users where user_id = :id";
+      try {
+        $db = getConnection();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("id", $id);
+        $stmt->execute();
+        $wine = $stmt->fetchObject();
+        $db = null;
+        echo json_encode($wine);
+      } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+      }
+    }
+    
+    function sentMessage() {
+      $request = Slim::getInstance()->request();
+      $comments = json_decode($request->getBody());
+    
+      $user_id  = getUserId();
+      $cmtDateTime=  date("Y-m-d") ;   
+      $view_stat = 0;
+      $link = 'my-message';  
+    
+      $sql = "INSERT INTO Messages (SenderId, UserId,Message, AddedDate,ViewStatus,Link) VALUES ( :SenderId,:UserId ,:Message,:AddedDate ,:ViewStatus,:Link)";
+    
+    
+      try {
+        $db = getConnection();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("SenderId", $user_id);
+        $stmt->bindParam("UserId", $comments->uid);
+        $stmt->bindParam("Message", $comments->comment);
+        $stmt->bindParam("AddedDate", $cmtDateTime);
+        $stmt->bindParam("ViewStatus", $view_stat);
+        $stmt->bindParam("Link", $link);
+        //$stmt->bindParam("profane", $profane);
+        $stmt->execute();
+        //   echo 'true';
+        //$app->redirect('login.html');
+      }
+      catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+      }
+    }

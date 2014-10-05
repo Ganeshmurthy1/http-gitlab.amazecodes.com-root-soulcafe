@@ -271,5 +271,10 @@ angular.module('sassApp')
                 return response;
             });	
 	    };
+	    dataFactory.forumMarkMessage = function () {	
+	     	return $http.get(urlBase + 'forum_mark_message').then(function(response) {
+                return response;
+            });	
+	    };
 	    return dataFactory;
 	}]);

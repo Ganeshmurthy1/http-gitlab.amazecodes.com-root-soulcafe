@@ -1,0 +1,75 @@
+<div class="wrapper">
+    <!--=== Header ===-->    
+  <div data-ng-controller="HeaderCtrl" data-ng-include="Header">
+</div>
+    <!--=== End Header ===-->  
+
+
+    <!--=== Profile ===-->
+    <div class="profile container content" style="border-color:red">
+        <div class="row">
+            <!--Left Sidebar-->
+            <div data-ng-controller="SideBarCtrl" data-ng-include="SideBar">
+            </div>
+            <!--End Left Sidebar-->
+            
+            <div class="col-md-9">
+                <!--Profile Body-->
+                <div class="profile">
+                <div class="profile-body">  
+                    <!--Service Block v3-->
+
+                  
+
+                    <div class="panel panel-profile">
+
+                   
+                            <div class="panel-heading overflow-h">
+                                <h2 class="panel-title heading-sm pull-left"><i class="fa fa-envelope-o"></i>Send new Messages</h2>
+                            
+                            </div>            
+              
+                             <div class="media media-v2">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object rounded-x" ng-src="{{pic.Picture}}" alt="">
+                                    </a>
+                                <div class="media-body">
+                                            <h4 class="media-heading">
+                                                <strong><a href="#">To {{pic.first_name}}, </a></strong>
+                                            </h4>
+                                             <div class="alert alert-danger fade in" data-ng-show="errMessage">{{errMessage}}</div>
+                                    <form id="sky-form4" class="sky-form" name="adminDiscussion">
+                                        <fieldset>     
+                                            <label class="textarea">
+                                                 <textarea rows="4" name="message" id="message" data-ng-model="comment" ></textarea>
+                                            </label>
+                                            <button data-ng-click=sendMyMessage() class="btn-u btn-u-blue">Submit</button>
+                                        </fieldset>
+                                    </form>
+                                 </div>
+                                </div><!--/end media media v2--> 
+                             
+
+                        </div>  
+
+				</div>
+                </div>
+                <!--End Profile Body-->
+            </div>
+        </div><!--/end row-->
+    </div><!--/container-->    
+    <!--=== End Profile ===-->
+
+
+<!--=== Footer ===-->
+ <div data-ng-controller="FooterCtrl" data-ng-include="Footer">
+</div>
+
+<!--=== End Footer ===-->
+
+
+
+
+    
+</div>
+ <!-- End wrapper -->
