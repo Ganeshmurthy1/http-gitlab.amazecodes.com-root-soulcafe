@@ -3752,3 +3752,17 @@ ul.rating {
     color: rgb(245, 156, 43);
   }
 }
+
+.notice_pop {
+	border: 1px solid #cccccc;
+	position: absolute;
+	z-index:999;
+	top:70px;
+	width:300px;
+	margin:0px;
+	padding:0px;
+	left:0px;
+}
+.no-bottom {
+	margin-bottom:0px !important;
+}
