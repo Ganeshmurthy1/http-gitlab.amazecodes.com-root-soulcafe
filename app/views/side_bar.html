@@ -2,15 +2,15 @@
     <div class="row" style="clear:both;margin-bottom:5%;">
     <ul class="list-inline badge-lists badge-box-v2 margin-bottom-30">
         <li>
-            <a ng-click="sysMessage()"><i class="fa fa-bell-o"></i>Alerts</a>
+            <a ng-click="sysMessage()" class="rounded my-pointer"><i class="fa fa-bell-o"></i>Alerts</a>
             <span class="badge badge-red rounded-x" ng-show="totalSysMessage">{{totalSysMessage}}</span>
         </li>
         <li>
-            <a ng-click="Message()" class="rounded"><i class="fa fa-envelope-o"></i>Messages</a>
+            <a ng-click="Message()" class="rounded my-pointer"><i class="fa fa-envelope-o"></i>Messages</a>
             <span class="badge badge-red rounded-x" ng-show="totalMessage">{{totalMessage}}</span>
         </li>
         <li>
-            <a ng-click="forumMessage()"  class="rounded-2x"><i class="fa fa-comments-o"></i>Notifications</a>
+            <a ng-click="forumMessage()"  class="rounded my-pointer"><i class="fa fa-comments-o"></i>Notifications</a>
             <span class="badge badge-red rounded-x" ng-show="totalForumMessage">{{totalForumMessage}}</span>
         </li>        
     </ul>    
@@ -19,6 +19,7 @@
     	<div class="alert alert-success fade in no-bottom" data-ng-repeat = "message in messages">
             <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
             {{message.Message}}
+             {{message.mes}}
         </div>
        
    

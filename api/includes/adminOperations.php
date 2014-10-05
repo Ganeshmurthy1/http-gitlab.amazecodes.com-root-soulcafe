@@ -237,7 +237,7 @@ function sysMarkMessage() {
 function MarkMessage() {
   $user_id  = getUserId();
 
-  $sql = "SELECT * from Messages where UserId=:user_id and ViewStatus=0 order by AddedDate desc";
+  $sql = "SELECT Message as mes from Messages where UserId=:user_id and ViewStatus=0 order by AddedDate desc";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
