@@ -1,9 +1,32 @@
 <div class="col-md-3 md-margin-bottom-40">
     <div class="row" style="clear:both;margin-bottom:5%;">
-    <div class="col-md-3"><a><i class="fa fa-bell-o fa-2x" style="color:black;"></i></a></div>
-    <div class="col-md-3"><a><i class="fa fa-envelope-o fa-2x" style="color:black;"></i></a></div>
-    <div class="col-md-3"><a><i class="fa fa-comments-o fa-2x" style="color:black;"></i></a></div>
+    <ul class="list-inline badge-lists badge-box-v2 margin-bottom-30">
+        <li>
+            <a ng-click="sysMessage()" class="rounded my-pointer"><i class="fa fa-bell-o"></i>Alerts</a>
+            <span class="badge badge-red rounded-x" ng-show="totalSysMessage">{{totalSysMessage}}</span>
+        </li>
+        <li>
+            <a ng-click="Message()" class="rounded my-pointer"><i class="fa fa-envelope-o"></i>Messages</a>
+            <span class="badge badge-red rounded-x" ng-show="totalMessage">{{totalMessage}}</span>
+        </li>
+        <li>
+            <a ng-click="forumMessage()"  class="rounded my-pointer"><i class="fa fa-comments-o"></i>Notifications</a>
+            <span class="badge badge-red rounded-x" ng-show="totalForumMessage">{{totalForumMessage}}</span>
+        </li>        
+    </ul>    
+    </div>    
+    <div class="notice_pop col-md-6" data-ng-show="popup">    
+    	<div class="alert alert-success fade in no-bottom" data-ng-repeat = "message in messages">
+            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+            {{message.Message}}
+             {{message.mes}}
+        </div>
+       
+   
+                        
     </div>
+    
+    
             <div style="clear:both;">    <img class="img-responsive profile-img margin-bottom-20" ng-src="{{pic.Picture}}"></img></div>
                 <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1" data-ng-show="isAdmin">
                     <li class="list-group-item active">

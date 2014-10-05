@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('SideBarCtrl', function ($scope, localStorageService,regService) {
+  .controller('SideBarCtrl', function ($scope, localStorageService,regService, $location) {
 
 $scope.SideBar = 'views/side_bar.html';
 
@@ -23,6 +23,7 @@ $scope.SideBar = 'views/side_bar.html';
     	$scope.isAdmin = true;
       $scope.isUser = true;
     }
+    $scope.popup = false;
     
    regService.getPicture(authData.user_id).then(function(response) {
             $scope.pic=response.data; 
@@ -47,5 +48,37 @@ $scope.SideBar = 'views/side_bar.html';
            $scope.thumbup = 'true';
          }
       });
+      
+      regService.getTotalSysMessage(authData.user_id).then(function(response) {
+    	  //console.log(response.data.total);
+          $scope.totalSysMessage = response.data.total; 
+          // console.log($scope.pic.Picture);
+      });
+      regService.getTotalMessage(authData.user_id).then(function(response) {
+          $scope.totalMessage = response.data.total; 
+          // console.log($scope.pic.Picture);
+      });
+      regService.getTotalForumMessage(authData.user_id).then(function(response) {
+          $scope.totalForumMessage = response.data.total; 
+          // console.log($scope.pic.Picture);
+      });
+      
+      $scope.sysMessage = function() {  
+    	  regService.sysMarkMessage().then(function (response) { 
+    		  $scope.messages = response.data;
+    		  $scope.totalSysMessage = 0;
+    		  $scope.popup = true;
+      		
+      	});
+      };
+      
+      $scope.Message = function() {  
+    	  regService.MarkMessage().then(function (response) { 
+    		  $scope.messages = response.data;
+    		  $scope.totalMessage = 0;
+    		  $scope.popup = true;
+      		
+      	});
+      };
 
   });

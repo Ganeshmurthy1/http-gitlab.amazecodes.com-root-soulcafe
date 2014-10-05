@@ -246,5 +246,30 @@ angular.module('sassApp')
                 return response;
             });	
 	    };
+	    dataFactory.getTotalSysMessage = function (param) {	
+	     	return $http.get(urlBase + 'get_total_sys_message/'+param).then(function(response) {
+                return response;
+            });	
+	    };
+	    dataFactory.getTotalMessage = function (param) {	
+	     	return $http.get(urlBase + 'get_total_message/'+param).then(function(response) {
+                return response;
+            });	
+	    };
+	    dataFactory.getTotalForumMessage = function (param) {	
+	     	return $http.get(urlBase + 'get_total_forum_message/'+param).then(function(response) {
+                return response;
+            });	
+	    };
+	    dataFactory.sysMarkMessage = function () {	
+	     	return $http.get(urlBase + 'sys_mark_message').then(function(response) {
+                return response;
+            });	
+	    };
+	    dataFactory.MarkMessage = function () {	
+	     	return $http.get(urlBase + 'mark_message').then(function(response) {
+                return response;
+            });	
+	    };
 	    return dataFactory;
 	}]);
