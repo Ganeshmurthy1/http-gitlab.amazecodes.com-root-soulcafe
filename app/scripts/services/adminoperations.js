@@ -49,6 +49,22 @@ angular.module('sassApp')
 	                return response;
 	            });	 
 		      };
+	      dataFactory.getMyMessage = function () {	
+		      	return $http.get(urlBase + 'get_my_message').then(function(response) {
+		    		//console.log(response);
+	                return response;
+	            });	 
+		  };
+		  dataFactory.getPictureAndName = function (id) {	
+		     	return $http.get(urlBase + 'get_picture_name/'+ id).then(function(response) {
+	                return response;
+	            });	
+		    };
+	     dataFactory.sentMessage = function (comment) {	
+	     	return $http.post(urlBase + 'sent_message', comment).then(function(response) {
+                return response;
+            });	
+	    };
 	    
 	    return dataFactory;
 	}]);

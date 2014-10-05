@@ -232,6 +232,15 @@ angular
         templateUrl: 'views/accept-gtky.html',
         controller: 'AcceptGtkyCtrl'
       })
+       .when('/my-messages', {
+        templateUrl: 'views/my-messages.html',
+        controller: 'MyMessagesCtrl',
+        access:      access.user
+      })
+      .when('/reply-message', {
+        templateUrl: 'views/reply-message.html',
+        controller: 'ReplyMessageCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

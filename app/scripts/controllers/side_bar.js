@@ -80,5 +80,13 @@ $scope.SideBar = 'views/side_bar.html';
       		
       	});
       };
+      $scope.forumMessage = function() {  
+    	  regService.forumMarkMessage().then(function (response) { 
+    		  $scope.messages = response.data;
+    		  $scope.totalForumMessage = 0;
+    		  $scope.popup = true;
+      		
+      	});
+      };
 
   });
