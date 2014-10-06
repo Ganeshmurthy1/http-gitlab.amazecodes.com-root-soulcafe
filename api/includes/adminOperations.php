@@ -27,6 +27,9 @@ $app->get('/get_all_forum', 'GetAllForum');
 
 $app->post('/admin_add_admin', 'adminAddAdmin');
 
+$app->get('/get_all_admins', 'GetAllAdmins');
+
+
 
 function checkAdminLogin() {
   $request = Slim::getInstance()->request();
@@ -271,17 +274,17 @@ function MarkMessage() {
   }
 
 
-//     $sql = "Update Messages SET ViewStatus=1 WHERE userId=:id";
-//     try {
-//       $db = getConnection();
-//       $stmt = $db->prepare($sql);
-//       $stmt->bindParam("id", $user_id);
-//       $stmt->execute();
-//       //echo 'true';
-//       //echo json_encode($wine);
-//     } catch(PDOException $e) {
-//       echo '{"error":{"text":'. $e->getMessage() .'}}';
-//     }
+    $sql = "Update Messages SET ViewStatus=1 WHERE userId=:id";
+    try {
+      $db = getConnection();
+      $stmt = $db->prepare($sql);
+      $stmt->bindParam("id", $user_id);
+      $stmt->execute();
+      //echo 'true';
+      //echo json_encode($wine);
+    } catch(PDOException $e) {
+      echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
 
   }
   
@@ -482,3 +485,20 @@ function MarkMessage() {
         }
      
     }
+
+
+    function GetAllAdmins() {
+      // $user_id  = getUserId();
+      $sql = "SELECT * FROM `AdminUser` WHERE Role = 2";
+      try {
+        $db = getConnection();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $db = null;
+        echo json_encode($wine);
+      } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+      }
+    }
+    

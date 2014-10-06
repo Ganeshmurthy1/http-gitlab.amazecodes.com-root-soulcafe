@@ -21,20 +21,18 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th width="10%">Sr No.</th>
-                            <th>User</th>
-                            <th width="10%">Permission</th>
+                            <th>User Name</th>
+                            <th width="10%">Email-Id</th>
                             <th>Action</th>
                              
 
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>User 1</td>
-                             <td><a class="btn-u">Edit Permission</a></td>
-                            <td><a class="btn-u">Deactivate</a></td>
+                        <tr ng-repeat="ad in admins">
+                            <td>{{ad.FullName}}</td>
+                             <td>{{ad.Email}}</td>
+                            <td><a class="btn-u" data-ng-hide="{{ad.Status == 1}}">Activate</a><a class="btn-u" data-ng-show="{{ad.Status == 1}}">Deactivate</a></td>
                                                       
                         </tr>
                      
