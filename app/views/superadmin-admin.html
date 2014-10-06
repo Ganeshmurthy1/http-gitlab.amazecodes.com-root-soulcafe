@@ -16,7 +16,7 @@
             <!--End Left Sidebar-->
             
             <div class="col-md-9">
-            	<h1>Super Admin Message</h1>
+            	<h1>All Admins</h1>
             	<!--Basic Table-->
                 <table class="table">
                     <thead>
@@ -30,7 +30,7 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="ad in admins">
-                            <td>{{ad.FullName}}</td>
+                            <td>{{ad.Uname}}</td>
                              <td>{{ad.Email}}</td>
                             <td><a class="btn-u" data-ng-hide="{{ad.Status == 1}}" data-ng-click="activateUser(ad.AdminId)">Activate</a><a class="btn-u" data-ng-show="{{ad.Status == 1}}" data-ng-click="deactivateUser(ad.AdminId)">Deactivate</a></td>
                                                       
