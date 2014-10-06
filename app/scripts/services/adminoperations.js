@@ -71,14 +71,19 @@ angular.module('sassApp')
                 return response;
             });	 
 	      };
-	      dataFactory.addAdmin = function (param) {
+	    dataFactory.addAdmin = function (param) {
 		    	// console.log(param);
 		    	return $http.post(urlBase + 'admin_add_admin', param).then(function(response) {
 		    		//console.log(response);
 	                return response;
 	            });
-		    	
-		    };
+		};
+		dataFactory.getAllAdmins = function () {	
+	      	return $http.get(urlBase + 'get_all_admins').then(function(response) {
+	    		//console.log(response);
+                return response;
+            });	 
+	    };
 	    return dataFactory;
 	}]);
 
