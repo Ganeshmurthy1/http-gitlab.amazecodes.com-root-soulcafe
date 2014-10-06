@@ -34,6 +34,9 @@ $app->get('/admin_get_my_forums', 'adminGetMyForums');
 $app->get('/activate_user/:id', 'activateUser');
 $app->get('/deactivate_user/:id', 'deactivateUser');
 
+$app->get('/get_admin_data/:id', 'getAdminData');
+$app->post('/update_admin_data', 'updateAdminData');
+
 function checkAdminLogin() {
   $request = Slim::getInstance()->request();
   $user = json_decode($request->getBody());
@@ -553,6 +556,45 @@ function adminGetMyForums() {
         $stmt = $db->prepare($sql);
         $stmt->bindParam("id", $id);
         $stmt->execute();
+        echo 'true';
+      } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+      }
+    }
+
+    
+
+
+    function getAdminData($id) {
+      // $user_id  = getUserId();
+      $sql = "SELECT * from AdminUser where AdminId = :id";
+      try {
+        $db = getConnection();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("id", $id);
+        $stmt->execute();
+        $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $db = null;
+        echo json_encode($wine);
+      } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+      }
+    }
+
+    
+    function updateAdminData() {
+      // $user_id  = getUserId();
+       $request = Slim::getInstance()->request();
+      $admin = json_decode($request->getBody());
+      $sql = "Update AdminUser Set Uname = :uname,Email=:email where AdminId = :id";
+      try {
+        $db = getConnection();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("id", $admin->AdminId);
+        $stmt->bindParam("uname", $admin->Uname);
+        $stmt->bindParam("email", $admin->Email);
+        $stmt->execute();
+        
         echo 'true';
       } catch(PDOException $e) {
         echo '{"error":{"text":'. $e->getMessage() .'}}';

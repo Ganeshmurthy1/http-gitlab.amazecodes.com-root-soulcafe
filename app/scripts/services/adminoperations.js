@@ -100,6 +100,18 @@ angular.module('sassApp')
 	                return response;
 	            });	
 		};
+		dataFactory.getAdminData = function (id) {	
+		     	return $http.get(urlBase + 'get_admin_data/'+ id).then(function(response) {
+	                return response;
+	            });	
+		};
+		dataFactory.updateAdminData = function (param) {
+		    	// console.log(param);
+		    	return $http.post(urlBase + 'update_admin_data', param).then(function(response) {
+		    		//console.log(response);
+	                return response;
+	            });
+		};
 	    return dataFactory;
 	}]);
 

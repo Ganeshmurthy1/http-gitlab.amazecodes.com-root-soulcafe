@@ -1,0 +1,120 @@
+<div class="wrapper">
+    <!--=== Header ===-->    
+  <div data-ng-controller="HeaderCtrl" data-ng-include="Header">
+</div>
+    <!--=== End Header ===-->  
+
+
+
+
+    <!--=== Profile ===-->
+    <div class="profile container content" style="border-color:red">
+        <div class="row">
+            <!--Left Sidebar-->
+            <div data-ng-controller="SideBarSuperadminCtrl" data-ng-include="SideBarSuperAdmin">
+            </div>
+            <!--End Left Sidebar-->
+            
+            <div class="col-md-9">
+            	
+            	<h1>Edit Admin</h1>
+            	<form id="sky-form4" class="sky-form" name="adminDiscussion" data-ng-submit="adminAddAdmin(adminDiscussion.$valid)">
+            	 <div class="alert alert-danger fade in" data-ng-show="errMessage">{{errMessage}}</div>
+                 <div class="alert alert-success fade in" data-ng-show="successmessage">{{successmessage}}</div>
+            	
+            	<div class="form-group row" style="margin-top:5%;">
+                    <label for="username" class="col-lg-2 control-label" style="font-size:20px;">User-Name:</label>
+                    <div class="col-lg-8">
+                        <input type="text" class="form-control" placeholder="User-Name" data-ng-model="admin.Uname" required>
+                    </div>
+                </div>
+                 <div class="form-group row">
+                    <label for="password" class="col-lg-2 control-label" style="font-size:20px;">Password:</label>
+                    <div class="col-lg-8">
+                        <input type="password" class="form-control" placeholder="Password" data-ng-model="admin.Password" required >
+                    </div>
+                </div>
+            	<div class="form-group row">
+                    <label for="inputEmail1" style="font-size:20px;" class="col-lg-2 control-label">Email:</label>
+                    <div class="col-lg-8">
+                        <input type="email" class="form-control" id="inputEmail1" placeholder="Email" data-ng-model="admin.Email" required>
+                    </div>
+                </div>
+
+                <!-- <h2 style="background-color:#888888">Permissions</h2>
+         			<div class="sky-form">       
+                	
+                        <label class="checkbox state-success">
+							<input type="checkbox" name="checkbox" data-ng-model="checked">
+							<i></i>
+							Forums
+						</label>
+						<div ng-show="checked" class="row">
+						<div class="col-lg-2"  data-ng-repeat="forum in forums">
+							<label class="checkbox state-success" >
+								<input type="checkbox" name="forum{{$index}}" id="forum{{$index}}" ng-click="AddForum(forum.DiscussionBoardId)" data-ng-model="discussion.checked" value="{{forum.DiscussionBoardId}}">
+								<i></i>
+								{{forum.Topic}}
+							</label> 
+						 </div>
+						</div> 
+ 					</div>    
+
+ 					<div class="sky-form">       
+                	
+                        <label class="checkbox state-success">
+							<input type="checkbox" name="checkbox" data-ng-model="checkedd">
+							<i></i>
+							Rules
+						</label>
+						<div ng-show="checkedd" class="col-sm-offset-1">
+						<label class="checkbox state-success" >
+							<input type="checkbox" name="checkbox" ng-hide="checked">
+							<i></i>
+							Art
+						</label> 
+						<label class="checkbox state-success" >
+							<input type="checkbox" name="checkbox" ng-hide="checked">
+							<i></i>
+							Music
+						</label>   
+						</div> 
+ 					</div>       
+
+ 					<div class="sky-form">       
+                	
+                        <label class="checkbox state-success">
+							<input type="checkbox" name="checkbox" data-ng-model="checkeds">
+							<i></i>
+							Block Users
+						</label>
+						<div ng-show="checkeds" class="col-sm-offset-1">
+						<label class="checkbox state-success" >
+							<input type="checkbox" name="checkbox" ng-hide="checked">
+							<i></i>
+							Art
+						</label> 
+						<label class="checkbox state-success" >
+							<input type="checkbox" name="checkbox" ng-hide="checked">
+							<i></i>
+							Music
+						</label>   
+						</div> 
+ 					</div> -->          
+                   <button class="btn-u" ng-disabled="adminAddDiscussion.$invalid" data-ng-click="editAdmin()">Save</button>
+				</form>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--=== Footer ===-->
+ <div data-ng-controller="FooterCtrl" data-ng-include="Footer">
+</div>
+
+<!--=== End Footer ===-->
+
+
+</div>

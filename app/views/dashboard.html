@@ -16,10 +16,10 @@
             <!--End Left Sidebar-->
             
             <div class="col-md-9">
-                <h1 style="background-color:#ed719e;padding:5px;text-align:center;">Motto I Live By - "Dare To Follow Your Dream "<a class="pull-right" ng-click="editButton()" ng-hide="hideEdit"><i class="fa fa-pencil" style="color:black;"></i></a></h1>
+                <h1 style="background-color:#ed719e;padding:5px;text-align:center;">Motto I Live By - "{{userData.Moto}}"<a class="pull-right" ng-click="editButton()" ng-hide="hideEdit"><i class="fa fa-pencil" style="color:black;"></i></a></h1>
                 <div class="col-lg-10" ng-show="hideEdit" Style="margin-bottom:10px;">
                     <div class="col-lg-6">
-                    <input type="text" class="form-control" name="name">
+                    <input type="text" class="form-control" name="name" ng-model="userData.Moto">
                     </div>
                     <div class="col-lg-2"><button class="btn-u btn-u-blue" ng-click="saveButton()">Save</button></div>
                 </div>
