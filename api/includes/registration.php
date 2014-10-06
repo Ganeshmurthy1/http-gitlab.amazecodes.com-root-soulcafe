@@ -11,38 +11,38 @@ $app->post('/update_user', 'updateUser');
 $app->get('/join_discussion/:id', 'joinDiscussion');
 
 $app->get('/get_DiscussionListStatus', 'getDiscussionListStatus');
-$app->get('/usersAll/:id', 'checkUser', 'getAllUsers');
+$app->get('/usersAll/:id', 'getAllUsers');
 $app->get('/linkedinUsers/:id', 'getLinkedinUsers');
 $app->post('/add_linkedinData', 'addlinkedinData');
 
-$app->get('/getProffesionaldetails/:id', 'checkUser', 'get_Proffesionaldetails');
-$app->post('/saveDiscussionBoardAbuse','checkUser', 'save_DiscussionBoardAbuse');
-$app->get('/discussionAll', 'checkUser','checkUser', 'getAllDiscussions');
-$app->get('/discussionTopicAll/:DiscussionBoardId','checkUser', 'getAllDiscussionsTopics');
-$app->get('/discussionTopicComments/:topic','checkUser', 'getdiscussionTopicComments');
-$app->get('/getdiscussionListTopicName/:topicId', 'checkUser','getdiscussionListTopicName');
-$app->get('/getdiscussionTopicName/:topicId','checkUser', 'getdiscussionTopicName');
-$app->get('/setCommentLikes/:commentId','checkUser', 'setCommentLikes');
+$app->get('/getProffesionaldetails/:id', 'get_Proffesionaldetails');
+$app->post('/saveDiscussionBoardAbuse', 'save_DiscussionBoardAbuse');
+$app->get('/discussionAll', 'checkUser', 'getAllDiscussions');
+$app->get('/discussionTopicAll/:DiscussionBoardId', 'getAllDiscussionsTopics');
+$app->get('/discussionTopicComments/:topic', 'getdiscussionTopicComments');
+$app->get('/getdiscussionListTopicName/:topicId', 'getdiscussionListTopicName');
+$app->get('/getdiscussionTopicName/:topicId', 'getdiscussionTopicName');
+$app->get('/setCommentLikes/:commentId', 'setCommentLikes');
 
 
-$app->post('/saveComments','checkUser','saveComments');
+$app->post('/saveComments','saveComments');
 
-$app->post('/add_topic', 'checkUser', 'AddTopic');
+$app->post('/add_topic', 'AddTopic');
 
-$app->get('/deleteComment/:commentId','checkUser', 'deleteComment');
-$app->get('/get_Profile_Detail','checkUser', 'getProfileDetail');
-$app->post('/add_User_Discussion', 'checkUser', 'addUserDiscussion');
-$app->get('/get_Total_Members/:DiscussionBoardId','checkUser', 'getTotalMembers');
-$app->get('/remove_User/:DiscussionBoardId','checkUser', 'removeUser');
-$app->get('/get_Total_Comments/:DiscussionBoardId','checkUser', 'getTotalComments');
-$app->get('/user_Joined/:DiscussionBoardId','checkUser', 'userJoined');
-$app->post('/update_Rating', 'checkUser', 'updateRating');
-$app->get('/get_Rating/:topicId', 'checkUser','getRating');
-$app->get('/get_Picture/:id', 'checkUser','getPicture');
-$app->get('/get_ProfilePictures/:DiscussionBoardId','checkUser', 'getProfilePictures');
-$app->get('/get_PicturesComments/:topicId','checkUser', 'getPicturesComments');
-$app->post('/update_Profile_Detail', 'checkUser', 'updateProfileDetail');
-$app->get('/get_TotalMemberFromAllDiscussion','checkUser', 'getTotalMemberFromAllDiscussion');
+$app->get('/deleteComment/:commentId', 'deleteComment');
+$app->get('/get_Profile_Detail', 'getProfileDetail');
+$app->post('/add_User_Discussion',  'addUserDiscussion');
+$app->get('/get_Total_Members/:DiscussionBoardId', 'getTotalMembers');
+$app->get('/remove_User/:DiscussionBoardId', 'removeUser');
+$app->get('/get_Total_Comments/:DiscussionBoardId', 'getTotalComments');
+$app->get('/user_Joined/:DiscussionBoardId', 'userJoined');
+$app->post('/update_Rating',  'updateRating');
+$app->get('/get_Rating/:topicId', 'getRating');
+$app->get('/get_Picture/:id', 'getPicture');
+$app->get('/get_ProfilePictures/:DiscussionBoardId', 'getProfilePictures');
+$app->get('/get_PicturesComments/:topicId', 'getPicturesComments');
+$app->post('/update_Profile_Detail',  'updateProfileDetail');
+$app->get('/get_TotalMemberFromAllDiscussion', 'getTotalMemberFromAllDiscussion');
 
 function checkUser() { 
   $headers = apache_request_headers();

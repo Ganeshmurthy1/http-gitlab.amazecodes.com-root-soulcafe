@@ -112,27 +112,27 @@ angular
       .when('/admin-add-discussion', {
         templateUrl: 'views/admin-add-discussion.html',
         controller: 'AdminAddDiscussionCtrl',
-        access:      access.user
+        access:      access.admin
       })
       .when('/admin-discussion-list', {
         templateUrl: 'views/admin-discussion-list.html',
         controller: 'AdminDiscussionListCtrl',
-        access:      access.user
+        access:      access.admin
       })
       .when('/admin-topic-list', {
         templateUrl: 'views/admin-topic-list.html',
         controller: 'AdminTopicListCtrl',
-        access:      access.user
+        access:      access.admin
       })
       .when('/admin-add-topic', {
         templateUrl: 'views/admin-add-topic.html',
         controller: 'AdminAddTopicCtrl',
-        access:      access.user
+        access:      access.admin
       })
       .when('/admin-topic-view', {
         templateUrl: 'views/admin-topic-view.html',
         controller: 'AdminTopicViewCtrl',
-        access:      access.user
+        access:      access.admin
       })
       .when('/add-topic', {
         templateUrl: 'views/add-topic.html',
@@ -142,12 +142,12 @@ angular
       .when('/admin-discussion-edit', {
         templateUrl: 'views/admin-discussion-edit.html',
         controller: 'AdminDiscussionEditCtrl',
-        access:      access.user
+        access:      access.admin
       })
 	     .when('/admin-discussionboardAbuse-list', {
         templateUrl: 'views/admin-discussionboardabuse-list.html',
         controller: 'AdminDiscussionboardabuseListCtrl',
-        access:      access.user
+        access:      access.admin
       })
       .when('/edit-profile', {
         templateUrl: 'views/edit-profile.html',
@@ -174,11 +174,12 @@ angular
       .when('/admin-bad-list', {
         templateUrl: 'views/admin-bad-list.html',
         controller: 'AdminBadListCtrl',
-        access:      access.user
+        access:      access.admin
       })      
       .when('/admin-inappropriate-comments', {
         templateUrl: 'views/admin-inappropriate-comments.html',
-        controller: 'AdminInappropriateCommentsCtrl'
+        controller: 'AdminInappropriateCommentsCtrl',
+        access:      access.admin
       })
       .when('/superadmin-profile', {
         templateUrl: 'views/superadmin-profile.html',
@@ -261,7 +262,7 @@ angular
             'responseError': function(response) {
                 if(response.status === 401 || response.status === 403) {
                 	localStorageService.clearAll();
-                    $location.path('/');
+                    //$location.path('/');
                     return $q.reject(response);
                 }
                 else {
