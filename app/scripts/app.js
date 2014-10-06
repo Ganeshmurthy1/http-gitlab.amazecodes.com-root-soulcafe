@@ -191,19 +191,23 @@ angular
       })
       .when('/superadmin-message', {
         templateUrl: 'views/superadmin-message.html',
-        controller: 'SuperadminMessageCtrl'
+        controller: 'SuperadminMessageCtrl',
+        access:      access.admin
       })
       .when('/superadmin-blockuser', {
         templateUrl: 'views/superadmin-blockuser.html',
-        controller: 'SuperadminBlockuserCtrl'
+        controller: 'SuperadminBlockuserCtrl',
+        access:      access.admin
       })
       .when('/superadmin-admin', {
         templateUrl: 'views/superadmin-admin.html',
-        controller: 'SuperadminAdminCtrl'
+        controller: 'SuperadminAdminCtrl',
+        access:      access.admin
       })
       .when('/superadmin-add-admin', {
         templateUrl: 'views/superadmin-add-admin.html',
-        controller: 'SuperadminAddAdminCtrl'
+        controller: 'SuperadminAddAdminCtrl',
+        access:      access.admin
       })
       .when('/confirmGTKY', {
         templateUrl: 'views/confirmgtky.html',

@@ -23,6 +23,11 @@ $app->get('/get_picture_name/:id', 'checkUser','getPictureName');
 
 $app->post('/sent_message','checkUser','sentMessage');
 
+$app->get('/get_all_forum', 'GetAllForum');
+
+$app->post('/admin_add_admin', 'adminAddAdmin');
+
+
 function checkAdminLogin() {
   $request = Slim::getInstance()->request();
   $user = json_decode($request->getBody());
@@ -397,4 +402,83 @@ function MarkMessage() {
       catch(PDOException $e) {
         echo '{"error":{"text":'. $e->getMessage() .'}}';
       }
+    }
+    
+    
+    function GetAllForum() {
+    
+      $sql = "SELECT DiscussionBoardId, Topic from DiscussionBoard where Status=1";
+      try {
+        $db = getConnection();
+        $stmt = $db->prepare($sql);
+        // $stmt->bindParam("id", $id);
+        $stmt->execute();
+        $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $db = null;
+        //echo $total = $wine->'count(1)';
+        for ($i=0; $i<count($wine); $i++) {
+          //print $wine[$i]->Message;
+          $wine[$i]->checked = false;
+          //unset($wine[$i]->Message);
+        }
+        
+        
+        echo json_encode($wine);
+      } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+      }
+      //echo json_encode($wine);
+    }
+    
+    function adminAddAdmin() {
+      $request = Slim::getInstance()->request();
+      $forum = json_decode($request->getBody());
+      $role = 2;
+      $tdate = date('Y-m-d');
+      $status = 1;
+      $name = '';
+      
+      $frs = $forum->frs;
+      //print_r($frs);
+      
+        $sql = "INSERT INTO AdminUser (Uname, Password, Email, Role, Fullname, AddedDate, Status) VALUES (:Uname, :Password, :Email, :Role, :Fullname, :AddedDate, :Status)";
+        try {
+          $db = getConnection();
+          $stmt = $db->prepare($sql);
+          $stmt->bindParam("Uname", $forum->username);
+          $stmt->bindParam("Password", $forum->password);
+          $stmt->bindParam("Email", $forum->email);
+          $stmt->bindParam("Role", $role);
+          $stmt->bindParam("Fullname", $name);
+          $stmt->bindParam("AddedDate", $tdate);
+          $stmt->bindParam("Status", $status);
+         
+    
+          $stmt->execute();
+          $uid =  $db->lastInsertId();
+    
+          echo 'true';
+        } catch(PDOException $e) {
+          echo '{"error":{"text":'. $e->getMessage() .'}}';
+        }
+        
+        $per_id = 1;
+        for ($i=0; $i<count($frs); $i++) {
+          $sql = "INSERT INTO UserPermissions (userId, PermissionId, ItemId) VALUES (:userId, :PermissionId, :ItemId)";
+          try {
+            $db = getConnection();
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam("userId", $uid);
+            $stmt->bindParam("PermissionId", $per_id);
+            $stmt->bindParam("ItemId", $frs[$i]);
+                  
+            $stmt->execute();
+          
+          
+           // echo 'true';
+          } catch(PDOException $e) {
+            echo '{"error":{"text":'. $e->getMessage() .'}}';
+          }
+        }
+     
     }

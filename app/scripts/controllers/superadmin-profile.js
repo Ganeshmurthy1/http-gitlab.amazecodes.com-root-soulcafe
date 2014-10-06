@@ -15,5 +15,8 @@ angular.module('sassApp')
       'Karma'
     ];
     var authData = localStorageService.get('authorizationData');
-	console.log(authData);
+	//console.log(authData);
+    if(authData.admin_role == 1) {
+    	$scope.isSuper = true;
+    }
   });
