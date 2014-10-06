@@ -71,7 +71,7 @@ angular.module('sassApp')
                 return response;
             });	 
 	      };
-	    dataFactory.addAdmin = function (param) {
+	      dataFactory.addAdmin = function (param) {
 		    	// console.log(param);
 		    	return $http.post(urlBase + 'admin_add_admin', param).then(function(response) {
 		    		//console.log(response);
@@ -84,6 +84,12 @@ angular.module('sassApp')
                 return response;
             });	 
 	    };
+		 dataFactory.adminGetMyForums = function () {	
+		      	return $http.get(urlBase + 'admin_get_my_forums').then(function(response) {
+		    		//console.log(response);
+	                return response;
+	            });	 
+		  };
 	    return dataFactory;
 	}]);
 

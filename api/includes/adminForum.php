@@ -1,31 +1,31 @@
 <?php 
-$app->post('/admin_add_discussion', 'checkUser', 'adminAddDiscussion');
-$app->post('/admin_get_discussion', 'checkUser', 'adminGetDiscussion');
-$app->post('/admin_get_discussion_total', 'checkUser', 'adminGetDiscussionTotal');
-$app->get('/admin_delete_discussion/:id', 'checkUser', 'adminDeleteDiscussion');
-$app->get('/admin_activate_discussion/:id', 'checkUser', 'adminActivateDiscussion');
-$app->get('/admin_deactivate_discussion/:id', 'checkUser', 'adminDeActivateDiscussion');
+$app->post('/admin_add_discussion',  'adminAddDiscussion');
+$app->post('/admin_get_discussion', 'adminGetDiscussion');
+$app->post('/admin_get_discussion_total',  'adminGetDiscussionTotal');
+$app->get('/admin_delete_discussion/:id',  'adminDeleteDiscussion');
+$app->get('/admin_activate_discussion/:id',  'adminActivateDiscussion');
+$app->get('/admin_deactivate_discussion/:id',  'adminDeActivateDiscussion');
 
-$app->get('/admin_get_topic_this/:id', 'checkUser', 'adminGetTopicThis');
-$app->get('/admin_get_topic_total/:id', 'checkUser', 'adminGetTopicTotal');
-$app->post('/admin_get_topic', 'checkUser', 'adminGetTopic');
-$app->post('/admin_add_topic', 'checkUser', 'adminAddTopic');
+$app->get('/admin_get_topic_this/:id',  'adminGetTopicThis');
+$app->get('/admin_get_topic_total/:id',  'adminGetTopicTotal');
+$app->post('/admin_get_topic',  'adminGetTopic');
+$app->post('/admin_add_topic',  'adminAddTopic');
 
-$app->get('/admin_delete_topic/:id', 'checkUser', 'adminDeleteTopic');
-$app->get('/admin_activate_topic/:id', 'checkUser', 'adminActivateTopic');
-$app->get('/admin_deactivate_topic/:id', 'checkUser', 'adminDeActivateTopic');
-$app->get('/adminAbuseList', 'checkUser', 'adminAbuseList');
-$app->get('/admin_get_discussion_topic/:id', 'checkUser', 'adminGetDiscussionTopic');
-$app->post('/update_discussion_TopicDetail', 'checkUser', 'updatediscussionTopicDetail');
-$app->get('/update_Appropriate/:id', 'checkUser', 'updateAppropriate');
-$app->get('/update_InAppropriate/:id', 'checkUser', 'updateInAppropriate');
-$app->get('/get_forum/:DiscussionBoardId', 'checkUser', 'getforum');
-$app->post('/edit_forum', 'checkUser', 'editforum');
-$app->get('/adminInappropriateComment', 'checkUser', 'adminInappropriateComment');
+$app->get('/admin_delete_topic/:id',  'adminDeleteTopic');
+$app->get('/admin_activate_topic/:id',  'adminActivateTopic');
+$app->get('/admin_deactivate_topic/:id',  'adminDeActivateTopic');
+$app->get('/adminAbuseList',  'adminAbuseList');
+$app->get('/admin_get_discussion_topic/:id',  'adminGetDiscussionTopic');
+$app->post('/update_discussion_TopicDetail',  'updatediscussionTopicDetail');
+$app->get('/update_Appropriate/:id',  'updateAppropriate');
+$app->get('/update_InAppropriate/:id',  'updateInAppropriate');
+$app->get('/get_forum/:DiscussionBoardId', 'getforum');
+$app->post('/edit_forum',  'editforum');
+$app->get('/adminInappropriateComment',  'adminInappropriateComment');
 
-$app->post('/admin_get_bad_list', 'checkUser', 'adminGetBadList');
-$app->get('/admin_not_spam/:id', 'checkUser', 'adminNotASpam');
-$app->get('/admin_mark_spam/:id', 'checkUser', 'adminMarkSpam');
+$app->post('/admin_get_bad_list',  'adminGetBadList');
+$app->get('/admin_not_spam/:id',  'adminNotASpam');
+$app->get('/admin_mark_spam/:id',  'adminMarkSpam');
 $app->post('/image_upload', 'imageupload');
 function adminAddDiscussion() {
   $request = Slim::getInstance()->request();
