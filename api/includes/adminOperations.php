@@ -31,6 +31,8 @@ $app->get('/get_all_admins', 'GetAllAdmins');
 
 $app->get('/admin_get_my_forums', 'adminGetMyForums');
 
+$app->get('/activate_user/:id', 'activateUser');
+$app->get('/deactivate_user/:id', 'deactivateUser');
 
 function checkAdminLogin() {
   $request = Slim::getInstance()->request();
@@ -526,3 +528,33 @@ function adminGetMyForums() {
       //echo json_encode($wine);
     }
     
+
+    function activateUser($id) {
+      // $user_id  = getUserId();
+      $sql = "Update AdminUser Set Status = 1 where AdminId = :id";
+      try {
+        $db = getConnection();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("id", $id);
+        $stmt->execute();
+        
+        echo 'true';
+      } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+      }
+    }
+
+
+    function deactivateUser($id) {
+      // $user_id  = getUserId();
+      $sql = "Update AdminUser Set Status = 0 where AdminId = :id";
+      try {
+        $db = getConnection();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("id", $id);
+        $stmt->execute();
+        echo 'true';
+      } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+      }
+    }

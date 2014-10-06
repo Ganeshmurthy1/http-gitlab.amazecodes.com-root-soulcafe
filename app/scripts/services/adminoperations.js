@@ -84,12 +84,22 @@ angular.module('sassApp')
                 return response;
             });	 
 	    };
-		 dataFactory.adminGetMyForums = function () {	
+		dataFactory.adminGetMyForums = function () {	
 		      	return $http.get(urlBase + 'admin_get_my_forums').then(function(response) {
 		    		//console.log(response);
 	                return response;
 	            });	 
-		  };
+		};
+		dataFactory.activateUser = function (id) {	
+		     	return $http.get(urlBase + 'activate_user/'+ id).then(function(response) {
+	                return response;
+	            });	
+		};
+		dataFactory.deactivateUser = function (id) {	
+		     	return $http.get(urlBase + 'deactivate_user/'+ id).then(function(response) {
+	                return response;
+	            });	
+		};
 	    return dataFactory;
 	}]);
 

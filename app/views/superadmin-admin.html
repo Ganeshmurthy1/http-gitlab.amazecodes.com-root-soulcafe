@@ -32,7 +32,7 @@
                         <tr ng-repeat="ad in admins">
                             <td>{{ad.FullName}}</td>
                              <td>{{ad.Email}}</td>
-                            <td><a class="btn-u" data-ng-hide="{{ad.Status == 1}}">Activate</a><a class="btn-u" data-ng-show="{{ad.Status == 1}}">Deactivate</a></td>
+                            <td><a class="btn-u" data-ng-hide="{{ad.Status == 1}}" data-ng-click="activateUser(ad.AdminId)">Activate</a><a class="btn-u" data-ng-show="{{ad.Status == 1}}" data-ng-click="deactivateUser(ad.AdminId)">Deactivate</a></td>
                                                       
                         </tr>
                      
