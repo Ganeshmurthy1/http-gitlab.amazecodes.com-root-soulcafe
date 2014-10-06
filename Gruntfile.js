@@ -73,7 +73,7 @@ module.exports = function (grunt) {
       },
       proxies: [{
           context: '/', // the context of the data service
-          host: 'localhost', // wherever the data service is running
+          host: 'amazecodes.com', // wherever the data service is running
          // port: 8080 // the port that the data service is running on
       }],
       livereload: {

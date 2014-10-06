@@ -16,10 +16,10 @@ angular.module('sassApp')
     ];
     $scope.Header = 'views/admin-header.html';
     
-//	$scope.home=function()
-//	{
-//		$location.path('/superadmin-profile');
-//	}
+	$scope.home=function()
+	{
+		$location.path('/superadmin-profile');
+	}
 //	$scope.user=function()
 //	{
 //		$location.path('/admin-userlist');
