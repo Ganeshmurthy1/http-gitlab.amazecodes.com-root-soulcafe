@@ -27,6 +27,8 @@ $app->get('/get_all_forum', 'GetAllForum');
 
 $app->post('/admin_add_admin', 'adminAddAdmin');
 
+$app->get('/admin_get_my_forums', 'adminGetMyForums');
+
 
 function checkAdminLogin() {
   $request = Slim::getInstance()->request();
@@ -482,3 +484,30 @@ function MarkMessage() {
         }
      
     }
+    
+    
+  
+    
+    function adminGetMyForums() {
+    
+      $user_id = getUserId();
+      $request = Slim::getInstance()->request();
+      $forum = json_decode($request->getBody());
+      $sqlCp = "select db.DiscussionBoardId,db.Topic,db.Description,db.CreatedBy,db.Status from DiscussionBoard as db join UserPermissions as u on db.DiscussionBoardId=u.ItemId where u.userId=:user_id and u.PermissionId=1 order by db.CreatedBy desc";
+    //  $lm = ' Limit ' . $forum->start . ',' . $forum->limit;
+    //  $sqlCp .= $lm;
+      try {
+        $db = getConnection();
+        $stmt = $db->prepare($sqlCp);
+        $stmt->bindParam("user_id", $user_id);
+        // $stmt->bindParam("limit", $forum->limit);
+        $stmt->execute();
+        $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $db = null;
+        echo json_encode($wine);
+      } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+      }
+      //echo json_encode($wine);
+    }
+    

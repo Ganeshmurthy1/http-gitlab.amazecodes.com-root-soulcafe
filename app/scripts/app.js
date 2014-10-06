@@ -245,6 +245,11 @@ angular
         templateUrl: 'views/reply-message.html',
         controller: 'ReplyMessageCtrl'
       })
+      .when('/ad-discussion-list', {
+        templateUrl: 'views/ad-discussion-list.html',
+        controller: 'AdDiscussionListCtrl',
+        access:      access.admin
+      })
       .otherwise({
         redirectTo: '/'
       });

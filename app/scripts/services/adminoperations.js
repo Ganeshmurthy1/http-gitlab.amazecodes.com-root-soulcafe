@@ -79,6 +79,12 @@ angular.module('sassApp')
 	            });
 		    	
 		    };
+		    dataFactory.adminGetMyForums = function () {	
+		      	return $http.get(urlBase + 'admin_get_my_forums').then(function(response) {
+		    		//console.log(response);
+	                return response;
+	            });	 
+		      };
 	    return dataFactory;
 	}]);
 
