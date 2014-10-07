@@ -251,6 +251,10 @@ angular
         controller: 'AdDiscussionListCtrl',
         access:      access.admin
       })
+      .when('/admin-edit', {
+        templateUrl: 'views/admin-edit.html',
+        controller: 'AdminEditCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

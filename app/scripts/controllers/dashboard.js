@@ -88,9 +88,17 @@ angular.module('sassApp')
       $scope.hideEdit="true";
          }
     $scope.saveButton = function () {
-      console.log("AAAAAAAAAAAA");
-      $scope.hideEdit="false";
+    console.log($scope.userData);
+    regService.updateProfileDetail($scope.userData).then(function (response) {
+         console.log(response);
+         if(response.data == "true"){
+          $scope.hideEdit="false";
+           $location.path("dashboard");
+
          }
+      });
+      // console.log("AAAAAAAAAAAA");
+      }
 
       profileOperations.getUserMatch().then(function(response) {
       

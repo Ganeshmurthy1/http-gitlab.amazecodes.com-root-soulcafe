@@ -857,7 +857,7 @@ function updateProfileDetail() {
 
   $user_id  = getUserId();
     // print_r($user);
-  $sqlusers = "update users  set first_name=:first_name,last_name=:last_name,email=:email,mobile=:mobile where user_id = :user_id ";
+  $sqlusers = "update users  set first_name=:first_name,last_name=:last_name,email=:email,mobile=:mobile,Moto=:moto where user_id = :user_id ";
    $sqlpd = "update ProfessionalDetails set CurrentEmployment = :CurrentEmployment,Endorsedskills=:Endorsedskills,HighestEducation=:HighestEducation where UserId = :user_id ";  
       try {
         $db = getConnection();
@@ -867,6 +867,7 @@ function updateProfileDetail() {
         $stmt->bindParam("last_name", $user->last_name);
         $stmt->bindParam("email", $user->email);
         $stmt->bindParam("mobile", $user->mobile);
+        $stmt->bindParam("moto", $user->Moto);
         $stmt->execute();
 
         $stmtpd = $db->prepare($sqlpd);
