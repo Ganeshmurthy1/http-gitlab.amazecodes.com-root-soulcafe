@@ -112,6 +112,21 @@ angular.module('sassApp')
 	                return response;
 	            });
 		};
+		dataFactory.viewProfileData = function (id) {	
+		     	return $http.get(urlBase + 'view_profile_data/'+ id).then(function(response) {
+	                return response;
+	            });	
+		};
+		dataFactory.userActivate = function (id) {	
+		     	return $http.get(urlBase + 'user_activate/'+ id).then(function(response) {
+	                return response;
+	            });	
+		};
+		dataFactory.userDeactivate = function (id) {	
+		     	return $http.get(urlBase + 'user_deactivate/'+ id).then(function(response) {
+	                return response;
+	            });	
+		};
 	    return dataFactory;
 	}]);
 

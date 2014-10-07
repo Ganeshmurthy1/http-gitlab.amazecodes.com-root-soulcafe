@@ -23,7 +23,7 @@ angular.module('sassApp')
 		});
     }
 
-     $scope.activateUser = function(id){
+     $scope.activateAdminUser = function(id){
     	console.log(id);
     	adminOperations.activateUser(id).then(function (response) {
 			console.log(response.data);
@@ -33,7 +33,7 @@ angular.module('sassApp')
 		});
     }
 
-    $scope.deactivateUser = function(id){
+    $scope.deactivateAdminUser = function(id){
     	console.log(id);
     	adminOperations.deactivateUser(id).then(function (response) {
 			console.log(response.data);

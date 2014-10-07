@@ -37,6 +37,12 @@ $app->get('/deactivate_user/:id', 'deactivateUser');
 $app->get('/get_admin_data/:id', 'getAdminData');
 $app->post('/update_admin_data', 'updateAdminData');
 
+$app->get('/view_profile_data/:id', 'viewProfileData');
+
+$app->get('/user_activate/:id', 'useractivate');
+$app->get('/user_deactivate/:id', 'userdeactivate');
+
+
 function checkAdminLogin() {
   $request = Slim::getInstance()->request();
   $user = json_decode($request->getBody());
@@ -600,3 +606,103 @@ function adminGetMyForums() {
         echo '{"error":{"text":'. $e->getMessage() .'}}';
       }
     }
+
+
+function viewProfileData($userid) {
+      // $user_id  = getUserId();
+      $sqlM = "SELECT m.UserId,m.AddedDate,m.Message,u.first_name,u.last_name from Messages as m inner join users as u on m.SenderId=u.user_id where m.SenderId=:userid ";
+      try {
+        $db = getConnection();
+        $stmtM = $db->prepare($sqlM);
+        $stmtM->bindParam("userid", $userid);
+        $stmtM->execute();
+        $wineM = $stmtM->fetchAll(PDO::FETCH_OBJ);
+        $db = null;
+        // echo json_encode($wine);
+      } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+      }
+
+      $sqlGTKY= "SELECT b.BuddyId,b.AddedDate,b.Status,u.first_name,u.last_name FROM Buddies as b inner join users as u on b.senderId = u.user_id WHERE SenderId =:userid ";
+      try {
+        $db = getConnection();
+        $stmtGTKY = $db->prepare($sqlGTKY);
+        $stmtGTKY->bindParam("userid", $userid);
+        $stmtGTKY->execute();
+        $wineGTKY = $stmtGTKY->fetchAll(PDO::FETCH_OBJ);
+        $db = null;
+        // echo json_encode($wine);
+      } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+      }
+
+      $sqlC= "SELECT dbc.DiscussionTopicId,dbt.DiscussionBoardId,db.Topic,dbt.TopicTitle,dbc.Comment,dbc.CommentDateTime,u.first_name,u.last_name FROM `DiscussionBoardComments` as dbc inner join DiscussionBoardTopic as dbt on dbc.DiscussionTopicId = dbt.DiscussionTopicId inner join DiscussionBoard as db on dbt.DiscussionBoardId = db.DiscussionBoardId inner join users as u on dbc.UserId = u.user_id where dbc.UserId=:userid ";
+      try {
+        $db = getConnection();
+        $stmtC = $db->prepare($sqlC);
+        $stmtC->bindParam("userid", $userid);
+        $stmtC->execute();
+        $wineC = $stmtC->fetchAll(PDO::FETCH_OBJ);
+        $db = null;
+        // echo json_encode($wine);
+      } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+      }
+
+      $sqlT= "SELECT dbt.DiscussionBoardId,db.Topic,dbt.TopicTitle,dbt.CreatedDate,u.first_name,u.last_name FROM DiscussionBoardTopic as dbt inner join DiscussionBoard as db on dbt.DiscussionBoardId = db.DiscussionBoardId inner join users as u on dbt.CreatedBy = u.user_id where dbt.CreatedBy =:userid ";
+      try {
+        $db = getConnection();
+        $stmtT = $db->prepare($sqlT);
+        $stmtT->bindParam("userid", $userid);
+        $stmtT->execute();
+        $wineT = $stmtT->fetchAll(PDO::FETCH_OBJ);
+        $db = null;
+        // echo json_encode($wine);
+      } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+      }
+
+    // $op['message']=json_encode($wineM);
+    // $op['gtky']=json_encode($wineGTKY);
+    // $op['comments']=json_encode($wineC);
+    // $op['topics']=json_encode($wineT);
+
+    $op['message']=$wineM;
+    $op['gtky']=$wineGTKY;
+    $op['comments']=$wineC;
+    $op['topics']=$wineT;
+
+     echo json_encode($op);
+    }
+    
+function useractivate($userid) {
+      // $user_id  = getUserId();
+      $sql = "Update users set status = 1 where user_id =:userid ";
+      try {
+        $db = getConnection();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("userid", $userid);
+        $stmt->execute();
+        
+        echo 'true';
+      } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+      }
+    }
+
+    function userdeactivate($userid) {
+      // $user_id  = getUserId();
+      $sql = "Update users set status = 0 where user_id =:userid ";
+      try {
+        $db = getConnection();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("userid", $userid);
+        $stmt->execute();
+        
+        echo 'true';
+      } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+      }
+    }
+
+
