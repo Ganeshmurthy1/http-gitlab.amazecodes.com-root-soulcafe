@@ -255,6 +255,10 @@ angular
         templateUrl: 'views/admin-edit.html',
         controller: 'AdminEditCtrl'
       })
+      .when('/superadmin-view-user', {
+        templateUrl: 'views/superadmin-view-user.html',
+        controller: 'SuperadminViewUserCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -702,11 +702,36 @@ function addlinkedinData() {
   $user = json_decode($request->getBody());
   //
    // print_r( $user->values[0]->threeCurrentPositions->values[0]->title );
+  if(isset($user->values[0]->threeCurrentPositions->values[0]->company->name)){
    $currentEmployment = $user->values[0]->threeCurrentPositions->values[0]->company->name;
+ }
+ if(isset($user->values[0]->threeCurrentPositions->values[0]->title)){
    $currentRole = $user->values[0]->threeCurrentPositions->values[0]->title;
+   }
    // print $currentEmployment;
-   $highestEducation = $user->values[0]->educations->values[0]->degree . ' - '  . $user->values[0]->educations->values[0]->fieldOfStudy;
-   $endorsedSkills = $user->values[0]->skills->values[0]->skill->name . ','  .$user->values[0]->skills->values[1]->skill->name. ','  .$user->values[0]->skills->values[2]->skill->name. ','  .$user->values[0]->skills->values[3]->skill->name. ','  .$user->values[0]->skills->values[4]->skill->name;
+   if(isset($user->values[0]->educations->values[0]->degree)){
+   $highestEducation = $user->values[0]->educations->values[0]->degree;
+   }
+   if (isset($user->values[0]->educations->values[0]->fieldOfStudy)) {
+    $highestEducation .= '-'.$user->values[0]->educations->values[0]->fieldOfStudy;
+   }
+
+   if (isset($user->values[0]->skills->values[0]->skill->name)) {
+     $endorsedSkills = $user->values[0]->skills->values[0]->skill->name;
+   }
+   if (isset($user->values[0]->skills->values[1]->skill->name)) {
+     $endorsedSkills .= ','.$user->values[0]->skills->values[1]->skill->name;
+   }
+   if (isset($user->values[0]->skills->values[2]->skill->name)) {
+     $endorsedSkills .= ','.$user->values[0]->skills->values[2]->skill->name;
+   }
+   if (isset($user->values[0]->skills->values[3]->skill->name)) {
+     $endorsedSkills .= ','.$user->values[0]->skills->values[3]->skill->name;
+   }
+   if (isset($user->values[0]->skills->values[4]->skill->name)) {
+     $endorsedSkills .= ','.$user->values[0]->skills->values[4]->skill->name;
+   }
+   // $endorsedSkills = $user->values[0]->skills->values[0]->skill->name . ','  .$user->values[0]->skills->values[1]->skill->name. ','  .$user->values[0]->skills->values[2]->skill->name. ','  .$user->values[0]->skills->values[3]->skill->name. ','  .$user->values[0]->skills->values[4]->skill->name;
   // foreach($user as $obj) {
   $user_id  = getUserId();
 
