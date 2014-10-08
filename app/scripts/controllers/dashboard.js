@@ -14,6 +14,23 @@ angular.module('sassApp')
       'AngularJS',
       'Karma'
     ];
+    var linkedinLibLoaded = false,
+    linkedinLibInitialized = false;
+
+	window.linkedinLibInit = function(){
+	    linkedinLibInitialized = true;
+	};	
+	if(!$rootScope.linkedin){	
+		$rootScope.linkedin = true;
+		$.getScript("//platform.linkedin.com/in.js?async=true", function success() {
+		IN.init({
+		    onLoad: "onLinkedInLoad",
+		    api_key: "75ckjn95bgi4uv",
+		    credentials_cookie: true
+		    });
+		});	
+	}
+    
     $scope.hideEdit='false';
  $scope.updateButton = 'false';
     $scope.getUserProfile = function () {
