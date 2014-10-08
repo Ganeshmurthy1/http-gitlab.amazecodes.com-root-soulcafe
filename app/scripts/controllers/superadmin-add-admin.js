@@ -40,11 +40,17 @@ angular.module('sassApp')
     $scope.Forums= [];
     $scope.AddForum = function(id) {  
     	 console.log(id);
-    	 $scope.Forums.push(id);
-    	 
-    	 
-    	 
+    	 var tt = $scope.Forums.indexOf(id);
+    	 console.log(tt);
+    	 if(tt < 0 ) {
+    		// $scope.Forums.splice(1);
+        	 $scope.Forums.push(id);    	 
+        	
+    	 } else {
+    		 $scope.Forums.splice(tt);
+    	 }
     	 console.log( $scope.Forums);
+    	
     };
     
     function loadAllForum() {
