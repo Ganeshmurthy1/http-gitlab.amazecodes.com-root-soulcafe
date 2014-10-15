@@ -253,11 +253,18 @@ angular
       })
       .when('/admin-edit', {
         templateUrl: 'views/admin-edit.html',
-        controller: 'AdminEditCtrl'
+        controller: 'AdminEditCtrl',
+        access:      access.admin
       })
       .when('/superadmin-view-user', {
         templateUrl: 'views/superadmin-view-user.html',
-        controller: 'SuperadminViewUserCtrl'
+        controller: 'SuperadminViewUserCtrl',
+        access:      access.admin
+      })
+      .when('/admin-add-question', {
+        templateUrl: 'views/admin-add-question.html',
+        controller: 'AdminAddQuestionCtrl',
+        access:      access.admin
       })
       .otherwise({
         redirectTo: '/'

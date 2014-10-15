@@ -1,0 +1,118 @@
+<div class="wrapper">
+    <!--=== Header ===-->    
+  <div data-ng-controller="AdminheaderCtrl" data-ng-include="Header">
+</div>
+    <!--=== End Header ===-->  
+
+
+
+
+    <!--=== Profile ===-->
+    <div class="profile container content" style="border-color:red">
+        <div class="row">
+            <!--Left Sidebar-->
+            <div data-ng-controller="SideBarSuperadminCtrl" data-ng-include="SideBarSuperAdmin">
+            </div>
+            <!--End Left Sidebar-->
+            
+            <div class="col-md-9">
+            <div class="headline"><h2 class="heading-sm">Add Questionnaire</h2></div>
+            <form id="sky-form4" class="sky-form" name="adminDiscussion" data-ng-submit="adminAddDiscussion(adminDiscussion.$valid)">
+            <div class="alert alert-danger fade in" data-ng-show="errMessage">{{errMessage}}</div>
+            <div class="alert alert-success fade in" data-ng-show="successmessage">{{successmessage}}</div>
+            <fieldset>                
+                        <section>
+                            <label class="label">Question</label>
+                            <label class="input">
+                                <input type="text" name="subject" id="subject" data-ng-model="discussion.title" required>
+                            </label>
+                        </section>
+                        
+                       <div class="row">
+                       <div class="col-md-6">
+                        <section>
+                                <label class="select">
+                                    <select name="Question Type">
+                                        <option value="0" selected disabled>Question Type</option>
+                                        <option value="1">Single Choice</option>
+                                        <option value="2">/Multiple Choice</option>
+                                        <option value="3">Ranking</option>                                   
+                                
+                                    <select>
+                                    <i></i>
+                                </label>
+                            </section>
+                        </div>
+                        <div class="col-md-6">
+                        <section>
+                                <label class="select">
+                                    <select name="Question Type">
+                                        <option value="0" selected disabled>Question Category</option>
+                                        <option value="244">Single Choice</option>
+                                        <option value="1">Multiple Choice</option>
+                                        <option value="2">Ranking</option>                                   
+                                
+                                    <select>
+                                    <i></i>
+                                </label>
+                       </section>
+                       </div>
+					</div>
+					<div class="row">
+                       <div class="col-md-10">
+                        <section>
+                            <label class="input">
+                                <input type="text" name="answer" id="answer" data-ng-model="options.title" placeholder="Answer">
+                            </label>
+                        </section>
+                        </div>
+                        <div class="col-md-2">
+                        	<section>
+                        		<a class="btn-u btn-u-green" ng-click="addItem()">Add</a>                        		
+                        	</section>
+                        </div>
+                     </div>
+    
+                       <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="col-md-10">Answer</th>
+                            <th>Operations</th>
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="ans in answers">
+                        <tr>
+                        	<td class="col-md-10">{{ans}}</td> 
+                        	<td><a class="btn btn-danger btn-xs" data-ng-click="remove(ans)"><i class="fa fa-trash-o"></i> Delete</a></td>                            
+                        </tr>
+                     
+                    </tbody>
+                </table>
+                
+                
+						
+                    </fieldset>
+                    <footer>
+                        <button class="btn-u" type="submit" ng-disabled="adminAddDiscussion.$invalid" data-ng-submit="adminAddDiscussion(adminDiscussion.$valid)">Submit</button>
+                        <button onclick="window.history.back();" class="btn-u btn-u-default" type="button">Back</button>
+                    </footer>
+            </form>
+
+            
+        </div><!--/end row-->
+    </div><!--/container-->    
+    <!--=== End Profile ===-->
+
+
+<!--=== Footer ===-->
+ <div data-ng-controller="FooterCtrl" data-ng-include="Footer">
+</div>
+
+<!--=== End Footer ===-->
+
+
+
+
+    
+</div>
+ <!-- End wrapper -->
