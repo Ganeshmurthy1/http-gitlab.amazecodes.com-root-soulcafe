@@ -269,23 +269,23 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-    $facebookProvider.setAppId('278995965634637');
+    $facebookProvider.setAppId('305118313022402');
     $facebookProvider.setPermissions("email,user_likes,user_birthday,user_relationships,user_work_history,user_hometown,user_location,user_friends");
     
-    $httpProvider.interceptors.push(function($q, $location, localStorageService) {
-        return {
-            'responseError': function(response) {
-                if(response.status === 401 || response.status === 403) {
-                	localStorageService.clearAll();
-                    //$location.path('/');
-                    return $q.reject(response);
-                }
-                else {
-                    return $q.reject(response);
-                }
-            }
-        }
-    });
+//    $httpProvider.interceptors.push(function($q, $location, localStorageService) {
+//        return {
+//            'responseError': function(response) {
+//                if(response.status === 401 || response.status === 403) {
+//                	localStorageService.clearAll();
+//                    //$location.path('/');
+//                    return $q.reject(response);
+//                }
+//                else {
+//                    return $q.reject(response);
+//                }
+//            }
+//        }
+//    });
   }]);
 
 angular.module('sassApp').run( function($rootScope, $location, $http, regService, localStorageService) {
