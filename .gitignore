@@ -2,6 +2,7 @@ node_modules
 dist
 .tmp
 .sass-cache
-.orig
+*.orig
+*~
 bower_components
 api/includes/dbconnection.php
