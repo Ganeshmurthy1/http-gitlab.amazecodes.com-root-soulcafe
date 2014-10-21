@@ -127,6 +127,25 @@ angular.module('sassApp')
 	                return response;
 	            });	
 		};
+		
+		dataFactory.adminGetThisUser = function (id) {	
+	     	return $http.get(urlBase + 'admin_get_this_user/'+ id).then(function(response) {
+                return response;
+            });	
+		};
+		dataFactory.addAdminMessage = function (param) {
+	    	// console.log(param);
+	    	return $http.post(urlBase + 'admin_add_message', param).then(function(response) {
+	    		//console.log(response);
+                return response;
+            });
+		};
+		dataFactory.getSysMessage = function () {	
+	      	return $http.get(urlBase + 'get_sys_message').then(function(response) {
+	    		//console.log(response);
+                return response;
+            });	 
+	  };
 	    return dataFactory;
 	}]);
 

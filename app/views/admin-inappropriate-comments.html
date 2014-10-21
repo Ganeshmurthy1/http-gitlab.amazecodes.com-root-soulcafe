@@ -19,7 +19,7 @@
                 <!--Basic Table-->
               
 
-                <div class="headline"><h2>Table Examples</h2></div>
+                <div class="headline"><h2>Inappropriate comment list</h2></div>
                   
                 
                 <!--Basic Table-->
@@ -27,7 +27,7 @@
                     <thead>
                         <tr>
                             <th>CommentId</th>
-                            <th class="hidden-sm">ReportedBy</th>
+                            <th>ReportedBy</th>
                             <th>Comments</th>
                              <th>Discussion TopicId</th>
                             <th>Topic title</th>
@@ -36,9 +36,9 @@
                         </tr>
                     </thead>
                     <tbody ng-repeat=" com in comm">
-                        <tr>
+                        <tr>Table Examples
                             <td>{{com.CommentId}}</td>
-                            <td class="hidden-sm">{{com.ReportedBy}}</td>
+                            <td>{{com.first_name}} {{com.last_name}}</td>
                             <td>{{com.Comments}}</td> 
                             <td>{{com.DiscussionTopicId}}</td>
                             <td>{{com.TopicTitle}}</td>

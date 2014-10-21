@@ -266,6 +266,15 @@ angular
         controller: 'AdminAddQuestionCtrl',
         access:      access.admin
       })
+      .when('/admin-add-message', {
+        templateUrl: 'views/admin-add-message.html',
+        controller: 'AdminAddMessageCtrl'
+      })
+      .when('/system-messages', {
+        templateUrl: 'views/system-messages.html',
+        controller: 'SystemMessagesCtrl',
+        access:      access.user
+      })
       .otherwise({
         redirectTo: '/'
       });

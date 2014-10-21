@@ -42,6 +42,12 @@ $app->get('/view_profile_data/:id', 'viewProfileData');
 $app->get('/user_activate/:id', 'useractivate');
 $app->get('/user_deactivate/:id', 'userdeactivate');
 
+$app->get('/admin_get_this_user/:id', 'adminGetThisUser');
+
+$app->post('/admin_add_message', 'adminAddMessage');
+
+$app->get('/get_sys_message', 'getSysMessage');
+
 
 function checkAdminLogin() {
   $request = Slim::getInstance()->request();
@@ -704,5 +710,81 @@ function useractivate($userid) {
         echo '{"error":{"text":'. $e->getMessage() .'}}';
       }
     }
+function adminGetThisUser($userid) {
+  //echo $userid;
+  $name = '%'. $userid . '%';
+  $sql = "SELECT first_name from users where status=1 and first_name LIKE :user_id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("user_id", $name);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    //echo $total = $wine->'count(1)';
 
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  //echo json_encode($wine);
+}
 
+function adminAddMessage() {
+  $request = Slim::getInstance()->request();
+  $forum = json_decode($request->getBody());
+  $status=0;
+  $DateTime=  date("Y-m-d h:i:s") ;
+  
+  $sql = "select user_id FROM users where first_name = :name";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("name", $forum->to);
+    $stmt->execute();
+    $wine = $stmt->fetchObject();
+    $db = null;
+    //echo $total = $wine->'count(1)';
+    //echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  
+     // $forumname = $forum->title;
+      $link = 'system-messages';
+      $message = $forum->mess;
+      $user_id = $wine->user_id;
+      $sqlSN = "Insert into SystemNotification (userId,Message,ViewStatus,AddedDate,Link) values (:userId,:Message,:ViewStatus,:AddedDate,:Link)";
+      try {
+        $db = getConnection();
+        $stmtSN = $db->prepare($sqlSN);
+        $stmtSN->bindParam("userId", $user_id);
+        $stmtSN->bindParam("Message", $message);
+        $stmtSN->bindParam("ViewStatus", $status);
+        $stmtSN->bindParam("AddedDate", $DateTime);
+        $stmtSN->bindParam("Link", $link);
+        $stmtSN->execute();
+        echo 'true';
+      } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+      }
+}
+
+function getSysMessage() {
+  $user_id  = getUserId();
+
+  $sql = "SELECT * FROM SystemNotification  where userId=:user_id order by AddedDate desc";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("user_id", $user_id);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  } 
+
+}

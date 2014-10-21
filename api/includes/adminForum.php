@@ -550,7 +550,7 @@ function adminGetBadList() {
 function adminInappropriateComment() {
   
 
-   $sql = "SELECT dba.CommentId,dba.Comments,dba.ReportedBy,dba.ReportedDate,dbt.DiscussionTopicId,dbt.TopicTitle from  DiscussionBoardAbuse as dba left join DiscussionBoardComments as dbc on dba.CommentId=dbc.CommentId left join DiscussionBoardTopic as dbt on  dbc.DiscussionTopicId = dbt.DiscussionTopicId where dba.Spam = 0";
+   $sql = "SELECT dba.CommentId,dba.Comments,dba.ReportedBy,dba.ReportedDate,dbt.DiscussionTopicId,dbt.TopicTitle, u.first_name, u.last_name from  DiscussionBoardAbuse as dba left join DiscussionBoardComments as dbc on dba.CommentId=dbc.CommentId left join DiscussionBoardTopic as dbt on  dbc.DiscussionTopicId = dbt.DiscussionTopicId JOIN users u ON dbc.UserId = u.user_id where dba.Spam = 0";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
