@@ -24,7 +24,13 @@
                         <section>
                             <label class="label">Question</label>
                             <label class="input">
-                                <input type="text" name="subject" id="subject" data-ng-model="discussion.title" required>
+                                <input type="text" name="subject" id="subject" data-ng-model="question.title" required>
+                            </label>
+                        </section>
+                        <section>
+                            <label class="label">Hint</label>
+                            <label class="textarea textarea-resizable">
+                                <textarea rows="3" id="hint" data-ng-model="question.hint" ></textarea>
                             </label>
                         </section>
                         
@@ -32,11 +38,10 @@
                        <div class="col-md-6">
                         <section>
                                 <label class="select">
-                                    <select name="Question Type">
-                                        <option value="0" selected disabled>Question Type</option>
-                                        <option value="1">Single Choice</option>
-                                        <option value="2">/Multiple Choice</option>
-                                        <option value="3">Ranking</option>                                   
+                                    <select name="Question Type" data-ng-model="question.ansType">
+                                        <option value="0" selected disabled>Answer Selection Type</option>
+                                        <option value="{{qnsType.QuestionTypeId}}" data-ng-repeat="qnsType in qnsTypes">{{qnsType.QuestionTypeTitle}}</option>
+                                  
                                 
                                     <select>
                                     <i></i>
@@ -46,18 +51,21 @@
                         <div class="col-md-6">
                         <section>
                                 <label class="select">
-                                    <select name="Question Type">
-                                        <option value="0" selected disabled>Question Category</option>
-                                        <option value="244">Single Choice</option>
-                                        <option value="1">Multiple Choice</option>
-                                        <option value="2">Ranking</option>                                   
-                                
+                                    <select name="Question Type" data-ng-model="question.qnsCategory" data-placeholder="---- Choose Company Name ----">
+                                        <option value="0" selected disabled>Question Category</option> 
+                                        <option value="{{category.QcId}}" data-ng-repeat="category in qnsCategory">{{category.Category}}</option>
                                     <select>
                                     <i></i>
                                 </label>
                        </section>
                        </div>
 					</div>
+					<section>
+                            <label class="label">Max Input</label>
+                            <label class="input">
+                                <input type="text" name="subject" id="subject" data-ng-model="question.title" required>
+                            </label>
+                    </section>
 					<div class="row">
                        <div class="col-md-10">
                         <section>

@@ -8,12 +8,13 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('AdminAddQuestionCtrl', function ($scope) {
+  .controller('AdminAddQuestionCtrl', function ($scope, Questionnaire) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+    $scope.question = [];
     $scope.answers = [];
     $scope.addItem = function() {
 	  if ($scope.options != '') {
@@ -36,4 +37,19 @@ angular.module('sassApp')
       	  //$scope.options = "";
   	  }    	  
       }
+    
+    function loadAllData() {
+    	Questionnaire.getAllQuestionCategory().then(function (response) {
+			//console.log(response);
+			$scope.qnsCategory = response.data;	    	
+		});
+    	Questionnaire.getAllQuestionType().then(function (response) {
+			//console.log(response);
+			$scope.qnsTypes = response.data;	    	
+		});
+    	$scope.question.ansType = 0;
+    	$scope.question.qnsCategory = 0;
+    }
+    
+    loadAllData();
   });

@@ -221,7 +221,7 @@ angular
       .when('/admin', {
         templateUrl: 'views/admin.html',
         controller: 'AdminCtrl',
-        access:      access.anon
+        access:      access.public
       })
       .when('/admin-userlist', {
         templateUrl: 'views/admin-userlist.html',

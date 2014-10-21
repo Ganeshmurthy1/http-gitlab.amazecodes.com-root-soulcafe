@@ -25,4 +25,9 @@ angular.module('sassApp')
       
     	$location.path('/');
       };
+      $scope.adminLogout = function() {
+      	localStorageService.clearAll();
+      	$rootScope.loggedin = false;
+        $location.path('/admin');
+      };
   });

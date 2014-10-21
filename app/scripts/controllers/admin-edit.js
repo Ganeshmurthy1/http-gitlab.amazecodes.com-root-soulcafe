@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('AdminEditCtrl', function ($scope,$routeParams,adminOperations) {
+  .controller('AdminEditCtrl', function ($scope,$routeParams,adminOperations, $location) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -27,7 +27,18 @@ angular.module('sassApp')
     	console.log("AAAAAaAAAAAAaaaa");
     	console.log($scope.admin); 
     	 adminOperations.updateAdminData($scope.admin).then(function (response) {
-			console.log(response);
+    		 if (response.data == 'true') {
+     			  $scope.savedSuccessfully = true;
+                   $scope.successmessage = "Admin Edited sucessfully.";
+                   $scope.errMessage = false;
+                   $scope.discussion = false;
+                   $scope.Forums = [];
+                   $location.path('admin-edit');
+     		  }
+     		  else {
+     			  $scope.successmessage = false;
+     			  $scope.errMessage = response.data;
+     		  }
 		});
 
     };
