@@ -13,7 +13,7 @@ function getUserMatch() {
   // print_r( $user );
   $user_id  = getUserId();
    
-  $sql = "select * from users where user_id Not IN(select user_id from users where user_id=:user_id)";
+  $sql = "select * from users where user_id != :user_id";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);  

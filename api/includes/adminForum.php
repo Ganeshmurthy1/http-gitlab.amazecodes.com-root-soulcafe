@@ -139,7 +139,7 @@ function adminGetDiscussion() {
   
   $request = Slim::getInstance()->request();
   $forum = json_decode($request->getBody());
-  $sqlCp = "select db.DiscussionBoardId,db.Topic,db.Description,db.CreatedBy,db.Status,u.Picture from DiscussionBoard as db left join users as u on db.CreatedBy=u.user_id order by db.CreatedBy desc";
+  $sqlCp = "select db.DiscussionBoardId,db.Topic,db.Description,db.CreatedBy,db.Status,u.Picture,db.Image from DiscussionBoard as db left join users as u on db.CreatedBy=u.user_id order by db.CreatedBy desc";
   $lm = ' Limit ' . $forum->start . ',' . $forum->limit;
   $sqlCp .= $lm;
   try {

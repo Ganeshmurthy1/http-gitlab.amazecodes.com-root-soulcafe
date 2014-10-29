@@ -26,5 +26,20 @@ angular.module('sassApp')
               return response;
           });	    	
 	    };
+	    dataFactory.getAllAlgorithamType = function () {
+	    	// console.log(param);
+	    	return Transporter.get('alg_get_algoritham_type').then(function(response) {
+	    		//console.log(response);
+              return response;
+          });	    	
+	    };
+	    
+	    dataFactory.addAdminQuestion = function (param) {
+	    	// console.log(param);
+	    	return Transporter.post('admin_add_question', param).then(function(response) {
+	    		//console.log(response);
+                return response;
+            });
+		};
 	    return dataFactory;
 }]);

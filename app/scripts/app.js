@@ -268,7 +268,8 @@ angular
       })
       .when('/admin-add-message', {
         templateUrl: 'views/admin-add-message.html',
-        controller: 'AdminAddMessageCtrl'
+        controller: 'AdminAddMessageCtrl',
+        access:      access.admin
       })
       .when('/system-messages', {
         templateUrl: 'views/system-messages.html',
@@ -315,7 +316,7 @@ angular.module('sassApp').run( function($rootScope, $location, $http, regService
         console.log(next);
         if (!regService.authorize(next.access)) {
         	 console.log('jii');
-        	 $location.path('/')
+        	 //$location.path('/')
         	 //if(regService.isLoggedIn()) $location.path('/');
             // else                  $location.path('/login');
         }
