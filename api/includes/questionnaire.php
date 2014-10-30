@@ -6,6 +6,8 @@ $app->get('/alg_get_algoritham_type', 'algGetAlgType');
 
 $app->post('/admin_add_question', 'adminAddQuestion');
 
+
+$app->get('/get_this_question', 'getThisQuestion');
 function algGetQusCategory() {
 
   $sql = "SELECT * from QuestionnaireCategory";
@@ -147,4 +149,23 @@ function adminAddQuestion() {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
 
+}
+
+function getThisQuestion() {
+  $result = new stdClass();
+
+  $sql = "SELECT count(1) as totalQn from Questionnaire";
+ try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);;
+    $db = null;
+    $result->totalQn = $wine;
+   // print_r($result);
+    echo json_encode($result);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  //echo json_encode($wine);
 }

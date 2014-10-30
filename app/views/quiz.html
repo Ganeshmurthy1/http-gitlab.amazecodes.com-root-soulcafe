@@ -1,0 +1,33 @@
+<div class="wrapper">
+    <!--=== Header ===-->    
+  <div data-ng-controller="HeaderCtrl" data-ng-include="Header">
+</div>
+    <!--=== End Header ===-->  
+
+    <!--=== Profile ===-->
+    <div class="profile container content" style="border-color:red">
+        <div class="row">
+            <!--Left Sidebar-->
+            <div data-ng-controller="SideBarCtrl" data-ng-include="SideBar">
+            </div>
+            <!--End Left Sidebar-->
+            
+            <div class="col-md-9">
+
+            	<div class="headline"><h2 class="heading-sm">Let us know you!..</h2></div>
+            	
+            	<h3>Dynamic <button class="btn btn-sm btn-primary" type="button" ng-click="random()">Randomize</button></h3>
+   				<progressbar max="max" value="dynamic" class="progress-striped active" ><span style="color:black; white-space:nowrap;">{{dynamic}} / {{max}}</span></progressbar>
+            </div>
+        </div>
+
+    </div>
+    <!--=== End Profile ===-->
+
+<!--=== Footer ===-->
+ <div data-ng-controller="FooterCtrl" data-ng-include="Footer">
+</div>
+<!--=== End Footer ===-->
+
+</div>
+<!--=== End Wrapper ===-->

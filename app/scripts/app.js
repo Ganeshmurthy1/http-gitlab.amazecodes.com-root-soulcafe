@@ -276,6 +276,10 @@ angular
         controller: 'SystemMessagesCtrl',
         access:      access.user
       })
+      .when('/quiz', {
+        templateUrl: 'views/quiz.html',
+        controller: 'QuizCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
