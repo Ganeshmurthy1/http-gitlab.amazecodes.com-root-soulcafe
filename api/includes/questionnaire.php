@@ -154,16 +154,38 @@ function adminAddQuestion() {
 function getThisQuestion() {
   $result = new stdClass();
 
-  $sql = "SELECT count(1) as totalQn from Questionnaire";
+  
  try {
+   
     $db = getConnection();
+    //Total Question count
+    $sql = "SELECT count(1) as totalQn from Questionnaire";
+    
     $stmt = $db->prepare($sql);
     $stmt->execute();
     $wine = $stmt->fetchAll(PDO::FETCH_OBJ);;
-    $db = null;
     $result->totalQn = $wine;
+    
+    
+    //Total answered qn count
+    $user_id = getUserId();
+    $sqlA = "SELECT count(1) as totalAnsQn from QuestionnaireUserAnswer where UserId = :user_id";
+    $stmtA = $db->prepare($sqlA);
+    $stmtA->bindParam("user_id", $user_id);
+    $stmtA->execute();
+    $wineA = $stmtA->fetchAll(PDO::FETCH_OBJ);;
+    $result->totalAnsQn = $wineA;
+    
+    //Get the next qn
+    $sqlQ = "SELECT Qid, QuestionTitle, Description, AnswerSelectionType from Questionnaire where Qid NOT IN (Select QnId from QuestionnaireUserAnswer where UserId = :user_id) ORDER BY Sequence Limit 0,1";
+    $stmtQ = $db->prepare($sqlQ);
+    $stmtQ->bindParam("user_id", $user_id);
+    $stmtQ->execute();
+    $wineQ = $stmtQ->fetchAll(PDO::FETCH_OBJ);;
+    $result->Questions = $wineQ;
+    echo json_encode($wineQ);
    // print_r($result);
-    echo json_encode($result);
+    //echo json_encode($result);
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
