@@ -325,7 +325,7 @@ body {
 header {
   background: url(../images/header-bg.png) repeat-x white;
   position: relative;
-  padding: 15px 0;
+  padding: 5px 0;
   border-bottom:5px solid #7f5529;
   &:after {
     content: " ";
@@ -393,15 +393,15 @@ header {
   background: url(../images/banner.jpg) no-repeat center center;
   background-size: cover;
   min-height: 400px;
-  padding: 250px 0 0 0;
+  
   h1 {
-    background-color: #ffd52d;
+    
     margin: 0;
     padding: 15px 20px;
     font-size: 30px;
   }
   h2 {
-    background-color: #4c2500;
+    
     margin: 0;
     padding: 8px 20px;
     color: #FFF;
@@ -438,7 +438,7 @@ input {
   }
 }
 .radiomaskselected {
-	background-color: #7f5529;
+  background-color: #7f5529;
 }
 
 #radio-male, #radio-female {
@@ -474,10 +474,10 @@ footer {
     margin: 0;
     li {
       a {
-        border-bottom: dotted 1px #4c2500;
+        
       }
       &:first-child a {
-        border-top: dotted 1px #4c2500;
+       
       }
       a {
         display: block;
@@ -489,16 +489,16 @@ footer {
 @media (min-width: 768px) {
   #index-banner {
     min-height: 450px;
-    padding: 300px 0 0 0;
+    
     h1 {
-      background-color: #ffd52d;
+      
       margin: 0;
       padding: 15px 15px;
       font-size: 36px;
       margin-right: 100px;
     }
     h2 {
-      background-color: #4c2500;
+      
       margin: 0;
       padding: 8px 15px;
       color: #FFF;
@@ -509,8 +509,8 @@ footer {
 
 @media (min-width: 992px) {
   #index-banner {
-    height: 780px;
-    padding: 300px 0 300px 0;
+   
+    
   }
   #index-form-holder {
     position: absolute;
@@ -521,13 +521,13 @@ footer {
   }
   #index-banner {
     h1 {
-      background-color: #ffd52d;
+      
       margin: 0;
       padding: 15px 15px;
       font-size: 32px;
     }
     h2 {
-      background-color: #4c2500;
+     
       margin: 0;
       padding: 8px 15px;
       color: #FFF;
@@ -539,13 +539,13 @@ footer {
 @media (min-width: 1200px) {
   #index-banner {
     h1 {
-      background-color: #ffd52d;
+     
       margin: 0;
       padding: 15px 20px;
       font-size: 42px;
     }
     h2 {
-      background-color: #4c2500;
+      
       margin: 0;
       padding: 8px 20px;
       color: #FFF;
@@ -642,3 +642,30 @@ svg{
         width: 420px;
         height: 120px;
       }
+
+
+      .heigth-adjust{
+      height:0% !important;
+      padding-top:20%;
+      }
+
+      .paddingman{
+      padding-top:45%;
+      }
+
+@media (min-width: 768px) {
+  
+}
+
+@media (min-width: 992px) {
+ 
+}
+
+@media (min-width: 1200px) {
+  .paddingman{
+      padding-top:20%;
+      }
+  header:after{content:" "; background-image:url(../images/header-bg-shape.png); width:288px; height:31px; position:absolute; bottom:-31px; left:50%; margin-left:-165px; z-index:200}
+}
+
+header:after{content:" "; background-image:url(../images/header-bg-shape.png); width:288px; height:31px; position:absolute; bottom:-31px; left:50%; margin-left:-144px; z-index:200}

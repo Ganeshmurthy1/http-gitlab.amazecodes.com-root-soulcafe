@@ -1,137 +1,108 @@
+<!--HEADER STARTS HERE-->
 <header>
-      <div class="container" ng-controller="LoginCtrl">
-      <div class="row">
-      <div class="col-xs-3 text-col-xs-right pull-right"><a class="btn btn-primary btn-lg" ng-hide="loggedin" >login</a>
-        <a class="btn btn-primary btn-lg" ng-show="loggedin" ng-click="logout()">Logout</a>
+  <div class = "row" style="padding-right:3%;margin-right:0px !important;">
+    
+      <div class="col-sm-offset-4 col-xs-offset-3 col-xs-6 col-sm-4 text-col-xs-center" style="text-align:center;">
+        <img src="images/logo.png" class="img-responsive">
       </div>
-      <div class="col-xs-6 pull-right text-col-xs-center"><img src="images/logo.png" class="img-responsive"></div>
-        <div class="col-xs-3 col-sm-3 pull-right">
-          
-        <button type="button" class="navbar-toggle top-navbar-toogle no-margin no-padding"  data-toggle="collapse" data-target=".top-navigation"><img src="images/menu.png"></button>
+      <div class="inline-block pull-right" style="">
+              <div class="inline-block" style="font-weight:600;font-size:17px;padding-top:20px;color:#4c2500;">Follow us</div>
+                <div class="inline-block"><a href="#"><img src="images/fb.png"></a></div>
+                <div class="inline-block"><a href="#"><img src="images/tw.png"></a></div>
+                <div class="inline-block"><a href="#"><img src="images/gp.png"></a></div>
+      </div>
+    
+       <div class="col-xs-3 col-sm-4 padding-top-20 ">
+        <div class=" visible-xs hidden-sm"> 
+        <button type="button" class="navbar-toggle top-navbar-toogle no-margin no-padding"  data-toggle="collapse" data-target=".top-navigation"><img src="images/menu.png" style="width:30px"></button>
         <ul class="nav collapse top-navigation">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
+            <li><a href="#">Why SoulCafe </a></li>
+            <li><a href="#">How It Works?</a></li>
+            <li><a href="#">The strict “NO-NO” on Soul Cafe</a></li>
             <div class="clearfix"></div>
-        </ul>     
-        </div>    
-      <div class="clearfix"></div>
-    </div>
-    </div>
+        </ul>
+        </div>            
+        </div>
+
+  </div>
 </header>
-<!--HEADER END-->
+<!--HEADER ENDS HERE-->
 
-<!--BANNER START-->
-<div class="header-border-image"></div>
+<!--BANNER START HERE-->
 
-<div class="position-relative">
-    <div id="index-banner">
+      <div class="position-relative ">
+    <div id="index-banner" class="height-adjust">
+      <div class="padding-holder">
         <div class="container">
-            <div class="row">
-                <div class=" col-md-offset-1 col-md-6 col-lg-7 ">
-                    <h1 class="alternative-text inline-block text-color-coffee"><strong>Find your soul match</strong></h1>
-                    <h2 class="alternative-text inline-block"><strong>with a cup of coffee!</strong></h2>
-                </div>
+            <div class="text-center paddingman">
+                
+                    <h2 class="text-capital text-shadow"><span class="inline-block">A long term</span> <span class="inline-block text-bold" Style="font-weight:500;">“Soul Relationship”</span> <span class="inline-block">starts here</span></h2>
+                     <h2 class="text-capital text-shadow" style="font-weight:600;">Find Yours!</h2>
+
+                    <div class="btn-spacer" style="padding:5%;">
+                      <a href="#" class="btn btn-primary text-capital btn-lg text-shadow" style="border-radius:6px !important;;background: none repeat scroll 0 0 #0cb8f0 !important;" ng-click="login()">Sign up</a>&nbsp;&nbsp;
+                      <a href="#" class="btn btn-danger text-capital btn-lg text-shadow" style="border-radius:6px !important;">Sign in</a>
+                    </div>
+                
             </div>
+        </div>
+        
+        
+        <div class="banner-bottom-button hidden-xs text-center text-capital">
+        <div class="container">
+          <div class="row">
+              <div class="col-sm-4">
+                  <a href="#">
+                      <div><img src="images/banner-icon-1.png"></div>
+                        <div>WHY SoulCafe</div>
+                    </a>
+                </div>
+                <div class="col-sm-4">
+                  <a href="#">
+                      <div><img src="images/banner-icon-2.png"></div>
+                        <div>How it Works?</div>
+                    </a>
+                </div>
+                <div class="col-sm-4">
+                  <a href="#">
+                      <div><img src="images/banner-icon-3.png"></div>
+                        <div>The strict “NO-NO”<br>on Soul Cafe</div>
+                    </a>
+                </div>
+            
+          </div>
+        </div>
         </div>
     </div>
-    <div id="index-form-holder">
-      <div class="container">
-          <div class="col-md-offset-7 col-md-5 col-lg-offset-8 col-lg-4">
-              <div id="index-form" class="radius bg-color-cream shadow text-center">
-                  <form name="fbdataform" class="form-horizontal group-border-dashed"  style="border-radius: 0px;" data-ng-submit="signUp(fbdataform.$valid)">
-                    <div><img type="button" ng-click="login()" ng-hide="isLoggedIn" src="images/fb-btn.png" class="img-responsive" ></div>
-                        <div class="index-form-or-email">OR Signup with Email</div>
-                        
-                        <div class="padding-bottom">
-                          <div class="pull-left padding-right line-height40">I am a</div>
-                            <div class="pull-left padding-right"><div class=" form-control-holder " id="radio-male" >
-                            <input type="radio" name="RadioGroup1" value="male"  checked="checked" id="radio-male"> 
-                            <div class='radio-mask' ng-class="{radiomaskselected:male}"></div>
-                            </div>
-                            
-                            </div>
-                            <div class="pull-left"><div class=" form-control-holder" id="radio-female" >
-                            <input type="radio" name="RadioGroup1" value="female" id="radio-female">
-                            <div class='radio-mask' ng-class="{radiomaskselected:female}"></div>
-                            </div></div>
-                            <div class="clearfix"></div>
-                        
-                      </div>
-                        <div class="padding-bottom"><input type="text" name="name" class="form-control" data-ng-model="fbdata.first_name" placeholder="First Name" required></div>
-                        <div class="padding-bottom"><input type="text" name="last_name" class="form-control" data-ng-model="fbdata.last_name" placeholder="Last Name" required></div>
-                        <div class="padding-bottom"><input type="text" name="birthdate" class="form-control" data-ng-model="fbdata.birthday" placeholder="Birthday" required></div>
-                        <div class="padding-bottom"><input type="text" name="home_town"   class="form-control" data-ng-model="fbdata.hometown.name" placeholder="Home Town" required></div>
-                        <div class="padding-bottom"><input type="text" name="location"  class="form-control" data-ng-model="fbdata.location.name" placeholder="Location" required></div>
-                        <div class="padding-bottom"><input type="email" name="email" class="form-control" data-ng-model="fbdata.email" placeholder="Email" required></div>
-                        <div class="padding-bottom"><input type="text" name="mobile" class="form-control" data-ng-model="fbdata.mobile" placeholder="Mobile" required></div>
-                        <div class="padding-bottom"><input type="text" name="relationship" class="form-control" data-ng-model="fbdata.relationship_status" placeholder="Relationship Status" required></div>
-                      
-                        <h4>{{errMessage}}</h4>
-                        <div><input type="submit" value="submit" ng-disabled="fbdataform.$invalid" class="btn btn-lg btn-primary btn-block"></div>
-                    
-                    
-                  </form>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
-<!--BANNER END-->
 
+<!--BANNER ENDS HERE-->
 
-
-
-<!--TOP NAVIGATION START-->
-
-<!--TOP NAVIGATION END-->
-
-<!--FOOTER START-->
-
+<!--FOOTER STARTS HERE-->
 <footer>
   <div class="container">
       <div class="row">
-          <div class="col-sm-6 col-md-3 padding-top-bottom"><img src="images/footer-logo.png" class="img-responsive"></div>
-          <div class="col-sm-6 col-md-3 padding-top-bottom">
-              <ul class="line-height24">
-                  <li><a href="#">Signup Now</a></li>
-                    <li><a href="#">How It works</a></li>
-                  <li>&nbsp;</li>    
-                </ul>
-            </div>
-            <div class="col-sm-6 col-md-3 padding-top-bottom">
-              <ul class="line-height24">
-                <li><a href="#">Terms and Conditions</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li>&nbsp;</li>
-                </ul>
-            </div>
-            <div class="col-sm-6 col-md-3 padding-top-bottom">
-              <ul class="line-height24">
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li>&nbsp;</li>
+          <div class="col-sm-7 padding-top-bottom text-col-xs-center text-col-sm-left"><img src="images/footer-logo.png" class="img-responsive"></div>
+          
+            <div class="col-sm-5 padding-top-bottom text-col-xs-center text-col-sm-right" style="padding-top:4%;">
+              <ul style="line-height:24px;">
+                <li style="float:left;"><a style="padding:0% 13% 0% 0%; border-right:1px solid #4c2500;" href="#">Terms and Conditions</a></li>
+                <li style="float:left"><a style="padding:0% 13% 0% 13%; border-right:1px solid #4c2500;" href="#">Privacy Policy</a></li>
+                <li style="float:left"><a style="padding:0% 13% 0% 13%; border-right:1px solid #4c2500;" href="#">About Us</a></li>
+                <li style="float:left"><a style="padding:0% 0% 0% 13%;" shref="#">Contact Us</a></li>
                 </ul>
             </div>
         </div>
   </div>
 </footer>
 <div class="copyright-strip bg-color-coffe line-height24">
-  <div class="container text-color-white ">
-      <div class="row">
-        <div class=" text-col-xs-center text-col-sm-left text-col-md-center col-sm-6 col-md-6 col-md-offset-3  padding-top-bottom-5 text-center">
+  <div class="container text-color-white padding-top-bottom ">
+        <div class=" text-center ">
             <div class="inline-block">Copyright © 2014 soulcafe.com. </div>
             <div class="inline-block">All rights reserved.</div>
-            </div>
-            <div class="text-col-xs-center text-col-sm-right col-sm-6 col-md-3 padding-top-bottom-5 text-center">
-              <div class="inline-block">Connect with us</div>
-                <div class="inline-block"><a href="#"><img src="images/fb.png"></a></div>
-                <div class="inline-block"><a href="#"><img src="images/tw.png"></a></div>
-                <div class="inline-block"><a href="#"><img src="images/gp.png"></a></div>
-            </div>
-            <div class="clearfix"></div>
+           
       </div>
     </div>
 </div>
+<!--FOOTER ENDS HERE-->
