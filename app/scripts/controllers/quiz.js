@@ -86,18 +86,20 @@ angular.module('sassApp')
     		 }
     		if ($scope.multipleOptions[id].order < orderlatest) {
     			for ( var int = 0; int < multipleOrdered.length; int++) {
-    				$scope.multipleOptions[multipleOrdered[int]].order = $scope.multipleOptions[multipleOrdered[int]].order - 1;
-    				if ($scope.multipleOptions[multipleOrdered[int]].order == 1) {
-    					$scope.multipleOptions[multipleOrdered[int]].orderText = $scope.multipleOptions[multipleOrdered[int]].order + 'st';
-    				}
-    	    		else if ($scope.multipleOptions[multipleOrdered[int]].order == 2) {
-    	    			$scope.multipleOptions[multipleOrdered[int]].orderText = $scope.multipleOptions[multipleOrdered[int]].order + 'nd';
-    				}
-    	    		else if ($scope.multipleOptions[multipleOrdered[int]].order == 3) {
-    	    			$scope.multipleOptions[multipleOrdered[int]].orderText = $scope.multipleOptions[multipleOrdered[int]].order + 'rd';
-    				}
-    	    		else {
-    	    			$scope.multipleOptions[multipleOrdered[int]].orderText = $scope.multipleOptions[multipleOrdered[int]].order + 'th';
+    				if ($scope.multipleOptions[multipleOrdered[int]].order >  $scope.multipleOptions[id].order) {
+	    				$scope.multipleOptions[multipleOrdered[int]].order = $scope.multipleOptions[multipleOrdered[int]].order - 1;
+	    				if ($scope.multipleOptions[multipleOrdered[int]].order == 1) {
+	    					$scope.multipleOptions[multipleOrdered[int]].orderText = $scope.multipleOptions[multipleOrdered[int]].order + 'st';
+	    				}
+	    	    		else if ($scope.multipleOptions[multipleOrdered[int]].order == 2) {
+	    	    			$scope.multipleOptions[multipleOrdered[int]].orderText = $scope.multipleOptions[multipleOrdered[int]].order + 'nd';
+	    				}
+	    	    		else if ($scope.multipleOptions[multipleOrdered[int]].order == 3) {
+	    	    			$scope.multipleOptions[multipleOrdered[int]].orderText = $scope.multipleOptions[multipleOrdered[int]].order + 'rd';
+	    				}
+	    	    		else {
+	    	    			$scope.multipleOptions[multipleOrdered[int]].orderText = $scope.multipleOptions[multipleOrdered[int]].order + 'th';
+	    				}
     				}
 				}
 				
