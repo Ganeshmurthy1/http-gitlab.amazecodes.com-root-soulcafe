@@ -163,7 +163,7 @@ function getThisQuestion() {
     
     $stmt = $db->prepare($sql);
     $stmt->execute();
-    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);;
+    $wine = $stmt->fetchObject();
     $result->totalQn = $wine;
     
     
@@ -173,17 +173,28 @@ function getThisQuestion() {
     $stmtA = $db->prepare($sqlA);
     $stmtA->bindParam("user_id", $user_id);
     $stmtA->execute();
-    $wineA = $stmtA->fetchAll(PDO::FETCH_OBJ);;
+    $wineA = $stmtA->fetchObject();
     $result->totalAnsQn = $wineA;
     
     //Get the next qn
-    $sqlQ = "SELECT Qid, QuestionTitle, Description, AnswerSelectionType from Questionnaire where Qid NOT IN (Select QnId from QuestionnaireUserAnswer where UserId = :user_id) ORDER BY Sequence Limit 0,1";
+    $sqlQ = "SELECT Qid, QuestionTitle, Description, AnswerSelectionType, MaxOptions from Questionnaire where Qid NOT IN (Select QnId from QuestionnaireUserAnswer where UserId = :user_id) ORDER BY Sequence Limit 0,1";
     $stmtQ = $db->prepare($sqlQ);
     $stmtQ->bindParam("user_id", $user_id);
     $stmtQ->execute();
-    $wineQ = $stmtQ->fetchAll(PDO::FETCH_OBJ);;
+    $wineQ = $stmtQ->fetchObject();
     $result->Questions = $wineQ;
-    echo json_encode($wineQ);
+    
+    //Get the next qn
+    $sqlAn = "SELECT Qoid, Answer from QuestionnaireOptions where Qid = :Qid";
+    $stmtAn = $db->prepare($sqlAn);
+    $stmtAn->bindParam("Qid", $wineQ->Qid);
+    $stmtAn->execute();
+    $wineAn = $stmtAn->fetchAll(PDO::FETCH_OBJ);;
+    $result->Options = $wineAn;
+    
+    
+    
+    echo json_encode($result);
    // print_r($result);
     //echo json_encode($result);
   } catch(PDOException $e) {
