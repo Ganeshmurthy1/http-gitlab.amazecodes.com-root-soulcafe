@@ -14,7 +14,7 @@ angular.module('sassApp')
       'AngularJS',
       'Karma'
     ];
-   
+   $rootScope.a=true;
     $scope.login = function() {
       $facebook.login().then(function() {
     	//  makePromiseWithSon();
@@ -37,23 +37,23 @@ angular.module('sassApp')
 	    	result.status = false;
 		    result.message = 'Your Relationship status is not suitable for an account in Soulcafe';
 		}
-	 //    var d1 = new Date(param.birthday);
-  //   	var d2 = new Date();
-		// var diff = d2.getFullYear()-d1.getFullYear();
-	 //    if (param.gender == 'male') {
-	 //    	if (diff < 22) {
-	 //    		result.status = false;
-		// 	    result.message = 'You have to be above 24 years old to register in soulcafe';				
-		// 	}
+	    var d1 = new Date(param.birthday);
+    	var d2 = new Date();
+		var diff = d2.getFullYear()-d1.getFullYear();
+	    if (param.gender == 'male') {
+	    	if (diff < 22) {
+	    		result.status = false;
+			    result.message = 'You have to be above 24 years old to register in soulcafe';				
+			}
 			
-		// }
-	 //    if (param.gender == 'female') {
-	 //    	if (diff < 22) {
-	 //    		result.status = false;
-		// 	    result.message = 'You have to be above 22 years old to register in soulcafe';				
-		// 	}
+		}
+	    if (param.gender == 'female') {
+	    	if (diff < 22) {
+	    		result.status = false;
+			    result.message = 'You have to be above 22 years old to register in soulcafe';				
+			}
 			
-		// }
+		}
 	    
     	return result;
     	
@@ -64,7 +64,7 @@ angular.module('sassApp')
           $scope.welcomeMsg = 'Welcome ' + response.name;
           regService.getFbUserStatus(response).then(function (results) {  
           console.log(results.data);  	        
-	        if (results.data != 'false') { //login 
+	        if (results.data.status == 1) { //login 
 				console.log('login');
 				localStorageService.set('authorizationData', {
 	                fb_id: response.id,
@@ -84,11 +84,14 @@ angular.module('sassApp')
 				var authData = localStorageService.get('authorizationData');
 				console.log(authData);
 				//$scope.loggedin = true;
-
 				$location.path('/dashboard');
 				 $rootScope.loggedin = true;
-			}
-	        else {// register//	        	        	
+			}else if(results.data.status == 0){
+				$rootScope.abc = "Your account is not active. Please contact Customer Care.";
+				$rootScope.a=false;
+				console.log($scope.abc);
+				console.log($scope.a);
+			}else {// register//	        	        	
 	        		regService.getFbFriendsCount().then(function(data) {
 	                console.log(data);
 	                response.total_friends = data.summary.total_count;
