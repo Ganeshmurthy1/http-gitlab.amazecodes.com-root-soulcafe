@@ -22,7 +22,8 @@ angular
     'perfect_scrollbar',
     'ui.bootstrap',
     'fundoo.directives',
-    'angularFileUpload'
+    'angularFileUpload',
+    'ui-rangeSlider'
   ])
   .config(['$routeProvider', '$facebookProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $facebookProvider, $locationProvider, $httpProvider) {
 	
@@ -279,6 +280,10 @@ angular
       .when('/quiz', {
         templateUrl: 'views/quiz.html',
         controller: 'QuizCtrl'
+      })
+      .when('/admin-list-question', {
+        templateUrl: 'views/admin-list-question.html',
+        controller: 'AdminListQuestionCtrl'
       })
       .otherwise({
         redirectTo: '/'

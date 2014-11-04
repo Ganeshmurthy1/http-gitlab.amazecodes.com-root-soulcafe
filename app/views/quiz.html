@@ -32,14 +32,31 @@
                     </div>                  
                 </div>
                 
+                <div class="row margin-bottom-10" ng-show="QuestionObj.Questions.AnswerSelectionType == '2'">
+                    <div class="col-md-6 col-sm-6 col-xs-12" data-ng-repeat = "option in multiIntensityOptions" ng-class="{'isSelected' : option.selected}">                    
+                        <div class="servive-block raw-intensity  raw-option" data-ng-click="selectMultipleIntensity(option.Qoid)" ng-class="option.selected ? 'servive-block-sea' : 'servive-block-grey'">                           
+                            <p>{{option.Answer}}</p>   
+                             <div range-slider min="0" max="5" model-max="option.intensity" ng-show="option.selected" pin-handle="min"></div>                    
+                        </div>
+                    </div>                  
+                </div>
+                
                 <div class="row margin-bottom-10" ng-show="QuestionObj.Questions.AnswerSelectionType == '3'">
                     <div class="col-md-6 col-sm-6 col-xs-12" data-ng-repeat = "option in multipleOptions" >                    
-                        <b class="quiz-answer-rank-indicator">{{option.order}}</b>
+                        <b class="quiz-answer-rank-indicator">{{option.orderText}}</b>
                         <div class="servive-block   raw-option" data-ng-click="selectMultipe(option.Qoid)" ng-class="option.selected ? 'servive-block-sea' : 'servive-block-grey'">                           
                             <p>{{option.Answer}}</p>                        
                         </div>
                     </div>                  
                 </div>
+                
+                        
+               <button class="btn-u" type="submit"  data-ng-click="addAnswer()">Next</button>
+                        
+               
+                
+               
+                          
                 
                 
    				

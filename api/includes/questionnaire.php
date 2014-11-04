@@ -6,8 +6,11 @@ $app->get('/alg_get_algoritham_type', 'algGetAlgType');
 
 $app->post('/admin_add_question', 'adminAddQuestion');
 
-
 $app->get('/get_this_question', 'getThisQuestion');
+
+$app->post('/addAnswer', 'AddAnswer');
+
+
 function algGetQusCategory() {
 
   $sql = "SELECT * from QuestionnaireCategory";
@@ -201,4 +204,91 @@ function getThisQuestion() {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
   //echo json_encode($wine);
+}
+
+function AddAnswer() {
+  $request = Slim::getInstance()->request();
+  $answer = json_decode($request->getBody());
+  $status=0;
+  $DateTime=  date("Y-m-d h:i:s") ;
+  $user_id = getUserId();
+  
+  if ($answer->question->AnswerSelectionType == 1) {
+    //  print_r($answer);
+    
+    $sqlSN = "Insert into QuestionnaireAnswer (QId, UserId, OptionId) values (:QId,:UserId,:OptionId)";
+    try {
+      $db = getConnection();
+      $stmtSN = $db->prepare($sqlSN);
+      $stmtSN->bindParam("QId", $answer->question->Qid);
+      $stmtSN->bindParam("UserId", $user_id);
+      $stmtSN->bindParam("OptionId", $answer->answer);
+      $stmtSN->execute();
+    } catch(PDOException $e) {
+      echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
+  }
+  
+  if ($answer->question->AnswerSelectionType == 2) {
+  
+    foreach ($answer->answerInten as $key => $value) {
+      if ($value->selected == true) {
+        $sqlSN = "Insert into QuestionnaireAnswer (QId, UserId, OptionId,RankScale) values (:QId,:UserId,:OptionId, :RankScale)";
+        try {
+          $db = getConnection();
+          $stmtSN = $db->prepare($sqlSN);
+          $stmtSN->bindParam("QId", $answer->question->Qid);
+          $stmtSN->bindParam("UserId", $user_id);
+          $stmtSN->bindParam("OptionId", $value->Qoid);
+          $stmtSN->bindParam("RankScale", $value->intensity);
+          $stmtSN->execute();
+        } catch(PDOException $e) {
+          echo '{"error":{"text":'. $e->getMessage() .'}}';
+        }
+  
+        //print_r($value);
+      }
+  
+  
+    }
+  
+  }
+  
+  if ($answer->question->AnswerSelectionType == 3) {
+
+    foreach ($answer->answerMulti as $key => $value) {
+      if ($value->selected == true) {
+        $sqlSN = "Insert into QuestionnaireAnswer (QId, UserId, OptionId,RankScale) values (:QId,:UserId,:OptionId, :RankScale)";
+        try {
+          $db = getConnection();
+          $stmtSN = $db->prepare($sqlSN);
+          $stmtSN->bindParam("QId", $answer->question->Qid);
+          $stmtSN->bindParam("UserId", $user_id);
+          $stmtSN->bindParam("OptionId", $value->Qoid);
+          $stmtSN->bindParam("RankScale", $value->order);
+          $stmtSN->execute();
+        } catch(PDOException $e) {
+          echo '{"error":{"text":'. $e->getMessage() .'}}';
+        }
+        
+        //print_r($value);  
+      }
+      
+      
+    }
+    
+  }
+  
+  $sqlQ = "Insert into QuestionnaireUserAnswer (QnId, UserId) values (:QId,:UserId)";
+  try {
+    $db = getConnection();
+    $stmtQ = $db->prepare($sqlQ);
+    $stmtQ->bindParam("QId", $answer->question->Qid);
+    $stmtQ->bindParam("UserId", $user_id);
+    $stmtQ->execute();
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  echo true;
+  
 }
