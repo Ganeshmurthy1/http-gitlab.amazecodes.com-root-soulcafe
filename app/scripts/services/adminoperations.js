@@ -146,6 +146,12 @@ angular.module('sassApp')
                 return response;
             });	 
 	  };
+	  dataFactory.getAllQuestions = function () {	
+	      	return $http.get(urlBase + 'get_all_questions').then(function(response) {
+	    		//console.log(response);
+              return response;
+          });	 
+	    };
 	    return dataFactory;
 	}]);
 

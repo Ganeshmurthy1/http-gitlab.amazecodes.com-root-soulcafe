@@ -281,6 +281,10 @@ angular
         templateUrl: 'views/quiz.html',
         controller: 'QuizCtrl'
       })
+      .when('/admin-list-question', {
+        templateUrl: 'views/admin-list-question.html',
+        controller: 'AdminListQuestionCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

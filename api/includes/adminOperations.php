@@ -48,6 +48,7 @@ $app->post('/admin_add_message', 'adminAddMessage');
 
 $app->get('/get_sys_message', 'getSysMessage');
 
+$app->get('/get_all_questions', 'GetAllQuestions');
 
 function checkAdminLogin() {
   $request = Slim::getInstance()->request();
@@ -787,4 +788,19 @@ function getSysMessage() {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   } 
 
+}
+
+function GetAllQuestions() {
+  // $user_id  = getUserId();
+  $sql = "SELECT q.*, qc.Category FROM `Questionnaire` q JOIN QuestionnaireCategory qc ON q.QuestionCategory = qc.QcId  JOIN AlgorithamType ON ";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
 }
