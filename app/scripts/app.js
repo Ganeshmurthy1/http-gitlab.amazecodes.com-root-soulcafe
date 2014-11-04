@@ -22,7 +22,8 @@ angular
     'perfect_scrollbar',
     'ui.bootstrap',
     'fundoo.directives',
-    'angularFileUpload'
+    'angularFileUpload',
+    'ui-rangeSlider'
   ])
   .config(['$routeProvider', '$facebookProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $facebookProvider, $locationProvider, $httpProvider) {
 	

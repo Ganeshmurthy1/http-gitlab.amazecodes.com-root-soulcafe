@@ -8,27 +8,39 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('QuizCtrl', function ($scope, Questionnaire) {
+  .controller('QuizCtrl', function ($scope, Questionnaire, $location) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-    $scope.singleSelected = null;
-    $scope.multipleSelected = null;   
-    var orderlatest = 0;
-    var multipleOrdered = [];
+    
+    
+    $scope.demo6 = {
+		    valueA: 5,
+		    valueB: 3000
+		};
     
     $scope.loadQuiz = function() {
+    	$scope.singleSelected = null;
+        $scope.multipleSelected = null;   
+        $scope.orderlatest = 0;
+        $scope.multipleOrdered = [];
     	Questionnaire.loadThisQuestions().then(function(response) {
     		$scope.QuestionObj = response.data;	
     		var max = $scope.QuestionObj.totalQn.totalQn;
     		var value = $scope.QuestionObj.totalAnsQn.totalAnsQn;
+    		if(value == max) {
+    			$location.path('/dashboard');
+    		}
     		var per = value/max;
     		var percentage = per*100;    		
     		$scope.dynamic = Math.ceil(percentage);
     		if ($scope.QuestionObj.Questions.AnswerSelectionType == 1) {
 				getSingleSelection();
+			}
+    		if ($scope.QuestionObj.Questions.AnswerSelectionType == 2) {
+				getMultiIntensitySelection();
 			}
     		if ($scope.QuestionObj.Questions.AnswerSelectionType == 3) {
 				getMultiSelection();
@@ -66,6 +78,18 @@ angular.module('sassApp')
     	console.log(multipleOptions);
     }
     
+    function getMultiIntensitySelection() {
+    	var multiIntensityOptions = new Object();
+    	var options = $scope.QuestionObj.Options;
+    	for ( var int = 0; int < options.length; int++) {
+    		options[int].selected = false;
+    		options[int].intensity = 0;
+    		multiIntensityOptions[options[int].Qoid] = options[int];
+		}
+    	$scope.multiIntensityOptions = multiIntensityOptions;
+    	console.log(multiIntensityOptions);
+    }
+    
     $scope.selectSingle = function(id) {
     
 		if ($scope.singleSelected != null) {
@@ -73,32 +97,43 @@ angular.module('sassApp')
 		}   	
 		$scope.singleOptions[id].selected = true;
 		$scope.singleSelected = id;
+		console.log($scope.singleSelected);
+    }
+    $scope.selectMultipleIntensity = function(id) {        
+    	
+    	if ($scope.multiIntensityOptions[id].selected == true) {
+    		$scope.multiIntensityOptions[id].selected = false;
+    	}
+    	else {
+    		$scope.multiIntensityOptions[id].selected = true;
+    	}
+		
     }
     $scope.selectMultipe = function(id) {
     	
     	
     	if ($scope.multipleOptions[id].selected == true) {
     		
-    		var optid = multipleOrdered.indexOf(id);
+    		var optid = $scope.multipleOrdered.indexOf(id);
     		
     		 if (optid >= 0) {
-    			 multipleOrdered.splice(optid, 1);
+    			 $scope.multipleOrdered.splice(optid, 1);
     		 }
-    		if ($scope.multipleOptions[id].order < orderlatest) {
-    			for ( var int = 0; int < multipleOrdered.length; int++) {
-    				if ($scope.multipleOptions[multipleOrdered[int]].order >  $scope.multipleOptions[id].order) {
-	    				$scope.multipleOptions[multipleOrdered[int]].order = $scope.multipleOptions[multipleOrdered[int]].order - 1;
-	    				if ($scope.multipleOptions[multipleOrdered[int]].order == 1) {
-	    					$scope.multipleOptions[multipleOrdered[int]].orderText = $scope.multipleOptions[multipleOrdered[int]].order + 'st';
+    		if ($scope.multipleOptions[id].order < $scope.orderlatest) {
+    			for ( var int = 0; int < $scope.multipleOrdered.length; int++) {
+    				if ($scope.multipleOptions[$scope.multipleOrdered[int]].order >  $scope.multipleOptions[id].order) {
+	    				$scope.multipleOptions[$scope.multipleOrdered[int]].order = $scope.multipleOptions[$scope.multipleOrdered[int]].order - 1;
+	    				if ($scope.multipleOptions[$scope.multipleOrdered[int]].order == 1) {
+	    					$scope.multipleOptions[$scope.multipleOrdered[int]].orderText = $scope.multipleOptions[$scope.multipleOrdered[int]].order + 'st';
 	    				}
-	    	    		else if ($scope.multipleOptions[multipleOrdered[int]].order == 2) {
-	    	    			$scope.multipleOptions[multipleOrdered[int]].orderText = $scope.multipleOptions[multipleOrdered[int]].order + 'nd';
+	    	    		else if ($scope.multipleOptions[$scope.multipleOrdered[int]].order == 2) {
+	    	    			$scope.multipleOptions[$scope.multipleOrdered[int]].orderText = $scope.multipleOptions[$scope.multipleOrdered[int]].order + 'nd';
 	    				}
-	    	    		else if ($scope.multipleOptions[multipleOrdered[int]].order == 3) {
-	    	    			$scope.multipleOptions[multipleOrdered[int]].orderText = $scope.multipleOptions[multipleOrdered[int]].order + 'rd';
+	    	    		else if ($scope.multipleOptions[$scope.multipleOrdered[int]].order == 3) {
+	    	    			$scope.multipleOptions[$scope.multipleOrdered[int]].orderText = $scope.multipleOptions[$scope.multipleOrdered[int]].order + 'rd';
 	    				}
 	    	    		else {
-	    	    			$scope.multipleOptions[multipleOrdered[int]].orderText = $scope.multipleOptions[multipleOrdered[int]].order + 'th';
+	    	    			$scope.multipleOptions[$scope.multipleOrdered[int]].orderText = $scope.multipleOptions[$scope.multipleOrdered[int]].order + 'th';
 	    				}
     				}
 				}
@@ -107,11 +142,11 @@ angular.module('sassApp')
     		$scope.multipleOptions[id].selected = false;
     		$scope.multipleOptions[id].order = null;
     		$scope.multipleOptions[id].orderText = null;
-    		orderlatest = orderlatest - 1;
+    		$scope.orderlatest = $scope.orderlatest - 1;
 		}
     	else {
     		$scope.multipleOptions[id].selected = true;
-    		$scope.multipleOptions[id].order = orderlatest + 1;
+    		$scope.multipleOptions[id].order = $scope.orderlatest + 1;
     		if ($scope.multipleOptions[id].order == 1) {
     			$scope.multipleOptions[id].orderText = $scope.multipleOptions[id].order + 'st';
 			}
@@ -124,13 +159,37 @@ angular.module('sassApp')
     		else {
     			$scope.multipleOptions[id].orderText = $scope.multipleOptions[id].order + 'th';
 			}
-    		orderlatest = orderlatest + 1;
-    		multipleOrdered.push(id);
+    		$scope.orderlatest = $scope.orderlatest + 1;
+    		$scope.multipleOrdered.push(id);
     		
     	}
-    	console.log(multipleOrdered);
+    	console.log($scope.multipleOrdered);
 			
 		
+    }
+    
+    $scope.addAnswer = function() {
+    	
+    	
+    	
+    	var answerSet = new Object();
+    	answerSet.question = $scope.QuestionObj.Questions;
+    	if (typeof($scope.singleSelected) != "undefined") {
+    		console.log($scope.singleSelected);
+    		answerSet.answer = $scope.singleSelected;
+    	}
+    	
+    	if (typeof($scope.multiIntensityOptions) != "undefined")
+    	answerSet.answerInten = $scope.multiIntensityOptions;
+    	
+    	if (typeof($scope.multipleOptions) != "undefined")
+    	answerSet.answerMulti = $scope.multipleOptions;
+    	
+    	console.log(answerSet);
+    	Questionnaire.addAnswer(answerSet).then(function(response) {
+    		$scope.loadQuiz();
+    		
+    	});
     }
     
   });

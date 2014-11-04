@@ -48,5 +48,13 @@ angular.module('sassApp')
               return response;
           });	    	
 	    };
+	    
+	    dataFactory.addAnswer = function (param) {
+	    	// console.log(param);
+	    	return Transporter.post('addAnswer', param).then(function(response) {
+	    		//console.log(response);
+                return response;
+            });
+		};
 	    return dataFactory;
 }]);
