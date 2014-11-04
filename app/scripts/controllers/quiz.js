@@ -17,6 +17,7 @@ angular.module('sassApp')
     $scope.singleSelected = null;
     $scope.multipleSelected = null;   
     var orderlatest = 0;
+    var multipleOrdered = [];
     
     $scope.loadQuiz = function() {
     	Questionnaire.loadThisQuestions().then(function(response) {
@@ -58,6 +59,7 @@ angular.module('sassApp')
     	for ( var int = 0; int < options.length; int++) {
     		options[int].order = null;
     		options[int].selected = false;
+    		options[int].orderText = null;
     		multipleOptions[options[int].Qoid] = options[int];
 		}
     	$scope.multipleOptions = multipleOptions;
@@ -76,16 +78,55 @@ angular.module('sassApp')
     	
     	
     	if ($scope.multipleOptions[id].selected == true) {
+    		
+    		var optid = multipleOrdered.indexOf(id);
+    		
+    		 if (optid >= 0) {
+    			 multipleOrdered.splice(optid, 1);
+    		 }
+    		if ($scope.multipleOptions[id].order < orderlatest) {
+    			for ( var int = 0; int < multipleOrdered.length; int++) {
+    				$scope.multipleOptions[multipleOrdered[int]].order = $scope.multipleOptions[multipleOrdered[int]].order - 1;
+    				if ($scope.multipleOptions[multipleOrdered[int]].order == 1) {
+    					$scope.multipleOptions[multipleOrdered[int]].orderText = $scope.multipleOptions[multipleOrdered[int]].order + 'st';
+    				}
+    	    		else if ($scope.multipleOptions[multipleOrdered[int]].order == 2) {
+    	    			$scope.multipleOptions[multipleOrdered[int]].orderText = $scope.multipleOptions[multipleOrdered[int]].order + 'nd';
+    				}
+    	    		else if ($scope.multipleOptions[multipleOrdered[int]].order == 3) {
+    	    			$scope.multipleOptions[multipleOrdered[int]].orderText = $scope.multipleOptions[multipleOrdered[int]].order + 'rd';
+    				}
+    	    		else {
+    	    			$scope.multipleOptions[multipleOrdered[int]].orderText = $scope.multipleOptions[multipleOrdered[int]].order + 'th';
+    				}
+				}
+				
+			}
     		$scope.multipleOptions[id].selected = false;
     		$scope.multipleOptions[id].order = null;
+    		$scope.multipleOptions[id].orderText = null;
     		orderlatest = orderlatest - 1;
 		}
     	else {
     		$scope.multipleOptions[id].selected = true;
     		$scope.multipleOptions[id].order = orderlatest + 1;
+    		if ($scope.multipleOptions[id].order == 1) {
+    			$scope.multipleOptions[id].orderText = $scope.multipleOptions[id].order + 'st';
+			}
+    		else if ($scope.multipleOptions[id].order == 2) {
+    			$scope.multipleOptions[id].orderText = $scope.multipleOptions[id].order + 'nd';
+			}
+    		else if ($scope.multipleOptions[id].order == 3) {
+    			$scope.multipleOptions[id].orderText = $scope.multipleOptions[id].order + 'rd';
+			}
+    		else {
+    			$scope.multipleOptions[id].orderText = $scope.multipleOptions[id].order + 'th';
+			}
     		orderlatest = orderlatest + 1;
+    		multipleOrdered.push(id);
     		
     	}
+    	console.log(multipleOrdered);
 			
 		
     }

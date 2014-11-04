@@ -34,7 +34,7 @@
                 
                 <div class="row margin-bottom-10" ng-show="QuestionObj.Questions.AnswerSelectionType == '3'">
                     <div class="col-md-6 col-sm-6 col-xs-12" data-ng-repeat = "option in multipleOptions" >                    
-                        <b class="quiz-answer-rank-indicator">{{option.order}}</b>
+                        <b class="quiz-answer-rank-indicator">{{option.orderText}}</b>
                         <div class="servive-block   raw-option" data-ng-click="selectMultipe(option.Qoid)" ng-class="option.selected ? 'servive-block-sea' : 'servive-block-grey'">                           
                             <p>{{option.Answer}}</p>                        
                         </div>
