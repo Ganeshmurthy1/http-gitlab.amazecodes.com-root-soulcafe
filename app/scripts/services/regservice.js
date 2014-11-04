@@ -23,8 +23,8 @@ angular.module('sassApp')
 	    	var currentUser = localStorageService.get('user') || { username: '', role: userRoles.public };
             if(role === undefined)
                 role = currentUser.role;
-            console.log(accessLevel);
-            console.log(role);
+            // console.log(accessLevel);
+            // console.log(role);
             return accessLevel.bitMask & role.bitMask;
         };
         
