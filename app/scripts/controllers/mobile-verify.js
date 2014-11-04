@@ -24,7 +24,7 @@ angular.module('sassApp')
     		  console.log(response);
     		  if (response.data == 'true') {
     			  console.log('success');
-    			  $location.path('/dashboard');
+    			  $location.path('/quiz');
     			  
     			  
   			}
