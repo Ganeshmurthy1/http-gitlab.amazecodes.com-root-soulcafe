@@ -14,41 +14,80 @@ angular.module('sassApp')
       'AngularJS',
       'Karma'
     ];
-    
+    $scope.singleSelected = null;
+    $scope.multipleSelected = null;   
+    var orderlatest = 0;
     
     $scope.loadQuiz = function() {
     	Questionnaire.loadThisQuestions().then(function(response) {
     		$scope.QuestionObj = response.data;	
-    		console.log($scope.QuestionObj.totalQn);
-    		console.log($scope.QuestionObj.totalQn[0].totalQn);
+    		var max = $scope.QuestionObj.totalQn.totalQn;
+    		var value = $scope.QuestionObj.totalAnsQn.totalAnsQn;
+    		var per = value/max;
+    		var percentage = per*100;    		
+    		$scope.dynamic = Math.ceil(percentage);
+    		if ($scope.QuestionObj.Questions.AnswerSelectionType == 1) {
+				getSingleSelection();
+			}
+    		if ($scope.QuestionObj.Questions.AnswerSelectionType == 3) {
+				getMultiSelection();
+			}
+    		
+    		
+    		
+    		//$scope.options = $scope.QuestionObj.
     	});
     	
     	
-    };
-    
-    
-    $scope.max = 200;
-
-    $scope.random = function() {
-      var value = Math.floor((Math.random() * 100) + 1);
-      var type;
-
-      if (value < 25) {
-        type = 'success';
-      } else if (value < 50) {
-        type = 'info';
-      } else if (value < 75) {
-        type = 'warning';
-      } else {
-        type = 'danger';
-      }
-
-      $scope.showWarning = (type === 'danger' || type === 'warning');
-
-      $scope.dynamic = value;
-      $scope.type = type;
-    };
-    $scope.random();
+    };    
     $scope.loadQuiz();
+    function getSingleSelection() {
+    	var singleOptions = new Object();
+    	var options = $scope.QuestionObj.Options;
+    	for ( var int = 0; int < options.length; int++) {
+    		options[int].selected = false;
+			singleOptions[options[int].Qoid] = options[int];
+		}
+    	$scope.singleOptions = singleOptions;
+    	console.log(singleOptions);
+    }
+    
+    function getMultiSelection() {
+    	var multipleOptions = new Object();
+    	var options = $scope.QuestionObj.Options;
+    	for ( var int = 0; int < options.length; int++) {
+    		options[int].order = null;
+    		options[int].selected = false;
+    		multipleOptions[options[int].Qoid] = options[int];
+		}
+    	$scope.multipleOptions = multipleOptions;
+    	console.log(multipleOptions);
+    }
+    
+    $scope.selectSingle = function(id) {
+    
+		if ($scope.singleSelected != null) {
+			$scope.singleOptions[$scope.singleSelected].selected = false;
+		}   	
+		$scope.singleOptions[id].selected = true;
+		$scope.singleSelected = id;
+    }
+    $scope.selectMultipe = function(id) {
+    	
+    	
+    	if ($scope.multipleOptions[id].selected == true) {
+    		$scope.multipleOptions[id].selected = false;
+    		$scope.multipleOptions[id].order = null;
+    		orderlatest = orderlatest - 1;
+		}
+    	else {
+    		$scope.multipleOptions[id].selected = true;
+    		$scope.multipleOptions[id].order = orderlatest + 1;
+    		orderlatest = orderlatest + 1;
+    		
+    	}
+			
+		
+    }
     
   });

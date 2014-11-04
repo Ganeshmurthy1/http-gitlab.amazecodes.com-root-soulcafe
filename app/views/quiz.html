@@ -14,10 +14,35 @@
             
             <div class="col-md-9">
 
-            	<div class="headline"><h2 class="heading-sm">Let us know you!..</h2></div>
+            	<div class="headline"><h2 class="heading-sm">Let us know you!..</h2></div>  
+            	<div class="shadow-wrapper margin-bottom-60">
+	            	<div class="tag-box tag-box-v1 box-shadow shadow-effect-2">
+						<progressbar animate="false" value="dynamic" type="success"><b>{{dynamic}}%</b></progressbar>
+						<h4 class="ng-binding">{{QuestionObj.Questions.QuestionTitle}}</h4>
+						<p class="ng-binding">{{QuestionObj.Questions.Description}}</p>
+	                    
+	                </div>
+                </div>
             	
-            	<h3>Dynamic <button class="btn btn-sm btn-primary" type="button" ng-click="random()">Randomize</button></h3>
-   				<progressbar max="max" value="dynamic" class="progress-striped active" ><span style="color:black; white-space:nowrap;">{{dynamic}} / {{max}}</span></progressbar>
+            	<div class="row margin-bottom-10" ng-show="QuestionObj.Questions.AnswerSelectionType == '1'">
+                    <div class="col-md-6 col-sm-6 col-xs-12" data-ng-repeat = "option in singleOptions" ng-class="{'isSelected' : option.selected}">                    
+                        <div class="servive-block   raw-option" data-ng-click="selectSingle(option.Qoid)" ng-class="option.selected ? 'servive-block-sea' : 'servive-block-grey'">                           
+                            <p>{{option.Answer}}</p>                        
+                        </div>
+                    </div>                  
+                </div>
+                
+                <div class="row margin-bottom-10" ng-show="QuestionObj.Questions.AnswerSelectionType == '3'">
+                    <div class="col-md-6 col-sm-6 col-xs-12" data-ng-repeat = "option in multipleOptions" >                    
+                        <b class="quiz-answer-rank-indicator">{{option.order}}</b>
+                        <div class="servive-block   raw-option" data-ng-click="selectMultipe(option.Qoid)" ng-class="option.selected ? 'servive-block-sea' : 'servive-block-grey'">                           
+                            <p>{{option.Answer}}</p>                        
+                        </div>
+                    </div>                  
+                </div>
+                
+                
+   				
             </div>
         </div>
 
