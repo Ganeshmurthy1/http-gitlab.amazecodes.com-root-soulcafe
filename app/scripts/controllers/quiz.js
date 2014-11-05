@@ -145,6 +145,11 @@ angular.module('sassApp')
     		$scope.orderlatest = $scope.orderlatest - 1;
 		}
     	else {
+    		if ($scope.QuestionObj.Questions.MaxOptions == $scope.multipleOrdered.length) {
+    			alert('Maximum Selection is ' + $scope.QuestionObj.Questions.MaxOptions );
+    			return;
+    			
+    		}
     		$scope.multipleOptions[id].selected = true;
     		$scope.multipleOptions[id].order = $scope.orderlatest + 1;
     		if ($scope.multipleOptions[id].order == 1) {
@@ -169,6 +174,23 @@ angular.module('sassApp')
     }
     
     $scope.addAnswer = function() {
+    	
+    	if ($scope.QuestionObj.Questions.AnswerSelectionType == 1) {
+    		//console.log($scope.singleSelected);
+    		if ($scope.singleSelected == null) {
+    			alert('Please select something :(');
+    			return;
+    		}
+    		
+    	}
+    	if ($scope.QuestionObj.Questions.AnswerSelectionType == 3) {
+    		if ($scope.multipleOrdered.length == 0) {
+    			alert('Please select something :(');
+    			return;
+			}
+    		
+    	}
+    	
     	
     	
     	

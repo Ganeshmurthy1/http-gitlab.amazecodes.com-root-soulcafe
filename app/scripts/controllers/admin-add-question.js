@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('AdminAddQuestionCtrl', function ($scope, Questionnaire) {
+  .controller('AdminAddQuestionCtrl', function ($scope, Questionnaire, $location) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -34,6 +34,7 @@ angular.module('sassApp')
               $scope.successmessage = "Question Added sucessfully.";
               $scope.errMessage = false;
               $scope.message = false;
+              $location.path('/admin-list-question');
 		  }
 		  else {
 			  $scope.successmessage = false;
