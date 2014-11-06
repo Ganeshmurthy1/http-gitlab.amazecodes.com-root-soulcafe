@@ -284,6 +284,14 @@ angular
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl'
       })
+      .when('/header1', {
+        templateUrl: 'views/header1.html',
+        controller: 'Header1Ctrl'
+      })
+      .when('/left-bar', {
+        templateUrl: 'views/left-bar.html',
+        controller: 'LeftBarCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
