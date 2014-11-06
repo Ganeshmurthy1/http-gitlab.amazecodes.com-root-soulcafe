@@ -665,7 +665,21 @@ svg{
   .paddingman{
       padding-top:20%;
       }
-  header:after{content:" "; background-image:url(../images/header-bg-shape.png); width:288px; height:31px; position:absolute; bottom:-31px; left:50%; margin-left:-165px; z-index:200}
+ 
 }
 
-header:after{content:" "; background-image:url(../images/header-bg-shape.png); width:288px; height:31px; position:absolute; bottom:-31px; left:50%; margin-left:-144px; z-index:200}
+header:after{content:" "; background-image:url(../images/header-bg-shape.png); width:288px; height:31px; position:absolute; bottom:-31px; left:50%; margin-left:-155px; z-index:200}
+
+.container{
+  .row{
+    .col-sm-4{
+      a {
+      color:#ffffff;
+      &:hover {
+        color: #ffffff;
+        text-decoration: underline;
+      }
+      }
+    }
+  }
+}

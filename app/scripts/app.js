@@ -280,6 +280,10 @@ angular
         templateUrl: 'views/quiz.html',
         controller: 'QuizCtrl'
       })
+      .when('/home', {
+        templateUrl: 'views/home.html',
+        controller: 'HomeCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
