@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('AdminAddQuestionCtrl', function ($scope, Questionnaire) {
+  .controller('AdminAddQuestionCtrl', function ($scope, Questionnaire, $location) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -34,6 +34,7 @@ angular.module('sassApp')
               $scope.successmessage = "Question Added sucessfully.";
               $scope.errMessage = false;
               $scope.message = false;
+              $location.path('/admin-list-question');
 		  }
 		  else {
 			  $scope.successmessage = false;
@@ -101,6 +102,9 @@ angular.module('sassApp')
     $scope.ToggleAlgorithanType = function(algType) {
     	console.log($scope.algSingleMatrix);
     	var algSingleMatrix = new Object();
+    	$scope.algorithamBoxMultiple = false;
+		$scope.algorithamBoxSingle = false;
+		$scope.algorithamBoxPersonality = false;
     	if (algType == 1) {
     		setSingleMatrix();
     		$scope.algorithamBoxSingle = true;
@@ -110,10 +114,15 @@ angular.module('sassApp')
     		
 		}
     	else if (algType == 2) {
+    		if ($scope.answers.length < $scope.question.maxselection) {
+				$scope.maxCountErrorMessage = "Please correct the max Selection option";
+				return;
+			}
     		setMultipleMatrix();
     		$scope.algorithamBoxMultiple = true;
     		$scope.algorithamBoxSingle = false;
     		$scope.algorithamBoxPersonality = false;
+    		$scope.maxCountErrorMessage = "";
     	
     		
 		}
@@ -126,7 +135,7 @@ angular.module('sassApp')
     		
 		}
     	else {
-    		$scope.multipleSelection = false;
+    		//$scope.multipleSelection = false;
     	}
   	 
   	 // console.log(ansType);

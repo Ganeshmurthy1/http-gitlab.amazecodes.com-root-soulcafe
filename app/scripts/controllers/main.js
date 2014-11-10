@@ -84,7 +84,7 @@ angular.module('sassApp')
 				var authData = localStorageService.get('authorizationData');
 				console.log(authData);
 				//$scope.loggedin = true;
-				$location.path('/dashboard');
+				$location.path('/quiz');
 				 $rootScope.loggedin = true;
 			}else if(results.data.status == 0){
 				$rootScope.abc = "Your account is not active. Please contact Customer Care.";

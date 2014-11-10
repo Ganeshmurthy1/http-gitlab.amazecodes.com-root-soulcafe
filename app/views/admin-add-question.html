@@ -41,7 +41,7 @@
                                     <select name="Question Type" data-ng-model="question.ansType" ng-change="ToggleMaxInput(question.ansType)" required>
                                         <option value="" selected disabled>Answer Selection Type</option>
                                         <option value="{{qnsType.QuestionTypeId}}" data-ng-repeat="qnsType in qnsTypes">{{qnsType.QuestionTypeTitle}}</option>                             
-                                    <select>
+                                    </select>
                                     <i></i>
                                 </label>
                             </section>
@@ -119,6 +119,7 @@
 					        <i></i>
 					    </label>
 					</section>
+					<div class="alert alert-danger fade in" data-ng-show="maxCountErrorMessage">{{maxCountErrorMessage}}</div>
 					<section ng-show="algorithamBoxSingle">
 					<div >
 						<div class="row" >
