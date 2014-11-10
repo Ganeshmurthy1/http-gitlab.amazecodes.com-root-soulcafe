@@ -292,6 +292,10 @@ angular
         templateUrl: 'views/left-bar.html',
         controller: 'LeftBarCtrl'
       })
+      .when('/myprofile', {
+        templateUrl: 'views/myprofile.html',
+        controller: 'MyprofileCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
