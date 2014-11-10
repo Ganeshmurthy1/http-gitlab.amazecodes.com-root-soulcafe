@@ -281,9 +281,25 @@ angular
         templateUrl: 'views/quiz.html',
         controller: 'QuizCtrl'
       })
-      .when('/admin-list-question', {
+	  .when('/admin-list-question', {
         templateUrl: 'views/admin-list-question.html',
         controller: 'AdminListQuestionCtrl'
+      })
+	  .when('/home', {
+        templateUrl: 'views/home.html',
+        controller: 'HomeCtrl'
+      })
+      .when('/header1', {
+        templateUrl: 'views/header1.html',
+        controller: 'Header1Ctrl'
+      })
+      .when('/left-bar', {
+        templateUrl: 'views/left-bar.html',
+        controller: 'LeftBarCtrl'
+      })
+      .when('/myprofile', {
+        templateUrl: 'views/myprofile.html',
+        controller: 'MyprofileCtrl'
       })
       .otherwise({
         redirectTo: '/'
