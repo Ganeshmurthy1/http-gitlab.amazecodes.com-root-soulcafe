@@ -31,7 +31,7 @@ angular.module('sassApp')
     	param.limit = $scope.pagePerItem;
     	
     	adminDiscussion.getAdminDiscussion(param).then(function (results) {
-    	    // console.log(results.data);
+    	    console.log(results.data);
     		$scope.discussions = results.data;          	
     	});
     	

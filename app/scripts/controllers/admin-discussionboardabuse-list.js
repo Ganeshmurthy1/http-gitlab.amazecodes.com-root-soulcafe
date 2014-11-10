@@ -16,7 +16,7 @@ angular.module('sassApp')
     ];
 
 
-
+    $scope.action="true";
 
     adminDiscussion.adminAbuseList().then(function (response) {
 	    		console.log(response);
@@ -29,6 +29,7 @@ angular.module('sassApp')
 
     	  adminDiscussion.updateAppropriate(commentId).then(function (response) {
 	    	 	console.log(response);
+          
 	    	});
 
     }

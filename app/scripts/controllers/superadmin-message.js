@@ -17,8 +17,9 @@ angular.module('sassApp')
     
     function loadAllMessage() {
 	    adminOperations.adminGetAllMessage().then(function (response) {
-			console.log(response);
+			// console.log(response.data);
 			 $scope.comm = response.data;
+       // console.log($scope.comm.UserId);
 		});
     }
     

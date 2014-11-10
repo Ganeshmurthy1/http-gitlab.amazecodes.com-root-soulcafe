@@ -45,9 +45,14 @@
                             <td>{{abusedetails.TopicTitle}}</td>
                             <td>{{abusedetails.ReportedDate}}</td>
                             <td>
-                                <a class="btn-u btn-u-blue" href="#/discussion?topic={{abusedetails.DiscussionTopicId}}"><i class="fa fa-file-text-o"></i></a>
-                                <a class="btn-u btn-u-green" ng-click="appropriateButtonClick(abusedetails.CommentId)"><i class="fa fa-check"></i></a>
-                                <a class="btn-u btn-u-red" ng-click="inappropriateButtonClick(abusedetails.CommentId)"><i class="fa fa-times"></i></a>
+                                <!-- <a class="btn-u btn-u-blue" href="#/discussion?topic={{abusedetails.DiscussionTopicId}}"><i class="fa fa-file-text-o"></i></a> -->
+                                <div ng-hide="abusedetails.Status">
+                                <a class="btn-u btn-u-green" title="Approve" ng-click="appropriateButtonClick(abusedetails.CommentId)"><i class="fa fa-check"></i></a>
+                                <a class="btn-u btn-u-red" title="Reject" ng-click="inappropriateButtonClick(abusedetails.CommentId)"><i class="fa fa-times"></i></a>
+                                </div>
+                                <div ng-show="abusedetails.Status">
+                                <a class="btn-u btn-sucess" title="Action Taken">Action Taken</a>
+                                 </div>
                                 <!-- <a href="#" class="btn-u">Appropriate</a>
                                 <a href="#" class="btn-u btn-u-red">InAppropriate</a>
                                  -->

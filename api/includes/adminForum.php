@@ -139,7 +139,7 @@ function adminGetDiscussion() {
   
   $request = Slim::getInstance()->request();
   $forum = json_decode($request->getBody());
-  $sqlCp = "select db.DiscussionBoardId,db.Topic,db.Description,db.CreatedBy,db.Status,u.Picture,db.Image from DiscussionBoard as db left join users as u on db.CreatedBy=u.user_id order by db.CreatedBy desc";
+  $sqlCp = "select db.DiscussionBoardId,db.Topic,db.Description,db.CreatedBy,db.Status,u.Picture,db.Image,db.userRequest from DiscussionBoard as db left join users as u on db.CreatedBy=u.user_id order by db.CreatedDate desc";
   $lm = ' Limit ' . $forum->start . ',' . $forum->limit;
   $sqlCp .= $lm;
   try {
@@ -436,7 +436,7 @@ function updatediscussionTopicDetail() {
 function adminAbuseList() {
   
 
-   $sql = "select DBA.CommentId, DBA.ReportedBy, DBA.Comments, DBA.ReportedDate,DBC.DiscussionTopicId,DBT.TopicTitle,DBT.DiscussionBoardId,DB.Topic from DiscussionBoardAbuse As DBA Inner Join DiscussionBoardComments As DBC Inner join DiscussionBoardTopic As DBT Inner Join DiscussionBoard As DB ON DBA.CommentId =DBC.CommentId and DBC.DiscussionTopicId = DBT.DiscussionTopicId and DB.DiscussionBoardId = DBT.DiscussionBoardId where DBA.Spam=1 ORDER BY DBA.ReportedDate desc ";
+   $sql = "select DBA.CommentId,DBA.Status, DBA.ReportedBy, DBA.Comments, DBA.ReportedDate,DBC.DiscussionTopicId,DBT.TopicTitle,DBT.DiscussionBoardId,DB.Topic from DiscussionBoardAbuse As DBA Inner Join DiscussionBoardComments As DBC Inner join DiscussionBoardTopic As DBT Inner Join DiscussionBoard As DB ON DBA.CommentId =DBC.CommentId and DBC.DiscussionTopicId = DBT.DiscussionTopicId and DB.DiscussionBoardId = DBT.DiscussionBoardId where DBA.Spam=1 ORDER BY DBA.ReportedDate desc ";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);

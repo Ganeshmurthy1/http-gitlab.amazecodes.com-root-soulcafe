@@ -926,7 +926,8 @@ function addUserDiscussion() {
       
     }
     $status = 0;
-    $sql = "INSERT INTO DiscussionBoard (Topic, Description, StartDate, CreatedBy, CreatedDate, Restricted, RestrictedGender, RestrictedAge, RestrictedLocation, status) VALUES (:Topic, :Description, :StartDate, :CreatedBy, :CreatedDate, :Restricted, :RestrictedGender, :RestrictedAge, :RestrictedLocation, :status)";
+    $user = 1;
+    $sql = "INSERT INTO DiscussionBoard (Topic, Description, StartDate, CreatedBy, CreatedDate, Restricted, RestrictedGender, RestrictedAge, RestrictedLocation, status, userRequest) VALUES (:Topic, :Description, :StartDate, :CreatedBy, :CreatedDate, :Restricted, :RestrictedGender, :RestrictedAge, :RestrictedLocation, :status,:user)";
     try {
       $db = getConnection();
       $stmt = $db->prepare($sql);
@@ -940,6 +941,7 @@ function addUserDiscussion() {
       $stmt->bindParam("RestrictedAge", $forum->age);
       $stmt->bindParam("RestrictedLocation", $forum->location);
       $stmt->bindParam("status", $status);
+      $stmt->bindParam("user", $user);
       $stmt->execute();
   
   

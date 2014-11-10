@@ -18,11 +18,14 @@
             <div class="col-md-9">
 			<div class="headline"><h2 class="heading-sm">Discussion List</h2></div>
                 <div class="funny-boxes funny-boxes-top-sea" data-ng-repeat = "discussion in discussions" data-ng-hide="discussion.deleted">
-
+                    <div class="pull-right" ng-show="discussion.userRequest">
+                        <span class="badge rounded-2x badge-red" style="width:50px;"><i class="fa fa-user" style="font-size: 24px;"></i></span>
+                    </div>
+                    
                     <div class="media media-v2" style="float:left;margin: 0 !important;
                                     padding: 0 !important;">
                     <a class="pull-left" href="#">
-                        <img class="media-object rounded-x" ng-src="{{discussion.Picture}}" alt="">
+                        <img class="media-object rounded-x" ng-src="SASS/api/uploads/{{discussion.Image}}" alt="">
                     </a>
                      </div>
                     <h4>{{discussion.Topic}}</h4>
