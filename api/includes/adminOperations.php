@@ -478,7 +478,15 @@ function MarkMessage() {
     
           $stmt->execute();
           $uid =  $db->lastInsertId();
-    
+          
+          $usr=$forum->username;
+          $pass=$forum->password;
+          $to = $forum->email;
+          $subject = "You are added as Admin in Soulcafe";
+          $message = "Please use these credentials to login Username = ".$usr." Password = ".$pass;
+          $header = "From:abhik@amazecodes.com \r\n";
+          mail ($to,$subject,$message,$header);
+      
           echo 'true';
         } catch(PDOException $e) {
           echo '{"error":{"text":'. $e->getMessage() .'}}';

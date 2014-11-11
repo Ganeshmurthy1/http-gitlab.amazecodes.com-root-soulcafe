@@ -18,7 +18,7 @@ angular.module('sassApp')
 
         // if($scope.image != null) {
     	   console.log($scope.discussion);
-           // $scope.discussion.image=$scope.image;
+           $scope.discussion.image=$scope.image;
            // console.log($scope.image);
     	   adminDiscussion.addDiscussion($scope.discussion).then(function(response) {
 		   console.log(response);
@@ -86,9 +86,8 @@ angular.module('sassApp')
         };
         uploader.onCompleteItem = function(fileItem, response, status, headers) {
             console.info('onCompleteItem', fileItem, response, status, headers);
-            $scope.image=fileItem._file.name;
+            $scope.image=response.filename;
             console.log( $scope.image);
-            console.log(response);
             console.log(status);
             console.log(headers);
         };

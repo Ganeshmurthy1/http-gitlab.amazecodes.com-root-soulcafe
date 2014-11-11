@@ -83,7 +83,7 @@ function adminAddDiscussion() {
     }
 
 
-
+    // $img = 'photo'.rand().'.jpg';
 
 
 
@@ -598,17 +598,19 @@ function adminMarkSpam($id) {
 }
 
 function imageupload() {
+  $img = 'photo'.rand().'.jpg';
 
  if ( !empty( $_FILES ) ) {
 
     $tempPath = $_FILES[ 'file' ][ 'tmp_name' ];
-    print $uploadPath = dirname(dirname( __FILE__ )) . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . $_FILES[ 'file' ][ 'name' ];
+     $uploadPath = dirname(dirname( __FILE__ )) . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . $img;
 
     move_uploaded_file( $tempPath, $uploadPath );
   
-    $answer = array( 'answer' => 'File transfer completed' );
-    $json = json_encode( $answer );
-
+    // $answer = array( 'answer' => 'File transfer completed' );
+    // $json = json_encode( $answer );
+    $result['filename'] = $img;
+    $json = json_encode( $result );
     echo $json;
 
 } else {
