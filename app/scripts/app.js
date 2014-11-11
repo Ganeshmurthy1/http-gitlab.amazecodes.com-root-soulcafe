@@ -301,6 +301,10 @@ angular
         templateUrl: 'views/myprofile.html',
         controller: 'MyprofileCtrl'
       })
+      .when('/admin-edit-question', {
+        templateUrl: 'views/admin-edit-question.html',
+        controller: 'AdminEditQuestionCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
