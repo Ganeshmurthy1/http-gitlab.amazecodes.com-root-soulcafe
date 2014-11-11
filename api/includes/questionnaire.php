@@ -297,6 +297,7 @@ function AddAnswer() {
 
 
 function adminGetQuestionDetails($id) {
+  $result = new stdClass();
 
   $sql = "select * FROM Questionnaire where Qid=:id";
   try {
@@ -305,9 +306,17 @@ function adminGetQuestionDetails($id) {
     $stmt->bindParam("id", $id);
     $stmt->execute();
     $wine = $stmt->fetchObject();
-    $db = null;
+    //$db = null;
+    $result->Questions = $wine;
+    
+    $sqlAn = "SELECT Qoid, Answer from QuestionnaireOptions where Qid = :Qid";
+    $stmtAn = $db->prepare($sqlAn);
+    $stmtAn->bindParam("Qid", $wine->Qid);
+    $stmtAn->execute();
+    $wineAn = $stmtAn->fetchAll(PDO::FETCH_OBJ);;
+    $result->Options = $wineAn;
     //echo $total = $wine->'count(1)';
-    echo json_encode($wine);
+    echo json_encode($result);
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
