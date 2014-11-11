@@ -21,4 +21,8 @@ angular.module('sassApp')
 				$scope.admins = response.data;
 		});
     }
+
+    $scope.sequence = function(a){
+      console.log(a);
+    }
   });

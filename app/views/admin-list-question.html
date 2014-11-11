@@ -17,8 +17,32 @@
             
             <div class="col-md-9">
             	<h1>All Admins</h1>
+                <div class="row">
+                    <div class="col-md-4 borderpad">Question</div>
+                    <div class="col-md-3 borderpad">Question Category</div>
+                    <div class="col-md-3 borderpad">Algortitham Type</div>
+                    <div class="col-md-2 borderpad">Operations</div>
+                </div>
+               
+<div ui-tree>
+  <ol ui-tree-nodes="" ng-model="admins">
+     
+    <li ng-repeat="ad in admins" ui-tree-node>
+      <div ui-tree-handle>
+        <div class="row">
+        <div class="col-md-4 borderpad">{{ad.QuestionTitle}}</div>
+        <div class="col-md-3 borderpad">{{ad.Category}}</div>
+        <div class="col-md-3 borderpad">{{ad.AlgTypeTitle}}</div>
+        <div class="col-md-2 " style=" border:1px solid black;padding:2px;"> <a class="btn-u btn-u-blue" href="#/admin-edit-question?qid={{ad.Qid}}" style=" padding: 3px 9px !important;"><i class="fa fa-pencil"></i></a></div>
+        </div>
+      </div>
+      
+    </li>
+  </ol>
+</div>
+<button class="btn btn-primary" ng-click="sequence(admins)">Update Sequence</button>
             	<!--Basic Table-->
-                <table class="table table-hover table-bordered">
+                <!-- <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
                             <th>Question</th>
@@ -39,15 +63,22 @@
                         </tr>
                      
                     </tbody>
-                </table>
+                </table> -->
                 <!--End Basic Table-->
-
 
                 </div>
             </div>
         </div>
 
     </div>
+
+
+
+
+
+
+
+
     <!--=== Footer ===-->
  <div data-ng-controller="FooterCtrl" data-ng-include="Footer">
 </div>

@@ -23,7 +23,8 @@ angular
     'ui.bootstrap',
     'fundoo.directives',
     'angularFileUpload',
-    'ui-rangeSlider'
+    'ui-rangeSlider',
+    'ui.tree'
   ])
   .config(['$routeProvider', '$facebookProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $facebookProvider, $locationProvider, $httpProvider) {
 	
