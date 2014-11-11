@@ -38,7 +38,7 @@
                        <div class="col-md-6">
                         <section>
                                 <label class="select">
-                                    <select name="Question Type" data-ng-model="question.ansType" ng-change="ToggleMaxInput(question.ansType)" required>
+                                    <select name="Question Type" data-ng-model="question.ansType" ng-change="ToggleMaxInput(question.ansType)" required  ng-disabled="true">
                                         <option value="" selected disabled>Answer Selection Type</option>
                                         <option value="{{qnsType.QuestionTypeId}}" data-ng-repeat="qnsType in qnsTypes">{{qnsType.QuestionTypeTitle}}</option>                             
                                     </select>
@@ -49,7 +49,7 @@
                         <div class="col-md-6">
                         <section>
                                 <label class="select">
-                                    <select name="Question Type" data-ng-model="question.qnsCategory" data-placeholder="---- Choose Company Name ----" required>
+                                    <select name="Question Type" data-ng-model="question.qnsCategory" data-placeholder="---- Choose Company Name ----" required ng-disabled="true">
                                         <option value="" selected disabled>Question Category</option> 
                                         <option value="{{category.QcId}}" data-ng-repeat="category in qnsCategory">{{category.Category}}</option>
                                     <select>

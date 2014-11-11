@@ -14,22 +14,24 @@ angular.module('sassApp')
     'AngularJS',
     'Karma'
   ];
-	    
+	$scope.question = new Object();
+  $scope.answers = [];
+  $scope.multipleSelection = false;
+  $scope.algorithamBoxSingle = false;  
   loadAllDetails();
   function loadAllDetails() {
 	  Questionnaire.getQuestionDetail($routeParams.qid).then(function (response) {		
-		  $scope.question.title = response.data.QuestionTitle;
-		  $scope.question.hint = response.data.Description;
-		  $scope.question.ansType = response.data.AnswerSelectionType;
-		  $scope.question.qnsCategory = response.data.QuestionCategory;
+		  $scope.question.title = response.data.Questions.QuestionTitle;
+		  $scope.question.hint = response.data.Questions.Description;
+		  $scope.question.ansType = response.data.Questions.AnswerSelectionType;
+		  $scope.question.qnsCategory = response.data.Questions.QuestionCategory;
+      $scope.question.maxselection = 2;
+      $scope.ToggleMaxInput(response.data.Questions.MaxOptions);
 		  
 	  });
 	  
   }
-  $scope.question = new Object();
-  $scope.answers = [];
-  $scope.multipleSelection = false;
-  $scope.algorithamBoxSingle = false;
+  
   
   $scope.adminAddQuestion = function() {
   	console.log($scope.question);
