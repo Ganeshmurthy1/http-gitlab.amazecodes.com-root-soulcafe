@@ -10,6 +10,8 @@ $app->get('/get_this_question', 'getThisQuestion');
 
 $app->post('/addAnswer', 'AddAnswer');
 
+$app->get('/admin_get_question_detail/:id',  'adminGetQuestionDetails');
+
 
 function algGetQusCategory() {
 
@@ -291,4 +293,23 @@ function AddAnswer() {
   }
   echo true;
   
+}
+
+
+function adminGetQuestionDetails($id) {
+
+  $sql = "select * FROM Questionnaire where Qid=:id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("id", $id);
+    $stmt->execute();
+    $wine = $stmt->fetchObject();
+    $db = null;
+    //echo $total = $wine->'count(1)';
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
 }
