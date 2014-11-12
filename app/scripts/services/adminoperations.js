@@ -152,6 +152,13 @@ angular.module('sassApp')
               return response;
           });	 
 	    };
+	    dataFactory.updateQuestionSeq = function (param) {
+	    	// console.log(param);
+	    	return $http.post(urlBase + 'update_Question_Seq', param).then(function(response) {
+	    		//console.log(response);
+                return response;
+            });
+		};
 	    return dataFactory;
 	}]);
 

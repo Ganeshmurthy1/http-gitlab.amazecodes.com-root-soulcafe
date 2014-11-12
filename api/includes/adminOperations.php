@@ -50,6 +50,10 @@ $app->get('/get_sys_message', 'getSysMessage');
 
 $app->get('/get_all_questions', 'GetAllQuestions');
 
+$app->post('/update_Question_Seq', 'updateQuestionSequence');
+
+
+
 function checkAdminLogin() {
   $request = Slim::getInstance()->request();
   $user = json_decode($request->getBody());
@@ -811,4 +815,43 @@ function GetAllQuestions() {
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
+}
+
+
+function updateQuestionSequence() {
+  $request = Slim::getInstance()->request();
+  $ques = json_decode($request->getBody());
+  // print_r($ques);
+  $index = 0;
+  foreach($ques as $obj) {
+    
+    $obj->Sequence = $index;
+    // print_r($obj);
+    $index++;
+
+    $sql = "UPDATE `Questionnaire` SET `Qid`=:qid,`QuestionTitle`=:title,`Description`=:des,`AnswerSelectionType`=:anstype,`Sequence`=:seq,`QuestionCategory`=:quecat,
+    `AlgorithamType`=:algtype,`MaxOptions`=:maxopt,`MaxScore`=:maxscr,`DateAdded`=:dtadded WHERE Qid = :qid";
+    try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("qid", $obj->Qid);
+    $stmt->bindParam("title", $obj->QuestionTitle);
+    $stmt->bindParam("des", $obj->Description);
+    $stmt->bindParam("anstype", $obj->AnswerSelectionType);
+    $stmt->bindParam("seq", $obj->Sequence);
+    $stmt->bindParam("quecat", $obj->QuestionCategory);
+    $stmt->bindParam("algtype", $obj->AlgorithamType);
+    $stmt->bindParam("maxopt", $obj->MaxOptions);
+    $stmt->bindParam("maxscr", $obj->MaxScore);
+    $stmt->bindParam("dtadded", $obj->DateAdded);
+    $stmt->execute();
+   
+    
+    } catch(PDOException $e) {
+      echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
+
+    }
+    echo 'true';
+
 }

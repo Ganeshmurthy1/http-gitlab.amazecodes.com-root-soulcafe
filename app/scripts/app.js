@@ -306,6 +306,14 @@ angular
         templateUrl: 'views/admin-edit-question.html',
         controller: 'AdminEditQuestionCtrl'
       })
+      .when('/otherprofile', {
+        templateUrl: 'views/otherprofile.html',
+        controller: 'OtherprofileCtrl'
+      })
+      .when('/left-barP', {
+        templateUrl: 'views/left-barp.html',
+        controller: 'LeftBarpCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

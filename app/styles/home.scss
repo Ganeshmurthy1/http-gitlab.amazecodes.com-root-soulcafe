@@ -1,8 +1,15 @@
+body{
+	font-family:Arial !important;
+}
+
 .no-margin{
 	margin:0px !important;
 }
 .no-padding{
 	padding:0px !important;
+}
+.width100{
+	width:100% !important;
 }
 
 .container-fluid{
@@ -22,6 +29,7 @@
 .logoimg{
     margin-left:0%;
 	margin-bottom: 3%;
+	float:right;
 }
 
 .body-background{
@@ -56,7 +64,7 @@ background-image: linear-gradient(to right, #FFFFFF 0%, #ececec 100%);
 	color:#593a1d !important;
 }
 .color-brown-light{
-	color:#e6c39d !important;
+	color:#98754f !important;
 }
 
 .bcolor-white{
@@ -104,6 +112,13 @@ background-image: linear-gradient(to right, #FFFFFF 0%, #E3E2E0 100%);
 .margin-top-10{
 	margin-top:10% !important;
 }
+.morebutton{
+	margin-right:17%;
+	background-color:#5bc0de;
+	padding:3px 10px;
+	border-radius:5px !important;
+	margin-bottom:10px;
+}
  
  .notify{
 	 margin-top:3%;
@@ -138,19 +153,23 @@ background-image: linear-gradient(to right, #FFFFFF 0%, #E3E2E0 100%);
 	background-color:#593a1d;
 	padding:5px 0px 5px 10px;
 	color:#ffffff;
-	font-size:15px;
+	font-size:14px;
 	font-weight:600;
-	margin-bottom:2px;
+	margin-bottom:10px;
 	border-radius:5px !important;
+
 }
 .marginleft{
 	margin:0px 20px;
 }
 .sublabel{
-	padding:2px 5px;
+	padding:5px 10px;
 	background-color:#e6c39d;
-	margin-bottom:5px;
+	margin-bottom:10px;
+	 margin-right: 5px;
 	display:inline-block;
+	font-size:13px;
+	cursor:pointer;
 }
 .clearfix{
 	clear:both;
@@ -218,11 +237,12 @@ background-image: linear-gradient(to right, #FFFFFF 0%, #E3E2E0 100%);
 	border-radius:10px !important;
 	background-color:#fa4d08 !important;
 	color:#ffffff;
+	float:left;
 }
 .btn-gtky{
 	border-radius:10px !important;
 	margin-top:5px;
-	width: 180px;
+	width: 150px;
 	background-color: #5bc0de !important;
 	color:#ffffff;
 }
@@ -257,6 +277,28 @@ borderbottom{
 .top-navigation:before{
 	left:5px !important;
 }
+
+.uppercase123 {
+    text-transform: uppercase;
+}
+.forumUpdate{
+	padding-top:2px;
+	margin-left:35%;
+}
+
+
+.notify{
+.list-inline {
+	li
+	{
+		margin-right:15px;
+	}
+  }
+}
+
+.hideblck{
+	display:none;
+}
 /*--------------Media Queries-------------*/
 @media (min-width: 768px) {
   .margint{
@@ -279,7 +321,7 @@ borderbottom{
  }	
  
  .home{
- 	background-color:#684b2d;
+ 	background-color:#7f6244;
  	color:#FFFFFF;
  	padding:5px 10px;
  	margin-top:10px;
@@ -288,11 +330,11 @@ borderbottom{
  }
 
  .home1{
- 	background-color:#684b2d;
+ 	background-color:#7f6244;
  	color:#FFFFFF;
  	padding:5px 10px;
  	margin-top:10px;
- 	margin-right:2px;
+ 	margin-right:10px;
  	display:initial;
  }
 .quote{
@@ -317,9 +359,23 @@ borderbottom{
 	display:block;
 	margin-left:9%;
 	margin-bottom:0%;
+	float:left;
 }
 .settingicon{
 	display:block;
+}
+.btn-comp{
+	float:none;
+}
+.btn-gtky{
+	width: 180px;
+}
+.forumUpdate{
+	padding-top:2px;
+	margin-left:12%;
+}
+.hideblck{
+	display:block;;
 }
 }
 
@@ -331,6 +387,14 @@ borderbottom{
     
     &:hover {
       background-color: #FFFFFF;
+      color: #000;
+      cursor:pointer;
+    }
+    }
+    li a {
+    
+    &:hover {
+      background-color: #684b2d;
       color: #000;
     }
     }
@@ -344,7 +408,7 @@ borderbottom{
  }	
   
  .home{
- 	background-color:#684b2d;
+ 	background-color:#7f6244;
  	color:#FFFFFF;
  	padding:5px 10px;
  	margin-top:10px;
@@ -353,11 +417,11 @@ borderbottom{
  }
 
  .home1{
- 	background-color:#684b2d;
+ 	background-color:#7f6244;
  	color:#FFFFFF;
  	padding:5px 10px;
  	margin-top:10px;
- 	margin-right:2px;
+ 	margin-right:10px;
  	display:initial;
  }
 .quote{
@@ -375,6 +439,7 @@ borderbottom{
 	display:block;
 	margin-left:9%;
 	margin-bottom:0%;
+	float:left;
 }
 .wordcloud{
 	display:block;	
@@ -382,6 +447,19 @@ borderbottom{
 
 .settingicon{
 	display:block;
+}
+.btn-comp{
+	float:none;
+}
+.btn-gtky{
+	width: 180px;
+}
+.forumUpdate{
+	padding-top:2px;
+	margin-left:12%;
+}
+.hideblck{
+	display:block;;
 }
 }
 
@@ -406,7 +484,7 @@ borderbottom{
  }	
   
  .home{
- 	background-color:#684b2d;
+ 	background-color:#7f6244;
  	color:#FFFFFF;
  	padding:5px 10px;
  	margin-top:10px;
@@ -415,11 +493,11 @@ borderbottom{
  }
 
  .home1{
- 	background-color:#684b2d;
+ 	background-color:#7f6244;
  	color:#FFFFFF;
  	padding:5px 10px;
  	margin-top:10px;
- 	margin-right:2px;
+ 	margin-right:10px;
  	display:initial;
  }
 .quote{
@@ -440,9 +518,23 @@ borderbottom{
 	display:block;
 	margin-left:9%;
 	margin-bottom:0%;
+	float:left;
 }
 .settingicon{
 	display:block;
+}
+.btn-comp{
+	float:none;
+}
+.btn-gtky{
+	width: 180px;
+}
+.forumUpdate{
+	padding-top:2px;
+	margin-left:12%;
+}
+.hideblck{
+	display:block;;
 }
 }
 

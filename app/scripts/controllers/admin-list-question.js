@@ -24,5 +24,8 @@ angular.module('sassApp')
 
     $scope.sequence = function(a){
       console.log(a);
+      adminOperations.updateQuestionSeq(a).then(function (response) {
+        console.log(response.data);
+    });
     }
   });

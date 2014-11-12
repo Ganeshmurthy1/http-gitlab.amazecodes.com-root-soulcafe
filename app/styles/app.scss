@@ -37,7 +37,7 @@ li {
 }
 
 a {
-  color: #72c02c;
+  color: #000000;
   text-decoration: none;
   outline: 0 !important;
   &:focus, &:hover, &:active {
@@ -47,10 +47,12 @@ a {
     text-decoration: none;
   }
   &:hover {
-    color: #72c02c;
+    color: #ffffff;
     text-decoration: underline;
   }
 }
+
+
 
 hr {
   margin: 30px 0;
@@ -1215,7 +1217,7 @@ span {
       padding: 1px 4px;
     }
     i {
-      font-size: 18px;
+      font-size: 25px;
       min-width: 25px;
     }
   }
