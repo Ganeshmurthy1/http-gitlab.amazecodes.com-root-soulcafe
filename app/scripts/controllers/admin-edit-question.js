@@ -18,15 +18,22 @@ angular.module('sassApp')
   $scope.answers = [];
   $scope.multipleSelection = false;
   $scope.algorithamBoxSingle = false;  
+  loadAllData();
   loadAllDetails();
   function loadAllDetails() {
 	  Questionnaire.getQuestionDetail($routeParams.qid).then(function (response) {		
+		  $scope.question.Qid = response.data.Questions.Qid;
 		  $scope.question.title = response.data.Questions.QuestionTitle;
 		  $scope.question.hint = response.data.Questions.Description;
 		  $scope.question.ansType = response.data.Questions.AnswerSelectionType;
 		  $scope.question.qnsCategory = response.data.Questions.QuestionCategory;
-      $scope.question.maxselection = 2;
-      $scope.ToggleMaxInput(response.data.Questions.MaxOptions);
+		  $scope.question.max_score = response.data.Questions.MaxScore;
+		  $scope.question.algType = response.data.Questions.AlgorithamType;
+      $scope.question.maxselection = response.data.Questions.MaxOptions;
+      $scope.ToggleMaxInput(response.data.Questions.AnswerSelectionType);
+      $scope.selectedOptions = response.data.Options;
+      $scope.AlgOptions = response.data.Algoritham;
+      $scope.ToggleAlgorithanType(response.data.Questions.AlgorithamType);
 		  
 	  });
 	  
@@ -36,7 +43,7 @@ angular.module('sassApp')
   $scope.adminAddQuestion = function() {
   	console.log($scope.question);
   	$scope.question.answers = $scope.answers;
-  	Questionnaire.addAdminQuestion($scope.question).then(function(response) {
+  	Questionnaire.editAdminQuestion($scope.question).then(function(response) {
 	  console.log(response.data);
 	  if (response.data == 'true') {
 		  $scope.question = new Object();
@@ -67,6 +74,7 @@ angular.module('sassApp')
 		  $scope.answers.push($scope.options.title);
     	  $scope.options = "";
     	  var algType = $scope.question.algType;
+    	  console.log(algType);
     	  $scope.ToggleAlgorithanType(algType);
     	 // setSingleMatrix();
     	  $scope.ansMessage = '';
@@ -79,7 +87,7 @@ angular.module('sassApp')
   }
   
   $scope.remove = function(title) {
-    console.log($scope.answers);
+    console.log($scope.answers);2
     console.log(title);
     var id = $scope.answers.indexOf(title);
     console.log(id);
@@ -128,10 +136,10 @@ angular.module('sassApp')
   		
 	}
   	else if (algType == 2) {
-  		if ($scope.answers.length < $scope.question.maxselection) {
-			$scope.maxCountErrorMessage = "Please correct the max Selection option";
-			return;
-		}
+//  		if ($scope.answers.length < $scope.question.maxselection) {
+//			$scope.maxCountErrorMessage = "Please correct the max Selection option";
+//			return;
+//		}
   		setMultipleMatrix();
   		$scope.algorithamBoxMultiple = true;
   		$scope.algorithamBoxSingle = false;
@@ -157,31 +165,32 @@ angular.module('sassApp')
   
   function setSingleMatrix() {
   	var ansTemp = new Object();
-	var answersy = $scope.answers;
+  	
+  	//var answersy = $scope.selectedOptions
+  	var answersy = [];
+	for ( var int = 0; int < $scope.selectedOptions.length; int++) {
+		console.log($scope.selectedOptions[int].Answer);
+		answersy.push($scope.selectedOptions[int].Answer);
+	}
+	for ( var int2 = 0; int2 < $scope.answers.length; int2++) {
+		answersy.push($scope.answers[int2]);
+	}
+  	
 	for ( var x = 0; x < answersy.length; x++) {			
   		for ( var y = 0; y < answersy.length; y++) {
   			var index = answersy[x] + '*' + answersy[y];
-   			ansTemp[index] = 0;				
+  			if ($scope.AlgOptions[index]) {
+  				ansTemp[index] = $scope.AlgOptions[index];
+			}
+  			else {
+  				ansTemp[index] = 0;	
+  			}
+   						
 		}
 	}
 	$scope.algSingleMatrix = ansTemp;
 	$scope.question.algSingleMatrix = $scope.algSingleMatrix;
-	
-//	                      		var answersy = $scope.answers;
-//	                      		console.log(answersy);
-//	                      		var ansTemp = new Object();
-//	                      		for ( var int = 0; int < answersy.length; int++) {
-//	                      			ansTemp[answersy[int]] = 0;
-//	                      			
-//	                      		}
-//	                      		for ( var int = 0; int < answersy.length; int++) {
-//	                      			algSingleMatrix[answersy[int]] = ansTemp;
-//	                      			console.log(answersy[int]);
-//	                      		}
-//	                      		    		
-//	                      		
-//	                      		$scope.algSingleMatrix = algSingleMatrix;
-	console.log($scope.algSingleMatrix);
+	console.log($scope.answersy);
 	
   }
   
@@ -192,7 +201,7 @@ angular.module('sassApp')
 	for ( var x = 0; x < maxSelection; x++) {			
   		for ( var y = 0; y < maxSelection; y++) {
   			var index = (x+1) + '*' + (y+1);
-   			ansTemp[index] = 0;				
+   			ansTemp[index] = $scope.AlgOptions[index];				
 		}
 	}
 	$scope.algMultipleMatrix = ansTemp;	
@@ -203,11 +212,11 @@ angular.module('sassApp')
   function setPersonalityMatch() {    	
   	var ansTemp = new Object();
 	var answersy = $scope.answers;		
-	for ( var y = 0; y < answersy.length; y++) {
+	for ( var y = 0; y < $scope.AlgOptions.length; y++) {
 		var index =  answersy[y];
 		ansTemp[index] = '';				
 	}		
-	$scope.algPersonalityMatch = ansTemp;
+	$scope.algPersonalityMatch =  $scope.AlgOptions;
 	$scope.question.algPersonalityMatch = $scope.algPersonalityMatch;
   }
   
@@ -230,5 +239,5 @@ angular.module('sassApp')
   	
   }
   
-  loadAllData();
+  
 });

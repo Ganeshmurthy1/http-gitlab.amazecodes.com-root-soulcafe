@@ -61,7 +61,7 @@
 					<section ng-show="multipleSelection">
                             <label class="label">Max Selection</label>
                             <label class="input">
-                                <input type="text" name="subject" id="subject" data-ng-model="question.maxselection" >
+                                <input type="text" name="subject" id="subject" data-ng-model="question.maxselection" ng-disabled="true">
                             </label>
                     </section>
                     </fieldset>    
@@ -101,18 +101,29 @@
                      
                     </tbody>
                 </table>
+                
+                <table class="table table-bordered">
+                    
+                    <tbody ng-repeat="ans in selectedOptions">
+                        <tr>
+                        	<td class="col-md-10">{{ans.Answer}}</td>                         	                         
+                        </tr>
+                     
+                    </tbody>
+                </table>
+                
                 </fieldset>
                 <div class="headline"><h3 class="headinsg-sm">Algorithm</h3></div>
                 <fieldset>
                 	<section >
                             <label class="label">Max Score</label>
                             <label class="input">
-                                <input type="text" name="subject" id="subject" data-ng-model="question.max_score" >
+                                <input type="text" name="subject" id="subject" data-ng-model="question.max_score" ng-disabled = "true" >
                             </label>
                     </section>
 					<section>
 					    <label class="select">
-					        <select name="Algorithm Type" data-ng-model="question.algType" ng-change="ToggleAlgorithanType(question.algType)" required>
+					        <select name="Algorithm Type" data-ng-model="question.algType" ng-change="ToggleAlgorithanType(question.algType)" required  >
 					            <option value="" selected disabled>Algorithm input Type</option>
 					            <option value="{{algType.AlgTypeId}}" data-ng-repeat="algType in algTypes">{{algType.AlgTypeTitle}}</option>                             
 					        <select>

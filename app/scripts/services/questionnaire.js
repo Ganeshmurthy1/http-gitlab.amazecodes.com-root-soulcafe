@@ -63,5 +63,12 @@ angular.module('sassApp')
                 return response;
             });	    	
 	    };
+	    dataFactory.editAdminQuestion = function (param) {
+	    	// console.log(param);
+	    	return Transporter.post('admin_edit_question', param).then(function(response) {
+	    		//console.log(response);
+                return response;
+            });
+		};
 	    return dataFactory;
 }]);
