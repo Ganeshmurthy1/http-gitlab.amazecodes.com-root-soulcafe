@@ -5,6 +5,7 @@ $app->get('/alg_get_type', 'algGetQusType');
 $app->get('/alg_get_algoritham_type', 'algGetAlgType');
 
 $app->post('/admin_add_question', 'adminAddQuestion');
+$app->post('/admin_edit_question', 'adminEditQuestion');
 
 $app->get('/get_this_question', 'getThisQuestion');
 
@@ -297,6 +298,7 @@ function AddAnswer() {
 
 
 function adminGetQuestionDetails($id) {
+  $result = new stdClass();
 
   $sql = "select * FROM Questionnaire where Qid=:id";
   try {
@@ -305,9 +307,178 @@ function adminGetQuestionDetails($id) {
     $stmt->bindParam("id", $id);
     $stmt->execute();
     $wine = $stmt->fetchObject();
-    $db = null;
+    //$db = null;
+    $result->Questions = $wine;
+    
+    $sqlAn = "SELECT Qoid, Answer from QuestionnaireOptions where Qid = :Qid";
+    $stmtAn = $db->prepare($sqlAn);
+    $stmtAn->bindParam("Qid", $wine->Qid);
+    $stmtAn->execute();
+    $wineAn = $stmtAn->fetchAll(PDO::FETCH_OBJ);
+    $result->Options = $wineAn;
     //echo $total = $wine->'count(1)';
-    echo json_encode($wine);
+    if ($wine->AlgorithamType == 1) {
+      //print 'hellofff';
+      $sqlAl = "SELECT al.Value, qo.Answer as answerx, qs.Answer as answery  from AlgorithamLogic al join QuestionnaireOptions qo ON al.Row = qo.QoId  JOIN QuestionnaireOptions qs ON al.Col = qs.QoId where al.QuestionId = :Qid";
+      $stmtAl = $db->prepare($sqlAl);
+      $stmtAl->bindParam("Qid", $wine->Qid);
+      $stmtAl->execute();
+      $wineAl = $stmtAl->fetchAll(PDO::FETCH_OBJ);
+      for ($i = 0; $i < count($wineAl); $i++) {
+       // print 'hello';
+        //print $wineAl[$i]->answerx;
+        $algorithamLogic[$wineAl[$i]->answerx . '*' . $wineAl[$i]->answery] = $wineAl[$i]->Value;
+      }
+      $result->Algoritham = $algorithamLogic;
+    } 
+    else if ($wine->AlgorithamType == 2) {
+      //print 'hellofff';
+      $sqlAl = "SELECT Row, Col, Value from AlgorithamLogic where QuestionId = :Qid";
+      $stmtAl = $db->prepare($sqlAl);
+      $stmtAl->bindParam("Qid", $wine->Qid);
+      $stmtAl->execute();
+      $wineAl = $stmtAl->fetchAll(PDO::FETCH_OBJ);
+      for ($i = 0; $i < count($wineAl); $i++) {
+        // print 'hello';
+        //print $wineAl[$i]->answerx;
+        $algorithamLogic[$wineAl[$i]->Row . '*' . $wineAl[$i]->Col] = $wineAl[$i]->Value;
+      }
+      $result->Algoritham = $algorithamLogic;
+    }
+    else if ($wine->AlgorithamType == 4) {
+      
+      //print $wine->Qid;
+      $sqlAnt = "SELECT Answer, PersonalityType from QuestionnaireOptions where Qid = :Qid";
+      $stmtAnt = $db->prepare($sqlAnt);
+      $stmtAnt->bindParam("Qid", $wine->Qid);
+      $stmtAnt->execute();
+      $wineAnt = $stmtAnt->fetchAll(PDO::FETCH_OBJ);
+     // print_r($wineAnt);
+      for ($i = 0; $i <count($wineAnt); $i++) {
+        //$wineAnt[0]->Qoid;
+        $tmparr[$wineAnt[$i]->Answer] = $wineAnt[$i]->PersonalityType;
+      }      
+      $result->Algoritham = $tmparr;
+      
+    }
+    echo json_encode($result);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
+}
+
+
+function adminEditQuestion() {
+  $request = Slim::getInstance()->request();
+  $question = json_decode($request->getBody());
+  $status=0;
+  $DateTime=  date("Y-m-d h:i:s") ;
+ // print_r($question);
+  //exit();
+   
+   
+  $max_selection = '';
+  if (isset($question->maxselection)) {
+    $max_selection = $question->maxselection;
+  }
+
+  //$sqlSN = "Insert into Questionnaire (QuestionTitle, Description, AnswerSelectionType, QuestionCategory, AlgorithamType, MaxOptions, MaxScore, DateAdded) values (:QuestionTitle,:Description,:AnswerSelectionType,:QuestionCategory,:AlgorithamType, :MaxOptions, :MaxScore, :DateAdded)";
+  try {
+    $db = getConnection();
+    $sql = " UPDATE `Questionnaire` SET `QuestionTitle`= :topic,`Description`=:description where Qid = :Qid";
+   
+      $db = getConnection();
+      $stmt = $db->prepare($sql);
+      $stmt->bindParam("topic", $question->title);
+      $stmt->bindParam("description", $question->hint);   
+      $stmt->bindParam("Qid", $question->Qid); 
+      $stmt->execute();
+      
+    
+      //exit();
+    //$qnId = $db->lastInsertId();
+    for ($i = 0; $i < count($question->answers); $i++) {
+      $sql = "Insert into QuestionnaireOptions (QId, Answer) values (:qnId,:Answer)";
+      $stmt = $db->prepare($sql);
+      $stmt->bindParam("qnId", $question->Qid);
+      $stmt->bindParam("Answer", $question->answers[$i]);
+      $stmt->execute();
+      $ansId[$question->answers[$i]] = $db->lastInsertId();
+      //print 'heelo';
+    }
+//     // print_r($ansId);
+//     //Single Matrix
+    if ($question->algType == 1) {
+      
+      $sqlAn = "SELECT Qoid, Answer from QuestionnaireOptions where Qid = :Qid";
+      $stmtAn = $db->prepare($sqlAn);
+      $stmtAn->bindParam("Qid", $question->Qid);
+      $stmtAn->execute();
+      $wineAn = $stmtAn->fetchAll(PDO::FETCH_OBJ);
+      for ($i = 0; $i < count($wineAn); $i++) {
+        $ansInsID[$wineAn[$i]->Answer] = $wineAn[$i]->Qoid;
+      }
+      
+      $sql = "Delete from AlgorithamLogic  WHERE QuestionId=:id";   
+      $stmt = $db->prepare($sql);
+      $stmt->bindParam("id", $question->Qid);
+      $stmt->execute();
+        
+      
+      //print_r($ansId);
+     // print_r($ansInsID);
+      foreach ($question->algSingleMatrix as $key => $value) {
+        $parts = explode('*', $key);
+        $x = $parts[0];
+        $y = $parts[1];
+        
+        $sqlA = "Insert into AlgorithamLogic (QuestionId, Row, Col, Value) values (:QuestionId,:Row, :Col, :Value)";
+        $stmtA = $db->prepare($sqlA);
+        $stmtA->bindParam("QuestionId", $question->Qid);
+        $stmtA->bindParam("Row", $ansInsID[$x]);
+        $stmtA->bindParam("Col", $ansInsID[$y]);
+        $stmtA->bindParam("Value", $value);
+        $stmtA->execute();
+        
+        
+      }
+    }
+
+    if ($question->algType == 2) {
+      
+      $sql = "Delete from AlgorithamLogic  WHERE QuestionId=:id";
+      $stmt = $db->prepare($sql);
+      $stmt->bindParam("id", $question->Qid);
+      $stmt->execute();
+      
+      foreach ($question->algMultipleMatrix as $key => $value) {
+        $parts = explode('*', $key);
+        $x = $parts[0];
+        $y = $parts[1];
+        $sqlA = "Insert into AlgorithamLogic (QuestionId, Row, Col, Value) values (:QuestionId,:Row, :Col, :Value)";
+        $stmtA = $db->prepare($sqlA);
+        $stmtA->bindParam("QuestionId", $question->Qid);
+        $stmtA->bindParam("Row", $x);
+        $stmtA->bindParam("Col", $y);
+        $stmtA->bindParam("Value", $value);
+        $stmtA->execute();
+      }
+    }
+    if ($question->algType == 4) {
+      foreach ($question->algPersonalityMatch as $key => $value) {
+        
+        $sqlo = "Update QuestionnaireOptions SET PersonalityType=:type WHERE QId = :QId and Answer = :answer";
+        $stmto = $db->prepare($sqlo);
+        $stmto->bindParam("type", $value);
+        $stmto->bindParam("QId", $question->Qid);
+        $stmto->bindParam("answer", $key);
+        $stmto->execute();
+
+      }
+    }
+
+    echo 'true';
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }

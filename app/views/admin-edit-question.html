@@ -38,7 +38,7 @@
                        <div class="col-md-6">
                         <section>
                                 <label class="select">
-                                    <select name="Question Type" data-ng-model="question.ansType" ng-change="ToggleMaxInput(question.ansType)" required>
+                                    <select name="Question Type" data-ng-model="question.ansType" ng-change="ToggleMaxInput(question.ansType)" required  ng-disabled="true">
                                         <option value="" selected disabled>Answer Selection Type</option>
                                         <option value="{{qnsType.QuestionTypeId}}" data-ng-repeat="qnsType in qnsTypes">{{qnsType.QuestionTypeTitle}}</option>                             
                                     </select>
@@ -49,7 +49,7 @@
                         <div class="col-md-6">
                         <section>
                                 <label class="select">
-                                    <select name="Question Type" data-ng-model="question.qnsCategory" data-placeholder="---- Choose Company Name ----" required>
+                                    <select name="Question Type" data-ng-model="question.qnsCategory" data-placeholder="---- Choose Company Name ----" required ng-disabled="true">
                                         <option value="" selected disabled>Question Category</option> 
                                         <option value="{{category.QcId}}" data-ng-repeat="category in qnsCategory">{{category.Category}}</option>
                                     <select>
@@ -61,7 +61,7 @@
 					<section ng-show="multipleSelection">
                             <label class="label">Max Selection</label>
                             <label class="input">
-                                <input type="text" name="subject" id="subject" data-ng-model="question.maxselection" >
+                                <input type="text" name="subject" id="subject" data-ng-model="question.maxselection" ng-disabled="true">
                             </label>
                     </section>
                     </fieldset>    
@@ -101,18 +101,29 @@
                      
                     </tbody>
                 </table>
+                
+                <table class="table table-bordered">
+                    
+                    <tbody ng-repeat="ans in selectedOptions">
+                        <tr>
+                        	<td class="col-md-10">{{ans.Answer}}</td>                         	                         
+                        </tr>
+                     
+                    </tbody>
+                </table>
+                
                 </fieldset>
                 <div class="headline"><h3 class="headinsg-sm">Algorithm</h3></div>
                 <fieldset>
                 	<section >
                             <label class="label">Max Score</label>
                             <label class="input">
-                                <input type="text" name="subject" id="subject" data-ng-model="question.max_score" >
+                                <input type="text" name="subject" id="subject" data-ng-model="question.max_score" ng-disabled = "true" >
                             </label>
                     </section>
 					<section>
 					    <label class="select">
-					        <select name="Algorithm Type" data-ng-model="question.algType" ng-change="ToggleAlgorithanType(question.algType)" required>
+					        <select name="Algorithm Type" data-ng-model="question.algType" ng-change="ToggleAlgorithanType(question.algType)" required  >
 					            <option value="" selected disabled>Algorithm input Type</option>
 					            <option value="{{algType.AlgTypeId}}" data-ng-repeat="algType in algTypes">{{algType.AlgTypeTitle}}</option>                             
 					        <select>
