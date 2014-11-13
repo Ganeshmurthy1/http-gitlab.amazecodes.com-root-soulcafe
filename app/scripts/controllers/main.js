@@ -66,13 +66,22 @@ angular.module('sassApp')
           console.log(results.data);  	        
 	        if (results.data.status == 1) { //login 
 				console.log('login');
+				$facebook.api("/me/picture?redirect=0&height=200&type=normal&width=200").then(function(pic) {
+				      	console.log(pic);
+				  		$scope.fbpicture = pic;
+					  localStorageService.set('fbpicture', {fbpicture:pic});
+					 //   var fbbbbdata = localStorageService.get('fbpicture');
+						// console.log(fbbbbdata);
+				  });
 				localStorageService.set('authorizationData', {
 	                fb_id: response.id,
 	                user_id: results.data.user_id,
 	                userName: response.first_name,
+	                lastName: response.last_name,
 	                token: results.data.token,
-	                user_role: results.data.user_role
+	                user_role: results.data.user_role	                
 	            });
+	            
 				
 				// JS authentication
 				var accessLevels = routingConfig.accessLevels

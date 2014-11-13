@@ -1207,14 +1207,14 @@ span {
     position: relative;
   }
   span.badge {
-    top: -5px;
-    right: 0px;
+    top: -11px;
+    right: -8px;
     position: absolute;
   }
   &.badge-icons {
     span.badge {
       min-width: 12px;
-      padding: 1px 4px;
+      padding: 5px 6px;
     }
     i {
       font-size: 25px;

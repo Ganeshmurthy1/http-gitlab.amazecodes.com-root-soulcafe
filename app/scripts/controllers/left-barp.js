@@ -14,4 +14,6 @@ angular.module('sassApp')
       'AngularJS',
       'Karma'
     ];
+
+     $scope.LeftBarOther = 'views/left-barp.html';
   });

@@ -29,7 +29,8 @@ body{
 .logoimg{
     margin-left:0%;
 	margin-bottom: 3%;
-	float:right;
+	float:right !important;
+	margin-right: 4%;
 }
 
 .body-background{
@@ -122,7 +123,7 @@ background-image: linear-gradient(to right, #FFFFFF 0%, #E3E2E0 100%);
  
  .notify{
 	 margin-top:3%;
-	 margin-right:23%;
+	 margin-right:7%;
  }
 
  .margint{
@@ -285,7 +286,11 @@ borderbottom{
 	padding-top:2px;
 	margin-left:35%;
 }
-
+.menuicon{
+	padding:10px;
+	margin-left: 5%;
+    margin-top: 3%;
+}
 
 .notify{
 .list-inline {
@@ -359,7 +364,7 @@ borderbottom{
 	display:block;
 	margin-left:9%;
 	margin-bottom:0%;
-	float:left;
+	float:left !important;
 }
 .settingicon{
 	display:block;
@@ -377,6 +382,7 @@ borderbottom{
 .hideblck{
 	display:block;;
 }
+
 }
 
 @media (min-width: 992px) {
@@ -439,7 +445,7 @@ borderbottom{
 	display:block;
 	margin-left:9%;
 	margin-bottom:0%;
-	float:left;
+	float:left !important;
 }
 .wordcloud{
 	display:block;	
@@ -518,7 +524,7 @@ borderbottom{
 	display:block;
 	margin-left:9%;
 	margin-bottom:0%;
-	float:left;
+	float:left !important;
 }
 .settingicon{
 	display:block;

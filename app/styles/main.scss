@@ -650,15 +650,20 @@ svg{
       }
 
       .paddingman{
-      padding-top:45%;
+      padding-top:75%;
       }
 
 @media (min-width: 768px) {
-  
+  .paddingman{
+      padding-top:30%;
+      }
+ 
 }
 
 @media (min-width: 992px) {
- 
+  .paddingman{
+      padding-top:30%;
+      }
 }
 
 @media (min-width: 1200px) {
