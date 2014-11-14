@@ -70,5 +70,26 @@ angular.module('sassApp')
                 return response;
             });
 		};
+		dataFactory.getAllQuestionsUser = function () {	
+	      	return Transporter.get('get_all_questions_user').then(function(response) {
+	    		//console.log(response);
+              return response;
+          });	 
+	    };
+	    dataFactory.loadThisQuestionById = function (param) {
+	    	// console.log(param);
+	    	return Transporter.get('get_this_question_id/' + param).then(function(response) {
+	    		//console.log(response);
+              return response;
+          });	    	
+	    };
+	    
+	    dataFactory.updateAnswer = function (param) {
+	    	// console.log(param);
+	    	return Transporter.post('update_answer', param).then(function(response) {
+	    		//console.log(response);
+                return response;
+            });
+		};
 	    return dataFactory;
 }]);

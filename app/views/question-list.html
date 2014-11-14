@@ -1,0 +1,41 @@
+<div class="wrapper">
+    <!--=== Header ===-->    
+  <div data-ng-controller="HeaderCtrl" data-ng-include="Header">
+</div>
+    <!--=== End Header ===-->  
+
+    <!--=== Profile ===-->
+    <div class="profile container content" style="border-color:red">
+        <div class="row">
+            <!--Left Sidebar-->
+            <div data-ng-controller="SideBarCtrl" data-ng-include="SideBar">
+            </div>
+            <!--End Left Sidebar-->
+            
+            <div class="col-md-9">
+
+            	<div class="headline"><h1 class="heading-sm">Questions</h1></div>
+               
+                <div class="alert fade in margin-bottom-40" ng-repeat="question in questions">
+                   
+                    
+                    <h4><a href="#/discussion-topics?discussionid={{question.QuestionTitle}}">{{question.QuestionTitle}}</a></h4>
+                    <p>{{question.Description}}</p>                    
+                    <p>
+                        <a class="btn-u btn-u-sea  " href="#/question-edit?qid={{question.Qid}}">Retake</a>
+                    </p>
+               
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--=== End Profile ===-->
+
+<!--=== Footer ===-->
+ <div data-ng-controller="FooterCtrl" data-ng-include="Footer">
+</div>
+<!--=== End Footer ===-->
+
+</div>
+<!--=== End Wrapper ===-->
