@@ -9,10 +9,12 @@
 			    <button type="button" class="navbar-toggle top-navbar-toogle no-margin no-padding"  data-toggle="collapse" data-target=".top-navigation"><img src="images/menu.png" style="width:30px;top:55px !important;"></button>
 			        <ul class="nav collapse top-navigation" style="top:55px !important;">
 			            <li><a href="#">Home </a></li>
-			            <li><a href="#">My Profile</a></li>
-			            <li><a href="#">Friends</a></li>
-			            <li><a href="#">Forums</a></li>
+			            <li><a href="#">My Profile</a></li>        
 			            <li><a href="#">Interests</a></li>
+			            <li><a href="#">Forums</a></li>
+			            <li><a href="#">Friends</a></li>
+			            <li><a href="#">Edit Profile</a></li>
+			            <li><a href="#">Complete Verification</a></li>
 			            <li><a href="#">Settings</a></li>
 			            <li><a href="#">Logout</a></li>
 			            <div class="clearfix"></div>
@@ -28,10 +30,8 @@
 			    
 			  </button>
 			  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Settings</a></li>
+			    <li role="presentation" data-ng-controller="LoginCtrl"><a role="menuitem" tabindex="-1" href="#" data-ng-click="logout()">Logout</a></li>
 			  </ul>
 			</div>
 

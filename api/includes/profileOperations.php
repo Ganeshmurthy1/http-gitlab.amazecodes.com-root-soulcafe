@@ -1,6 +1,8 @@
 <?php
 
 $app->get('/get_UserMatch', 'getUserMatch');
+$app->get('/get_Buddies', 'getBuddies');
+$app->get('/get_forumsOther/:id', 'getforumsOther');
 $app->post('/add_GTKYRequest', 'addGTKYRequest');
 $app->get('/check_GTKYRequest/:id', 'checkGTKYRequest');
 $app->post('/add_AbuseUser', 'addAbuseUser');
@@ -8,6 +10,8 @@ $app->get('/check_AbuseUser/:id', 'checkAbuseUser');
 $app->get('/get_UserSendedGTKY', 'getUserSendedGTKY');
 $app->get('/accept_GTKY/:id', 'acceptGTKY');
 $app->get('/reject_GTKY/:id', 'rejectGTKY');
+
+
 function getUserMatch() {
  
   // print_r( $user );
@@ -25,6 +29,63 @@ function getUserMatch() {
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}'; 
   }
+}
+
+function getBuddies() {
+ 
+  // print_r( $user );
+  $user_id  = getUserId();
+   
+  $sql = "SELECT u.*,b.BuddyId FROM `Buddies` as b inner join users as u on b.BuddyId = u.user_id  WHERE b.SenderId = :user_id and b.Status = 1";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);  
+    $stmt->bindParam("user_id",  $user_id );
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+     $db = null;
+      // echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+
+  $sqlForums = "SELECT db.*,dbu.DiscussionBoardId FROM `DiscussionBoardUsers` as dbu inner join DiscussionBoard as db ON dbu.DiscussionBoardId = db.DiscussionBoardId WHERE dbu.UserId = :user_id";
+  try {
+    $dbForums = getConnection();
+    $stmtForums = $dbForums->prepare($sqlForums);  
+    $stmtForums->bindParam("user_id",  $user_id );
+    $stmtForums->execute();
+    $wineForums = $stmtForums->fetchAll(PDO::FETCH_OBJ);
+     $db = null;
+      // echo json_encode($wineForums);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+
+  $user['friends']=$wine;
+  $user['forum']=$wineForums;
+  echo json_encode($user);
+
+}
+
+function getforumsOther($id) {
+ 
+  // print_r( $user );
+  // $user_id  = getUserId();
+   
+  $sqlForums = "SELECT db.*,dbu.DiscussionBoardId FROM `DiscussionBoardUsers` as dbu inner join DiscussionBoard as db ON dbu.DiscussionBoardId = db.DiscussionBoardId WHERE dbu.UserId = :id";
+  try {
+    $dbForums = getConnection();
+    $stmtForums = $dbForums->prepare($sqlForums);  
+    $stmtForums->bindParam("id",  $id );
+    $stmtForums->execute();
+    $wineForums = $stmtForums->fetchAll(PDO::FETCH_OBJ);
+     $db = null;
+    echo json_encode($wineForums);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+
 }
 
 function addGTKYRequest() {

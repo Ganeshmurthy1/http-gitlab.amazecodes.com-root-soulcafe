@@ -473,13 +473,14 @@ function setCommentLikes($commentId) {
 
    $viewstatus = 0;
    
-   $sqlCommentUser = "SELECT UserId,Comment,DiscussionTopicId from DiscussionBoardComments where CommentId = :commentid";
+   $sqlCommentUser = "SELECT distinct dbu.UserId,dbc.Comment,dbc.DiscussionTopicId , dbt.DiscussionBoardId  from DiscussionBoardComments as dbc inner join DiscussionBoardTopic as dbt on dbc.DiscussionTopicId = dbt.DiscussionTopicId inner join DiscussionBoardUsers as dbu on dbt.DiscussionBoardId = dbu.DiscussionBoardId where dbc.CommentId = :commentid and dbu.UserId != user_id ";
     try {
       $db = getConnection();
       $stmtCommentUser = $db->prepare($sqlCommentUser);
       $stmtCommentUser->bindParam("commentid", $commentId);
+      $stmtCommentUser->bindParam("user_id", $user_id);
       $stmtCommentUser->execute();
-      $wineCUser = $stmtCommentUser->fetchAll(PDO::FETCH_OBJ);
+      $winCUser = $stmtCommentUser->fetchAll(PDO::FETCH_OBJ);
       $db = null;
     //echo $total = $wine->'count(1)';
      // echo json_encode($wineUser);
@@ -489,12 +490,12 @@ function setCommentLikes($commentId) {
       echo '{"error":{"text":'. $e->getMessage() .'}}';
     }
 
-    foreach($wineCUser as $obj) {
+    foreach($winCUser as $obj) {
       $comment = $obj->Comment;
       $id = $obj->DiscussionTopicId;
       $link = 'discussion?id='.$id;
       $message = $fname.' '.$lname.' has liked your comment "'.$comment.'".';
-        $sqlFN = "INSERT INTO ForumNotification (UserId,Message,ViewStatus,AddedDate,Link) VALUES (:UserId, :Message, :ViewStatus, :AddedDate, :Link)";
+        $sqlFN = "INSERT INTO ForumNotification (UserId,Message,ViewStatus,AddedDate,Link,topicId) VALUES (:UserId, :Message, :ViewStatus, :AddedDate, :Link,:topicId)";
     try {
       $db = getConnection();
       $stmtFN = $db->prepare($sqlFN);
@@ -503,6 +504,7 @@ function setCommentLikes($commentId) {
       $stmtFN->bindParam("ViewStatus", $viewstatus);
       $stmtFN->bindParam("AddedDate", $likeDateTime);
       $stmtFN->bindParam("Link", $link);
+      $stmtFN->bindParam("topicId", $id);
       $stmtFN->execute();
 
 
@@ -603,11 +605,12 @@ function saveComments() {
 
     $viewstatus = 0;
     
-    $sqlTopicUser = "SELECT distinct dbc.UserId,dbc.DiscussionTopicId,dbt.TopicTitle from DiscussionBoardComments as dbc inner join DiscussionBoardTopic as dbt on dbc.DiscussionTopicId = dbt.DiscussionTopicId where dbc.DiscussionTopicId =:topicid";
+    $sqlTopicUser = "SELECT distinct dbc.UserId,dbc.DiscussionTopicId,dbt.TopicTitle from DiscussionBoardComments as dbc inner join DiscussionBoardTopic as dbt on dbc.DiscussionTopicId = dbt.DiscussionTopicId where dbc.DiscussionTopicId =:topicid and UserId != :user_id";
     try {
       $db = getConnection();
       $stmtTopicUser = $db->prepare($sqlTopicUser);
       $stmtTopicUser->bindParam("topicid", $comments->topicId);
+      $stmtTopicUser->bindParam("user_id", $user_id);
       $stmtTopicUser->execute();
       $wineTopicUser = $stmtTopicUser->fetchAll(PDO::FETCH_OBJ);
       $db = null;
@@ -624,7 +627,7 @@ function saveComments() {
       $id = $obj->DiscussionTopicId;
       $link = 'discussion?id='.$id;
       $message = $fname.' '.$lname.' has commented on the topic '.$tname.'.';
-        $sqlFN = "INSERT INTO ForumNotification (UserId,Message,ViewStatus,AddedDate,Link) VALUES (:UserId, :Message, :ViewStatus, :AddedDate,:Link)";
+        $sqlFN = "INSERT INTO ForumNotification (UserId,Message,ViewStatus,AddedDate,Link,topicId) VALUES (:UserId, :Message, :ViewStatus, :AddedDate,:Link,:topicId)";
     try {
       $db = getConnection();
       $stmtFN = $db->prepare($sqlFN);
@@ -633,6 +636,7 @@ function saveComments() {
       $stmtFN->bindParam("ViewStatus", $viewstatus);
       $stmtFN->bindParam("AddedDate", $cmtDateTime);
       $stmtFN->bindParam("Link", $link);
+      $stmtFN->bindParam("topicId", $id);
       $stmtFN->execute();
        // echo 'true';
     } catch(PDOException $e) {

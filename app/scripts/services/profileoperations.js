@@ -19,6 +19,18 @@ angular.module('sassApp')
                 return response;
             });  
      };
+     dataFactory.getBuddies = function () { 
+          return $http.get(urlBase + 'get_Buddies').then(function(response) {
+          //console.log(response);
+                return response;
+            });  
+     };
+     dataFactory.getforumsOther = function (id) { 
+          return $http.get(urlBase + 'get_forumsOther/'+ id).then(function(response) {
+          //console.log(response);
+                return response;
+            });  
+     };
      dataFactory.addGTKYRequest = function (param) { 
           return $http.post(urlBase + 'add_GTKYRequest',param).then(function(response) {
           //console.log(response);
