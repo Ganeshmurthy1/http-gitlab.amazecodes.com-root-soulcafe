@@ -318,6 +318,10 @@ angular
         templateUrl: 'views/question-list.html',
         controller: 'QuestionListCtrl'
       })
+      .when('/question-edit', {
+        templateUrl: 'views/question-edit.html',
+        controller: 'QuestionEditCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
