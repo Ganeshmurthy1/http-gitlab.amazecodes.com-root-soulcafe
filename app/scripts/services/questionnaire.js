@@ -70,5 +70,11 @@ angular.module('sassApp')
                 return response;
             });
 		};
+		dataFactory.getAllQuestionsUser = function () {	
+	      	return Transporter.get('get_all_questions_user').then(function(response) {
+	    		//console.log(response);
+              return response;
+          });	 
+	    };
 	    return dataFactory;
 }]);

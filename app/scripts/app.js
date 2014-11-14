@@ -314,6 +314,10 @@ angular
         templateUrl: 'views/left-barp.html',
         controller: 'LeftBarpCtrl'
       })
+      .when('/question-list', {
+        templateUrl: 'views/question-list.html',
+        controller: 'QuestionListCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

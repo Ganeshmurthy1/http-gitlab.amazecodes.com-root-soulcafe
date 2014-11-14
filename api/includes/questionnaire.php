@@ -13,6 +13,8 @@ $app->post('/addAnswer', 'AddAnswer');
 
 $app->get('/admin_get_question_detail/:id',  'adminGetQuestionDetails');
 
+$app->get('/get_all_questions_user', 'GetAllQuestionsUser');
+
 
 function algGetQusCategory() {
 
@@ -483,4 +485,19 @@ function adminEditQuestion() {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
 
+}
+
+function GetAllQuestionsUser() {
+  // $user_id  = getUserId();
+  $sql = "SELECT q.*, qc.Category, at.AlgTypeTitle FROM `Questionnaire` q JOIN QuestionnaireCategory qc ON q.QuestionCategory = qc.QcId  JOIN AlgorithamType at ON q.AlgorithamType=at.AlgTypeId";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
 }
