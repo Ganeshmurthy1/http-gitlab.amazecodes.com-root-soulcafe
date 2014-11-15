@@ -25,6 +25,12 @@ angular.module('sassApp')
                 return response;
             });  
      };
+     dataFactory.getForumUpdates = function () { 
+          return $http.get(urlBase + 'get_ForumUpdates').then(function(response) {
+          //console.log(response);
+                return response;
+            });  
+     };
      dataFactory.getforumsOther = function (id) { 
           return $http.get(urlBase + 'get_forumsOther/'+ id).then(function(response) {
           //console.log(response);

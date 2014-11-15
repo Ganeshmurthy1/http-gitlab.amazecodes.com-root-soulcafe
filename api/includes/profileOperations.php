@@ -2,6 +2,7 @@
 
 $app->get('/get_UserMatch', 'getUserMatch');
 $app->get('/get_Buddies', 'getBuddies');
+$app->get('/get_ForumUpdates', 'getForumUpdates');
 $app->get('/get_forumsOther/:id', 'getforumsOther');
 $app->post('/add_GTKYRequest', 'addGTKYRequest');
 $app->get('/check_GTKYRequest/:id', 'checkGTKYRequest');
@@ -30,6 +31,25 @@ function getUserMatch() {
     echo '{"error":{"text":'. $e->getMessage() .'}}'; 
   }
 }
+
+function getForumUpdates() {
+ 
+  // print_r( $user );
+  $user_id  = getUserId();
+   
+  $sql = "select distinct fn.CommentId,dbc.Comment, dbc.UserId, dbc.DiscussionTopicId, dbc.CommentDateTime, dbt.TopicTitle, u.first_name, u.last_name, u.Picture from ForumNotification as fn inner join DiscussionBoardComments as dbc on fn.CommentId = dbc.CommentId inner join DiscussionBoardTopic as dbt on dbc.DiscussionTopicId = dbt.DiscussionTopicId inner join users as u on dbc.UserId = u.user_id order by  dbc.CommentDateTime desc";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);  
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+     $db = null;
+      echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+}
+
 
 function getBuddies() {
  

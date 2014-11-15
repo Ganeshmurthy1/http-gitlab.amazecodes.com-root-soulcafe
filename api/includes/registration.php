@@ -473,7 +473,7 @@ function setCommentLikes($commentId) {
 
    $viewstatus = 0;
    
-   $sqlCommentUser = "SELECT distinct dbu.UserId,dbc.Comment,dbc.DiscussionTopicId , dbt.DiscussionBoardId  from DiscussionBoardComments as dbc inner join DiscussionBoardTopic as dbt on dbc.DiscussionTopicId = dbt.DiscussionTopicId inner join DiscussionBoardUsers as dbu on dbt.DiscussionBoardId = dbu.DiscussionBoardId where dbc.CommentId = :commentid and dbu.UserId != user_id ";
+   $sqlCommentUser = "SELECT dbc.Comment,dbc.DiscussionTopicId , dbt.DiscussionBoardId,dbu.UserId  from DiscussionBoardComments as dbc inner join DiscussionBoardTopic as dbt on dbc.DiscussionTopicId = dbt.DiscussionTopicId inner join DiscussionBoardUsers as dbu on dbt.DiscussionBoardId = dbu.DiscussionBoardId where dbc.CommentId = :commentid and dbu.UserId != :user_id ";
     try {
       $db = getConnection();
       $stmtCommentUser = $db->prepare($sqlCommentUser);
@@ -495,7 +495,7 @@ function setCommentLikes($commentId) {
       $id = $obj->DiscussionTopicId;
       $link = 'discussion?id='.$id;
       $message = $fname.' '.$lname.' has liked your comment "'.$comment.'".';
-        $sqlFN = "INSERT INTO ForumNotification (UserId,Message,ViewStatus,AddedDate,Link,topicId) VALUES (:UserId, :Message, :ViewStatus, :AddedDate, :Link,:topicId)";
+        $sqlFN = "INSERT INTO ForumNotification (UserId,Message,ViewStatus,AddedDate,Link) VALUES (:UserId, :Message, :ViewStatus, :AddedDate, :Link)";
     try {
       $db = getConnection();
       $stmtFN = $db->prepare($sqlFN);
@@ -504,7 +504,6 @@ function setCommentLikes($commentId) {
       $stmtFN->bindParam("ViewStatus", $viewstatus);
       $stmtFN->bindParam("AddedDate", $likeDateTime);
       $stmtFN->bindParam("Link", $link);
-      $stmtFN->bindParam("topicId", $id);
       $stmtFN->execute();
 
 
@@ -603,6 +602,38 @@ function saveComments() {
       echo '{"error":{"text":'. $e->getMessage() .'}}';
     }
 
+    $sql = "INSERT INTO DiscussionBoardComments (DiscussionTopicId, UserId,SeqNo, Comment,CommentDateTime,IsValid,profane) VALUES ( :topicId,:userId ,:SeqNo,:comment ,:cmtDateTime,:IsValid, :profane )";
+    try {
+      $db = getConnection();
+      $stmt = $db->prepare($sql);
+      $stmt->bindParam("topicId", $comments->topicId);
+      $stmt->bindParam("userId", $user_id);
+      $stmt->bindParam("SeqNo", $SeqNo);
+      $stmt->bindParam("comment", $comment_santized);
+      $stmt->bindParam("cmtDateTime", $cmtDateTime);
+      $stmt->bindParam("IsValid", $IsValid);
+      $stmt->bindParam("profane", $profane);
+      $stmt->execute();
+      //   echo 'true';
+          //$app->redirect('login.html');
+        } 
+    catch(PDOException $e) {
+          echo '{"error":{"text":'. $e->getMessage() .'}}';
+        }
+
+      $sqlCmmtId = "SELECT max(`CommentId`) as CommentId FROM `DiscussionBoardComments` order by `CommentDateTime` desc";
+      try {
+        $db = getConnection();
+        $stmtCmmtId = $db->prepare($sqlCmmtId);
+        $stmtCmmtId->execute();
+        $wineCmmtId = $stmtCmmtId->fetchObject();
+        //   echo 'true';
+            //$app->redirect('login.html');
+          } 
+      catch(PDOException $e) {
+            echo '{"error":{"text":'. $e->getMessage() .'}}';
+          }
+
     $viewstatus = 0;
     
     $sqlTopicUser = "SELECT distinct dbc.UserId,dbc.DiscussionTopicId,dbt.TopicTitle from DiscussionBoardComments as dbc inner join DiscussionBoardTopic as dbt on dbc.DiscussionTopicId = dbt.DiscussionTopicId where dbc.DiscussionTopicId =:topicid and UserId != :user_id";
@@ -627,7 +658,7 @@ function saveComments() {
       $id = $obj->DiscussionTopicId;
       $link = 'discussion?id='.$id;
       $message = $fname.' '.$lname.' has commented on the topic '.$tname.'.';
-        $sqlFN = "INSERT INTO ForumNotification (UserId,Message,ViewStatus,AddedDate,Link,topicId) VALUES (:UserId, :Message, :ViewStatus, :AddedDate,:Link,:topicId)";
+        $sqlFN = "INSERT INTO ForumNotification (UserId,Message,ViewStatus,AddedDate,Link,CommentId) VALUES (:UserId, :Message, :ViewStatus, :AddedDate,:Link,:CommentId)";
     try {
       $db = getConnection();
       $stmtFN = $db->prepare($sqlFN);
@@ -636,31 +667,14 @@ function saveComments() {
       $stmtFN->bindParam("ViewStatus", $viewstatus);
       $stmtFN->bindParam("AddedDate", $cmtDateTime);
       $stmtFN->bindParam("Link", $link);
-      $stmtFN->bindParam("topicId", $id);
+      $stmtFN->bindParam("CommentId", $wineCmmtId -> CommentId);
       $stmtFN->execute();
        // echo 'true';
     } catch(PDOException $e) {
       echo '{"error":{"text":'. $e->getMessage() .'}}';
     }
     }
-  $sql = "INSERT INTO DiscussionBoardComments (DiscussionTopicId, UserId,SeqNo, Comment,CommentDateTime,IsValid,profane) VALUES ( :topicId,:userId ,:SeqNo,:comment ,:cmtDateTime,:IsValid, :profane )";
-  try {
-    $db = getConnection();
-    $stmt = $db->prepare($sql);
-    $stmt->bindParam("topicId", $comments->topicId);
-    $stmt->bindParam("userId", $user_id);
-    $stmt->bindParam("SeqNo", $SeqNo);
-    $stmt->bindParam("comment", $comment_santized);
-    $stmt->bindParam("cmtDateTime", $cmtDateTime);
-    $stmt->bindParam("IsValid", $IsValid);
-    $stmt->bindParam("profane", $profane);
-    $stmt->execute();
-    //   echo 'true';
-        //$app->redirect('login.html');
-      } 
-  catch(PDOException $e) {
-        echo '{"error":{"text":'. $e->getMessage() .'}}';
-      }
+  
   }
 
   

@@ -54,7 +54,20 @@
 		<div class="rightmargin rightmargintop">
 			<div class="head1 color-brown">RECOMMENDATIONS</div>
 		<div class="col-md-offset-2 col-md-4 align-center rightmargintop">
-			<img src="images/car.jpg">
+			<!-- <img src="images/car.jpg"> -->
+			<div class="carousel-class">
+			    <a data-ng-show="hasPrevious()" style="right: 525px;" data-ng-click="previous()">&lt;</a>
+			    <span class="link" data-ng-hide="hasPrevious()" style="right: 525px;">&lt;</span>
+			    <div class="photo-container" data-my-carousel data-carousel-class="photo-carousel" data-on-page-upcoming="loadPage(page, tmplCb)" data-give-carousel-to="onCarouselAvailable(carousel)">
+			      <div class="photo-grid">
+			      <span data-ng-repeat="photo in photos">
+			        <img ng-src="{{getPhotoUrl(photo)}}">
+			      </span>
+			      </div>
+			    </div>
+			    <a data-ng-show="hasNext()" style="right: 65px;" data-ng-click="next()">&gt;</a>
+			    <span class="link" style="right: 65px;" data-ng-hide="hasNext()">&gt;</span>
+			 </div>
 		</div>
 		</div>
 		
@@ -62,51 +75,18 @@
 
 	<div class="row margin-right-0 rightmargin rightmargintop">
 		<div class="head1 color-brown">CAFE FORUM UPDATES</div>
-		<div class="bordertop">
+		<div class="bordertop" ng-repeat="updts in updates">
 			<div class="row" style="margin:10px 10px 10px 25px;">
-				<img class="rounded-x" src="images/img1.jpg" alt="" style="width:70px;height:auto;float:left;">
+				<img class="rounded-x" ng-src="{{updts.Picture}}" alt="" style="width:70px;height:auto;float:left;">
 				<div class ="forumUpdate">
-					<div class="color-brown-light"><strong>Abhik Jawandhiya</strong></div>
-				 	<div>Bangalore, India</div>
-				 	<div>2 hours ago</div>
+					<div class="color-brown-light"><strong>{{updts.first_name}} {{updts.last_name}}</strong></div>
+				 	<div>{{updts.TopicTitle}}</div>
+				 	<div>{{updts.Comment}}</div>
 				</div>
 			</div>
 
 		</div>
-		<div class="bordertop">
-			<div class="row" style="margin:10px 10px 10px 25px;">
-				<img class="rounded-x" src="images/img1.jpg" alt="" style="width:70px;height:auto;float:left;">
-				<div class ="forumUpdate">
-					<div class="color-brown-light"><strong>Abhik Jawandhiya</strong></div>
-				 	<div>Bangalore, India</div>
-				 	<div>2 hours ago</div>
-				</div>
-			</div>
-
-		</div>
-		<div class="bordertop">
-			<div class="row" style="margin:10px 10px 10px 25px;">
-				<img class="rounded-x" src="images/img1.jpg" alt="" style="width:70px;height:auto;float:left;">
-				<div class ="forumUpdate">
-					<div class="color-brown-light"><strong>Abhik Jawandhiya</strong></div>
-				 	<div>Bangalore, India</div>
-				 	<div>2 hours ago</div>
-				</div>
-			</div>
-
-		</div>
-		<div class="bordertop">
-			<div class="row" style="margin:10px 10px 10px 25px;">
-				<img class="rounded-x" src="images/img1.jpg" alt="" style="width:70px;height:auto;float:left;">
-				<div style="padding-top:2px;margin-left:12%;">
-					<div class="color-brown-light"><strong>Abhik Jawandhiya</strong></div>
-				 	<div>Bangalore, India</div>
-				 	<div>2 hours ago</div>
-				</div>
-			</div>
-
-		</div>
-	</div>
+		
 
 
 	<div class="panel-body row" ng-repeat="rec in recommendation">

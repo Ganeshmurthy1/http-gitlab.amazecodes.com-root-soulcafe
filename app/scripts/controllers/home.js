@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('HomeCtrl', function ($scope, localStorageService, regService, profileOperations) {
+  .controller('HomeCtrl',['$scope','$location','localStorageService','regService', 'FlickrApi','$routeParams','profileOperations', function ($scope, $location, localStorageService, regService,flickr,$routeParams,profileOperations) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -38,4 +38,43 @@ angular.module('sassApp')
       console.log(response);    
          $scope.recommendation=response.data;         
       });
-  });
+
+      profileOperations.getForumUpdates().then(function(response) {
+      
+      console.log(response);    
+         $scope.updates=response.data;         
+      });
+ 
+
+ var carousel;
+
+    $scope.hasPrevious = function() {
+      return carousel ? carousel.hasPrevious() : false;
+    };
+    $scope.previous = function() {
+      if (carousel) { carousel.prev(); }
+    };
+    $scope.hasNext = function() {
+      return carousel ? carousel.hasNext() : false;
+    };
+    $scope.next = function() {
+      if (carousel) { carousel.next(); }
+    };
+
+    var loadPhotos = function(carouselScope, page) {
+      carousel.updatePageCount(6);
+      carouselScope.photos = flickr.getPhotos(page);
+      carouselScope.getPhotoUrl = function(photo) {
+        return flickr.getPhotoUrl(photo);
+      };
+    };
+    $scope.loadPage = function(page, tmplCb) {
+      var newScope = $scope.$new();
+      loadPhotos(newScope, page);
+      tmplCb(newScope);
+    };
+    $scope.onCarouselAvailable = function(car) {
+      carousel = car;
+    };
+
+   }]);
