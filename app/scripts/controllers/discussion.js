@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('DiscussionCtrl', function ($scope,$routeParams,localStorageService,regService) {
+  .controller('DiscussionCtrl', function ($scope,$routeParams,$facebook,localStorageService,regService,$location, $window) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -58,10 +58,10 @@ angular.module('sassApp')
 
       regService.getdiscussionTopicComments($routeParams.topic).then(function (results) {
         $scope.comments = results.data; 
-console.log( $scope.comments);
+// console.log( $scope.comments);
         regService.getPicturesComments($routeParams.topic).then(function (results) {
              $scope.picture=results.data;
-             console.log( $scope.picture);
+             // console.log( $scope.picture);
              for (var a in $scope.comments){
         for (var j = 0; j <  $scope.picture.length; j++) {
         
@@ -71,7 +71,7 @@ console.log( $scope.comments);
         }
         }; 
       }; 
-         console.log($scope.comments);     
+         // console.log($scope.comments);     
         });
        
             });
@@ -136,5 +136,30 @@ $scope.addRating = function(rating){
             $scope.pic=response.data; 
             // console.log($scope.pic.Picture);
     });
+
+
+ $scope.userDetails = function(userId){
+    console.log(userId);
+
+    regService.getUserDetails(userId).then(function (results) {
+        // console.log(results.data);
+        $scope.userData = results.data; 
+        console.log($scope.userData);
+        if ($scope.userData.status == 1) {
+          // $location.path('/dashboard-anon?user_id=87');
+          $window.location.href = '#/dashboard-anon?user_id=87';
+        }else{
+          alert("This user is not active in Soulcafe");
+        }
+            
+      });
+
+    $facebook.api("/800856129935365/likes").then(function(pic) {
+                console.log(pic);
+              
+           //   var fbbbbdata = localStorageService.get('fbpicture');
+            // console.log(fbbbbdata);
+          });
+ }
 
   });

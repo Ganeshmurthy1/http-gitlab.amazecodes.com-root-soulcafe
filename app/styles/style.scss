@@ -838,7 +838,7 @@
   top: 8px;
   right: 9px;
   font-size: 11px;
-  content: "\f105";
+  
   position: absolute;
   font-weight: normal;
   display: inline-block;
@@ -847,14 +847,14 @@
 
 @media (max-width: 1000px) {
   .dropdown-submenu > a:after {
-    content: " ";
+    
   }
 }
 
 .dropdown > a:after {
   top: 9px;
   right: 15px;
-  content: "\f107";
+  
 }
 
 .dropdown-submenu {
