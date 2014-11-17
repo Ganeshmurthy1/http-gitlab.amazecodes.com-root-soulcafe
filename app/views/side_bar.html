@@ -1,241 +1,97 @@
-<div class="col-md-3 md-margin-bottom-40">
-    <div class="row" style="clear:both;margin-bottom:5%;">
-    <ul class="list-inline badge-lists badge-box-v2 margin-bottom-30">
-        <li>
-            <a ng-click="sysMessage()" class="rounded my-pointer"><i class="fa fa-bell-o"></i>Alerts</a>
-            <span class="badge badge-red rounded-x" ng-show="totalSysMessage">{{totalSysMessage}}</span>
-        </li>
-        <li>
-            <a ng-click="Message()" class="rounded my-pointer"><i class="fa fa-envelope-o"></i>Messages</a>
-            <span class="badge badge-red rounded-x" ng-show="totalMessage">{{totalMessage}}</span>
-        </li>
-        <li>
-            <a ng-click="forumMessage()"  class="rounded my-pointer"><i class="fa fa-comments-o"></i>Notifications</a>
-            <span class="badge badge-red rounded-x" ng-show="totalForumMessage">{{totalForumMessage}}</span>
-        </li>        
-    </ul>    
-    </div>    
-    <div class="notice_pop col-md-6" data-ng-show="popup">    
-    	<div class="alert alert-success fade in no-bottom" data-ng-repeat = "message in messages">
-    	<a href="#/{{message.Link}}" style="display:block; text-decoration:none;">
-            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-            {{message.Message}}
-             {{message.mess}}
-        </a>
-        </div>
-       
-   
-                        
+<div class="col-xs-12 col-sm-4 col-md-3 bcolor-grey">
+    <div class="align-center margin-top-10">
+        <img class="rounded-x imagel" ng-src="{{userData.Picture}}" alt="" >
+        <div class="name">{{userData.first_name}} {{userData.last_name}} , {{diff}}</div>
+        <img src="images/div.png" alt="" >
+        <div class="add">Lives In : {{userData.location}}</div>
+        <div class="add">From : {{userData.hometown}}</div>
+        <div class="pull-right morebutton add"><a href="">More</a></div>
     </div>
-    
-    
-            <div style="clear:both;">    <img class="img-responsive profile-img margin-bottom-20" ng-src="{{pic.Picture}}"></img></div>
-                <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1" data-ng-show="isAdmin">
-                    <li class="list-group-item active">
-                        <a href="profile.html"><i class="fa fa-bar-chart-o"></i> Admin - Manage Soulcafe</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#/admin-add-discussion"><i class="fa fa-user"></i> Add Discussion Forum</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#/admin-discussion-list"><i class="fa fa-group"></i> List Discussion Forum</a>
-                    </li>  
-                    
-                    <li class="list-group-item">
-                        <a href="#/admin-bad-list"><i class="fa fa-group"></i> Manage Bad Comments</a>
-                    </li>                                      
 
-                    <li class="list-group-item">
-                        <a href="#/admin-discussionboardAbuse-list"><i class="fa fa-cubes"></i> Spam Requests</a>
-                    </li>
-
-                     <li class="list-group-item">
-                        <a href="#/admin-inappropriate-comments"><i class="fa fa-comment"></i> Inappropriate Comments</a>
-                    </li>                     
-
-                </ul>   
-
-                <div class="panel-heading-v2 overflow-h">
-                    <h2 class="heading-xs pull-left"><i class="fa fa-bar-chart-o"></i> Verification Progress</h2>
-                    <!-- <a href="#"><i class="fa fa-cog pull-right"></i></a> -->
+    <div class="clearfix align-center quote marginleft gredient">
+        <h1 class="color-brown">"QUOTE I LIVE BY"</h1>
+        <h3 class="color-brown-light">{{userData.Moto}}</h3>
+    </div>
+    <div class="margin-top-10 hideblck">
+        <div class="marginleft clearfix">
+            <div class="clabel row">FRIENDS ({{totalfriends}})</div>
+            <div class="row" style="margin:10px;" ng-repeat="frnd in friends">
+                <img class="rounded-x" ng-src="{{frnd.Picture}}" alt="" style="width:50px;height:auto;float:left;">
+                <div style="padding-top:7px;margin-left:30%;">
+                    <div class="color-brown-light"><strong>{{frnd.first_name}} {{frnd.last_name}}</strong></div>
+                    <div>{{frnd.location}}, {{frnd.hometown}}</div>
                 </div>
-                <div style="width:auto;">
-                    <img class="img-responsive profile-img margin-bottom-20" src="images/facebook.png"></img>
-                    <i class="fa fa-thumbs-up fa-2x" style="margin-left:5%;color:#7ec31b;"></i>
-                </div>
-                <div style="width:auto;">
-                    <img class="img-responsive profile-img margin-bottom-20" src="images/linkedin.png"></img>
-                    <i class="fa fa-thumbs-up fa-2x" ng-hide="thumbup" style="margin-left:5%;color:#7ec31b;"></i>
-                    <i class="fa fa-thumbs-down fa-2x" ng-show="thumbup" style="margin-left:5%;color:red;"></i>
-                </div>
-                <div style="width:auto;">
-                    <img class="img-responsive profile-img margin-bottom-20" src="images/icon-mobile.png"></img>
-                    <i class="fa fa-thumbs-up fa-2x" style="margin-left:4%;color:#7ec31b;"></i>
-                    
-                </div>
-                <div style="width:auto;">
-                    <img class="img-responsive profile-img margin-bottom-20" src="images/stamp1.jpg"></img>
-                    <i class="fa fa-thumbs-down fa-2x" style="margin-left:5%;color:red;"></i>
-                </div>
-                <h3 class="heading-xs">Profile Verification <span class="pull-right">{{profileverify}}</span></h3>
-                <div class="progress progress-u progress-xxs">
-                    <div style="width:{{profileverify}}" aria-valuemax="100" aria-valuemin="0" aria-valuenow="92" role="progressbar" class="progress-bar progress-bar-u">
-                    </div>
-                </div>
-                <h3 class="heading-xs">Questionnaire Status  <span class="pull-right">0%</span></h3>
-                <div class="progress progress-u progress-xxs">
-                    <div style="width: 0%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="85" role="progressbar" class="progress-bar progress-bar-blue">
-                    </div>
-                </div>
-                <hr>
-                <div class="">
-                            <div class="panel panel-profile">
-                                <div class="panel-heading overflow-h">
-                                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments-o"></i> Discussions</h2>
-                                    <a href="#/discussion-list" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs pull-right">View All</a>
-                                </div>
-                        
-                                <perfect-scrollbar class="panel-body contentHolder" wheel-propagation="true" wheel-speed="50" >
-
-                                    <div class="alert fade in margin-bottom-40" ng-repeat="diss in discussionData" >
-                    
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <h4><a href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}">Forum Name - {{diss.Topic}}</a></h4>
-                    <p>Description - {{diss.Description}}</p>
-                </div>
-                         </perfect-scrollbar>  
-                               
-                            </div>    
-                        </div>
-
-
-                        <div class="">
-                            <div class="panel panel-profile">
-                                <div class="panel-heading overflow-h">
-                                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments-o"></i> Cafe Buddies</h2>
-                                    <a href="#/profile_comments" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs pull-right">View All</a>
-                                </div>
-                        
-                                <perfect-scrollbar class="panel-body contentHolder" wheel-propagation="true" wheel-speed="50" >
-
-                                    <div class="comment">
-                                        <img src="images/testimonials/img6.jpg" alt="">
-                                        <div class="overflow-h">
-                                            <strong>Taylor Lee<small class="pull-right"> 25m</small></strong> 
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                            <ul class="list-inline comment-list">
-                                                <li><i class="fa fa-heart"></i> <a href="#">23</a></li>
-                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
-                                            </ul>
-                                        </div>    
-                                    </div>
-                                    <div class="comment">
-                                        <img src="images/testimonials/img2.jpg" alt="">
-                                        <div class="overflow-h">
-                                            <strong>Miranda Clarsson<small class="pull-right"> 44m</small></strong> 
-                                            <p>Donec cursus, orci non posuere luctus, risus massa luctus nisi, sit amet cursus leo massa id arcu. Nunc tincidunt magna sit amet sapien congue.</p>
-                                            <ul class="list-inline comment-list">
-                                                <li><i class="fa fa-heart"></i> <a href="#">23</a></li>
-                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
-                                            </ul>
-                                        </div>    
-                                    </div>
-                                    <div class="comment">
-                                        <img src="images/testimonials/img4.jpg" alt="">
-                                        <div class="overflow-h">
-                                            <strong>Natasha Kolnikova<small class="pull-right"> 7h</small></strong> 
-                                            <p>Suspendisse est est, sollicitudin eget auctor et, pharetra eu sapien. Mauris mollis libero ac auctor iaculis.</p>
-                                            <ul class="list-inline comment-list">
-                                                <li><i class="fa fa-heart"></i> <a href="#">23</a></li>
-                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
-                                            </ul>
-                                        </div>    
-                                    </div>
-                                    <div class="comment">
-                                        <img src="images/testimonials/img1.jpg" alt="">
-                                        <div class="overflow-h">
-                                            <strong>Mikel Andrews<small class="pull-right"> 15h</small></strong> 
-                                            <p>Nam ut dolor cursus nibh aliquet bibendum in eget risus.</p>
-                                            <ul class="list-inline comment-list">
-                                                <li><i class="fa fa-heart"></i> <a href="#">20</a></li>
-                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
-                                            </ul>
-                                        </div>    
-                                    </div>
-                                    <div class="comment">
-                                        <img src="images/testimonials/img7.jpg" alt="">
-                                        <div class="overflow-h">
-                                            <strong>Edward Rooster<small class="pull-right"> 1d</small></strong> 
-                                            <p>Nam ut dolor cursus nibh aliquet bibendum in eget risus. Mauris mollis libero ac auctor iaculis.</p>
-                                            <ul class="list-inline comment-list">
-                                                <li><i class="fa fa-heart"></i> <a href="#">23</a></li>
-                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
-                                            </ul>
-                                        </div>    
-                                    </div>
-                                
-
-                         </perfect-scrollbar>  
-                               
-                            </div>    
-                        </div>
-                <!--Notification-->
-               <!--  <div class="panel-heading-v2 overflow-h">
-                    <h2 class="heading-xs pull-left"><i class="fa fa-bell-o"></i> Notification</h2>
-                    <a href="#"><i class="fa fa-cog pull-right"></i></a>
-                </div>
-
-               
-                <perfect-scrollbar class="list-unstyled contentHolder margin-bottom-20" wheel-propagation="true" wheel-speed="50" >
-                    <li class="notification">
-                        <i class="icon-custom icon-sm rounded-x icon-bg-red icon-line icon-envelope"></i>
-                        <div class="overflow-h">
-                            <span><strong>Albert Heller</strong> has sent you email.</span>
-                            <small>Two minutes ago</small>
-                        </div>    
-                    </li>
-                    <li class="notification">
-                        <img class="rounded-x" src="images/testimonials/img6.jpg" alt="">
-                        <div class="overflow-h">
-                            <span><strong>Taylor Lee</strong> started following you.</span>
-                            <small>Today 18:25 pm</small>
-                        </div>    
-                    </li>
-                    <li class="notification">
-                        <i class="icon-custom icon-sm rounded-x icon-bg-yellow icon-line fa fa-bolt"></i>
-                        <div class="overflow-h">
-                            <span><strong>Natasha Kolnikova</strong> accepted your invitation.</span>
-                            <small>Yesterday 1:07 pm</small>
-                        </div>    
-                    </li>
-                    <li class="notification">
-                        <img class="rounded-x" src="images/testimonials/img1.jpg" alt="">
-                        <div class="overflow-h">
-                            <span><strong>Mikel Andrews</strong> commented on your Timeline.</span>
-                            <small>23/12 11:01 am</small>
-                        </div>    
-                    </li>
-                    <li class="notification">
-                        <i class="icon-custom icon-sm rounded-x icon-bg-blue icon-line fa fa-comments"></i>
-                        <div class="overflow-h">
-                            <span><strong>Bruno Js.</strong> added you to group chating.</span>
-                            <small>Yesterday 1:07 pm</small>
-                        </div>    
-                    </li>
-                    <li class="notification">
-                        <img class="rounded-x" src="images/testimonials/img6.jpg" alt="">
-                        <div class="overflow-h">
-                            <span><strong>Taylor Lee</strong> changed profile picture.</span>
-                            <small>23/12 15:15 pm</small>
-                        </div>    
-                    </li>
-                
-
-              </perfect-scrollbar>  
-                <button type="button" class="btn-u btn-u-default btn-u-sm btn-block">Load More</button> -->
-                <!--End Notification-->
-
-                <div class="margin-bottom-50"></div>
-
-           
             </div>
+        </div>
+    </div>
+
+        <div class="margin-top-10 hideblck">
+            <div class="marginleft clearfix">
+            <div class="clabel row">FORUMS</div>
+            <span ng-repeat="diss in discussion">
+                <a class="sublabel uppercase123">{{diss.Topic}}</a>
+            </span>
+            </div>
+        </div>
+
+    <div class="margin-top-10 hideblck">
+        <div class="marginleft clearfix ">
+            <div class="clabel row">INTERESTS</div>
+            <span class="interests float-left align-center">
+                <span class="glyphicon glyphicon-headphones gly"></span>
+                <div class="font">Music</div>
+            </span>
+            <span class="interests float-left align-center">
+                <span class="glyphicon glyphicon-cutlery gly"></span>
+                <div class="font">Food</div>
+            </span>
+            <span class="interests float-left align-center">
+                <span class="glyphicon glyphicon-plane gly"></span>
+                <div class="font">Travelling</div>
+            </span>
+            <span class="interests float-left align-center">
+                <span class="glyphicon glyphicon-cutlery gly"></span>
+                <div class="font">Food</div>
+            </span>
+            <span class="interests float-left align-center">
+                <span class="glyphicon glyphicon-plane gly"></span>
+                <div class="font">Travelling</div>
+            </span>
+            <span class="interests float-left align-center">
+                <span class="glyphicon glyphicon-headphones gly"></span>
+                <div class="font">Music</div>
+            </span>
+            
+            <span class="interests float-left align-center">
+                <span class="glyphicon glyphicon-plane gly"></span>
+                <div class="font">Travelling</div>
+            </span>
+            <span class="interests float-left align-center">
+                <span class="glyphicon glyphicon-headphones gly"></span>
+                <div class="font">Music</div>
+            </span>
+            <span class="interests float-left align-center">
+                <span class="glyphicon glyphicon-cutlery gly"></span>
+                <div class="font">Food</div>
+            </span>
+            
+            <span class="interests float-left align-center">
+                <span class="glyphicon glyphicon-headphones gly"></span>
+                <div class="font">Music</div>
+            </span>
+            <span class="interests float-left align-center">
+                <span class="glyphicon glyphicon-cutlery gly"></span>
+                <div class="font">Food</div>
+            </span>
+            <span class="interests float-left align-center">
+                <span class="glyphicon glyphicon-plane gly"></span>
+                <div class="font">Travelling</div>
+            </span>
+                
+                
+            
+        </div>
+        
+    </div>
+
+</div>

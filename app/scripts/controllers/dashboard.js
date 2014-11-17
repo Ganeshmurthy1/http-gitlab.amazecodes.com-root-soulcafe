@@ -77,6 +77,7 @@ angular.module('sassApp')
    
 
     function getUSerdata() {
+      
     	var authData = localStorageService.get('authorizationData');
     	
      
