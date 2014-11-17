@@ -31,7 +31,7 @@ angular.module('sassApp')
     		var max = $scope.QuestionObj.totalQn.totalQn;
     		var value = $scope.QuestionObj.totalAnsQn.totalAnsQn;
     		if(value == max) {
-    			$location.path('/dashboard');
+    			$location.path('/home');
     		}
     		var per = value/max;
     		var percentage = per*100;    		
