@@ -127,6 +127,12 @@ angular.module('sassApp')
 	                return response;
 	            });	
 		};
+		dataFactory.deleteQuestion = function (id) {
+		console.log(id);	
+		     	return $http.get(urlBase + 'delete_Question/'+ id).then(function(response) {
+	                return response;
+	            });	
+		};
 		
 		dataFactory.adminGetThisUser = function (id) {	
 	     	return $http.get(urlBase + 'admin_get_this_user/'+ id).then(function(response) {

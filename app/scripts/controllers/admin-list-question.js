@@ -28,4 +28,18 @@ angular.module('sassApp')
         console.log(response.data);
     });
     }
+
+    $scope.deleteQuestion = function(id){
+      console.log(id);
+      adminOperations.deleteQuestion(id).then(function (response) {
+        console.log(response.data);
+        if (response.data == 'true') {
+          adminOperations.getAllQuestions().then(function (response) {
+        console.log(response.data);
+        $scope.admins = response.data;
+    });
+        };
+    });
+    }
   });
+  

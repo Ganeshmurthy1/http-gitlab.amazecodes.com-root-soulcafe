@@ -52,6 +52,8 @@ $app->get('/get_all_questions', 'GetAllQuestions');
 
 $app->post('/update_Question_Seq', 'updateQuestionSequence');
 
+$app->get('/delete_Question/:id', 'deleteQuestion');
+
 
 
 function checkAdminLogin() {
@@ -854,4 +856,35 @@ function updateQuestionSequence() {
     }
     echo 'true';
 
+}
+
+function deleteQuestion($id) {
+  // $user_id  = getUserId();
+  $sql = "DELETE FROM `Questionnaire` WHERE Qid = :id";
+  $sql1 = "DELETE FROM `QuestionnaireAnswer` WHERE QId = :id";
+  $sql2 = "DELETE FROM `QuestionnaireOptions` WHERE QId = :id";
+  $sql3 = "DELETE FROM `QuestionnaireUserAnswer` WHERE QnId = :id";
+  $sql4 = "DELETE FROM `AlgorithamLogic` WHERE QuestionId = :id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt1 = $db->prepare($sql1);
+    $stmt2 = $db->prepare($sql2);
+    $stmt3 = $db->prepare($sql3);
+    $stmt4 = $db->prepare($sql4);
+    $stmt->bindParam("id", $id);
+    $stmt1->bindParam("id", $id);
+    $stmt2->bindParam("id", $id);
+    $stmt3->bindParam("id", $id);
+    $stmt4->bindParam("id", $id);
+    $stmt->execute();
+    $stmt1->execute();
+    $stmt2->execute();
+    $stmt3->execute();
+    $stmt4->execute();
+    
+    echo 'true';
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
 }

@@ -7,86 +7,54 @@
  * # SideBarCtrl
  * Controller of the sassApp
  */
+ 
+
 angular.module('sassApp')
-  .controller('SideBarCtrl', function ($scope, localStorageService,regService, $location) {
-
-$scope.SideBar = 'views/side_bar.html';
-
+  .controller('SideBarCtrl', function ($scope, localStorageService, regService, profileOperations) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-    $scope.isAdmin = false;
-    var authData = localStorageService.get('authorizationData');
-    if(authData.user_role == 1) {
-    	$scope.isAdmin = true;
-      $scope.isUser = true;
-    }
-    $scope.popup = false;
-    
-   regService.getPicture(authData.user_id).then(function(response) {
-            $scope.pic=response.data; 
-            // console.log($scope.pic.Picture);
-    });
 
-   regService.getDiscussionDetails().then(function (results) {
+    $scope.SideBar = 'views/side_bar.html';
 
-       $scope.discussionData = results.data;
-    });
-   $scope.profileverify = '50%';
-    var authData = localStorageService.get('authorizationData');
+    function getUSerdata() {
+      var authData = localStorageService.get('authorizationData');
+      
+     
       regService.getUserDetails(authData.user_id).then(function (results) {
-        //console.log(results.data);
+        console.log(results.data);
         $scope.userData = results.data; 
-        // console.log($scope.userData);
+        var d1 = new Date($scope.userData.birthdate);
+        var d2 = new Date();
+      $scope.diff = d2.getFullYear()-d1.getFullYear();
+      console.log($scope.diff);
+          console.log($scope.userData);
          if ($scope.userData.linked_update == 1){
-           $scope.thumbup = 'false';
-           $scope.profileverify = '75%';
-           // console.log("Abhik");
-         }else{
-           $scope.thumbup = 'true';
-         }
-      });
+           $scope.updateButton = 'true';
+           console.log("Abhik");
+          regService.getLinkedinProffesionaldetails(authData.user_id).then(function(response) {
+                  // console.log(response);
+                  $scope.proffesionalDetails = response;
+                  console.log($scope.proffesionalDetails);
+                });
       
-      regService.getTotalSysMessage(authData.user_id).then(function(response) {
-    	  //console.log(response.data.total);
-          $scope.totalSysMessage = response.data.total; 
-          // console.log($scope.pic.Picture);
+        }     
       });
-      regService.getTotalMessage(authData.user_id).then(function(response) {
-          $scope.totalMessage = response.data.total; 
-          // console.log($scope.pic.Picture);
-      });
-      regService.getTotalForumMessage(authData.user_id).then(function(response) {
-          $scope.totalForumMessage = response.data.total; 
-          // console.log($scope.pic.Picture);
-      });
-      
-      $scope.sysMessage = function() {  
-    	  regService.sysMarkMessage().then(function (response) { 
-    		  $scope.messages = response.data;
-    		  $scope.totalSysMessage = 0;
-    		  $scope.popup = true;
-      		
-      	});
-      };
-      
-      $scope.Message = function() {  
-    	  regService.MarkMessage().then(function (response) { 
-    		  $scope.messages = response.data;
-    		  $scope.totalMessage = 0;
-    		  $scope.popup = true;
-      		
-      	});
-      };
-      $scope.forumMessage = function() {  
-    	  regService.forumMarkMessage().then(function (response) { 
-    		  $scope.messages = response.data;
-    		  $scope.totalForumMessage = 0;
-    		  $scope.popup = true;
-      		
-      	});
-      };
+     
+      }
+    
+    getUSerdata();
 
+    profileOperations.getBuddies().then(function(response) {
+      
+      console.log(response);    
+         $scope.friends=response.data.friends;
+         $scope.discussion=response.data.forum;
+          console.log($scope.discussion); 
+          $scope.totalfriends=$scope.friends.length;       
+     });
+
+   
   });
