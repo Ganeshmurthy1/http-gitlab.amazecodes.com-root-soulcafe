@@ -123,7 +123,7 @@
                     </section>
 					<section>
 					    <label class="select">
-					        <select name="Algorithm Type" data-ng-model="question.algType" ng-change="ToggleAlgorithanType(question.algType)" required  >
+					        <select name="Algorithm Type" data-ng-model="question.algType" ng-change="ToggleAlgorithanType(question.algType)" required ng-disabled = "true" >
 					            <option value="" selected disabled>Algorithm input Type</option>
 					            <option value="{{algType.AlgTypeId}}" data-ng-repeat="algType in algTypes">{{algType.AlgTypeTitle}}</option>                             
 					        <select>
