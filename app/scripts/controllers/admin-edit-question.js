@@ -51,6 +51,7 @@ angular.module('sassApp')
 		  $scope.algSingleMatrix = new Object();
 		  $scope.algMultipleMatrix = new Object();
 		  $scope.algPersonalityMatch = new Object();
+		  $scope.algDifferenceMatch = new Object();
 		  $scope.savedSuccessfully = true;
             $scope.successmessage = "Question Added sucessfully.";
             $scope.errMessage = false;
@@ -148,6 +149,17 @@ angular.module('sassApp')
   	
   		
 	}
+  	
+  	else if (algType == 3) {
+		//console.log('hello');
+		setDifferenceMatch();
+		$scope.algorithamBoxDifference = true;
+		$scope.algorithamBoxPersonality = false;
+		$scope.algorithamBoxMultiple = false;
+		$scope.algorithamBoxSingle = false;
+	
+		
+	}
   	else if (algType == 4) {
   		setPersonalityMatch();
   		$scope.algorithamBoxPersonality = true;
@@ -207,6 +219,17 @@ angular.module('sassApp')
 	$scope.algMultipleMatrix = ansTemp;	
 	$scope.question.algMultipleMatrix = $scope.algMultipleMatrix;
 	//console.log($scope.algMultipleMatrix);
+  }
+  
+  function setDifferenceMatch() {	  
+	var ansTemp = new Object();
+	var answersy = $scope.answers;		
+	for ( var y = 0; y < $scope.AlgOptions.length; y++) {
+		var index =  answersy[y];
+		ansTemp[index] = '';				
+	}		
+	$scope.algDifferenceMatch =  $scope.AlgOptions;
+	$scope.question.algDifferenceMatch = $scope.algDifferenceMatch;	    	
   }
   
   function setPersonalityMatch() {    	

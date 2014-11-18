@@ -172,6 +172,20 @@
 						
 					</div>					
 					</section>
+					
+					<section ng-show="algorithamBoxDifference">
+					<div >
+						<div class="row" >
+							<div class="col-xs-12 col-sm-6 col-md-3"  ng-repeat="key in notSorted(algDifferenceMatch)" ng-init="value = data[key]">
+							  <label class="label">{{key}}</label>		
+							  <label class="input">					 
+							  <input type="text" name="subject" id="Difference" data-ng-model="algDifferenceMatch[key]" > 
+							  </label>  
+							</div>							
+						</div>
+						
+					</div>					
+					</section>
                 
                 </fieldset>
                     <footer>
