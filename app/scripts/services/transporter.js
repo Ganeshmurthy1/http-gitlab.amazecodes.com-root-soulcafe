@@ -16,6 +16,9 @@ angular.module('sassApp')
 	    dataFactory.base_path = '/SASS/api/';
 	    var urlBase = '/SASS/api/';
 	    
+	    //dataFactory.base_path = '/SASS/api/index.php/';
+	   // var urlBase = '/SASS/api/index.php/';
+	    
 	    
 	    dataFactory.get = function (path) {
 	    	return $http.get(urlBase + path).then(function(response) {

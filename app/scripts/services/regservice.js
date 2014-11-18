@@ -11,7 +11,10 @@ angular.module('sassApp')
 	   
 	    localStorageService.set('apiContext', {
 			 base_path: '/SASS/api/',
-	    });	  
+	    });	
+//	    localStorageService.set('apiContext', {
+//			 base_path: '/SASS/api/index.php/',
+//	    });	
 	    var urlBase = localStorageService.get('apiContext').base_path;
 	    var dataFactory = {};
 	    
