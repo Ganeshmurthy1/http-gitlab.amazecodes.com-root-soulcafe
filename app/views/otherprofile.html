@@ -42,8 +42,14 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-12 col-sm-5 col-md-3">
-			<button type="button" class="btn btn-comp uppercase123 width100">Say Hello</button>
+		<div class="col-xs-12 col-sm-5 col-md-3" ng-show="GTKY">
+			<button type="button" ng-click="sendGTKY()" class="btn btn-comp uppercase123 width100">Say Hello</button>
+		</div>
+		<div class="col-xs-12 col-sm-5 col-md-3" ng-show="GTKY1">
+			<button type="button" ng-click="sendGTKY()" class="btn btn-comp uppercase123 width100">GTKY Send</button>
+		</div>
+		<div class="col-xs-12 col-sm-5 col-md-3" ng-show="GTKY2">
+			<button type="button" ng-click="sendGTKY()" class="btn btn-comp uppercase123 width100">Send message</button>
 		</div>
 		<div class="col-xs-12 col-sm-5 col-md-3">
 			<div class="clearfix"> <button type="button" class="btn btn-gtky uppercase123 width100">Check Compatiblity</button></div>

@@ -17,7 +17,7 @@
 		<div class="marginleft clearfix">
 			<div class="clabel row">FORUMS</div>
 				<span ng-repeat="diss in discussion">
-				<a class="sublabel uppercase123">{{diss.Topic}}</a>
+				<a class="sublabel uppercase123" href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}">{{diss.Topic}}</a>
 			</span>
 		</div>
 		

@@ -254,14 +254,23 @@ function getUserSendedGTKY() {
 }
 
 function acceptGTKY($id) {
-   // $user_id  = getUserId();
-   
+    $user_id  = getUserId();
+    $cmtDateTime=  date("Y-m-d") ;
+   $status = 1;
   $sql = " update Buddies SET Status = 1 where SenderId =:id";
+  $sql1 = "Insert into Buddies (SenderId,BuddyId,Status,AddedDate) values (:buddyid,:senderid,:status,:AddedDate)";
   try {
     $db = getConnection();
-    $stmt = $db->prepare($sql);  
+    $stmt = $db->prepare($sql);
+    $stmt1 = $db->prepare($sql1);    
     $stmt->bindParam("id", $id);
+    $stmt1->bindParam("senderid", $id);
+    $stmt1->bindParam("buddyid", $user_id);
+    $stmt1->bindParam("status", $status);
+    $stmt1->bindParam("AddedDate", $cmtDateTime);
+
     $stmt->execute();
+    $stmt1->execute();
     echo 'true';
       // echo json_encode($wine);
   }catch(PDOException $e) {

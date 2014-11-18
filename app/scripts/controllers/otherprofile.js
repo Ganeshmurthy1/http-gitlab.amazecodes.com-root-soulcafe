@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('OtherprofileCtrl', ['$scope','$location','localStorageService','regService', 'FlickrApi','$routeParams', function ($scope, $location, localStorageService, regService,flickr,$routeParams) {
+  .controller('OtherprofileCtrl', ['$scope','$location','localStorageService','regService', 'FlickrApi','$routeParams','profileOperations', function ($scope, $location, localStorageService, regService,flickr,$routeParams,profileOperations) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -31,6 +31,36 @@ angular.module('sassApp')
            $scope.thumbup = 'true';
          }
       });
+
+      $scope.sendGTKY = function(){
+              
+      $location.path('/confirmGTKY');
+      };
+
+        profileOperations.checkGTKYRequest($scope.user_id).then(function(resp) {
+          console.log(resp.data[0]);
+          $scope.chkuser = resp.data[0];
+          if ($scope.chkuser == null){
+            console.log("Abhik Null");
+            $scope.GTKY ="true";
+            $scope.GTKY1 ="false";
+            $scope.GTKY2 ="false";
+          }else if( $scope.chkuser.Status == 0) {
+            console.log("Abhik Status 0");
+             $scope.GTKY ="false";
+            $scope.GTKY1 ="true";
+            $scope.GTKY2 ="false";
+          }else if($scope.chkuser.Status == 1){
+            console.log("Abhik Status 1");
+              $scope.GTKY ="false";
+            $scope.GTKY1 ="false";
+            $scope.GTKY2 ="true";
+          }
+          // console.log("Outside");      
+        });
+
+
+
 
  var fill = d3.scale.category20();
 

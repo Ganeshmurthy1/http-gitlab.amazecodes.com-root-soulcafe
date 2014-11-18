@@ -44,15 +44,7 @@ angular.module('sassApp')
       });
       $scope.UserId={};
       $scope.sendGTKY = function(){
-        // $scope.UserId.id = $routeParams.user_id;
-        //  profileOperations.addGTKYRequest($scope.UserId).then(function(response) {
-        //   console.log(response.data);
-        //   if (response.data = 'true'){
-        //     $scope.GTKY ="true";
-        //     alert("Friend Request Has been send");
-        //   }            
-        // });
-
+        
 $location.path('/confirmGTKY');
       };
 
