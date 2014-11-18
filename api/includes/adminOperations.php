@@ -806,7 +806,7 @@ function getSysMessage() {
 
 function GetAllQuestions() {
   // $user_id  = getUserId();
-  $sql = "SELECT q.*, qc.Category, at.AlgTypeTitle FROM `Questionnaire` q JOIN QuestionnaireCategory qc ON q.QuestionCategory = qc.QcId  JOIN AlgorithamType at ON q.AlgorithamType=at.AlgTypeId";
+  $sql = "SELECT q.*, qc.Category, at.AlgTypeTitle FROM `Questionnaire` q JOIN QuestionnaireCategory qc ON q.QuestionCategory = qc.QcId  JOIN AlgorithamType at ON q.AlgorithamType=at.AlgTypeId order by Sequence";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);

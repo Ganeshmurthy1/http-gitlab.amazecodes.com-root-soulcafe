@@ -82,7 +82,7 @@ function adminAddQuestion() {
   $status=0;
   $DateTime=  date("Y-m-d h:i:s") ;
  // print_r($question);
- // exit();
+  //exit();
   $max_selection = '';
   if (isset($question->maxselection)) {
     $max_selection = $question->maxselection;
@@ -142,6 +142,17 @@ function adminAddQuestion() {
         $stmtA->execute();        
       }      
     }
+    if ($question->algType == 3) {
+      foreach ($ansId as $key => $value) {
+        $sqlo = "Update QuestionnaireOptions SET Weight=:weight WHERE QoId = :QoId";
+        $stmto = $db->prepare($sqlo);
+        $stmto->bindParam("weight", $question->algDifferenceMatch->$key);
+        $stmto->bindParam("QoId", $value);
+        $stmto->execute();
+    
+      }  
+    }
+    
     if ($question->algType == 4) {
       foreach ($ansId as $key => $value) {
         $sqlo = "Update QuestionnaireOptions SET PersonalityType=:type WHERE QoId = :QoId";
@@ -350,6 +361,23 @@ function adminGetQuestionDetails($id) {
       }
       $result->Algoritham = $algorithamLogic;
     }
+    else if ($wine->AlgorithamType == 3) {
+    
+      //print $wine->Qid;
+      $sqlAnt = "SELECT Answer, Weight from QuestionnaireOptions where Qid = :Qid";
+      $stmtAnt = $db->prepare($sqlAnt);
+      $stmtAnt->bindParam("Qid", $wine->Qid);
+      $stmtAnt->execute();
+      $wineAnt = $stmtAnt->fetchAll(PDO::FETCH_OBJ);
+      // print_r($wineAnt);
+      for ($i = 0; $i <count($wineAnt); $i++) {
+        //$wineAnt[0]->Qoid;
+        $tmparr[$wineAnt[$i]->Answer] = $wineAnt[$i]->Weight;
+      }
+      $result->Algoritham = $tmparr;
+    
+    }
+    
     else if ($wine->AlgorithamType == 4) {
       
       //print $wine->Qid;
@@ -379,7 +407,7 @@ function adminEditQuestion() {
   $question = json_decode($request->getBody());
   $status=0;
   $DateTime=  date("Y-m-d h:i:s") ;
- // print_r($question);
+  //print_r($question);
   //exit();
    
    
@@ -450,7 +478,7 @@ function adminEditQuestion() {
       }
     }
 
-    if ($question->algType == 2) {
+    else if ($question->algType == 2) {
       
       $sql = "Delete from AlgorithamLogic  WHERE QuestionId=:id";
       $stmt = $db->prepare($sql);
@@ -470,7 +498,20 @@ function adminEditQuestion() {
         $stmtA->execute();
       }
     }
-    if ($question->algType == 4) {
+    
+    else if ($question->algType == 3) {
+      foreach ($question->algDifferenceMatch as $key => $value) {
+        $sqlo = "Update QuestionnaireOptions SET Weight=:weight WHERE QId = :QId and Answer = :answer";
+        $stmto = $db->prepare($sqlo);
+        $stmto->bindParam("weight", $value);
+        $stmto->bindParam("QId", $question->Qid);
+        $stmto->bindParam("answer", $key);
+        $stmto->execute();
+    
+      }
+    }
+    
+    else if ($question->algType == 4) {
       foreach ($question->algPersonalityMatch as $key => $value) {
         
         $sqlo = "Update QuestionnaireOptions SET PersonalityType=:type WHERE QId = :QId and Answer = :answer";
