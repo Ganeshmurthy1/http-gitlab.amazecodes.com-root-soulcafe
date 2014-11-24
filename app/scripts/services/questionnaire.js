@@ -105,5 +105,20 @@ angular.module('sassApp')
                 return response;
             });
 		};
+		dataFactory.savePersonality = function (param) {
+	    	// console.log(param);
+	    	return Transporter.post('save_personality_matrix', param).then(function(response) {
+	    		//console.log(response);
+                return response;
+            });
+		};
+		
+		 dataFactory.getPersonalityMatrix = function () {
+	    	// console.log(param);
+	    	return Transporter.get('admin_get_personality_matrix').then(function(response) {
+	    		//console.log(response);
+              return response;
+          });	    	
+	    };
 	    return dataFactory;
 }]);

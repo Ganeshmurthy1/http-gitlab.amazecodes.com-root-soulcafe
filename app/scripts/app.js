@@ -326,6 +326,10 @@ angular
         templateUrl: 'views/admin-manage-question.html',
         controller: 'AdminManageQuestionCtrl'
       })
+      .when('/admin-personality-matrix', {
+        templateUrl: 'views/admin-personality-matrix.html',
+        controller: 'AdminPersonalityMatrixCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

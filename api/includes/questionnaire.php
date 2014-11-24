@@ -21,6 +21,9 @@ $app->post('/update_answer', 'updateAnswer');
 $app->get('/alg_admin_get_category', 'algAdminGetQusCategory');
 
 $app->post('/update_Question_Category_Seq', 'updateQuestionCatSequence');
+$app->post('/save_personality_matrix', 'savePersonalityMatrix');
+
+$app->get('/admin_get_personality_matrix', 'adminGetPersonalityMatrix');
 
 
 function algGetQusCategory() {
@@ -730,4 +733,50 @@ function updateQuestionCatSequence() {
   }
   echo 'true';
 
+}
+
+function savePersonalityMatrix() {
+  $request = Slim::getInstance()->request();
+  $personslity = json_decode($request->getBody());
+  //print_r($ques);
+  //exit();
+  $db = getConnection();
+  $sql = "Delete from AlgPersonalityMatrix";
+  $stmt = $db->prepare($sql);
+  $stmt->execute();
+  foreach ($personslity as $key => $value) {
+        $parts = explode('*', $key);
+        $x = $parts[0];
+        $y = $parts[1];
+        $sqlA = "Insert into AlgPersonalityMatrix (Row, Col, Value) values (:Row, :Col, :Value)";
+        $stmtA = $db->prepare($sqlA);
+        //$stmtA->bindParam("QuestionId", $qnId);
+        $stmtA->bindParam("Row", $x);
+        $stmtA->bindParam("Col", $y);
+        $stmtA->bindParam("Value", $value);
+        $stmtA->execute();        
+      }     
+  $db = null;
+  echo 'true';
+
+}
+
+
+function adminGetPersonalityMatrix() {
+
+  $sql = "SELECT * from AlgPersonalityMatrix ";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    // $stmt->bindParam("id", $id);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    //echo $total = $wine->'count(1)';
+
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  //echo json_encode($wine);
 }
