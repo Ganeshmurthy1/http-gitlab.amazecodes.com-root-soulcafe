@@ -4,8 +4,8 @@ $app->get('/alg_processor', 'algController');
 
 function algController() {
   $questions = algorithmGetAllQuestions();
-  $x = 91;
-  $y = 96;
+  $x = 114;
+  $y = 115;
   $algObject = algObjectCreator($x, $y, $questions);
   $algScores = algProcessor($algObject);
 }
@@ -41,10 +41,10 @@ function algProcessor($algObject) {
 }
 
 function multipleSelectionMatric($qnObject) {
-  print_r($qnObject);
+  //print_r($qnObject);
   
   $score = 0;
-  $sql = "SELECT Value from AlgorithamLogic WHERE Row = :row and Col = :col";
+  $sql = "SELECT Value from AlgorithamLogic WHERE Row = :row and Col = :col and QuestionId = :qid";
   try {
     $db = getConnection();    
     $stmt = $db->prepare($sql);
@@ -54,10 +54,13 @@ function multipleSelectionMatric($qnObject) {
         if ($qnObject->x_answer[$i]->OptionId == $qnObject->y_answer[$j]->OptionId) {
           //$diff = abs($qnObject->x_answer[$i]->RankScale - $qnObject->y_answer[$j]->RankScale);
           //$score += (5-$diff);
+          //print_r($qnObject->x_answer[$i]) . ' - ' . print_r($qnObject->y_answer[$j]);
           
+          print $qnObject->x_answer[$i]->RankScale . '===' . $qnObject->y_answer[$j]->RankScale .'\n';
           
           $stmt->bindParam("row", $qnObject->x_answer[$i]->RankScale);
           $stmt->bindParam("col", $qnObject->y_answer[$j]->RankScale);
+          $stmt->bindParam("qid", $qnObject->question->Qid);
           $stmt->execute();
           $wine = $stmt->fetchObject();
           print 'dd' . $wine->Value;
@@ -65,12 +68,12 @@ function multipleSelectionMatric($qnObject) {
         }
       }
     }
-   // print $score;
-   $totalScore  = $qnObject->question->MaxOptions * $qnObject->question->MaxScore;
-   $scoreper = ($score / $totalScore) * 100; 
+    //print $score;
+   $totalScore  =  $qnObject->question->MaxScore;
+   $scoreper =  ($score / $totalScore) * 100; 
     
    $db = null;
-   return $scoreper;
+   return ceil($scoreper);
     //echo json_encode($wine);
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
@@ -99,7 +102,7 @@ function multiSelectionintensity($qnObject) {
 }
 
 function DifferenceMatch($qnObject) {
-  //print_r($qnObject);
+  print_r($qnObject);
   
   $sql = "SELECT QoId, Weight from QuestionnaireOptions WHERE QoId = :xid or  QoId = :yid";
   try {
