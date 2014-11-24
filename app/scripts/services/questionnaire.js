@@ -91,5 +91,19 @@ angular.module('sassApp')
                 return response;
             });
 		};
+		 dataFactory.getAdminAllQuestionCategory = function () {
+		    	// console.log(param);
+		    	return Transporter.get('alg_admin_get_category').then(function(response) {
+		    		//console.log(response);
+	              return response;
+	          });	    	
+		    };
+	    dataFactory.updateQuestionCategorySeq = function (param) {
+	    	// console.log(param);
+	    	return Transporter.post('update_Question_Category_Seq', param).then(function(response) {
+	    		//console.log(response);
+                return response;
+            });
+		};
 	    return dataFactory;
 }]);

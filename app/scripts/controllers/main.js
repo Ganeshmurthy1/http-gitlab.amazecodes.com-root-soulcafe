@@ -27,7 +27,7 @@ angular.module('sassApp')
     	var result = new Object();
 	    result.status = true;
 	    result.message = '';
-	    if (param.total_friends < 80) {
+	    if (param.total_friends < 20) {
 	    	result.status = false;
 		    result.message = 'You dont have enough friends in your facebook profile';
 		}	 

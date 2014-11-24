@@ -19,6 +19,8 @@ require 'includes/BWB.php';
 require 'includes/profileOperations.php';
 require 'includes/adminOperations.php';
 require 'includes/questionnaire.php';
+
+require 'includes/algorithm.php';
 $app->run();
 
 ?>

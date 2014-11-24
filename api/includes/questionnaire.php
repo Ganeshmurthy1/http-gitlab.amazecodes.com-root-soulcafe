@@ -18,6 +18,10 @@ $app->get('/get_all_questions_user', 'GetAllQuestionsUser');
 $app->get('/get_this_question_id/:id', 'getThisQuestionById');
 $app->post('/update_answer', 'updateAnswer');
 
+$app->get('/alg_admin_get_category', 'algAdminGetQusCategory');
+
+$app->post('/update_Question_Category_Seq', 'updateQuestionCatSequence');
+
 
 function algGetQusCategory() {
 
@@ -599,9 +603,10 @@ function updateAnswer() {
   $user_id = getUserId();
   
   $db = getConnection();
-  $sqldel = "Delete from QuestionnaireAnswer  WHERE QId=:id";
+  $sqldel = "Delete from QuestionnaireAnswer  WHERE QId=:id and UserId = :userid";
   $stmt = $db->prepare($sqldel);
   $stmt->bindParam("id", $answer->question->Qid);
+  $stmt->bindParam("userid", $user_id);
   $stmt->execute();
 
   if ($answer->question->AnswerSelectionType == 1) {
@@ -681,5 +686,48 @@ function updateAnswer() {
 //     echo '{"error":{"text":'. $e->getMessage() .'}}';
 //   }
   echo true;
+
+}
+
+function algAdminGetQusCategory() {
+
+  $sql = "SELECT * from QuestionnaireCategory where QcId NOT IN (6,7,8,9,10)";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    // $stmt->bindParam("id", $id);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    //echo $total = $wine->'count(1)';
+
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  //echo json_encode($wine);
+}
+
+
+function updateQuestionCatSequence() {
+  $request = Slim::getInstance()->request();
+  $ques = json_decode($request->getBody());
+  // print_r($ques);
+  $index = 0;
+  foreach($ques as $obj) {
+    $sql = "UPDATE `QuestionnaireCategory` SET `Weight`=:weight WHERE QcId = :qid";
+    try {
+      $db = getConnection();
+      $stmt = $db->prepare($sql);
+      $stmt->bindParam("weight", $obj->Weight);
+      $stmt->bindParam("qid", $obj->QcId);
+      $stmt->execute();       
+
+    } catch(PDOException $e) {
+      echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
+
+  }
+  echo 'true';
 
 }
