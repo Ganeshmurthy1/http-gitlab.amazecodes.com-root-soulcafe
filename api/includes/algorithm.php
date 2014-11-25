@@ -85,7 +85,7 @@ function multipleSelectionMatric($qnObject) {
 }
 
 function multiSelectionintensity($qnObject) {
-  //print_r($qnObject);
+  print_r($qnObject);
   $score = 0;
   for ($i = 0; $i < count($qnObject->x_answer); $i++) {    
     for ($j = 0; $j < count($qnObject->y_answer); $j++) {
@@ -102,7 +102,7 @@ function multiSelectionintensity($qnObject) {
 }
 
 function DifferenceMatch($qnObject) {
-  print_r($qnObject);
+ // print_r($qnObject);
   
   $sql = "SELECT QoId, Weight from QuestionnaireOptions WHERE QoId = :xid or  QoId = :yid";
   try {
