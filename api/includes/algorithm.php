@@ -1,15 +1,94 @@
 <?php
 
-$app->get('/alg_processor', 'algController');
+$app->get('/alg_processor/:x/:y', 'algController');
 
-function algController() {
+function algController($x, $y) {
   $questions = algorithmGetAllQuestions();
-  $x = 114;
-  $y = 115;
+  //$x = 116;
+ // $y = 117;
   $algObject = algObjectCreator($x, $y, $questions);
   $algScores = algProcessor($algObject);
+  print $x_personalityScore = getPersonalityScore($x);
+  print $y_personalityScore = getPersonalityScore($y);
+  $personality_match  = getPersonalityMatch($x_personalityScore, $y_personalityScore);
+  print_r($personality_match);
 }
 
+function getPersonalityMatch($x, $y) {
+  // $user_id  = getUserId();
+  $sql = "SELECT Value   FROM `AlgPersonalityMatrix` where Row = :row and Col = :col";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("row", $x);
+    $stmt->bindParam("col", $y);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    return $wine;
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}
+
+
+function getPersonalityScore($id) {
+  $sql = "SELECT q.Qid, q.QuestionTitle, q.QuestionCategory, q.AlgorithamType, q.MaxOptions, q.MaxScore,  qc.Category, qa.OptionId, qo.PersonalityType FROM `Questionnaire` q JOIN QuestionnaireCategory qc ON q.QuestionCategory = qc.QcId JOIN QuestionnaireAnswer qa ON q.Qid = qa.QId JOIN QuestionnaireOptions qo ON qa.OptionId = qo.QoId where qc.QcId  IN (6,7,8,9,10) and qa.UserId = :user_id";
+  $algPerScores = array();
+  $perType = '';
+  
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("user_id", $id);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;   
+    $i = 0; $e = 0;
+    $n = 0; $s = 0;
+    $t = 0; $f = 0;
+    $p = 0; $j = 0;
+    foreach ($wine as $key => $value) {
+      $algPerScores[$value->Category][$value->Qid] = $value->PersonalityType;     
+      switch ($value->PersonalityType) {
+        case "I":
+          $i++; break;
+        case "E":
+          $e++; break; 
+        case "N":
+          $n++; break;
+        case "S":
+          $s++; break;
+        case "T":
+          $t++; break;
+        case "F":
+          $f++; break;
+        case "P":
+          $p++; break;
+        case "J":
+          $j++; break;
+      }
+    }
+    
+    if ($i < $e) $perType .= 'E';
+    else $perType .= 'I';
+    
+    if ($n < $s) $perType .= 'S';
+    else $perType .= 'N';
+    
+    if ($t < $f) $perType .= 'F';
+    else $perType .= 'T';
+    
+    if ($p < $j) $perType .= 'J';
+    else $perType .= 'P';
+
+    print_r($algPerScores);
+    return $perType;
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  
+}
 
 function algProcessor($algObject) {
   //print_r($algObject);
@@ -29,12 +108,7 @@ function algProcessor($algObject) {
       case 5:
         $score = multiSelectionintensity($algObject[$key]);
         break;
-      
-      
     }
-    
-    
-    
     $algScores[$algObject[$key]->question->Category][$algObject[$key]->question->Qid] = $score;
   }  
   print_r($algScores);
@@ -85,7 +159,7 @@ function multipleSelectionMatric($qnObject) {
 }
 
 function multiSelectionintensity($qnObject) {
-  print_r($qnObject);
+  //print_r($qnObject);
   $score = 0;
   for ($i = 0; $i < count($qnObject->x_answer); $i++) {    
     for ($j = 0; $j < count($qnObject->y_answer); $j++) {
