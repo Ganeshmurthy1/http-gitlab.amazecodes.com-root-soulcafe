@@ -155,11 +155,8 @@ $scope.addRating = function(rating){
       });
 
     $facebook.api("/800856129935365/likes").then(function(pic) {
-                console.log(pic);
-              
-           //   var fbbbbdata = localStorageService.get('fbpicture');
-            // console.log(fbbbbdata);
-          });
+                console.log(pic);           
+    });
  }
 
   });
