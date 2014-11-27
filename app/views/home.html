@@ -56,18 +56,8 @@
 		<div class="col-md-offset-2 col-md-4 align-center rightmargintop">
 			<!-- <img src="images/car.jpg"> -->
 			<div class="carousel-class">
-			    <a data-ng-show="hasPrevious()" style="right: 525px;" data-ng-click="previous()">&lt;</a>
-			    <span class="link" data-ng-hide="hasPrevious()" style="right: 525px;">&lt;</span>
-			    <div class="photo-container" data-my-carousel data-carousel-class="photo-carousel" data-on-page-upcoming="loadPage(page, tmplCb)" data-give-carousel-to="onCarouselAvailable(carousel)">
-			      <div class="photo-grid">
-			      <span data-ng-repeat="photo in photos">
-			        <img ng-src="{{getPhotoUrl(photo)}}">
-			      </span>
-			      </div>
-			    </div>
-			    <a data-ng-show="hasNext()" style="right: 65px;" data-ng-click="next()">&gt;</a>
-			    <span class="link" style="right: 65px;" data-ng-hide="hasNext()">&gt;</span>
-			 </div>
+
+		   </div>
 		</div>
 		</div>
 		
@@ -94,7 +84,27 @@
     </div> 
 	</div>
 	
-
+		<!-- 	<div class="carousel-demo">
+                    <ul rn-carousel  rn-carousel-auto-slide="3" class="mycarousel" rn-carousel-controls>
+                        <li> <img alt="" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c0.7.200.200/p200x200/10610908_805092252845086_8387047502213134303_n.jpg?oh=bb3fba424ef77348d7071149e83cdf1b&oe=54F5F631&__gda__=1423668902_63bb520a144e19da7b7ded1ad9f6b268">
+                        	<img alt="" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c0.7.200.200/p200x200/10610908_805092252845086_8387047502213134303_n.jpg?oh=bb3fba424ef77348d7071149e83cdf1b&oe=54F5F631&__gda__=1423668902_63bb520a144e19da7b7ded1ad9f6b268">
+                        </li>
+                        <li> <img alt="" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c0.7.200.200/p200x200/10610908_805092252845086_8387047502213134303_n.jpg?oh=bb3fba424ef77348d7071149e83cdf1b&oe=54F5F631&__gda__=1423668902_63bb520a144e19da7b7ded1ad9f6b268"> </li>
+                        <li> <img alt="" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c0.7.200.200/p200x200/10610908_805092252845086_8387047502213134303_n.jpg?oh=bb3fba424ef77348d7071149e83cdf1b&oe=54F5F631&__gda__=1423668902_63bb520a144e19da7b7ded1ad9f6b268"> </li>
+                        
+                    </ul>
+                </div> -->
+                
+         <div class="carousel-demo">
+             <ul rn-carousel  rn-carousel-auto-slide="3" class="mycarousel" rn-carousel-controls>
+              <li ng-repeat="image in test" >
+                          	<a href="" ><img alt="" src="{{image.image1}}" height="200" width="150"></a>
+                            <a href="" ><img alt="" src="{{image.image2}}" height="200" width="150"></a>
+                            <a href="" ><img alt="" src="{{image.image3}}" height="200" width="150"></a>
+                            <a href="" ><img alt="" src="{{image.image4}}" height="200" width="150"></a>
+              </li>
+           	</ul>
+         </div>
 
 </div>
 

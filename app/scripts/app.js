@@ -24,7 +24,9 @@ angular
     'fundoo.directives',
     'angularFileUpload',
     'ui-rangeSlider',
-    'ui.tree'
+    'ui.tree',
+    'angular-jqcloud',
+    'angular-carousel'
   ])
   .config(['$routeProvider', '$facebookProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $facebookProvider, $locationProvider, $httpProvider) {
 	
