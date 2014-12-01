@@ -880,7 +880,7 @@ function getProfileDetail() {
   // print_r( $user );
    $user_id  = getUserId();
    
-  $sql = "select u.user_id, u.first_name, u.last_name,u.email, u.relationship_status, u.mobile,pd.CurrentEmployment,pd.HighestEducation,pd.Endorsedskills from users AS u left join ProfessionalDetails As pd on u.user_id = pd.UserId where u.user_id=:user_id";
+  $sql = "select u.*,pd.CurrentEmployment,pd.HighestEducation,pd.Endorsedskills from users AS u left join ProfessionalDetails As pd on u.user_id = pd.UserId where u.user_id=:user_id";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);  

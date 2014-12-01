@@ -332,6 +332,10 @@ angular
         templateUrl: 'views/admin-personality-matrix.html',
         controller: 'AdminPersonalityMatrixCtrl'
       })
+      .when('/edit-profile-new', {
+        templateUrl: 'views/edit-profile-new.html',
+        controller: 'EditProfileNewCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
