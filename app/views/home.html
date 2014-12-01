@@ -53,11 +53,17 @@
 	<div class="row margin-right-0 bordertopbottom gredient">
 		<div class="rightmargin rightmargintop">
 			<div class="head1 color-brown">RECOMMENDATIONS</div>
-		<div class="col-md-offset-2 col-md-4 align-center rightmargintop">
-			<!-- <img src="images/car.jpg"> -->
-			<div class="carousel-class">
-
-		   </div>
+		<div class="col-md-12 align-center">
+			<div class="carousel-demo">
+             <ul rn-carousel  rn-carousel-auto-slide="3" class="mycarousel" rn-carousel-controls>
+              <li ng-repeat="image in test" >
+                          	<a href="" ><img alt="" src="{{image.image1}}" height="150" width="150" style="border-radius:10px !important;"></a>
+                            <a href="" ><img alt="" src="{{image.image2}}" height="150" width="150" style="border-radius:10px !important;"></a>
+                            <a href="" ><img alt="" src="{{image.image3}}" height="150" width="150" style="border-radius:10px !important;"></a>
+                            <a href="" ><img alt="" src="{{image.image4}}" height="150" width="150" style="border-radius:10px !important;"></a>
+              </li>
+           	</ul>
+         </div>
 		</div>
 		</div>
 		
@@ -95,16 +101,7 @@
                     </ul>
                 </div> -->
                 
-         <div class="carousel-demo">
-             <ul rn-carousel  rn-carousel-auto-slide="3" class="mycarousel" rn-carousel-controls>
-              <li ng-repeat="image in test" >
-                          	<a href="" ><img alt="" src="{{image.image1}}" height="200" width="150"></a>
-                            <a href="" ><img alt="" src="{{image.image2}}" height="200" width="150"></a>
-                            <a href="" ><img alt="" src="{{image.image3}}" height="200" width="150"></a>
-                            <a href="" ><img alt="" src="{{image.image4}}" height="200" width="150"></a>
-              </li>
-           	</ul>
-         </div>
+         
 
 </div>
 

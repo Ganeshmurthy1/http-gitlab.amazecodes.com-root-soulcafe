@@ -653,24 +653,57 @@ svg{
       padding-top:75%;
       }
 
+
+@media (min-width: 520px) {
+  .paddingman{
+      padding-top:30%;
+      }
+  
+}
+
 @media (min-width: 768px) {
   .paddingman{
       padding-top:30%;
       }
- 
+      .alignment-tab{
+        align:center !important;
+        margin-left:35% !important;
+      }
+  .alignment-tab1{
+  clear:both;
+  width:100%;
+  margin-left:20% !important;
+  }
 }
 
 @media (min-width: 992px) {
   .paddingman{
       padding-top:30%;
       }
+  .alignment-tab{
+        align:left !important;
+        margin-left:0% !important;
+      }
+  .alignment-tab1{
+  clear:none;
+  width:40%;
+  margin-left:0% !important;
+  }
 }
 
 @media (min-width: 1200px) {
   .paddingman{
       padding-top:20%;
       }
- 
+  .alignment-tab{
+        align:left !important;
+        margin-left:0% !important;
+      }
+  .alignment-tab1{
+  clear:none;
+  width:40%;
+  margin-left:0% !important;
+  }
 }
 
 header:after{content:" "; background-image:url(../images/header-bg-shape.png); width:288px; height:31px; position:absolute; bottom:-31px; left:50%; margin-left:-155px; z-index:200}

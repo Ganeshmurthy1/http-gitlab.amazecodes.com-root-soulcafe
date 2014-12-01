@@ -82,10 +82,12 @@ angular.module('sassApp')
      regService.getProfileDetail().then(function (response) {
          console.log(response);
          $scope.profileDetail = response.data;
-         if ($scope.profileDetail.linked_update == 0) {
+         if ($scope.profileDetail.linked_update == 1) {
+          $scope.updateButton = 'true';
+          $scope.disable = 'false';
+          console.log($scope.disable);
+         }else if ($scope.profileDetail.linked_update == 0) {
          	$scope.disable = 'true';
-         }else{
-         	$scope.disable = 'false';
          }
       });
 
