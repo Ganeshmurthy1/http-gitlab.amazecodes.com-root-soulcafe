@@ -8,9 +8,11 @@ function algController($x, $y) {
  // $y = 117;
   $algObject = algObjectCreator($x, $y, $questions);
   $algScores = algProcessor($algObject);
-  print $x_personalityScore = getPersonalityScore($x);
-  print $y_personalityScore = getPersonalityScore($y);
+  print 'Personality Score: ' . $x_personalityScore = getPersonalityScore($x);
+  print '</br>';
+  print 'Personality Score: ' .  $y_personalityScore = getPersonalityScore($y);
   $personality_match  = getPersonalityMatch($x_personalityScore, $y_personalityScore);
+  print '</br> Compatibility type: 1 = CM, 2 = SM, 3 = NM </br>';
   print_r($personality_match);
 }
 
@@ -130,14 +132,14 @@ function multipleSelectionMatric($qnObject) {
           //$score += (5-$diff);
           //print_r($qnObject->x_answer[$i]) . ' - ' . print_r($qnObject->y_answer[$j]);
           
-          print $qnObject->x_answer[$i]->RankScale . '===' . $qnObject->y_answer[$j]->RankScale .'\n';
+          //print $qnObject->x_answer[$i]->RankScale . '===' . $qnObject->y_answer[$j]->RankScale .'\n';
           
           $stmt->bindParam("row", $qnObject->x_answer[$i]->RankScale);
           $stmt->bindParam("col", $qnObject->y_answer[$j]->RankScale);
           $stmt->bindParam("qid", $qnObject->question->Qid);
           $stmt->execute();
           $wine = $stmt->fetchObject();
-          print 'dd' . $wine->Value;
+        //  print 'dd' . $wine->Value;
           $score += $wine->Value;
         }
       }
@@ -193,7 +195,7 @@ function DifferenceMatch($qnObject) {
     // don't know what crap it is... FUCK
     for ($i = 0; $i < count($wine); $i++) {}
     $i--;
-    print $diff = abs($wine[0]->Weight - $wine[$i]->Weight);
+    $diff = abs($wine[0]->Weight - $wine[$i]->Weight);
     $score = $qnObject->question->MaxScore - $diff;
     
     return ($score/$qnObject->question->MaxScore)*100;

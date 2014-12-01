@@ -1,10 +1,10 @@
 <?php
 
 function getConnection() {
-	$dbhost="localhost";
-	$dbuser="soulcafe";
-	$dbpass="etenyvy7u";
-	$dbname="zadmin_soulcafe";
+	$dbhost="50.62.209.88";
+	$dbuser="soulcage";
+	$dbpass="1t2fxH!6";
+	$dbname="soulcafe";
 	$dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);	
 	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	return $dbh;
