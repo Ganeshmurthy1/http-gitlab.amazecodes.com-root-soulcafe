@@ -339,6 +339,7 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+    
       $facebookProvider.setAppId('305118313022402');
      // $facebookProvider.setAppId('273647349502832');
     

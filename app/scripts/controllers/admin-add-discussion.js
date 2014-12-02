@@ -41,9 +41,7 @@ angular.module('sassApp')
 
     };
     
- var uploader = $scope.uploader = new FileUploader({
-            url: '/SASS/api/image_upload'
-        });
+ var uploader = $scope.uploader = adminDiscussion.setUploader();
 
         // FILTERS
 
