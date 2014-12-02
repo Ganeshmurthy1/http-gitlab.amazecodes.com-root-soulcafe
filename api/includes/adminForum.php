@@ -609,10 +609,13 @@ function imageupload() {
  if ( !empty( $_FILES ) ) {
 
     $tempPath = $_FILES[ 'file' ][ 'tmp_name' ];
-     $uploadPath = dirname(dirname( __FILE__ )) . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . $img;
+    print_r($tempPath);
+    print $uploadPath = dirname(dirname( __FILE__ )) . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . $img;
 
+   
+    
     move_uploaded_file( $tempPath, $uploadPath );
-  
+    exit();
     // $answer = array( 'answer' => 'File transfer completed' );
     // $json = json_encode( $answer );
     $result['filename'] = $img;

@@ -8,11 +8,19 @@
  * Factory in the sassApp.
  */
 angular.module('sassApp')
-  .factory('adminDiscussion', ['$http', 'localStorageService', function($http, localStorageService) {
+  .factory('adminDiscussion', ['$http', 'localStorageService', 'FileUploader', function($http, localStorageService, FileUploader ) {
 	  	
 	  
 	    var urlBase = localStorageService.get('apiContext').base_path;
 	    var dataFactory = {};
+	    
+	    dataFactory.setUploader = function () {
+	    	// console.log(param);
+	    	return new FileUploader({
+	            url: urlBase + 'image_upload'
+	        });
+	    	
+	    };
 	    
 	    dataFactory.addDiscussion = function (param) {
 	    	// console.log(param);

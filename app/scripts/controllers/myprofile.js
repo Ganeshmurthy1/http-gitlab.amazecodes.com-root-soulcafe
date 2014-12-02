@@ -15,6 +15,7 @@ angular.module('sassApp')
       'Karma'
     ];
     $facebook.api("/me/likes").then(function(pic) {
+    	console.log(pic.data);
       var likeData = [];
       for ( var int = 0; int < pic.data.length; int++) {
     	  var tmpdata = {};
