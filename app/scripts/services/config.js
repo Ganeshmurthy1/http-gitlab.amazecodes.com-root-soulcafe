@@ -20,7 +20,7 @@ angular.module('sassApp')
                   image_path:'http://localhost/SASS/api/uploads/'                
               });        
       }
-      
+
 
     // Public API here
     return dataFactory;
