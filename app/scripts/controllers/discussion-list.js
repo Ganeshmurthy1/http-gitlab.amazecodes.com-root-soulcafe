@@ -8,12 +8,16 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('DiscussionListCtrl', function ($scope,$location,localStorageService,regService) {
+  .controller('DiscussionListCtrl', function ($scope,$location,localStorageService,regService, config) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
+var config = localStorageService.get('config');
+    $scope.imagepath = config.image_path;
+
   //   $scope.userData = {};
   //   function getUSerdata() {
   //    var authData = localStorageService.get('authorizationData');

@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('AdminDiscussionListCtrl', function ($scope, adminDiscussion) {
+  .controller('AdminDiscussionListCtrl', function ($scope, adminDiscussion, localStorageService) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -16,6 +16,8 @@ angular.module('sassApp')
     ];
 
    
+    var config = localStorageService.get('config');
+    $scope.imagepath = config.image_path;
 
     function getAdminForum() {
     	adminDiscussion.getAdminDiscussionTotal().then(function (total) {
