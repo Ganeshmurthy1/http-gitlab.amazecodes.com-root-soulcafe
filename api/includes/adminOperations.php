@@ -60,8 +60,26 @@ function checkAdminLogin() {
   $request = Slim::getInstance()->request();
   $user = json_decode($request->getBody());
   //$user_id  = getUserId();
- 
-  $sqlU = "Select AdminId,FullName,Role from AdminUser where Uname = :username and Password = :password";
+
+   $sqlS = "SELECT Status from AdminUser where Uname = :username and Password = :password";
+  try {
+    $db = getConnection();
+    $stmtS = $db->prepare($sqlS);
+    $stmtS->bindParam("username", $user->user_name);
+    $stmtS->bindParam("password", $user->password);
+    $stmtS->execute();
+    $wineS = $stmtS->fetchObject();
+    $db = null;
+    // echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  if ($wineS == false) {
+    echo 'false';
+  }else if ($wineS->Status == 0) {
+    echo 'Status';
+  }else if($wineS != false){
+  $sqlU = "Select AdminId,FullName,Role from AdminUser where Uname = :username and Password = :password and Status = 1";
   try{
     $db = getConnection();
     $stmtU = $db->prepare($sqlU);
@@ -88,12 +106,11 @@ function checkAdminLogin() {
       }
       echo json_encode($wineU);
     }
-    else {
-      echo 'false';
-    }
+    
   }catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   } 
+}
 }
 
 
