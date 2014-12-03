@@ -658,7 +658,15 @@ svg{
   .paddingman{
       padding-top:30%;
       }
-  
+  .alignment-tab{
+        align:center !important;
+        margin-left:35% !important;
+      }
+  .alignment-tab1{
+  clear:both;
+  width:100%;
+  margin-left:20% !important;
+  }
 }
 
 @media (min-width: 768px) {

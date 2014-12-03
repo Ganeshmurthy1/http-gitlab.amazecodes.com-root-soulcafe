@@ -8,12 +8,17 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('MainCtrl', function ($scope, $rootScope, $facebook, regService, localStorageService, $location, $modal, $log) {
+  .controller('MainCtrl', function ($scope, $rootScope, $facebook, regService, localStorageService, $location, $modal, $log, config) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
+    
+    config.setConfigruation();
+    
+
    $rootScope.a=true;
     $scope.login = function() {
       $facebook.login().then(function() {

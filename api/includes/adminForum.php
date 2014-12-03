@@ -30,6 +30,11 @@ $app->post('/image_upload', 'imageupload');
 function adminAddDiscussion() {
   $request = Slim::getInstance()->request();
   $forum = json_decode($request->getBody());
+   // print_r($forum->image);
+   if(!isset($forum->image)){
+      $forum->image = 'sc-logo.png';
+   }
+   
   
   // echo $headers['authorization'];
   $valid = checkValidDiscussion($forum);
