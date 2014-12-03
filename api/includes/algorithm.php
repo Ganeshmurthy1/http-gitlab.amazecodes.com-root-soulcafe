@@ -1,6 +1,192 @@
 <?php
 
 $app->get('/alg_processor/:x/:y', 'algController');
+$app->get('/alg_batch_process', 'algBatch');
+
+
+function algBatch() {
+  print '<pre>';
+  $user_list = getTheBatch();
+  //print_r($user_list);
+  // get the filterd users
+   
+  for ($i = 0; $i < count($user_list); $i++) {
+    matchProcessor($user_list[$i]);
+  }
+  
+  
+  
+  
+
+  
+
+  
+}
+
+function matchProcessor($user_obj) {
+  $filterd_users = getTheFilteredUsers($user_obj);  
+  deleteMatch($user_obj->user_id);
+  findMatches($user_obj->user_id, $filterd_users);
+}
+
+function findMatches($user_id, $filterd_users) {
+  
+
+  //get the match and scores of all filtered users
+  for ($i = 0; $i < count($filterd_users); $i++) {
+    //$alg_objar[$filterd_users[$i]->user_id] = algBatchController($user_id, $filterd_users[$i]->user_id);
+    $alg_obj = algBatchController($user_id, $filterd_users[$i]->user_id);
+     
+    //filter for language match
+    if($alg_obj['scores']['Language Compatibility'][56] != 0 ) { 
+  
+      
+      $cal_index = 0;
+      $total_percentage_score = 0;
+      $total_percentage = 0;
+      // calculate the total in one category
+      foreach ($alg_obj['scores'] as $key => $value ) {
+        $total = 0;
+        $index = 0;
+        foreach ($value as $val) {
+          $total += $val;
+          $index++;
+        }
+        
+        $scoreper = $total/$index;
+        $score_per_obj[$key] = $scoreper;
+        $total_percentage_score += $scoreper;
+        $cal_index++;
+  
+  
+      }
+      $total_percentage = ceil($total_percentage_score/$cal_index);
+      addMatch($user_id, $filterd_users[$i]->user_id, $total_percentage, $alg_obj['match_type']);
+      
+      
+    //  $scoreper_user_obj[$filterd_users[$i]->user_id]['calculate_scores'] = $score_per_obj;
+     // $scoreper_user_obj[$filterd_users[$i]->user_id]['total_percentage'] = $total_percentage;
+  
+  
+    }
+  
+     
+     
+  }
+  
+  //print_r($alg_objar);
+  //print_r($scoreper_user_obj);
+  
+}
+function deleteMatch($user_id) {
+
+  $sql_del = "DELETE FROM SoulMatches WHERE UserId=:UserId ";
+  try {
+    $db = getConnection();
+    // delete previous suggestions
+    $stmt_del = $db->prepare($sql_del);
+    $stmt_del->bindParam("UserId", $user_id);
+    $stmt_del->execute();
+    $db = null;
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}
+
+function addMatch($user_id, $match_id, $score_percentage, $match_type) {
+  
+  $tdate = date('Y-m-d h:i:s');
+  print_r($match_type);
+  $sql = "INSERT INTO SoulMatches (UserId, SoulId, ScorePercentage, MatchType, DateAdded) VALUES ( :UserId, :SoulId, :ScorePercentage , :MatchType, :DateAdded)";
+  try {
+    $db = getConnection();
+    
+  
+    
+    
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("UserId", $user_id);
+    $stmt->bindParam("SoulId", $match_id);
+    $stmt->bindParam("ScorePercentage", $score_percentage);
+    $stmt->bindParam("MatchType", $match_type->Value);
+    $stmt->bindParam("DateAdded", $tdate);
+    $stmt->execute();
+    
+    $db = null;
+    //   echo 'true';
+    //$app->redirect('login.html');
+  }
+  catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}
+
+function algBatchController($x, $y) {
+  $questions = algorithmGetAllQuestions();
+  //$x = 116;
+  // $y = 117;
+  $algObject = algObjectCreator($x, $y, $questions);
+  $algScores = algProcessor($algObject);
+  $x_personalityScore = getPersonalityScore($x);
+  $y_personalityScore = getPersonalityScore($y);
+  $personality_match  = getPersonalityMatch($x_personalityScore, $y_personalityScore);
+  $result_obj['scores'] = $algScores;
+  $result_obj['match_type'] = $personality_match;
+  return $result_obj;
+  //print '</br> Compatibility type: 1 = CM, 2 = SM, 3 = NM </br>';
+  //print_r($personality_match);
+}
+
+function getTheFilteredUsers($user_obj) {
+
+  if ($user_obj->gender == 'male') {
+    $gender_search = 'female';
+    $upper_date = date('Y-m-d', strtotime('+10 years', strtotime($user_obj->birthdate)));
+    $lower_date = date('Y-m-d', strtotime('-2 years', strtotime($user_obj->birthdate)));
+    
+  }
+  else {
+    $gender_search = 'male';
+    $upper_date = date('Y-m-d', strtotime('+2 years', strtotime($user_obj->birthdate)));
+    $lower_date = date('Y-m-d', strtotime('-10 years', strtotime($user_obj->birthdate)));
+  }
+  
+  $sql = "SELECT user_id, gender, birthdate FROM users WHERE birthdate >= :lower and birthdate <= :upper and gender = :gender and status = 1";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);   
+    $stmt->bindParam("lower", $lower_date);
+    $stmt->bindParam("upper", $upper_date);
+    $stmt->bindParam("gender", $gender_search);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    //print_r($wine);
+    return $wine;
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}
+
+function getTheBatch() {
+  // $user_id  = getUserId();
+  $sql = "SELECT user_id, gender, birthdate FROM users where status = 1 LIMIT 0, 10";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+   // $stmt->bindParam("row", $x);
+   // $stmt->bindParam("col", $y);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    return $wine;
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}
+
+
+
 
 function algController($x, $y) {
   $questions = algorithmGetAllQuestions();
@@ -25,7 +211,7 @@ function getPersonalityMatch($x, $y) {
     $stmt->bindParam("row", $x);
     $stmt->bindParam("col", $y);
     $stmt->execute();
-    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $wine = $stmt->fetchObject();
     $db = null;
     return $wine;
   } catch(PDOException $e) {
@@ -84,7 +270,7 @@ function getPersonalityScore($id) {
     if ($p < $j) $perType .= 'J';
     else $perType .= 'P';
 
-    print_r($algPerScores);
+   // print_r($algPerScores);
     return $perType;
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
@@ -113,7 +299,9 @@ function algProcessor($algObject) {
     }
     $algScores[$algObject[$key]->question->Category][$algObject[$key]->question->Qid] = $score;
   }  
-  print_r($algScores);
+  // print_r($algScores);
+  return $algScores;
+ // print_r($algScores);
 }
 
 function multipleSelectionMatric($qnObject) {
