@@ -92,6 +92,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6e6e6', end
 .align-center{
 	text-align:center !important;
 }
+.float-left{float:left;}
+
+.footer-style{
+	padding:0% 10% 0% 10%; 
+	border-left:1px solid #4c2500;
+}
+.padding-top-4p{padding-top:4% ! important;}
+.padding-left-10p{padding-left:10% ! important;}
+.padding-right-10p{padding-right:10% ! important;}
 .padding-10{
 	padding:10px;
 }
@@ -345,7 +354,7 @@ min-width:220px !important;
 
 .notifydropdown{
 	padding-top:5px;
-	margin-right:10%;
+	margin-right:2%;
 }
 
 .mycarousel {
@@ -368,6 +377,15 @@ min-width:220px !important;
 }
 .modal-footer{
 	border: 0px solid #ffffff !important;
+}
+.mobile-clear{
+	clear:both;
+}
+.mobile-align{
+	margin-left:10% !important;
+}
+.mobile-align1{
+	margin-left:22% !important;
 }
 /*--------------Media Queries-------------*/
 @media (min-width: 768px) {
@@ -459,6 +477,15 @@ min-width:220px !important;
 .modal-content{
 	width:50%;	
 	left:20% !important;
+}
+.mobile-clear{
+	clear:none;
+}
+.mobile-align{
+	margin-left:0% !important;
+}
+.mobile-align1{
+	margin-left:0% !important;
 }
 }
 
@@ -556,6 +583,15 @@ min-width:220px !important;
 	width:50%;	
 	left:20% !important;
 }
+.mobile-clear{
+	clear:none;
+}
+.mobile-align{
+	margin-left:0% !important;
+}
+.mobile-align1{
+	margin-left:0% !important;
+}
 }
 
 @media (min-width: 1200px) {
@@ -642,6 +678,15 @@ min-width:220px !important;
 .modal-content{
 	width:50%;	
 	left:20% !important;
+}
+.mobile-clear{
+	clear:none;
+}
+.mobile-align{
+	margin-left:0% !important;
+}
+.mobile-align1{
+	margin-left:0% !important;
 }
 }
 

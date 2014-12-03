@@ -129,10 +129,27 @@ function addGTKYRequest() {
       echo '{"error":{"text":'. $e->getMessage() .'}}'; 
      }
 
+    $sqlB = "Select * from Buddies where SenderId=:senderId and BuddyId=:buddyId";
+    try{
+      $db = getConnection();
+    $stmtB = $db->prepare($sqlB);  
+    $stmtB->bindParam("senderId", $user_id);
+    $stmtB->bindParam("buddyId", $user->id);
+    $stmtB->execute();
+    $wineB = $stmtB->fetchObject();
+    $db = null;
+      // echo json_encode($wineU);
+    }catch(PDOException $e) {
+      echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+     }  
 
-     $message =  'Friend request from ' . $fname . ' ' . $lname . 'is waiting for your approval.';
-     // print $message;
-  
+     // print_r($wineBA);
+
+  if($wineB != false) {
+    echo 'Already Present';
+    exit();
+  }else{
+   $message =  'Friend request from ' . $fname . ' ' . $lname . 'is waiting for your approval.';
    $cmtDateTime=  date("Y-m-d") ;
    $status  = 0;
   $link = 'accept-gtky';
@@ -161,23 +178,73 @@ function addGTKYRequest() {
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}'; 
   }
+  }
  }
 
 function checkGTKYRequest($id) {
    $user_id  = getUserId();
    
-  $sql = "select * from Buddies where BuddyId = :id";
+   $sql= "select * from Buddies where SenderId=:senderId and BuddyId = :buddyId and  Status=1";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);  
-    $stmt->bindParam("id",  $id );
+    $stmt->bindParam("buddyId",  $id );
+    $stmt->bindParam("senderId", $user_id);
     $stmt->execute();
-    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $wine = $stmt->fetchObject();
      $db = null;
-       echo json_encode($wine);
-  } catch(PDOException $e) {
+
+     if ($wine != false) {
+        echo 'Send Message';
+        exit();
+     }else{
+      $sqlGS= "select * from Buddies where SenderId=:senderId and BuddyId = :buddyId and  Status=0";
+      try {
+        $db = getConnection();
+        $stmtGS = $db->prepare($sqlGS);  
+        $stmtGS->bindParam("buddyId",  $id );
+        $stmtGS->bindParam("senderId", $user_id);
+        $stmtGS->execute();
+        $wineGS = $stmtGS->fetchObject();
+         $db = null;
+
+         if ($wineGS != false) {
+           echo 'GTKY Send';
+           exit();
+         }else {
+          $sqlAS= "select * from Buddies where SenderId=:buddyId and BuddyId = :senderId and  Status=0";
+      try {
+        $db = getConnection();
+        $stmtAS = $db->prepare($sqlAS);  
+        $stmtAS->bindParam("buddyId",  $id );
+        $stmtAS->bindParam("senderId", $user_id);
+        $stmtAS->execute();
+        $wineAS = $stmtAS->fetchObject();
+         $db = null;
+
+         if ($wineAS != false) {
+           echo 'Accept GTKY';
+           exit();
+         }else{
+          echo 'Say Hello';
+         }
+
+         } catch(PDOException $e) {
+          echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+        }
+
+         }
+
+      } catch(PDOException $e) {
+          echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+        }
+      }
+
+} catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}'; 
   }
+
+  
 
 }
 

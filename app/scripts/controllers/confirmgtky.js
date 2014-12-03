@@ -20,10 +20,14 @@ angular.module('sassApp')
         $scope.UserId.id = $routeParams.user_id;
          profileOperations.addGTKYRequest($scope.UserId).then(function(response) {
           console.log(response.data);
-          if (response.data = 'true'){
+          if (response.data == 'Already Present'){
+            
+            alert("GTKY Already Send.");
+            $location.path('/otherprofile');
+          }else if (response.data == 'true'){
             $scope.GTKY ="true";
             alert("Thank You. We have Send the request!");
-            $location.path('/dashboard-anon');
+            $location.path('/otherprofile');
           }            
         });
 

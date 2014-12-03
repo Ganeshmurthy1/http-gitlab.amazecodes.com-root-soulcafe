@@ -78,7 +78,7 @@ function checkAdminLogin() {
     echo 'false';
   }else if ($wineS->Status == 0) {
     echo 'Status';
-  }else if($wineS != false){
+  }else if($wineS->Status == 1){
   $sqlU = "Select AdminId,FullName,Role from AdminUser where Uname = :username and Password = :password and Status = 1";
   try{
     $db = getConnection();

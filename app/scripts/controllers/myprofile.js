@@ -16,15 +16,19 @@ angular.module('sassApp')
     ];
     $facebook.api("/me/likes").then(function(pic) {
     	console.log(pic.data);
-      var likeData = [];
-      for ( var int = 0; int < pic.data.length; int++) {
-    	  var tmpdata = {};
-    	  tmpdata.text = pic.data[int].name;
-    	  tmpdata.weight = Math.floor(Math.random() * (15 - 5 + 1)) + 5;
-    	  likeData.push(tmpdata);
+      if (pic.data == null) {
+        var likeData = [];
+      }else {
+        var likeData = [];
+        for ( var int = 0; int < pic.data.length; int++) {
+          var tmpdata = {};
+          tmpdata.text = pic.data[int].name;
+          tmpdata.weight = Math.floor(Math.random() * (15 - 5 + 1)) + 5;
+          likeData.push(tmpdata);
+        }
+        $scope.words = likeData;
+        $scope.colors = ["#800026", "#bd0026", "#e31a1c", "#fc4e2a", "#fd8d3c", "#feb24c", "#fed976"];
       }
-      $scope.words = likeData;
-      $scope.colors = ["#800026", "#bd0026", "#e31a1c", "#fc4e2a", "#fd8d3c", "#feb24c", "#fed976"];
     });
     
     $scope.thumbup = 'true';
