@@ -196,6 +196,8 @@ function addUser() {
     $db = null;
     if(!isset($wine->user_id)) {    
      if(is_numeric($user->mobile) and strlen($user->mobile) >= 10) {    
+       
+         $bdate = date("Y-m-d", strtotime($user->birthday));
          $mobile_rand = rand(11111, 99999);
          $name = $user->first_name. ' ' . $user->last_name;
          $role = 2;
@@ -209,7 +211,7 @@ function addUser() {
             $stmt->bindParam("last_name", $user->last_name);
             $stmt->bindParam("email", $user->email);
             $stmt->bindParam("gender", $user->gender);
-            $stmt->bindParam("birthdate", $user->birthday);
+            $stmt->bindParam("birthdate", $bdate);
             $stmt->bindParam("hometown", $user->hometown->name);
             $stmt->bindParam("location", $user->location->name);
             $stmt->bindParam("relationship_status", $user->relationship_status);
