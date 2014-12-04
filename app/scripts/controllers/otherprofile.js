@@ -53,11 +53,7 @@ angular.module('sassApp')
 
 
      
-      $scope.sendMessage = function(){
-              
-      $location.path('/reply-message');
-      };
-      
+     
       $scope.sendGTKY = function(){
               
       $location.path('/confirmGTKY');

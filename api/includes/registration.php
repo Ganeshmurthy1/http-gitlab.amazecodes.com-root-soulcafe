@@ -795,9 +795,9 @@ function AddTopic() {
   $user_id  = getUserId();
   $tdate = date('Y-m-d h:i:s');
   //echo $forum->restriction;
-
+  $cStatus = 1;
   $status = 0;
-  $sql = "INSERT INTO DiscussionBoardTopic (DiscussionBoardId, TopicTitle, TopicDescription, CreatedBy, CreatedDate, Status) VALUES (:discussId, :topic, :description, :CreatedBy, :CreatedDate, :status)";
+  $sql = "INSERT INTO DiscussionBoardTopic (DiscussionBoardId, TopicTitle, TopicDescription, CreatedBy, CreatedDate, Status, createdStatus) VALUES (:discussId, :topic, :description, :CreatedBy, :CreatedDate, :status, :cstatus)";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
@@ -807,6 +807,7 @@ function AddTopic() {
     $stmt->bindParam("CreatedBy", $user_id);
     $stmt->bindParam("CreatedDate", $tdate);
     $stmt->bindParam("status", $status);
+    $stmt->bindParam("cstatus", $cStatus);
 
     $stmt->execute();
 

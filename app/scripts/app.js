@@ -336,6 +336,14 @@ angular
         templateUrl: 'views/edit-profile-new.html',
         controller: 'EditProfileNewCtrl'
       })
+      .when('/admin-requested', {
+        templateUrl: 'views/admin-requested.html',
+        controller: 'AdminRequestedCtrl'
+      })
+      .when('/admin-requested-topic', {
+        templateUrl: 'views/admin-requested-topic.html',
+        controller: 'AdminRequestedTopicCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

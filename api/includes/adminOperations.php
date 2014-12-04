@@ -54,6 +54,9 @@ $app->post('/update_Question_Seq', 'updateQuestionSequence');
 
 $app->get('/delete_Question/:id', 'deleteQuestion');
 
+$app->get('/view_StatusAbuse/:id', 'viewStatusAbuse');
+
+$app->get('/admin_GetAllProfileData', 'adminGetAllProfileData');
 
 
 function checkAdminLogin() {
@@ -904,4 +907,78 @@ function deleteQuestion($id) {
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
+}
+
+function viewStatusAbuse($id) {
+  // $user_id  = getUserId();
+  $sql = "Update ReportAbuseUser set ViewStatus = 1 where SenderId=:id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("id", $id);
+    $stmt->execute();
+    
+    echo 'true';
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}
+
+
+function adminGetAllProfileData() {
+  // $user_id  = getUserId();
+  $sql = "SELECT count(Role) as admins FROM AdminUser WHERE Role=2";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    // echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
+  $sqlAU = "SELECT count(user_id) as active FROM users WHERE Status=1 ";
+  try {
+    $db = getConnection();
+    $stmtAU = $db->prepare($sqlAU);
+    $stmtAU->execute();
+    $wineAU = $stmtAU->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    // echo json_encode($wineAU);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
+  $sqlBU = "SELECT count(user_id) as blocked FROM users WHERE Status=0 ";
+  try {
+    $db = getConnection();
+    $stmtBU = $db->prepare($sqlBU);
+    $stmtBU->execute();
+    $wineBU = $stmtBU->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    // echo json_encode($wineBU);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
+  $sqlUM = "SELECT count(Id) as unread FROM `ReportAbuseUser` WHERE ViewStatus = 0  ";
+  try {
+    $db = getConnection();
+    $stmtUM = $db->prepare($sqlUM);
+    $stmtUM->execute();
+    $wineUM = $stmtUM->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    // echo json_encode($wineUM);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
+  $op['admins']=$wine;
+  $op['active']=$wineAU;
+  $op['blocked']=$wineBU;
+  $op['unread']=$wineUM;
+
+  echo json_encode($op);
 }

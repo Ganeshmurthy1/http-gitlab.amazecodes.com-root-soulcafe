@@ -19,18 +19,18 @@
                 <!--Basic Table-->
               
 
-                <div class="headline"><h2>Table Examples</h2></div>
+                <div class="headline"><h2>Spam Comments</h2></div>
                   
                 
                 <!--Basic Table-->
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>CommentId</th>
-                            <th class="hidden-sm">Reported By</th>
+                            <th>Reported By</th>
+                            <th class="hidden-sm">Comment By</th>
                             <th>Comments</th>
-                             <th>Discussion BoardId</th>
-                            <th>Topic title</th>
+                             <th>Discussion</th>
+                            <th>Topic</th>
                             <th>Reported Date</th>
                             <th>Action</th>
 
@@ -38,8 +38,8 @@
                     </thead>
                     <tbody ng-repeat=" abusedetails in disscusionAbuseDetails">
                         <tr>
-                            <td>{{abusedetails.CommentId}}</td>
-                            <td class="hidden-sm">{{abusedetails.ReportedBy}}</td>
+                            <td>{{abusedetails.rFirst}} {{abusedetails.rLast}}</td>
+                            <td>{{abusedetails.cFirst}} {{abusedetails.cLast}}</td>
                             <td>{{abusedetails.Comments}}</td> 
                             <td>{{abusedetails.Topic}}</td>
                             <td>{{abusedetails.TopicTitle}}</td>
@@ -47,8 +47,8 @@
                             <td>
                                 <!-- <a class="btn-u btn-u-blue" href="#/discussion?topic={{abusedetails.DiscussionTopicId}}"><i class="fa fa-file-text-o"></i></a> -->
                                 <div ng-hide="abusedetails.Status">
-                                <a class="btn-u btn-u-green" title="Approve" ng-click="appropriateButtonClick(abusedetails.CommentId)"><i class="fa fa-check"></i></a>
-                                <a class="btn-u btn-u-red" title="Reject" ng-click="inappropriateButtonClick(abusedetails.CommentId)"><i class="fa fa-times"></i></a>
+                                <a class="btn-u btn-u-green" title="Posted" ng-click="appropriateButtonClick(abusedetails.CommentId)"><i class="fa fa-check"></i></a>
+                                <a class="btn-u btn-u-red" title="Removed" ng-click="inappropriateButtonClick(abusedetails.CommentId)"><i class="fa fa-times"></i></a>
                                 </div>
                                 <div ng-show="abusedetails.Status">
                                 <a class="btn-u btn-sucess" title="Action Taken">Action Taken</a>
@@ -70,11 +70,6 @@
 
     </div>
     <!--=== End Profile ===-->
-
-<!--=== Footer ===-->
- <div data-ng-controller="FooterCtrl" data-ng-include="Footer">
-</div>
-<!--=== End Footer ===-->
 
 </div>
 <!--=== End Wrapper ===-->

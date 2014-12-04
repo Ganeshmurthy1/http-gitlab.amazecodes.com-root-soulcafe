@@ -165,6 +165,20 @@ angular.module('sassApp')
                 return response;
             });
 		};
+		dataFactory.viewStatusAbuse = function (id) {
+	    	// console.log(param);
+	    	return $http.get(urlBase + 'view_StatusAbuse/'+ id).then(function(response) {
+	    		//console.log(response);
+                return response;
+            });
+		};
+		dataFactory.adminGetAllProfileData = function (id) {
+	    	// console.log(param);
+	    	return $http.get(urlBase + 'admin_GetAllProfileData').then(function(response) {
+	    		//console.log(response);
+                return response;
+            });
+		};
 	    return dataFactory;
 	}]);
 
