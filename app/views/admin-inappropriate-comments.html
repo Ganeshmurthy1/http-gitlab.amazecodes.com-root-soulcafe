@@ -26,21 +26,21 @@
                 <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
-                            <th>CommentId</th>
-                            <th>ReportedBy</th>
+                            <th>Reported By</th>
+                            <th>Comment By</th>
                             <th>Comments</th>
-                             <th>Discussion TopicId</th>
-                            <th>Topic title</th>
+                             <th>Discussion </th>
+                            <th>Topic </th>
                             <th>ReportedDate</th>
 
                         </tr>
                     </thead>
                     <tbody ng-repeat=" com in comm">
                         <tr>
-                            <td>{{com.CommentId}}</td>
-                            <td>{{com.first_name}} {{com.last_name}}</td>
+                            <td>{{com.rFirst}} {{com.rLast}}</td>
+                            <td>{{com.cFirst}} {{com.cLast}}</td>
                             <td>{{com.Comments}}</td> 
-                            <td>{{com.DiscussionTopicId}}</td>
+                            <td>{{com.Topic}}</td>
                             <td>{{com.TopicTitle}}</td>
                             <td>{{com.ReportedDate}}</td>
                                                       

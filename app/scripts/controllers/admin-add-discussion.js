@@ -91,6 +91,7 @@ angular.module('sassApp')
         };
         uploader.onCompleteAll = function() {
             console.info('onCompleteAll');
+            alert("Image Uploaded.");
         };
 
         console.info('uploader', uploader);
