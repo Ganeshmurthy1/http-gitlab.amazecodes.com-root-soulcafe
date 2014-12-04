@@ -3,6 +3,54 @@
 $app->get('/alg_processor/:x/:y', 'algController');
 $app->get('/alg_batch_process', 'algBatch');
 
+$app->get('/alg_processor_one_one/:y', 'algControllerOneOne');
+
+
+function algControllerOneOne($y) {
+  $questions = algorithmGetAllQuestions();
+  //$x = 116;
+  // $y = 117;
+  $x  = getUserId();
+  $algObject = algObjectCreator($x, $y, $questions);
+  $algScores = algProcessor($algObject);
+  //print_r($algScores);
+  $cal_index = 0;
+  $total_percentage_score = 0;
+  $total_percentage = 0;
+  // calculate the total in one category
+  foreach ($algScores as $key => $value ) {
+    $total = 0;
+    $index = 0;
+    foreach ($value as $val) {
+      $total += $val;
+      $index++;
+    }
+  
+    $scoreper = $total/$index;
+    $score_per_obj[$key] = $scoreper;
+    $total_percentage_score += $scoreper;
+    $cal_index++;
+  
+  
+  }
+  
+  $x_personalityScore = getPersonalityScore($x);
+  $y_personalityScore = getPersonalityScore($y);
+  $personality_match  = getPersonalityMatch($x_personalityScore, $y_personalityScore);
+  
+  //print_r($score_per_obj);
+  $total_percentage = ceil($total_percentage_score/$cal_index);
+  $result_obj['scores'] = $score_per_obj;
+  $result_obj['total_percentage'] = $total_percentage;
+  $result_obj['personality_match'] = $personality_match->Value;
+  
+  echo json_encode($result_obj);
+  
+
+  //print '</br> Compatibility type: 1 = CM, 2 = SM, 3 = NM </br>';
+  //print_r($algScores);
+}
+
 
 function algBatch() {
   print '<pre>';
@@ -199,7 +247,7 @@ function algController($x, $y) {
   print 'Personality Score: ' .  $y_personalityScore = getPersonalityScore($y);
   $personality_match  = getPersonalityMatch($x_personalityScore, $y_personalityScore);
   print '</br> Compatibility type: 1 = CM, 2 = SM, 3 = NM </br>';
-  print_r($personality_match);
+  print_r($algScores);
 }
 
 function getPersonalityMatch($x, $y) {
@@ -429,7 +477,7 @@ function algObjectCreator($x, $y, $questions) {
   $y_answers = algorithmGetAllAnswers($y);
   
   $algArray = array();
-  print '<pre>';
+  //print '<pre>';
 
   for ($i = 0; $i < count($questions); $i++) {
     $algObject = new stdClass();

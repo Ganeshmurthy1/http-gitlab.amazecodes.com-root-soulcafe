@@ -79,5 +79,12 @@ angular.module('sassApp')
                 return response;
             });  
      };
+     
+     dataFactory.getMyMatch = function (id) { 
+         return $http.get(urlBase + 'alg_processor_one_one/'+ id).then(function(response) {
+         //console.log(response);
+               return response;
+           });  
+    };
     return dataFactory;
   }]);
