@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('OtherprofileCtrl', ['$scope','$location','$rootScope','localStorageService','regService', 'FlickrApi','$routeParams','profileOperations', '$facebook', function ($scope, $location, $rootScope, localStorageService, regService,flickr,$routeParams,profileOperations, $facebook) {
+  .controller('OtherprofileCtrl', ['$scope','$location','$rootScope','localStorageService','regService', 'FlickrApi','$routeParams','profileOperations', '$facebook', '$modal', function ($scope, $location, $rootScope, localStorageService, regService,flickr,$routeParams,profileOperations, $facebook, $modal) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -53,7 +53,8 @@ angular.module('sassApp')
 
 
      
-     
+      
+      
       $scope.sendGTKY = function(){
               
       $location.path('/confirmGTKY');
@@ -95,7 +96,27 @@ angular.module('sassApp')
           console.log("Outside");      
         });
 
- 
+        $scope.items = ['item1', 'item2', 'item3'];
+
+        $scope.open = function (size) {
+
+          var modalInstance = $modal.open({
+            templateUrl: 'myModalContent.html',
+            controller: 'ModalInstanceCtrlMatch',
+            size: size,
+            resolve: {
+              items: function () {
+                return $scope.userData;
+              }
+            }
+          });
+
+          modalInstance.result.then(function (selectedItem) {
+            $scope.selected = selectedItem;
+          }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+          });
+        };
  
 
 
@@ -103,3 +124,33 @@ angular.module('sassApp')
  
 
 }]);
+
+
+
+
+//Please note that $modalInstance represents a modal window (instance) dependency.
+//It is not the same as the $modal service used above.
+
+angular.module('sassApp').controller('ModalInstanceCtrlMatch', function ($scope, $modalInstance, items, profileOperations) {
+	
+
+	 profileOperations.getMyMatch(items.user_id).then(function(resp) {
+		 $scope.matchDetails = resp.data;
+	 });
+	
+	
+	$scope.buddyname =  items.first_name;
+	
+	$scope.items = items;
+	$scope.selected = {
+	 item: $scope.items[0]
+	};
+	
+	$scope.ok = function () {
+	 $modalInstance.close($scope.selected.item);
+	};
+	
+	$scope.cancel = function () {
+	 $modalInstance.dismiss('cancel');
+	};
+});
