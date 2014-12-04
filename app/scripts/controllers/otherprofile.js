@@ -105,7 +105,7 @@ angular.module('sassApp')
 
           var modalInstance = $modal.open({
             templateUrl: 'myModalContent.html',
-            controller: 'ModalInstanceCtrl',
+            controller: 'ModalInstanceCtrlMatch',
             size: size,
             resolve: {
               items: function () {
@@ -134,7 +134,7 @@ angular.module('sassApp')
 //Please note that $modalInstance represents a modal window (instance) dependency.
 //It is not the same as the $modal service used above.
 
-angular.module('sassApp').controller('ModalInstanceCtrl', function ($scope, $modalInstance, items, profileOperations) {
+angular.module('sassApp').controller('ModalInstanceCtrlMatch', function ($scope, $modalInstance, items, profileOperations) {
 	
 
 	 profileOperations.getMyMatch(items.user_id).then(function(resp) {
