@@ -44,6 +44,8 @@ $app->get('/get_PicturesComments/:topicId', 'getPicturesComments');
 $app->post('/update_Profile_Detail',  'updateProfileDetail');
 $app->get('/get_TotalMemberFromAllDiscussion', 'getTotalMemberFromAllDiscussion');
 
+$app->post('/resend_code', 'resendCode');
+
 function checkUser() { 
   $headers = apache_request_headers();
  // echo $headers['authorization'];
@@ -1143,6 +1145,47 @@ function getTotalMemberFromAllDiscussion() {
     $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
     $db = null;
     echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}
+
+function resendCode() {
+  $request = Slim::getInstance()->request();
+  $user = json_decode($request->getBody());
+  //print_r($user->mobile);
+  //exit();
+  $sql = "select first_name,act_code FROM users where mobile = :mobile";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("mobile", $user->mobile);
+    $stmt->execute();
+    $wine = $stmt->fetchObject();
+    $db = null;
+    
+    if (isset($wine->act_code)) {
+      $my_name = $wine->first_name;
+      $mobile_rand = $wine->act_code;
+      //exit();
+      // Get cURL resource
+      $curl = curl_init();
+      // Set some options - we are passing in a useragent too here
+      curl_setopt_array($curl, array(
+      CURLOPT_RETURNTRANSFER => 1,
+      CURLOPT_URL => 'http://bulksms.marketsolutions.co.in/sendsms?uname=thumbamon&pwd=thumbamon123&senderid=TUMBMN&to=' . $user->mobile . '&msg=Dear%20' . $my_name . ',%20%20Thank%20you%20for%20your%20donation%20amount%20of%20INR.%20' .$mobile_rand . '/-%20towards%20Tithe%20Collection%20of%20MOSC%20Diocese%20of%20Thumpamon.%20Best%20Regards,%20Dio.%20Office,%20Thumpamon&route=T',
+      CURLOPT_USERAGENT => 'Jiby Sample cURL Request'
+          ));
+          // Send the request & save response to $resp
+          $resp = curl_exec($curl);
+          // Close request to clear up some resources
+          curl_close($curl);
+      
+      echo 'true';
+  } else {
+    echo 'No mobile number found';
+  }
+  
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }

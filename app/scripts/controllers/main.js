@@ -114,13 +114,7 @@ angular.module('sassApp')
 	                	 $scope.fbdata = response;
 	                	 localStorageService.set('facebookData', {fbdata:response});
 
-				 $facebook.api("/me/picture?redirect=0&height=200&type=normal&width=200").then(function(pic) {
-				      	console.log(pic);
-				       	$scope.fbpicture = pic;
-					    localStorageService.set('fbpicture', {fbpicture:pic});
-					   var fbbbbdata = localStorageService.get('fbpicture');
-						console.log(fbbbbdata);
-				  });
+				
 
 	                     //  var fbbbbdata = localStorageService.get('facebookData');
 						 // console.log(fbbbbdata);
@@ -293,17 +287,18 @@ angular.module('sassApp')
 	                	 $scope.fbdata = response;
 	                	 localStorageService.set('facebookData', {fbdata:response});
 
-				 $facebook.api("/me/picture?redirect=0&height=200&type=normal&width=200").then(function(pic) {
-				      	console.log(pic);
-				       	$scope.fbpicture = pic;
-					    localStorageService.set('fbpicture', {fbpicture:pic});
-					   var fbbbbdata = localStorageService.get('fbpicture');
-						console.log(fbbbbdata);
-				  });
+					 $facebook.api("/me/picture?redirect=0&height=200&type=normal&width=200").then(function(pic) {
+					      	console.log(pic);
+					       	$scope.fbpicture = pic;
+						    localStorageService.set('fbpicture', {fbpicture:pic});
+						    //var fbbbbdata = localStorageService.get('fbpicture');
+							//console.log(fbbbbdata);
+							 $location.path('/signup');
+					  });
 
 	                     //  var fbbbbdata = localStorageService.get('facebookData');
 						 // console.log(fbbbbdata);
-						  $location.path('/signup');
+						 
 	                	 if(response.gender == 'male') {
 	                		 $scope.male = true;
 	                	 } else {

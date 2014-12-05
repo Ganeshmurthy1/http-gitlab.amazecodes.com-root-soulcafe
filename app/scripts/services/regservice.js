@@ -279,5 +279,13 @@ angular.module('sassApp')
                 return response;
             });	
 	    };
+	    
+	    dataFactory.resendActCode = function (param) {
+	    	console.log(param);
+	    	var data = 'fb_id=' + param.id;
+	    	return $http.post(urlBase + 'resend_code', param).then(function(response) {
+                return response;
+            });	    	
+	    };
 	    return dataFactory;
 	}]);

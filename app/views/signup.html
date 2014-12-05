@@ -1,102 +1,136 @@
-
- <!--=== Header ===-->    
- <!-- <div data-ng-controller="HeaderCtrl" data-ng-include="Header"> ===-->    
-</div>
-    <!--=== End Header ===--> 
-
-<div class="container" style="margin-left:500px;">
-	<div class="row headingWrap">
-		<label class="col-sm-3 control-label heading">Sign Up</label>	
-	</div>
-	<form name="fbdataform" class="form-horizontal group-border-dashed"  style="border-radius: 0px;" data-ng-submit="fbdataform.$valid && signUp()" novalidate >                        
-        <div class="padding-bottom col-sm-6 clear">
-            <div class="pull-left padding-right line-height40">I am a</div>
-            <div class="pull-left padding-right"><div class=" form-control-holder " id="radio-male" >
-            <input type="radio" name="RadioGroup1" value="male"  checked="checked" id="radio-male"> 
-           	<div class='radio-mask' ng-class="{radiomaskselected:male}"></div>
-            </div>
-            </div>
-            <div class="pull-left"><div class=" form-control-holder" id="radio-female" >
-            <input type="radio" name="RadioGroup1" value="female" id="radio-female">
-            <div class='radio-mask' ng-class="{radiomaskselected:female}"></div>
-            </div></div>
+<!--HEADER STARTS HERE-->
+<header>
+  <div class = "row" style="margin-right:10px !important;">
+    <div class="row col-sm-8">
+      <div class="col-sm-offset-7 col-xs-offset-3 col-xs-6 col-sm-4 text-col-xs-center" style="text-align:center;">
+        <img src="images/logo.png" class="img-responsive">
+      </div>
+      </div>
+      <div class="row col-sm-4">
+      <div class="inline-block pull-right" style="padding-top:20px;">
+              <!-- <div class="inline-block" style="font-weight:600;font-size:17px;padding-top:20px;color:#4c2500;">Follow us</div> -->
+                <div class="inline-block"><a target="_blank" href="https://www.facebook.com/SoulCafeIndia"><img src="images/facebook.png"></a></div>
+                <div class="inline-block"><a target="_blank" href="http://www.pinterest.com/sophiasanju/soul-cafe/"><img src="images/pinterest.png"></a></div>
+                <div class="inline-block"><a target="_blank" href="http://dsoulcafe.wordpress.com/"><img src="images/blogger.png"></a></div>
+      </div>
+    
+       <div class="col-xs-3 col-sm-4 padding-top-20 pull-left" style="padding-bottom:0px !important;">
+        <div class=" visible-xs hidden-sm"> 
+        <button type="button" class="navbar-toggle top-navbar-toogle no-margin no-padding"  data-toggle="collapse" data-target=".top-navigation"><img src="images/menu.png" style="width:30px"></button>
+        <ul class="nav collapse top-navigation">
+            <li><a href="#">Why SoulCafe </a></li>
+            <li><a href="#">How It Works</a></li>
+            <li><a href="#">The strict “NO-NO” on Soul Cafe</a></li>
             <div class="clearfix"></div>
-                        
+        </ul>
+        </div>            
         </div>
-        <div class="padding-bottom col-md-5 clear">
-            <div  ng-class="{ 'has-error' : fbdataform.name.$invalid && !fbdataform.name.$pristine || fbdataform.name.$invalid  && submitted }">
+        </div>
 
-        	<input type="text" name="name" class="form-control" data-ng-model="fbdata.first_name" placeholder="First Name" required>
+  </div>
+</header>
+<!--HEADER ENDS HERE-->
 
-            <p ng-show="(fbdataform.name.$invalid && !fbdataform.name.$pristine) || (fbdataform.name.$invalid  && submitted) " class="help-block">Add First Name.</p>
+<div class="container" >
+
+<div class="row margin-50">
+<label class="col-lg-4 servive-block-brown min-400 home-desc">
+ 				Why Phone Validation?
+				<p><q><i> - One more step towards an authentic profile </i></q></p>
+				<p><q><i> - Minimises duplicate profiles </i></q></p>
+				<p><q><i> - Your phone number is never disclosed </i></q></p>
+			  </label>
+	 <div class="col-lg-6 servive-block-light min-400 padd-50">
+	<form name="fbdataform" class="form-horizontal group-border-dashed"  style="border-radius: 0px;" data-ng-submit="fbdataform.$valid && signUp()" novalidate >                        
+
+   
+
+        <div class="padding-bottom row clear">
+        	<div class="col-lg-4"> Location</div>
+        	<div class="col-lg-6">
+	            <div  ng-class="{ 'has-error' : fbdataform.location.$invalid && !fbdataform.location.$pristine || fbdataform.location.$invalid  && submitted }">
+	
+	        	<input type="text" name="location"  class="form-control" data-ng-model="fbdata.location.name" placeholder="Location" required>
+	
+	             <p ng-show="(fbdataform.location.$invalid && !fbdataform.location.$pristine) || (fbdataform.location.$invalid  && submitted) " class="help-block">Add Current Location.</p>
+	            </div>
             </div>
         </div>
 
-        <div class="padding-bottom col-md-5 clear">
-            <div  ng-class="{ 'has-error' : fbdataform.last_name.$invalid && !fbdataform.last_name.$pristine || fbdataform.last_name.$invalid  && submitted }">
-
-            	<input type="text" name="last_name" class="form-control" data-ng-model="fbdata.last_name" placeholder="Last Name" required>
-
-                 <p ng-show="(fbdataform.last_name.$invalid && !fbdataform.last_name.$pristine) || (fbdataform.last_name.$invalid  && submitted) " class="help-block">Add Last Name.</p>
+        <div class="padding-bottom row clear">
+        <div class="col-lg-4"> Mobile</div>
+        	<div class="col-lg-6">
+	            <div  ng-class="{ 'has-error' : fbdataform.mobile.$invalid && !fbdataform.mobile.$pristine || fbdataform.mobile.$invalid  && submitted }">
+	
+	        	<input type="text" name="mobile" class="form-control" data-ng-model="fbdata.mobile" placeholder="Mobile" ng-minlength="10" ng-maxlength="11" required>
+	
+	            <p ng-show="(fbdataform.mobile.$invalid && !fbdataform.mobile.$pristine) || (fbdataform.mobile.$invalid  && submitted) " class="help-block">Add Valid Mobile Number.</p>
+	            </div>
+            </div>
+            <div class="col-lg-2">             
+           		 <input type="submit" value="Verify" class="btn-u " ng-click="submitted=true">
             </div>
         </div>
-        <div class="padding-bottom col-md-5 clear">
-            <div  ng-class="{ 'has-error' : fbdataform.birthday.$invalid && !fbdataform.birthday.$pristine || fbdataform.birthday.$invalid  && submitted }">
-                <p class="input-group">
-                    <input type="text" name="birthday" class="form-control" datepicker-popup="{{format}}" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" data-ng-model="fbdata.birthday" required/>
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                    </span>
-                </p>
-                <p ng-show="(fbdataform.birthday.$invalid && !fbdataform.birthday.$pristine) || (fbdataform.birthday.$invalid  && submitted) " class="help-block">Add Date of Birth.</p>
+        </form>
+        <div class="padding-bottom row clear" ng-show="mobileVerifiedMessage">
+        <div class="col-lg-4"> </div>
+        	<div class="col-lg-6">
+        	<div class="alert alert-success fade in">
+                <strong>Well done!</strong> Please enter the activation code below
             </div>
+        	</div>
         </div>
-        <div class="padding-bottom col-md-5 clear">
-             <div  ng-class="{ 'has-error' : fbdataform.home_town.$invalid && !fbdataform.home_town.$pristine || fbdataform.home_town.$invalid  && submitted }">
-
-        	<input type="text" name="home_town"   class="form-control" data-ng-model="fbdata.hometown.name" placeholder="Home Town" required>
-
-             <p ng-show="(fbdataform.home_town.$invalid && !fbdataform.home_town.$pristine) || (fbdataform.home_town.$invalid  && submitted) " class="help-block">Add Home town.</p>
+         <div class="padding-bottom row clear" ng-show="errMessage">
+        <div class="col-lg-4"> </div>
+        	<div class="col-lg-6">
+        	<div class="alert alert-danger fade in">
+                {{errMessage}}
             </div>
+        	</div>
         </div>
-        <div class="padding-bottom col-md-5 clear">
-            <div  ng-class="{ 'has-error' : fbdataform.location.$invalid && !fbdataform.location.$pristine || fbdataform.location.$invalid  && submitted }">
-
-        	<input type="text" name="location"  class="form-control" data-ng-model="fbdata.location.name" placeholder="Location" required>
-
-             <p ng-show="(fbdataform.location.$invalid && !fbdataform.location.$pristine) || (fbdataform.location.$invalid  && submitted) " class="help-block">Add Current Location.</p>
+     
+        <form ng-show="mobileVerified" name="mobile-verify" class="form-horizontal group-border-dashed"  style="border-radius: 0px;" data-ng-submit="actcode.$valid && mobileVerify()" novalidate >                        
+        
+        <div class="padding-bottom row clear" >
+        	<div class="col-lg-4"> Enter Code</div>
+        	<div class="col-lg-6">
+	            <div  ng-class="{ 'has-error' : fbdataform.location.$invalid && !fbdataform.location.$pristine || fbdataform.location.$invalid  && submitted }">
+	
+	        	<input type="text" name="Activation code"  class="form-control" data-ng-model="actcode" placeholder="Activation code" required>
+	
+	             <p ng-show="(actcode.$invalid && !actcode.$pristine) || (actcode.$invalid  && submitted) " class="help-block">Add Verification code</p>
+	            </div>
             </div>
+           
         </div>
-        <div class="padding-bottom col-md-5 clear">
-            <div  ng-class="{ 'has-error' : fbdataform.email.$invalid && !fbdataform.email.$pristine || fbdataform.email.$invalid  && submitted }">
-
-        	<input type="email" name="email" class="form-control" data-ng-model="fbdata.email" placeholder="Email" required>
-
-            <p ng-show="(fbdataform.email.$invalid && !fbdataform.email.$pristine) || (fbdataform.email.$invalid  && submitted) " class="help-block">Add Email Address.</p>
+        
+        <div class="padding-bottom row clear" ng-show="errMobileMessage">
+        <div class="col-lg-4"> </div>
+        	<div class="col-lg-6">
+        	<div class="alert alert-danger fade in">
+                {{errMobileMessage}}
             </div>
+        	</div>
         </div>
-        <div class="padding-bottom col-md-5 clear">
-            <div  ng-class="{ 'has-error' : fbdataform.mobile.$invalid && !fbdataform.mobile.$pristine || fbdataform.mobile.$invalid  && submitted }">
-
-        	<input type="text" name="mobile" class="form-control" data-ng-model="fbdata.mobile" placeholder="Mobile" ng-minlength="10" ng-maxlength="11" required>
-
-            <p ng-show="(fbdataform.mobile.$invalid && !fbdataform.mobile.$pristine) || (fbdataform.mobile.$invalid  && submitted) " class="help-block">Add Valid Mobile Number.</p>
+        <div class="padding-bottom row clear" ng-show="resMessage">
+        <div class="col-lg-4"> </div>
+        	<div class="col-lg-6">
+        	<div class="alert alert-success fade in">
+                Verification code sent again.. 
             </div>
+        	</div>
         </div>
-        <div class="padding-bottom col-md-5 clear">
-            <div  ng-class="{ 'has-error' : fbdataform.relationship.$invalid && !fbdataform.relationship.$pristine || fbdataform.relationship.$invalid  && submitted }">
-
-        	<input type="text" name="relationship" class="form-control" data-ng-model="fbdata.relationship_status" placeholder="Relationship Status" required>
-
-            <p ng-show="(fbdataform.relationship.$invalid && !fbdataform.relationship.$pristine) || (fbdataform.relationship.$invalid  && submitted) " class="help-block">Add RelationShip Status.</p>
-            </div>
-        </div>   
-        <h4>{{errMessage}}</h4>
-        <div class="col-md-3 clear buttonWrap">
-        	<input type="submit" value="submit" ng-click="submitted=true" class="btn btn-lg btn-primary btn-block " >
+  
+        <div class="padding-bottom row clear">
+        <div class="col-lg-4"> </div>
+        	<div class="col-lg-6 resend-link"><a ng-click="resendCode()" >Resend Activation Code</a>
+        	<input type="submit" value="Next" class="btn btn-lg btn-primary btn-block " ng-click="mobileVerify()">
+        	</div>
         </div>
+       </form>             
                     
-                    
-                  </form>
+        
+       </div>
+      </div>
 </div>
 
