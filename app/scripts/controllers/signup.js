@@ -91,12 +91,13 @@ angular.module('sassApp')
   				  if (results.data != 'false') { //login 
   						console.log('login');
   						localStorageService.set('authorizationData', {
-  			                fb_id: $scope.fbdata.id,
-  			                user_id: results.data.user_id,
-  			                userName: response.first_name,
-  			                token: results.data.token,
-  			                user_role: results.data.user_role
-  			            });
+			                fb_id: response.id,
+			                user_id: results.data.user_id,
+			                userName: response.first_name,
+			                lastName: response.last_name,
+			                token: results.data.token,
+			                user_role: results.data.user_role	                
+			            });
   						var accessLevels = routingConfig.accessLevels
   				        , userRoles = routingConfig.userRoles;
   						localStorageService.set('user', {
