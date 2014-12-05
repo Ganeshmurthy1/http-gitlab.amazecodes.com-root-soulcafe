@@ -19,7 +19,7 @@ angular.module('sassApp')
     $scope.action="true";
 
     adminDiscussion.adminAbuseList().then(function (response) {
-	    		console.log(response);
+	    		console.log(response.data[0].cFirst);
 	    		$scope.disscusionAbuseDetails = response.data;
 	    	});
 

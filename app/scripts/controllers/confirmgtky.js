@@ -34,7 +34,7 @@ angular.module('sassApp')
       };
 
       $scope.notNow = function(){
-        $location.path('/dashboard-anon');
+        $location.path('/otherprofile');
 
       };
 

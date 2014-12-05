@@ -8,12 +8,15 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('DiscussionTopicsCtrl', function ($routeParams,$scope,localStorageService,regService,$location) {
+  .controller('DiscussionTopicsCtrl', function ($routeParams,$scope,localStorageService,regService,$location, config) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
+    var config = localStorageService.get('config');
+    $scope.imagepath = config.image_path;
 
     $scope.discussionid=$routeParams.discussionid;
     // console.log($scope.discussionid);

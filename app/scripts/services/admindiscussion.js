@@ -181,6 +181,12 @@ angular.module('sassApp')
                 return response;
             });	 
 	      };
+	    dataFactory.getRequestedTopic = function () {	
+	      	return $http.get(urlBase + 'get_RequestedTopic').then(function(response) {
+	    		//console.log(response);
+                return response;
+            });	 
+	      };
 	    return dataFactory;
 	}]);
 

@@ -8,12 +8,15 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('AdminTopicListCtrl', function ($scope, adminDiscussion, $routeParams) {
+  .controller('AdminTopicListCtrl', function ($scope, adminDiscussion, $routeParams, localStorageService, config) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
+    var config = localStorageService.get('config');
+    $scope.imagepath = config.image_path;
     
     function getAdminTopic() {
     	$scope.discussId = $routeParams.discussId;

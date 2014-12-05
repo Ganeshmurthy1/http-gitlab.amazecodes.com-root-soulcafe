@@ -21,6 +21,12 @@ angular.module('sassApp')
               });        
       }
 
+        //  dataFactory.setConfigruation = function () {
+        // localStorageService.set('config', {
+        //           base_path:'/SASS/api/',
+        //           image_path:'http://soulcafe.singles/SASS/api/uploads/'                
+        //       });        
+        // }
 
     // Public API here
     return dataFactory;

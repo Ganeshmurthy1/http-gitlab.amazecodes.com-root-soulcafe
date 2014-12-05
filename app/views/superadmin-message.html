@@ -25,7 +25,7 @@
                     <p>{{com.Message}}</p>
                     <p>{{com.AddedDate}}</p>
                     <p>
-                        <a class="btn-u btn-u-red" href="#/superadmin-view-user?userid={{com.UserId}}">View {{com.user}}</a>
+                        <a class="btn-u btn-u-red" ng-click="viewUser(com)">View {{com.user}}</a>
                         <a class="btn-u btn-u-blue" href="#/admin-add-message">Reply </a>
                         
                     </p>
@@ -36,11 +36,7 @@
         </div>
 
     </div>
-    <!--=== Footer ===-->
- <div data-ng-controller="FooterCtrl" data-ng-include="Footer">
-</div>
-
-<!--=== End Footer ===-->
+    
 
 
 </div>

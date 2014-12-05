@@ -27,6 +27,8 @@ $app->post('/admin_get_bad_list',  'adminGetBadList');
 $app->get('/admin_not_spam/:id',  'adminNotASpam');
 $app->get('/admin_mark_spam/:id',  'adminMarkSpam');
 $app->post('/image_upload', 'imageupload');
+$app->get('/get_RequestedTopic',  'getRequestedTopic');
+
 function adminAddDiscussion() {
   $request = Slim::getInstance()->request();
   $forum = json_decode($request->getBody());
@@ -442,7 +444,7 @@ function updatediscussionTopicDetail() {
 function adminAbuseList() {
   
 
-   $sql = "select DBA.CommentId,DBA.Status, DBA.ReportedBy, DBA.Comments, DBA.ReportedDate,DBC.DiscussionTopicId,DBT.TopicTitle,DBT.DiscussionBoardId,DB.Topic from DiscussionBoardAbuse As DBA Inner Join DiscussionBoardComments As DBC Inner join DiscussionBoardTopic As DBT Inner Join DiscussionBoard As DB ON DBA.CommentId =DBC.CommentId and DBC.DiscussionTopicId = DBT.DiscussionTopicId and DB.DiscussionBoardId = DBT.DiscussionBoardId where DBA.Spam=1 ORDER BY DBA.ReportedDate desc ";
+   $sql = "select DBA.CommentId,DBA.Status, DBA.ReportedBy, DBA.Comments, DBA.ReportedDate,DBC.DiscussionTopicId,DBC.UserId,DBT.TopicTitle,DBT.DiscussionBoardId,DB.Topic,u.first_name as rFirst,u.last_name as rLast,uc.first_name as cFirst,uc.last_name as cLast from DiscussionBoardAbuse As DBA Inner Join DiscussionBoardComments As DBC Inner join DiscussionBoardTopic As DBT Inner Join DiscussionBoard As DB inner join users as u inner join users as uc ON DBA.CommentId =DBC.CommentId and DBC.DiscussionTopicId = DBT.DiscussionTopicId and DB.DiscussionBoardId = DBT.DiscussionBoardId and DBA.ReportedBy = u.user_id and DBC.UserId=uc.user_id where DBA.Spam=1 ORDER BY DBA.ReportedDate desc ";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
@@ -556,7 +558,7 @@ function adminGetBadList() {
 function adminInappropriateComment() {
   
 
-   $sql = "SELECT dba.CommentId,dba.Comments,dba.ReportedBy,dba.ReportedDate,dbt.DiscussionTopicId,dbt.TopicTitle, u.first_name, u.last_name from  DiscussionBoardAbuse as dba left join DiscussionBoardComments as dbc on dba.CommentId=dbc.CommentId left join DiscussionBoardTopic as dbt on  dbc.DiscussionTopicId = dbt.DiscussionTopicId JOIN users u ON dbc.UserId = u.user_id where dba.Spam = 0";
+   $sql = "SELECT dba.CommentId,dba.Comments,dba.ReportedBy,dba.ReportedDate,dbt.DiscussionTopicId,dbt.DiscussionBoardId,dbt.TopicTitle, u.first_name as rFirst, u.last_name as rLast,dbc.UserId,uc.first_name as cFirst, uc.last_name as cLast,db.Topic from  DiscussionBoardAbuse as dba left join DiscussionBoardComments as dbc on dba.CommentId=dbc.CommentId left join DiscussionBoardTopic as dbt on  dbc.DiscussionTopicId = dbt.DiscussionTopicId LEFT JOIN users u ON dba.ReportedBy = u.user_id LEFT JOIN users uc ON dbc.UserId = uc.user_id left join DiscussionBoard as db on dbt.DiscussionBoardId = db.DiscussionBoardId  where dba.Spam = 0";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
@@ -629,4 +631,28 @@ function imageupload() {
 }
 
 }
+
+function getRequestedTopic() {
+  
+
+   $sql = "SELECT dbt.TopicTitle,dbt.CreatedBy,dbt.DiscussionBoardId,dbt.DiscussionTopicId,dbt.Status,db.Topic,u.first_name,u.last_name FROM DiscussionBoardTopic as dbt inner join DiscussionBoard as db on dbt.DiscussionBoardId = db.DiscussionBoardId inner join users as u on dbt.CreatedBY = u.user_id WHERE dbt.createdStatus=1";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    // $stmt->bindParam("id", $id);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    //echo $total = $wine->'count(1)';
+
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  //echo json_encode($wine);
+}
+
+
+
+
 ?>

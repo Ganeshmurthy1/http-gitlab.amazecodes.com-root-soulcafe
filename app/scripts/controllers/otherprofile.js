@@ -33,11 +33,11 @@ angular.module('sassApp')
       for ( var int = 0; int < pic.data.length; int++) {
         var tmpdata = {};
         tmpdata.text = pic.data[int].name;
-        tmpdata.weight = Math.floor(Math.random() * (15 - 5 + 1)) + 5;
+        tmpdata.weight = 22;
         likeData.push(tmpdata);
       }
       $scope.words = likeData;
-      $scope.colors = ["#800026", "#bd0026", "#e31a1c", "#fc4e2a", "#fd8d3c", "#feb24c", "#fed976"];
+     // $scope.colors = ["#ccc", "#00ff00", "#ff0000", "#0000ff", "#0000ff", "#0000ff", "#ff0000"];
 
       }
       
