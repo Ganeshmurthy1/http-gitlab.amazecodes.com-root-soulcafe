@@ -422,7 +422,7 @@ function updatediscussionTopicDetail() {
   $request = Slim::getInstance()->request();
   $user = json_decode($request->getBody());
     // print_r($user);
-    $sql = " UPDATE `DiscussionBoard` SET `Topic`= :topic,`Description`=:description,`Restricted`=:resticted,`RestrictedGender`=:restictedGender,`RestrictedAge`=:restictedAge,`RestrictedLocation`=:restictedLocation where DiscussionBoardId = :disscussionId";
+    $sql = " UPDATE `DiscussionBoard` SET `Topic`= :topic,`Description`=:description,`Restricted`=:resticted,`RestrictedGender`=:restictedGender,`RestrictedAge`=:restictedAge,`RestrictedLocation`=:restictedLocation,Image=:image where DiscussionBoardId = :disscussionId";
     try {
       $db = getConnection();
       $stmt = $db->prepare($sql);
@@ -431,8 +431,9 @@ function updatediscussionTopicDetail() {
       $stmt->bindParam("resticted", $user->Restricted); 
       $stmt->bindParam("restictedGender", $user->RestrictedGender); 
       $stmt->bindParam("restictedAge", $user->RestrictedAge); 
-       $stmt->bindParam("restictedLocation", $user->RestrictedLocation); 
-        $stmt->bindParam("disscussionId", $user->discussId); 
+      $stmt->bindParam("restictedLocation", $user->RestrictedLocation); 
+      $stmt->bindParam("disscussionId", $user->discussId); 
+      $stmt->bindParam("image", $user->Image);
       $stmt->execute();
       echo 'true';
     } catch(PDOException $e) {

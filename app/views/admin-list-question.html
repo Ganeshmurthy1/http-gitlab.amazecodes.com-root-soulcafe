@@ -18,10 +18,11 @@
             <div class="col-md-9">
             	<h1>All Questions</h1>
                 <div class="row">
+                    <div class="col-md-1 borderpad">Sr No</div>
                     <div class="col-md-4 borderpad">Question</div>
                     <div class="col-md-3 borderpad">Question Category</div>
-                    <div class="col-md-3 borderpad">Algortitham Type</div>
-                    <div class="col-md-2 borderpad">Operations</div>
+                    <div class="col-md-3 borderpad">Algorithm Type</div>
+                    <div class="col-md-1 borderpad">Operations</div>
                 </div>
                
 <div ui-tree>
@@ -29,12 +30,12 @@
      
     <li ng-repeat="ad in admins" ui-tree-node>
       <div class="row" ui-tree-handle>
-        
+        <div class="col-md-1 borderpad">{{$index+1}}</div>
         <div class="col-md-4 borderpad">{{ad.QuestionTitle}}</div>
         <div class="col-md-3 borderpad">{{ad.Category}}</div>
         <div class="col-md-3 borderpad">{{ad.AlgTypeTitle}}</div>
        
-       <div class="col-md-2" style="border:1px solid black;padding:2px;">
+       <div class="col-md-1" style="border:1px solid black;padding:2px;">
             <a style="padding:4px 9px !important;" href="#/admin-edit-question?qid={{ad.Qid}}" data-nodrag="" class="btn btn-primary btn-xs"><span class="fa fa-pencil"></span></a>
             <a style="padding:4px 9px !important;" ng-click="deleteQuestion(ad.Qid)" data-nodrag="" class="btn btn-primary btn-xs"><span class="fa fa-times"></span></a>
        </div>
