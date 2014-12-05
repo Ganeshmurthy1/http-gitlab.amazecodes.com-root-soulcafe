@@ -46,7 +46,7 @@
                      <div class="alert alert-success fade in" data-ng-hide="a">{{abc}}</div>
 
                     <div class="btn-spacer" style="padding:10px;">
-                      <a href="#" class="btn btn-primary text-capital btn-lg text-shadow" style="border-radius:6px !important;background: none repeat scroll 0 0 #0cb8f0 !important; font-size:15px;font-weight:600;padding:10px 30px;" ng-click="open('sm')">Sign up</a>&nbsp;&nbsp;
+                      <a href="#" class="btn btn-primary text-capital btn-lg text-shadow" style="border-radius:6px !important;background: none repeat scroll 0 0 #0cb8f0 !important; font-size:15px;font-weight:600;padding:10px 30px;" ng-click="open()">Sign up</a>&nbsp;&nbsp;
                       <a href="#" class="btn btn-danger text-capital btn-lg text-shadow" style="border-radius:6px !important;background: none repeat scroll 0 0 #f94d0a !important; font-size:15px;font-weight:600;padding:10px 30px;" ng-click="login()">Log In</a>
                     </div>
                 
@@ -54,19 +54,6 @@
         </div>
        
 
-<div >
-    <script type="text/ng-template" id="myModalContent.html">
-        <div class="modal-header">
-            <button class="btn btn-primary btn-img" ng-click="login()"></button>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-        </div>
-    </script>
-
-    
-    <div ng-show="selected">Selection from a modal: {{ selected }}</div>
-</div>
 
         
         <div class="banner-bottom-button hidden-xs text-center text-capital">
@@ -127,3 +114,40 @@
     </div>
 </div>
 <!--FOOTER ENDS HERE-->
+
+
+
+<div >
+    <script type="text/ng-template" id="myModalContent.html">
+        
+		 <div class="modal-home-body">
+			<div>
+              <label class="col-lg-4 servive-block-brown min-300 home-desc">
+ 				Why Facebook Sign up?
+				<p><q><i> We want to make sure our members have a valid social media presence </i></q></p>
+			  </label>
+              <div class="col-lg-8 servive-block-light min-300">
+				<div class="fb-btn-modal">
+                  <button class="btn btn-primary btn-img" ng-click="login()"></button>			
+<div class="row-space-top-2" id="tos_outside">
+      <small>
+  By signing up, I agree to Soulcafe's <a data-popup="true" href="/terms">Terms of Service</a>, <a data-popup="true" href="/terms/privacy_policy">Privacy Policy</a>, <a data-popup="true" href="/terms/guest_refund_policy">Guest Refund Policy</a>, and <a data-popup="true" href="/terms/host_guarantee">Host Guarantee Terms</a>.
+</small>
+
+    </div>	  
+				</div>
+
+				<div class="cancel-btn-modal pull-right">
+					<button class="btn btn-warning" ng-click="cancel()">Not now!.</button>
+				</div>
+              </div>
+            </div>
+			
+		</div>
+
+       
+    </script>
+
+    
+    <div ng-show="selected">Selection from a modal: {{ selected }}</div>
+</div>
