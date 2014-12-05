@@ -15,7 +15,9 @@ angular.module('sassApp')
       'Karma'
     ];
 
-     $scope.submitted=false;
+    $scope.mobileVerified = false;
+    $scope.mobileVerifiedMessage = false;
+    $scope.submitted=false;
     console.log("Abhikkkk");
     var data = localStorageService.get('facebookData');
 	// console.log(data.fbdata);
@@ -30,6 +32,50 @@ angular.module('sassApp')
    var fbpic = localStorageService.get('fbpicture');
    $scope.fbdata.pic = fbpic.fbpicture;
    console.log($scope.fbdata);
+   
+   $scope.resendCode = function() {
+	   console.log($scope.fbdata.mobile);
+	   var phn = new Object();
+	   	phn.mobile = $scope.fbdata.mobile;
+	   	//phn.act_code = $scope.actcode;
+	   
+	   regService.resendActCode(phn).then(function(response) {
+		   if (response.data == 'true') {
+	   			 $scope.resMessage = true;
+ 			}
+   		  else {
+   			  $scope.errMobileMessage = response.data;
+   		  }		   
+	   });
+   };
+   
+   $scope.mobileVerify = function() {
+	$scope.errMessage = '';
+	$scope.mobileVerifiedMessage = false;
+   	var authData = localStorageService.get('authorizationData');
+   	var phn = new Object();
+   	phn.user_id = authData.user_id;
+   	phn.act_code = $scope.actcode;
+   	//console.log(phn);
+   	  regService.VerifyMobile(phn).then(function(response) {
+   		  console.log(response);
+   		  if (response.data == 'true') {
+   			  console.log('success');
+   			  $location.path('/quiz');
+   			  
+   			  
+ 			}
+   		  else {
+   			  $scope.errMobileMessage = response.data;
+   		  }
+
+                 $scope.savedSuccessfully = true;
+                 $scope.message = "User has been registered successfully, you will be redicted to login page in 2 seconds.";
+                 // startTimer();
+
+             });
+     };
+   
  $scope.signUp = function() {
       console.log("Abhik1");
     if($scope.fbdata.id == null){
@@ -61,8 +107,11 @@ angular.module('sassApp')
   		  				console.log(authData);
   		  				//$scope.loggedin= true;
   		  				$rootScope.loggedin = true;
-					   
-					  		  $location.path('/mobile-verify');
+  		  				$scope.actcode = '';
+  		  				$scope.mobileVerified = true;
+  		  				$scope.mobileVerifiedMessage = true;
+  		  				$scope.errMessage = '';
+					  	  //$location.path('/mobile-verify');
   		  				  // $location.path('/dashboard');
   					}
   				  

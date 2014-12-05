@@ -726,3 +726,23 @@ min-width:220px !important;
 .cancel-btn-modal {
 	margin-top: 70px;
 }
+
+.margin-50 {
+	margin-top: 50px;
+}
+.padd-50 {
+	padding-top: 50px;
+}
+.resend-link {
+	a {
+		 color: #3498db;
+	    cursor: pointer;
+	    display: block;
+	    font-size: 18px;
+	    margin-bottom: 15px;
+	    text-decoration: underline;
+	}
+}
+.min-400 {
+	min-height: 400px;
+}
