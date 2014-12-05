@@ -291,7 +291,7 @@ angular.module('sassApp')
 					      	console.log(pic);
 					       	$scope.fbpicture = pic;
 						    localStorageService.set('fbpicture', {fbpicture:pic});
-						    //var fbbbbdata = localStorageService.get('fbpicture');
+						   var fbbbbdata = localStorageService.get('fbpicture');
 							//console.log(fbbbbdata);
 							 $location.path('/signup');
 					  });
