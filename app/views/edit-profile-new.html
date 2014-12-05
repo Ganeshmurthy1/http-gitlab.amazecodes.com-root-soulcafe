@@ -19,31 +19,56 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 control-label">First Name</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" name="name" ng-model="profileDetail.first_name" ng-disabled="true">
+                                    <div class="input-group">
+                                      <input type="text" class="form-control" name="name" ng-model="profileDetail.first_name" ng-disabled="true">
+                                      <span class="input-group-addon"><i class="fa fa-lock"></i>
+                                        </span>
+                                    </div>
+                                    
                                 </div>
                             </div>
                            <div class="form-group row">
                                 <label class="col-lg-3 control-label">Last Name</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" name="name" ng-model="profileDetail.last_name" ng-disabled="true">
+                                    <div class="input-group">
+                                      <input type="text" class="form-control" name="name" ng-model="profileDetail.last_name" ng-disabled="true">
+                                      <span class="input-group-addon"><i class="fa fa-lock"></i>
+                                        </span>
+                                    </div>
+                                    
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 control-label">I am a </label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" name="name" ng-model="profileDetail.gender">
+                                    <div class="input-group">
+                                      <input type="text" class="form-control" name="name" ng-model="profileDetail.gender" ng-disabled="true">
+                                      <span class="input-group-addon"><i class="fa fa-lock"></i>
+                                        </span>
+                                    </div>
+                                    
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 control-label">BirthDate</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" name="name" ng-model="profileDetail.birthdate">
+                                    <div class="input-group">
+                                      <input type="text" class="form-control" name="name" ng-model="profileDetail.birthdate" ng-disabled="true">
+                                      <span class="input-group-addon"><i class="fa fa-lock"></i>
+                                        </span>
+                                    </div>
+                                    
                                 </div>
                             </div>
                            <div class="form-group row">
                                 <label class="col-lg-3 control-label">Email</label>
                                 <div class="col-lg-9">
-                                    <input type="email" class="form-control" name="email1" ng-model="profileDetail.email">
+                                    <div class="input-group">
+                                      <input type="email" class="form-control" name="email1" ng-model="profileDetail.email" ng-disabled="true">
+                                      <span class="input-group-addon"><i class="fa fa-lock"></i>
+                                        </span>
+                                    </div>
+                                    
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -55,43 +80,47 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 control-label">Quote I Live By</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" name="name" ng-model="profileDetail.moto">
+                                    <textarea type="text" class="form-control" name="name" ng-model="profileDetail.Moto"></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 control-label">In my  own words</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" name="name" ng-model="profileDetail.values">
+                                    <textarea type="text" class="form-control" name="name" ng-model="profileDetail.OwnWords"></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 control-label">About Me</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" name="name" ng-model="profileDetail.aboutme">
+                                    <textarea type="text" class="form-control" name="name" ng-model="profileDetail.AboutMe"></textarea>
                                 </div>
                             </div>
                              <div class="form-group row">
                                 <label class="col-lg-3 control-label">Height</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" name="name" ng-model="profileDetail.height">
+                                    <div class="input-group">
+                                      <input type="text" class="form-control" name="name" ng-model="profileDetail.Height">
+                                      <span class="input-group-addon">cm</span>
+                                    </div>
+                                    
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 control-label">Food Habits</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" name="name" ng-model="profileDetail.food">
+                                    <textarea type="text" class="form-control" name="name" ng-model="profileDetail.FoodHabits"></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 control-label">View point on Drinking</label>
                                 <div class="col-lg-9">
-                                    <textarea type="text" class="form-control" name="name" ng-model="profileDetail.drinking"></textarea>
+                                    <textarea type="text" class="form-control" name="name" ng-model="profileDetail.Drinking"></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 control-label">View point on Smoking</label>
                                 <div class="col-lg-9">
-                                    <textarea type="text" class="form-control" name="name" ng-model="profileDetail.smoking"></textarea>
+                                    <textarea type="text" class="form-control" name="name" ng-model="profileDetail.Smoking"></textarea>
                                 </div>
                             </div>
                             <h4>{{errMessage}}</h4>
@@ -185,7 +214,14 @@
         <accordion-heading>
            Soul Questionnaire <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.isThirdOpen, 'glyphicon-chevron-right': !status.isThirdOpen}"></i>
         </accordion-heading>
-        This is just some content to illustrate fancy headings.
+         <div class="alert fade in margin-bottom-40" ng-repeat="question in questions">
+             <h4><a href="#/discussion-topics?discussionid={{question.QuestionTitle}}">{{question.QuestionTitle}}</a></h4>
+            <p>{{question.Description}}</p>                    
+            <p>
+                <a class="btn-u btn-u-sea  " href="#/question-edit?qid={{question.Qid}}">Retake</a>
+            </p>
+               
+        </div>
     </accordion-group>
     </div>
 <div class="col-md-6">
