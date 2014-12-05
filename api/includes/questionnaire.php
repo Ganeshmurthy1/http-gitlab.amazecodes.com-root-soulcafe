@@ -25,6 +25,8 @@ $app->post('/save_personality_matrix', 'savePersonalityMatrix');
 
 $app->get('/admin_get_personality_matrix', 'adminGetPersonalityMatrix');
 
+$app->post('/admin_edit_question_option', 'adminEditQuestionOption');
+
 
 function algGetQusCategory() {
 
@@ -779,4 +781,24 @@ function adminGetPersonalityMatrix() {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
   //echo json_encode($wine);
+}
+
+function adminEditQuestionOption() {
+  $request = Slim::getInstance()->request();
+  $personslity = json_decode($request->getBody());
+  print_r($personslity);
+ // exit();
+  
+  $sqlo = "Update QuestionnaireOptions SET Answer=:answer WHERE QoId = :QoId";
+  try {
+    $db = getConnection();
+    $stmto = $db->prepare($sqlo);
+    $stmto->bindParam("answer", $personslity->Answer);
+    $stmto->bindParam("QoId", $personslity->Qoid);
+    $stmto->execute();
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
+
 }
