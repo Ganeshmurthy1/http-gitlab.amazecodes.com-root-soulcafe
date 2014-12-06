@@ -14,10 +14,7 @@ angular.module('sassApp')
       'AngularJS',
       'Karma'
     ];
-    $scope.test = ['https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c0.7.200.200/p200x200/10610908_805092252845086_8387047502213134303_n.jpg?oh=bb3fba424ef77348d7071149e83cdf1b&oe=54F5F631&__gda__=1423668902_63bb520a144e19da7b7ded1ad9f6b268',
-                     'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c0.7.200.200/p200x200/10610908_805092252845086_8387047502213134303_n.jpg?oh=bb3fba424ef77348d7071149e83cdf1b&oe=54F5F631&__gda__=1423668902_63bb520a144e19da7b7ded1ad9f6b268',
-                     'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c0.7.200.200/p200x200/10610908_805092252845086_8387047502213134303_n.jpg?oh=bb3fba424ef77348d7071149e83cdf1b&oe=54F5F631&__gda__=1423668902_63bb520a144e19da7b7ded1ad9f6b268'
-                     ]
+   
 
     var $imageobj = {"image4": 'http://www.penguinbooksindia.com/sites/default/files/styles/in_focus_author/public/author/author_picture/Ravinder%20Singh.jpg',
     			  "image2": 'http://www.chem.uit.no/KJEMI/ghosh.jpg',
@@ -40,8 +37,33 @@ angular.module('sassApp')
 	  "image4": 'http://www.chem.uit.no/KJEMI/ghosh.jpg'
 	};
     $scope.test = [$imageobj, $imageobj2, $imageobj3, $imageobj4];
-    $scope.thumbup = 'true';
 
+     regService.getRecomendations().then(function (results) {
+        console.log(results.data);
+
+        for (var i = 1; i >= results.data.length; i++) {
+          console.log(results.data.length);
+            // if(i=4){
+            //   $scope.imageobj.image1=results.data[i].Picture;
+            //   $scope.imageobj.image1=results.data[i+1].Picture;
+            //   $scope.imageobj.image1=results.data[i+2].Picture;
+            //   $scope.imageobj.image1=results.data[+3].Picture;
+            // }
+            // if(i=4 && i<8 ){
+            //   $scope.imageobj.image1=results.data[0].Picture;
+            //   $scope.imageobj.image1=results.data[0+1].Picture;
+            //   $scope.imageobj.image1=results.data[0+2].Picture;
+            //   $scope.imageobj.image1=results.data[0+3].Picture;
+            // }
+
+           };
+
+        
+      });
+
+
+
+    $scope.thumbup = 'true';
     $scope.profileverify = '50%';
     var authData = localStorageService.get('authorizationData');
       regService.getUserDetails(authData.user_id).then(function (results) {

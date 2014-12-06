@@ -152,6 +152,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6e6e6', end
 .margin-top-2{
 	margin-top:2% !important;
 }
+.margin-top-1{
+	margin-top:1% !important;
+}
 a:hover{
 	color:#593a1d !important;
 }
@@ -182,6 +185,7 @@ a:hover{
 
 .imagel{
 	border:2px solid black;
+	width:85% !important;
 }
 .name{
 	font-size:18px;
@@ -418,6 +422,12 @@ min-width:220px !important;
     right: -8px;
     top: -12px;
 }
+.media-object1{
+	width:60% !important;
+}
+.row2{
+	margin-left:0% !important;
+}
 /*--------------Media Queries-------------*/
 @media (min-width: 768px) {
   .margint{
@@ -519,6 +529,9 @@ min-width:220px !important;
 }
 .mobile-align1{
 	margin-left:0% !important;
+}
+.media-object1{
+	width:100% !important;
 }
 }
 
@@ -628,6 +641,9 @@ min-width:220px !important;
 .mobile-align1{
 	margin-left:0% !important;
 }
+.media-object1{
+	width:100% !important;
+}
 }
 
 @media (min-width: 1200px) {
@@ -725,6 +741,9 @@ min-width:220px !important;
 }
 .mobile-align1{
 	margin-left:0% !important;
+}
+.media-object1{
+	width:100% !important;
 }
 }
 .min-300 {
