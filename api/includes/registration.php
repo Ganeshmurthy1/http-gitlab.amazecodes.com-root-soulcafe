@@ -45,6 +45,8 @@ $app->post('/update_Profile_Detail',  'updateProfileDetail');
 $app->get('/get_TotalMemberFromAllDiscussion', 'getTotalMemberFromAllDiscussion');
 
 $app->post('/resend_code', 'resendCode');
+$app->get('/get_Recomendations', 'getRecomendations');
+
 
 function checkUser() { 
   $headers = apache_request_headers();
@@ -905,7 +907,7 @@ function updateProfileDetail() {
 
   $user_id  = getUserId();
     // print_r($user);
-  $sqlusers = "update users  set first_name=:first_name,last_name=:last_name,email=:email,mobile=:mobile,Moto=:moto where user_id = :user_id ";
+  $sqlusers = "update users  set first_name=:first_name,last_name=:last_name,email=:email,mobile=:mobile,Moto=:moto,OwnWords=:OwnWords,AboutMe=:AboutMe,Height=:Height,FoodHabits=:FoodHabits,Drinking=:Drinking,Smoking=:Smoking,UpdatedPicture=:UpdatedPicture where user_id = :user_id ";
    $sqlpd = "update ProfessionalDetails set CurrentEmployment = :CurrentEmployment,Endorsedskills=:Endorsedskills,HighestEducation=:HighestEducation where UserId = :user_id ";  
       try {
         $db = getConnection();
@@ -916,6 +918,14 @@ function updateProfileDetail() {
         $stmt->bindParam("email", $user->email);
         $stmt->bindParam("mobile", $user->mobile);
         $stmt->bindParam("moto", $user->Moto);
+        $stmt->bindParam("OwnWords", $user->OwnWords);
+        $stmt->bindParam("AboutMe", $user->AboutMe);
+        $stmt->bindParam("Height", $user->Height);
+        $stmt->bindParam("FoodHabits", $user->FoodHabits);
+        $stmt->bindParam("Drinking", $user->Drinking);
+        $stmt->bindParam("Smoking", $user->Smoking);
+        $stmt->bindParam("UpdatedPicture", $user->UpdatedPicture);
+        
         $stmt->execute();
 
         $stmtpd = $db->prepare($sqlpd);
@@ -1078,7 +1088,7 @@ function getRating($topicId) {
 
 function getPicture($id) {
   // $user_id  = getUserId();
-  $sql = "SELECT Picture from users where user_id = :id";
+  $sql = "SELECT Picture,UpdatedPicture from users where user_id = :id";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
@@ -1183,5 +1193,22 @@ function resendCode() {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
 }
+
+function getRecomendations() {
+  $user_id  = getUserId();
+  $sql = "SELECT s.UserId,s.SoulId,u.Picture FROM SoulMatches as s inner join users as u on s.UserId=u.user_id WHERE s.UserId=:userId";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("userId", $user_id);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}
+
 
 ?>

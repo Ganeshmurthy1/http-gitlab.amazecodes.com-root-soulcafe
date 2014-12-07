@@ -8,13 +8,16 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('HeaderCtrl', function ($scope, localStorageService,regService, $location) {
+  .controller('HeaderCtrl', function ($scope, localStorageService,regService, $location,config) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
 
+
+    var config = localStorageService.get('config');
+    $scope.imagepath = config.image_path;
 
     $scope.Header = 'views/header.html';
 
@@ -24,15 +27,23 @@ angular.module('sassApp')
     $scope.datau = authData;
      console.log($scope.datau);
 
-     var fbpic = localStorageService.get('fbpicture');
-     $scope.pic=fbpic.fbpicture.data.url;
+     // var fbpic = localStorageService.get('fbpicture');
+     // $scope.pic=fbpic.fbpicture.data.url;
     if(authData.user_role == 1) {
     	$scope.isAdmin = true;
       $scope.isUser = true;
     }
     $scope.popup = false;
 
-
+     regService.getPicture(authData.user_id).then(function(response) {
+        console.log(response.data);
+        if(response.data.UpdatedPicture == null){
+          $scope.pict = response.data.Picture;
+        }else{
+          $scope.pict = $scope.imagepath + response.data.UpdatedPicture;
+          console.log($scope.pict);
+        }
+      });
 
     regService.getTotalSysMessage(authData.user_id).then(function(response) {
     	  console.log(response.data.total);

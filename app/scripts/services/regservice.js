@@ -287,5 +287,11 @@ angular.module('sassApp')
                 return response;
             });	    	
 	    };
+	    dataFactory.getRecomendations = function () {	
+	     	return $http.get(urlBase + 'get_Recomendations').then(function(response) {
+                return response;
+            });	
+	    };
+	    
 	    return dataFactory;
 	}]);

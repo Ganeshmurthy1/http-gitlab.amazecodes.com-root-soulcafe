@@ -10,12 +10,15 @@
  
 
 angular.module('sassApp')
-  .controller('SideBarCtrl', function ($scope, localStorageService, regService, profileOperations) {
+  .controller('SideBarCtrl', function ($scope, localStorageService, regService, profileOperations,config) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
+    var config = localStorageService.get('config');
+    $scope.imagepath = config.image_path;
 
     $scope.SideBar = 'views/side_bar.html';
 
@@ -26,6 +29,14 @@ angular.module('sassApp')
       regService.getUserDetails(authData.user_id).then(function (results) {
         console.log(results.data);
         $scope.userData = results.data; 
+
+        if($scope.userData.UpdatedPicture == null){
+          $scope.pict = $scope.userData.Picture;
+          
+        }else{
+          $scope.pict = $scope.imagepath + $scope.userData.UpdatedPicture;
+          console.log($scope.pict);
+        }
         var d1 = new Date($scope.userData.birthdate);
         var d2 = new Date();
       $scope.diff = d2.getFullYear()-d1.getFullYear();
