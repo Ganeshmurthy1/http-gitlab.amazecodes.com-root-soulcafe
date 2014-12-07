@@ -907,7 +907,8 @@ function updateProfileDetail() {
 
   $user_id  = getUserId();
     // print_r($user);
-  $sqlusers = "update users  set first_name=:first_name,last_name=:last_name,email=:email,mobile=:mobile,Moto=:moto,OwnWords=:OwnWords,AboutMe=:AboutMe,Height=:Height,FoodHabits=:FoodHabits,Drinking=:Drinking,Smoking=:Smoking,UpdatedPicture=:UpdatedPicture where user_id = :user_id ";
+  if (!empty($user->UpdatedPicture)) {
+    $sqlusers = "update users  set first_name=:first_name,last_name=:last_name,email=:email,mobile=:mobile,Moto=:moto,OwnWords=:OwnWords,AboutMe=:AboutMe,Height=:Height,FoodHabits=:FoodHabits,Drinking=:Drinking,Smoking=:Smoking,UpdatedPicture=:UpdatedPicture where user_id = :user_id ";
    $sqlpd = "update ProfessionalDetails set CurrentEmployment = :CurrentEmployment,Endorsedskills=:Endorsedskills,HighestEducation=:HighestEducation where UserId = :user_id ";  
       try {
         $db = getConnection();
@@ -939,6 +940,41 @@ function updateProfileDetail() {
       } catch(PDOException $e) {
         echo '{"error":{"text":'. $e->getMessage() .'}}';
       }
+  }else{
+    $sqlusers = "update users  set first_name=:first_name,last_name=:last_name,email=:email,mobile=:mobile,Moto=:moto,OwnWords=:OwnWords,AboutMe=:AboutMe,Height=:Height,FoodHabits=:FoodHabits,Drinking=:Drinking,Smoking=:Smoking where user_id = :user_id ";
+   $sqlpd = "update ProfessionalDetails set CurrentEmployment = :CurrentEmployment,Endorsedskills=:Endorsedskills,HighestEducation=:HighestEducation where UserId = :user_id ";  
+      try {
+        $db = getConnection();
+        $stmt = $db->prepare($sqlusers);
+        $stmt->bindParam("user_id", $user_id);
+        $stmt->bindParam("first_name", $user->first_name);
+        $stmt->bindParam("last_name", $user->last_name);
+        $stmt->bindParam("email", $user->email);
+        $stmt->bindParam("mobile", $user->mobile);
+        $stmt->bindParam("moto", $user->Moto);
+        $stmt->bindParam("OwnWords", $user->OwnWords);
+        $stmt->bindParam("AboutMe", $user->AboutMe);
+        $stmt->bindParam("Height", $user->Height);
+        $stmt->bindParam("FoodHabits", $user->FoodHabits);
+        $stmt->bindParam("Drinking", $user->Drinking);
+        $stmt->bindParam("Smoking", $user->Smoking);
+        
+        
+        $stmt->execute();
+
+        $stmtpd = $db->prepare($sqlpd);
+        $stmtpd->bindParam("user_id", $user_id);
+        $stmtpd->bindParam("CurrentEmployment", $user->CurrentEmployment);
+        $stmtpd->bindParam("Endorsedskills", $user->Endorsedskills);
+        $stmtpd->bindParam("HighestEducation", $user->HighestEducation);
+        $stmtpd->execute();
+      echo 'true';
+        //$app->redirect('login.html');
+      } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+      }
+  }
+  
  }
 
 function addUserDiscussion() {

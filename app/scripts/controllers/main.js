@@ -18,6 +18,8 @@ angular.module('sassApp')
     
     config.setConfigruation();
     
+    var config = localStorageService.get('config');
+    $scope.imagepath = config.image_path;
 
    $rootScope.a=true;
     $scope.login = function() {
@@ -86,6 +88,19 @@ angular.module('sassApp')
 	                token: results.data.token,
 	                user_role: results.data.user_role	                
 	            });
+	   regService.getPicture(results.data.user_id).then(function(response) {
+        console.log(response.data);
+        if(response.data.UpdatedPicture == null){
+          $scope.pict = response.data.Picture;
+          localStorageService.set('fbpicture', {fbpicture:$scope.pict});
+        }else{
+          $scope.pict = $scope.imagepath + response.data.UpdatedPicture;
+          console.log($scope.pict);
+          localStorageService.set('fbpicture', {fbpicture:$scope.pict});
+        }
+      });
+	            var fbbbbdata = localStorageService.get('authorizationData');
+				 console.log(fbbbbdata);
 	            
 				
 				// JS authentication
@@ -251,6 +266,7 @@ angular.module('sassApp')
 				// 	 //   var fbbbbdata = localStorageService.get('fbpicture');
 				// 		// console.log(fbbbbdata);
 				//   });
+				
 				localStorageService.set('authorizationData', {
 	                fb_id: response.id,
 	                user_id: results.data.user_id,
@@ -259,7 +275,8 @@ angular.module('sassApp')
 	                token: results.data.token,
 	                user_role: results.data.user_role	                
 	            });
-	            
+	            var fbbbbdata = localStorageService.get('authorizationData');
+				 console.log(fbbbbdata);
 				
 				// JS authentication
 				var accessLevels = routingConfig.accessLevels

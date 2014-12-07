@@ -32,10 +32,11 @@ angular.module('sassApp')
 
         if($scope.userData.UpdatedPicture == null){
           $scope.pict = $scope.userData.Picture;
-          
+          localStorageService.set('fbpicture', {fbpicture:$scope.pict});
         }else{
           $scope.pict = $scope.imagepath + $scope.userData.UpdatedPicture;
           console.log($scope.pict);
+          localStorageService.set('fbpicture', {fbpicture:$scope.pict});
         }
         var d1 = new Date($scope.userData.birthdate);
         var d2 = new Date();

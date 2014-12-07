@@ -69,9 +69,11 @@ angular.module('sassApp')
          $scope.profileDetail = response.data;
          if($scope.profileDetail.UpdatedPicture == null){
           $scope.pict = $scope.profileDetail.Picture;
+          localStorageService.set('fbpicture', {fbpicture:$scope.pict});
         }else{
           $scope.pict = $scope.imagepath + $scope.profileDetail.UpdatedPicture;
           console.log($scope.pict);
+          localStorageService.set('fbpicture', {fbpicture:$scope.pict});
         }
          if ($scope.profileDetail.linked_update == 1) {
           $scope.updateButton = 'true';
@@ -89,6 +91,25 @@ angular.module('sassApp')
   	regService.updateProfileDetail($scope.profileDetail).then(function (response) {
          console.log(response);
          if(response.data == "true"){
+          regService.getProfileDetail().then(function (response) {
+         console.log(response);
+         $scope.profileDetail = response.data;
+         if($scope.profileDetail.UpdatedPicture == null){
+          $scope.pict = $scope.profileDetail.Picture;
+          localStorageService.set('fbpicture', {fbpicture:$scope.pict});
+        }else{
+          $scope.pict = $scope.imagepath + $scope.profileDetail.UpdatedPicture;
+          console.log($scope.pict);
+          localStorageService.set('fbpicture', {fbpicture:$scope.pict});
+        }
+         if ($scope.profileDetail.linked_update == 1) {
+          $scope.updateButton = 'true';
+          $scope.disable = 'false';
+          console.log($scope.disable);
+         }else if ($scope.profileDetail.linked_update == 0) {
+          $scope.disable = 'true';
+         }
+      });
          	 $location.path("home");
          }
       });
