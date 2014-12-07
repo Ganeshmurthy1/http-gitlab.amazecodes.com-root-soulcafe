@@ -261,6 +261,14 @@ angular.module('sassApp')
   	$scope.question.algType = '';
   	
   }
+  $scope.editOption = function(Qid) {
+	  console.log(Qid);
+	  Questionnaire.addEditQuestionOption(Qid).then(function (response) {
+			//console.log(response);
+			//$scope.qnsCategory = response.data;	    	
+		});
+	  
+  }
   
   
 });

@@ -217,7 +217,7 @@ function addUser() {
             $stmt->bindParam("gender", $user->gender);
             $stmt->bindParam("birthdate", $bdate);
             $stmt->bindParam("hometown", $user->hometown->name);
-            $stmt->bindParam("location", $user->location->name);
+            $stmt->bindParam("location", $user->mylocation);
             $stmt->bindParam("relationship_status", $user->relationship_status);
             $stmt->bindParam("mobile", $user->mobile);
             $stmt->bindParam("act_code", $mobile_rand);
@@ -996,6 +996,7 @@ function addUserDiscussion() {
     }
     $status = 0;
     $user = 1;
+    $location = serialize($forum->location);
     $sql = "INSERT INTO DiscussionBoard (Topic, Description, StartDate, CreatedBy, CreatedDate, Restricted, RestrictedGender, RestrictedAge, RestrictedLocation, status, userRequest) VALUES (:Topic, :Description, :StartDate, :CreatedBy, :CreatedDate, :Restricted, :RestrictedGender, :RestrictedAge, :RestrictedLocation, :status,:user)";
     try {
       $db = getConnection();
@@ -1008,7 +1009,7 @@ function addUserDiscussion() {
       $stmt->bindParam("Restricted", $restriction);
       $stmt->bindParam("RestrictedGender", $forum->gender);
       $stmt->bindParam("RestrictedAge", $forum->age);
-      $stmt->bindParam("RestrictedLocation", $forum->location);
+      $stmt->bindParam("RestrictedLocation", $location);
       $stmt->bindParam("status", $status);
       $stmt->bindParam("user", $user);
       $stmt->execute();

@@ -120,5 +120,13 @@ angular.module('sassApp')
               return response;
           });	    	
 	    };
+	    
+	    dataFactory.addEditQuestionOption = function (param) {
+	    	// console.log(param);
+	    	return Transporter.post('admin_edit_question_option', param).then(function(response) {
+	    		//console.log(response);
+                return response;
+            });
+		};
 	    return dataFactory;
 }]);
