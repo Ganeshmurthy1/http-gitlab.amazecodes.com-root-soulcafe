@@ -82,6 +82,7 @@ angular.module('sassApp')
     	$scope.errMessage = "Login with Facebook";
     }
     else{
+      //console.log($scope.fbdata); 
   	  regService.registerUser($scope.fbdata).then(function(response) {
   		  console.log(response);
   		  if (response.data == 'true') {

@@ -45,28 +45,64 @@ function adminAddDiscussion() {
     $tdate = date('Y-m-d h:i:s');
     //echo $forum->restriction;
     $restriction = 0;
-    if(isset($forum->restriction)) {
-      if($forum->restriction != '') {
+    $sql_part = '';
+    if(isset($forum->restriction) and $forum->restriction != '') {
         $restriction = 1;
-      }
-      
+        if (isset($forum->gender)) {
+          $sql_part .= ' and gender = :gender';
+        }  
+        if (isset($forum->age)) {
+          // $age_limit = '-' . $forum->age . 'years';
+          // $lower_date = date('Y-m-d', strtotime($age_limit, strtotime(date('Y-m-d'))));
+          $sql_part .= ' and birthdate <= :bdate';
+        } 
+        if (isset($forum->location)) {
+          $loc = '(';
+          for ($i = 0; $i < count($forum->location); $i++) {
+            $loc .= '"' . $forum->location[$i] . '"';
+            if ($i != count($forum->location) - 1) {
+              $loc .= ',';
+            }
+          }
+          $loc .= ')';
+          $sql_part .= ' and location IN ' . $loc;
+        }    
     }
+//     print $loc;
+    // print $sql_part;
+     //exit();
     
-    $sqlUser = "select * from users where user_id Not IN(select user_id from users where user_id=:user_id)";
+    $sqlUser = "select user_id from users where user_id !='' and status = 1";
+    $sqlUser .= $sql_part;
     try {
       $db = getConnection();
       $stmtUser = $db->prepare($sqlUser);
-      $stmtUser->bindParam("user_id", $user_id);
+     // $stmtUser->bindParam("user_id", $user_id);
+      if(isset($forum->restriction) and $forum->restriction != '') {
+        $restriction = 1;
+        if (isset($forum->gender)) {
+          $stmtUser->bindParam("gender", $forum->gender);
+        }
+        if (isset($forum->age)) {
+          //print 'hello';
+          $age_limit = '-' . $forum->age . 'years';
+          $lower_date = date('Y-m-d', strtotime($age_limit, strtotime(date('Y-m-d'))));
+          $stmtUser->bindParam("bdate", $lower_date);
+        }
+      }
+      
       $stmtUser->execute();
       $wineUser = $stmtUser->fetchAll(PDO::FETCH_OBJ);
-      $db = null;
+      //$db = null;
     //echo $total = $wine->'count(1)';
      // echo json_encode($wineUser);
-      // print_r($wineUser);
+       //print_r($wineUser);
+       
       // echo 'true';
     } catch(PDOException $e) {
       echo '{"error":{"text":'. $e->getMessage() .'}}';
     }
+    //exit();
     $status=0;
     $DateTime=  date("Y-m-d") ;
     foreach($wineUser as $obj) {
@@ -94,7 +130,7 @@ function adminAddDiscussion() {
 
 
 
-
+    $location = serialize($forum->location);
     $sql = "INSERT INTO DiscussionBoard (Topic, Description, StartDate, CreatedBy, CreatedDate, Restricted, RestrictedGender, RestrictedAge, RestrictedLocation,Image) VALUES (:Topic, :Description, :StartDate, :CreatedBy, :CreatedDate, :Restricted, :RestrictedGender, :RestrictedAge, :RestrictedLocation,:image)";
     try {
       $db = getConnection();
@@ -107,7 +143,7 @@ function adminAddDiscussion() {
       $stmt->bindParam("Restricted", $restriction);
       $stmt->bindParam("RestrictedGender", $forum->gender);
       $stmt->bindParam("RestrictedAge", $forum->age);
-      $stmt->bindParam("RestrictedLocation", $forum->location);
+      $stmt->bindParam("RestrictedLocation", $location);
       $stmt->bindParam("image", $forum->image);
   
       $stmt->execute();
