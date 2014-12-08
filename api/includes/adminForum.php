@@ -129,8 +129,11 @@ function adminAddDiscussion() {
     // $img = 'photo'.rand().'.jpg';
 
 
-
-    $location = serialize($forum->location);
+    $location = '';
+    if (isset($forum->location)) {
+      $location = serialize($forum->location);
+    }
+    
     $sql = "INSERT INTO DiscussionBoard (Topic, Description, StartDate, CreatedBy, CreatedDate, Restricted, RestrictedGender, RestrictedAge, RestrictedLocation,Image) VALUES (:Topic, :Description, :StartDate, :CreatedBy, :CreatedDate, :Restricted, :RestrictedGender, :RestrictedAge, :RestrictedLocation,:image)";
     try {
       $db = getConnection();
