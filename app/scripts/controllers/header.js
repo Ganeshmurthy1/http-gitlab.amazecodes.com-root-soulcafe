@@ -16,7 +16,15 @@ angular.module('sassApp')
     ];
 
     $scope.Header = 'views/header.html';
-
+    
+    if($location.path() == '/home'){
+      $scope.default = true;
+      console.log("1");
+    }else if ($location.path() == '/myprofile') {
+      $scope.default = false;
+      console.log("2");
+    }
+ 
     $scope.isAdmin = false;
     var authData = localStorageService.get('authorizationData');
     console.log(authData);

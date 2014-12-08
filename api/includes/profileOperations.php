@@ -37,7 +37,7 @@ function getForumUpdates() {
   // print_r( $user );
   $user_id  = getUserId();
    
-  $sql = "select distinct fn.CommentId,dbc.Comment, dbc.UserId, dbc.DiscussionTopicId, dbc.CommentDateTime, dbt.TopicTitle, u.first_name, u.last_name, u.Picture from ForumNotification as fn inner join DiscussionBoardComments as dbc on fn.CommentId = dbc.CommentId inner join DiscussionBoardTopic as dbt on dbc.DiscussionTopicId = dbt.DiscussionTopicId inner join users as u on dbc.UserId = u.user_id order by  dbc.CommentDateTime desc";
+  $sql = "select fn.CommentId,dbc.Comment, dbc.UserId, dbc.DiscussionTopicId, dbc.CommentDateTime, dbt.TopicTitle,dbt.DiscussionBoardId, u.first_name, u.last_name, u.Picture,db.Topic from ForumNotification as fn inner join DiscussionBoardComments as dbc on fn.CommentId = dbc.CommentId inner join DiscussionBoardTopic as dbt on dbc.DiscussionTopicId = dbt.DiscussionTopicId inner join users as u on dbc.UserId = u.user_id inner join DiscussionBoard as db on dbt.DiscussionBoardId = db.DiscussionBoardId order by  dbc.CommentDateTime desc";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);  

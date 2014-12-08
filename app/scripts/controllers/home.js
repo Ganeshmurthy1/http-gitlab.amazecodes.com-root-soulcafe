@@ -15,6 +15,7 @@ angular.module('sassApp')
       'Karma'
     ];
    
+  
 
     var $imageobj = {"image4": 'http://www.penguinbooksindia.com/sites/default/files/styles/in_focus_author/public/author/author_picture/Ravinder%20Singh.jpg',
     			  "image2": 'http://www.chem.uit.no/KJEMI/ghosh.jpg',
@@ -69,7 +70,7 @@ angular.module('sassApp')
       regService.getUserDetails(authData.user_id).then(function (results) {
         //console.log(results.data);
         $scope.userData = results.data; 
-        // console.log($scope.userData);
+        console.log($scope.userData);
          if ($scope.userData.linked_update == 1){
            $scope.thumbup = 'false';
            $scope.profileverify = '75%';
@@ -93,6 +94,20 @@ angular.module('sassApp')
       });
       
 
+      $scope.otherProfile = function(userId){
+      regService.getUserDetails(userId).then(function (results) {
+        $scope.userD = results.data; 
+        console.log($scope.userD);
+         if ($scope.userD.status == 0) {
+          alert("Your profile is deactive. Please contact Customer care.");
+        }else{
+          $location.url("/otherprofile?user_id="+userId);
+        }
+      });
+        
+        
+      }
 
+      // #/otherprofile?user_id={{rec.user_id}}
 
    }]);

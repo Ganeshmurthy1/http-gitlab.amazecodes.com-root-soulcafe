@@ -344,6 +344,10 @@ angular
         templateUrl: 'views/admin-requested-topic.html',
         controller: 'AdminRequestedTopicCtrl'
       })
+      .when('/edit-profile-other', {
+        templateUrl: 'views/edit-profile-other.html',
+        controller: 'EditProfileOtherCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -84,6 +84,10 @@ background-image: linear-gradient(to right, #FFFFFF 0%, #ececec 100%);
 .bcolor-brown{
 	background-color:#593a1d !important;
 }
+.bcolor-white{
+	background-color:#FFFFFF !important;
+	color:#000000 !important;
+}
 .color-brown{
 	color:#593a1d !important;
 }
@@ -172,10 +176,6 @@ a:hover{
 }
 .morebutton{
 	margin-right:17%;
-	background-color:#5bc0de;
-	padding:3px 10px;
-	border-radius:5px !important;
-	margin-bottom:10px;
 }
  
  .notify{
@@ -197,7 +197,11 @@ a:hover{
 
 .imagel{
 	border:2px solid black;
-	width:85% !important;
+	width:80% !important;
+}
+.imagelr{
+	border:2px solid black;
+	width:82% !important;
 }
 .name{
 	font-size:18px;
@@ -306,7 +310,7 @@ a:hover{
 	color:#ffffff;
 }
 .head1{
-	font-size:20px;
+	font-size:14px;
 	font-weight:600;
 
 }

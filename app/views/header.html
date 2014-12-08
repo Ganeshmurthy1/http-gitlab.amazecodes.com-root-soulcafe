@@ -8,15 +8,15 @@
                 
                 <button type="button" class="navbar-toggle top-navbar-toogle no-margin no-padding"  data-toggle="collapse" data-target=".top-navigation"><img src="images/menu-new.png" style="width:30px;top:55px !important;"></button>
                     <ul class="nav collapse top-navigation" style="top:55px !important;">
-                        <li><a href="#">Home </a></li>
-                        <li><a href="#">My Profile</a></li>        
+                        <li><a href="#/home">Home </a></li>
+                        <li><a href="#/myprofile">My Profile</a></li>        
                         <li><a href="#">Interests</a></li>
-                        <li><a href="#">Forums</a></li>
+                        <li><a href="#/discussion-list">Forums</a></li>
                         <li><a href="#">Friends</a></li>
-                        <li><a href="#">Edit Profile</a></li>
+                        <li><a href="#/edit-profile-new">Edit Profile</a></li>
                         <li><a href="#">Complete Verification</a></li>
                         <li><a href="#">Settings</a></li>
-                        <li><a href="#">Logout</a></li>
+                        <li><a href="#" data-ng-click="logout()">Logout</a></li>
                         <div class="clearfix"></div>
                     </ul>
                           
@@ -121,8 +121,8 @@
 </div> -->
 
 
-            <a class="pull-right home" href="#/home"><strong>Home</strong></a>
-            <a class="pull-right home1" href="#/myprofile"> 
+            <a ng-class="{'pull-right home':true,'bcolor-white':default}" href="#/home"><strong>Home</strong></a>
+            <a ng-class="{'pull-right home1':true,'bcolor-white':!default}" href="#/myprofile" > 
                 <img class="rounded-x" ng-src="{{pict}}" alt="" style="width:20px;height:auto;">
                 <strong>{{datau.userName}} {{datau.lastName}}</strong>
             </a>

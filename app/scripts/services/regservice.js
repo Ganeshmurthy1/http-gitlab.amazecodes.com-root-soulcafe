@@ -176,6 +176,11 @@ angular.module('sassApp')
                 return response;
             });	
 	    };
+	    dataFactory.getProfileDetailOther = function (id) {	
+	     	return $http.get(urlBase + 'get_Profile_Detail_Other/'+id).then(function(response) {
+                return response;
+            });	
+	    };
 	    dataFactory.updateProfileDetail = function (param) {
 	    	console.log(param);
 	    	return $http.post(urlBase + 'update_Profile_Detail', param).then(function(response) {
