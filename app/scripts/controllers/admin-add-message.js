@@ -8,13 +8,18 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('AdminAddMessageCtrl', function ($scope, adminOperations) {
+  .controller('AdminAddMessageCtrl', function ($scope, adminOperations, $routeParams) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-   
+    if ($routeParams.user_id) {
+    	$scope.message = {};    	   
+        $scope.message.to = $routeParams.user_id;
+	}
+    
+    
     $scope.getLocation = function(val) {
     
     	 return adminOperations.adminGetThisUser(val).then(function (response) {
