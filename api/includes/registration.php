@@ -996,7 +996,10 @@ function addUserDiscussion() {
     }
     $status = 0;
     $user = 1;
-    $location = serialize($forum->location);
+    $location = '';
+    if (isset($forum->location)) {
+      $location = serialize($forum->location);
+    }
     $sql = "INSERT INTO DiscussionBoard (Topic, Description, StartDate, CreatedBy, CreatedDate, Restricted, RestrictedGender, RestrictedAge, RestrictedLocation, status, userRequest) VALUES (:Topic, :Description, :StartDate, :CreatedBy, :CreatedDate, :Restricted, :RestrictedGender, :RestrictedAge, :RestrictedLocation, :status,:user)";
     try {
       $db = getConnection();
