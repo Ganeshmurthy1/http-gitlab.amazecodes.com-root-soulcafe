@@ -182,7 +182,7 @@ function adminGetDiscussion() {
   
   $request = Slim::getInstance()->request();
   $forum = json_decode($request->getBody());
-  $sqlCp = "select db.DiscussionBoardId,db.Topic,db.Description,db.CreatedBy,db.Status,u.Picture,db.Image,db.userRequest from DiscussionBoard as db left join users as u on db.CreatedBy=u.user_id order by db.CreatedDate desc";
+  $sqlCp = "select db.DiscussionBoardId,db.Topic,db.Description,db.CreatedBy,db.Status,u.Picture,db.Image,db.userRequest,u.first_name,u.last_name from DiscussionBoard as db left join users as u on db.CreatedBy=u.user_id order by db.CreatedDate desc";
   $lm = ' Limit ' . $forum->start . ',' . $forum->limit;
   $sqlCp .= $lm;
   try {

@@ -30,6 +30,7 @@
                      </div>
                     <h4>{{discussion.Topic}}</h4>
                     <p>{{discussion.Description}}</p>
+                    <p class="margin-left-9p" ng-show="discussion.userRequest">{{discussion.first_name}} {{discussion.last_name}}</p>
                     <p>
                         <a class="btn-u " href="#/admin-topic-list?discussId={{discussion.DiscussionBoardId}}">View</a>
                         <a class="btn-u btn-u-blue" href="#/admin-discussion-edit?discussId={{discussion.DiscussionBoardId}}">Edit</a>
