@@ -3,6 +3,7 @@ dist
 .tmp
 .sass-cache
 *.orig
+api/uploads/
 *~
 bower_components
 api/includes/dbconnection.php
