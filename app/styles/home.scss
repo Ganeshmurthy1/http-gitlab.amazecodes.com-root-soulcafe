@@ -78,7 +78,7 @@ background-image: linear-gradient(to right, #FFFFFF 0%, #ececec 100%);
 }
 
 .color-white{
-	color:#FFFFFF;
+	color:#FFFFFF !important;
 }
 
 .bcolor-brown{
@@ -93,10 +93,6 @@ background-image: linear-gradient(to right, #FFFFFF 0%, #ececec 100%);
 }
 .color-brown-light{
 	color:#98754f !important;
-}
-
-.bcolor-white{
-	background-color:#ffffff !important;
 }
 
 .bcolor-grey{
@@ -147,8 +143,20 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6e6e6', end
 .margin-right-5p{
 	margin-right:5% !important;
 }
+.margin-right-10p{
+	margin-right:10% !important;
+}
+.margin-right-11p{
+	margin-right:11% !important;
+}
+.margin-right-12p{
+	margin-right:12% !important;
+}
 .margin-left-10p{
 	margin-left:10% !important;
+}
+.margin-left-10{
+	margin-left:10px !important;
 }
 .margin-left-9p{
 	margin-left:9% !important;
@@ -204,7 +212,7 @@ a:hover{
 	width:82% !important;
 }
 .name{
-	font-size:18px;
+	font-size:17px;
 	font-weight:600;
 	color:#fa4d08;
 	margin:0px 20px;
@@ -220,6 +228,10 @@ a:hover{
 	font-weight:600;
 	margin-bottom:10px;
 	border-radius:5px !important;
+
+	a:hover{
+	color:#ffffff !important;
+}
 
 }
 .marginleft{
@@ -259,7 +271,6 @@ a:hover{
 }
 
 .rightmargin{
-	margin-right:10px !important;
 	margin-left:10px !important;
 }
 .progresscustom{
@@ -444,6 +455,10 @@ min-width:220px !important;
 .row2{
 	margin-left:0% !important;
 }
+.friendN{
+	padding-top:5px;
+	margin-left:40%;
+}
 /*--------------Media Queries-------------*/
 @media (min-width: 768px) {
   .margint{
@@ -548,6 +563,10 @@ min-width:220px !important;
 }
 .media-object1{
 	width:100% !important;
+}
+.friendN{
+	padding-top:5px;
+	margin-left:15%;
 }
 }
 
@@ -660,6 +679,10 @@ min-width:220px !important;
 .media-object1{
 	width:100% !important;
 }
+.friendN{
+	padding-top:5px;
+	margin-left:15%;
+}
 }
 
 @media (min-width: 1200px) {
@@ -761,7 +784,20 @@ min-width:220px !important;
 .media-object1{
 	width:100% !important;
 }
+.friendN{
+	padding-top:5px;
+	margin-left:15%;
 }
+}
+
+
+
+
+
+
+
+
+
 .min-300 {
 	min-height: 360px;
 }

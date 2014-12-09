@@ -32,7 +32,7 @@ angular.module('sassApp')
     
     
     $scope.adminAddMessage = function() {
-
+      console.log($scope.message);
     	adminOperations.addAdminMessage($scope.message).then(function(response) {
 		  console.log(response);
 		  if (response.data == 'true') {

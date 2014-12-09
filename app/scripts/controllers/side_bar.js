@@ -65,7 +65,19 @@ angular.module('sassApp')
          $scope.friends=response.data.friends;
          $scope.discussion=response.data.forum;
           console.log($scope.discussion); 
-          $scope.totalfriends=$scope.friends.length;       
+          $scope.totalfriends=$scope.friends.length; 
+
+        //   foreach ( $scope.friends as $friend) {
+        // if($scope.friends.UpdatedPicture == null){
+        //   $scope.friends.pict = $scope.userData.Picture;
+        //   localStorageService.set('fbpicture', {fbpicture:$scope.pict});
+        // }else{
+        //   $scope.friends.pict = $scope.imagepath + $scope.userData.UpdatedPicture;
+        //   console.log($scope.pict);
+        //   localStorageService.set('fbpicture', {fbpicture:$scope.pict});
+        // } 
+        // }
+     
      });
 
    

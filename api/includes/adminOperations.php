@@ -770,20 +770,59 @@ function adminAddMessage() {
   $forum = json_decode($request->getBody());
   $status=0;
   $DateTime=  date("Y-m-d h:i:s") ;
+
   
-  $sql = "select user_id FROM users where first_name = :name";
-  try {
-    $db = getConnection();
-    $stmt = $db->prepare($sql);
-    $stmt->bindParam("name", $forum->to);
-    $stmt->execute();
-    $wine = $stmt->fetchObject();
-    $db = null;
-    //echo $total = $wine->'count(1)';
-    //echo json_encode($wine);
-  } catch(PDOException $e) {
-    echo '{"error":{"text":'. $e->getMessage() .'}}';
-  }
+   if($forum->all == 1){
+    // print_r('1');
+     $sql = "select user_id FROM users where status = 1";
+    try {
+      $db = getConnection();
+      $stmt = $db->prepare($sql);
+      $stmt->bindParam("name", $forum->to);
+      $stmt->execute();
+      $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+      $db = null;
+      //echo $total = $wine->'count(1)';
+      //echo json_encode($wine);
+    } catch(PDOException $e) {
+      echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
+
+    foreach($wine as $obj){
+      $link = 'system-messages';
+      $message = $forum->mess;
+      $user_id = $obj->user_id;
+      $sqlSN = "Insert into SystemNotification (userId,Message,ViewStatus,AddedDate,Link) values (:userId,:Message,:ViewStatus,:AddedDate,:Link)";
+      try {
+        $db = getConnection();
+        $stmtSN = $db->prepare($sqlSN);
+        $stmtSN->bindParam("userId", $user_id);
+        $stmtSN->bindParam("Message", $message);
+        $stmtSN->bindParam("ViewStatus", $status);
+        $stmtSN->bindParam("AddedDate", $DateTime);
+        $stmtSN->bindParam("Link", $link);
+        $stmtSN->execute();
+       
+      } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+      }
+    }
+     echo 'true';
+  }else{
+     // print_r('0');
+    $sql = "select user_id FROM users where first_name = :name";
+    try {
+      $db = getConnection();
+      $stmt = $db->prepare($sql);
+      $stmt->bindParam("name", $forum->to);
+      $stmt->execute();
+      $wine = $stmt->fetchObject();
+      $db = null;
+      //echo $total = $wine->'count(1)';
+      //echo json_encode($wine);
+    } catch(PDOException $e) {
+      echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
   
      // $forumname = $forum->title;
       $link = 'system-messages';
@@ -803,6 +842,8 @@ function adminAddMessage() {
       } catch(PDOException $e) {
         echo '{"error":{"text":'. $e->getMessage() .'}}';
       }
+  }
+  
 }
 
 function getSysMessage() {

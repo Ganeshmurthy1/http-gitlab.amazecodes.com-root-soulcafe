@@ -348,6 +348,10 @@ angular
         templateUrl: 'views/edit-profile-other.html',
         controller: 'EditProfileOtherCtrl'
       })
+      .when('/friends', {
+        templateUrl: 'views/friends.html',
+        controller: 'FriendsCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

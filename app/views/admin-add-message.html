@@ -4,10 +4,7 @@
 </div>
     <!--=== End Header ===-->  
 
-
-
-
-    <!--=== Profile ===-->
+ <!--=== Profile ===-->
     <div class="profile container content" style="border-color:red">
         <div class="row">
             <!--Left Sidebar-->
@@ -26,6 +23,11 @@
             <div class="alert alert-success fade in" data-ng-show="successmessage">{{successmessage}}</div>
                         <section>
                             <label class="label">To</label>
+                            <div class="row">
+                       <div class="col col-sm-4">
+                          <label class="checkbox"><input type="checkbox" name="checkbox" data-ng-model="message.all"><i></i>All Active Users</label>                           
+                       </div>
+                   </div>
                             <label class="input">
                                 <input type="text" ng-model="message.to" placeholder="Start typing name" typeahead="first_name for first_name in getLocation($viewValue)" typeahead-loading="loadingLocations" class="form-control">
     <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>

@@ -18,11 +18,14 @@ angular.module('sassApp')
     $scope.Header = 'views/header.html';
     
     if($location.path() == '/home'){
-      $scope.default = true;
+      $scope.defaulth = true;
       console.log("1");
     }else if ($location.path() == '/myprofile') {
-      $scope.default = false;
+      $scope.defaultp = true;
       console.log("2");
+    }else{
+      $scope.defaulth = false;
+       $scope.defaultp = false;
     }
  
     $scope.isAdmin = false;

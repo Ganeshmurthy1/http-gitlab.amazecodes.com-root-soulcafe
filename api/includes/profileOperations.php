@@ -11,7 +11,7 @@ $app->get('/check_AbuseUser/:id', 'checkAbuseUser');
 $app->get('/get_UserSendedGTKY', 'getUserSendedGTKY');
 $app->get('/accept_GTKY/:id', 'acceptGTKY');
 $app->get('/reject_GTKY/:id', 'rejectGTKY');
-
+$app->get('/get_Buddies_All', 'getBuddiesAll');
 
 function getUserMatch() {
  
@@ -88,6 +88,25 @@ function getBuddies() {
 
 }
 
+function getBuddiesAll() {
+ 
+  // print_r( $user );
+  $user_id  = getUserId();
+   
+  $sql = "SELECT u.*,b.BuddyId FROM `Buddies` as b inner join users as u on b.BuddyId = u.user_id  WHERE b.SenderId = :user_id and b.Status = 1";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);  
+    $stmt->bindParam("user_id",  $user_id );
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+
+}
 function getforumsOther($id) {
  
   // print_r( $user );
