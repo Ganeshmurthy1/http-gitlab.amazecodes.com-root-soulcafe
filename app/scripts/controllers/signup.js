@@ -60,9 +60,18 @@ angular.module('sassApp')
    	  regService.VerifyMobile(phn).then(function(response) {
    		  console.log(response);
    		  if (response.data == 'true') {
+   			regService.getPicture(authData.user_id).then(function(response) {
+		        console.log(response.data);
+		        var config = localStorageService.get('config');
+		        $scope.imagepath = config.image_path;
+		        if(response.data.Picture != null){
+		        	 $scope.pict = $scope.imagepath + response.data.Picture;
+		          console.log($scope.pict);
+		          localStorageService.set('fbpicture', {fbpicture:$scope.pict});
+		        }
    			  console.log('success');
    			  $location.path('/quiz');
-   			  
+   			});  
    			  
  			}
    		  else {

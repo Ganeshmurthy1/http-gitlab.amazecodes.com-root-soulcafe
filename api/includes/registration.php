@@ -193,6 +193,15 @@ function addUser() {
   $request = Slim::getInstance()->request();
   $user = json_decode($request->getBody());
   
+  //print_r($user);
+  $img = 'photo'.rand().'.jpg';
+  $uploadPath = dirname(dirname( __FILE__ )) . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . $img;
+  
+  $image = file_get_contents($user->pic->data->url);
+  file_put_contents($uploadPath, $image);
+
+  
+  
   $sql = "select user_id FROM users where mobile = :mobile ORDER BY user_id";
   
     $db = getConnection();
@@ -225,7 +234,7 @@ function addUser() {
             $stmt->bindParam("mobile", $user->mobile);
             $stmt->bindParam("act_code", $mobile_rand);
             $stmt->bindParam("user_role", $role);
-            $stmt->bindParam("Picture", $user->pic->data->url);
+            $stmt->bindParam("Picture", $img);
             
             $stmt->execute();
             
@@ -911,7 +920,7 @@ function updateProfileDetail() {
   $user_id  = getUserId();
     // print_r($user);
   if (!empty($user->UpdatedPicture)) {
-    $sqlusers = "update users  set first_name=:first_name,last_name=:last_name,email=:email,mobile=:mobile,Moto=:moto,OwnWords=:OwnWords,AboutMe=:AboutMe,Height=:Height,FoodHabits=:FoodHabits,Drinking=:Drinking,Smoking=:Smoking,UpdatedPicture=:UpdatedPicture where user_id = :user_id ";
+    $sqlusers = "update users  set first_name=:first_name,last_name=:last_name,email=:email,mobile=:mobile,Moto=:moto,OwnWords=:OwnWords,AboutMe=:AboutMe,Height=:Height,FoodHabits=:FoodHabits,Drinking=:Drinking,Smoking=:Smoking,Picture=:UpdatedPicture where user_id = :user_id ";
    $sqlpd = "update ProfessionalDetails set CurrentEmployment = :CurrentEmployment,Endorsedskills=:Endorsedskills,HighestEducation=:HighestEducation where UserId = :user_id ";  
       try {
         $db = getConnection();

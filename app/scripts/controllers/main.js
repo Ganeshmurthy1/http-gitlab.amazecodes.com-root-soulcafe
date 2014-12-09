@@ -21,7 +21,7 @@ angular.module('sassApp')
     var config = localStorageService.get('config');
     $scope.imagepath = config.image_path;
 
-   $rootScope.a=true;
+    $rootScope.a=true;
     $scope.login = function() {
       $facebook.login().then(function() {
     	//  makePromiseWithSon();
@@ -80,41 +80,41 @@ angular.module('sassApp')
 				// 	 //   var fbbbbdata = localStorageService.get('fbpicture');
 				// 		// console.log(fbbbbdata);
 				//   });
-				localStorageService.set('authorizationData', {
-	                fb_id: response.id,
-	                user_id: results.data.user_id,
-	                userName: response.first_name,
-	                lastName: response.last_name,
-	                token: results.data.token,
-	                user_role: results.data.user_role	                
-	            });
-	   regService.getPicture(results.data.user_id).then(function(response) {
-        console.log(response.data);
-        if(response.data.UpdatedPicture == null){
-          $scope.pict = response.data.Picture;
-          localStorageService.set('fbpicture', {fbpicture:$scope.pict});
-        }else{
-          $scope.pict = $scope.imagepath + response.data.UpdatedPicture;
-          console.log($scope.pict);
-          localStorageService.set('fbpicture', {fbpicture:$scope.pict});
-        }
-      });
-	            var fbbbbdata = localStorageService.get('authorizationData');
-				 console.log(fbbbbdata);
-	            
+				regService.getPicture(results.data.user_id).then(function(response) {
+			        console.log(response.data);
+			        if(response.data.Picture != null){
+			        	 $scope.pict = $scope.imagepath + response.data.Picture;
+			          console.log($scope.pict);
+			          localStorageService.set('fbpicture', {fbpicture:$scope.pict});
+			        }
+			        
+			        localStorageService.set('authorizationData', {
+			        	fb_id: results.data.id,
+			                user_id: results.data.user_id,
+			                userName: results.data.first_name,
+			                lastName: results.data.last_name,
+			                token: results.data.token,
+			                user_role: results.data.user_role           
+		            });
+		            var fbbbbdata = localStorageService.get('fbpicture');
+					 console.log(fbbbbdata);
+					
+					// JS authentication
+					var accessLevels = routingConfig.accessLevels
+			        , userRoles = routingConfig.userRoles;
+					localStorageService.set('user', {
+						 username: response.first_name,
+						 role: userRoles.user
+			         });
+					var authData = localStorageService.get('authorizationData');
+					console.log(authData);
+					//$scope.loggedin = true;
+					$location.path('/quiz');
+					$rootScope.loggedin = true;
+			        
+			        
+				});
 				
-				// JS authentication
-				var accessLevels = routingConfig.accessLevels
-		        , userRoles = routingConfig.userRoles;
-				localStorageService.set('user', {
-					 username: response.first_name,
-					 role: userRoles.user
-		         });
-				var authData = localStorageService.get('authorizationData');
-				console.log(authData);
-				//$scope.loggedin = true;
-				$location.path('/quiz');
-				 $rootScope.loggedin = true;
 			}else if(results.data.status == 0){
 				$rootScope.abc = "Your account is not active. Please contact Customer Care.";
 				$rootScope.a=false;
@@ -129,11 +129,18 @@ angular.module('sassApp')
 	                	 $scope.fbdata = response;
 	                	 localStorageService.set('facebookData', {fbdata:response});
 
-				
+					 $facebook.api("/me/picture?redirect=0&height=200&type=normal&width=200").then(function(pic) {
+					      	console.log(pic);
+					       	$scope.fbpicture = pic;
+						    localStorageService.set('fbpicture', {fbpicture:pic});
+						   var fbbbbdata = localStorageService.get('fbpicture');
+							//console.log(fbbbbdata);
+							 $location.path('/signup');
+					  });
 
 	                     //  var fbbbbdata = localStorageService.get('facebookData');
 						 // console.log(fbbbbdata);
-						  $location.path('/signup');
+						 
 	                	 if(response.gender == 'male') {
 	                		 $scope.male = true;
 	                	 } else {
@@ -157,9 +164,8 @@ angular.module('sassApp')
   	    });
           
         });
-
+		//$modalInstance.close();
     }
-    
 
     
    
@@ -190,7 +196,14 @@ angular.module('sassApp')
     
   });
 	angular.module('sassApp')
-.controller('ModalInstanceCtrl', function ($scope, $rootScope, $facebook, regService, localStorageService, $location, $modalInstance, items) {
+.controller('ModalInstanceCtrl', function (config, $scope, $rootScope, $facebook, regService, localStorageService, $location, $modalInstance, items) {
+
+	
+    
+    config.setConfigruation();
+    
+    var config = localStorageService.get('config');
+    $scope.imagepath = config.image_path;
 
   $scope.items = items;
   $scope.selected = {
@@ -252,95 +265,106 @@ angular.module('sassApp')
     	
     }
     function refresh() {
-      $facebook.api('/me').then( 
-        function(response) {
-          $scope.welcomeMsg = 'Welcome ' + response.name;
-          regService.getFbUserStatus(response).then(function (results) {  
-          console.log(results.data);  	        
-	        if (results.data.status == 1) { //login 
-				console.log('login');
-				// $facebook.api("/me/picture?redirect=0&height=200&type=normal&width=200").then(function(pic) {
-				//       	console.log(pic);
-				//   		$scope.fbpicture = pic;
-				// 	  localStorageService.set('fbpicture', {fbpicture:pic});
-				// 	 //   var fbbbbdata = localStorageService.get('fbpicture');
-				// 		// console.log(fbbbbdata);
-				//   });
-				
-				localStorageService.set('authorizationData', {
-	                fb_id: response.id,
-	                user_id: results.data.user_id,
-	                userName: response.first_name,
-	                lastName: response.last_name,
-	                token: results.data.token,
-	                user_role: results.data.user_role	                
-	            });
-	            var fbbbbdata = localStorageService.get('authorizationData');
-				 console.log(fbbbbdata);
-				
-				// JS authentication
-				var accessLevels = routingConfig.accessLevels
-		        , userRoles = routingConfig.userRoles;
-				localStorageService.set('user', {
-					 username: response.first_name,
-					 role: userRoles.user
-		         });
-				var authData = localStorageService.get('authorizationData');
-				console.log(authData);
-				//$scope.loggedin = true;
-				$location.path('/quiz');
-				 $rootScope.loggedin = true;
-			}else if(results.data.status == 0){
-				$rootScope.abc = "Your account is not active. Please contact Customer Care.";
-				$rootScope.a=false;
-				console.log($scope.abc);
-				console.log($scope.a);
-			}else {// register//	        	        	
-	        		regService.getFbFriendsCount().then(function(data) {
-	                console.log(data);
-	                response.total_friends = data.summary.total_count;
-	                var res = validateUser(response);
-	                if (res.status) {
-	                	 $scope.fbdata = response;
-	                	 localStorageService.set('facebookData', {fbdata:response});
+        $facebook.api('/me').then( 
+          function(response) {
+            $scope.welcomeMsg = 'Welcome ' + response.name;
+            regService.getFbUserStatus(response).then(function (results) {  
+            console.log(results.data);  	        
+  	        if (results.data.status == 1) { //login 
+  				console.log('login');
+  				// $facebook.api("/me/picture?redirect=0&height=200&type=normal&width=200").then(function(pic) {
+  				//       	console.log(pic);
+  				//   		$scope.fbpicture = pic;
+  				// 	  localStorageService.set('fbpicture', {fbpicture:pic});
+  				// 	 //   var fbbbbdata = localStorageService.get('fbpicture');
+  				// 		// console.log(fbbbbdata);
+  				//   });
+  				regService.getPicture(results.data.user_id).then(function(response) {
+  			        console.log(response.data);
+  			        if(response.data.Picture != null){
+  			        	 $scope.pict = $scope.imagepath + response.data.Picture;
+  			          console.log($scope.pict);
+  			          localStorageService.set('fbpicture', {fbpicture:$scope.pict});
+  			        }
+  			        
+  			        localStorageService.set('authorizationData', {
+  			        	fb_id: results.data.id,
+			                user_id: results.data.user_id,
+			                userName: results.data.first_name,
+			                lastName: results.data.last_name,
+			                token: results.data.token,
+			                user_role: results.data.user_role	                
+  		            });
+  		            var fbbbbdata = localStorageService.get('fbpicture');
+  					 console.log(fbbbbdata);
+  					
+  					// JS authentication
+  					var accessLevels = routingConfig.accessLevels
+  			        , userRoles = routingConfig.userRoles;
+  					localStorageService.set('user', {
+  						 username: response.first_name,
+  						 role: userRoles.user
+  			         });
+  					var authData = localStorageService.get('authorizationData');
+  					console.log(authData);
+  					//$scope.loggedin = true;
+  					$location.path('/quiz');
+  					$rootScope.loggedin = true;
+  			        
+  			        
+  				});
+  				
+  			}else if(results.data.status == 0){
+  				$rootScope.abc = "Your account is not active. Please contact Customer Care.";
+  				$rootScope.a=false;
+  				console.log($scope.abc);
+  				console.log($scope.a);
+  			}else {// register//	        	        	
+  	        		regService.getFbFriendsCount().then(function(data) {
+  	                console.log(data);
+  	                response.total_friends = data.summary.total_count;
+  	                var res = validateUser(response);
+  	                if (res.status) {
+  	                	 $scope.fbdata = response;
+  	                	 localStorageService.set('facebookData', {fbdata:response});
 
-					 $facebook.api("/me/picture?redirect=0&height=200&type=normal&width=200").then(function(pic) {
-					      	console.log(pic);
-					       	$scope.fbpicture = pic;
-						    localStorageService.set('fbpicture', {fbpicture:pic});
-						   var fbbbbdata = localStorageService.get('fbpicture');
-							//console.log(fbbbbdata);
-							 $location.path('/signup');
-					  });
+  					 $facebook.api("/me/picture?redirect=0&height=200&type=normal&width=200").then(function(pic) {
+  					      	console.log(pic);
+  					       	$scope.fbpicture = pic;
+  						    localStorageService.set('fbpicture', {fbpicture:pic});
+  						   var fbbbbdata = localStorageService.get('fbpicture');
+  							//console.log(fbbbbdata);
+  							 $location.path('/signup');
+  					  });
 
-	                     //  var fbbbbdata = localStorageService.get('facebookData');
-						 // console.log(fbbbbdata);
-						 
-	                	 if(response.gender == 'male') {
-	                		 $scope.male = true;
-	                	 } else {
-	                		 $scope.female = true;
-	                	 }
-	                     $rootScope.isLoggedIn = true;
+  	                     //  var fbbbbdata = localStorageService.get('facebookData');
+  						 // console.log(fbbbbdata);
+  						 
+  	                	 if(response.gender == 'male') {
+  	                		 $scope.male = true;
+  	                	 } else {
+  	                		 $scope.female = true;
+  	                	 }
+  	                     $rootScope.isLoggedIn = true;
 
-					}
-	                else {
-	                	localStorageService.set('signupDeniedMessage', res);
-	                	// $location.path('/signup-denied');
-	                	var deniedMessage = localStorageService.get('signupDeniedMessage');
-    					$scope.message = deniedMessage.message;
-	                	alert("Sorry you are not qualified for an account in Soulcafe , " +$scope.message);
-	                }
-	                
-	                
-	                
-	            });
-	        }
-  	    });
-          
-        });
-		$modalInstance.close();
-    }
+  					}
+  	                else {
+  	                	localStorageService.set('signupDeniedMessage', res);
+  	                	// $location.path('/signup-denied');
+  	                	var deniedMessage = localStorageService.get('signupDeniedMessage');
+      					$scope.message = deniedMessage.message;
+  	                	alert("Sorry you are not qualified for an account in Soulcafe , " +$scope.message);
+  	                }
+  	                
+  	                
+  	                
+  	            });
+  	        }
+    	    });
+            
+          });
+  		$modalInstance.close();
+      }
 
     
 });
