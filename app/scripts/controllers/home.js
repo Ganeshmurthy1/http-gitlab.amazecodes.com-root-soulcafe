@@ -16,7 +16,7 @@ angular.module('sassApp')
     ];
     $scope.caroselImage=['http://www.chem.uit.no/KJEMI/ghosh.jpg','http://www.american.edu/uploads/profiles/large/chris_palmer_profile_11.jpg',
                          'http://media.cirrusmedia.com.au/LW_Media_Library/594partner-profile-pic-An.jpg',
-                         'http://2.bp.blogspot.com/-dZKdgsUW2y0/Une2h3IIVMI/AAAAAAAAC1o/tqJJFHKzHfY/s640/katrina-kaif-Complete-Profile.jpg']; 
+                         'http://2.bp.blogspot.com/-dZKdgsUW2y0/Une2h3IIVMI/AAAAAAAAC1o/tqJJFHKzHfY/s640/katrina-kaif-Complete-Profile.jpg','http://4.bp.blogspot.com/--fWusEFYKHg/UT8Wr9TVAlI/AAAAAAAAABY/9_HoTCeoA3c/s1600/url.jpeg']; 
   
     //$scope.caroselImage =['http://www.chem.uit.no/KJEMI/ghosh.jpg', 'http://www.chem.uit.no/KJEMI/ghosh.jpg','http://www.chem.uit.no/KJEMI/ghosh.jpg'];
     $scope.imageobj = ['http://www.penguinbooksindia.com/sites/default/files/styles/in_focus_author/public/author/author_picture/Ravinder%20Singh.jpg',

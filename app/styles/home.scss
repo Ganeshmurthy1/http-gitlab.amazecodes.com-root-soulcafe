@@ -205,11 +205,13 @@ a:hover{
 
 .imagel{
 	border:2px solid black;
-	width:80% !important;
+	height: 200px !important;
+    width: 200px !important;
 }
 .imagelr{
 	border:2px solid black;
-	width:82% !important;
+	height: 200px !important;
+    width: 200px !important;
 }
 .name{
 	font-size:17px;
@@ -458,6 +460,12 @@ min-width:220px !important;
 .friendN{
 	padding-top:5px;
 	margin-left:40%;
+}
+.caurosel-theme{
+	height:150px !important;
+	width:170px !important;
+	border-radius:10px !important;
+	margin-right:15px;
 }
 /*--------------Media Queries-------------*/
 @media (min-width: 768px) {
