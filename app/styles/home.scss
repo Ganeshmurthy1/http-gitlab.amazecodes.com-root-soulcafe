@@ -467,6 +467,19 @@ min-width:220px !important;
 	border-radius:10px !important;
 	margin-right:15px;
 }
+.gredientSB{
+	background-image: url("../images/left_bg.jpg");
+    
+}
+.gradientQT{
+	background-image: url("../images/quote_top.png");
+    background-repeat: repeat-x;
+    background-image: url("../images/quote_bottom.png") bottom;
+}
+.gradientQB{
+	background-image: url("../images/quote_bottom.png");
+    background-repeat: repeat-x;
+}
 /*--------------Media Queries-------------*/
 @media (min-width: 768px) {
   .margint{

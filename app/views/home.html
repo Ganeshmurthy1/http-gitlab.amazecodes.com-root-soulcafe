@@ -50,7 +50,7 @@
 			<div class="clearfix"> <button type="button" class="btn btn-gtky uppercase123 width100">Complete Verification</button></div>
 		</div>
 	</div>
-	<div class="row margin-right-0 bordertopbottom gredient margin-right-12p">
+	<div class="row margin-right-0 bordertopbottom gredient margin-right-12p gradientQT">
 		<div class="rightmargin rightmargintop">
 			<div class="head1 color-brown">RECOMMENDATIONS</div>
 		<div class="col-md-12 align-center ">
@@ -77,11 +77,11 @@
 		
 	</div>
 
-	<div class="row margin-right-0 rightmargin rightmargintop margin-right-12p">
+	<div class="row margin-right-0 rightmargin rightmargintop margin-right-12p gradientQB">
 		<div class="head1 color-brown">CAFE CONVERSATIONS</div>
 		<div class="bordertop" ng-repeat="updts in updates">
 			<div class="row" style="margin:10px 10px 10px 25px;">
-				<img class="rounded-x" ng-src="{{updts.Picture}}" alt="" style="width:70px;height:auto;float:left;">
+				<img class="rounded-x" ng-src="{{imagepath}}{{updts.Picture}}" alt="" style="width:70px;height:auto;float:left;">
 				<div class ="forumUpdate">
 					<div class="color-brown-light"><strong>{{updts.first_name}} {{updts.last_name}}</strong></div>
 					<div>{{updts.Topic}}</div>
