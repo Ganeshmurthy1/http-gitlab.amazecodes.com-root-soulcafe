@@ -26,7 +26,8 @@ angular
     'ui-rangeSlider',
     'ui.tree',
     'angular-jqcloud',
-    'angular-carousel'
+    'angular-carousel',
+    'slick'
   ])
   .config(['$routeProvider', '$facebookProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $facebookProvider, $locationProvider, $httpProvider) {
 	

@@ -14,14 +14,16 @@ angular.module('sassApp')
       'AngularJS',
       'Karma'
     ];
-   
+    $scope.caroselImage=['http://www.chem.uit.no/KJEMI/ghosh.jpg','http://www.american.edu/uploads/profiles/large/chris_palmer_profile_11.jpg',
+                         'http://media.cirrusmedia.com.au/LW_Media_Library/594partner-profile-pic-An.jpg',
+                         'http://2.bp.blogspot.com/-dZKdgsUW2y0/Une2h3IIVMI/AAAAAAAAC1o/tqJJFHKzHfY/s640/katrina-kaif-Complete-Profile.jpg']; 
   
-
-    var $imageobj = {"image4": 'http://www.penguinbooksindia.com/sites/default/files/styles/in_focus_author/public/author/author_picture/Ravinder%20Singh.jpg',
-    			  "image2": 'http://www.chem.uit.no/KJEMI/ghosh.jpg',
-    			  "image1": 'http://www.penguinbooksindia.com/sites/default/files/styles/in_focus_author/public/author/author_picture/Ravinder%20Singh.jpg',
-    			  "image3": 'http://www.chem.uit.no/KJEMI/ghosh.jpg'
-    			};
+    //$scope.caroselImage =['http://www.chem.uit.no/KJEMI/ghosh.jpg', 'http://www.chem.uit.no/KJEMI/ghosh.jpg','http://www.chem.uit.no/KJEMI/ghosh.jpg'];
+    $scope.imageobj = ['http://www.penguinbooksindia.com/sites/default/files/styles/in_focus_author/public/author/author_picture/Ravinder%20Singh.jpg',
+    			   'http://www.chem.uit.no/KJEMI/ghosh.jpg',
+    			   'http://www.penguinbooksindia.com/sites/default/files/styles/in_focus_author/public/author/author_picture/Ravinder%20Singh.jpg',
+    			  'http://www.chem.uit.no/KJEMI/ghosh.jpg'
+    			   ];
     var $imageobj2 = {"image3": 'http://www.penguinbooksindia.com/sites/default/files/styles/in_focus_author/public/author/author_picture/Ravinder%20Singh.jpg',
 			  "image2": 'http://www.chem.uit.no/KJEMI/ghosh.jpg',
 			  "image1": 'http://www.penguinbooksindia.com/sites/default/files/styles/in_focus_author/public/author/author_picture/Ravinder%20Singh.jpg',
@@ -37,8 +39,8 @@ angular.module('sassApp')
 	  "image3": 'http://www.penguinbooksindia.com/sites/default/files/styles/in_focus_author/public/author/author_picture/Ravinder%20Singh.jpg',
 	  "image4": 'http://www.chem.uit.no/KJEMI/ghosh.jpg'
 	};
-    $scope.test = [$imageobj, $imageobj2, $imageobj3, $imageobj4];
-
+   // $scope.test = [$imageobj, $imageobj2, $imageobj3, $imageobj4];
+console.log($scope.caroselImage);
      regService.getRecomendations().then(function (results) {
         console.log(results.data);
 
@@ -84,7 +86,8 @@ angular.module('sassApp')
       profileOperations.getUserMatch().then(function(response) {
       
       console.log(response);    
-         $scope.recommendation=response.data;         
+         $scope.recommendation=response.data;    
+           
       });
 
       profileOperations.getForumUpdates().then(function(response) {
