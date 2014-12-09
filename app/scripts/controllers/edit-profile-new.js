@@ -67,14 +67,7 @@ angular.module('sassApp')
      regService.getProfileDetail().then(function (response) {
          console.log(response);
          $scope.profileDetail = response.data;
-         if($scope.profileDetail.UpdatedPicture == null){
-          $scope.pict = $scope.profileDetail.Picture;
-          localStorageService.set('fbpicture', {fbpicture:$scope.pict});
-        }else{
-          $scope.pict = $scope.imagepath + $scope.profileDetail.UpdatedPicture;
-          console.log($scope.pict);
-          localStorageService.set('fbpicture', {fbpicture:$scope.pict});
-        }
+         $scope.pict = $scope.imagepath + $scope.profileDetail.Picture;
          if ($scope.profileDetail.linked_update == 1) {
           $scope.updateButton = 'true';
           $scope.disable = 'false';
@@ -94,14 +87,9 @@ angular.module('sassApp')
           regService.getProfileDetail().then(function (response) {
          console.log(response);
          $scope.profileDetail = response.data;
-         if($scope.profileDetail.UpdatedPicture == null){
-          $scope.pict = $scope.profileDetail.Picture;
-          localStorageService.set('fbpicture', {fbpicture:$scope.pict});
-        }else{
-          $scope.pict = $scope.imagepath + $scope.profileDetail.UpdatedPicture;
-          console.log($scope.pict);
-          localStorageService.set('fbpicture', {fbpicture:$scope.pict});
-        }
+         $scope.pict = $scope.imagepath + $scope.profileDetail.Picture;
+         console.log($scope.pict);
+         localStorageService.set('fbpicture', {fbpicture:$scope.pict});
          if ($scope.profileDetail.linked_update == 1) {
           $scope.updateButton = 'true';
           $scope.disable = 'false';

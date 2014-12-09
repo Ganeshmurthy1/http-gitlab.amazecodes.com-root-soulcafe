@@ -29,15 +29,15 @@ angular.module('sassApp')
       regService.getUserDetails(authData.user_id).then(function (results) {
         console.log(results.data);
         $scope.userData = results.data; 
-
-        if($scope.userData.UpdatedPicture == null){
-          $scope.pict = $scope.userData.Picture;
-          localStorageService.set('fbpicture', {fbpicture:$scope.pict});
-        }else{
-          $scope.pict = $scope.imagepath + $scope.userData.UpdatedPicture;
-          console.log($scope.pict);
-          localStorageService.set('fbpicture', {fbpicture:$scope.pict});
-        }
+        $scope.pict = $scope.imagepath + $scope.userData.Picture;
+//        if($scope.userData.UpdatedPicture == null){
+//          $scope.pict = $scope.userData.Picture;
+//          //localStorageService.set('fbpicture', {fbpicture:$scope.pict});
+//        }else{
+//          $scope.pict = $scope.imagepath + $scope.userData.UpdatedPicture;
+//          console.log($scope.pict);
+//         // localStorageService.set('fbpicture', {fbpicture:$scope.pict});
+//        }
         var d1 = new Date($scope.userData.birthdate);
         var d2 = new Date();
       $scope.diff = d2.getFullYear()-d1.getFullYear();
