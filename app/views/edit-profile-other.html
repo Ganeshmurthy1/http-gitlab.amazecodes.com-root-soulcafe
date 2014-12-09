@@ -1,0 +1,181 @@
+<div data-ng-controller="HeaderCtrl" data-ng-include="Header">
+</div>
+<div class="row margin-right-0 body-background">
+	<div data-ng-controller="LeftBarpCtrl" data-ng-include="LeftBarOther">
+</div>
+
+<div class="col-xs-12 col-sm-8 col-md-9 margin-top-3">
+	<accordion close-others="oneAtATime">
+        <div class="row">
+        <div class="col-xs-12 col-md-6">
+    <accordion-group is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+    <accordion-heading>
+            Personal Details <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.isFirstOpen, 'glyphicon-chevron-right': !status.isFirstOpen}"></i>
+        </accordion-heading>
+     <!-- Basic Form -->
+                <form name="editprofileform" class="panel panel-blue margin-bottom-40" ng-submit="saveButtonClick(editprofileform.$invalid)">
+                    <div class="panel-body">                                                      
+                        <form class="margin-bottom-40" role="form">
+                            <div class="form-group row">
+                                <label class="col-lg-3 control-label">First Name</label>
+                                <div class="col-lg-9">
+                                    <div class="input-group">
+                                      <input type="text" class="form-control" name="name" ng-model="profileDetail.first_name" ng-disabled="true">
+                                      <span class="input-group-addon"><i class="fa fa-lock"></i>
+                                        </span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                           <div class="form-group row">
+                                <label class="col-lg-3 control-label">Last Name</label>
+                                <div class="col-lg-9">
+                                    <div class="input-group">
+                                      <input type="text" class="form-control" name="name" ng-model="profileDetail.last_name" ng-disabled="true">
+                                      <span class="input-group-addon"><i class="fa fa-lock"></i>
+                                        </span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 control-label">I am a </label>
+                                <div class="col-lg-9">
+                                    <div class="input-group">
+                                      <input type="text" class="form-control" name="name" ng-model="profileDetail.gender" ng-disabled="true">
+                                      <span class="input-group-addon"><i class="fa fa-lock"></i>
+                                        </span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 control-label">BirthDate</label>
+                                <div class="col-lg-9">
+                                    <div class="input-group">
+                                      <input type="text" class="form-control" name="name" ng-model="profileDetail.birthdate" ng-disabled="true">
+                                      <span class="input-group-addon"><i class="fa fa-lock"></i>
+                                        </span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                           <div class="form-group row">
+                                <label class="col-lg-3 control-label">Email</label>
+                                <div class="col-lg-9">
+                                    <div class="input-group">
+                                      <input type="email" class="form-control" name="email1" ng-model="profileDetail.email" ng-disabled="true">
+                                      <span class="input-group-addon"><i class="fa fa-lock"></i>
+                                        </span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 control-label">Where I Live</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" name="name" ng-model="profileDetail.location" ng-disabled="true">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 control-label">Quote I Live By</label>
+                                <div class="col-lg-9">
+                                    <textarea type="text" class="form-control" name="name" ng-model="profileDetail.Moto" ng-disabled="true"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 control-label">In my  own words</label>
+                                <div class="col-lg-9">
+                                    <textarea type="text" class="form-control" name="name" ng-model="profileDetail.OwnWords" ng-disabled="true"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 control-label">About Me</label>
+                                <div class="col-lg-9">
+                                    <textarea type="text" class="form-control" name="name" ng-model="profileDetail.AboutMe" ng-disabled="true"></textarea>
+                                </div>
+                            </div>
+                             <div class="form-group row">
+                                <label class="col-lg-3 control-label">Height</label>
+                                <div class="col-lg-9">
+                                    <div class="input-group">
+                                      <input type="text" class="form-control" name="name" ng-model="profileDetail.Height" ng-disabled="true">
+                                      <span class="input-group-addon">cm</span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 control-label">Food Habits</label>
+                                <div class="col-lg-9">
+                                    <textarea type="text" class="form-control" name="name" ng-model="profileDetail.FoodHabits" ng-disabled="true"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 control-label">View point on Drinking</label>
+                                <div class="col-lg-9">
+                                    <textarea type="text" class="form-control" name="name" ng-model="profileDetail.Drinking" ng-disabled="true"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 control-label">View point on Smoking</label>
+                                <div class="col-lg-9">
+                                    <textarea type="text" class="form-control" name="name" ng-model="profileDetail.Smoking" ng-disabled="true"></textarea>
+                                </div>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </form>
+                <!-- End Basic Form -->
+      
+    </accordion-group>
+    </div>
+     <div class="col-xs-12 col-md-6">
+    <accordion-group is-open="status.isSecondOpen">
+    	<accordion-heading>
+            Proffessional Details <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.isSecondOpen, 'glyphicon-chevron-right': !status.isSecondOpen}"></i>
+        </accordion-heading>
+       
+        <form name="editprofileform" class="panel panel-blue margin-bottom-40">
+                    <!-- <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-tasks"></i> Basic Form</h3>
+                    </div> -->
+                    <div class="panel-body">                                                      
+                        <form class="margin-bottom-40" role="form">
+                            <div class="form-group row">
+                                <label class="col-lg-3 control-label">Current Employment</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" name="cemployee" ng-model="profileDetail.CurrentEmployment" ng-disabled="true">
+                                </div>
+                            </div>
+                             <div class="form-group row">
+                                <label class="col-lg-3 control-label">Highest Education</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" name="education" ng-model="profileDetail.HighestEducation" ng-disabled="true">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 control-label">Endorsed Skills</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" name="skill" ng-model="profileDetail.Endorsedskills" ng-disabled="true">
+                                </div>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </form>
+                <!-- End Basic Form -->
+                
+    </accordion-group>
+    </div>
+        </div>
+    
+  </accordion>
+
+</div>
+
+
+</div>	
+
+
