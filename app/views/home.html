@@ -55,14 +55,22 @@
 			<div class="head1 color-brown">RECOMMENDATIONS</div>
 		<div class="col-md-12 align-center">
 			<div class="carousel-demo">
-             <ul rn-carousel  rn-carousel-auto-slide="3" class="mycarousel" rn-carousel-controls>
+			  <slick lazy-load='ondemand' slides-to-show=3 slides-to-scroll=1 class="slider lazy">
+			      <div ng-repeat="image in caroselImage">
+			      	<div class="image"><img height="150" width="170" style="border-radius:10px !important;margin-right:15px;" data-lazy="{{image}}"/></div>
+			      	<div class="age"> Jiby John (24)</div>
+			      </div>
+			      
+			  </slick>
+			
+            <!--   <ul rn-carousel  rn-carousel-auto-slide="3" class="mycarousel" rn-carousel-controls>
               <li ng-repeat="image in test" >
                           	<a href="" ><img alt="" src="{{image.image1}}" height="150" width="170" style="border-radius:10px !important;margin-right:15px;"></a>
                             <a href="" ><img alt="" src="{{image.image2}}" height="150" width="170" style="border-radius:10px !important;margin-right:15px;"></a>
                             <a href="" ><img alt="" src="{{image.image3}}" height="150" width="170" style="border-radius:10px !important;margin-right:15px;"></a>
                             <a href="" ><img alt="" src="{{image.image4}}" height="150" width="170" style="border-radius:10px !important;"></a>
               </li>
-           	</ul>
+           	</ul> -->
          </div>
 		</div>
 		</div>
@@ -101,6 +109,8 @@
                         
                     </ul>
                 </div> -->
+                
+
                 
          
 
