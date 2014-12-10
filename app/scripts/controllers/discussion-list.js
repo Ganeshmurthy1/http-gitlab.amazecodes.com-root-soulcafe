@@ -40,7 +40,8 @@ var config = localStorageService.get('config');
     
      regService.getDiscussionDetails().then(function (results) {
 
-       console.log(results.data);
+       console.log(results.data[14].RestrictedLocation);
+       console.log(results.data[14].Topic);
        $scope.discussionData = results.data;
        // console.log($scope.discussionData.length);
        var authData = localStorageService.get('authorizationData');

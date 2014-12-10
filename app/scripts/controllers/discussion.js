@@ -8,12 +8,16 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('DiscussionCtrl', function ($scope,$routeParams,$facebook,localStorageService,regService,$location, $window) {
+  .controller('DiscussionCtrl', function ($scope,$routeParams,$facebook,localStorageService,regService,$location, $window,config) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
+    var config = localStorageService.get('config');
+    $scope.imagepath = config.image_path;
+
 
       $scope.ratings = [{
             current: 1,
@@ -47,8 +51,9 @@ angular.module('sassApp')
 
     $scope.hide=true;
     var authData = localStorageService.get('authorizationData');
-
     $scope.userId=authData.user_id;
+    $scope.pict = authData.picture;
+
     getForumComments();
     
     function getForumComments() {

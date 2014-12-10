@@ -216,7 +216,6 @@ function getTotalNotification($id) {
     $stmt->bindParam("user_id", $id);
     $stmt->execute();
     $wine = $stmt->fetchObject();
-    $db = null;
     //echo $total = $wine->'count(1)';
 
     // echo json_encode($wine);
@@ -226,12 +225,10 @@ function getTotalNotification($id) {
 
   $sqlM = "SELECT count(1) as total from Messages where UserId=:user_id and ViewStatus=0 order by AddedDate desc";
   try {
-    $db = getConnection();
     $stmtM = $db->prepare($sqlM);
     $stmtM->bindParam("user_id", $id);
     $stmtM->execute();
     $wineM = $stmtM->fetchObject();
-    $db = null;
     //echo $total = $wine->'count(1)';
 
     // echo json_encode($wine);
@@ -241,7 +238,6 @@ function getTotalNotification($id) {
 
   $sqlFN = "SELECT count(1) as total from ForumNotification where userId=:user_id and ViewStatus=0 order by AddedDate desc";
   try {
-    $db = getConnection();
     $stmtFN = $db->prepare($sqlFN);
     $stmtFN->bindParam("user_id", $id);
     $stmtFN->execute();
