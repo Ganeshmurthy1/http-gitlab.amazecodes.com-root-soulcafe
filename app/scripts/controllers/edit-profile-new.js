@@ -29,7 +29,7 @@ angular.module('sassApp')
   		$.getScript("//platform.linkedin.com/in.js?async=true", function success() {
   		IN.init({
   		    onLoad: "onLinkedInLoad",
-  		    api_key: "75ckjn95bgi4uv",
+  		    api_key: "7536zmyvst4w84",
   		    credentials_cookie: true
   		    });
   		});	
