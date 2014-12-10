@@ -254,10 +254,10 @@ function getTotalNotification($id) {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
 
-  $op['system'] = $wine;
-  $op['message'] = $wineM;
-  $op['forum'] = $wineFN;
-  echo json_encode($op);
+  $notification['system'] = $wine;
+  $notification['message'] = $wineM;
+  $notification['forum'] = $wineFN;
+  echo json_encode($notification);
 }
 
 function getTotalSysMessage($id) {
