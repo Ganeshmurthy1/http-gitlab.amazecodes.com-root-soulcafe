@@ -303,5 +303,11 @@ angular.module('sassApp')
             });	
 	    };
 	    
+	    dataFactory.getHomeData = function () {	
+	     	return $http.get(urlBase + 'get_home_data').then(function(response) {
+                return response;
+            });	
+	    };
+	    
 	    return dataFactory;
 	}]);

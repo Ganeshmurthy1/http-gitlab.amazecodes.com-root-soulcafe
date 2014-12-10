@@ -55,9 +55,9 @@
 			<div class="head1 color-brown">RECOMMENDATIONS</div>
 		<div class="col-md-12 align-center ">
 			<div class="carousel-demo margin-right-12p">
-			  <slick lazy-load='ondemand' slides-to-show=4 slides-to-scroll=1 class="slider lazy">
-			      <div ng-repeat="image in caroselImage">
-			      	<div class="image"><img class="caurosel-theme" data-lazy="{{image}}"/></div>
+			  <slick init-onload=true data="recomandation" lazy-load='ondemand' slides-to-show=4 slides-to-scroll=1 class="slider lazy">
+			      <div ng-repeat="image in recomandation">
+			      	<div class="image"><img class="caurosel-theme" data-lazy="{{imagepath}}{{image.Picture}}"/></div>
 			      	<div class="age"> Jiby John (24)</div>
 			      </div>
 			      

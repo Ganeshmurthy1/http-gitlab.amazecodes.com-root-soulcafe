@@ -16,7 +16,8 @@ angular.module('sassApp')
     ];
 
      $scope.LeftBarOther = 'views/left-barp.html';
-
+     var config = localStorageService.get('config');
+     $scope.imagepath = config.image_path;
      
 
 

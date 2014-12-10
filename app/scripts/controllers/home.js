@@ -15,54 +15,76 @@ angular.module('sassApp')
       'Karma'
     ];
 
-     var config = localStorageService.get('config');
+    var config = localStorageService.get('config');
     $scope.imagepath = config.image_path;
     
     
+////    
+//    $scope.caroselImage=['http://www.chem.uit.no/KJEMI/ghosh.jpg','http://www.american.edu/uploads/profiles/large/chris_palmer_profile_11.jpg',
+//                         'http://media.cirrusmedia.com.au/LW_Media_Library/594partner-profile-pic-An.jpg',
+//                         'http://2.bp.blogspot.com/-dZKdgsUW2y0/Une2h3IIVMI/AAAAAAAAC1o/tqJJFHKzHfY/s640/katrina-kaif-Complete-Profile.jpg','http://4.bp.blogspot.com/--fWusEFYKHg/UT8Wr9TVAlI/AAAAAAAAABY/9_HoTCeoA3c/s1600/url.jpeg']; 
+//  
     
-    $scope.caroselImage=['http://www.chem.uit.no/KJEMI/ghosh.jpg','http://www.american.edu/uploads/profiles/large/chris_palmer_profile_11.jpg',
-                         'http://media.cirrusmedia.com.au/LW_Media_Library/594partner-profile-pic-An.jpg',
-                         'http://2.bp.blogspot.com/-dZKdgsUW2y0/Une2h3IIVMI/AAAAAAAAC1o/tqJJFHKzHfY/s640/katrina-kaif-Complete-Profile.jpg','http://4.bp.blogspot.com/--fWusEFYKHg/UT8Wr9TVAlI/AAAAAAAAABY/9_HoTCeoA3c/s1600/url.jpeg']; 
-  
+//     regService.getRecomendations().then(function (results) {
+//
+//       
+//
+//        
+//      });
     
-     regService.getRecomendations().then(function (results) {
+    //$scope.recomandation=localStorageService.get('recomm');
+     regService.getHomeData().then(function (results) {
+    	 $scope.updates=results.data.forum;
+    	 $scope.recomandation=results.data.matches;
+    	 //localStorageService.set('recomm', results.data.matches);
+    	 $scope.caroselImage=['http://www.chem.uit.no/KJEMI/ghosh.jpg','http://www.american.edu/uploads/profiles/large/chris_palmer_profile_11.jpg',
+    	                         'http://media.cirrusmedia.com.au/LW_Media_Library/594partner-profile-pic-An.jpg',
+    	                         'http://2.bp.blogspot.com/-dZKdgsUW2y0/Une2h3IIVMI/AAAAAAAAC1o/tqJJFHKzHfY/s640/katrina-kaif-Complete-Profile.jpg','http://4.bp.blogspot.com/--fWusEFYKHg/UT8Wr9TVAlI/AAAAAAAAABY/9_HoTCeoA3c/s1600/url.jpeg']; 
+    	  
+         
 
-       
-
-        
-      });
+         
+     });
 
 
 
     $scope.thumbup = 'true';
     $scope.profileverify = '50%';
     var authData = localStorageService.get('authorizationData');
-      regService.getUserDetails(authData.user_id).then(function (results) {
-        //console.log(results.data);
-        $scope.userData = results.data; 
-        console.log($scope.userData);
-         if ($scope.userData.linked_update == 1){
-           $scope.thumbup = 'false';
-           $scope.profileverify = '75%';
-           // console.log("Abhik");
-         }else{
-           $scope.thumbup = 'true';
-         }
-      });
+    
+    if (authData.linked_update == 1){
+        $scope.thumbup = 'false';
+        $scope.profileverify = '75%';
+        // console.log("Abhik");
+      }else{
+        $scope.thumbup = 'true';
+      }
+//      regService.getUserDetails(authData.user_id).then(function (results) {
+//        //console.log(results.data);
+//        $scope.userData = results.data; 
+//        console.log($scope.userData);
+//         if ($scope.userData.linked_update == 1){
+//           $scope.thumbup = 'false';
+//           $scope.profileverify = '75%';
+//           // console.log("Abhik");
+//         }else{
+//           $scope.thumbup = 'true';
+//         }
+//      });
 
 
-      profileOperations.getUserMatch().then(function(response) {
-      
-      console.log(response);    
-         $scope.recommendation=response.data;    
-           
-      });
+//      profileOperations.getUserMatch().then(function(response) {
+//      
+//      console.log(response);    
+//         $scope.recommendation=response.data;    
+//           
+//      });
 
-      profileOperations.getForumUpdates().then(function(response) {
-      
-      console.log(response);    
-         $scope.updates=response.data;         
-      });
+//      profileOperations.getForumUpdates().then(function(response) {
+//      
+//      console.log(response);    
+//         $scope.updates=response.data;         
+//      });
       
 
       $scope.otherProfile = function(userId){
