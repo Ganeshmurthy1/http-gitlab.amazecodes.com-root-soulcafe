@@ -254,6 +254,11 @@ angular.module('sassApp')
                 return response;
             });	
 	    };
+	    dataFactory.getTotalNotification = function (param) {	
+	     	return $http.get(urlBase + 'get_Total_Notification/'+param).then(function(response) {
+                return response;
+            });	
+	    };
 	    dataFactory.getTotalSysMessage = function (param) {	
 	     	return $http.get(urlBase + 'get_total_sys_message/'+param).then(function(response) {
                 return response;

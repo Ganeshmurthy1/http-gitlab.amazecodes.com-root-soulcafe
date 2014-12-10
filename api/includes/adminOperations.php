@@ -13,6 +13,8 @@ $app->get('/get_total_sys_message/:id', 'getTotalSysMessage');
 $app->get('/get_total_message/:id', 'getTotalMessage');
 $app->get('/get_total_forum_message/:id', 'getTotalForumMessage');
 
+$app->get('/get_Total_Notification/:id', 'getTotalNotification');
+
 $app->get('/sys_mark_message', 'sysMarkMessage');
 $app->get('/mark_message', 'MarkMessage');
 $app->get('/forum_mark_message', 'ForumMarkMessage');
@@ -204,6 +206,60 @@ function adminGetAllMessage() {
   //echo json_encode($wine);
 }
 
+
+function getTotalNotification($id) {
+
+  $sql = "SELECT count(1) as total from SystemNotification where userId=:user_id and ViewStatus=0 order by AddedDate desc";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("user_id", $id);
+    $stmt->execute();
+    $wine = $stmt->fetchObject();
+    $db = null;
+    //echo $total = $wine->'count(1)';
+
+    // echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
+  $sqlM = "SELECT count(1) as total from Messages where UserId=:user_id and ViewStatus=0 order by AddedDate desc";
+  try {
+    $db = getConnection();
+    $stmtM = $db->prepare($sqlM);
+    $stmtM->bindParam("user_id", $id);
+    $stmtM->execute();
+    $wineM = $stmtM->fetchObject();
+    $db = null;
+    //echo $total = $wine->'count(1)';
+
+    // echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
+  $sqlFN = "SELECT count(1) as total from ForumNotification where userId=:user_id and ViewStatus=0 order by AddedDate desc";
+  try {
+    $db = getConnection();
+    $stmtFN = $db->prepare($sqlFN);
+    $stmtFN->bindParam("user_id", $id);
+    $stmtFN->execute();
+    $wineFN = $stmtFN->fetchObject();
+    $db = null;
+    //echo $total = $wine->'count(1)';
+
+    // echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
+  $op['system'] = $wine;
+  $op['message'] = $wineM;
+  $op['forum'] = $wineFN;
+  echo json_encode($op);
+}
+
 function getTotalSysMessage($id) {
 
   $sql = "SELECT count(1) as total from SystemNotification where userId=:user_id and ViewStatus=0 order by AddedDate desc";
@@ -216,11 +272,10 @@ function getTotalSysMessage($id) {
     $db = null;
     //echo $total = $wine->'count(1)';
 
-    echo json_encode($wine);
+    // echo json_encode($wine);
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
-  //echo json_encode($wine);
 }
 
 function getTotalMessage($id) {
@@ -264,7 +319,7 @@ function getTotalForumMessage($id) {
 function sysMarkMessage() {
   $user_id  = getUserId();
   
-  $sql = "SELECT * from SystemNotification where userId=:user_id and ViewStatus=0 order by AddedDate desc";
+  $sql = "SELECT * from SystemNotification where userId=:user_id order by AddedDate desc limit 0,10";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
@@ -297,7 +352,7 @@ function sysMarkMessage() {
 function MarkMessage() {
   $user_id  = getUserId();
 
-  $sql = "SELECT u.first_name, m.* from Messages m JOIN users u on m.SenderId=u.user_id where m.UserId=:user_id and m.ViewStatus=0 order by m.AddedDate desc";
+  $sql = "SELECT u.first_name, m.* from Messages m JOIN users u on m.SenderId=u.user_id where m.UserId=:user_id order by m.AddedDate desc limit 0,10";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
@@ -336,7 +391,7 @@ function MarkMessage() {
   function ForumMarkMessage() {
     $user_id  = getUserId();
   
-    $sql = "SELECT * from ForumNotification where UserId=:user_id and ViewStatus=0 order by AddedDate desc";
+    $sql = "SELECT * from ForumNotification where UserId=:user_id order by AddedDate desc limit 0,10";
     try {
       $db = getConnection();
       $stmt = $db->prepare($sql);
