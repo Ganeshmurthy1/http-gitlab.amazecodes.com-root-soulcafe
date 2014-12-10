@@ -1,5 +1,5 @@
-<div class="my-border col-xs-12 col-sm-4 col-md-3 bcolor-grey gredientSB">
-    <div class="margin-right-10p margin-left-10p">
+
+
     <div class="align-center margin-top-10">
         <img class="rounded-x imagel" ng-src="{{sideData.picture}}" alt="" >
         <div class="name">{{sideData.first_name}} {{sideData.last_name}} , {{diff}}</div>
@@ -14,11 +14,13 @@
         <h3 class="color-brown-light">{{sideData.Moto}}</h3>
     </div>
     <div class="margin-top-10 hideblck">
-        <div class="marginleft clearfix">
+        <div class=" clearfix">
             <div class="clabel row" href="#/friends"><a class="color-white" href="#/friends">FRIENDS ({{totalfriends}})</a></div>
-            <div class="row" style="margin:10px;" ng-repeat="frnd in friends">
-               <a class="profile_link" ng-click="otherProfile({{frnd.BuddyId}})"> <img class="rounded-x" ng-src="{{imagepath}}{{frnd.Picture}}" alt="" style="width:50px;height:auto;float:left;"></a>
-                <div style="margin-left:30%;">
+            <div class="row"  ng-repeat="frnd in friends">
+            	<div class ="col-md-3">
+               		<a class="profile_link" ng-click="otherProfile({{frnd.BuddyId}})"> <img class="rounded-x" ng-src="{{imagepath}}{{frnd.Picture}}" alt="" style="width:50px;height:auto;float:left;"></a>
+               	</div>
+               <div class ="col-md-9">
                     <div class="color-brown-light"><a class="profile_link" ng-click="otherProfile({{frnd.BuddyId}})"><strong>{{frnd.first_name}} {{frnd.last_name}}</strong></a></div>
                     <div>{{ frnd.Moto | limitTo : 15}}..</div>
                 </div>
@@ -27,16 +29,18 @@
     </div>
 
         <div class="margin-top-10 hideblck">
-            <div class="marginleft clearfix">
+            <div class=" clearfix">
             <div class="clabel row" ><a class="color-white" href="#/discussion-list">FORUMS</a></div>
-            <span ng-repeat="diss in discussion">
-                <a class="sublabel uppercase123" href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}">{{diss.Topic}}</a>
-            </span>
+            <div class="col-md-12">
+	            <span ng-repeat="diss in discussion">
+	                <a class="sublabel uppercase123" href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}">{{diss.Topic}}</a>
+	            </span>
+            </div>
             </div>
         </div>
 
     <div class="margin-top-10 hideblck">
-        <div class="marginleft clearfix ">
+        <div class=" clearfix ">
             <div class="clabel row">INTERESTS</div>
             <span class="interests float-left align-center">
                 <span class="glyphicon glyphicon-headphones gly"></span>
@@ -94,5 +98,3 @@
         </div>
         
     </div>
-    </div>
-</div>

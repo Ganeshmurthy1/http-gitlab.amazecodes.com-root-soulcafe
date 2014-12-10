@@ -11,7 +11,11 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/vendor/assets/font
 
 body {
   font-size: 14px;
+  
   color: #4c2500;
+}
+.body-pattern {
+	background: url(../images/texture.jpg) center center;
 }
 
 .text-capital {
