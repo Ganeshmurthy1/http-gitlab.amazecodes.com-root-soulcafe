@@ -1012,7 +1012,8 @@ function addUserDiscussion() {
     if (isset($forum->location)) {
       $location = serialize($forum->location);
     }
-    $sql = "INSERT INTO DiscussionBoard (Topic, Description, StartDate, CreatedBy, CreatedDate, Restricted, RestrictedGender, RestrictedAge, RestrictedLocation, status, userRequest) VALUES (:Topic, :Description, :StartDate, :CreatedBy, :CreatedDate, :Restricted, :RestrictedGender, :RestrictedAge, :RestrictedLocation, :status,:user)";
+    $image = 'sc-logo.png';
+    $sql = "INSERT INTO DiscussionBoard (Topic, Description, StartDate, CreatedBy, CreatedDate, Restricted, RestrictedGender, RestrictedAge, RestrictedLocation, status, userRequest,Image) VALUES (:Topic, :Description, :StartDate, :CreatedBy, :CreatedDate, :Restricted, :RestrictedGender, :RestrictedAge, :RestrictedLocation, :status,:user,:Image)";
     try {
       $db = getConnection();
       $stmt = $db->prepare($sql);
@@ -1027,6 +1028,7 @@ function addUserDiscussion() {
       $stmt->bindParam("RestrictedLocation", $location);
       $stmt->bindParam("status", $status);
       $stmt->bindParam("user", $user);
+      $stmt->bindParam("Image", $image);
       $stmt->execute();
   
   

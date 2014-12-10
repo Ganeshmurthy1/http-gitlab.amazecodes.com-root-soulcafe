@@ -37,10 +37,11 @@ function getForumUpdates() {
   // print_r( $user );
   $user_id  = getUserId();
    
-  $sql = "select fn.CommentId,dbc.Comment, dbc.UserId, dbc.DiscussionTopicId, dbc.CommentDateTime, dbt.TopicTitle,dbt.DiscussionBoardId, u.first_name, u.last_name, u.Picture,db.Topic from ForumNotification as fn inner join DiscussionBoardComments as dbc on fn.CommentId = dbc.CommentId inner join DiscussionBoardTopic as dbt on dbc.DiscussionTopicId = dbt.DiscussionTopicId inner join users as u on dbc.UserId = u.user_id inner join DiscussionBoard as db on dbt.DiscussionBoardId = db.DiscussionBoardId order by  dbc.CommentDateTime desc";
+  $sql = "SELECT dbu.DiscussionBoardId,dbu.UserId,db.Topic,dbt.DiscussionTopicId,dbt.TopicTitle,dbt.CreatedDate,u.first_name,u.last_name,db.Image FROM DiscussionBoardUsers as dbu inner join DiscussionBoard as db on dbu.DiscussionBoardId = db.DiscussionBoardId inner join DiscussionBoardTopic as dbt on db.DiscussionBoardId=dbt.DiscussionBoardId inner join users as u on dbu.UserId=u.user_id WHERE dbu.UserId=:user_id order by dbt.CreatedDate desc limit 0,10";
   try {
     $db = getConnection();
-    $stmt = $db->prepare($sql);  
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("user_id",  $user_id );  
     $stmt->execute();
     $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
      $db = null;
