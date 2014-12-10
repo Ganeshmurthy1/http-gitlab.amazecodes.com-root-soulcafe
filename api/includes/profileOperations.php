@@ -401,7 +401,7 @@ function rejectGTKY($id) {
 
 function getHomeData() {
   $user_id  = getUserId();
-  $sql = "SELECT s.SoulId,u.Picture FROM SoulMatches as s inner join users as u on s.UserId=u.user_id WHERE s.UserId=:userId";
+  $sql = "SELECT s.SoulId,u.Picture,u.first_name,u.last_name, u.birthdate FROM SoulMatches as s inner join users as u on s.SoulId=u.user_id WHERE s.UserId=:userId";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);

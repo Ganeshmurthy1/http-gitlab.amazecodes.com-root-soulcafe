@@ -35,7 +35,19 @@ angular.module('sassApp')
     //$scope.recomandation=localStorageService.get('recomm');
      regService.getHomeData().then(function (results) {
     	 $scope.updates=results.data.forum;
-    	 $scope.recomandation=results.data.matches;
+    	 var tt = {};
+    	 $scope.recomandation = [];
+    	 for ( var int = 0; int < results.data.matches.length; int++) {
+    		 	var d1 = new Date(results.data.matches[int].birthdate);
+    		    var d2 = new Date();
+    		    var diff = d2.getFullYear()-d1.getFullYear();
+    		    //$tt = 
+    		    $scope.recomandation[int] = results.data.matches[int];
+    		    $scope.recomandation[int].age = diff;
+    		    	
+    	 }
+    	// console.log($scope.recomandation);
+    	 //$scope.recomandation=results.data.matches;
     	 //localStorageService.set('recomm', results.data.matches);
     	 $scope.caroselImage=['http://www.chem.uit.no/KJEMI/ghosh.jpg','http://www.american.edu/uploads/profiles/large/chris_palmer_profile_11.jpg',
     	                         'http://media.cirrusmedia.com.au/LW_Media_Library/594partner-profile-pic-An.jpg',

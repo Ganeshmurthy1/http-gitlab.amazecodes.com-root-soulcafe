@@ -58,7 +58,7 @@
 			  <slick init-onload=true data="recomandation" lazy-load='ondemand' slides-to-show=4 slides-to-scroll=1 class="slider lazy">
 			      <div ng-repeat="image in recomandation">
 			      	<div class="image"><img class="caurosel-theme" data-lazy="{{imagepath}}{{image.Picture}}"/></div>
-			      	<div class="age"> Jiby John (24)</div>
+			      	<div class="age"> {{image.first_name}}{{image.last_name}} ({{image.age}})</div>
 			      </div>
 			      
 			  </slick>
