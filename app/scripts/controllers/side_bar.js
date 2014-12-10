@@ -17,14 +17,21 @@ angular.module('sassApp')
       'Karma'
     ];
 
-    var config = localStorageService.get('config');
-    $scope.imagepath = config.image_path;
+    //var config = localStorageService.get('config');
+    //$scope.imagepath = config.image_path;
 
     $scope.SideBar = 'views/side_bar.html';
+    
+    
+    $scope.sideData = localStorageService.get('authorizationData');
+    console.log($scope.sideData); 
+    var d1 = new Date($scope.sideData.birthdate);
+    var d2 = new Date();
+    $scope.diff = d2.getFullYear()-d1.getFullYear();
 
     function getUSerdata() {
-      var authData = localStorageService.get('authorizationData');
-      console.log(authData);
+     // var authData = localStorageService.get('authorizationData');
+     // console.log(authData);
      
 
 //      });

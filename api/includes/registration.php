@@ -1142,7 +1142,7 @@ function getRating($topicId) {
 
 function getPicture($id) {
   // $user_id  = getUserId();
-  $sql = "SELECT u.Picture, u.linked_update, p.CurrentEmployment, u.location from users u LEFT JOIN ProfessionalDetails p ON u.user_id = p.UserId where u.user_id = :id";
+  $sql = "SELECT u.Picture, u.linked_update, p.CurrentEmployment, u.location, u.birthdate,u.Moto from users u LEFT JOIN ProfessionalDetails p ON u.user_id = p.UserId where u.user_id = :id";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);

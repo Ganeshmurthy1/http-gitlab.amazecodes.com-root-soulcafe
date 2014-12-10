@@ -1,17 +1,17 @@
 <div class="col-xs-12 col-sm-4 col-md-3 bcolor-grey gredientSB">
     <div class="margin-right-10p margin-left-10p">
     <div class="align-center margin-top-10">
-        <img class="rounded-x imagel" ng-src="{{imagepath}}{{userData.Picture}}" alt="" >
-        <div class="name">{{userData.first_name}} {{userData.last_name}} , {{diff}}</div>
+        <img class="rounded-x imagel" ng-src="{{sideData.picture}}" alt="" >
+        <div class="name">{{sideData.first_name}} {{sideData.last_name}} , {{diff}}</div>
         <img src="images/div.png" alt="" >
-        <div class="add">Lives In : {{userData.location}}</div>
-        <div class="add">From : {{userData.hometown}}</div>
+        <div class="add">Lives In : {{sideData.location}}</div>
+        <div class="add">Working : {{sideData.employment}}</div>
         <div class="pull-right morebutton add"><a style="color:#5bc0de;" href="#/edit-profile-new">More...</a></div>
     </div>
 
     <div class="clearfix align-center quote marginleft gredient">
         <h1 class="color-brown">"QUOTE I LIVE BY"</h1>
-        <h3 class="color-brown-light">{{userData.Moto}}</h3>
+        <h3 class="color-brown-light">{{sideData.Moto}}</h3>
     </div>
     <div class="margin-top-10 hideblck">
         <div class="marginleft clearfix">

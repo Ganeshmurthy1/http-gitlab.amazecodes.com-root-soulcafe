@@ -100,28 +100,47 @@ angular.module('sassApp')
   				  console.log(results.data);
   				  if (results.data != 'false') { //login 
   						console.log('login');
-  						localStorageService.set('authorizationData', {
-  			                fb_id: results.data.id,
+  						regService.getPicture(results.data.user_id).then(function(response) {
+  					        console.log(response.data);
+  					        var config = localStorageService.get('config');
+  					        $scope.imagepath = config.image_path;
+  					        if(response.data.Picture != null){
+  					        	 var pict = $scope.imagepath + response.data.Picture;
+  					          
+  					        }
+  					      localStorageService.set('authorizationData', {
+  					    	fb_id: results.data.id,
   			                user_id: results.data.user_id,
-  			                userName: results.data.first_name,
-  			                lastName: results.data.last_name,
+  			                first_name: results.data.first_name,
+  			                last_name: results.data.last_name,
   			                token: results.data.token,
-  			                user_role: results.data.user_role	                
-  			            });
-  						var accessLevels = routingConfig.accessLevels
-  				        , userRoles = routingConfig.userRoles;
-  						localStorageService.set('user', {
-  							 username: response.first_name,
-  							 role: userRoles.user
-  				         });
-  						var authData = localStorageService.get('authorizationData');
-  		  				console.log(authData);
-  		  				//$scope.loggedin= true;
-  		  				$rootScope.loggedin = true;
-  		  				$scope.actcode = '';
-  		  				$scope.mobileVerified = true;
-  		  				$scope.mobileVerifiedMessage = true;
-  		  				$scope.errMessage = '';
+  			                user_role: results.data.user_role,
+  			                picture: pict,
+  			                linked_update : response.data.linked_update,
+  			                employment : response.data.CurrentEmployment,
+  			                location: response.data.location,
+  			                birthdate:response.data.birthdate,
+  			                Moto:response.data.Moto                
+    			            });
+    						var accessLevels = routingConfig.accessLevels
+    				        , userRoles = routingConfig.userRoles;
+    						localStorageService.set('user', {
+    							 username: response.first_name,
+    							 role: userRoles.user
+    				         });
+    						var authData = localStorageService.get('authorizationData');
+    		  				console.log(authData);
+    		  				//$scope.loggedin= true;
+    		  				$rootScope.loggedin = true;
+    		  				$scope.actcode = '';
+    		  				$scope.mobileVerified = true;
+    		  				$scope.mobileVerifiedMessage = true;
+    		  				$scope.errMessage = '';
+  			   			  
+  			   			});  
+  						
+  						
+  						
 					  	  //$location.path('/mobile-verify');
   		  				  // $location.path('/dashboard');
   					}

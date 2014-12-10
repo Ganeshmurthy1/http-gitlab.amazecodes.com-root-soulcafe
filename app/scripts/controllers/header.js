@@ -19,37 +19,24 @@ angular.module('sassApp')
     
     if($location.path() == '/home'){
       $scope.defaulth = true;
-      console.log("1");
     }else if ($location.path() == '/myprofile') {
       $scope.defaultp = true;
-      console.log("2");
     }else{
       $scope.defaulth = false;
-       $scope.defaultp = false;
+      $scope.defaultp = false;
     }
  
-    $scope.isAdmin = false;
-    var authData = localStorageService.get('authorizationData');
-    console.log(authData);
-    $scope.datau = authData;
-     console.log($scope.datau);
 
-     var fbpic = localStorageService.get('fbpicture');
-     console.log(fbpic);
-     $scope.pict=fbpic.fbpicture;
-    if(authData.user_role == 1) {
-    	$scope.isAdmin = true;
-      $scope.isUser = true;
-    }
+    $scope.datau = localStorageService.get('authorizationData');
+    $scope.pict=$scope.datau.picture;
+
     $scope.popup = false;
 
-      regService.getTotalNotification(authData.user_id).then(function(response) {
+      regService.getTotalNotification($scope.datau.user_id).then(function(response) {
         console.log(response.data);
         $scope.totalSysMessage = response.data.system.total;
         $scope.totalMessage = response.data.message.total;
         $scope.totalForumMessage = response.data.forum.total;
-          // $scope.totalSysMessage = response.data.total; 
-          // console.log($scope.pic.Picture);
       });
 
     // regService.getTotalSysMessage(authData.user_id).then(function(response) {
