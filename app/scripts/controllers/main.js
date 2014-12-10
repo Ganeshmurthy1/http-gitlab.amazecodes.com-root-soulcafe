@@ -70,34 +70,34 @@ angular.module('sassApp')
         function(response) {
           $scope.welcomeMsg = 'Welcome ' + response.name;
           regService.getFbUserStatus(response).then(function (results) {  
-          console.log(results.data);  	        
+          //console.log(results.data);  	        
+          
 	        if (results.data.status == 1) { //login 
 				console.log('login');
-				// $facebook.api("/me/picture?redirect=0&height=200&type=normal&width=200").then(function(pic) {
-				//       	console.log(pic);
-				//   		$scope.fbpicture = pic;
-				// 	  localStorageService.set('fbpicture', {fbpicture:pic});
-				// 	 //   var fbbbbdata = localStorageService.get('fbpicture');
-				// 		// console.log(fbbbbdata);
-				//   });
 				regService.getPicture(results.data.user_id).then(function(response) {
 			        console.log(response.data);
+			       // return;
 			        if(response.data.Picture != null){
-			        	 $scope.pict = $scope.imagepath + response.data.Picture;
-			          console.log($scope.pict);
-			          localStorageService.set('fbpicture', {fbpicture:$scope.pict});
+			        	 var pict = $scope.imagepath + response.data.Picture;
+			        	 //console.log($scope.pict);
+			        	// localStorageService.set('fbpicture', {fbpicture:$scope.pict});
 			        }
 			        
 			        localStorageService.set('authorizationData', {
-			        	fb_id: results.data.id,
+			        		fb_id: results.data.id,
 			                user_id: results.data.user_id,
 			                userName: results.data.first_name,
 			                lastName: results.data.last_name,
 			                token: results.data.token,
-			                user_role: results.data.user_role           
+			                user_role: results.data.user_role,
+			                fbpicture: pict,
+			                linked_update : response.data.linked_update,
+			                employment : response.data.CurrentEmployment,
+			                location: response.data.location
 		            });
-		            var fbbbbdata = localStorageService.get('fbpicture');
+		            var fbbbbdata = localStorageService.get('authorizationData');
 					 console.log(fbbbbdata);
+					// return;
 					
 					// JS authentication
 					var accessLevels = routingConfig.accessLevels
