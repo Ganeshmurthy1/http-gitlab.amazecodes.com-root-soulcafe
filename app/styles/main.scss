@@ -11,7 +11,6 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/vendor/assets/font
 
 body {
   font-size: 14px;
-  background: url(../images/texture.jpg) center center;
   color: #4c2500;
 }
 
@@ -736,4 +735,7 @@ header:after{content:" "; background-image:url(../images/header-bg-shape.png); w
 }
 .profile_link {
   cursor:pointer;
+}
+.my-border {
+	border: 1px solid red !important;
 }

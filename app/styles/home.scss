@@ -35,13 +35,14 @@ body{
 .size-20{
 	font-size:20px !important;
 }
+.cheader{
+	background-color:#593a1d;
+	min-height:40px;
+	
+}
 .container-fluid{
 
-	.cheader{
-		background-color:#593a1d;
-		min-height:40px;
-		
-	}
+
 	.row{
 	margin-left:0px !important;
 	margin-right:0px !important;
@@ -480,8 +481,21 @@ min-width:220px !important;
 	background-image: url("../images/quote_bottom.png");
     background-repeat: repeat-x;
 }
+.message-list {
+	margin: 8px 45px 0 15px !important;
+	
+	ul {
+		margin-bottom: 0px !important;
+		li {
+			margin: 0px 10px !important;
+		}
+	}
+}
 /*--------------Media Queries-------------*/
 @media (min-width: 768px) {
+.message-list {
+	margin: 15px 25px 0 15px !important;
+}
   .margint{
  	margin-top:5px;
  	margin-bottom:5px;
@@ -593,6 +607,9 @@ min-width:220px !important;
 
 
 @media (min-width: 992px) {
+.message-list {
+	margin: 15px 25px 0 15px !important;
+}
  .margint{
  	margin-top:5px;
  	margin-bottom:5px;
@@ -809,6 +826,9 @@ min-width:220px !important;
 	padding-top:5px;
 	margin-left:15%;
 }
+.message-list {
+	margin: 15px 25px 0 15px !important;
+}
 }
 
 
@@ -866,3 +886,5 @@ min-width:220px !important;
 .slick-slide { img{border:5px solid #FFF;display:block;width:100%;}}
 .slick-slide { img.slick-loading{border:0 } }
 .slick-slider{margin:30px auto 50px;}
+
+

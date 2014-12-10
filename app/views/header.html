@@ -1,7 +1,7 @@
-<div class="container-fluid no-padding">
-    <div class="row cheader">
+<div class="container-fluid no-padding cheader ">
+    <div class="container  ">
 
-        <div class="col-xs-12 col-sm-12 col-md-12 margint no-padding">
+        <div class="row margint no-padding my-border">
             
 
             <div class="col-xs-1 no-padding hidden-sm visible-xs menuicon">
@@ -21,10 +21,10 @@
                     </ul>
                           
             </div>
-            <div class="pull-left logoimg hideblock"><img src="images/logo_soul.png" alt="" ></div>
+            <div class="pull-left  hideblock"><img src="images/logo_soul.png" alt="" ></div>
 
 
-            <div class="dropdown pull-right settingicon margin-right-10p" style="padding-top:5px;">
+            <div class="dropdown pull-right settingicon" style="padding-top:5px;">
               <a class="btn dropdown-toggle bcolor-brown no-paddi ng" type="button" id="dropdownMenu1" data-toggle="dropdown">
                 <div class="color-white"><i class="fa fa-cog fa-lg"><span class="caret" style="margin-left:5px;"></span></i></div>
                 
@@ -37,27 +37,59 @@
 
 
 
+			<div class="message-list pull-right ">
+			<ul class="list-inline badge-lists badge-icons ">
+                <li class="dropdown">
+              <a class="dropdown-toggle" ng-click="sysMessage()" type="button" id="dropdownMenu1" data-toggle="dropdown"><i class="fa fa-envelope-o fa-2x color-white"></i>
+              </a>
+              <span class="badge badge-green rounded-x" ng-show="totalSysMessage">{{totalSysMessage}}</span>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <div class="alert alert-success fade in no-bottom" data-ng-repeat = "message in messages">
+                <a href="#/{{message.Link}}" style="display:block; text-decoration:none;">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                    {{message.Message}}
+                     {{message.mess}}
+                </a>
+                </div>
+              </ul>
+                </li>
+                
+                
+                <li class="dropdown">
+                    <a class="dropdown-toggle" ng-click="Message()"><i class="fa fa-2x fa-comments color-white"></i></a>
+                    <span ng-show="totalMessage" class="badge badge-dark-blue rounded">{{totalMessage}}</span>
+                	 <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
+		                <div class="alert alert-success fade in no-bottom" data-ng-repeat = "message in messages">
+		                <a href="#/{{message.Link}}" style="display:block; text-decoration:none;">
+		                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+		                    {{message.Message}}
+		                     {{message.mess}}
+		                </a>
+		                </div>
+		              </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" ng-click="forumMessage()"><i class="fa fa-2x fa-globe color-white"></i></a>
+                    <span ng-show="totalForumMessage" class="badge badge-red rounded-x">{{totalForumMessage}}</span>
+                	 <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
+		                <div class="alert alert-success fade in no-bottom" data-ng-repeat = "message in messages">
+		                <a href="#/{{message.Link}}" style="display:block; text-decoration:none;">
+		                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+		                    {{message.Message}}
+		                     {{message.mess}}
+		                </a>
+		                </div>
+		              </ul>
+                
+                </li>
+                               
+            </ul>
+			
+			</div>
 
-            <!-- <div class="pull-right notify no-padding">
-                <ul class="list-inline badge-lists badge-icons">
 
-                    <li>
-                        <a ng-click="sysMessage()" class="rounded my-pointer"><i class="fa fa-envelope-o fa-2x color-white"></i></a>
-                        <span class="badge badge-yellow rounded-x" ng-show="totalSysMessage">{{totalSysMessage}}</span>
-                    </li>
-                    <li>
-                        <a ng-click="Message()" class="rounded my-pointer"><i class="fa fa-comments fa-2x color-white"></i></a>
-                        <span class="badge badge-blue rounded-x" ng-show="totalMessage">{{totalMessage}}</span>
-                    </li>
-                    <li>
-                        <a ng-click="forumMessage()" class="rounded my-pointer"><i class="fa fa-globe fa-2x color-white"></i></a>
-                        <span class="badge badge-red rounded-x" ng-show="totalForumMessage">{{totalForumMessage}}</span>
-                    </li>
-                </ul>
-            </div>
- -->        
 
-            <div class="dropdown pull-right notifydropdown">
+         <!--     <div class="dropdown pull-right notifydropdown">
               <a class="btn dropdown-toggle rounded my-pointer bcolor-brown" ng-click="forumMessage()" type="button" id="dropdownMenu1" data-toggle="dropdown"><i class="fa fa-globe fa-2x color-white"></i>
                  <span class="badge badge-red rounded-x" ng-show="totalForumMessage">{{totalForumMessage}}</span>
               </a>
@@ -85,22 +117,9 @@
                 </a>
                 </div>
               </ul>
-            </div>
+            </div>-->
 
-            <div class="dropdown pull-right alignright2" style="padding-top:5px;">
-              <a class="btn dropdown-toggle rounded my-pointer bcolor-brown" ng-click="sysMessage()" type="button" id="dropdownMenu1" data-toggle="dropdown"><i class="fa fa-envelope-o fa-2x color-white"></i>
-                 <span class="badge badge-yellow rounded-x" ng-show="totalSysMessage">{{totalSysMessage}}</span>
-              </a>
-              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                <div class="alert alert-success fade in no-bottom" data-ng-repeat = "message in messages">
-                <a href="#/{{message.Link}}" style="display:block; text-decoration:none;">
-                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                    {{message.Message}}
-                     {{message.mess}}
-                </a>
-                </div>
-              </ul>
-            </div>  
+ 
 
             
 
@@ -133,3 +152,4 @@
     </div>
 
 </div>
+
