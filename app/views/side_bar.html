@@ -17,10 +17,10 @@
         <div class="marginleft clearfix">
             <div class="clabel row" href="#/friends"><a class="color-white" href="#/friends">FRIENDS ({{totalfriends}})</a></div>
             <div class="row" style="margin:10px;" ng-repeat="frnd in friends">
-                <img class="rounded-x" ng-src="{{imagepath}}{{frnd.Picture}}" alt="" style="width:50px;height:auto;float:left;">
+               <a class="profile_link" ng-click="otherProfile({{frnd.BuddyId}})"> <img class="rounded-x" ng-src="{{imagepath}}{{frnd.Picture}}" alt="" style="width:50px;height:auto;float:left;"></a>
                 <div style="margin-left:30%;">
-                    <div class="color-brown-light"><strong>{{frnd.first_name}} {{frnd.last_name}}</strong></div>
-                    <div>{{frnd.location}}, {{frnd.hometown}}</div>
+                    <div class="color-brown-light"><a class="profile_link" ng-click="otherProfile({{frnd.BuddyId}})"><strong>{{frnd.first_name}} {{frnd.last_name}}</strong></a></div>
+                    <div>{{ frnd.Moto | limitTo : 15}}..</div>
                 </div>
             </div>
         </div>

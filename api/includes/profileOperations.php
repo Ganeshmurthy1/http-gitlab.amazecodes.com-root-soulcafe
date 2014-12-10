@@ -13,6 +13,8 @@ $app->get('/accept_GTKY/:id', 'acceptGTKY');
 $app->get('/reject_GTKY/:id', 'rejectGTKY');
 $app->get('/get_Buddies_All', 'getBuddiesAll');
 
+$app->get('/get_home_data', 'getHomeData');
+
 function getUserMatch() {
  
   // print_r( $user );
@@ -57,20 +59,33 @@ function getBuddies() {
   // print_r( $user );
   $user_id  = getUserId();
    
-  $sql = "SELECT u.*,b.BuddyId FROM `Buddies` as b inner join users as u on b.BuddyId = u.user_id  WHERE b.SenderId = :user_id and b.Status = 1";
+  $sql = "SELECT u.first_name, u.last_name, u.Picture, u.Moto,b.BuddyId FROM `Buddies` as b inner join users as u on b.BuddyId = u.user_id  WHERE b.SenderId = :user_id and b.Status = 1 Limit 0, 10";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);  
     $stmt->bindParam("user_id",  $user_id );
     $stmt->execute();
     $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
-     $db = null;
+    // $db = null;
       // echo json_encode($wine);
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}'; 
   }
+  
+  $sqlcount = "SELECT count(1) as total_friends FROM `Buddies` as b inner join users as u on b.BuddyId = u.user_id  WHERE b.SenderId = :user_id and b.Status = 1";
+  try {
+   // $db = getConnection();
+    $stmtCount = $db->prepare($sqlcount);
+    $stmtCount->bindParam("user_id",  $user_id );
+    $stmtCount->execute();
+    $wineCount = $stmtCount->fetchObject();
+   // $db = null;
+    // echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
 
-  $sqlForums = "SELECT db.*,dbu.DiscussionBoardId FROM `DiscussionBoardUsers` as dbu inner join DiscussionBoard as db ON dbu.DiscussionBoardId = db.DiscussionBoardId WHERE dbu.UserId = :user_id";
+  $sqlForums = "SELECT db.Topic,dbu.DiscussionBoardId FROM `DiscussionBoardUsers` as dbu inner join DiscussionBoard as db ON dbu.DiscussionBoardId = db.DiscussionBoardId WHERE dbu.UserId = :user_id";
   try {
     $dbForums = getConnection();
     $stmtForums = $dbForums->prepare($sqlForums);  
@@ -85,6 +100,7 @@ function getBuddies() {
 
   $user['friends']=$wine;
   $user['forum']=$wineForums;
+  $user['frineds_count']=$wineCount->total_friends;
   echo json_encode($user);
 
 }
@@ -381,4 +397,38 @@ function rejectGTKY($id) {
     echo '{"error":{"text":'. $e->getMessage() .'}}'; 
   }
 
+}
+
+function getHomeData() {
+  $user_id  = getUserId();
+  $sql = "SELECT s.SoulId,u.Picture FROM SoulMatches as s inner join users as u on s.UserId=u.user_id WHERE s.UserId=:userId";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("userId", $user_id);
+    $stmt->execute();
+    $wineMatches = $stmt->fetchAll(PDO::FETCH_OBJ);
+    //$db = null;
+    
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  
+  $sqlDiss = "SELECT db.Topic,dbt.DiscussionTopicId,dbt.TopicTitle,dbt.CreatedDate,u.first_name,u.last_name,db.Image FROM DiscussionBoardUsers as dbu inner join DiscussionBoard as db on dbu.DiscussionBoardId = db.DiscussionBoardId inner join DiscussionBoardTopic as dbt on db.DiscussionBoardId=dbt.DiscussionBoardId inner join users as u on dbu.UserId=u.user_id WHERE dbu.UserId=:user_id order by dbt.CreatedDate desc limit 0,10";
+  try {
+    //$db = getConnection();
+    $stmtDiss = $db->prepare($sqlDiss);
+    $stmtDiss->bindParam("user_id",  $user_id );
+    $stmtDiss->execute();
+    $wineDiss = $stmtDiss->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+   // echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  
+  $result['matches'] = $wineMatches;
+  $result['forum'] = $wineDiss;
+  echo json_encode($result);
+  
 }
