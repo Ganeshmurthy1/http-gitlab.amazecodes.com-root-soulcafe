@@ -18,48 +18,10 @@ angular.module('sassApp')
                          'http://media.cirrusmedia.com.au/LW_Media_Library/594partner-profile-pic-An.jpg',
                          'http://2.bp.blogspot.com/-dZKdgsUW2y0/Une2h3IIVMI/AAAAAAAAC1o/tqJJFHKzHfY/s640/katrina-kaif-Complete-Profile.jpg']; 
   
-    //$scope.caroselImage =['http://www.chem.uit.no/KJEMI/ghosh.jpg', 'http://www.chem.uit.no/KJEMI/ghosh.jpg','http://www.chem.uit.no/KJEMI/ghosh.jpg'];
-    $scope.imageobj = ['http://www.penguinbooksindia.com/sites/default/files/styles/in_focus_author/public/author/author_picture/Ravinder%20Singh.jpg',
-    			   'http://www.chem.uit.no/KJEMI/ghosh.jpg',
-    			   'http://www.penguinbooksindia.com/sites/default/files/styles/in_focus_author/public/author/author_picture/Ravinder%20Singh.jpg',
-    			  'http://www.chem.uit.no/KJEMI/ghosh.jpg'
-    			   ];
-    var $imageobj2 = {"image3": 'http://www.penguinbooksindia.com/sites/default/files/styles/in_focus_author/public/author/author_picture/Ravinder%20Singh.jpg',
-			  "image2": 'http://www.chem.uit.no/KJEMI/ghosh.jpg',
-			  "image1": 'http://www.penguinbooksindia.com/sites/default/files/styles/in_focus_author/public/author/author_picture/Ravinder%20Singh.jpg',
-			  "image4": 'http://www.chem.uit.no/KJEMI/ghosh.jpg'
-			};
-    var $imageobj3 = {"image2": 'http://www.penguinbooksindia.com/sites/default/files/styles/in_focus_author/public/author/author_picture/Ravinder%20Singh.jpg',
-	  "image4": 'http://www.chem.uit.no/KJEMI/ghosh.jpg',
-	  "image3": 'http://www.penguinbooksindia.com/sites/default/files/styles/in_focus_author/public/author/author_picture/Ravinder%20Singh.jpg',
-	  "image1": 'http://www.chem.uit.no/KJEMI/ghosh.jpg'
-	};
-    var $imageobj4 = {"image1": 'http://www.penguinbooksindia.com/sites/default/files/styles/in_focus_author/public/author/author_picture/Ravinder%20Singh.jpg',
-	  "image2": 'http://www.chem.uit.no/KJEMI/ghosh.jpg',
-	  "image3": 'http://www.penguinbooksindia.com/sites/default/files/styles/in_focus_author/public/author/author_picture/Ravinder%20Singh.jpg',
-	  "image4": 'http://www.chem.uit.no/KJEMI/ghosh.jpg'
-	};
-   // $scope.test = [$imageobj, $imageobj2, $imageobj3, $imageobj4];
-console.log($scope.caroselImage);
+    
      regService.getRecomendations().then(function (results) {
-        console.log(results.data);
 
-        for (var i = 1; i >= results.data.length; i++) {
-          console.log(results.data.length);
-            // if(i=4){
-            //   $scope.imageobj.image1=results.data[i].Picture;
-            //   $scope.imageobj.image1=results.data[i+1].Picture;
-            //   $scope.imageobj.image1=results.data[i+2].Picture;
-            //   $scope.imageobj.image1=results.data[+3].Picture;
-            // }
-            // if(i=4 && i<8 ){
-            //   $scope.imageobj.image1=results.data[0].Picture;
-            //   $scope.imageobj.image1=results.data[0+1].Picture;
-            //   $scope.imageobj.image1=results.data[0+2].Picture;
-            //   $scope.imageobj.image1=results.data[0+3].Picture;
-            // }
-
-           };
+       
 
         
       });
