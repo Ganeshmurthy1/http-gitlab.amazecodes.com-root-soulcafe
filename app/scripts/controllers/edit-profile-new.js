@@ -89,7 +89,10 @@ angular.module('sassApp')
          $scope.profileDetail = response.data;
          $scope.pict = $scope.imagepath + $scope.profileDetail.Picture;
          console.log($scope.pict);
-         localStorageService.set('fbpicture', {fbpicture:$scope.pict});
+         $scope.temp = localStorageService.get('authorizationData');
+         $scope.temp.picture = $scope.pict;
+         console.log($scope.temp);
+         localStorageService.set('authorizationData', $scope.temp);
          if ($scope.profileDetail.linked_update == 1) {
           $scope.updateButton = 'true';
           $scope.disable = 'false';
