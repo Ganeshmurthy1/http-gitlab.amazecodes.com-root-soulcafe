@@ -15,10 +15,12 @@
  
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                      <h2>{{gtky.first_name}} {{gtky.last_name}} wants to be your friend. </h2>
-           				 <div class="pull-right">
-                 <button type="button" class="btn-u" data-ng-click="acceptButtonClick(gtky.SenderId)">Accept</button>
-                 <a ng-click="rejectButtonClick(gtky.SenderId)" class="btn-u btn-u-default" type="button">Reject</a>
-             </div>
+                   	<div class="row">
+                        <div class="pull-right">
+                         <button type="button" class="btn-u" data-ng-click="acceptButtonClick(gtky.SenderId)">Accept</button>
+                         <a ng-click="rejectButtonClick(gtky.SenderId)" class="btn-u btn-u-default" type="button">Reject</a>
+                         </div>
+                    </div>
                 </div>
                
       
