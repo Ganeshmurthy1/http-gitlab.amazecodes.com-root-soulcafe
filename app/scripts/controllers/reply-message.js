@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('ReplyMessageCtrl', function ($scope, adminOperations, regService, $routeParams, $location) {
+  .controller('ReplyMessageCtrl', function ($scope, adminOperations, regService, $routeParams, $location,config,localStorageService) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -16,6 +16,8 @@ angular.module('sassApp')
     ];
     $scope.sid=$routeParams.sid;
 
+    var config = localStorageService.get('config');
+    $scope.imagepath = config.image_path;
     
     $scope.sendMyMessage = function(arg) {
     	var args=new Object();

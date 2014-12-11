@@ -17,7 +17,7 @@ angular.module('sassApp')
 
     $scope.thumbup = 'true';
     $scope.user_id = $routeParams.user_id;
-    $scope.profileverify = '50%';
+    $scope.profileverify = '75%';
     var authData = localStorageService.get('authorizationData');
       regService.getUserDetails($scope.user_id).then(function (results) {
         //console.log(results.data);
