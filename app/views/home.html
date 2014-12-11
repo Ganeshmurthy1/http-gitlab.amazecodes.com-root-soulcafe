@@ -52,7 +52,7 @@
 				<a type="button" href="#/edit-profile-new" class="btn btn-comp uppercase123 width100">Edit Profile</a>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-4">
-			<div class="clearfix"> <button type="button" class="btn btn-gtky uppercase123 width100">Complete Verification</button></div>
+			<div class="clearfix" ng-show="thumbup"> <button type="button" class="btn btn-gtky uppercase123 width100">Complete Verification</button></div>
 		</div>
 	</div>
 	<div class="row home-block my-border">
@@ -80,8 +80,8 @@
 				<img class="rounded-x" ng-src="{{imagepath}}{{updts.Image}}" alt="" style="width:70px;height:auto;float:left;">
 				<div class ="forumUpdate">
 					<div class="color-brown-light"><strong>{{updts.first_name}} {{updts.last_name}}</strong></div>
-					<div>{{updts.Topic}}</div>
-				 	<a href="#/discussion?topic={{updts.DiscussionTopicId}}">{{updts.TopicTitle}}</a>
+					<div>Forum - <strong class="color-brown-light">{{updts.Topic}}</strong></div>
+				 	<a href="#/discussion?topic={{updts.DiscussionTopicId}}">Topic - <strong class="color-brown-light">{{updts.TopicTitle}}</strong></a>
 				 	
 				</div>
 			</div>

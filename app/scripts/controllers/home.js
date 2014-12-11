@@ -61,14 +61,15 @@ angular.module('sassApp')
 
 
     $scope.thumbup = 'true';
-    $scope.profileverify = '50%';
+    $scope.profileverify = '75%';
     var authData = localStorageService.get('authorizationData');
-    
+    console.log(authData.linked_update);
     if (authData.linked_update == 1){
         $scope.thumbup = 'false';
-        $scope.profileverify = '75%';
-        // console.log("Abhik");
+        $scope.profileverify = '100%';
+         // console.log("1");
       }else{
+        // console.log("1");
         $scope.thumbup = 'true';
       }
 //      regService.getUserDetails(authData.user_id).then(function (results) {
