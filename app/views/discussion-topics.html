@@ -1,21 +1,15 @@
-<div class="wrapper">
-    <!--=== Header ===-->    
-  <div data-ng-controller="HeaderCtrl" data-ng-include="Header">
+<div data-ng-controller="HeaderCtrl" data-ng-include="Header">
 </div>
-    <!--=== End Header ===-->  
 
 
 
 
-    <!--=== Profile ===-->
-    <div class="profile container content" style="border-color:red">
-        <div class="row">
-            <!--Left Sidebar-->
-            <div data-ng-controller="SideBarCtrl" data-ng-include="SideBar">
-            </div>
-            <!--End Left Sidebar-->
-            
-            <div class="col-md-9">
+<div class="container-fluid body-pattern ">
+<div class="container my-border body-pattern ">
+<div class="row">
+<div class ="my-border col-xs-12 col-sm-4 col-md-3 gredientSB" data-ng-controller="SideBarCtrl" data-ng-include="SideBar"></div>
+
+<div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px ">
                 <!--Profile Body-->
                 <div class="profile-body">
                 <!-- Discussion Topics -->
@@ -64,5 +58,5 @@
 	 <!--===End Profile ===-->
 
 </div>
-</div>
+
  <!--=== End Wrapper ===-->

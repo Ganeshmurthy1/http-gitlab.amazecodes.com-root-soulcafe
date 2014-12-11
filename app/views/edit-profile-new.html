@@ -1,10 +1,15 @@
 <div data-ng-controller="HeaderCtrl" data-ng-include="Header">
 </div>
-<div class="row margin-right-0 body-background">
-	<div data-ng-controller="SideBarCtrl" data-ng-include="SideBar">
-            </div>
 
-<div class="col-xs-12 col-sm-8 col-md-9 margin-top-3">
+
+
+
+<div class="container-fluid body-pattern ">
+<div class="container my-border body-pattern ">
+<div class="row">
+<div class ="my-border col-xs-12 col-sm-4 col-md-3 gredientSB" data-ng-controller="SideBarCtrl" data-ng-include="SideBar"></div>
+
+<div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px ">
 	<accordion close-others="oneAtATime">
         <div class="row">
         <div class="col-xs-12 col-md-6">
@@ -263,3 +268,5 @@
 
 
 </div>	
+</div>
+</div>
