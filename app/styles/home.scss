@@ -482,19 +482,10 @@ min-width:220px !important;
 	margin-right:15px;
 }
 .gredientSB{
-	background-image: url("../images/left_bg.jpg");
-	/* Background image is centered vertically and horizontally at all times */
-  background-position: center center;
-  
-  /* Background image doesn't tile */
-  background-repeat: no-repeat;
-  
-  /* Background image is fixed in the viewport so that it doesn't move when 
-     the content's height is greater than the image's height */
-  
-  /* This is what makes the background image rescale based
-     on the container's size */
-  background-size: cover;
+
+
+background: linear-gradient(270deg, #d8d6d2 6%, #f2f2f2 17%) repeat scroll 0 0 transparent;
+
     
 }
 .gradientQT{
