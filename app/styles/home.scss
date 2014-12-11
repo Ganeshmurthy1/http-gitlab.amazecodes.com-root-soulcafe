@@ -491,6 +491,26 @@ background: linear-gradient(270deg, #d8d6d2 6%, #f2f2f2 17%) repeat scroll 0 0 t
 		}
 	}
 }
+
+.message-list{
+ 	li{
+ 	a {
+    
+    &:hover {
+      background-color: #593a1d;
+      color: #000;
+    }
+    }
+    ul{
+    a{
+    &:hover {
+      background-color: #d6e9c6;
+    }
+    }
+ 	}
+  }
+  }
+
 /*--------------Media Queries-------------*/
 @media (min-width: 768px) {
 .message-list {
@@ -502,7 +522,7 @@ background: linear-gradient(270deg, #d8d6d2 6%, #f2f2f2 17%) repeat scroll 0 0 t
  	a {
     
     &:hover {
-      background-color: #FFFFFF;
+      background-color: #fff;
       color: #000;
     }
     }
@@ -621,13 +641,7 @@ background: linear-gradient(270deg, #d8d6d2 6%, #f2f2f2 17%) repeat scroll 0 0 t
       cursor:pointer;
     }
     }
-    li a {
     
-    &:hover {
-      background-color: #684b2d;
-      color: #000;
-    }
-    }
  }
  .notify{
 	 margin-top:1%;
@@ -919,12 +933,4 @@ background: linear-gradient(270deg, #d8d6d2 6%, #f2f2f2 17%) repeat scroll 0 0 t
 }
 }
 
-.dropdown-menu{
-	alert{
-		a:hover{
-		color:#fff !important;
-	}
-	}
-	
-}
 
