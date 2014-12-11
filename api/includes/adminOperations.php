@@ -823,8 +823,8 @@ function adminAddMessage() {
   $DateTime=  date("Y-m-d h:i:s") ;
 
   
-   if($forum->all == 1){
-    // print_r('1');
+   if(!empty($forum->all)){
+     // print_r('1');
      $sql = "select user_id FROM users where status = 1";
     try {
       $db = getConnection();
@@ -860,7 +860,7 @@ function adminAddMessage() {
     }
      echo 'true';
   }else{
-     // print_r('0');
+      // print_r('0');
     $sql = "select user_id FROM users where first_name = :name";
     try {
       $db = getConnection();
@@ -893,7 +893,7 @@ function adminAddMessage() {
       } catch(PDOException $e) {
         echo '{"error":{"text":'. $e->getMessage() .'}}';
       }
-  }
+   }
   
 }
 
