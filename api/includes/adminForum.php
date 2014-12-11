@@ -357,7 +357,7 @@ function adminAddTopic() {
     foreach($wineUser as $obj) {
       $id=$user->discussId;
       $link = 'discussion-topics?id='.$id;
-        $sqlFN = "INSERT INTO ForumNotification (UserId,Message,ViewStatus,AddedDate,Link,topicId) VALUES (:UserId, :Message, :ViewStatus, :AddedDate,:Link,:topicId)";
+        $sqlFN = "INSERT INTO ForumNotification (UserId,Message,ViewStatus,AddedDate,Link) VALUES (:UserId, :Message, :ViewStatus, :AddedDate,:Link)";
     try {
       $db = getConnection();
       $stmtFN = $db->prepare($sqlFN);
@@ -366,7 +366,7 @@ function adminAddTopic() {
       $stmtFN->bindParam("ViewStatus", $viewstatus);
       $stmtFN->bindParam("AddedDate", $tdate);
       $stmtFN->bindParam("Link", $link);
-      $stmtFN->bindParam("topicId", $id);
+      //$stmtFN->bindParam("topicId", $id);
       $stmtFN->execute();
        // echo 'true';
     } catch(PDOException $e) {
