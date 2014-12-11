@@ -186,6 +186,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6e6e6', end
 .min-80p {
 	min-height: 80px;
 }
+.home-block {
+	margin-bottom: 15px;
+}
+.carousel-demo {
+	padding:0px 4%;
+}
 
 a:hover{
 	color:#593a1d !important;
@@ -476,19 +482,10 @@ min-width:220px !important;
 	margin-right:15px;
 }
 .gredientSB{
-	background-image: url("../images/left_bg.jpg");
-	/* Background image is centered vertically and horizontally at all times */
-  background-position: center center;
-  
-  /* Background image doesn't tile */
-  background-repeat: no-repeat;
-  
-  /* Background image is fixed in the viewport so that it doesn't move when 
-     the content's height is greater than the image's height */
-  
-  /* This is what makes the background image rescale based
-     on the container's size */
-  background-size: cover;
+
+
+background: linear-gradient(270deg, #d8d6d2 6%, #f2f2f2 17%) repeat scroll 0 0 transparent;
+
     
 }
 .gradientQT{
@@ -901,9 +898,31 @@ min-width:220px !important;
 	min-height: 400px;
 }
 
-.slick-slide { .image{padding:10px;}}
-.slick-slide { img{border:5px solid #FFF;display:block;width:100%;}}
-.slick-slide { img.slick-loading{border:0 } }
-.slick-slider{margin:30px auto 50px;}
+.slick-slide { 
+	.image {
+		padding:10px;
+	}
+}
+.slick-slide {
+	 img {
+		 display:block;
+		 width:100%;
+		 border-radius: 5px !important;
+		 
+	 }
+ }
+.slick-slide {
+ img.slick-loading{
+ 	border:0 
+ }
+}
+.slick-slider {
+    margin-bottom: 0px !important;
+}
 
+.slick-slide { 
+	a {
+		cursor: pointer;
+	}
+}
 

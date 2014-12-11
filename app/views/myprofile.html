@@ -10,7 +10,7 @@
 <div class ="my-border col-xs-12 col-sm-4 col-md-3 gredientSB" data-ng-controller="SideBarCtrl" data-ng-include="SideBar"></div>
 
 <div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px ">
-	<div class="row my-border ">
+	<div class="row my-border home-block">
 		<div class="col-xs-12 col-sm-6 col-md-8 no-padding hideblck">
 			<label class="col-xs-7 col-sm-2 col-md-3 no-padding head1 color-brown">Profile Completion</label>
 			<div class="progress progresscustom">
@@ -55,23 +55,22 @@
 			<div class="clearfix"> <button type="button" class="btn btn-gtky uppercase123 width100">Complete Verification</button></div>
 		</div>
 	</div>
-	<div class="row my-border">
-		<div class="rightmargintop hideblock">
+	<div class="row home-block hideblock my-border ">
+		
 			<div class="align-center ">
 				<h1 class="color-brown" style="font-weight:600;">"QUOTE I LIVE BY"</h1>
 			</div>
 			<div class="col-sm-offset-4 col-sm-4 min-80p">
 				<h3 class="color-brown-light" style="font-weight:600;">{{userData.Moto}}</h3>
 			</div>
-			
-		</div>
+
 	</div>
-	<div class="row margin-right-0 rightmargin rightmargintop margin-right-12p">
+	<div class="row home-block  my-border">
 		<div class="head1 color-brown">MY LIFE VALUES</div>
 		<!-- <h3 class="bordertop">Travel</h3> -->
-		<div style="text-align:justify;">{{userData.OwnWords}}</div>
+		<div class="col-md-12" style="text-align:justify;">{{userData.OwnWords}}</div>
 	</div>
-	<div class="row margin-right-0 rightmargin rightmargintop wordcloud margin-right-12p">
+	<div class="row home-block hideblock my-border">
 		<div class="head1 color-brown">SOCIOGRAPH</div>
 		<div class="bordertop">
 			<jqcloud words="words" width="820" height="350" colors="{{colors}}" delay="10" steps="7" ></jqcloud>
