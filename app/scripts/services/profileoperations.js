@@ -92,5 +92,11 @@ angular.module('sassApp')
                return response;
            });  
     };
+     dataFactory.getMyProfileDetails = function () { 
+         return $http.get(urlBase + 'get_MyProfileDetails').then(function(response) {
+         //console.log(response);
+               return response;
+           });  
+    };
     return dataFactory;
   }]);

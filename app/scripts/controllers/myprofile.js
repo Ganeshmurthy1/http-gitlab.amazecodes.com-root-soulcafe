@@ -45,18 +45,8 @@ angular.module('sassApp')
         $scope.thumbup = 'true';
       }
 
-// profileOperations.getLifeValues().then(function(response) {
-      
-//       console.log(response);    
-//          $scope.friends=response.data.friends;
-//          $scope.discussion=response.data.forum;
-//          $scope.interest=response.data.Interest;
-//           console.log($scope.discussion); 
-//           $scope.totalfriends=response.data.frineds_count; 
-
-       
-     
-//      });
-
-
+profileOperations.getMyProfileDetails().then(function(response) {
+    console.log(response);    
+    $scope.interest=response.data;
+  });
  }]);

@@ -14,6 +14,7 @@ $app->get('/reject_GTKY/:id', 'rejectGTKY');
 $app->get('/get_Buddies_All', 'getBuddiesAll');
 
 $app->get('/get_home_data', 'getHomeData');
+$app->get('/get_MyProfileDetails', 'getMyProfileDetails');
 
 function getUserMatch() {
  
@@ -446,3 +447,22 @@ function getHomeData() {
   echo json_encode($result);
   
 }
+
+function getMyProfileDetails() {
+   $user_id  = getUserId();
+   
+  $sql = "SELECT qa.OptionId,qo.Answer FROM QuestionnaireAnswer as qa inner join QuestionnaireOptions as qo on qa.OptionId=qo.QoId WHERE qa.QId = 55 and qa.UserId =:user_id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);  
+    $stmt->bindParam("user_id", $user_id);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+     $db = null;
+   echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+
+}
+
