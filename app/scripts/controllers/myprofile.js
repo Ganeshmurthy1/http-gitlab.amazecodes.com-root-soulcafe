@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('MyprofileCtrl',['$facebook', '$scope','$location','localStorageService','regService', 'FlickrApi','$routeParams', function ($facebook, $scope, $location, localStorageService, regService,flickr,$routeParams) {
+  .controller('MyprofileCtrl',['$facebook', '$scope','$location','localStorageService','regService', 'FlickrApi','$routeParams','profileOperations', function ($facebook, $scope, $location, localStorageService, regService,flickr,$routeParams,profileOperations) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -34,19 +34,29 @@ angular.module('sassApp')
     $scope.thumbup = 'true';
     $scope.profileverify = '75%';
     var authData = localStorageService.get('authorizationData');
-      regService.getUserDetails(authData.user_id).then(function (results) {
-        console.log(results.data);
-        $scope.userData = results.data; 
-        // console.log($scope.userData);
-         if ($scope.userData.linked_update == 1){
-           $scope.thumbup = 'false';
-           $scope.profileverify = '100%';
-           // console.log("Abhik");
-         }else{
-           $scope.thumbup = 'true';
-         }
-      });
+    $scope.userData = authData;
+    console.log(authData.linked_update);
+    if (authData.linked_update == 1){
+        $scope.thumbup = 'false';
+        $scope.profileverify = '100%';
+         // console.log("1");
+      }else{
+        // console.log("1");
+        $scope.thumbup = 'true';
+      }
 
+// profileOperations.getLifeValues().then(function(response) {
+      
+//       console.log(response);    
+//          $scope.friends=response.data.friends;
+//          $scope.discussion=response.data.forum;
+//          $scope.interest=response.data.Interest;
+//           console.log($scope.discussion); 
+//           $scope.totalfriends=response.data.frineds_count; 
+
+       
+     
+//      });
 
 
  }]);

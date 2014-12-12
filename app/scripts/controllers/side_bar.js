@@ -35,6 +35,7 @@ angular.module('sassApp')
       console.log(response);    
          $scope.friends=response.data.friends;
          $scope.discussion=response.data.forum;
+         $scope.interest=response.data.Interest;
           console.log($scope.discussion); 
           $scope.totalfriends=response.data.frineds_count; 
 

@@ -98,9 +98,23 @@ function getBuddies() {
     echo '{"error":{"text":'. $e->getMessage() .'}}'; 
   }
 
+   $sqlInterest = "SELECT qa.*,qo.Answer FROM QuestionnaireAnswer as qa inner join QuestionnaireOptions as qo on qa.OptionId=qo.QoId WHERE qa.QId = 57 and qa.UserId =:user_id";
+  try {
+    $dbInterest = getConnection();
+    $stmtInterest = $dbInterest->prepare($sqlInterest);  
+    $stmtInterest->bindParam("user_id",  $user_id );
+    $stmtInterest->execute();
+    $wineInterest = $stmtInterest->fetchAll(PDO::FETCH_OBJ);
+     $db = null;
+      // echo json_encode($wineForums);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+
   $user['friends']=$wine;
   $user['forum']=$wineForums;
   $user['frineds_count']=$wineCount->total_friends;
+  $user['Interest']=$wineInterest;
   echo json_encode($user);
 
 }
