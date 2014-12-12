@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('EditProfileNewCtrl', ['$scope','$rootScope','$location','$route','linkedinService','localStorageService','regService','profileOperations','Questionnaire','FileUploader','adminDiscussion','config', function ($scope, $rootScope, $location, $route, linkedinService, localStorageService, regService,profileOperations,Questionnaire,FileUploader,adminDiscussion,config) {
+  .controller('EditProfileNewCtrl', ['$scope','$rootScope','$location','$route','linkedinService','localStorageService','regService','profileOperations','Questionnaire','FileUploader','adminDiscussion','config','$filter', function ($scope, $rootScope, $location, $route, linkedinService, localStorageService, regService,profileOperations,Questionnaire,FileUploader,adminDiscussion,config,$filter) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -35,7 +35,11 @@ angular.module('sassApp')
   		});	
 	  }
 
-
+  $scope.status = {
+    isFirstOpen: true,
+    isFirstDisabled: false,
+    isSecondOpen:true
+  };
 
 	  $scope.hideEdit='false';
     $scope.updateButton = 'false';
@@ -63,11 +67,13 @@ angular.module('sassApp')
     };
 
 
-
      regService.getProfileDetail().then(function (response) {
          console.log(response);
          $scope.profileDetail = response.data;
          $scope.pict = $scope.imagepath + $scope.profileDetail.Picture;
+         $scope.profileDetail.birthdate = $filter('date')(new Date($scope.profileDetail.birthdate),'dd-MM-yyyy');
+         console.log($scope.profileDetail.birthdate);
+
          if ($scope.profileDetail.linked_update == 1) {
           $scope.updateButton = 'true';
           $scope.disable = 'false';
