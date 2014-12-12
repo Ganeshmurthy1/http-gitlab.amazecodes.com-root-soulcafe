@@ -58,7 +58,7 @@
                                 <label class="col-lg-3 control-label">BirthDate</label>
                                 <div class="col-lg-9">
                                     <div class="input-group">
-                                      <input type="text" class="form-control" name="name" ng-model="profileDetail.birthdate" ng-disabled="true">
+                                      <input type="date" class="form-control" name="name" ng-model="profileDetail.birthdate" ng-disabled="true" pattern="dd/MM/YYYY">
                                       <span class="input-group-addon"><i class="fa fa-lock"></i>
                                         </span>
                                     </div>
@@ -162,7 +162,7 @@
     </accordion-group>
     </div>
      <div class="col-xs-12 col-md-6">
-    <accordion-group is-open="status.isSecondOpen">
+    <accordion-group is-open="status.isSecondOpen" >
     	<accordion-heading>
             Proffessional Details <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.isSecondOpen, 'glyphicon-chevron-right': !status.isSecondOpen}"></i>
         </accordion-heading>
@@ -268,5 +268,6 @@
 
 
 </div>	
+
 </div>
 </div>
