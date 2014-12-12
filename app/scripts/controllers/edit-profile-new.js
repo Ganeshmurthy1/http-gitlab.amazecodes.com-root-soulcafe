@@ -88,25 +88,33 @@ angular.module('sassApp')
   	console.log($scope.profileDetail);
   	$scope.profileDetail.UpdatedPicture=$scope.image;
   	regService.updateProfileDetail($scope.profileDetail).then(function (response) {
-         console.log(response);
-         if(response.data == "true"){
+        console.log(response);
+
+        if(response.data == "true"){
           regService.getProfileDetail().then(function (response) {
-         console.log(response);
-         $scope.profileDetail = response.data;
-         $scope.pict = $scope.imagepath + $scope.profileDetail.Picture;
-         console.log($scope.pict);
-         $scope.temp = localStorageService.get('authorizationData');
-         $scope.temp.picture = $scope.pict;
-         console.log($scope.temp);
-         localStorageService.set('authorizationData', $scope.temp);
-         if ($scope.profileDetail.linked_update == 1) {
-          $scope.updateButton = 'true';
-          $scope.disable = 'false';
-          console.log($scope.disable);
-         }else if ($scope.profileDetail.linked_update == 0) {
-          $scope.disable = 'true';
-         }
-      });
+             console.log(response);
+             $scope.profileDetail = response.data;
+
+             $scope.pict = $scope.imagepath + $scope.profileDetail.Picture;
+             console.log($scope.pict);
+
+             $scope.temp = localStorageService.get('authorizationData');
+             $scope.temp.picture = $scope.pict;
+
+             console.log($scope.temp);
+             localStorageService.set('authorizationData', $scope.temp);
+
+             $scope.temp = localStorageService.get('authorizationData');
+              console.log($scope.temp);
+             if ($scope.profileDetail.linked_update == 1) {
+              $scope.updateButton = 'true';
+              $scope.disable = 'false';
+              console.log($scope.disable);
+             }else if ($scope.profileDetail.linked_update == 0) {
+              $scope.disable = 'true';
+             }
+
+          });
          	 $location.path("home");
          }
       });
