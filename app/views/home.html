@@ -1,99 +1,156 @@
-<div data-ng-controller="HeaderCtrl" data-ng-include="Header">
-</div>
+<div data-ng-controller="HeaderCtrl" data-ng-include="Header"></div>
 
 
 
 
 <div class="container-fluid body-pattern ">
-<div class="container my-border body-pattern ">
-<div class="row">
-<div class ="my-border col-xs-12 col-sm-4 col-md-3 gredientSB" data-ng-controller="SideBarCtrl" data-ng-include="SideBar"></div>
+	<div class="container my-border body-pattern ">
+		<div class="row">
+			<div class="my-border col-xs-12 col-sm-4 col-md-3 gredientSB"
+				data-ng-controller="SideBarCtrl" data-ng-include="SideBar"></div>
 
-<div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px ">
-	<div class="row home-block my-border  ">
-		<div class="col-xs-12 col-sm-6 col-md-8 no-padding hideblck">
-			<label class="col-xs-7 col-sm-2 col-md-3 no-padding head1 color-brown">Profile Completion</label>
-			<div class="progress progresscustom">
-			  <div class="progress-bar progress-barcustom" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="100" style="width: {{profileverify}}">
-			    {{profileverify}}
-			  </div>
-			</div>
-			<div class="row margin-right-0">
-				<div class="col-md-offset-3">
-					<div class="padding-left">
-						<ul class="list-inline badge-lists badge-icons badge-icons1">
-					        <li>
-					            <img src="images/facebook.png">
-					            <span class="badge1 badge-green rounded-x"><i class="fa fa-check fa-lg color-white"></i></span>
-					        </li>
-					        <li>
-					           <img src="images/linkedin.png">
-					            <span class="badge1 badge-green rounded-x" ng-hide="thumbup"><i class="fa fa-check fa-lg color-white"></i></span>
-					            <span class="badge1 badge-red rounded-x color-white" ng-show="thumbup">x</span>
-					        </li>
-					        <li>
-					            <img src="images/icon-mobile.png">
-					            <span class="badge1 badge-green rounded-x"><i class="fa fa-check fa-lg color-white"></i></span>
-					        </li>
-					        <!-- <li>
+			<div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px ">
+				<div class="row home-block my-border  ">
+					<div class="panel panel-brown">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								<i class="fa fa-comments"></i> Profile Completion
+							</h3>
+						</div>
+						<div class="dpanel-body">
+
+							<div class="shadow-wrapper">
+								<div class="tag-box box-shadow shadow-effect-2">
+									 <div class="row">
+									 	<div class="col-md-8">
+						<div class="progress progresscustom">
+							<div class="progress-bar progress-barcustom" role="progressbar"
+								aria-valuenow="2" aria-valuemin="0" aria-valuemax="100"
+								style="width: {{profileverify}}">{{profileverify}}</div>
+						</div>
+						<div class="row margin-right-0">
+							<div class="col-md-offset-3">
+								<div class="padding-left">
+									<ul class="list-inline badge-lists badge-icons badge-icons1">
+										<li><img src="images/facebook.png"> <span
+											class="badge1 badge-green rounded-x"><i
+												class="fa fa-check fa-lg color-white"></i></span></li>
+										<li><img src="images/linkedin.png"> <span
+											class="badge1 badge-green rounded-x" ng-hide="thumbup"><i
+												class="fa fa-check fa-lg color-white"></i></span> <span
+											class="badge1 badge-red rounded-x color-white"
+											ng-show="thumbup">x</span></li>
+										<li><img src="images/icon-mobile.png"> <span
+											class="badge1 badge-green rounded-x"><i
+												class="fa fa-check fa-lg color-white"></i></span></li>
+										<!-- <li>
 					            <a href="#"><img src="images/stamp1.jpg"></a>
 					            <span class="badge1 badge-red rounded-x color-white">x</span>
 					        </li> -->
-					        
-					       
-					        
-					    </ul>
+
+
+
+									</ul>
+								</div>
+							</div>
+						</div>
+									 	</div>
+									 	
+									 	<div class="col-md-4">
+									 		<a type="button" href="#/edit-profile-new"
+							class="btn btn-comp uppercase123 width100">Edit Profile</a>
+									 	
+									 	</div>
+									 
+									 </div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					
+				
+				
+				
+					
+				</div>
+				<div class="row home-block my-border">
+					<div class="panel panel-brown">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								<i class="fa fa-heart"></i> Cafe Recommendations
+							</h3>
+						</div>
+						<div class="dpanel-body">
+
+							<div class="shadow-wrapper">
+								<div class="tag-box box-shadow shadow-effect-2">
+									<slick init-onload=true data="recomandation"
+										lazy-load='ondemand' slides-to-show=4 slides-to-scroll=1
+										class="slider lazy">
+									<div class="row" ng-repeat="image in recomandation">
+										<div class="col-md-12 image">
+											<a ng-click="otherProfile({{image.SoulId}})"><img
+												class="" data-lazy="{{imagepath}}{{image.Picture}}" /></a>
+										</div>
+										<div class="col-md-12 age align-center">
+											<a ng-click="otherProfile({{image.SoulId}})">
+												{{image.first_name}} {{image.last_name}} ({{image.age}})</a>
+										</div>
+									</div>
+
+									</slick>
+								</div>
+							</div>
+
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-		<div class="col-xs-12 col-sm-6 col-md-4">
-			
-				<a type="button" href="#/edit-profile-new" class="btn btn-comp uppercase123 width100">Edit Profile</a>
-		</div>
-		<div class="col-xs-12 col-sm-6 col-md-4">
-			<div class="clearfix" ng-show="thumbup"> <button type="button" class="btn btn-gtky uppercase123 width100">Complete Verification</button></div>
-		</div>
-	</div>
-	<div class="row home-block my-border">
-		
-		<div class="head1 color-brown">RECOMMENDATIONS</div>
-		
-			<div class="col-md-12 carousel-demo">
-			  <slick init-onload=true data="recomandation" lazy-load='ondemand' slides-to-show=4 slides-to-scroll=1 class="slider lazy">
-			      <div class="row" ng-repeat="image in recomandation">
-			      	<div class="col-md-12 image"><a ng-click="otherProfile({{image.SoulId}})"><img class="" data-lazy="{{imagepath}}{{image.Picture}}"/></a></div>
-			      	<div class="col-md-12 age align-center"><a ng-click="otherProfile({{image.SoulId}})"> {{image.first_name}} {{image.last_name}} ({{image.age}})</a></div>
-			      </div>
-			      
-			  </slick>
-        	 </div>
-		
-		
-		
-	</div>
 
-	<div class="row home-block my-border">
-		<div class="head1 color-brown">CAFE CONVERSATIONS</div>
-		<div class="bordertop" ng-repeat="updts in updates">
-			<div class="row" style="margin:10px 10px 10px 25px;">
-				<img class="rounded-x" ng-src="{{imagepath}}{{updts.Image}}" alt="" style="width:70px;height:auto;float:left;">
-				<div class ="forumUpdate">
-					<div class="color-brown-light"><strong>{{updts.first_name}} {{updts.last_name}}</strong></div>
-					<div>Forum - <strong class="color-brown-light">{{updts.Topic}}</strong></div>
-				 	<a href="#/discussion?topic={{updts.DiscussionTopicId}}">Topic - <strong class="color-brown-light">{{updts.TopicTitle}}</strong></a>
-				 	
+				<div class="row home-block my-border">
+					<div class="panel panel-brown">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								<i class="fa fa-comments"></i> CAFE CONVERSATIONS
+							</h3>
+						</div>
+						<div class="dpanel-body">
+
+							<div class="shadow-wrapper">
+								<div class="tag-box box-shadow shadow-effect-2">
+									<div class="borderbottom" ng-repeat="updts in updates">
+										<div class="row" style="margin: 10px 10px 10px 25px;">
+											<img class="rounded-x" ng-src="{{imagepath}}{{updts.Image}}"
+												alt="" style="width: 70px; height: auto; float: left;">
+											<div class="forumUpdate">
+												<div class="color-brown-light">
+													<strong>{{updts.first_name}} {{updts.last_name}}</strong>
+												</div>
+												<div>
+													Forum - <strong class="color-brown-light">{{updts.Topic}}</strong>
+												</div>
+												<a href="#/discussion?topic={{updts.DiscussionTopicId}}">Topic
+													- <strong class="color-brown-light">{{updts.TopicTitle}}</strong>
+												</a>
+
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+
+
+
+
+
 				</div>
-			</div>
 
-		</div>
-		
-
-
-	
-	</div>
-	
-		<!-- 	<div class="carousel-demo">
+				<!-- 	<div class="carousel-demo">
                     <ul rn-carousel  rn-carousel-auto-slide="3" class="mycarousel" rn-carousel-controls>
                         <li> <img alt="" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c0.7.200.200/p200x200/10610908_805092252845086_8387047502213134303_n.jpg?oh=bb3fba424ef77348d7071149e83cdf1b&oe=54F5F631&__gda__=1423668902_63bb520a144e19da7b7ded1ad9f6b268">
                         	<img alt="" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c0.7.200.200/p200x200/10610908_805092252845086_8387047502213134303_n.jpg?oh=bb3fba424ef77348d7071149e83cdf1b&oe=54F5F631&__gda__=1423668902_63bb520a144e19da7b7ded1ad9f6b268">
@@ -103,12 +160,12 @@
                         
                     </ul>
                 </div> -->
-                
 
-                
-         
 
-</div>
-</div>
-</div>	
+
+
+
+			</div>
+		</div>
+	</div>
 </div>

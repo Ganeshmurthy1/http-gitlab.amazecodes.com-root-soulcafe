@@ -332,7 +332,7 @@ a:hover{
 .bordertop{
 	border-top:1px solid #e3e2e0;
 }
-borderbottom{
+.borderbottom{
 	border-bottom:1px solid #e3e2e0;
 }
 .hideblock{
@@ -510,6 +510,18 @@ background: linear-gradient(270deg, #d8d6d2 6%, #f2f2f2 17%) repeat scroll 0 0 t
  	}
   }
   }
+
+.home-block {
+	.panel {
+		border: none !important;
+		background-color: none !important;
+	}
+	.panel-brown {
+		border: none !important;
+		background-color: none !important;
+	}
+
+}
 
 /*--------------Media Queries-------------*/
 @media (min-width: 768px) {
