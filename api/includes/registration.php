@@ -920,7 +920,7 @@ function updateProfileDetail() {
   $user_id  = getUserId();
     // print_r($user);
   if (!empty($user->UpdatedPicture)) {
-    $sqlusers = "update users  set first_name=:first_name,last_name=:last_name,email=:email,mobile=:mobile,Moto=:moto,OwnWords=:OwnWords,AboutMe=:AboutMe,Height=:Height,FoodHabits=:FoodHabits,Drinking=:Drinking,Smoking=:Smoking,Picture=:UpdatedPicture where user_id = :user_id ";
+    $sqlusers = "update users  set first_name=:first_name,last_name=:last_name,email=:email,mobile=:mobile,location=:location,Moto=:moto,OwnWords=:OwnWords,AboutMe=:AboutMe,Height=:Height,FoodHabits=:FoodHabits,Drinking=:Drinking,Smoking=:Smoking,Picture=:UpdatedPicture where user_id = :user_id ";
    $sqlpd = "update ProfessionalDetails set CurrentEmployment = :CurrentEmployment,Endorsedskills=:Endorsedskills,HighestEducation=:HighestEducation where UserId = :user_id ";  
       try {
         $db = getConnection();
@@ -931,6 +931,7 @@ function updateProfileDetail() {
         $stmt->bindParam("email", $user->email);
         $stmt->bindParam("mobile", $user->mobile);
         $stmt->bindParam("moto", $user->Moto);
+        $stmt->bindParam("location", $user->location);
         $stmt->bindParam("OwnWords", $user->OwnWords);
         $stmt->bindParam("AboutMe", $user->AboutMe);
         $stmt->bindParam("Height", $user->Height);
@@ -953,7 +954,7 @@ function updateProfileDetail() {
         echo '{"error":{"text":'. $e->getMessage() .'}}';
       }
   }else{
-    $sqlusers = "update users  set first_name=:first_name,last_name=:last_name,email=:email,mobile=:mobile,Moto=:moto,OwnWords=:OwnWords,AboutMe=:AboutMe,Height=:Height,FoodHabits=:FoodHabits,Drinking=:Drinking,Smoking=:Smoking where user_id = :user_id ";
+    $sqlusers = "update users  set first_name=:first_name,last_name=:last_name,email=:email,mobile=:mobile,location=:location,Moto=:moto,OwnWords=:OwnWords,AboutMe=:AboutMe,Height=:Height,FoodHabits=:FoodHabits,Drinking=:Drinking,Smoking=:Smoking where user_id = :user_id ";
    $sqlpd = "update ProfessionalDetails set CurrentEmployment = :CurrentEmployment,Endorsedskills=:Endorsedskills,HighestEducation=:HighestEducation where UserId = :user_id ";  
       try {
         $db = getConnection();
@@ -964,6 +965,7 @@ function updateProfileDetail() {
         $stmt->bindParam("email", $user->email);
         $stmt->bindParam("mobile", $user->mobile);
         $stmt->bindParam("moto", $user->Moto);
+         $stmt->bindParam("location", $user->location);
         $stmt->bindParam("OwnWords", $user->OwnWords);
         $stmt->bindParam("AboutMe", $user->AboutMe);
         $stmt->bindParam("Height", $user->Height);

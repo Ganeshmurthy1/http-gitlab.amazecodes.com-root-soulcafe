@@ -530,6 +530,11 @@ background: linear-gradient(270deg, #d8d6d2 6%, #f2f2f2 17%) repeat scroll 0 0 t
 	margin-bottom: 30px;
 }
 
+.panel-default .panel-heading {
+	background-image: none;
+    background-color: #9c8061 !important;
+}
+
 /*--------------Media Queries-------------*/
 @media (min-width: 768px) {
 .message-list {
@@ -952,4 +957,8 @@ background: linear-gradient(270deg, #d8d6d2 6%, #f2f2f2 17%) repeat scroll 0 0 t
 }
 }
 
+.select-chg{
+	width:230px;
+	height:25px;
+}
 

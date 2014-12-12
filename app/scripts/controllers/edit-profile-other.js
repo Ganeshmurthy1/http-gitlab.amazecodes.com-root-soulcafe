@@ -15,6 +15,12 @@ angular.module('sassApp')
       'Karma'
     ];
 
+      $scope.status = {
+    isFirstOpen: true,
+    isFirstDisabled: false,
+    isSecondOpen:true
+  };
+
     $scope.user_id = $routeParams.user_id;
     regService.getProfileDetailOther($scope.user_id).then(function (response) {
          console.log(response);
