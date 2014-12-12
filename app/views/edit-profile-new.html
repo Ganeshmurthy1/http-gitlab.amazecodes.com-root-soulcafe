@@ -58,9 +58,12 @@
                                 <label class="col-lg-3 control-label">BirthDate</label>
                                 <div class="col-lg-9">
                                     <div class="input-group">
-                                      <input type="date" class="form-control" name="name" ng-model="profileDetail.birthdate" ng-disabled="true" pattern="dd/MM/YYYY">
-                                      <span class="input-group-addon" title="Private"><i class="fa fa-lock"></i>
-                                        </span>
+                                     
+                    <input type="text" name="birthday" class="form-control" datepicker-popup="{{format}}" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" data-ng-model="fbdata.birthday" required/>
+                    <span class="input-group-addon no-padding">
+                        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                
                                     </div>
                                     We do not share your date of birth, only your age is displayed.
                                 </div>
@@ -409,9 +412,9 @@
                                 SoulCafe is about authentic relationships. Be honest as you fill in your details !
                             </div>
                             
-                            <div class="pull-right">
+                            
                                  <button type="submit" class="btn-u btn-u-blue" ng-disabled="editprofileform.$invalid">Save</button>
-                            </div>
+                            
                            
                         </form>
                     </div>
@@ -510,7 +513,7 @@
         </accordion-heading>
          <div class="alert fade in margin-bottom-40" ng-repeat="question in questions">
              <h4><a href="#/discussion-topics?discussionid={{question.QuestionTitle}}">{{question.QuestionTitle}}</a></h4>
-            <p>{{question.Description}}</p>                    
+                          
             <p>
                 <a class="btn-u btn-u-sea  " href="#/question-edit?qid={{question.Qid}}">Edit</a>
             </p>
