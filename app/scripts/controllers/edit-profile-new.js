@@ -126,11 +126,13 @@ angular.module('sassApp')
              }else if ($scope.profileDetail.linked_update == 0) {
               $scope.disable = 'true';
              }
+             $route.reload();
 
           });
          	 
          }
       });
+  	
   }
 
   getAllQuestion();
@@ -141,7 +143,9 @@ angular.module('sassApp')
     });
     }
 
-
+    $scope.imageErr = '';
+    $scope.imageSucc = '';
+    $scope.disable_save = false;
     var uploader = $scope.uploader = adminDiscussion.setUploader();
 
         // FILTERS
@@ -160,6 +164,7 @@ angular.module('sassApp')
             console.info('onWhenAddingFileFailed', item, filter, options);
         };
         uploader.onAfterAddingFile = function(fileItem) {
+        	$scope.disable_save = true;
             console.info('onAfterAddingFile', fileItem);
         };
         uploader.onAfterAddingAll = function(addedFileItems) {
@@ -184,6 +189,17 @@ angular.module('sassApp')
             console.info('onCancelItem', fileItem, response, status, headers);
         };
         uploader.onCompleteItem = function(fileItem, response, status, headers) {
+        	if (response == 'max_size_exceeded') {
+				console.log('Maximum size is 2 mb');
+				$scope.imageErr = 'Maximum image size is 2mb';
+			} 
+        	else if(response.filename != '') {
+        		console.info('onCompleteItem', fileItem, response, status, headers);
+                $scope.image=response.filename;
+                $scope.imageSucc = 'Image got Uploaded, Please save the change.';
+                $scope.disable_save = false;
+        		
+        	}
             console.info('onCompleteItem', fileItem, response, status, headers);
             $scope.image=response.filename;
             console.log( $scope.image);
@@ -191,8 +207,8 @@ angular.module('sassApp')
             console.log(headers);
         };
         uploader.onCompleteAll = function() {
-            console.info('onCompleteAll');
-            alert("Image Uploaded.");
+            //console.info('onCompleteAll');
+            //alert("Image Uploaded.");
         };
 
         console.info('uploader', uploader);
