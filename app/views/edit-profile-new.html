@@ -63,10 +63,7 @@
 <input class="form-control" placeholder="Valid To" name="validTo" size="16" type="text" value="" data-ng-model="user.ValidTo" ng-change="isValidDate(user.ValidTo)">
 
 </div>     -->
- <!--  <div class="input-group date datetime" data-min-view="2" data-date-format="yyyy-mm-dd">
-                                                         <span class="input-group-addon btn btn-primary"><span class="glyphicon glyphicon-th"></span></span>
-                                                         <input name="lastDate" class="form-control" size="16" type="text" value="" placeholder="Last Date for Quote Submission" data-ng-model="recharge.cheque_date" required>
-                                                      </div> -->
+
                    <!--  <input type="text" name="birthday" class="form-control" datepicker-popup="{{format}}" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" data-ng-model="fbdata.birthday" required/>
                     <span class="input-group-addon no-padding">
                         <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
@@ -420,8 +417,10 @@
                                 SoulCafe is about authentic relationships. Be honest as you fill in your details !
                             </div>
                             
-                            
-                                 <button type="submit" class="btn-u btn-u-blue" ng-disabled="editprofileform.$invalid">Save</button>
+                            <div class="pull-right">
+                                <button type="submit" class="btn-u btn-u-blue" ng-disabled="editprofileform.$invalid">Save</button>
+                            </div>
+                                 
                             
                            
                         </form>
@@ -470,13 +469,7 @@
                                     <input type="text" class="form-control" name="skill" ng-model="profileDetail.Endorsedskills" ng-disabled="disable">
                                 </div>
                             </div>
-                            <h4>{{errMessage}}</h4>
-                          
-                            
-                            <div class="pull-right">
-                                 <button type="submit" class="btn-u btn-u-blue" ng-disabled="editprofileform.$invalid">Save</button>
-                            </div>
-                          
+                           
                         </form>
                     </div>
                 </form>
