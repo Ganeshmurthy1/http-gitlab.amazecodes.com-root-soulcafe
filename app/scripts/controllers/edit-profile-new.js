@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('EditProfileNewCtrl', ['$scope','$rootScope','$location','$route','linkedinService','localStorageService','regService','profileOperations','Questionnaire','FileUploader','adminDiscussion','config','$filter', function ($scope, $rootScope, $location, $route, linkedinService, localStorageService, regService,profileOperations,Questionnaire,FileUploader,adminDiscussion,config,$filter) {
+  .controller('EditProfileNewCtrl', ['$scope','$rootScope','$location','$route','$routeParams','linkedinService','localStorageService','regService','profileOperations','Questionnaire','FileUploader','adminDiscussion','config','$filter', function ($scope, $rootScope, $location, $route, $routeParams, linkedinService, localStorageService, regService,profileOperations,Questionnaire,FileUploader,adminDiscussion,config,$filter) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -17,6 +17,23 @@ angular.module('sassApp')
 
     var config = localStorageService.get('config');
     $scope.imagepath = config.image_path;
+
+    $scope.exp=$routeParams.exp;
+    console.log($scope.exp);
+    if($scope.exp == null){
+      $scope.status = {
+        isFirstOpen: true,
+        isFirstDisabled: false,
+        isSecondOpen:true,
+      };
+    } else {
+      $scope.status = {
+        isFirstOpen: false,
+        isSecondOpen:false,
+         isThirdOpen:$scope.exp
+      };
+    }
+    
 
     var linkedinLibLoaded = false,
     linkedinLibInitialized = false;
@@ -35,11 +52,7 @@ angular.module('sassApp')
   		});	
 	  }
 
-  $scope.status = {
-    isFirstOpen: true,
-    isFirstDisabled: false,
-    isSecondOpen:true
-  };
+  
 
 	  $scope.hideEdit='false';
     $scope.updateButton = 'false';
@@ -192,10 +205,15 @@ angular.module('sassApp')
 
 
 
+$scope.today = function() {
+    $scope.dt = new Date();
+  };
+  $scope.today();
 
+  $scope.clear = function () {
+    $scope.dt = null;
+  };
 
-
-     
   // Disable weekend selection
   $scope.disabled = function(date, mode) {
     return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
@@ -217,8 +235,34 @@ angular.module('sassApp')
     formatYear: 'yy',
     startingDay: 1
   };
-$scope.format={ };
-  $scope.initDate = new Date('2016-15-20');
-  $scope.formats = ['MM/dd/yyyy','yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+
+  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $scope.format = $scope.formats[0];
+
+     
+  // Disable weekend selection
+//   $scope.disabled = function(date, mode) {
+//     return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+//   };
+
+//   $scope.toggleMin = function() {
+//     $scope.minDate = $scope.minDate ? null : new Date();
+//   };
+//   $scope.toggleMin();
+
+//   $scope.open = function($event) {
+//     $event.preventDefault();
+//     $event.stopPropagation();
+
+//     $scope.opened = true;
+//   };
+
+//   $scope.dateOptions = {
+//     formatYear: 'yy',
+//     startingDay: 1
+//   };
+// $scope.format={ };
+//   $scope.initDate = new Date('2016-15-20');
+//   $scope.formats = ['MM/dd/yyyy','yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+//   $scope.format = $scope.formats[0];
   }]);

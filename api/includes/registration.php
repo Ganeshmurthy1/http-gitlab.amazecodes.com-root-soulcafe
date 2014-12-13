@@ -736,7 +736,21 @@ function get_Proffesionaldetails($id) {
 function addlinkedinData() {
   $request = Slim::getInstance()->request();
   $user = json_decode($request->getBody());
-  //
+  $user_id  = getUserId();
+
+   $sql = "DELETE FROM `ProfessionalDetails` WHERE UserId = :UserId";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);  
+    $stmt->bindParam("UserId", $user_id);
+    $stmt->execute();
+   
+    //$app->redirect('login.html');
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+
+
    // print_r( $user->values[0]->threeCurrentPositions->values[0]->title );
   if(isset($user->values[0]->threeCurrentPositions->values[0]->company->name)){
    $currentEmployment = $user->values[0]->threeCurrentPositions->values[0]->company->name;
@@ -769,8 +783,7 @@ function addlinkedinData() {
    }
    // $endorsedSkills = $user->values[0]->skills->values[0]->skill->name . ','  .$user->values[0]->skills->values[1]->skill->name. ','  .$user->values[0]->skills->values[2]->skill->name. ','  .$user->values[0]->skills->values[3]->skill->name. ','  .$user->values[0]->skills->values[4]->skill->name;
   // foreach($user as $obj) {
-  $user_id  = getUserId();
-
+ 
   $sql = "INSERT INTO ProfessionalDetails (UserId, CurrentEmployment, CurrentRole, HighestEducation, Endorsedskills) VALUES (:UserId, :CurrentEmployment, :CurrentRole, :HighestEducation, :Endorsedskills)";
   try {
     $db = getConnection();
