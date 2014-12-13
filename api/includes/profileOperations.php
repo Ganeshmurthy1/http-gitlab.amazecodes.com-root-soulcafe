@@ -98,6 +98,19 @@ function getBuddies() {
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}'; 
   }
+  
+  $sqlForums = "SELECT count(1) as total_forum FROM `DiscussionBoardUsers` as dbu inner join DiscussionBoard as db ON dbu.DiscussionBoardId = db.DiscussionBoardId WHERE dbu.UserId = :user_id";
+  try {
+    $dbForums = getConnection();
+    $stmtForums = $dbForums->prepare($sqlForums);
+    $stmtForums->bindParam("user_id",  $user_id );
+    $stmtForums->execute();
+    $wineForumscnt = $stmtForums->fetchObject();
+    $db = null;
+    // echo json_encode($wineForums);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
 
    $sqlInterest = "SELECT qa.*,qo.Answer FROM QuestionnaireAnswer as qa inner join QuestionnaireOptions as qo on qa.OptionId=qo.QoId WHERE qa.QId = 57 and qa.UserId =:user_id";
   try {
@@ -114,6 +127,7 @@ function getBuddies() {
 
   $user['friends']=$wine;
   $user['forum']=$wineForums;
+  $user['forum_count']=$wineForumscnt->total_forum;
   $user['frineds_count']=$wineCount->total_friends;
   $user['Interest']=$wineInterest;
   echo json_encode($user);

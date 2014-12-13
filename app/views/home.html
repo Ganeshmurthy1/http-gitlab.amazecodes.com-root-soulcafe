@@ -92,25 +92,31 @@
 					<i class="fa fa-comments color-brown"></i> CAFE CONVERSATIONS
 				</h3>
 				<div class="borderbottom" ng-repeat="updts in updates">
-										<div class="row" style="margin: 10px 10px 10px 25px;">
-											<img class="rounded-x" ng-src="{{imagepath}}{{updts.Image}}"
-												alt="" style="width: 70px; height: auto; float: left;">
-											<div class="forumUpdate">
-												<div class="color-brown-light">
-													<strong>{{updts.first_name}} {{updts.last_name}}</strong>
-												</div>
-												<div>
-													Forum - <strong class="color-brown-light">{{updts.Topic}}</strong>
-												</div>
-												<a href="#/discussion?topic={{updts.DiscussionTopicId}}">Topic
-													- <strong class="color-brown-light">{{updts.TopicTitle}}</strong>
-												</a>
+					<div class="row margin-bottom margin-top" >
+					<div class="col-md-2">
+					<div class="row">
+						<img class="rounded-x" ng-src="{{imagepath}}{{updts.Image}}"
+							alt="" style="width: 70px; height: auto; float: left;"></div>
+					<div class="row color-brown-light"><strong>{{updts.first_name}} {{updts.last_name}}</strong></div>
+					</div>
+							
+					<div class="col-md-10">
+						
+							
+							<div>
+								Forum - <strong class="color-brown-light">{{updts.Topic}}</strong>
+							</div>
+							<a href="#/discussion?topic={{updts.DiscussionTopicId}}">Topic
+								- <strong class="color-brown-light">{{updts.TopicTitle}}</strong>
+							</a>
 
-											</div>
-										</div>
+						
+					</div>	
+						
+					</div>
 
-									</div>
-				
+				</div>
+				<div class="row pull-right"> <a style="color:#5bc0de;" href="#/discussion-list" > More >></a> </div>
 
 
 
