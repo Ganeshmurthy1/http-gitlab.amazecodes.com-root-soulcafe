@@ -22,6 +22,7 @@ angular.module('sassApp')
 	    adminOperations.getSysMessage().then(function (response) {
 			//console.log(response);
 			 $scope.comments = response.data;
+      
 		});
     }
     
