@@ -1163,7 +1163,7 @@ span {
     background: #e74c3c;
   }
   &.label-green, &.badge-green {
-    background: #2ecc71;
+    background: #72c02c;
   }
   &.label-sea, &.badge-sea {
     background: #1abc9c;
@@ -2718,6 +2718,9 @@ img {
 /*Text Colors
 ------------------------------------*/
 
+.color-deep-red {
+  color: #800000;
+}
 .color-sea {
   color: #1abc9c;
 }

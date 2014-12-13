@@ -668,19 +668,24 @@ function imageupload() {
 
  if ( !empty( $_FILES ) ) {
 
-    $tempPath = $_FILES[ 'file' ][ 'tmp_name' ];
-    //print_r($tempPath);
-    $uploadPath = dirname(dirname( __FILE__ )) . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . $img;
-
-   
-    
-    move_uploaded_file( $tempPath, $uploadPath );
-    //exit();
-    // $answer = array( 'answer' => 'File transfer completed' );
-    // $json = json_encode( $answer );
-    $result['filename'] = $img;
-    $json = json_encode( $result );
-    echo $json;
+    if( $tempPath = $_FILES[ 'file' ][ 'size' ] <   2000000) {
+      $tempPath = $_FILES[ 'file' ][ 'tmp_name' ];
+      //print_r($tempPath);
+      $uploadPath = dirname(dirname( __FILE__ )) . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . $img;
+  
+     
+      
+      move_uploaded_file( $tempPath, $uploadPath );
+      //exit();
+      // $answer = array( 'answer' => 'File transfer completed' );
+      // $json = json_encode( $answer );
+      $result['filename'] = $img;
+      $json = json_encode( $result );
+      echo $json;
+    }
+    else {
+      echo 'max_size_exceeded';
+    }
 
 } else {
 

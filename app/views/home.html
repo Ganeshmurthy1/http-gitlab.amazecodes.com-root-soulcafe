@@ -11,17 +11,10 @@
 
 			<div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px ">
 				<div class="row home-block my-border  ">
-					<div class="panel panel-brown">
-						<div class="panel-heading">
-							<h3 class="panel-title">
-								<i class="fa fa-comments"></i> Profile Completion
+				<h3 class="panel-title">
+								<i class="fa fa-list-alt color-deep-red"></i> PROFILE COMPLETION
 							</h3>
-						</div>
-						<div class="dpanel-body">
-
-							<div class="shadow-wrapper">
-								<div class="tag-box box-shadow shadow-effect-2">
-									 <div class="row">
+				<div class="row">
 									 	<div class="col-md-8">
 						<div class="progress progresscustom">
 							<div class="progress-bar progress-barcustom" role="progressbar"
@@ -34,15 +27,15 @@
 									<ul class="list-inline badge-lists badge-icons badge-icons1">
 										<li><img src="images/facebook.png"> <span
 											class="badge1 badge-green rounded-x"><i
-												class="fa fa-check fa-lg color-white"></i></span></li>
+												class="fa fa-check  color-white"></i></span></li>
 										<li><img src="images/linkedin.png"> <span
 											class="badge1 badge-green rounded-x" ng-hide="thumbup"><i
-												class="fa fa-check fa-lg color-white"></i></span> <span
+												class="fa fa-check  color-white"></i></span> <span
 											class="badge1 badge-red rounded-x color-white"
 											ng-show="thumbup">x</span></li>
 										<li><img src="images/icon-mobile.png"> <span
 											class="badge1 badge-green rounded-x"><i
-												class="fa fa-check fa-lg color-white"></i></span></li>
+												class="fa fa-check  color-white"></i></span></li>
 										<!-- <li>
 					            <a href="#"><img src="images/stamp1.jpg"></a>
 					            <span class="badge1 badge-red rounded-x color-white">x</span>
@@ -56,18 +49,14 @@
 						</div>
 									 	</div>
 									 	
-									 	<div class="col-md-4">
+									 	<div class="col-md-3 pull-right">
 									 		<a type="button" href="#/edit-profile-new"
 							class="btn btn-comp uppercase123 width100">Edit Profile</a>
 									 	
 									 	</div>
 									 
 									 </div>
-								</div>
-							</div>
-
-						</div>
-					</div>
+				
 					
 				
 				
@@ -75,50 +64,34 @@
 					
 				</div>
 				<div class="row home-block my-border">
-					<div class="panel panel-brown">
-						<div class="panel-heading">
-							<h3 class="panel-title">
-								<i class="fa fa-heart"></i> Cafe Recommendations
-							</h3>
-						</div>
-						<div class="dpanel-body">
-
-							<div class="shadow-wrapper">
-								<div class="tag-box box-shadow shadow-effect-2">
-									<slick init-onload=true data="recomandation"
+				<h3 class="panel-title">
+								<i class="fa fa-heart color-deep-red"></i> CAFE RECOMMENDATIONS
+				</h3>
+				<slick init-onload=true data="recomandation"
 										lazy-load='ondemand' slides-to-show=4 slides-to-scroll=1
 										class="slider lazy">
-									<div class="row" ng-repeat="image in recomandation">
-										<div class="col-md-12 image">
-											<a ng-click="otherProfile({{image.SoulId}})"><img
-												class="" data-lazy="{{imagepath}}{{image.Picture}}" /></a>
-										</div>
-										<div class="col-md-12 age align-center">
-											<a ng-click="otherProfile({{image.SoulId}})">
-												{{image.first_name}} {{image.last_name}} ({{image.age}})</a>
-										</div>
-									</div>
-
-									</slick>
-								</div>
-							</div>
-
-						</div>
+				<div class="row" ng-repeat="image in recomandation">
+					<div class="col-md-12 image">
+						<a ng-click="otherProfile({{image.SoulId}})"><img
+							class="" data-lazy="{{imagepath}}{{image.Picture}}" /></a>
+					</div>
+					<div class="col-md-12 age align-center">
+						<a ng-click="otherProfile({{image.SoulId}})">
+							{{image.first_name}} {{image.last_name}} ({{image.age}})</a>
 					</div>
 				</div>
 
-				<div class="row home-block my-border">
-					<div class="panel panel-brown">
-						<div class="panel-heading">
-							<h3 class="panel-title">
-								<i class="fa fa-comments"></i> CAFE CONVERSATIONS
-							</h3>
-						</div>
-						<div class="dpanel-body">
+				</slick>
+				
+				
+					
+				</div>
 
-							<div class="shadow-wrapper">
-								<div class="tag-box box-shadow shadow-effect-2">
-									<div class="borderbottom" ng-repeat="updts in updates">
+				<div class="row home-block my-border">
+				<h3 class="panel-title">
+					<i class="fa fa-comments color-brown"></i> CAFE CONVERSATIONS
+				</h3>
+				<div class="borderbottom" ng-repeat="updts in updates">
 										<div class="row" style="margin: 10px 10px 10px 25px;">
 											<img class="rounded-x" ng-src="{{imagepath}}{{updts.Image}}"
 												alt="" style="width: 70px; height: auto; float: left;">
@@ -137,11 +110,8 @@
 										</div>
 
 									</div>
-								</div>
-							</div>
+				
 
-						</div>
-					</div>
 
 
 
