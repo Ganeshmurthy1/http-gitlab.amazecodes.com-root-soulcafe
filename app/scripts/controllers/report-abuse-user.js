@@ -26,7 +26,7 @@ $scope.reportAbuse ={};
           console.log(response.data);
           if (response.data = 'true'){
             alert("Thank You. We will take Necessary action!");
-            $location.path('/dashboard-anon');
+            $location.path('/otherprofile');
           }            
         });
       };

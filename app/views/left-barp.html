@@ -4,8 +4,10 @@
 		<div class="name">{{userData.first_name}} {{userData.last_name}} , {{diff}}</div>
 		<img src="images/div.png" alt="" >
 		<div class="add">Lives In : {{userData.location}}</div>
-		<div class="add">From : {{userData.hometown}}</div>
-		<div class="pull-right morebutton add"><a style="color:#5bc0de;" href="#/edit-profile-other?user_id={{userData.user_id}}">More...</a></div>
+		<div class="add">From : {{userData.hometown}}
+			<a class="pull-right" style="color:#5bc0de;" href="#/edit-profile-other?user_id={{userData.user_id}}">More...</a>
+		</div>
+		<div class="pull-left"><a style="color:#f0f0f0 !important;" href="#/report-abuse-user?user_id={{userData.user_id}}">Report Abuse</a></div>
 	</div>
 
 	<div class="clearfix align-center quote  gredient">
