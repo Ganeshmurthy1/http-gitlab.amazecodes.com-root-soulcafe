@@ -216,7 +216,7 @@ angular.module('sassApp')
   	
   	console.log(answerSet);
   	Questionnaire.updateAnswer(answerSet).then(function(response) {
-  		$location.url('/edit-profile-new');
+  		$location.url('/edit-profile-new?exp=true');
   		
   	});
   }
