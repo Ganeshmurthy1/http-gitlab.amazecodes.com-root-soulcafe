@@ -511,7 +511,7 @@ function setCommentLikes($commentId) {
     foreach($winCUser as $obj) {
       $comment = $obj->Comment;
       $id = $obj->DiscussionTopicId;
-      $link = 'discussion?id='.$id;
+      $link = 'discussion?topic='.$id;
       $message = $fname.' '.$lname.' has liked your comment "'.$comment.'".';
         $sqlFN = "INSERT INTO ForumNotification (UserId,Message,ViewStatus,AddedDate,Link) VALUES (:UserId, :Message, :ViewStatus, :AddedDate, :Link)";
     try {
@@ -929,15 +929,17 @@ function getProfileDetail() {
 function updateProfileDetail() {   
   $request = Slim::getInstance()->request();
   $user = json_decode($request->getBody());
+  $birthdate = date('Y-m-d', strtotime($user->birthdate));
 
   $user_id  = getUserId();
     // print_r($user);
   if (!empty($user->UpdatedPicture)) {
-    $sqlusers = "update users  set first_name=:first_name,last_name=:last_name,email=:email,mobile=:mobile,location=:location,Moto=:moto,OwnWords=:OwnWords,AboutMe=:AboutMe,Height=:Height,FoodHabits=:FoodHabits,Drinking=:Drinking,Smoking=:Smoking,Picture=:UpdatedPicture where user_id = :user_id ";
+    $sqlusers = "update users  set birthdate=:birthdate, first_name=:first_name,last_name=:last_name,email=:email,mobile=:mobile,location=:location,Moto=:moto,OwnWords=:OwnWords,AboutMe=:AboutMe,Height=:Height,FoodHabits=:FoodHabits,Drinking=:Drinking,Smoking=:Smoking,Picture=:UpdatedPicture where user_id = :user_id ";
    $sqlpd = "update ProfessionalDetails set CurrentEmployment = :CurrentEmployment,Endorsedskills=:Endorsedskills,HighestEducation=:HighestEducation where UserId = :user_id ";  
       try {
         $db = getConnection();
         $stmt = $db->prepare($sqlusers);
+        $stmt->bindParam("birthdate", $birthdate);
         $stmt->bindParam("user_id", $user_id);
         $stmt->bindParam("first_name", $user->first_name);
         $stmt->bindParam("last_name", $user->last_name);
@@ -967,11 +969,12 @@ function updateProfileDetail() {
         echo '{"error":{"text":'. $e->getMessage() .'}}';
       }
   }else{
-    $sqlusers = "update users  set first_name=:first_name,last_name=:last_name,email=:email,mobile=:mobile,location=:location,Moto=:moto,OwnWords=:OwnWords,AboutMe=:AboutMe,Height=:Height,FoodHabits=:FoodHabits,Drinking=:Drinking,Smoking=:Smoking where user_id = :user_id ";
+    $sqlusers = "update users  set birthdate=:birthdate, first_name=:first_name,last_name=:last_name,email=:email,mobile=:mobile,location=:location,Moto=:moto,OwnWords=:OwnWords,AboutMe=:AboutMe,Height=:Height,FoodHabits=:FoodHabits,Drinking=:Drinking,Smoking=:Smoking where user_id = :user_id ";
    $sqlpd = "update ProfessionalDetails set CurrentEmployment = :CurrentEmployment,Endorsedskills=:Endorsedskills,HighestEducation=:HighestEducation where UserId = :user_id ";  
       try {
         $db = getConnection();
         $stmt = $db->prepare($sqlusers);
+        $stmt->bindParam("birthdate", $birthdate);
         $stmt->bindParam("user_id", $user_id);
         $stmt->bindParam("first_name", $user->first_name);
         $stmt->bindParam("last_name", $user->last_name);

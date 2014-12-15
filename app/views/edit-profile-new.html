@@ -57,6 +57,12 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 control-label">BirthDate</label>
                                 <div class="col-lg-9">
+                                
+                                <div class="input-group">
+                                      <input type="text" class="form-control" name="name" ng-model="profileDetail.birthdate" >
+                                      <span class="input-group-addon" title="Private"><i class="fa fa-lock"></i>
+                                        </span>
+                                    </div>
                                     <!--  <div class="input-group date datetime" data-min-view="2" data-date-format="yyyy-mm-dd">
  <span class="input-group-addon btn btn-primary"><span class="glyphicon glyphicon-th"></span></span>
 
@@ -446,13 +452,21 @@
     	<accordion-heading>
             Proffessional Details <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.isSecondOpen, 'glyphicon-chevron-right': !status.isSecondOpen}"></i>
         </accordion-heading>
-        <div class="container" id="appBody">
+        <div class="row">
+        <div class="col-md-3 padding-top">
+        	Get it From-
+        </div>
+        <div class="col-md-9">
+        	  <div class="container" id="appBody">
             <div class="container-fixed">
                 <div class="hero-unit" style="margin-top:10px;" ng-hide="updateButton">
-                    <script type="in/Login" ></script>
+                    <script type="in/Login" ></script> OR Enter Details
                 </div>
              </div>
         </div>
+        </div>
+        </div>
+      
 
 
 

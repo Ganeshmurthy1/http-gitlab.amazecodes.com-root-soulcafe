@@ -354,25 +354,7 @@ function adminAddTopic() {
       echo '{"error":{"text":'. $e->getMessage() .'}}';
     }
 
-    foreach($wineUser as $obj) {
-      $id=$user->discussId;
-      $link = 'discussion-topics?id='.$id;
-        $sqlFN = "INSERT INTO ForumNotification (UserId,Message,ViewStatus,AddedDate,Link) VALUES (:UserId, :Message, :ViewStatus, :AddedDate,:Link)";
-    try {
-      $db = getConnection();
-      $stmtFN = $db->prepare($sqlFN);
-      $stmtFN->bindParam("UserId", $obj->UserId);
-      $stmtFN->bindParam("Message", $message);
-      $stmtFN->bindParam("ViewStatus", $viewstatus);
-      $stmtFN->bindParam("AddedDate", $tdate);
-      $stmtFN->bindParam("Link", $link);
-      //$stmtFN->bindParam("topicId", $id);
-      $stmtFN->execute();
-       // echo 'true';
-    } catch(PDOException $e) {
-      echo '{"error":{"text":'. $e->getMessage() .'}}';
-    }
-    }
+    
 
     $sql = "INSERT INTO DiscussionBoardTopic (DiscussionBoardId, TopicTitle, TopicDescription, CreatedBy, CreatedDate, Status) VALUES (:discussId, :topic, :description, :CreatedBy, :CreatedDate, :status)";
     try {
@@ -386,11 +368,31 @@ function adminAddTopic() {
       $stmt->bindParam("status", $status);      
 
       $stmt->execute();
-
+      $lastInsertId = $db->lastInsertId();
 
       echo 'true';
     } catch(PDOException $e) {
       echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
+    
+    foreach($wineUser as $obj) {
+      $id=$user->discussId;
+      $link = 'discussion?topic=' . $lastInsertId;
+      $sqlFN = "INSERT INTO ForumNotification (UserId,Message,ViewStatus,AddedDate,Link) VALUES (:UserId, :Message, :ViewStatus, :AddedDate,:Link)";
+      try {
+        $db = getConnection();
+        $stmtFN = $db->prepare($sqlFN);
+        $stmtFN->bindParam("UserId", $obj->UserId);
+        $stmtFN->bindParam("Message", $message);
+        $stmtFN->bindParam("ViewStatus", $viewstatus);
+        $stmtFN->bindParam("AddedDate", $tdate);
+        $stmtFN->bindParam("Link", $link);
+        //$stmtFN->bindParam("topicId", $id);
+        $stmtFN->execute();
+        // echo 'true';
+      } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+      }
     }
  
 }

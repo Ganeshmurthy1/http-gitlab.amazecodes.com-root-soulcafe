@@ -820,7 +820,7 @@ function adminAddMessage() {
   $request = Slim::getInstance()->request();
   $forum = json_decode($request->getBody());
   $status=0;
-  $DateTime=  date("Y-m-d h:i:s") ;
+  $DateTime=  date("Y-m-d") ;
 
   
    if(!empty($forum->all)){
