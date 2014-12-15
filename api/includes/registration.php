@@ -805,10 +805,13 @@ function addlinkedinData() {
    if (isset($user->values[0]->skills->values[4]->skill->name)) {
      $endorsedSkills .= ','.$user->values[0]->skills->values[4]->skill->name;
    }
+   if (isset($user->values[0]->publicProfileUrl)) {
+     $PictureUrl = $user->values[0]->publicProfileUrl;
+   }
    // $endorsedSkills = $user->values[0]->skills->values[0]->skill->name . ','  .$user->values[0]->skills->values[1]->skill->name. ','  .$user->values[0]->skills->values[2]->skill->name. ','  .$user->values[0]->skills->values[3]->skill->name. ','  .$user->values[0]->skills->values[4]->skill->name;
   // foreach($user as $obj) {
  
-  $sql = "INSERT INTO ProfessionalDetails (UserId, CurrentEmployment, CurrentRole, HighestEducation, Endorsedskills) VALUES (:UserId, :CurrentEmployment, :CurrentRole, :HighestEducation, :Endorsedskills)";
+  $sql = "INSERT INTO ProfessionalDetails (UserId, CurrentEmployment, CurrentRole, HighestEducation, Endorsedskills,ProfileUrl) VALUES (:UserId, :CurrentEmployment, :CurrentRole, :HighestEducation, :Endorsedskills,:PictureUrl)";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);  
@@ -817,6 +820,7 @@ function addlinkedinData() {
     $stmt->bindParam("CurrentRole", $currentRole);
     $stmt->bindParam("HighestEducation", $highestEducation);
     $stmt->bindParam("Endorsedskills", $endorsedSkills);
+    $stmt->bindParam("PictureUrl", $PictureUrl);
     $stmt->execute();
     updateUser($user_id);
     //$app->redirect('login.html');
@@ -936,7 +940,7 @@ function getProfileDetail() {
   // print_r( $user );
    $user_id  = getUserId();
    
-  $sql = "select u.*,pd.CurrentEmployment,pd.HighestEducation,pd.Endorsedskills from users AS u left join ProfessionalDetails As pd on u.user_id = pd.UserId where u.user_id=:user_id";
+  $sql = "select u.*,pd.CurrentEmployment,pd.HighestEducation,pd.Endorsedskills,pd.ProfileUrl from users AS u left join ProfessionalDetails As pd on u.user_id = pd.UserId where u.user_id=:user_id";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);  
