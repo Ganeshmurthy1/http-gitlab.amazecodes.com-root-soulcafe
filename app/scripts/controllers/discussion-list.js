@@ -82,7 +82,7 @@ var config = localStorageService.get('config');
             for (var i = 0; i < $scope.discussionData.length; i++) {
             	
             //	console.log($scope.discussionData[i].RestrictedLocation);
-            	checkLocation($scope.userData.location, $scope.discussionData[i].RestrictedLocation);
+            // checkLocation($scope.userData.location, $scope.discussionData[i].RestrictedLocation);
              
               $scope.discussionData[i].view="false";
               $scope.discussionData[i].sr=i+1;
