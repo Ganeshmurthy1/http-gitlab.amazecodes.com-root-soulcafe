@@ -445,6 +445,10 @@ function getAllDiscussions() {
     $stmt->execute();
     $wine = $stmt->fetchAll(PDO::FETCH_OBJ);;
     $db = null;
+    //$kk = @unserialize('sdfssdf');
+    for ($i = 0; $i < count($wine); $i++) {
+      $wine[$i]->RestrictedLocation = @unserialize($wine[$i]->RestrictedLocation);
+    }
     echo json_encode($wine);
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
