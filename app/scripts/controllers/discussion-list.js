@@ -80,6 +80,9 @@ var config = localStorageService.get('config');
             var diff = d2.getFullYear()-d1.getFullYear();
             // console.log(diff); 
             for (var i = 0; i < $scope.discussionData.length; i++) {
+            	
+            //	console.log($scope.discussionData[i].RestrictedLocation);
+            	checkLocation($scope.userData.location, $scope.discussionData[i].RestrictedLocation);
              
               $scope.discussionData[i].view="false";
               $scope.discussionData[i].sr=i+1;
@@ -133,7 +136,7 @@ var config = localStorageService.get('config');
                             }
                         
                           }
-                     }else if ($scope.userData.location === $scope.discussionData[i].RestrictedLocation) {
+                     }else if (inArray($scope.userData.location, $scope.discussionData[i].RestrictedLocation)) {
                         $scope.discussionData[i].join="true";
                         $scope.discussionData[i].show="true";
                           for (var x  in $scope.DiscussionJoin) {
@@ -160,7 +163,7 @@ var config = localStorageService.get('config');
                             }
                         
                           }
-                    }else if ($scope.userData.location === $scope.discussionData[i].RestrictedLocation) {
+                    }else if (inArray($scope.userData.location, $scope.discussionData[i].RestrictedLocation)) {
                       // console.log("AbhikGenderLocationElse");
                         $scope.discussionData[i].join="true";
                         $scope.discussionData[i].show="true";
@@ -190,7 +193,7 @@ var config = localStorageService.get('config');
                             }
                         
                           }
-                        } else if ($scope.userData.location === $scope.discussionData[i].RestrictedLocation) {
+                        } else if (inArray($scope.userData.location, $scope.discussionData[i].RestrictedLocation)) {
                           $scope.discussionData[i].join="true";
                           $scope.discussionData[i].show="true";
                           for (var x  in $scope.DiscussionJoin) {
@@ -217,7 +220,7 @@ var config = localStorageService.get('config');
                             }
                         
                           }
-                        } else if ($scope.userData.location === $scope.discussionData[i].RestrictedLocation) {
+                        } else if (inArray($scope.userData.location, $scope.discussionData[i].RestrictedLocation)) {
                           $scope.discussionData[i].join="true";
                           $scope.discussionData[i].show="true";
                           for (var x  in $scope.DiscussionJoin) {
@@ -278,5 +281,15 @@ $scope.removeUser = function(id){
       }); 
 
      }
+
+
+
+function inArray(needle, haystack) {
+    var length = haystack.length;
+    for(var i = 0; i < length; i++) {
+        if(haystack[i] == needle) return true;
+    }
+    return false;
+}
 
 });

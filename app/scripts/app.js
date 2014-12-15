@@ -27,7 +27,8 @@ angular
     'ui.tree',
     'angular-jqcloud',
     'angular-carousel',
-    'slick'
+    'slick',
+    'angular-loading-bar'
   ])
   .config(['$routeProvider', '$facebookProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $facebookProvider, $locationProvider, $httpProvider) {
 	
@@ -283,7 +284,8 @@ angular
       })
       .when('/quiz', {
         templateUrl: 'views/quiz.html',
-        controller: 'QuizCtrl'
+        controller: 'QuizCtrl',
+        access:      access.user
       })
 	  .when('/admin-list-question', {
         templateUrl: 'views/admin-list-question.html',
@@ -291,7 +293,8 @@ angular
       })
 	  .when('/home', {
         templateUrl: 'views/home.html',
-        controller: 'HomeCtrl'
+        controller: 'HomeCtrl',
+        access:      access.user
       })
       .when('/header1', {
         templateUrl: 'views/header1.html',
@@ -303,7 +306,8 @@ angular
       })
       .when('/myprofile', {
         templateUrl: 'views/myprofile.html',
-        controller: 'MyprofileCtrl'
+        controller: 'MyprofileCtrl',
+        access:      access.user
       })
       .when('/admin-edit-question', {
         templateUrl: 'views/admin-edit-question.html',
@@ -311,7 +315,8 @@ angular
       })
       .when('/otherprofile', {
         templateUrl: 'views/otherprofile.html',
-        controller: 'OtherprofileCtrl'
+        controller: 'OtherprofileCtrl',
+        access:      access.user
       })
       .when('/left-barP', {
         templateUrl: 'views/left-barp.html',
@@ -347,11 +352,13 @@ angular
       })
       .when('/edit-profile-other', {
         templateUrl: 'views/edit-profile-other.html',
-        controller: 'EditProfileOtherCtrl'
+        controller: 'EditProfileOtherCtrl',
+        access:      access.user
       })
       .when('/friends', {
         templateUrl: 'views/friends.html',
-        controller: 'FriendsCtrl'
+        controller: 'FriendsCtrl',
+        access:      access.user
       })
       .otherwise({
         redirectTo: '/'
