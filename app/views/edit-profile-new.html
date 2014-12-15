@@ -452,14 +452,14 @@
     	<accordion-heading>
             Proffessional Details <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.isSecondOpen, 'glyphicon-chevron-right': !status.isSecondOpen}"></i>
         </accordion-heading>
-        <div class="row">
+        <div class="row" ng-hide="updateButton">
         <div class="col-md-3 padding-top">
         	Get it From-
         </div>
         <div class="col-md-9">
         	  <div class="container" id="appBody">
             <div class="container-fixed">
-                <div class="hero-unit" style="margin-top:10px;" ng-hide="updateButton">
+                <div class="hero-unit" style="margin-top:10px;">
                     <script type="in/Login" ></script> OR Enter Details
                 </div>
              </div>
@@ -536,7 +536,7 @@
            Soul Questionnaire <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.isThirdOpen, 'glyphicon-chevron-right': !status.isThirdOpen}"></i>
         </accordion-heading>
          <div class="alert fade in margin-bottom-40" ng-repeat="question in questions">
-             <h4><a href="#/discussion-topics?discussionid={{question.QuestionTitle}}">{{question.QuestionTitle}}</a></h4>
+             <h4>{{question.QuestionTitle}}</h4>
                           
             <p>
                 <a class="btn-u btn-u-sea  " href="#/question-edit?qid={{question.Qid}}">Edit</a>

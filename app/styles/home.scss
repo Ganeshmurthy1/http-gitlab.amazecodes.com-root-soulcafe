@@ -166,6 +166,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6e6e6', end
 .margin-top-1{
 	margin-top:1% !important;
 }
+.margin-right-left-5P{
+	margin-right:5% !important;
+	margin-left:5% !important;
+}
 .padding-20px {
 	padding-top: 20px;
 }
@@ -542,6 +546,12 @@ background: linear-gradient(270deg, #d8d6d2 6%, #f2f2f2 17%) repeat scroll 0 0 t
     		color: #fff !important;
     	}
     }
+}
+.slick-next:before{
+	color: #593a1d;
+}
+.slick-prev:before{
+	color: #593a1d;
 }
 
 /*--------------Media Queries-------------*/
