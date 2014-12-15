@@ -332,7 +332,7 @@ function adminAddTopic() {
    $user = json_decode($request->getBody());
    // print_r($user->discussId);
   $user_id  = getUserId();
-  $tdate = date('Y-m-d h:i:s');
+  $tdate = date('Y-m-d H:i:s');
     //echo $forum->restriction;
    $status = 1;
    $viewstatus = 0;
