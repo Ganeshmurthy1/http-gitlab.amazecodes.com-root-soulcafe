@@ -511,7 +511,7 @@ function setCommentLikes($commentId) {
     foreach($winCUser as $obj) {
       $comment = $obj->Comment;
       $id = $obj->DiscussionTopicId;
-      $link = 'discussion?id='.$id;
+      $link = 'discussion?topic='.$id;
       $message = $fname.' '.$lname.' has liked your comment "'.$comment.'".';
         $sqlFN = "INSERT INTO ForumNotification (UserId,Message,ViewStatus,AddedDate,Link) VALUES (:UserId, :Message, :ViewStatus, :AddedDate, :Link)";
     try {
