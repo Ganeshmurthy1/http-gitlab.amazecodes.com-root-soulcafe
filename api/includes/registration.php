@@ -1312,7 +1312,7 @@ function getRecomendations() {
 
 function get_ProfileDetailOther($id) {
    
-  $sql = "select u.*,pd.CurrentEmployment,pd.HighestEducation,pd.Endorsedskills from users AS u left join ProfessionalDetails As pd on u.user_id = pd.UserId where u.user_id=:user_id";
+  $sql = "select u.*,pd.CurrentEmployment,pd.HighestEducation,pd.Endorsedskills,pd.ProfileUrl from users AS u left join ProfessionalDetails As pd on u.user_id = pd.UserId where u.user_id=:user_id";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);  

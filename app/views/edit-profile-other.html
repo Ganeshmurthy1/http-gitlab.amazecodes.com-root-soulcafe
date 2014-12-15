@@ -119,6 +119,12 @@
                     </div> -->
                     <div class="panel-body">                                                      
                         <form class="margin-bottom-40" role="form">
+                            <div class="form-group row" ng-show="profileDetail.linked_update">
+                                <label class="col-lg-3 control-label">Linkedin Profile Url</label>
+                                <div class="col-lg-9">
+                                   <a style="color:#5bc0de;"href="{{profileDetail.ProfileUrl}}">{{profileDetail.ProfileUrl}}</a> 
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 control-label">Current Employment</label>
                                 <div class="col-lg-9">
