@@ -111,9 +111,29 @@ function getUsers($id) {
             $stmt = $db->prepare($sql);
             $stmt->bindParam("token", $token);
             $stmt->bindParam("user_id", $id);
-            $stmt->execute();
-            
+            $stmt->execute();            
             $wine->token = $token;
+            
+            $sql = "SELECT count(1) as totalQn from Questionnaire";
+            
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+            $wineTotalQn = $stmt->fetchObject();
+            
+            
+            //Total answered qn count
+            //$user_id = getUserId();
+            $sqlA = "SELECT count(1) as totalAnsQn from QuestionnaireUserAnswer where UserId = :user_id";
+            $stmtA = $db->prepare($sqlA);
+            $stmtA->bindParam("user_id", $wine->user_id);
+            $stmtA->execute();
+            $wineA = $stmtA->fetchObject();
+            if ($wineTotalQn->totalQn == $wineA->totalAnsQn) {
+              $wine->redirection =  'home';              
+            } else {
+              $wine->redirection = 'quiz';
+            }
+            
             //echo json_encode($wine);
           } catch(PDOException $e) {
             echo '{"error":{"text":'. $e->getMessage() .'}}';

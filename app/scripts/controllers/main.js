@@ -111,7 +111,7 @@ angular.module('sassApp')
 					var authData = localStorageService.get('authorizationData');
 					console.log(authData);
 					//$scope.loggedin = true;
-					$location.path('/quiz');
+					$location.path('/' + results.data.redirection);
 					$rootScope.loggedin = true;
 			        
 			        
