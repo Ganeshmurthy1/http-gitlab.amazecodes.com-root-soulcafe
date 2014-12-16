@@ -1,4 +1,4 @@
-<div data-ng-controller="HeaderCtrl" data-ng-include="Header">
+<div data-ng-controller="HeaderSignupCtrl" data-ng-include="Header">
 </div>
 
 
@@ -7,9 +7,9 @@
 <div class="container-fluid body-pattern ">
 <div class="container my-border body-pattern ">
 <div class="row">
-<div class ="my-border col-xs-12 col-sm-4 col-md-3 gredientSB" data-ng-controller="SideBarCtrl" data-ng-include="SideBar"></div>
+<div class ="my-border col-xs-12 col-sm-4 col-md-3 gredientSB" data-ng-controller="LeftbarQuizCtrl" data-ng-include="LeftBar"></div>
 
-<div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px ">
+<div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px quiz ">
 
             	<div class="headline"><h2 class="heading-sm">Let us know you!..</h2></div>  
             	<div class="shadow-wrapper margin-bottom-60">
@@ -40,8 +40,9 @@
                 
                 <div class="row margin-bottom-10" ng-show="QuestionObj.Questions.AnswerSelectionType == '3'">
                     <div class="col-md-6 col-sm-6 col-xs-12" data-ng-repeat = "option in multipleOptions" >                    
-                        <b class="quiz-answer-rank-indicator">{{option.orderText}}</b>
+                        
                         <div class="servive-block   raw-option" data-ng-click="selectMultipe(option.Qoid)" ng-class="option.selected ? 'servive-block-sea' : 'servive-block-grey'">                           
+                         <b class="quiz-answer-rank-indicator">{{option.orderText}}</b>
                             <p>{{option.Answer}}</p>                        
                         </div>
                     </div>                  

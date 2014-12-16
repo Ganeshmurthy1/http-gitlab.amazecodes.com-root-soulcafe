@@ -18,7 +18,7 @@ angular.module('sassApp')
     $scope.mobileVerified = false;
     $scope.mobileVerifiedMessage = false;
     $scope.submitted=false;
-    console.log("Abhikkkk");
+    //console.log("Abhikkkk");
     var data = localStorageService.get('facebookData');
 	// console.log(data.fbdata);
 	$scope.fbdata = data.fbdata;
@@ -31,10 +31,10 @@ angular.module('sassApp')
 	}
    var fbpic = localStorageService.get('fbpicture');
    $scope.fbdata.pic = fbpic.fbpicture;
-   console.log($scope.fbdata);
+   //console.log($scope.fbdata);
    
    $scope.resendCode = function() {
-	   console.log($scope.fbdata.mobile);
+	   //console.log($scope.fbdata.mobile);
 	   var phn = new Object();
 	   	phn.mobile = $scope.fbdata.mobile;
 	   	//phn.act_code = $scope.actcode;
@@ -58,18 +58,18 @@ angular.module('sassApp')
    	phn.act_code = $scope.actcode;
    	//console.log(phn);
    	  regService.VerifyMobile(phn).then(function(response) {
-   		  console.log(response);
+   		  //console.log(response);
    		  if (response.data == 'true') {
    			regService.getPicture(authData.user_id).then(function(response) {
-		        console.log(response.data);
+		        //console.log(response.data);
 		        var config = localStorageService.get('config');
 		        $scope.imagepath = config.image_path;
 		        if(response.data.Picture != null){
 		        	 $scope.pict = $scope.imagepath + response.data.Picture;
-		          console.log($scope.pict);
+		          //console.log($scope.pict);
 		          localStorageService.set('fbpicture', {fbpicture:$scope.pict});
 		        }
-   			  console.log('success');
+   			  //console.log('success');
    			  $location.path('/quiz');
    			});  
    			  
@@ -86,22 +86,22 @@ angular.module('sassApp')
      };
    
  $scope.signUp = function() {
-      console.log("Abhik1");
+      //console.log("Abhik1");
     if($scope.fbdata.id == null){
     	$scope.errMessage = "Login with Facebook";
     }
     else{
       //console.log($scope.fbdata); 
   	  regService.registerUser($scope.fbdata).then(function(response) {
-  		  console.log(response);
+  		  //console.log(response);
   		  if (response.data == 'true') {
-  			  console.log('success');
+  			  //console.log('success');
   			  regService.getFbUserStatus($scope.fbdata).then(function (results) {
-  				  console.log(results.data);
+  				 // console.log(results.data);
   				  if (results.data != 'false') { //login 
-  						console.log('login');
+  						//console.log('login');
   						regService.getPicture(results.data.user_id).then(function(response) {
-  					        console.log(response.data);
+  					       // console.log(response.data);
   					        var config = localStorageService.get('config');
   					        $scope.imagepath = config.image_path;
   					        if(response.data.Picture != null){
@@ -129,7 +129,7 @@ angular.module('sassApp')
     							 role: userRoles.user
     				         });
     						var authData = localStorageService.get('authorizationData');
-    		  				console.log(authData);
+    		  				//console.log(authData);
     		  				//$scope.loggedin= true;
     		  				$rootScope.loggedin = true;
     		  				$scope.actcode = '';

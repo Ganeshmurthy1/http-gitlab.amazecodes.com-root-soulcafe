@@ -33,7 +33,7 @@ angular
   .config(['$routeProvider', '$facebookProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $facebookProvider, $locationProvider, $httpProvider) {
 	
 	var access = routingConfig.accessLevels;
-	console.log(access);
+	//console.log(access);
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -78,7 +78,7 @@ angular
       .when('/signup', {
         templateUrl: 'views/signup.html',
         controller: 'SignupCtrl',
-        access:      access.anon
+        access:      access.public
       })
       .when('/profile', {
         templateUrl: 'views/profile.html',
@@ -360,6 +360,18 @@ angular
         controller: 'FriendsCtrl',
         access:      access.user
       })
+      .when('/header-signup', {
+        templateUrl: 'views/header-signup.html',
+        controller: 'HeaderSignupCtrl'
+      })
+      .when('/leftbar-signup', {
+        templateUrl: 'views/leftbar-signup.html',
+        controller: 'LeftbarSignupCtrl'
+      })
+      .when('/leftbar-quiz', {
+        templateUrl: 'views/leftbar-quiz.html',
+        controller: 'LeftbarQuizCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -388,7 +400,7 @@ angular
 angular.module('sassApp').run( function($rootScope, $location, $http, regService, localStorageService) {
 	  // Load the facebook SDK asynchronously
 	var authData = localStorageService.get('user');
-	console.log(authData);
+	//console.log(authData);
 	 if (authData == null){
 		 var accessLevels = routingConfig.accessLevels
 	        , userRoles = routingConfig.userRoles;
@@ -399,11 +411,11 @@ angular.module('sassApp').run( function($rootScope, $location, $http, regService
 	 }	
 	$rootScope.$on("$routeChangeStart", function (event, next, current) {
         $rootScope.error = null;
-        console.log(next.access);
-        console.log(next);
+        //console.log(next.access);
+        //console.log(next);
         if (!regService.authorize(next.access)) {
         	 console.log('jii');
-        	 //$location.path('/')
+        	 $location.path('/')
         	 //if(regService.isLoggedIn()) $location.path('/');
             // else                  $location.path('/login');
         }
