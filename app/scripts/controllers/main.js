@@ -39,7 +39,7 @@ angular.module('sassApp')
 		    result.message = 'You dont have enough friends in your facebook profile';
 		}	 
 	   // param.relationship_status = param.relationship_status.replace(/'/g, "\\'");
-	    console.log(param.relationship_status);
+	    //console.log(param.relationship_status);
 	    if (param.relationship_status == 'Married' || param.relationship_status == 'In a relationship' || param.relationship_status == 'Engaged' || param.relationship_status == 'In an open relationship' || param.relationship_status == 'It\'s complicated' || param.relationship_status == 'In a civil union') {
 	    	result.status = false;
 		    result.message = 'Your Relationship status is not suitable for an account in Soulcafe';
@@ -73,9 +73,9 @@ angular.module('sassApp')
           //console.log(results.data);  	        
           
 	        if (results.data.status == 1) { //login 
-				console.log('login');
+				//console.log('login');
 				regService.getPicture(results.data.user_id).then(function(response) {
-			        console.log(response.data);
+			        //console.log(response.data);
 			       // return;
 			        if(response.data.Picture != null){
 			        	 var pict = $scope.imagepath + response.data.Picture;
@@ -98,7 +98,7 @@ angular.module('sassApp')
 			                Moto:response.data.Moto
 		            });
 		            var fbbbbdata = localStorageService.get('authorizationData');
-					 console.log(fbbbbdata);
+					 //console.log(fbbbbdata);
 					// return;
 					
 					// JS authentication
@@ -109,7 +109,7 @@ angular.module('sassApp')
 						 role: userRoles.user
 			         });
 					var authData = localStorageService.get('authorizationData');
-					console.log(authData);
+					//console.log(authData);
 					//$scope.loggedin = true;
 					$location.path('/' + results.data.redirection);
 					$rootScope.loggedin = true;
@@ -120,11 +120,11 @@ angular.module('sassApp')
 			}else if(results.data.status == 0){
 				$rootScope.abc = "Your account is not active. Please contact Customer Care.";
 				$rootScope.a=false;
-				console.log($scope.abc);
-				console.log($scope.a);
+				//console.log($scope.abc);
+				//console.log($scope.a);
 			}else {// register//	        	        	
 	        		regService.getFbFriendsCount().then(function(data) {
-	                console.log(data);
+	                //console.log(data);
 	                response.total_friends = data.summary.total_count;
 	                var res = validateUser(response);
 	                if (res.status) {
@@ -132,7 +132,7 @@ angular.module('sassApp')
 	                	 localStorageService.set('facebookData', {fbdata:response});
 
 					 $facebook.api("/me/picture?redirect=0&height=200&type=normal&width=200").then(function(pic) {
-					      	console.log(pic);
+					      	//console.log(pic);
 					       	$scope.fbpicture = pic;
 						    localStorageService.set('fbpicture', {fbpicture:pic});
 						   var fbbbbdata = localStorageService.get('fbpicture');
@@ -240,7 +240,7 @@ angular.module('sassApp')
 		    result.message = 'You dont have enough friends in your facebook profile';
 		}	 
 	   // param.relationship_status = param.relationship_status.replace(/'/g, "\\'");
-	    console.log(param.relationship_status);
+	    //console.log(param.relationship_status);
 	    if (param.relationship_status == 'Married' || param.relationship_status == 'In a relationship' || param.relationship_status == 'Engaged' || param.relationship_status == 'In an open relationship' || param.relationship_status == 'It\'s complicated' || param.relationship_status == 'In a civil union') {
 	    	result.status = false;
 		    result.message = 'Your Relationship status is not suitable for an account in Soulcafe';
@@ -274,9 +274,9 @@ angular.module('sassApp')
             //console.log(results.data);  	        
             
   	        if (results.data.status == 1) { //login 
-  				console.log('login');
+  				//console.log('login');
   				regService.getPicture(results.data.user_id).then(function(response) {
-  			        console.log(response.data);
+  			        //console.log(response.data);
   			       // return;
   			        if(response.data.Picture != null){
   			        	 var pict = $scope.imagepath + response.data.Picture;
@@ -299,7 +299,7 @@ angular.module('sassApp')
   			                Moto:response.data.Moto
   		            });
   		            var fbbbbdata = localStorageService.get('authorizationData');
-  					 console.log(fbbbbdata);
+  					 //console.log(fbbbbdata);
   					// return;
   					
   					// JS authentication
@@ -310,7 +310,7 @@ angular.module('sassApp')
   						 role: userRoles.user
   			         });
   					var authData = localStorageService.get('authorizationData');
-  					console.log(authData);
+  					//console.log(authData);
   					//$scope.loggedin = true;
   					$location.path('/quiz');
   					$rootScope.loggedin = true;
@@ -321,11 +321,11 @@ angular.module('sassApp')
   			}else if(results.data.status == 0){
   				$rootScope.abc = "Your account is not active. Please contact Customer Care.";
   				$rootScope.a=false;
-  				console.log($scope.abc);
-  				console.log($scope.a);
+  				//console.log($scope.abc);
+  				//console.log($scope.a);
   			}else {// register//	        	        	
   	        		regService.getFbFriendsCount().then(function(data) {
-  	                console.log(data);
+  	                //console.log(data);
   	                response.total_friends = data.summary.total_count;
   	                var res = validateUser(response);
   	                if (res.status) {
@@ -333,7 +333,7 @@ angular.module('sassApp')
   	                	 localStorageService.set('facebookData', {fbdata:response});
 
   					 $facebook.api("/me/picture?redirect=0&height=200&type=normal&width=200").then(function(pic) {
-  					      	console.log(pic);
+  					      	//console.log(pic);
   					       	$scope.fbpicture = pic;
   						    localStorageService.set('fbpicture', {fbpicture:pic});
   						   var fbbbbdata = localStorageService.get('fbpicture');

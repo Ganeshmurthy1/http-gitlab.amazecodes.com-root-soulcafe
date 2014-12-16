@@ -223,7 +223,8 @@ angular
       })
       .when('/report-abuse-user', {
         templateUrl: 'views/report-abuse-user.html',
-        controller: 'ReportAbuseUserCtrl'
+        controller: 'ReportAbuseUserCtrl',
+        access:      access.user
       })
       .when('/admin', {
         templateUrl: 'views/admin.html',

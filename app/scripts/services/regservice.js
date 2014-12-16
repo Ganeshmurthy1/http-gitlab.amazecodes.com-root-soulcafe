@@ -39,12 +39,12 @@ angular.module('sassApp')
             return user.role.title == userRoles.user.title || user.role.title == userRoles.admin.title;
         };
 	    dataFactory.getFbUserStatus = function (param) {
-	    	console.log(param);
+	    	//console.log(param);
 	    	var fbUrl = urlBase + 'users/' + param.id;
 	        return $http.get(fbUrl);
 	    };
 	    dataFactory.registerUser = function (param) {
-	    	console.log(param);
+	    	//console.log(param);
 	    	var data = 'fb_id=' + param.id;
 	    	return $http.post(urlBase + 'add_user', param).then(function(response) {
                 return response;
@@ -76,16 +76,16 @@ angular.module('sassApp')
 	    	
 	    };
         dataFactory.updateUser = function (param) {
-	    	console.log(param);
+	    	//console.log(param);
 	    	return $http.post(urlBase + 'update_user', param).then(function(response) {
-	    		console.log(response);
+	    		//console.log(response);
                 return response;
             });
 	    	
 	    };
 	    dataFactory.getDiscussionDetails = function () {
 	    	return $http.get(urlBase + 'discussionAll').then(function(response) {
-	    		console.log(response);
+	    		//console.log(response);
                 return response;
             });
 	    	
@@ -104,7 +104,7 @@ angular.module('sassApp')
 	        return $http.get(linUrl);
 	    };
 	  dataFactory.getLinkedinUserDetails = function (uid) {
-	    	console.log(uid);
+	    	//console.log(uid);
 	    	var fbUrl = urlBase + 'linkedinUsers/' + uid;
 	        return $http.get(fbUrl);
 	    };
@@ -154,7 +154,7 @@ angular.module('sassApp')
 	    };
 	    
   	 dataFactory.saveDiscussionBoardAbuse = function (param) {	
-  	 		console.log(param);
+  	 		//console.log(param);
 	     	return $http.post(urlBase + 'saveDiscussionBoardAbuse', param).then(function(response) {
                 return response;
             });	
@@ -184,7 +184,7 @@ angular.module('sassApp')
             });	
 	    };
 	    dataFactory.updateProfileDetail = function (param) {
-	    	console.log(param);
+	    	//console.log(param);
 	    	return $http.post(urlBase + 'update_Profile_Detail', param).then(function(response) {
 	    		// console.log(response);
                 return response;
@@ -293,7 +293,7 @@ angular.module('sassApp')
 	    };
 	    
 	    dataFactory.resendActCode = function (param) {
-	    	console.log(param);
+	    	//console.log(param);
 	    	var data = 'fb_id=' + param.id;
 	    	return $http.post(urlBase + 'resend_code', param).then(function(response) {
                 return response;
