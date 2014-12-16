@@ -28,6 +28,8 @@ angular.module('sassApp')
                 role = currentUser.role;
             // console.log(accessLevel);
             // console.log(role);
+            if(accessLevel === undefined)
+              accessLevel = {bitMask:1};
             return accessLevel.bitMask & role.bitMask;
         };
         
