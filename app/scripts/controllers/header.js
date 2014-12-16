@@ -33,7 +33,7 @@ angular.module('sassApp')
     $scope.popup = false;
 
       regService.getTotalNotification($scope.datau.user_id).then(function(response) {
-        console.log(response.data);
+        //console.log(response.data);
         $scope.totalSysMessage = response.data.system.total;
         $scope.totalMessage = response.data.message.total;
         $scope.totalForumMessage = response.data.forum.total;

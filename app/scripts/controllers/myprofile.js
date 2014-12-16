@@ -55,7 +55,7 @@ angular.module('sassApp')
     $scope.profileverify = '75%';
     var authData = localStorageService.get('authorizationData');
     $scope.userData = authData;
-    console.log(authData.linked_update);
+    //console.log(authData.linked_update);
     if (authData.linked_update == 1){
         $scope.thumbup = 'false';
         $scope.profileverify = '100%';
@@ -66,9 +66,9 @@ angular.module('sassApp')
       }
 
 profileOperations.getMyProfileDetails().then(function(response) {
-    console.log(response);    
+    //console.log(response);    
     $scope.interests = response.data.values;
     $scope.ownwords = response.data.ownwords.OwnWords;
-    console.log($scope.ownwords); 
+    //console.log($scope.ownwords); 
   }); 
  }]);
