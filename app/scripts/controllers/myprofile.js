@@ -67,6 +67,8 @@ angular.module('sassApp')
 
 profileOperations.getMyProfileDetails().then(function(response) {
     console.log(response);    
-    $scope.interests = response.data;
-  });
+    $scope.interests = response.data.values;
+    $scope.ownwords = response.data.ownwords.OwnWords;
+    console.log($scope.ownwords); 
+  }); 
  }]);

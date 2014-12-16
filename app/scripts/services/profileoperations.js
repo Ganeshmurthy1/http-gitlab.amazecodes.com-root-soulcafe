@@ -98,5 +98,11 @@ angular.module('sassApp')
                return response;
            });  
     };
+    dataFactory.getCommentLike = function (id) { 
+         return $http.get(urlBase + 'get_CommentLike/'+ id).then(function(response) {
+         //console.log(response);
+               return response;
+           });  
+    };
     return dataFactory;
   }]);

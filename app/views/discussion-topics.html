@@ -1,62 +1,56 @@
 <div data-ng-controller="HeaderCtrl" data-ng-include="Header">
 </div>
+    <div class="container-fluid body-pattern ">
+        <div class="container my-border body-pattern ">
+            <div class="row">
+                <div class ="my-border col-xs-12 col-sm-4 col-md-3 gredientSB" data-ng-controller="SideBarCtrl" data-ng-include="SideBar"></div>
 
+                <div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px ">
 
-
-
-<div class="container-fluid body-pattern ">
-<div class="container my-border body-pattern ">
-<div class="row">
-<div class ="my-border col-xs-12 col-sm-4 col-md-3 gredientSB" data-ng-controller="SideBarCtrl" data-ng-include="SideBar"></div>
-
-<div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px ">
-                <!--Profile Body-->
-                <div class="profile-body">
-                <!-- Discussion Topics -->
-                 <div class="row pull-right">
-                    <a class="btn-u btn-u-default glow " ng-click="removeUser()" ng-hide="disable">Get Removed</a>
-                    <a class="btn-u btn-u-default glow " href="#/add-topic?discussId={{discussionid}}" ng-hide="disable">Add New Topic</a>
-                    <a class="btn-u btn-u-sea" ng-click="joinButtonClick(discussionid)" ng-show="disable">Join</a>
-                </div> 
-                <div class="headline"><h1 class="heading-sm">{{topicName}}</h1></div>
-                 <div class="headline"><h3 class="heading-sm">Total Members : {{total}}</h3></div>
-                    
-                <div class="row">
-                <div data-ng-repeat="discussion in discussions">
-
-                        <div class="col-md-6">
-
-                        <div class="alert fade in backWhite">
-                            <div class="media media-v2" style="float:left;margin: 0 !important;
-                                    padding: 0 !important;">
-                            <a class="pull-left" href="#">
-                                        <img class="media-object rounded-x" ng-src="{{imagepath}}sc-logo.png" alt="">
-                                    </a>
-                                </div>
-                            <h4>Topic: {{discussion.TopicTitle}}</h4>
-                            <p>{{discussion.TopicDescription}}</p>
-                            <p>
-                                 <li style="list-style:none;"><a href="#/discussion?topic={{discussion.DiscussionTopicId}}" ng-hide="disable" style="color:blue"><i class="fa fa-comments" style="margin-right:5px;"></i>Comments ({{discussion.totalComments}})</a></li>
-                            </p>
-                        </div>
-                        </div> 
-                   </div>
-
-                 <span ng-if='$index%2!==0' >
+                     <!--=== Content Part ===-->
+     
+        <ul class="timeline-v1">
+            <li ng-class-even="'timeline-inverted'" data-ng-repeat="discussion in discussions">
+                <div class="timeline-badge primary"><i class="glyphicon glyphicon-record"></i></div>
+                <div class="timeline-panel">
+                    <div class="timeline-body text-justify">
+                        <h2><a href="#/discussion?topic={{discussion.DiscussionTopicId}}">{{discussion.TopicTitle}}</a></h2>
+                        <p>{{discussion.TopicDescription}}</p>
                     </div>
-                    <div class="row">  
-                </span>  
-
+                    <div class="timeline-footer">
+                        <ul class="list-unstyled list-inline blog-info">
+                            <li style="list-style:none;"><i class="fa fa-comments" ng-hide="disable"  style="margin-right:5px;"></i>{{discussion.totalComments}} Comments</li>
+                        </ul>
+                    </div>
                 </div>
-
-                <!-- End  Discussion Topics -->
+            </li>
+            <!-- <li class="timeline-inverted">
+                <div class="timeline-badge primary"><i class="glyphicon glyphicon-record invert"></i></div>
+                <div class="timeline-panel">
+                    <div class="timeline-body text-justify">
+                        <h2><a href="#">Timeline Heading</a></h2>
+                        <p>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                        <a class="btn-u btn-u-sm" href="#">Read More</a>
+                    </div>
+                    <div class="timeline-footer">
+                        <ul class="list-unstyled list-inline blog-info">
+                            <li><i class="fa fa-clock-o"></i> March 16, 2014</li>
+                            <li><i class="fa fa-comments-o"></i> <a href="#">12 Comments</a></li>
+                        </ul>
+                        <a class="likes" href="#"><i class="fa fa-heart"></i>87</a>
+                    </div>
                 </div>
-                <!--End Profile Body-->
-            </div>
-		 </div>
-	</div>
-	 <!--===End Profile ===-->
+            </li> -->
+            <li class="clearfix" style="float: none;"></li>
+        </ul>
+    </div><!--/container-->     
+    <!-- End Content Part -->
 
-</div>
 
- <!--=== End Wrapper ===-->
+    		 </div>
+    	</div>
+    	 <!--===End Profile ===-->
+
+    </div>
+
+     <!--=== End Wrapper ===-->

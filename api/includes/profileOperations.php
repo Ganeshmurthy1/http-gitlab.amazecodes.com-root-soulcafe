@@ -15,6 +15,7 @@ $app->get('/get_Buddies_All', 'getBuddiesAll');
 
 $app->get('/get_home_data', 'getHomeData');
 $app->get('/get_MyProfileDetails', 'getMyProfileDetails');
+$app->get('/get_CommentLike/:id', 'getCommentLike');
 
 function getUserMatch() {
  
@@ -472,8 +473,44 @@ function getMyProfileDetails() {
     $stmt->bindParam("user_id", $user_id);
     $stmt->execute();
     $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+     
+   // echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+
+   $sqlOW = "SELECT OwnWords from users  WHERE user_id =:user_id";
+  try {
+    
+    $stmtOW = $db->prepare($sqlOW);  
+    $stmtOW->bindParam("user_id", $user_id);
+    $stmtOW->execute();
+    $wineOW = $stmtOW->fetchObject();
      $db = null;
-   echo json_encode($wine);
+   // echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+
+  $data['values'] = $wine;
+  $data['ownwords'] = $wineOW;
+
+  echo json_encode($data);
+}
+
+function getCommentLike($id) {
+   // $user_id  = getUserId();
+   
+  $sql = "SELECT dbl.*,u.first_name,u.last_name,u.Picture FROM DiscussionBorardLikes as dbl inner join users as u on dbl.UserId = u.user_id  WHERE CommentId = :id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);  
+    $stmt->bindParam("id",  $id );
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    // echo 'true';
+     echo json_encode($wine);
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}'; 
   }

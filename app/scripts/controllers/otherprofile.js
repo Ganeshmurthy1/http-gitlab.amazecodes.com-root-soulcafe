@@ -80,7 +80,7 @@ angular.module('sassApp')
 	    
          if ($scope.userData.linked_update == 1){
            $scope.thumbup = 'false';
-           $scope.profileverify = '75%';$result
+           $scope.profileverify = '75%';
            // console.log("Abhik");
          }else{
            $scope.thumbup = 'true';

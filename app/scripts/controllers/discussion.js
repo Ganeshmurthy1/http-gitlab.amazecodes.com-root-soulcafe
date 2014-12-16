@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('DiscussionCtrl', function ($scope,$routeParams,$facebook,localStorageService,regService,$location, $window,config) {
+  .controller('DiscussionCtrl', function ($scope,$routeParams,$facebook,localStorageService,regService,$location, $window, $modal, $log, config) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -63,10 +63,10 @@ angular.module('sassApp')
 
       regService.getdiscussionTopicComments($routeParams.topic).then(function (results) {
         $scope.comments = results.data; 
-// console.log( $scope.comments);
+console.log( $scope.comments);
         regService.getPicturesComments($routeParams.topic).then(function (results) {
              $scope.picture=results.data;
-             // console.log( $scope.picture);
+              console.log( $scope.picture);
              for (var a in $scope.comments){
         for (var j = 0; j <  $scope.picture.length; j++) {
         
@@ -76,7 +76,7 @@ angular.module('sassApp')
         }
         }; 
       }; 
-         // console.log($scope.comments);     
+         console.log($scope.comments);     
         });
        
             });
@@ -159,9 +159,75 @@ $scope.addRating = function(rating){
             
       });
 
-    $facebook.api("/800856129935365/likes").then(function(pic) {
-                console.log(pic);           
-    });
  }
 
+  $scope.items = ['item1', 'item2', 'item3'];
+
+  $scope.open = function (id) {
+    console.log(id);
+    var modalInstance = $modal.open({
+      templateUrl: 'myModalContent.html',
+      controller: 'ModalInstanceCtrl',
+      resolve: {
+        items: function () {
+          return id;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selected = selectedItem;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
+    
+
   });
+angular.module('sassApp')
+.controller('ModalInstanceCtrl', function ($scope, regService, profileOperations, localStorageService, $location, $modalInstance, items, config) {
+
+  $scope.items = items;
+  console.log($scope.items);
+
+  var config = localStorageService.get('config');
+    $scope.imagepath = config.image_path;
+
+  // $scope.selected = {
+  //   item: $scope.items[0]
+  // };
+
+    profileOperations.getCommentLike($scope.items).then(function(response) {
+     
+      console.log(response);    
+      $scope.likeData=response.data;         
+    });
+
+    $scope.otherProfile = function(userId){
+        regService.getUserDetails(userId).then(function (results) {
+          $scope.userD = results.data; 
+          console.log($scope.userD);
+           if ($scope.userD.status == 0) {
+            alert("Your profile is deactive. Please contact Customer care.");
+            $modalInstance.dismiss();
+          }else{
+            $location.url("/otherprofile?user_id="+userId);
+            $modalInstance.dismiss();
+          }
+        });
+          
+          
+        }
+
+
+  $scope.ok = function () {
+    $modalInstance.close($scope.selected.item);
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+
+
+    
+});

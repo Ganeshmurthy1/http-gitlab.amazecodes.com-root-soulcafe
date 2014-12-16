@@ -28,74 +28,62 @@
               <div class="col-md-2">
                 <span ng-repeat="rating in ratings"><div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)" ng-click="addRating(rating)"></div></span>
                 </div>              
-            
-
-
-
-                            <div class="panel-body margin-bottom-50" >
-                                
-
-                                <div class="media media-v2" data-ng-repeat="comment in comments">
-                                    <a class="pull-left" ng-click="userDetails(comment.UserId)">
-                                        <img class="media-object rounded-x" ng-src="{{imagepath}}{{comment.Picture}}" alt="">
-                                    </a>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">
-                                            <strong><a href="#">{{comment.first_name}}</a></strong>
-                                            <small>{{comment.CommentDateTime}}</small>
-                                        </h4>
-                                        <p>{{comment.Comment}}.</p>
-                                        <ul class="list-inline results-list pull-left">
-                                            <li><a href="#">{{comment.likes}} Likes</a></li>
-                                         
-                                        </ul>    
-                                        <ul class="list-inline pull-right">
-
-							<li>
-                               <a href="" data-ng-show="{{comment.deleteflag}}"data-ng-click="deleteComment({{comment.CommentId}})">
-                                <i class="icon-custom rounded-2x icon-color-u fa fa-trash-o"></i></a>
-                               </li>
-           
-                                <li><a href="" data-ng-click="commentLike({{comment.CommentId}})">
-                                    <i data-ng-hide={{comment.likeflag==1}} class="expand-list rounded-x fa fa-heart" ></i><a></li>
-
-                                <li><a >
-                                    <i data-ng-show={{comment.likeflag==1}} class="icon-custom icon-sm rounded-2x icon-bg-u fa fa-thumbs-o-up" ></i><a></li>
-
-
-
-
-                                    <li><a data-ng-click="abuseReport(comment)"><i class="expand-list rounded-x fa fa-retweet"></i></a></li>
-
-        
-                                        </ul>
-                                    </div>
-                                </div><!--/end media media v2--> 
-                                
-                                                   
-                            </div><!-- comment  -->
-
-                              <div class="media media-v2">
-                                    <a class="pull-left" href="#">
-                                        <img class="media-object rounded-x" ng-src="{{pict}}" alt="">
-                                    </a>
-                                <div class="media-body">
-                                            <h4 class="media-heading">
-                                                <strong><a href="#">me</a></strong>
-                                            </h4>
-                                             <div class="alert alert-danger fade in" data-ng-show="errMessage">{{errMessage}}</div>
-                                    <form id="sky-form4" class="sky-form" name="adminDiscussion">
-                                        <fieldset>     
-                                            <label class="textarea">
-                                                 <textarea rows="4" name="message" id="message" data-ng-model="comment" ></textarea>
-                                            </label>
-                                            <button data-ng-click="addcomment()" class="btn-u btn-u-blue">Submit</button>
-                                        </fieldset>
-                                    </form>
-                                 </div>
-                                </div><!--/end media media v2--> 
-
-                        </div>  
+                    <div class="panel-body margin-bottom-50" >
+                        <div class="media media-v2" data-ng-repeat="comment in comments">
+                            <a class="pull-left" ng-click="userDetails(comment.UserId)">
+                                <img class="media-object rounded-x" ng-src="{{imagepath}}{{comment.Picture}}" alt="">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                    <strong><a href="#">{{comment.first_name}}</a></strong>
+                                    <small>{{comment.CommentDateTime}}</small>
+                                </h4>
+                                <p>{{comment.Comment}}.</p>
+                                <ul class="list-inline results-list pull-left">
+                                    <li><a ng-click="open(comment.CommentId)" style="cursor:pointer;">{{comment.likes}} Likes</a></li>
+                                </ul>    
+                                <ul class="list-inline pull-right">
+                                    <li data-ng-show="{{comment.likeflag==1}}">
+                                        <a title="Liked">
+                                        <i class="icon-custom rounded-x icon-bg-u fa fa-thumbs-up" ></i>
+                                        </a>
+                                    </li>
+                                     <li data-ng-hide="{{comment.likeflag==1}}">
+                                        <a title="Like" data-ng-hide="{{userId == comment.UserId}}" href="" data-ng-click="commentLike({{comment.CommentId}})">
+                                        <i class="icon-custom rounded-x icon-bg-grey fa fa-thumbs-up" ></i></a>
+                                    </li>
+                                    <li data-ng-show="{{userId == comment.UserId}}">
+                                        <a href="" title="Delete" data-ng-click="deleteComment({{comment.CommentId}})">
+                                        <i class="icon-custom rounded-x icon-bg-grey fa fa-trash-o"></i></a>
+                                    </li>
+                                    <li>
+                                        <a title="Report Abuse" data-ng-click="abuseReport(comment)" style="cursor:pointer;"><i class="icon-custom rounded-x icon-bg-grey fa fa-ban"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div><!--/end media media v2--> 
+                    </div><!-- comment  -->
+                    <div class="media media-v2">
+                        <a class="pull-left" href="#">
+                            <img class="media-object rounded-x" ng-src="{{pict}}" alt="">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                <strong><a href="#">me</a></strong>
+                            </h4>
+                            <div class="alert alert-danger fade in" data-ng-show="errMessage">{{errMessage}}</div>
+                            <form id="sky-form4" class="sky-form" name="adminDiscussion">
+                                <fieldset>     
+                                    <label class="textarea">
+                                        <textarea rows="4" name="message" id="message" data-ng-model="comment" ></textarea>
+                                    </label>
+                                    <button data-ng-click="addcomment()" class="btn-u btn-u-blue">Submit</button>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div><!--/end media media v2--> 
+                </div>  
 
 				</div>
                 </div>
@@ -107,3 +95,30 @@
 
 </div>
  <!-- End wrapper -->
+
+  <script type="text/ng-template" id="myModalContent.html">
+        
+         <div class="modal-home-body">
+            <div>
+              <div class="col-lg-offset-2 col-lg-8 servive-block-light min-300">
+                    <div class="media media-v2" ng-repeat="like in likeData">
+                        <a class="pull-left" href="#">
+                            <img class="media-object rounded-x" ng-src="{{imagepath}}{{like.Picture}}" alt="" style="width:50px !important; height:50px !important;">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                <a ng-click="otherProfile({{like.UserId}})" style="cursor:pointer;">{{like.first_name}} {{like.last_name}}</a>
+                            </h4>
+                        </div>
+                    </div>
+
+                <div class=" pull-right">
+                    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+                </div>
+              </div>
+            </div>
+            
+        </div>
+
+       
+    </script>
