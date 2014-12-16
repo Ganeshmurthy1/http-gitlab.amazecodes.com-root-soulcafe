@@ -23,7 +23,7 @@ angular.module('sassApp')
         //console.log(results.data);
         $scope.userData = results.data;
         var id= $scope.userData.fb_id;
-        console.log(id);
+        //console.log(id);
         var likeData = [];
 	    $facebook.api(id +"/books").then(function(pic) {
 	      
@@ -42,7 +42,7 @@ angular.module('sassApp')
 	      }
 	    });
 	      $facebook.api(id +"/movies").then(function(pic) {
-	    	  console.log(pic.data);
+	    	  //console.log(pic.data);
 	    	  if (pic.data != null) {
 		    	  for ( var int = 0; int < pic.data.length; int++) {
 		  	    	//if (pic.data[int].category == 'Book' || pic.data[int].category == 'Movie' || pic.data[int].category == 'Musician/band' || pic.data[int].category == 'Tv show') {
@@ -57,7 +57,7 @@ angular.module('sassApp')
 	      });
 	      
 	      $facebook.api(id +"/music").then(function(pic) {
-	    	  console.log(pic.data);
+	    	  //console.log(pic.data);
 	    	  if (pic.data != null) {
 		    	  for ( var int = 0; int < pic.data.length; int++) {
 		  	    	//if (pic.data[int].category == 'Book' || pic.data[int].category == 'Movie' || pic.data[int].category == 'Musician/band' || pic.data[int].category == 'Tv show') {
@@ -102,34 +102,34 @@ angular.module('sassApp')
 
 
         profileOperations.checkGTKYRequest($scope.user_id).then(function(resp) {
-          console.log(resp.data);
+          //console.log(resp.data);
           $scope.chkuser = resp.data;
           if ($scope.chkuser == 'Say Hello'){
-            console.log("Say Hello");
+            //console.log("Say Hello");
             $scope.GTKY ="true";
             $scope.GTKY1 ="false";
             $scope.GTKY2 ="false";
             $scope.GTKY3 ="false";
           }else if($scope.chkuser == 'GTKY Send'){
-            console.log("GTKY Send");
+            //console.log("GTKY Send");
             $scope.GTKY ="false";
             $scope.GTKY1 ="true";
             $scope.GTKY2 ="false";
             $scope.GTKY3 ="false";
           }else if($scope.chkuser == 'Send Message'){
-            console.log("Send Message");
+            //console.log("Send Message");
             $scope.GTKY ="false";
             $scope.GTKY1 ="false";
             $scope.GTKY2 ="true";
             $scope.GTKY3 ="false";
           }else if ($scope.chkuser == 'Accept GTKY') {
-            console.log("Accept GTKY");
+            //console.log("Accept GTKY");
             $scope.GTKY ="false";
             $scope.GTKY1 ="false";
             $scope.GTKY2 ="false";
             $scope.GTKY3 ="true";
           }
-          console.log("Outside");      
+          //console.log("Outside");      
         });
 
         $scope.items = ['item1', 'item2', 'item3'];

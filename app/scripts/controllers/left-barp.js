@@ -23,13 +23,13 @@ angular.module('sassApp')
 
      $scope.thumbup='true';
      $scope.user_id = $routeParams.user_id;
-     console.log( $scope.user_id);
+     //console.log( $scope.user_id);
 
      profileOperations.getforumsOther($scope.user_id).then(function(response) {
       
-      console.log(response);    
+      //console.log(response);    
          $scope.discussion=response.data;
-          console.log($scope.discussion);        
+          //console.log($scope.discussion);        
      });
 
     $scope.profileverify = '50%';
@@ -41,7 +41,7 @@ angular.module('sassApp')
          var d1 = new Date($scope.userData.birthdate);
 	    	var d2 = new Date();
 			$scope.diff = d2.getFullYear()-d1.getFullYear();
-			console.log($scope.diff);
+			//console.log($scope.diff);
         // console.log($scope.userData.Picture);
          if ($scope.userData.linked_update == 1){
            $scope.thumbup = 'false';

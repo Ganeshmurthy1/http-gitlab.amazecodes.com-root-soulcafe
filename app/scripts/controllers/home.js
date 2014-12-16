@@ -35,11 +35,11 @@ angular.module('sassApp')
     //$scope.recomandation=localStorageService.get('recomm');
      regService.getHomeData().then(function (results) {
     	 $scope.updates=results.data.forum;
-       console.log($scope.getForumUpdates);
+       //console.log($scope.getForumUpdates);
        for (var i = 0; i < $scope.updates.length; i++) {
         var d2 = $scope.updates[i].CreatedDate;
        var d1 = new Date();
-       console.log(d1);
+       //console.log(d1);
         var dt=new Date(d2.replace(/-/g, '/'));
        
        $scope.updates[i].CreatedDate =timeSince(dt);
@@ -115,7 +115,7 @@ angular.module('sassApp')
     $scope.thumbup = 'true';
     $scope.profileverify = '75%';
     var authData = localStorageService.get('authorizationData');
-    console.log(authData.linked_update);
+    //console.log(authData.linked_update);
     if (authData.linked_update == 1){
         $scope.thumbup = 'false';
         $scope.profileverify = '100%';
@@ -155,7 +155,7 @@ angular.module('sassApp')
       $scope.otherProfile = function(userId){
       regService.getUserDetails(userId).then(function (results) {
         $scope.userD = results.data; 
-        console.log($scope.userD);
+        //console.log($scope.userD);
          if ($scope.userD.status == 0) {
           alert("Your profile is deactive. Please contact Customer care.");
         }else{
