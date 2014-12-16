@@ -166,8 +166,8 @@ $scope.addRating = function(rating){
   $scope.open = function (id) {
     console.log(id);
     var modalInstance = $modal.open({
-      templateUrl: 'myModalContent.html',
-      controller: 'ModalInstanceCtrl',
+      templateUrl: 'modalLikes.html',
+      controller: 'modalLikesCtrl',
       resolve: {
         items: function () {
           return id;
@@ -185,7 +185,7 @@ $scope.addRating = function(rating){
 
   });
 angular.module('sassApp')
-.controller('ModalInstanceCtrl', function ($scope, regService, profileOperations, localStorageService, $location, $modalInstance, items, config) {
+.controller('modalLikesCtrl', function ($scope, regService, profileOperations, localStorageService, $location, $modalInstance, items, config) {
 
   $scope.items = items;
   console.log($scope.items);

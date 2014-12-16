@@ -435,7 +435,7 @@ echo 'true';
 function getAllDiscussions() {
 
   $user_id  = getUserId();
-  $sql = "select * ,(select count(1) from DiscussionBoardUsers DBU where DBU.DiscussionBoardId=DB.DiscussionBoardId and DBU.UserId=:user ) as flag FROM DiscussionBoard DB where Status=1";
+  $sql = "select * ,(select count(1) from DiscussionBoardUsers DBU where DBU.DiscussionBoardId=DB.DiscussionBoardId and DBU.UserId=:user ) as flag FROM DiscussionBoard DB where Status=1 order by CreatedDate desc";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);

@@ -28,57 +28,10 @@
 	<div class="margin-top-10">
 		<div class=" clearfix ">
 			<div class="clabel row">INTERESTS</div>
-			<span class="interests float-left align-center">
-				<span class="glyphicon glyphicon-headphones gly"></span>
-				<div class="font">Music</div>
-			</span>
-			<span class="interests float-left align-center">
-				<span class="glyphicon glyphicon-cutlery gly"></span>
-				<div class="font">Food</div>
-			</span>
-			<span class="interests float-left align-center">
-				<span class="glyphicon glyphicon-plane gly"></span>
-				<div class="font">Travelling</div>
-			</span>
-			<span class="interests float-left align-center">
-				<span class="glyphicon glyphicon-cutlery gly"></span>
-				<div class="font">Food</div>
-			</span>
-			<span class="interests float-left align-center">
-				<span class="glyphicon glyphicon-plane gly"></span>
-				<div class="font">Travelling</div>
-			</span>
-			<span class="interests float-left align-center">
-				<span class="glyphicon glyphicon-headphones gly"></span>
-				<div class="font">Music</div>
-			</span>
-			
-			<span class="interests float-left align-center">
-				<span class="glyphicon glyphicon-plane gly"></span>
-				<div class="font">Travelling</div>
-			</span>
-			<span class="interests float-left align-center">
-				<span class="glyphicon glyphicon-headphones gly"></span>
-				<div class="font">Music</div>
-			</span>
-			<span class="interests float-left align-center">
-				<span class="glyphicon glyphicon-cutlery gly"></span>
-				<div class="font">Food</div>
-			</span>
-			
-			<span class="interests float-left align-center">
-				<span class="glyphicon glyphicon-headphones gly"></span>
-				<div class="font">Music</div>
-			</span>
-			<span class="interests float-left align-center">
-				<span class="glyphicon glyphicon-cutlery gly"></span>
-				<div class="font">Food</div>
-			</span>
-			<span class="interests float-left align-center">
-				<span class="glyphicon glyphicon-plane gly"></span>
-				<div class="font">Travelling</div>
-			</span>
-				
+			<span class="interests float-left align-center" ng-repeat="intst in interest">
+                <span class="glyphicon glyphicon-headphones gly"></span>
+                <div class="font">{{intst.Answer}}</div>
+            </span>
 				
 			
 		</div>

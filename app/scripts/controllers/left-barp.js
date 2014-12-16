@@ -27,9 +27,11 @@ angular.module('sassApp')
 
      profileOperations.getforumsOther($scope.user_id).then(function(response) {
       
-      //console.log(response);    
-         $scope.discussion=response.data;
-          //console.log($scope.discussion);        
+      console.log(response);    
+         $scope.discussion=response.data.forums;
+         $scope.interest =response.data.intrst;
+        console.log($scope.discussion);
+        console.log($scope.interest);        
      });
 
     $scope.profileverify = '50%';

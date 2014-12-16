@@ -161,17 +161,33 @@ function getforumsOther($id) {
    
   $sqlForums = "SELECT db.*,dbu.DiscussionBoardId FROM `DiscussionBoardUsers` as dbu inner join DiscussionBoard as db ON dbu.DiscussionBoardId = db.DiscussionBoardId WHERE dbu.UserId = :id";
   try {
-    $dbForums = getConnection();
-    $stmtForums = $dbForums->prepare($sqlForums);  
+    $db = getConnection();
+    $stmtForums = $db->prepare($sqlForums);  
     $stmtForums->bindParam("id",  $id );
     $stmtForums->execute();
     $wineForums = $stmtForums->fetchAll(PDO::FETCH_OBJ);
-     $db = null;
-    echo json_encode($wineForums);
+    
+    // echo json_encode($wineForums);
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}'; 
   }
 
+  $sqlInt = "SELECT qa.*,qo.Answer FROM QuestionnaireAnswer as qa inner join QuestionnaireOptions as qo on qa.OptionId=qo.QoId WHERE qa.QId = 57 and qa.UserId =:user_id";
+  try {
+    
+    $stmtInt = $db->prepare($sqlInt);  
+    $stmtInt->bindParam("user_id",  $id );
+    $stmtInt->execute();
+    $wineInt = $stmtInt->fetchAll(PDO::FETCH_OBJ);
+     $db = null;
+    // echo json_encode($wineInt);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+
+  $other['forums'] = $wineForums;
+  $other['intrst'] = $wineInt;
+  echo json_encode($other);
 }
 
 function addGTKYRequest() {

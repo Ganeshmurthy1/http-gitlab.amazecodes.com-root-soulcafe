@@ -162,7 +162,8 @@ angular
       })
       .when('/add-forum', {
         templateUrl: 'views/add-forum.html',
-        controller: 'AddForumCtrl'
+        controller: 'AddForumCtrl',
+        access:      access.user
       })
       .when('/edit-forum', {
         templateUrl: 'views/edit-forum.html',
