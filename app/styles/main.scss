@@ -288,6 +288,10 @@ body {
 .text-col-xs-right {
   text-align: right;
 }
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    background-color: #eeeeee;
+    cursor: default;
+}
 
 @media (min-width: 768px) {
   .text-col-sm-center {
