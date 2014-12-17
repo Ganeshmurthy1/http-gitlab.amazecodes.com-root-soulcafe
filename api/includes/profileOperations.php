@@ -17,6 +17,8 @@ $app->get('/get_home_data', 'getHomeData');
 $app->get('/get_MyProfileDetails', 'getMyProfileDetails');
 $app->get('/get_CommentLike/:id', 'getCommentLike');
 
+$app->get('/get_MyLifeValues/:id', 'getMyLifeValues');
+
 function getUserMatch() {
  
   // print_r( $user );
@@ -518,6 +520,25 @@ function getCommentLike($id) {
    // $user_id  = getUserId();
    
   $sql = "SELECT dbl.*,u.first_name,u.last_name,u.Picture FROM DiscussionBorardLikes as dbl inner join users as u on dbl.UserId = u.user_id  WHERE CommentId = :id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);  
+    $stmt->bindParam("id",  $id );
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    // echo 'true';
+     echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+
+}
+
+function getMyLifeValues($id) {
+   // $user_id  = getUserId();
+   
+  $sql = "SELECT qa.OptionId,qo.Answer FROM QuestionnaireAnswer as qa inner join QuestionnaireOptions as qo on qa.OptionId=qo.QoId WHERE qa.QId = 55 and qa.UserId =:id";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);  

@@ -24,6 +24,13 @@ angular.module('sassApp')
     $scope.user_id = $routeParams.user_id;
     $scope.profileverify = '75%';
     var authData = localStorageService.get('authorizationData');
+
+    profileOperations.getMyLifeValues($scope.user_id).then(function(response) {
+      console.log(response.data);
+      $scope.interests = response.data;
+      // console.log($scope.interest);
+     });
+
       regService.getUserDetails($scope.user_id).then(function (results) {
         //console.log(results.data);
         $scope.userData = results.data;
