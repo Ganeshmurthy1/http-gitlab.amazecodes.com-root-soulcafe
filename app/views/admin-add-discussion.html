@@ -62,17 +62,18 @@
 						<div class="row" data-ng-show="discussion.restriction">
 						<section class="col col-4">
                             <label class="select">
-                                <select name="gender" data-ng-model="discussion.gender">
-                                    <option disabled="" selected="" value="0">Gender</option>
+                                <select name="gender"  data-ng-model="discussion.gender">
+                               		 <option value="">All</option>
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>                                    
                                 </select>
-                                <i></i>
+                                
                             </label>
                         </section> 
                         <section class="col col-4">
                                 <label class="input">
-                                    <input type="number" name="name" placeholder="Age Limit" data-ng-model="discussion.age">
+                                    <input type="text" name="name" placeholder="Age Limit " data-ng-model="discussion.age">
+                                    Eg. 30
                                 </label>
                        </section>
                        <section class="col col-4">
