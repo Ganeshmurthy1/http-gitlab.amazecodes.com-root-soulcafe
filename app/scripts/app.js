@@ -220,7 +220,8 @@ angular
       })
       .when('/confirmGTKY', {
         templateUrl: 'views/confirmgtky.html',
-        controller: 'ConfirmgtkyCtrl'
+        controller: 'ConfirmgtkyCtrl',
+        access:      access.user
       })
       .when('/report-abuse-user', {
         templateUrl: 'views/report-abuse-user.html',
@@ -244,7 +245,8 @@ angular
       })
       .when('/accept-gtky', {
         templateUrl: 'views/accept-gtky.html',
-        controller: 'AcceptGtkyCtrl'
+        controller: 'AcceptGtkyCtrl',
+        access:      access.user
       })
        .when('/my-messages', {
         templateUrl: 'views/my-messages.html',
@@ -253,7 +255,8 @@ angular
       })
       .when('/reply-message', {
         templateUrl: 'views/reply-message.html',
-        controller: 'ReplyMessageCtrl'
+        controller: 'ReplyMessageCtrl',
+        access:      access.user
       })
       .when('/ad-discussion-list', {
         templateUrl: 'views/ad-discussion-list.html',
@@ -332,7 +335,8 @@ angular
       })
       .when('/question-edit', {
         templateUrl: 'views/question-edit.html',
-        controller: 'QuestionEditCtrl'
+        controller: 'QuestionEditCtrl',
+        access:      access.user
       })
       .when('/admin-manage-question', {
         templateUrl: 'views/admin-manage-question.html',
