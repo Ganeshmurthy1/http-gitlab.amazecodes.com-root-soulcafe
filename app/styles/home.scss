@@ -569,7 +569,17 @@ background: linear-gradient(270deg, #d8d6d2 6%, #f2f2f2 17%) repeat scroll 0 0 t
 		}
 	}
 }
+.img-class{
+	height: 140px;
+    width: 200px;
+}
+.color1{
+	background-color:#fff !important;
+}
 
+.color2{
+	background-color:#FFE5B4 !important;
+}
 /*--------------Media Queries-------------*/
 @media (min-width: 768px) {
 .message-list {

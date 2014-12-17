@@ -14,12 +14,21 @@
                         <a class="btn-u btn-u-sea" ng-click="joinButtonClick(discussionid)" ng-show="disable">Join</a>
                     </div> 
                     <div class="headline"><h1 class="heading-sm">{{topicName}}</h1></div>
-                     <div class="headline"><h3 class="heading-sm">Total Members : {{total}}</h3></div>
+                    <div class="row my-border">
+                        <div class="headline">
+                            <h3 class="heading-sm">Total Members : {{total}}</h3>
+                            <div class="pull-right">
+                            <a href="#/discussion-list">Discussion List</a>
+                        </div>
+                        </div>
+                        
+                    </div>
+                     
      
         <ul class="timeline-v1">
             <li ng-class-even="'timeline-inverted'" data-ng-repeat="discussion in discussions">
                 <div class="timeline-badge primary"><i class="glyphicon glyphicon-record"></i></div>
-                <div class="timeline-panel">
+                <div ng-class-odd="'timeline-panel color1'" ng-class-even="'timeline-panel color2'">
                     <div class="timeline-body text-justify">
                         <h2><a href="#/discussion?topic={{discussion.DiscussionTopicId}}">{{discussion.TopicTitle}}</a></h2>
                         <p>{{discussion.TopicDescription}}</p>

@@ -22,7 +22,10 @@
                    
                             <div class="panel-heading overflow-h">
                                 <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments"></i>{{topicName}}</h2>
-                            
+                                <div class="pull-right">
+                                    <a href="#/discussion-list">Discussion List</a> /
+                                    <a href="#/discussion-topics?discussionid={{id}}">Discussion topics</a>
+                                </div>
                             </div>            
               
               <div class="col-md-2">
@@ -35,7 +38,7 @@
                             </a>
                             <div class="media-body">
                                 <h4 class="media-heading">
-                                    <strong><a href="#">{{comment.first_name}}</a></strong>
+                                    <strong><a ng-click="otherProfile(comment.UserId)" href="">{{comment.first_name}}</a></strong>
                                     <small>{{comment.CommentDateTime}}</small>
                                 </h4>
                                 <p>{{comment.Comment}}.</p>
