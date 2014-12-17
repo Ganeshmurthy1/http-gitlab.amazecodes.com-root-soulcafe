@@ -14,7 +14,16 @@ angular.module('sassApp')
       'AngularJS',
       'Karma'
     ];
+    var d = {"name": "jiby", "age": '345'};
 
+    var ddd = {"name": d, "age": '24'};
+    
+    var k = 'name';
+    
+    
+    
+    console.log(ddd[k].age);
+    
     var config = localStorageService.get('config');
     $scope.imagepath = config.image_path;
     

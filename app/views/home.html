@@ -97,17 +97,16 @@
 					<div class="row">
 						<img class="rounded-x" ng-src="{{imagepath}}{{updts.Image}}"
 							alt="" style="width: 70px; height: auto; float: left;"></div>
-					<div class="row color-brown-light"><strong>{{updts.first_name}} {{updts.last_name}}</strong></div>
+					<div class="row color-brown-light">{{updts.first_name}} {{updts.last_name}}</div>
 					</div>
 							
 					<div class="col-md-10">
 						
 							
 							<div>
-								Forum - <strong class="color-brown-light">{{updts.Topic}}</strong>
+								<div class="font-20 color-brown-light">{{updts.Topic}}</div>
 							</div>
-							<a href="#/discussion?topic={{updts.DiscussionTopicId}}">Topic
-								- <strong class="color-brown-light">{{updts.TopicTitle}}</strong>
+							<a href="#/discussion?topic={{updts.DiscussionTopicId}}"><div class="font-16 color-brown-light">{{updts.TopicTitle}}</div>
 							</a>
 							<div>{{updts.CreatedDate}} ago</div>
 
