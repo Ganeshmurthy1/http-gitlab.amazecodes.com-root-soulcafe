@@ -32,8 +32,8 @@ angular.module('sassApp')
 
 		  if (response.data == 'true') {
 			  $scope.savedSuccessfully = true;
-              alert("The topic will be posted soon after review.");
-              $location.path('/discussion-list');
+             // alert("The topic will be posted soon after review.");
+              $location.url('/discussion-list?disp=1' );
               $scope.errMessage = false;
               $scope.topic = false;
 		  }

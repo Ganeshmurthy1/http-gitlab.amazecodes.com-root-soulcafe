@@ -25,8 +25,8 @@ $scope.reportAbuse ={};
         profileOperations.addAbuseUser($scope.reportAbuse).then(function(response) {
           console.log(response.data);
           if (response.data = 'true'){
-            alert("Thank You. We will take Necessary action!");
-            $location.path('/otherprofile');
+           // alert("Thank You. We will take Necessary action!");
+            $location.url('/otherprofile?user_id=' + $routeParams.user_id + '&abm=1' );
           }            
         });
       };

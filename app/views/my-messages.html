@@ -23,7 +23,10 @@
                             <div class="panel-heading overflow-h">
                                 <h2 class="panel-title heading-sm pull-left"><i class="fa fa-envelope-o"></i> tête-à-tête</h2>
                             
-                            </div>            
+                            </div>        
+                            <div class="pull-right">
+                                   <a class="btn-u btn-u-default glow" href="#/friends">New message to friend</a>
+                               </div>    
               
                             <div class="panel-body margin-bottom-50" >
                                 
@@ -35,7 +38,7 @@
                                     <div class="media-body">
                                         <h4 class="media-heading">
                                             <strong><a href="#">{{comment.first_name}}</a></strong>
-                                            <small>{{comment.AddedDate}}</small>
+                                            <small>{{comment.adDate | date:'yyyy-MM-dd'}}</small>
                                         </h4>
                                         <p>{{comment.Message}}.</p>
                                         <ul class="list-inline results-list pull-left">

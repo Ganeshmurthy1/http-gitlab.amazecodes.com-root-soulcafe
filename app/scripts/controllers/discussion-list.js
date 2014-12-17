@@ -8,13 +8,22 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('DiscussionListCtrl', function ($scope,$location,localStorageService,regService, config) {
+  .controller('DiscussionListCtrl', function ($scope,$location,localStorageService,regService, config, $routeParams) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
 
+    var abs = $routeParams.abm;
+    if(abs != undefined) {
+    	$scope.repotabuseMessage = true;
+    }
+    var disp = $routeParams.disp;
+    if(disp != undefined) {
+    	$scope.topicMessage = true;
+    }
+    
 var config = localStorageService.get('config');
     $scope.imagepath = config.image_path;
 

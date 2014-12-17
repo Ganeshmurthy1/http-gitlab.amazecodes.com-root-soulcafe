@@ -14,7 +14,12 @@ angular.module('sassApp')
       'AngularJS',
       'Karma'
     ];
-
+    var abs = $routeParams.abm;
+    if(abs != undefined) {
+    	$scope.repotabuseMessage = true;
+    }
+    
+    
     $scope.thumbup = 'true';
     $scope.user_id = $routeParams.user_id;
     $scope.profileverify = '75%';

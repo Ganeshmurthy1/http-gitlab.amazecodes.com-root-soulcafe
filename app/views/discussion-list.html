@@ -12,6 +12,20 @@
 <div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px ">
 
              	<div class="headline"><h1 class="heading-sm">Discussion Block</h1></div>
+             	<div class="row" ng-show="repotabuseMessage">
+					<div class="col-md-12">
+					<div class="alert alert-success fade in">
+				      The Forum will be posted soon after review.
+				    </div>
+					</div>
+				</div>
+				<div class="row" ng-show="topicMessage">
+					<div class="col-md-12">
+					<div class="alert alert-success fade in">
+				      The Topic will be posted soon after review.
+				    </div>
+					</div>
+				</div>
                 <div class="row pull-right">
                     <a class="btn-u btn-u-default glow" href="#/add-forum">Request For New forum</a>
                 </div> 
