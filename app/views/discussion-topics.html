@@ -30,7 +30,8 @@
                 <div class="timeline-badge primary"><i class="glyphicon glyphicon-record"></i></div>
                 <div ng-class-odd="'timeline-panel color1'" ng-class-even="'timeline-panel color2'">
                     <div class="timeline-body text-justify">
-                        <h2><a href="#/discussion?topic={{discussion.DiscussionTopicId}}">{{discussion.TopicTitle}}</a></h2>
+                        <h2 ng-hide="disable"><a href="#/discussion?topic={{discussion.DiscussionTopicId}}">{{discussion.TopicTitle}}</a></h2>
+                        <h2 ng-show="disable">{{discussion.TopicTitle}}</h2>
                         <p>{{discussion.TopicDescription}}</p>
                     </div>
                     <div class="timeline-footer">
