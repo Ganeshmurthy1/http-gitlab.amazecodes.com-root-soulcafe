@@ -99,13 +99,16 @@ angular.module('sassApp')
 		$scope.singleSelected = id;
 		console.log($scope.singleSelected);
     }
+    $scope.intensitySel = 0;
     $scope.selectMultipleIntensity = function(id) {        
     	
     	if ($scope.multiIntensityOptions[id].selected == true) {
     		$scope.multiIntensityOptions[id].selected = false;
+    		$scope.intensitySel--;
     	}
     	else {
     		$scope.multiIntensityOptions[id].selected = true;
+    		$scope.intensitySel++;
     	}
 		
     }
@@ -146,7 +149,8 @@ angular.module('sassApp')
 		}
     	else {
     		if ($scope.QuestionObj.Questions.MaxOptions == $scope.multipleOrdered.length) {
-    			alert('Maximum Selection is ' + $scope.QuestionObj.Questions.MaxOptions );
+    			$scope.errMessage = 'Maximum Selection is ' + $scope.QuestionObj.Questions.MaxOptions;
+    			//alert('Maximum Selection is ' + $scope.QuestionObj.Questions.MaxOptions );
     			return;
     			
     		}
@@ -172,24 +176,35 @@ angular.module('sassApp')
 			
 		
     }
-    
+    $scope.errMessage = '';
     $scope.addAnswer = function() {
-    	
+    	$scope.errMessage = '';
     	if ($scope.QuestionObj.Questions.AnswerSelectionType == 1) {
     		//console.log($scope.singleSelected);
     		if ($scope.singleSelected == null) {
-    			alert('Please select something :(');
+    			//alert('Please select something :(');
+    			$scope.errMessage = "Please select something :(";
     			return;
     		}
     		
     	}
-    	if ($scope.QuestionObj.Questions.AnswerSelectionType == 3) {
-    		if ($scope.multipleOrdered.length == 0) {
-    			alert('Please select something :(');
+    	if ($scope.QuestionObj.Questions.AnswerSelectionType == 2) {
+    		//alert('ppp');
+    		if ($scope.intensitySel == 0) {
+    			$scope.errMessage = "Please select something :(";
     			return;
 			}
     		
     	}
+    	if ($scope.QuestionObj.Questions.AnswerSelectionType == 3) {
+    		if ($scope.multipleOrdered.length == 0) {
+    			//alert('Please select something :(');
+    			$scope.errMessage = "Please select something :(";
+    			return;
+			}
+    		
+    	}
+    	
     	
     	
     	

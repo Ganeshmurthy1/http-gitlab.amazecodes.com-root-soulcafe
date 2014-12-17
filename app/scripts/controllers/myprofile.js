@@ -21,7 +21,7 @@ angular.module('sassApp')
         for ( var int = 0; int < pic.data.length; int++) {
 	        	var tmpdata = {};
 	            tmpdata.text = pic.data[int].name;
-	            tmpdata.weight = Math.floor(Math.random() * (15 - 5 + 1)) + 5;
+	            tmpdata.weight = Math.floor(Math.random() * (25 - 15 + 1)) + 15;
 	            likeData.push(tmpdata);
         }
       }
@@ -32,7 +32,7 @@ angular.module('sassApp')
         for ( var int = 0; int < pic.data.length; int++) {
 	        	var tmpdata = {};
 	            tmpdata.text = pic.data[int].name;
-	            tmpdata.weight = Math.floor(Math.random() * (15 - 5 + 1)) + 5;
+	            tmpdata.weight = Math.floor(Math.random() * (25 - 15 + 1)) + 15;
 	            likeData.push(tmpdata);
         }
       }
@@ -43,11 +43,23 @@ angular.module('sassApp')
         for ( var int = 0; int < pic.data.length; int++) {
 	        	var tmpdata = {};
 	            tmpdata.text = pic.data[int].name;
-	            tmpdata.weight = Math.floor(Math.random() * (15 - 5 + 1)) + 5;
+	            tmpdata.weight = Math.floor(Math.random() * (25 - 15 + 1)) + 15;
 	            likeData.push(tmpdata);
         }
       }
-    });   
+    });  
+    
+    $facebook.api("/me/likes").then(function(pic) {
+    	//console.log(pic.data);
+      if (pic.data != null) {
+        for ( var int = 0; int < pic.data.length; int++) {
+	        	var tmpdata = {};
+	            tmpdata.text = pic.data[int].name;
+	            tmpdata.weight = Math.floor(Math.random() * (25 - 15 + 1)) + 15;
+	            likeData.push(tmpdata);
+        }
+      }
+    });  
         
     $scope.words = likeData;
     
