@@ -195,7 +195,8 @@ angular
       })
       .when('/side-bar-superadmin', {
         templateUrl: 'views/side-bar-superadmin.html',
-        controller: 'SideBarSuperadminCtrl'
+        controller: 'SideBarSuperadminCtrl',
+        access:      access.admin
       })
       .when('/superadmin-message', {
         templateUrl: 'views/superadmin-message.html',
@@ -346,11 +347,13 @@ angular
       })
       .when('/admin-requested', {
         templateUrl: 'views/admin-requested.html',
-        controller: 'AdminRequestedCtrl'
+        controller: 'AdminRequestedCtrl',
+        access:      access.admin
       })
       .when('/admin-requested-topic', {
         templateUrl: 'views/admin-requested-topic.html',
-        controller: 'AdminRequestedTopicCtrl'
+        controller: 'AdminRequestedTopicCtrl',
+        access:      access.admin
       })
       .when('/edit-profile-other', {
         templateUrl: 'views/edit-profile-other.html',

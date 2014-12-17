@@ -475,7 +475,7 @@ function getdiscussionTopicComments($topic) {
 
    $user_id  = getUserId();
 
-   $sql = "SELECT DBC.CommentDateTime, DBC.UserId, DBC.Comment ,DBC.CommentId,users.first_name, (select count(1) from DiscussionBorardLikes DBL where DBL.CommentId=DBC.CommentId ) as likes,
+   $sql = "SELECT DBC.CommentDateTime, DBC.UserId, DBC.Comment ,DBC.CommentId,users.status,users.first_name, (select count(1) from DiscussionBorardLikes DBL where DBL.CommentId=DBC.CommentId ) as likes,
 (select count(1) from DiscussionBorardLikes DBL where DBL.CommentId=DBC.CommentId and DBL.UserId=:userId ) as likeflag ,(select count(1) from DiscussionBoardComments DSB where DSB.CommentId=DBC.CommentId and DSB.UserId=:userId ) as deleteflag
 FROM DiscussionBoardComments DBC INNER JOIN users ON DBC.UserId=users.User_Id where DiscussionTopicId=:topic and DBC.IsValid = 1 and DBC.profane=0" ;
  try {   
@@ -593,7 +593,7 @@ function getdiscussionListTopicName($topicId) {
 
 
 function getdiscussionTopicName($topicId) {
-   $sql = "SELECT TopicTitle from DiscussionBoardTopic where DiscussionTopicId=:disTopicId" ;
+   $sql = "SELECT TopicTitle,DiscussionBoardId from DiscussionBoardTopic where DiscussionTopicId=:disTopicId" ;
    try {   
       $db = getConnection();   
       $stmt = $db->prepare($sql);

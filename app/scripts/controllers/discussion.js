@@ -58,7 +58,9 @@ angular.module('sassApp')
     
     function getForumComments() {
       regService.getdiscussionTopicName($routeParams.topic).then(function (results) {
-        $scope.topicName = results.data[0].TopicTitle;        
+        console.log(results.data);
+        $scope.topicName = results.data[0].TopicTitle;
+        $scope.id = results.data[0].DiscussionBoardId;        
         });
 
       regService.getdiscussionTopicComments($routeParams.topic).then(function (results) {
@@ -81,6 +83,19 @@ console.log( $scope.comments);
        
             });
     }
+
+    $scope.otherProfile = function(userId){
+        
+          console.log($scope.comments[0].status);
+           if ($scope.comments[0].status == 0) {
+            alert("Your profile is deactive. Please contact Customer care.");
+          }else{
+            $location.url("/otherprofile?user_id="+$scope.comments[0].UserId);
+          }
+       
+          
+          
+        }
 
     $scope.abuseReport = function(arg) {
       console.log(arg);

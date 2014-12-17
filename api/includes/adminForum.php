@@ -700,7 +700,7 @@ function imageupload() {
 function getRequestedTopic() {
   
 
-   $sql = "SELECT dbt.TopicTitle,dbt.CreatedBy,dbt.DiscussionBoardId,dbt.DiscussionTopicId,dbt.Status,db.Topic,u.first_name,u.last_name FROM DiscussionBoardTopic as dbt inner join DiscussionBoard as db on dbt.DiscussionBoardId = db.DiscussionBoardId inner join users as u on dbt.CreatedBY = u.user_id WHERE dbt.createdStatus=1";
+   $sql = "SELECT dbt.TopicTitle,dbt.TopicDescription,dbt.CreatedBy,dbt.DiscussionBoardId,dbt.DiscussionTopicId,dbt.Status,db.Topic,u.first_name,u.last_name FROM DiscussionBoardTopic as dbt inner join DiscussionBoard as db on dbt.DiscussionBoardId = db.DiscussionBoardId inner join users as u on dbt.CreatedBY = u.user_id WHERE dbt.createdStatus=1 order by dbt.CreatedDate desc";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
