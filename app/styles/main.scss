@@ -324,7 +324,14 @@ body {
     text-align: right;
   }
 }
+.signup-page {
+header:after{content:" "; background-image:none !important; width:288px; height:31px; position:absolute; bottom:-31px; left:50%; margin-left:-155px; z-index:200}
+	.sky-form {
+		border: none !important;
+	}
 
+
+}
 header {
   background: url(../images/header-bg.png) repeat-x white;
   position: relative;

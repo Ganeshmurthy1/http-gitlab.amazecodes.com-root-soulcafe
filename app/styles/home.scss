@@ -479,6 +479,13 @@ min-width:220px !important;
 	border-radius:10px !important;
 	margin-right:15px;
 }
+
+.left-signup {
+	padding-top:100px;
+	p {
+		font-size: 16px;
+	}
+}
 .gredientSB{
 
 
@@ -932,7 +939,10 @@ input .form-control[disabled] .form-control[readonly] {
 }
 .home-desc {
 	color: #fff;
-	font-size:27px;
+	font-size:20px;
+	p {
+		padding-top:20px;	
+	}
 }
 .home-desc {
 	q {
