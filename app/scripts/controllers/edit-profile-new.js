@@ -114,6 +114,7 @@ angular.module('sassApp')
              $scope.temp = localStorageService.get('authorizationData');
              $scope.temp.picture = $scope.pict;
              $scope.temp.location = $scope.profileDetail.location;
+             $scope.temp.Moto = $scope.profileDetail.Moto;
              console.log($scope.temp);
              localStorageService.set('authorizationData', $scope.temp);
 
