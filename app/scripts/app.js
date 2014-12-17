@@ -323,7 +323,8 @@ angular
       })
       .when('/left-barP', {
         templateUrl: 'views/left-barp.html',
-        controller: 'LeftBarpCtrl'
+        controller: 'LeftBarpCtrl',
+        access:      access.user
       })
       .when('/question-list', {
         templateUrl: 'views/question-list.html',
@@ -343,7 +344,8 @@ angular
       })
       .when('/edit-profile-new', {
         templateUrl: 'views/edit-profile-new.html',
-        controller: 'EditProfileNewCtrl'
+        controller: 'EditProfileNewCtrl',
+        access:      access.user
       })
       .when('/admin-requested', {
         templateUrl: 'views/admin-requested.html',
