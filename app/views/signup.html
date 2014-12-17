@@ -264,6 +264,24 @@
             </div>
         </div>
 
+	 <div class="padding-bottom row clear">
+        <div class="col-lg-4"> Relationship Status</div>
+        	<div class="col-lg-6">
+	            <div  ng-class="{ 'has-error' : fbdataform.relation.$invalid && !fbdataform.relation.$pristine || fbdataform.relation.$invalid  && submitted }">
+	
+	        	<label class="select" >
+					<select name="relation" data-ng-model="fbdata.relation" required  >
+				
+				<option disabled="disabled" style="background-color:#3E3E3E"><font color="#000000"><i>-Top Metropolitan Cities-</i></font></option>
+				<option>Single</option> 
+				<option>Seperated</option>				
+				</select>
+				</label>
+	            <p ng-show="(fbdataform.relation.$invalid && !fbdataform.relation.$pristine) || (fbdataform.relation.$invalid  && submitted) " class="help-block">Add Valid Relationship Status.</p>
+	            </div>
+            </div>
+
+        </div>
         <div class="padding-bottom row clear">
         <div class="col-lg-4"> Mobile</div>
         	<div class="col-lg-6">

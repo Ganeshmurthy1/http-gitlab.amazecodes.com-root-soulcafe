@@ -250,7 +250,7 @@ function addUser() {
             $stmt->bindParam("birthdate", $bdate);
             $stmt->bindParam("hometown", $user->hometown->name);
             $stmt->bindParam("location", $user->mylocation);
-            $stmt->bindParam("relationship_status", $user->relationship_status);
+            $stmt->bindParam("relationship_status", $user->relation);
             $stmt->bindParam("mobile", $user->mobile);
             $stmt->bindParam("act_code", $mobile_rand);
             $stmt->bindParam("user_role", $role);
