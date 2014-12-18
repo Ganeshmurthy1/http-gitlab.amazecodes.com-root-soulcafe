@@ -102,7 +102,7 @@ function getBuddies() {
     echo '{"error":{"text":'. $e->getMessage() .'}}'; 
   }
   
-  $sqlForums = "SELECT count(1) as total_forum FROM `DiscussionBoardUsers` as dbu inner join DiscussionBoard as db ON dbu.DiscussionBoardId = db.DiscussionBoardId WHERE dbu.UserId = :user_id";
+  $sqlForums = "SELECT count(1) as total_forum FROM `DiscussionBoardUsers` as dbu inner join DiscussionBoard as db ON dbu.DiscussionBoardId = db.DiscussionBoardId WHERE dbu.UserId = :user_id and db.Status = 1";
   try {
     $dbForums = getConnection();
     $stmtForums = $dbForums->prepare($sqlForums);

@@ -8,18 +8,23 @@
                 <div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px ">
 
                      <!--=== Content Part ===-->
-                     <div class="row pull-right">
-                        <a class="btn-u btn-u-default glow " ng-click="removeUser()" ng-hide="disable">Get Removed</a>
-                        <a class="btn-u btn-u-default glow " href="#/add-topic?discussId={{discussionid}}" ng-hide="disable">Add New Topic</a>
-                        <a class="btn-u btn-u-sea" ng-click="joinButtonClick(discussionid)" ng-show="disable">Join</a>
-                    </div> 
-                    <div class="headline"><h1 class="heading-sm">{{topicName}}</h1></div>
+                    <div class="headline" style="margin-bottom:5px !important;">
+                        <h1 class="heading-sm">{{topicName}} ({{total}})</h1>
+                        <p>{{desc}}</p>
+                    </div>
                     <div class="row my-border">
-                        <div class="headline">
-                            <h3 class="heading-sm">Total Members : {{total}}</h3>
+                        <div class=" clearfix">
+                            <div class="pull-left">
+                                 <h4><a href="#/discussion-list">Discussion List</a></h4>
+                            </div>
                             <div class="pull-right">
-                            <a href="#/discussion-list">Discussion List</a>
-                        </div>
+                                <a class="btn-u btn-u-default glow " ng-click="removeUser()" ng-hide="disable">Get Removed</a>
+                            
+                                <a class="btn-u btn-u-default glow " href="#/add-topic?discussId={{discussionid}}" ng-hide="disable">Add New Topic</a>
+                           
+                                <a class="btn-u btn-u-sea" ng-click="joinButtonClick(discussionid)" ng-show="disable">Join</a>
+                            </div>
+                            
                         </div>
                         
                     </div>

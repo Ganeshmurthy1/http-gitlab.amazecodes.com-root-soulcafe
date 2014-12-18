@@ -583,8 +583,8 @@ background: linear-gradient(270deg, #d8d6d2 6%, #f2f2f2 17%) repeat scroll 0 0 t
 	}
 }
 .img-class{
-	height: 140px;
-    width: 200px;
+	height: 150px;
+    width: 245px;
 }
 .color1{
 	background-color:#fff !important;
@@ -594,8 +594,21 @@ background: linear-gradient(270deg, #d8d6d2 6%, #f2f2f2 17%) repeat scroll 0 0 t
 	background-color:#FFE5B4 !important;
 }
 
-input .form-control[disabled] .form-control[readonly] {
-	cursor:default !important;
+.thumbnail-style{
+    box-shadow: 0 0 8px #ddd;
+    transition: box-shadow 0.2s ease-in-out 0s;
+}
+.sky-form{
+	border: none !important;
+}
+.sky-form fieldset {
+    background: none !important;
+}
+.sky-form footer {
+    background: none !important;
+}
+.panel{
+	background: none !important;
 }
 
 /*--------------Media Queries-------------*/
@@ -1034,4 +1047,8 @@ input .form-control[disabled] .form-control[readonly] {
 
 .form-group span:hover{
 	cursor:pointer;
+}
+
+.bor{
+	border:1px solid red;
 }
