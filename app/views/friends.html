@@ -10,12 +10,15 @@
 <div class ="my-border col-xs-12 col-sm-4 col-md-3 gredientSB" data-ng-controller="SideBarCtrl" data-ng-include="SideBar"></div>
 
 <div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px ">
-	<div class="headline margin-right-12p"><h1 class="heading-sm">Buddies List</h1></div>
+     <div class="panel panel-profile">
+        <div class="headline">
+        <h1 class="heading-sm"> Buddies List</h1>
+    </div>
 	<div class="">
         <div class="marginleft clearfix margin-right-12p">
             <div class="row" style="margin:10px;" ng-repeat="frnd in friends">
             	<div class="row" style="padding-bottom:5px !important;border-bottom:1px solid #e4e9f0;">
-            		<img class="rounded-x" ng-src="{{imagepath}}{{frnd.Picture}}" alt="" style="width:100px;height:auto;float:left;">
+            		<img class="rounded-x" ng-src="{{imagepath}}{{frnd.Picture}}" alt="" style="width:100px;height:100px;float:left;">
                 <div class="friendN">
                     <div class="color-brown-light" style="font-size:20px;"><strong>{{frnd.first_name}} {{frnd.last_name}}</strong></div>
                     <div>{{frnd.location}}, {{frnd.hometown}}</div>
