@@ -107,18 +107,23 @@ h1 i, h2 i, h3 i, h4 i, h5 i, h6 i {
 .headline {
   display: block;
   margin: 10px 0 25px 0;
-  border-bottom: 1px dotted #e4e9f0;
+  border-bottom: 1px solid #ccc;
+  h1{
+   color:#593a1d !important;
+  }
   h2 {
     font-size: 22px;
     margin: 0 0 -2px 0;
-    padding-bottom: 5px;
+    padding-bottom: 15px;
     display: inline-block;
+    color:#593a1d !important;
     border-bottom: 2px solid #72c02c;
   }
   h3, h4 {
     margin: 0 0 -2px 0;
-    padding-bottom: 5px;
+    padding-bottom: 15px;
     display: inline-block;
+    color:#593a1d !important;
     border-bottom: 2px solid #72c02c;
   }
 }

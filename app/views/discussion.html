@@ -1,37 +1,40 @@
 <div data-ng-controller="HeaderCtrl" data-ng-include="Header">
 </div>
+    <div class="container-fluid body-pattern ">
+        <div class="container my-border body-pattern ">
+            <div class="row">
+                <div class ="my-border col-xs-12 col-sm-4 col-md-3 gredientSB" data-ng-controller="SideBarCtrl" data-ng-include="SideBar"></div>
 
-
-
-
-<div class="container-fluid body-pattern ">
-<div class="container my-border body-pattern ">
-<div class="row">
-<div class ="my-border col-xs-12 col-sm-4 col-md-3 gredientSB" data-ng-controller="SideBarCtrl" data-ng-include="SideBar"></div>
-
-<div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px ">
+                <div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px ">
                 <!--Profile Body-->
-                <div class="profile">
-                <div class="profile-body">  
-                    <!--Service Block v3-->
-
+                <div class="profile no-padding">
+                <div class="profile-body no-padding">  
                     <div class="alert alert-success fade in" ng-hide="hide">{{abuseSuccessMessage}}</div>
-
                     <div class="panel panel-profile">
-
-                   
-                            <div class="panel-heading overflow-h">
-                                <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments"></i>{{topicName}}</h2>
-                                <div class="pull-right">
-                                    <a href="#/discussion-list">Discussion List</a> /
-                                    <a href="#/discussion-topics?discussionid={{id}}">Discussion topics</a>
+                        <div class="headline" style="margin-bottom:5px !important;">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h1 class="heading-sm">{{topicName}}</h1>
                                 </div>
-                            </div>            
-              
-              <div class="col-md-2">
-                <span ng-repeat="rating in ratings"><div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)" ng-click="addRating(rating)"></div></span>
-                </div>              
-                    <div class="panel-body margin-bottom-50" >
+                                <div class="col-md-3">
+                                    <h1>
+                                    <span ng-repeat="rating in ratings"><div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)" ng-click="addRating(rating)"></div></span>
+                                    </h1>
+                                </div>
+                            </div>
+                        <p>{{desc}}</p>
+                    </div>
+                    <div class="row my-border">
+                        <div class=" clearfix">
+                            <div class="pull-left">
+                                 <h4><a href="#/discussion-list">Discussion List</a> /
+                                    <a href="#/discussion-topics?discussionid={{id}}">Discussion topics</a></h4>
+                            </div>
+                        </div>
+                        
+                    </div>           
+                         
+                    <div class="panel-body" >
                         <div class="media media-v2" data-ng-repeat="comment in comments">
                             <a class="pull-left" ng-click="userDetails(comment.UserId)">
                                 <img class="media-object rounded-x" ng-src="{{imagepath}}{{comment.Picture}}" alt="">
@@ -59,7 +62,7 @@
                                         <a href="" title="Delete" data-ng-click="deleteComment({{comment.CommentId}})">
                                         <i class="icon-custom rounded-x icon-bg-grey fa fa-trash-o"></i></a>
                                     </li>
-                                    <li>
+                                    <li data-ng-hide="{{userId == comment.UserId}}">
                                         <a title="Report Abuse" data-ng-click="abuseReport(comment)" style="cursor:pointer;"><i class="icon-custom rounded-x icon-bg-grey fa fa-ban"></i>
                                         </a>
                                     </li>

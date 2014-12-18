@@ -22,7 +22,8 @@ angular.module('sassApp')
     // console.log($scope.discussionid);
     regService.getdiscussionListTopicName($scope.discussionid).then(function (topicTotal) {
       console.log(topicTotal);
-        $scope.topicName = topicTotal.data[0].Topic;    
+        $scope.topicName = topicTotal.data[0].Topic;
+        $scope.desc = topicTotal.data[0].Description;    
       });
 
      regService.getdiscussionTopicDetails($scope.discussionid).then(function (results) {

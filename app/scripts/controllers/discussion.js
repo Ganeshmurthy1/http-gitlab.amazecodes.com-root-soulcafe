@@ -19,10 +19,10 @@ angular.module('sassApp')
     $scope.imagepath = config.image_path;
 
 
-      // $scope.ratings = [{
-      //       current: 1,
-      //       max: 5
-      //   }];
+      $scope.ratings = [{
+            current: 0,
+            max: 5
+        }];
 
         regService.getRating($routeParams.topic).then(function (results) {
               console.log(results.data.avg);
