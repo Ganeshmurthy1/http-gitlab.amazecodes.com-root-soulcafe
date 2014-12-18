@@ -14,6 +14,11 @@ angular.module('sassApp')
       'AngularJS',
       'Karma'
     ];
+    $scope.dateOptions = {
+            changeYear: true,
+            changeMonth: true,
+            dateFormat:'yy-mm-dd'
+        };
 
     var config = localStorageService.get('config');
     $scope.imagepath = config.image_path;
@@ -84,7 +89,7 @@ angular.module('sassApp')
          console.log(response);
          $scope.profileDetail = response.data;
          $scope.pict = $scope.imagepath + $scope.profileDetail.Picture;
-         $scope.profileDetail.birthdate = $filter('date')(new Date($scope.profileDetail.birthdate),'dd-MM-yyyy');
+        // $scope.profileDetail.birthdate = $filter('date')(new Date($scope.profileDetail.birthdate),'dd-mm-yy');
          console.log($scope.profileDetail.birthdate);
 
          if ($scope.profileDetail.linked_update == 1) {
@@ -220,66 +225,5 @@ angular.module('sassApp')
 
 
 
-
-
-$scope.today = function() {
-    $scope.dt = new Date();
-  };
-  $scope.today();
-
-  $scope.clear = function () {
-    $scope.dt = null;
-  };
-
-  // Disable weekend selection
-  $scope.disabled = function(date, mode) {
-    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-  };
-
-  $scope.toggleMin = function() {
-    $scope.minDate = $scope.minDate ? null : new Date();
-  };
-  $scope.toggleMin();
-
-  $scope.open = function($event) {
-    $event.preventDefault();
-    $event.stopPropagation();
-
-    $scope.opened = true;
-  };
-
-  $scope.dateOptions = {
-    formatYear: 'yy',
-    startingDay: 1
-  };
-
-  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-  $scope.format = $scope.formats[0];
-
-     
-  // Disable weekend selection
-//   $scope.disabled = function(date, mode) {
-//     return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-//   };
-
-//   $scope.toggleMin = function() {
-//     $scope.minDate = $scope.minDate ? null : new Date();
-//   };
-//   $scope.toggleMin();
-
-//   $scope.open = function($event) {
-//     $event.preventDefault();
-//     $event.stopPropagation();
-
-//     $scope.opened = true;
-//   };
-
-//   $scope.dateOptions = {
-//     formatYear: 'yy',
-//     startingDay: 1
-//   };
-// $scope.format={ };
-//   $scope.initDate = new Date('2016-15-20');
-//   $scope.formats = ['MM/dd/yyyy','yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-//   $scope.format = $scope.formats[0];
+      
   }]);
