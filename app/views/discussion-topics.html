@@ -15,7 +15,7 @@
                     <div class="row my-border">
                         <div class=" clearfix">
                             <div class="pull-left">
-                                 <h4><a href="#/discussion-list">Discussion List</a></h4>
+                                 <h4><a href="#/discussion-list" style="color:#5bc0de;">Discussion List</a></h4>
                             </div>
                             <div class="pull-right">
                                 <a class="btn-u btn-u-default glow " ng-click="removeUser()" ng-hide="disable">Get Removed</a>
@@ -35,8 +35,8 @@
                 <div class="timeline-badge primary"><i class="glyphicon glyphicon-record"></i></div>
                 <div ng-class-odd="'timeline-panel color1'" ng-class-even="'timeline-panel color2'">
                     <div class="timeline-body text-justify">
-                        <h2 ng-hide="disable"><a href="#/discussion?topic={{discussion.DiscussionTopicId}}">{{discussion.TopicTitle}}</a></h2>
-                        <h2 ng-show="disable">{{discussion.TopicTitle}}</h2>
+                        <h2 ng-hide="disable" ><a class="color-brown" href="#/discussion?topic={{discussion.DiscussionTopicId}}">{{discussion.TopicTitle}}</a></h2>
+                        <h2 ng-show="disable" class="color-brown">{{discussion.TopicTitle}}</h2>
                         <p>{{discussion.TopicDescription}}</p>
                     </div>
                     <div class="timeline-footer" ng-hide="disable">
