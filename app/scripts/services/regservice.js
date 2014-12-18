@@ -223,8 +223,8 @@ angular.module('sassApp')
             });
 	    	
 	    };
-	    dataFactory.updateRating = function (rating) {	     
-	    	return $http.post(urlBase + 'update_Rating',rating).then(function(response) {	    		
+	    dataFactory.insertRating = function (rating) {	     
+	    	return $http.post(urlBase + 'insert_Rating',rating).then(function(response) {	    		
                 return response;
             });
 	    	

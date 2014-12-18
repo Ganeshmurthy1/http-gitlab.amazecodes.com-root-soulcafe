@@ -19,27 +19,18 @@ angular.module('sassApp')
     $scope.imagepath = config.image_path;
 
 
-      $scope.ratings = [{
-            current: 1,
-            max: 5
-        }];
+      // $scope.ratings = [{
+      //       current: 1,
+      //       max: 5
+      //   }];
 
         regService.getRating($routeParams.topic).then(function (results) {
-             // console.log(results);
-             if(results.data.rating == 0){
-                $scope.ratings = [{
-               current: 1,
-                 max: 5
-                 }];
-             }else{
-              $scope.ratings.current = parseInt(results.data.rating);
-              console.log($scope.ratings.current);
+              console.log(results.data.avg);
               $scope.ratings = [{
-               current: $scope.ratings.current,
-                 max: 5
-                 }];
-             }
-              
+                  current:results.data.avg,
+                  max: 5
+              }];
+                       
         });
          
 
@@ -147,9 +138,17 @@ $scope.addRating = function(rating){
   console.log(rating);
   rating.topicId = $routeParams.topic;
   console.log(rating);
-      regService.updateRating(rating).then(function (results) {
+      regService.insertRating(rating).then(function (results) {
              console.log(results);
+             regService.getRating($routeParams.topic).then(function (results) {
+              console.log(results.data.avg);
+              $scope.ratings = [{
+                  current:results.data.avg,
+                  max: 5
+              }];
+                       
         });
+      });
 }
 
  regService.getPicture($scope.userId).then(function(response) {

@@ -36,7 +36,7 @@ $app->get('/get_Total_Members/:DiscussionBoardId', 'getTotalMembers');
 $app->get('/remove_User/:DiscussionBoardId', 'removeUser');
 $app->get('/get_Total_Comments/:DiscussionBoardId', 'getTotalComments');
 $app->get('/user_Joined/:DiscussionBoardId', 'userJoined');
-$app->post('/update_Rating',  'updateRating');
+$app->post('/insert_Rating',  'insertRating');
 $app->get('/get_Rating/:topicId', 'getRating');
 $app->get('/get_Picture/:id', 'getPicture');
 $app->get('/get_ProfilePictures/:DiscussionBoardId', 'getProfilePictures');
@@ -1152,17 +1152,34 @@ function userJoined($DiscussionBoardId) {
 }
 
 
-function updateRating() {
+function insertRating() {
   $request = Slim::getInstance()->request();
   $user = json_decode($request->getBody());
-  $sql = "UPDATE DiscussionBoardTopic set rating=:rating where DiscussionTopicId = :DiscussionTopicId";
+  $user_id  = getUserId();
+  $rdate = date('Y-m-d h:i:s');
+
+  
+  $sqlDel = "DELETE FROM `Rating` WHERE UserId = :user_id";
+  try {
+    $db = getConnection();
+    $stmtDel = $db->prepare($sqlDel);
+    $stmtDel->bindParam("user_id", $user_id);
+    $stmtDel->execute();
+    
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
+  $sql = "INSERT INTO `Rating`(`UserId`, `DiscussionTopicId`, `Rating`, `RatedDate`) VALUES (:user_id,:DiscussionTopicId,:rating,:rdate)";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
+     $stmt->bindParam("user_id", $user_id);
     $stmt->bindParam("DiscussionTopicId", $user->topicId);
      $stmt->bindParam("rating", $user->current);
+     $stmt->bindParam("rdate", $rdate);
     $stmt->execute();
-    
+    $db = null;
      echo 'true';
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
@@ -1172,7 +1189,7 @@ function updateRating() {
 
 
 function getRating($topicId) {
-   $sql = "SELECT rating from DiscussionBoardTopic where DiscussionTopicId=:disTopicId" ;
+   $sql = "SELECT AVG(Rating) as avg from Rating where DiscussionTopicId=:disTopicId" ;
    try {   
       $db = getConnection();   
       $stmt = $db->prepare($sql);
