@@ -18,18 +18,20 @@ angular.module('sassApp')
     var config = localStorageService.get('config');
     $scope.imagepath = config.image_path;
 
-
-      $scope.ratings = [{
-            current: 0,
-            max: 5
-        }];
-
         regService.getRating($routeParams.topic).then(function (results) {
               console.log(results.data.avg);
-              $scope.ratings = [{
+              if(results.data.avg == null){
+                $scope.ratings = [{
+                    current: 1,
+                    max: 5
+                }];
+              }else{
+                $scope.ratings = [{
                   current:results.data.avg,
                   max: 5
               }];
+              }
+              
                        
         });
          

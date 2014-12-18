@@ -39,30 +39,21 @@
                         <h2 ng-show="disable">{{discussion.TopicTitle}}</h2>
                         <p>{{discussion.TopicDescription}}</p>
                     </div>
-                    <div class="timeline-footer">
+                    <div class="timeline-footer" ng-hide="disable">
                         <ul class="list-unstyled list-inline blog-info">
-                            <li style="list-style:none;"><i class="fa fa-comments" ng-hide="disable"  style="margin-right:5px;"></i>{{discussion.totalComments}} Comments</li>
+                            <li style="list-style:none;"><a href="#/discussion?topic={{discussion.DiscussionTopicId}}"><i class="fa fa-comments" ng-hide="disable"  style="margin-right:5px;"></i>{{discussion.totalComments}} Comments </a></li>
+                            
                         </ul>
+                        
+                    </div>
+                    <div class="timeline-footer" ng-show="disable">
+                        <ul  class="list-unstyled list-inline blog-info">
+                        <li style="list-style:none;"><i class="fa fa-comments" ng-hide="disable"  style="margin-right:5px;"></i>{{discussion.totalComments}} Comments</li>
+                    </ul>
                     </div>
                 </div>
             </li>
-            <!-- <li class="timeline-inverted">
-                <div class="timeline-badge primary"><i class="glyphicon glyphicon-record invert"></i></div>
-                <div class="timeline-panel">
-                    <div class="timeline-body text-justify">
-                        <h2><a href="#">Timeline Heading</a></h2>
-                        <p>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                        <a class="btn-u btn-u-sm" href="#">Read More</a>
-                    </div>
-                    <div class="timeline-footer">
-                        <ul class="list-unstyled list-inline blog-info">
-                            <li><i class="fa fa-clock-o"></i> March 16, 2014</li>
-                            <li><i class="fa fa-comments-o"></i> <a href="#">12 Comments</a></li>
-                        </ul>
-                        <a class="likes" href="#"><i class="fa fa-heart"></i>87</a>
-                    </div>
-                </div>
-            </li> -->
+            
             <li class="clearfix" style="float: none;"></li>
         </ul>
     </div><!--/container-->     
