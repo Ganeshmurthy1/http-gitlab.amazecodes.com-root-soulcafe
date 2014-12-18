@@ -611,7 +611,7 @@ function adminGetMyForums() {
       $user_id = getUserId();
       $request = Slim::getInstance()->request();
       $forum = json_decode($request->getBody());
-      $sqlCp = "select db.DiscussionBoardId,db.Topic,db.Description,db.CreatedBy,db.Status,db.Image from DiscussionBoard as db join UserPermissions as u on db.DiscussionBoardId=u.ItemId where u.userId=12 and u.PermissionId=1 order by db.CreatedBy desc";
+      $sqlCp = "select db.DiscussionBoardId,db.Topic,db.Description,db.CreatedBy,db.Status,db.Image from DiscussionBoard as db join UserPermissions as u on db.DiscussionBoardId=u.ItemId where u.userId=:user_id and u.PermissionId=1 order by db.CreatedBy desc";
     //  $lm = ' Limit ' . $forum->start . ',' . $forum->limit;
     //  $sqlCp .= $lm;
       try {
