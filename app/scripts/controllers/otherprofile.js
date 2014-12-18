@@ -20,11 +20,18 @@ angular.module('sassApp')
     }
     
     
+    
     $scope.thumbup = 'true';
     $scope.user_id = $routeParams.user_id;
     $scope.profileverify = '75%';
     var authData = localStorageService.get('authorizationData');
     $scope.udata = authData;
+    if($scope.user_id == authData.user_id) {
+    	$location.path('/myprofile');
+    }
+    
+    
+    
     // console.log($scope.udata.user_id);
     profileOperations.getMyLifeValues($scope.user_id).then(function(response) {
       console.log(response.data);
