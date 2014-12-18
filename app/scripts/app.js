@@ -28,7 +28,8 @@ angular
     'angular-jqcloud',
     'angular-carousel',
     'slick',
-    'angular-loading-bar'
+    'angular-loading-bar',
+    'ui.date'
   ])
   .config(['$routeProvider', '$facebookProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $facebookProvider, $locationProvider, $httpProvider) {
 	
