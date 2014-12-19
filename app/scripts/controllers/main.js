@@ -137,7 +137,8 @@ angular.module('sassApp')
 						    localStorageService.set('fbpicture', {fbpicture:pic});
 						   var fbbbbdata = localStorageService.get('fbpicture');
 							//console.log(fbbbbdata);
-							 $location.path('/signup');
+						   $scope.open();
+							// $location.path('/signup');
 					  });
 
 	                     //  var fbbbbdata = localStorageService.get('facebookData');
