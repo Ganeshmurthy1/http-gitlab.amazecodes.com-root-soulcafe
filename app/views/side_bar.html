@@ -6,7 +6,7 @@
         <img src="images/div.png" alt="" >
         <div class="add">Lives In : {{sideData.location}}</div>
         <div class="add">Works at : {{sideData.employment}}
-            <a class="pull-right" style="color:#5bc0de;" href="#/edit-profile-new">More...</a>
+            <a class="pull-right" style="color:#5bc0de;" href="#/edit-profile-new">More..</a>
         </div>
         <!-- <div class="pull-right morebutton add"><a style="color:#5bc0de;" href="#/edit-profile-new">More...</a></div> -->
     </div>
@@ -26,17 +26,24 @@
                     <div class="color-brown-light"><a class="profile_link" ng-click="otherProfile({{frnd.BuddyId}})"><strong>{{frnd.first_name}} {{frnd.last_name}}</strong></a></div>
                     <div>{{ frnd.Moto | limitTo : 15}}..</div>
                 </div>
+                <div ng-show="totalfriends > 10" class="col-md-12">
+            	<a class= "clearfix pull-right" style="color:#5bc0de;font-size:15px;" href="#/friends">More..</a>
+            </div>
             </div>
         </div>
     </div>
 
         <div class="margin-top-10 hideblck">
             <div class=" clearfix">
-            <div class="clabel row" ><a class="color-white" href="#/discussion-list">FORUMS ({{totalforum}})</a></div>
+            <div class="clabel row" ><i class="fa fa-lock"></i> <a class="color-white" href="#/discussion-list">FORUMS ({{totalforum}})</a> </div>
             <div class="col-md-12">
 	            <span ng-repeat="diss in discussion">
 	                <a class="sublabel uppercase123" href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}">{{diss.Topic}}</a>
 	            </span>
+	            
+            </div>
+            <div ng-show="totalforum > 10" class="col-md-12">
+            	<a class= "clearfix pull-right" style="color:#5bc0de;font-size:15px;" href="#/discussion-list">More..</a>
             </div>
             </div>
         </div>

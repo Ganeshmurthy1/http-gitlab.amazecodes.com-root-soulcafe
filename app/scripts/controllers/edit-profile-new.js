@@ -85,21 +85,39 @@ angular.module('sassApp')
     };
 
 
-     regService.getProfileDetail().then(function (response) {
-        // console.log(response);
-         $scope.profileDetail = response.data;
-         $scope.pict = $scope.imagepath + $scope.profileDetail.Picture;
-        // $scope.profileDetail.birthdate = $filter('date')(new Date($scope.profileDetail.birthdate),'dd-mm-yy');
-         //console.log($scope.profileDetail.birthdate);
+//     regService.getProfileDetail().then(function (response) {
+//        // console.log(response);
+//         $scope.profileDetail = response.data;
+//         $scope.pict = $scope.imagepath + $scope.profileDetail.Picture;
+//        // $scope.profileDetail.birthdate = $filter('date')(new Date($scope.profileDetail.birthdate),'dd-mm-yy');
+//         //console.log($scope.profileDetail.birthdate);
+//
+//         if ($scope.profileDetail.linked_update == 1) {
+//          $scope.updateButton = 'true';
+//          $scope.disable = 'false';
+//          //console.log($scope.disable);
+//         }else if ($scope.profileDetail.linked_update == 0) {
+//         	$scope.disable = 'true';
+//         }
+//      });
 
-         if ($scope.profileDetail.linked_update == 1) {
-          $scope.updateButton = 'true';
-          $scope.disable = 'false';
-          //console.log($scope.disable);
-         }else if ($scope.profileDetail.linked_update == 0) {
-         	$scope.disable = 'true';
-         }
-      });
+     regService.getEditProfileDetail().then(function (response) {
+         // console.log(response);
+          $scope.profileDetail = response.data.profile;
+          $scope.questions = response.data.question;
+          $scope.religion = response.data.religion[0].Answer;
+          $scope.pict = $scope.imagepath + $scope.profileDetail.Picture;
+         // $scope.profileDetail.birthdate = $filter('date')(new Date($scope.profileDetail.birthdate),'dd-mm-yy');
+          //console.log($scope.profileDetail.birthdate);
+
+          if ($scope.profileDetail.linked_update == 1) {
+           $scope.updateButton = 'true';
+           $scope.disable = 'false';
+           //console.log($scope.disable);
+          }else if ($scope.profileDetail.linked_update == 0) {
+          	$scope.disable = 'true';
+          }
+       });
 
 
   $scope.saveButtonClick = function(){
@@ -141,13 +159,13 @@ angular.module('sassApp')
   	
   }
 
-  getAllQuestion();
-    function getAllQuestion(){
-      Questionnaire.getAllQuestionsUser().then(function (response) {
-        //console.log(response.data);
-        $scope.questions = response.data;
-    });
-    }
+//  getAllQuestion();
+//    function getAllQuestion(){
+//      Questionnaire.getAllQuestionsUser().then(function (response) {
+//        //console.log(response.data);
+//        //$scope.questions = response.data;
+//    });
+//    }
 
     $scope.imageErr = '';
     $scope.imageSucc = '';

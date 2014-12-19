@@ -8,28 +8,31 @@
                 <div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px ">
                 <!--Profile Body-->
                 <div class="profile no-padding">
-                <div class="profile-body no-padding">  
+                <div class="profiled-body no-padding">  
                     <div class="alert alert-success fade in" ng-hide="hide">{{abuseSuccessMessage}}</div>
                     <div class="panel panel-profile">
                         <div class="headline" style="margin-bottom:5px !important;">
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-12">
                                     <h1 class="heading-sm">{{topicName}}</h1>
                                 </div>
-                                <div class="col-md-3">
-                                    <h1>
-                                    <span ng-repeat="rating in ratings"><div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)" ng-click="addRating(rating)"></div></span>
-                                    </h1>
-                                </div>
+                                
                             </div>
+                           
                         <p>{{desc}}</p>
                     </div>
+
                     <div class="row my-border">
-                        <div class=" clearfix">
-                            <div class="pull-left">
+                        <div class="col-md-8">
+                            <div >
                                  <h4><a href="#/discussion-list" style="color:#5bc0de;">Discussion List</a> /
                                     <a href="#/discussion-topics?discussionid={{id}}" style="color:#5bc0de;">Discussion topics</a></h4>
                             </div>
+                        </div>
+                        <div class="col-md-4">
+                                    <h1>
+                                    <span ng-repeat="rating in ratings"><div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)" ng-click="addRating(rating)"></div></span>
+                                    </h1>
                         </div>
                         
                     </div>           
