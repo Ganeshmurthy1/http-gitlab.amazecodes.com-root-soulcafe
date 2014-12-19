@@ -14,6 +14,11 @@
         <div class="headline">
         <h1 class="heading-sm"> Buddies List</h1>
     </div>
+    <div class="padding-bottom row clear" ng-show="{{status == 1}}">
+        <div class="alert alert-success fade in">
+                Your brewing request is sent !!!!
+        </div>
+    </div>
 	<div class="">
         <div class="marginleft clearfix margin-right-12p">
             <div class="row" style="margin:10px;" ng-repeat="frnd in friends">
@@ -22,8 +27,8 @@
                 <div class="friendN">
                     <div class="color-brown-light" style="font-size:20px;"><strong>{{frnd.first_name}} {{frnd.last_name}}</strong></div>
                     <div>{{frnd.location}}, {{frnd.hometown}}</div>
-                    <a href="#/reply-message?sid={{frnd.user_id}}"><i class="fa fa-1x fa-comment-o"></i> Send Message</a>
-                    
+                    <a href="#/reply-message?sid={{frnd.user_id}}"><i class="fa fa-lg fa-comment-o"></i> Send Message</a>
+                    <div ><a class="color-red" href="#/special-feeling-request?user_id={{frnd.user_id}}"><i class="fa fa-lg fa-heart"></i></a></div>
 
                 </div>
             	</div>

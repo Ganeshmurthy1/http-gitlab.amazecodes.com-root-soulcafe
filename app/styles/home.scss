@@ -80,6 +80,9 @@ body{
 .color-brown{
 	color:#593a1d !important;
 }
+.color-red{
+	color:#FF0000 !important;
+}
 .color-brown-light{
 	color:#98754f !important;
 }
@@ -151,7 +154,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6e6e6', end
 	margin-left:9% !important;
 }
 .margin-top-10{
-	margin-top:10% !important;
+	margin-top:10px !important;
 }
 .margin-top-5{
 	margin-top:5% !important;
@@ -630,6 +633,9 @@ background: linear-gradient(270deg, #f2f2f2 80%, #d8d6d2 88%) repeat scroll 0 0 
 }
 .panel{
 	background: none !important;
+}
+.feelingBtn{
+	margin:20px 10px 0px 0px;
 }
 
 /*--------------Media Queries-------------*/
