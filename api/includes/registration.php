@@ -239,11 +239,13 @@ function addUser() {
          $mobile_rand = rand(11111, 99999);
          $name = $user->first_name. ' ' . $user->last_name;
          $role = 2;
+         $status = 1;
       
-          $sql = "INSERT INTO users (fb_id, first_name, last_name, email, gender, birthdate, hometown, location, relationship_status, mobile, act_code, user_role,Picture) VALUES (:fb_id, :first_name, :last_name, :email, :gender, :birthdate, :hometown, :location, :relationship_status, :mobile, :act_code, :user_role,:Picture)";
+          $sql = "INSERT INTO users (status,fb_id, first_name, last_name, email, gender, birthdate, hometown, location, relationship_status, mobile, act_code, user_role,Picture) VALUES (:status, :fb_id, :first_name, :last_name, :email, :gender, :birthdate, :hometown, :location, :relationship_status, :mobile, :act_code, :user_role,:Picture)";
           try {
             $db = getConnection();
             $stmt = $db->prepare($sql);  
+            $stmt->bindParam("status", $status);
             $stmt->bindParam("fb_id", $user->id);
             $stmt->bindParam("first_name", $user->first_name);
             $stmt->bindParam("last_name", $user->last_name);
