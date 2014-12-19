@@ -1013,7 +1013,16 @@ function updateProfileDetail() {
   $request = Slim::getInstance()->request();
   $user = json_decode($request->getBody());
   $birthdate = date('Y-m-d', strtotime($user->birthdate));
+  $tdate = date('Y-m-d');
 
+  $diff = abs(strtotime($tdate) - strtotime($birthdate));
+  $years = floor($diff / (365*60*60*24));
+  if($years < 22) {
+    echo 'false';
+    exit();
+  }
+  
+  
   $user_id  = getUserId();
     // print_r($user);
   if (!empty($user->UpdatedPicture)) {
