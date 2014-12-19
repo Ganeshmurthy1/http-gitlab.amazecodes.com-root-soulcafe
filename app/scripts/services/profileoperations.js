@@ -158,5 +158,13 @@ angular.module('sassApp')
           return response;
         });  
     };
+    
+    dataFactory.checkFeelingStatus = function (id) {
+        // console.log(id); 
+          return $http.get(urlBase + 'check_feelings_status/'+id).then(function(response) {
+           //console.log(response);
+            return response;
+          });  
+      };
     return dataFactory;
   }]);

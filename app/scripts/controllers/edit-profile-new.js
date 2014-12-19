@@ -17,7 +17,8 @@ angular.module('sassApp')
     $scope.dateOptions = {
             changeYear: true,
             changeMonth: true,
-            dateFormat:'yy-mm-dd'
+            dateFormat:'yy-mm-dd',
+            maxDate: "-22Y"
         };
 
     var config = localStorageService.get('config');
@@ -119,7 +120,7 @@ angular.module('sassApp')
           }
        });
 
-
+     $scope.errorMessage = '';
   $scope.saveButtonClick = function(){
   	//console.log($scope.profileDetail);
   	$scope.profileDetail.UpdatedPicture=$scope.image;
@@ -155,6 +156,9 @@ angular.module('sassApp')
 
           });
          	 
+         }else {
+        	 $scope.errorMessage = 'Please select a valid birthdate';
+        	 
          }
       });
   	
