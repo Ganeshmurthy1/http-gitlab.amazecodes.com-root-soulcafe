@@ -35,7 +35,7 @@
                 
                 <!-- Thumbnails v2 -->
                 <div class=" clearfix row">
-                    <div class="col-md-4 " ng-repeat="diss in discussionData" ng-show="diss.show" ng-class="{clearfix:$index % 3==0}">
+                    <div class="col-md-4 " ng-repeat="diss in discussionData" ng-show="diss.show" >
                         <div class="thumbnails thumbnail-style" >
                             <a href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}"><img class="img-responsive img-class" src="{{imagepath}}{{diss.Image}}" alt="" /></a>
                             <div class="caption">
