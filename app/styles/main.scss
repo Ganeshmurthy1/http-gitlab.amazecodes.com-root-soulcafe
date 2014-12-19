@@ -423,6 +423,28 @@ header {
     font-size: 24px;
   }
 }
+.paddingman-error {
+	padding-top:40%;
+}
+#error-banner {
+  background: url(../images/error.jpg) no-repeat center center;
+ // background-size: cover;
+  min-height: 250px;
+  
+  h1 {
+    
+    margin: 0;
+    padding: 15px 20px;
+    font-size: 30px;
+  }
+  h2 {
+    
+    margin: 0;
+    padding: 8px 20px;
+    color: #FFF;
+    font-size: 24px;
+  }
+}
 
 #index-form-holder {
   position: relative;

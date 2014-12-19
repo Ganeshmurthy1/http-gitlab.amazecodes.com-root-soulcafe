@@ -28,6 +28,9 @@ angular.module('sassApp')
 	        if (rejection.status === 401) {
 	            $location.path('/');
 	        }
+	        if (rejection.status === 500) {
+	            $location.path('/page-error');
+	        }
 	        return $q.reject(rejection);
 	    }
 

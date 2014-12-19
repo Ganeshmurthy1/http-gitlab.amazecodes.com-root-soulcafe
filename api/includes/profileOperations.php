@@ -61,6 +61,7 @@ function getForumUpdates() {
 function getBuddies() {
  
   // print_r( $user );
+  //$j = $k/0;
   $user_id  = getUserId();
    
   $sql = "SELECT u.first_name, u.last_name, u.Picture, u.Moto,b.BuddyId FROM `Buddies` as b inner join users as u on b.BuddyId = u.user_id  WHERE b.SenderId = :user_id and b.Status = 1 Limit 0, 10";

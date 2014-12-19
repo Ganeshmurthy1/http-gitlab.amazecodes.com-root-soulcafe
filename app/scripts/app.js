@@ -384,6 +384,11 @@ angular
         templateUrl: 'views/leftbar-quiz.html',
         controller: 'LeftbarQuizCtrl'
       })
+      .when('/page-error', {
+        templateUrl: 'views/page-error.html',
+        controller: 'PageErrorCtrl',
+        access:      access.public
+      })
       .otherwise({
         redirectTo: '/'
       });

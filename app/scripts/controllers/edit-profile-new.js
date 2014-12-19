@@ -138,6 +138,7 @@ angular.module('sassApp')
              $scope.temp.picture = $scope.pict;
              $scope.temp.location = $scope.profileDetail.location;
              $scope.temp.Moto = $scope.profileDetail.Moto;
+             $scope.temp.birthdate = $scope.profileDetail.birthdate;
              //console.log($scope.temp);
              localStorageService.set('authorizationData', $scope.temp);
 
