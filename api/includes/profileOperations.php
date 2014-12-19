@@ -70,6 +70,7 @@ function getForumUpdates() {
 function getBuddies() {
  
   // print_r( $user );
+  //$j = $k/0;
   $user_id  = getUserId();
    
   $sql = "SELECT u.first_name, u.last_name, u.Picture, u.Moto,b.BuddyId FROM `Buddies` as b inner join users as u on b.BuddyId = u.user_id  WHERE b.SenderId = :user_id and b.Status = 1 Limit 0, 10";
@@ -98,7 +99,7 @@ function getBuddies() {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
 
-  $sqlForums = "SELECT db.Topic,dbu.DiscussionBoardId FROM `DiscussionBoardUsers` as dbu inner join DiscussionBoard as db ON dbu.DiscussionBoardId = db.DiscussionBoardId WHERE dbu.UserId = :user_id and db.Status = 1";
+  $sqlForums = "SELECT db.Topic,dbu.DiscussionBoardId FROM `DiscussionBoardUsers` as dbu inner join DiscussionBoard as db ON dbu.DiscussionBoardId = db.DiscussionBoardId WHERE dbu.UserId = :user_id and db.Status = 1 Limit 0, 10";
   try {
     $dbForums = getConnection();
     $stmtForums = $dbForums->prepare($sqlForums);  
@@ -111,7 +112,7 @@ function getBuddies() {
     echo '{"error":{"text":'. $e->getMessage() .'}}'; 
   }
   
-  $sqlForums = "SELECT count(1) as total_forum FROM `DiscussionBoardUsers` as dbu inner join DiscussionBoard as db ON dbu.DiscussionBoardId = db.DiscussionBoardId WHERE dbu.UserId = :user_id and db.Status = 1";
+  $sqlForums = "SELECT count(1) as total_forum FROM `DiscussionBoardUsers` as dbu inner join DiscussionBoard as db ON dbu.DiscussionBoardId = db.DiscussionBoardId WHERE dbu.UserId = :user_id and db.Status = 1 Limit 0, 10";
   try {
     $dbForums = getConnection();
     $stmtForums = $dbForums->prepare($sqlForums);
@@ -170,7 +171,7 @@ function getforumsOther($id) {
   // print_r( $user );
   // $user_id  = getUserId();
    
-  $sqlForums = "SELECT db.*,dbu.DiscussionBoardId FROM `DiscussionBoardUsers` as dbu inner join DiscussionBoard as db ON dbu.DiscussionBoardId = db.DiscussionBoardId WHERE dbu.UserId = :id";
+  $sqlForums = "SELECT db.*,dbu.DiscussionBoardId FROM `DiscussionBoardUsers` as dbu inner join DiscussionBoard as db ON dbu.DiscussionBoardId = db.DiscussionBoardId WHERE dbu.UserId = :id Limit 0,10";
   try {
     $db = getConnection();
     $stmtForums = $db->prepare($sqlForums);  
@@ -181,6 +182,19 @@ function getforumsOther($id) {
     // echo json_encode($wineForums);
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+  
+  $sqlForums = "SELECT count(1) as totalForum FROM `DiscussionBoardUsers` as dbu inner join DiscussionBoard as db ON dbu.DiscussionBoardId = db.DiscussionBoardId WHERE dbu.UserId = :id";
+  try {
+    //$db = getConnection();
+    $stmtForums = $db->prepare($sqlForums);
+    $stmtForums->bindParam("id",  $id );
+    $stmtForums->execute();
+    $wineForumsTotal = $stmtForums->fetchObject();
+  
+    // echo json_encode($wineForums);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
 
   $sqlInt = "SELECT qa.*,qo.Answer FROM QuestionnaireAnswer as qa inner join QuestionnaireOptions as qo on qa.OptionId=qo.QoId WHERE qa.QId = 57 and qa.UserId =:user_id";
@@ -197,6 +211,7 @@ function getforumsOther($id) {
   }
 
   $other['forums'] = $wineForums;
+  $other['forums_total'] = $wineForumsTotal->totalForum;
   $other['intrst'] = $wineInt;
   echo json_encode($other);
 }

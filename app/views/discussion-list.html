@@ -34,26 +34,27 @@
                 </div> 
                 
                 <!-- Thumbnails v2 -->
-                <div class=" clearfix row">
-                    <div class="col-md-4 " ng-repeat="diss in discussionData" ng-show="diss.show" >
+                <div class="clearfix row">
+                	<div  ng-repeat="diss in discussionData" ng-show="diss.show">
+                    <div class="col-md-4 " >
                         <div class="thumbnails thumbnail-style" >
                             <a href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}"><img class="img-responsive img-class" src="{{imagepath}}{{diss.Image}}" alt="" /></a>
                             <div class="caption">
-                                <div class="clearfix">
+                                <div class="clefarfix">
                                      <h3 ><a class="color-brown" href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}">{{diss.Topic}}</a></h3>
                                 </div>
-                                <div class="clearfix">
-                                    <p>{{diss.Description}}</p>
-                                </div>
-                                <div class="clearfix">
+                                <div class="clearffix">
+                                    <p>{{diss.Description | limitTo : 60}}..</p>
+                                </div>                                
+                              </div>
+                              <div class="clefarfix">
                                     <p class="pull-right"><a class="btn-u btn-u-xs" ng-click="joinButtonClick(diss.DiscussionBoardId)" ng-show="diss.join" href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}">Join</a>
                                     <a class="btn-u btn-u-xs" ng-click="removeUser(diss)" ng-show="diss.view">Exit</a>
                                 </p>
                                 </div>
-                              </div>
                         </div>
                     </div>
-                    
+                  </div>  
                 </div><!--/row-->
                 <!-- End Thumbnails v2 -->
 

@@ -31,6 +31,8 @@ $app->post('/add_topic', 'AddTopic');
 
 $app->get('/deleteComment/:commentId', 'deleteComment');
 $app->get('/get_Profile_Detail', 'getProfileDetail');
+
+$app->get('/get_Edit_Profile_Detail', 'getEditProfileDetail');
 $app->post('/add_User_Discussion',  'addUserDiscussion');
 $app->get('/get_Total_Members/:DiscussionBoardId', 'getTotalMembers');
 $app->get('/remove_User/:DiscussionBoardId', 'removeUser');
@@ -593,7 +595,7 @@ function getdiscussionListTopicName($topicId) {
 
 
 function getdiscussionTopicName($topicId) {
-   $sql = "SELECT TopicTitle,DiscussionBoardId from DiscussionBoardTopic where DiscussionTopicId=:disTopicId" ;
+   $sql = "SELECT TopicTitle,DiscussionBoardId,TopicDescription from DiscussionBoardTopic where DiscussionTopicId=:disTopicId" ;
    try {   
       $db = getConnection();   
       $stmt = $db->prepare($sql);
@@ -790,24 +792,29 @@ function addlinkedinData() {
     $highestEducation .= '-'.$user->values[0]->educations->values[0]->fieldOfStudy;
    }
 
-   if (isset($user->values[0]->skills->values[0]->skill->name)) {
-     $endorsedSkills = $user->values[0]->skills->values[0]->skill->name;
-   }
-   if (isset($user->values[0]->skills->values[1]->skill->name)) {
-     $endorsedSkills .= ','.$user->values[0]->skills->values[1]->skill->name;
-   }
-   if (isset($user->values[0]->skills->values[2]->skill->name)) {
-     $endorsedSkills .= ','.$user->values[0]->skills->values[2]->skill->name;
-   }
-   if (isset($user->values[0]->skills->values[3]->skill->name)) {
-     $endorsedSkills .= ','.$user->values[0]->skills->values[3]->skill->name;
-   }
-   if (isset($user->values[0]->skills->values[4]->skill->name)) {
-     $endorsedSkills .= ','.$user->values[0]->skills->values[4]->skill->name;
-   }
+//    if (isset($user->values[0]->skills->values[0]->skill->name)) {
+//      $endorsedSkills = $user->values[0]->skills->values[0]->skill->name;
+//    }
+//    if (isset($user->values[0]->skills->values[1]->skill->name)) {
+//      $endorsedSkills .= ','.$user->values[0]->skills->values[1]->skill->name;
+//    }
+//    if (isset($user->values[0]->skills->values[2]->skill->name)) {
+//      $endorsedSkills .= ','.$user->values[0]->skills->values[2]->skill->name;
+//    }
+//    if (isset($user->values[0]->skills->values[3]->skill->name)) {
+//      $endorsedSkills .= ','.$user->values[0]->skills->values[3]->skill->name;
+//    }
+//    if (isset($user->values[0]->skills->values[4]->skill->name)) {
+//      $endorsedSkills .= ','.$user->values[0]->skills->values[4]->skill->name;
+//    }
    if (isset($user->values[0]->publicProfileUrl)) {
      $PictureUrl = $user->values[0]->publicProfileUrl;
    }
+   
+   if (isset($user->values[0]->positions->values[0]->title)) {
+     $endorsedSkills = $user->values[0]->positions->values[0]->title;
+   }
+   
    // $endorsedSkills = $user->values[0]->skills->values[0]->skill->name . ','  .$user->values[0]->skills->values[1]->skill->name. ','  .$user->values[0]->skills->values[2]->skill->name. ','  .$user->values[0]->skills->values[3]->skill->name. ','  .$user->values[0]->skills->values[4]->skill->name;
   // foreach($user as $obj) {
  
@@ -940,7 +947,7 @@ function getProfileDetail() {
   // print_r( $user );
    $user_id  = getUserId();
    
-  $sql = "select u.*,pd.CurrentEmployment,pd.HighestEducation,pd.Endorsedskills,pd.ProfileUrl from users AS u left join ProfessionalDetails As pd on u.user_id = pd.UserId where u.user_id=:user_id";
+  $sql = "select u.*,pd.CurrentEmployment,pd.HighestEducation,pd.Endorsedskills,pd.ProfileUrl, pd.CurrentRole from users AS u left join ProfessionalDetails As pd on u.user_id = pd.UserId where u.user_id=:user_id";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);  
@@ -952,6 +959,54 @@ function getProfileDetail() {
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}'; 
   }
+}
+
+function getEditProfileDetail() {
+
+  // print_r( $user );
+  $user_id  = getUserId();
+  $result = new stdClass();
+  $sql = "select u.*,pd.CurrentEmployment,pd.HighestEducation,pd.Endorsedskills,pd.ProfileUrl, pd.CurrentRole from users AS u left join ProfessionalDetails As pd on u.user_id = pd.UserId where u.user_id=:user_id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("user_id",  $user_id );
+    $stmt->execute();
+    $wine = $stmt->fetchObject();
+    //$db = null;
+   // echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  $sql = "SELECT q.*, qc.Category, at.AlgTypeTitle FROM `Questionnaire` q JOIN QuestionnaireCategory qc ON q.QuestionCategory = qc.QcId  JOIN AlgorithamType at ON q.AlgorithamType=at.AlgTypeId";
+  try {
+   // $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $wineq = $stmt->fetchAll(PDO::FETCH_OBJ);
+    //$db = null;
+    //echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  
+  $sqlInterest = "SELECT qa.*,qo.Answer FROM QuestionnaireAnswer as qa inner join QuestionnaireOptions as qo on qa.OptionId=qo.QoId WHERE qa.QId = 53 and qa.UserId =:user_id";
+  try {
+    $dbInterest = getConnection();
+    $stmtInterest = $dbInterest->prepare($sqlInterest);
+    $stmtInterest->bindParam("user_id",  $user_id );
+    $stmtInterest->execute();
+    $wineInterest = $stmtInterest->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    // echo json_encode($wineForums);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  
+  $result->religion = $wineInterest;
+  $result->profile = $wine;
+  $result->question = $wineq;
+  echo json_encode($result);
 }
 
 function updateProfileDetail() {   

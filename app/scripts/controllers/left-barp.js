@@ -29,6 +29,7 @@ angular.module('sassApp')
       
       console.log(response);    
          $scope.discussion=response.data.forums;
+         $scope.discussionTotal = response.data.forums_total;
          $scope.interest =response.data.intrst;
         console.log($scope.discussion);
         console.log($scope.interest);        
@@ -36,21 +37,21 @@ angular.module('sassApp')
 
     $scope.profileverify = '50%';
     var authData = localStorageService.get('authorizationData');
-      regService.getUserDetails($scope.user_id).then(function (results) {
-        //console.log(results.data);
-       
-        $scope.userData = results.data; 
-         var d1 = new Date($scope.userData.birthdate);
-	    	var d2 = new Date();
-			$scope.diff = d2.getFullYear()-d1.getFullYear();
-			//console.log($scope.diff);
-        // console.log($scope.userData.Picture);
-         if ($scope.userData.linked_update == 1){
-           $scope.thumbup = 'false';
-           $scope.profileverify = '75%';
-           // console.log("Abhik");
-         }else{
-           $scope.thumbup = 'true';
-         }
-      });
+//      regService.getUserDetails($scope.user_id).then(function (results) {
+//        //console.log(results.data);
+//       
+//        $scope.userData = results.data; 
+//         var d1 = new Date($scope.userData.birthdate);
+//	    	var d2 = new Date();
+//			$scope.diff = d2.getFullYear()-d1.getFullYear();
+//			//console.log($scope.diff);
+//        // console.log($scope.userData.Picture);
+//         if ($scope.userData.linked_update == 1){
+//           $scope.thumbup = 'false';
+//           $scope.profileverify = '75%';
+//           // console.log("Abhik");
+//         }else{
+//           $scope.thumbup = 'true';
+//         }
+//      });
   });

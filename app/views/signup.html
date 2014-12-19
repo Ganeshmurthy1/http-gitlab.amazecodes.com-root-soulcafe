@@ -23,7 +23,7 @@
 	        	<!--  <input type="text" name="location"  class="form-control" data-ng-model="fbdata.location.name" placeholder="Location" required>-->
 	        	<label class="select" >
 	<select name="location" data-ng-model="fbdata.mylocation" required  >
-
+<option value="">Select City</option>
 <option disabled="disabled" style="background-color:#3E3E3E"><font color="#000000"><i>-Top Metropolitan Cities-</i></font></option>
 <option>Ahmedabad</option> 
 <option>Bengaluru/Bangalore</option>
@@ -270,11 +270,10 @@
 	            <div  ng-class="{ 'has-error' : fbdataform.relation.$invalid && !fbdataform.relation.$pristine || fbdataform.relation.$invalid  && submitted }">
 	
 	        	<label class="select" >
-					<select name="relation" data-ng-model="fbdata.relation" required  >
-				
-				<option disabled="disabled" style="background-color:#3E3E3E"><font color="#000000"><i>-Top Metropolitan Cities-</i></font></option>
-				<option>Single</option> 
-				<option>Seperated</option>				
+				<select name="relation" data-ng-model="fbdata.relation" required  >	
+					<option value="">Relationship status</option> 		
+					<option>Single</option> 
+					<option>Seperated</option>				
 				</select>
 				</label>
 	            <p ng-show="(fbdataform.relation.$invalid && !fbdataform.relation.$pristine) || (fbdataform.relation.$invalid  && submitted) " class="help-block">Add Valid Relationship Status.</p>

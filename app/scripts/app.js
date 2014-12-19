@@ -395,6 +395,11 @@ angular
       .when('/special-feeling-history', {
         templateUrl: 'views/special-feeling-history.html',
         controller: 'SpecialFeelingHistoryCtrl'
+	  })      
+	 .when('/page-error', {
+        templateUrl: 'views/page-error.html',
+        controller: 'PageErrorCtrl',
+        access:      access.public
       })
       .otherwise({
         redirectTo: '/'

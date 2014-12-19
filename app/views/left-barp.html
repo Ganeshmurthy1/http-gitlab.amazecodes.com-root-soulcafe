@@ -17,7 +17,7 @@
 	
 	<div class="margin-top-10">
 		<div class=" clearfix">
-			<div class="clabel row" ><a class="color-white" href="#/discussion-list">FORUMS</a></div>
+			<div class="clabel row" ><a class="color-white" href="#/discussion-list">FORUMS ({{discussionTotal}})</a></div>
 				<span ng-repeat="diss in discussion">
 				<a class="sublabel uppercase123" href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}">{{diss.Topic}}</a>
 			</span>
@@ -29,7 +29,7 @@
 		<div class=" clearfix ">
 			<div class="clabel row">INTERESTS</div>
 			<span class="interests float-left align-center" ng-repeat="intst in interest">
-                <span class="glyphicon glyphicon-headphones gly"></span>
+                 <span><img src="{{imagepath}}interest/{{intst.OptionId}}.png"></span>
                 <div class="font">{{intst.Answer}}</div>
             </span>
 				

@@ -1236,6 +1236,7 @@ a.thumbnail {
 }
 
 .thumbnail-style {
+  min-height: 290px;
   padding: 7px;
   margin-bottom: 20px;
   &:hover {
@@ -1246,6 +1247,14 @@ a.thumbnail {
     transition: box-shadow 0.2s ease-in-out;
   }
 }
+
+.thumbnail-style {
+	.caption {
+		min-height: 80px;
+	}
+
+}
+
 
 .thumbnail h3, .thumbnail-style h3 {
   margin: 6px 0 8px 0;

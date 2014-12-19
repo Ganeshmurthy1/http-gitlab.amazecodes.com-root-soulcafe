@@ -24,7 +24,7 @@ angular.module('sassApp')
     $scope.imagepath = config.image_path;
 
     $scope.exp=$routeParams.exp;
-    console.log($scope.exp);
+    //console.log($scope.exp);
     if($scope.exp == null){
       $scope.status = {
         isFirstOpen: true,
@@ -67,7 +67,7 @@ angular.module('sassApp')
           console.log('error occured');
         }
         else{
-          console.log('result', result);
+          //console.log('result', result);
           $scope.linkedinData = result;
           regService.addLinkedinDataf($scope.linkedinData).then(function(response) {
             // console.log(response.data);
@@ -85,50 +85,69 @@ angular.module('sassApp')
     };
 
 
-     regService.getProfileDetail().then(function (response) {
-         console.log(response);
-         $scope.profileDetail = response.data;
-         $scope.pict = $scope.imagepath + $scope.profileDetail.Picture;
-        // $scope.profileDetail.birthdate = $filter('date')(new Date($scope.profileDetail.birthdate),'dd-mm-yy');
-         console.log($scope.profileDetail.birthdate);
+//     regService.getProfileDetail().then(function (response) {
+//        // console.log(response);
+//         $scope.profileDetail = response.data;
+//         $scope.pict = $scope.imagepath + $scope.profileDetail.Picture;
+//        // $scope.profileDetail.birthdate = $filter('date')(new Date($scope.profileDetail.birthdate),'dd-mm-yy');
+//         //console.log($scope.profileDetail.birthdate);
+//
+//         if ($scope.profileDetail.linked_update == 1) {
+//          $scope.updateButton = 'true';
+//          $scope.disable = 'false';
+//          //console.log($scope.disable);
+//         }else if ($scope.profileDetail.linked_update == 0) {
+//         	$scope.disable = 'true';
+//         }
+//      });
 
-         if ($scope.profileDetail.linked_update == 1) {
-          $scope.updateButton = 'true';
-          $scope.disable = 'false';
-          console.log($scope.disable);
-         }else if ($scope.profileDetail.linked_update == 0) {
-         	$scope.disable = 'true';
-         }
-      });
+     regService.getEditProfileDetail().then(function (response) {
+         // console.log(response);
+          $scope.profileDetail = response.data.profile;
+          $scope.questions = response.data.question;
+          $scope.religion = response.data.religion[0].Answer;
+          $scope.pict = $scope.imagepath + $scope.profileDetail.Picture;
+         // $scope.profileDetail.birthdate = $filter('date')(new Date($scope.profileDetail.birthdate),'dd-mm-yy');
+          //console.log($scope.profileDetail.birthdate);
+
+          if ($scope.profileDetail.linked_update == 1) {
+           $scope.updateButton = 'true';
+           $scope.disable = 'false';
+           //console.log($scope.disable);
+          }else if ($scope.profileDetail.linked_update == 0) {
+          	$scope.disable = 'true';
+          }
+       });
 
 
   $scope.saveButtonClick = function(){
-  	console.log($scope.profileDetail);
+  	//console.log($scope.profileDetail);
   	$scope.profileDetail.UpdatedPicture=$scope.image;
   	regService.updateProfileDetail($scope.profileDetail).then(function (response) {
-        console.log(response);
+        //console.log(response);
 
         if(response.data == "true"){
           regService.getProfileDetail().then(function (response) {
-             console.log(response);
+            // console.log(response);
              $scope.profileDetail = response.data;
 
              $scope.pict = $scope.imagepath + $scope.profileDetail.Picture;
-             console.log($scope.pict);
+            // console.log($scope.pict);
 
              $scope.temp = localStorageService.get('authorizationData');
              $scope.temp.picture = $scope.pict;
              $scope.temp.location = $scope.profileDetail.location;
              $scope.temp.Moto = $scope.profileDetail.Moto;
-             console.log($scope.temp);
+             $scope.temp.birthdate = $scope.profileDetail.birthdate;
+             //console.log($scope.temp);
              localStorageService.set('authorizationData', $scope.temp);
 
              $scope.temp = localStorageService.get('authorizationData');
-              console.log($scope.temp);
+              //console.log($scope.temp);
              if ($scope.profileDetail.linked_update == 1) {
               $scope.updateButton = 'true';
               $scope.disable = 'false';
-              console.log($scope.disable);
+             // console.log($scope.disable);
              }else if ($scope.profileDetail.linked_update == 0) {
               $scope.disable = 'true';
              }
@@ -141,13 +160,13 @@ angular.module('sassApp')
   	
   }
 
-  getAllQuestion();
-    function getAllQuestion(){
-      Questionnaire.getAllQuestionsUser().then(function (response) {
-        console.log(response.data);
-        $scope.questions = response.data;
-    });
-    }
+//  getAllQuestion();
+//    function getAllQuestion(){
+//      Questionnaire.getAllQuestionsUser().then(function (response) {
+//        //console.log(response.data);
+//        //$scope.questions = response.data;
+//    });
+//    }
 
     $scope.imageErr = '';
     $scope.imageSucc = '';
@@ -196,7 +215,7 @@ angular.module('sassApp')
         };
         uploader.onCompleteItem = function(fileItem, response, status, headers) {
         	if (response == 'max_size_exceeded') {
-				console.log('Maximum size is 2 mb');
+				//console.log('Maximum size is 2 mb');
 				$scope.imageErr = 'Maximum image size is 2mb';
 			} 
         	else if(response.filename != '') {
@@ -208,9 +227,9 @@ angular.module('sassApp')
         	}
             console.info('onCompleteItem', fileItem, response, status, headers);
             $scope.image=response.filename;
-            console.log( $scope.image);
-            console.log(status);
-            console.log(headers);
+            //console.log( $scope.image);
+            //console.log(status);
+           // console.log(headers);
         };
         uploader.onCompleteAll = function() {
             //console.info('onCompleteAll');

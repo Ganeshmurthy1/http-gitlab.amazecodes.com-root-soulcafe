@@ -53,7 +53,8 @@ angular.module('sassApp')
       regService.getdiscussionTopicName($routeParams.topic).then(function (results) {
         console.log(results.data);
         $scope.topicName = results.data[0].TopicTitle;
-        $scope.id = results.data[0].DiscussionBoardId;        
+        $scope.id = results.data[0].DiscussionBoardId;       
+        $scope.desc = results.data[0].TopicDescription;      
         });
 
       regService.getdiscussionTopicComments($routeParams.topic).then(function (results) {
