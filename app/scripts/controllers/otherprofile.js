@@ -42,6 +42,14 @@ angular.module('sassApp')
       regService.getUserDetails($scope.user_id).then(function (results) {
         //console.log(results.data);
         $scope.userData = results.data;
+        
+//      if ($scope.userData.linked_update == 1){
+//      $scope.thumbup = 'false';
+//      $scope.profileverify = '75%';
+//      // console.log("Abhik");
+//    }else{
+//      $scope.thumbup = 'true';
+//    }
         var id= $scope.userData.fb_id;
         //console.log(id);
         var likeData = [];
@@ -115,7 +123,7 @@ angular.module('sassApp')
 	    
          if ($scope.userData.linked_update == 1){
            $scope.thumbup = 'false';
-           $scope.profileverify = '75%';
+           $scope.profileverify = '100%';
            // console.log("Abhik");
          }else{
            $scope.thumbup = 'true';

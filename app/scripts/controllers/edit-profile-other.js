@@ -25,6 +25,7 @@ angular.module('sassApp')
     regService.getProfileDetailOther($scope.user_id).then(function (response) {
          console.log(response);
          $scope.profileDetail = response.data;
+         $scope.userData = response.data;
       });
  });
 

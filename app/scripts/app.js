@@ -386,15 +386,18 @@ angular
       })
       .when('/special-feeling-request', {
         templateUrl: 'views/special-feeling-request.html',
-        controller: 'SpecialFeelingRequestCtrl'
+        controller: 'SpecialFeelingRequestCtrl',
+        access:      access.user
       })
       .when('/special-feeling-accept', {
         templateUrl: 'views/special-feeling-accept.html',
-        controller: 'SpecialFeelingAcceptCtrl'
+        controller: 'SpecialFeelingAcceptCtrl',
+        access:      access.user
       })
       .when('/special-feeling-history', {
         templateUrl: 'views/special-feeling-history.html',
-        controller: 'SpecialFeelingHistoryCtrl'
+        controller: 'SpecialFeelingHistoryCtrl',
+        access:      access.user
 	  })      
 	 .when('/page-error', {
         templateUrl: 'views/page-error.html',
@@ -403,7 +406,8 @@ angular
       })
       .when('/admin-restriction', {
         templateUrl: 'views/admin-restriction.html',
-        controller: 'AdminRestrictionCtrl'
+        controller: 'AdminRestrictionCtrl',
+        access:      access.admin
       })
       .otherwise({
         redirectTo: '/'

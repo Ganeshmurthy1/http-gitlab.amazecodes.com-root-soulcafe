@@ -27,8 +27,18 @@
                 <div class="friendN">
                     <div class="color-brown-light" style="font-size:20px;"><strong>{{frnd.first_name}} {{frnd.last_name}}</strong></div>
                     <div>{{frnd.location}}, {{frnd.hometown}}</div>
-                    <a href="#/reply-message?sid={{frnd.user_id}}"><i class="fa fa-lg fa-comment-o"></i> Send Message</a>
-                    <div ><a class="color-red" href="#/special-feeling-request?user_id={{frnd.user_id}}"><i class="fa fa-lg fa-heart"></i></a></div>
+                    <div class="row"> 
+                    	<div class="col-xs-1">
+                    	 	<a title="Send message" href="#/reply-message?sid={{frnd.user_id}}"><i class="fa fa-lg fa-comment-o"></i></a>
+                    	</div>
+                    	<div class="col-xs-1 no-padding">
+		                    <a title="Express your  special feeling" href="#/special-feeling-request?user_id={{frnd.user_id}}">
+		                    <img ng-src="images/heart.jpg" alt="" style="width:20px;height:20px;float:left;">
+		                    </a>
+                    	</div>
+                    </div>
+                   
+                    
 
                 </div>
             	</div>
