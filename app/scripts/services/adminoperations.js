@@ -179,6 +179,20 @@ angular.module('sassApp')
                 return response;
             });
 		};
+		dataFactory.addRestrictionFeeling = function (param) {
+	    	// console.log(param);
+	    	return $http.post(urlBase + 'add_RestrictionFeeling', param).then(function(response) {
+	    		//console.log(response);
+                return response;
+            });
+		};
+		dataFactory.getRestrictionFeeling = function () {
+	    	// console.log(param);
+	    	return $http.post(urlBase + 'get_RestrictionFeeling').then(function(response) {
+	    		//console.log(response);
+                return response;
+            });
+		};
 	    return dataFactory;
 	}]);
 

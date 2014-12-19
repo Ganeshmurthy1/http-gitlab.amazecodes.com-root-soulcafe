@@ -60,6 +60,8 @@ $app->get('/view_StatusAbuse/:id', 'viewStatusAbuse');
 
 $app->get('/admin_GetAllProfileData', 'adminGetAllProfileData');
 
+$app->post('/add_RestrictionFeeling', 'addRestrictionFeeling');
+$app->post('/get_RestrictionFeeling', 'getRestrictionFeeling');
 
 function checkAdminLogin() {
   $request = Slim::getInstance()->request();
@@ -1083,3 +1085,48 @@ function adminGetAllProfileData() {
 
   echo json_encode($op);
 }
+
+function addRestrictionFeeling() {
+  $request = Slim::getInstance()->request();
+  $res = json_decode($request->getBody());
+  // $user_id  = getUserId();
+
+  
+  $sqlD = "DELETE FROM `Restriction` WHERE 1";
+  try {
+    $db = getConnection();
+    $stmtD = $db->prepare($sqlD);
+    $stmtD->execute();
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
+  $sql = "INSERT INTO `Restriction`(`Resend`, `ResendSame`) VALUES (:re,:same)";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("re", $res->resend);
+    $stmt->bindParam("same", $res->sameresend);
+    $stmt->execute();
+    echo "true";
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}
+
+
+function getRestrictionFeeling() {
+  
+  $sql = "select * from `Restriction` where 1";
+  try {
+    $db = getConnection();
+      $stmt = $db->prepare($sql);
+      $stmt->execute();
+      $wine = $stmt->fetchObject();
+      $db = null;
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}
+

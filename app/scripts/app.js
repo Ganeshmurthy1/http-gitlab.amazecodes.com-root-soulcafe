@@ -401,6 +401,10 @@ angular
         controller: 'PageErrorCtrl',
         access:      access.public
       })
+      .when('/admin-restriction', {
+        templateUrl: 'views/admin-restriction.html',
+        controller: 'AdminRestrictionCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
