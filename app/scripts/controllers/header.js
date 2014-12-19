@@ -37,6 +37,7 @@ angular.module('sassApp')
         $scope.totalSysMessage = response.data.system.total;
         $scope.totalMessage = response.data.message.total;
         $scope.totalForumMessage = response.data.forum.total;
+
       });
 
     // regService.getTotalSysMessage(authData.user_id).then(function(response) {
@@ -65,8 +66,10 @@ angular.module('sassApp')
       };
       
       $scope.Message = function() {  
-    	  regService.MarkMessage().then(function (response) { 
+    	  regService.MarkMessage().then(function (response) {
+
     		  $scope.messages = response.data;
+           console.log($scope.messages);
     		  $scope.totalMessage = 0;
     		  $scope.popup = true;
       		

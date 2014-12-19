@@ -358,13 +358,22 @@ function MarkMessage() {
     $db = null;
     //print_r($wine);
     //echo $total = $wine->'count(1)';
+    // print_r($wine);
     for ($i=0; $i<count($wine); $i++) {
+      if ($wine[$i]->SpecialMessage == 1) {
+        // echo "spcl";
+        $wine[$i]->mess = $wine[$i]->first_name . ' has sent you a special message';
+        unset($wine[$i]->Message);
+      }else{
+        $wine[$i]->mess = $wine[$i]->first_name . ' has sent you a message';
+        unset($wine[$i]->Message);
+      }
       //print $wine[$i]->Message;
-      $wine[$i]->mess = $wine[$i]->first_name . ' has sent you a message';
-      unset($wine[$i]->Message);
+      // $wine[$i]->mess = $wine[$i]->first_name . ' has sent you a message';
+      // unset($wine[$i]->Message);
     }
 
-    echo json_encode($wine);
+     echo json_encode($wine);
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }

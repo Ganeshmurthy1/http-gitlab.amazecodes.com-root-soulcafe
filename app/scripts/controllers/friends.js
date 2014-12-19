@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('FriendsCtrl', function ($scope,profileOperations,config,localStorageService) {
+  .controller('FriendsCtrl', function ($scope,$routeParams,profileOperations,config,localStorageService) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -17,7 +17,7 @@ angular.module('sassApp')
 
      var config = localStorageService.get('config');
     $scope.imagepath = config.image_path;
-
+    $scope.status = $routeParams.status;
     profileOperations.getBuddiesAll().then(function(response) {
       
       console.log(response);    

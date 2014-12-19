@@ -110,5 +110,53 @@ angular.module('sassApp')
                return response;
            });  
     };
+    dataFactory.sendFeeling = function (id) {
+      console.log(id); 
+        return $http.post(urlBase + 'send_Feeling/'+ id).then(function(response) {
+         //console.log(response);
+          return response;
+        });  
+    };
+    dataFactory.getFeelings = function () {
+      // console.log(id); 
+        return $http.get(urlBase + 'get_Feelings').then(function(response) {
+         //console.log(response);
+          return response;
+        });  
+    };
+    dataFactory.notSureFeelings = function (id) {
+      console.log(id); 
+        return $http.post(urlBase + 'not_SureFeelings/'+ id).then(function(response) {
+         //console.log(response);
+          return response;
+        });  
+    };
+    dataFactory.notYetFeelings = function (id) {
+      console.log(id); 
+        return $http.post(urlBase + 'not_YetFeelings/'+ id).then(function(response) {
+         //console.log(response);
+          return response;
+        });  
+    };
+    dataFactory.needTimeFeelings = function (id) {
+      console.log(id); 
+        return $http.post(urlBase + 'need_TimeFeelings/'+ id).then(function(response) {
+         //console.log(response);
+          return response;
+        });  
+    };
+    dataFactory.acceptFeeling = function (id) {
+      console.log(id); 
+        return $http.post(urlBase + 'accept_Feeling/'+ id).then(function(response) {
+         //console.log(response);
+          return response;
+        });  
+    };
+    dataFactory.historyFeeling = function () {
+        return $http.get(urlBase + 'history_Feeling').then(function(response) {
+         //console.log(response);
+          return response;
+        });  
+    };
     return dataFactory;
   }]);

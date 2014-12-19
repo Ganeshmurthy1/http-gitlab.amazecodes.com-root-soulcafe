@@ -1,0 +1,34 @@
+<div data-ng-controller="HeaderCtrl" data-ng-include="Header">
+</div>
+
+
+
+
+<div class="container-fluid body-pattern ">
+<div class="container my-border body-pattern ">
+<div class="row">
+<div class ="my-border col-xs-12 col-sm-4 col-md-3 gredientSB" data-ng-controller="SideBarCtrl" data-ng-include="SideBar"></div>
+
+<div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px ">
+     <div class="panel panel-profile">
+        <div class="headline">
+        <h1 class="heading-sm"> Special Feeling</h1>
+    	</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-offset-1 col-md-2">
+			<img class="" ng-src="images/heart.jpg" alt="" style="width:100px;height:100px;float:left;">
+		</div>
+		<div class="col-md-8">
+			<h3>“Feels like something special is brewing up between us”</h3>
+			<div class="row">
+				<div class="pull-right feelingBtn">
+					<button type="button" class="btn-u" data-ng-click="feelingSend()">Send</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>

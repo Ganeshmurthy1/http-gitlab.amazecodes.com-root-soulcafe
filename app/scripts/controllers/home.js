@@ -14,6 +14,7 @@ angular.module('sassApp')
       'AngularJS',
       'Karma'
     ];
+     $scope.status = $routeParams.status;
     var d = {"name": "jiby", "age": '345'};
 
     var ddd = {"name": d, "age": '24'};

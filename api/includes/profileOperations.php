@@ -19,6 +19,15 @@ $app->get('/get_CommentLike/:id', 'getCommentLike');
 
 $app->get('/get_MyLifeValues/:id', 'getMyLifeValues');
 
+$app->post('/send_Feeling/:id', 'sendFeeling');
+$app->get('/get_Feelings', 'getFeelings');
+$app->post('/not_SureFeelings/:id', 'notSureFeelings');
+$app->post('/not_YetFeelings/:id', 'notYetFeelings');
+$app->post('/need_TimeFeelings/:id', 'needTimeFeelings');
+$app->post('/accept_Feeling/:id', 'acceptFeeling');
+$app->get('/history_Feeling', 'historyFeeling');
+
+
 function getUserMatch() {
  
   // print_r( $user );
@@ -547,6 +556,234 @@ function getMyLifeValues($id) {
     $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
     $db = null;
     // echo 'true';
+     echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+
+}
+
+function sendFeeling($id) {
+   $user_id  = getUserId();
+   $Date=  date("Y-m-d h:i:sa") ;
+   $status = 0;
+   $splstatus = 1;
+   $message ="Feels like something special is brewing up between us";
+   $link ="special-feeling-accept";
+  $sql = "INSERT INTO SpecialFeeling (SenderId, RecieverId, SendedDate) VALUES (:SenderId,:RecieverId,:SendedDate)";
+  $sqlM ="INSERT INTO `Messages`(`SenderId`, `UserId`, `Message`, `AddedDate`, `ViewStatus`, `Link`,`SpecialMessage`) VALUES (:SenderId,:RecieverId,:message,:SendedDate,:status, :link, :splstatus)";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmtM = $db->prepare($sqlM);
+
+    $stmt->bindParam("SenderId", $user_id);  
+    $stmt->bindParam("RecieverId", $id);
+    $stmt->bindParam("SendedDate", $Date);
+
+    $stmtM->bindParam("SenderId", $user_id );  
+    $stmtM->bindParam("RecieverId", $id);
+    $stmtM->bindParam("message",  $message);
+    $stmtM->bindParam("status", $status);
+    $stmtM->bindParam("SendedDate", $Date);
+    $stmtM->bindParam("link", $link);  
+    $stmtM->bindParam("splstatus", $splstatus);  
+    $stmt->execute();
+    $stmtM->execute();
+    echo 'true';
+    } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+
+}
+function getFeelings() {
+   $user_id  = getUserId();
+   
+  $sql = "SELECT sf.SenderId,u.first_name,u.last_name FROM `SpecialFeeling` as sf inner join users as u on sf.SenderId = u.user_id WHERE sf.RecieverId = :user_id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);  
+    $stmt->bindParam("user_id", $user_id );
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    // echo 'true';
+     echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+
+}
+
+function notSureFeelings($id) {
+   $user_id  = getUserId();
+   $Date=  date("Y-m-d h:i:sa") ;
+   $status = 0;
+   $splstatus = 1;
+   $message ="Not sure";
+   $link ="special-feeling-history";
+  $sql = "UPDATE `SpecialFeeling` SET `Status`= :splstatus WHERE SenderId = :RecieverId and RecieverId = :SenderId";
+  $sqlM ="INSERT INTO `Messages`(`SenderId`, `UserId`, `Message`, `AddedDate`, `ViewStatus`, `Link`,`SpecialMessage`) VALUES (:SenderId,:RecieverId,:message,:SendedDate,:status, :link, :splstatus)";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmtM = $db->prepare($sqlM);
+
+    $stmt->bindParam("SenderId", $user_id);  
+    $stmt->bindParam("RecieverId", $id);
+    $stmt->bindParam("splstatus", $splstatus); 
+
+    $stmtM->bindParam("SenderId", $user_id );  
+    $stmtM->bindParam("RecieverId", $id);
+    $stmtM->bindParam("message",  $message);
+    $stmtM->bindParam("status", $status);
+    $stmtM->bindParam("SendedDate", $Date);
+    $stmtM->bindParam("link", $link);  
+    $stmtM->bindParam("splstatus", $splstatus);  
+    $stmt->execute();
+    $stmtM->execute();
+    echo 'true';
+    } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+}
+
+function notYetFeelings($id) {
+   $user_id  = getUserId();
+   $Date=  date("Y-m-d h:i:sa") ;
+   $st = 2;
+   $status = 0;
+   $splstatus = 1;
+   $message ="Not yet";
+   $link ="special-feeling-history";
+  $sql = "UPDATE `SpecialFeeling` SET `Status`= :st WHERE SenderId = :RecieverId and RecieverId = :SenderId";
+  $sqlM ="INSERT INTO `Messages`(`SenderId`, `UserId`, `Message`, `AddedDate`, `ViewStatus`, `Link`,`SpecialMessage`) VALUES (:SenderId,:RecieverId,:message,:SendedDate,:status, :link, :splstatus)";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmtM = $db->prepare($sqlM);
+
+    $stmt->bindParam("SenderId", $user_id);  
+    $stmt->bindParam("RecieverId", $id);
+    $stmt->bindParam("st", $st); 
+
+    $stmtM->bindParam("SenderId", $user_id );  
+    $stmtM->bindParam("RecieverId", $id);
+    $stmtM->bindParam("message",  $message);
+    $stmtM->bindParam("status", $status);
+    $stmtM->bindParam("SendedDate", $Date);
+    $stmtM->bindParam("link", $link);  
+    $stmtM->bindParam("splstatus", $splstatus);  
+    $stmt->execute();
+    $stmtM->execute();
+    echo 'true';
+    } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+}
+
+function needTimeFeelings($id) {
+   $user_id  = getUserId();
+   $Date=  date("Y-m-d h:i:sa") ;
+   $st = 3;
+   $status = 0;
+   $splstatus = 1;
+   $message ="Need Some time";
+   $link ="special-feeling-history";
+  $sql = "UPDATE `SpecialFeeling` SET `Status`= :st WHERE SenderId = :RecieverId and RecieverId = :SenderId";
+  $sqlM ="INSERT INTO `Messages`(`SenderId`, `UserId`, `Message`, `AddedDate`, `ViewStatus`, `Link`,`SpecialMessage`) VALUES (:SenderId,:RecieverId,:message,:SendedDate,:status, :link, :splstatus)";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmtM = $db->prepare($sqlM);
+
+    $stmt->bindParam("SenderId", $user_id);  
+    $stmt->bindParam("RecieverId", $id);
+    $stmt->bindParam("st", $st); 
+
+    $stmtM->bindParam("SenderId", $user_id );  
+    $stmtM->bindParam("RecieverId", $id);
+    $stmtM->bindParam("message",  $message);
+    $stmtM->bindParam("status", $status);
+    $stmtM->bindParam("SendedDate", $Date);
+    $stmtM->bindParam("link", $link);  
+    $stmtM->bindParam("splstatus", $splstatus);  
+    $stmt->execute();
+    $stmtM->execute();
+    echo 'true';
+    } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+}
+
+function acceptFeeling($id) {
+   $user_id  = getUserId();
+   $Date=  date("Y-m-d h:i:sa") ;
+   $st = 4;
+   $status = 0;
+   $splstatus = 1;
+   $message ="Yes I think";
+   $link ="special-feeling-history";
+  $sql = "UPDATE `SpecialFeeling` SET `Status`= :st WHERE SenderId = :RecieverId and RecieverId = :SenderId";
+  $sqlM ="INSERT INTO `Messages`(`SenderId`, `UserId`, `Message`, `AddedDate`, `ViewStatus`, `Link`,`SpecialMessage`) VALUES (:SenderId,:RecieverId,:message,:SendedDate,:status, :link, :splstatus)";
+  $sqlAF = "INSERT INTO SpecialFeeling (SenderId, RecieverId, SendedDate,`Status`) VALUES (:SenderId,:RecieverId,:SendedDate,:st)";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmtM = $db->prepare($sqlM);
+    $stmtAF = $db->prepare($sqlAF);
+
+    $stmt->bindParam("SenderId", $user_id);  
+    $stmt->bindParam("RecieverId", $id);
+    $stmt->bindParam("st", $st); 
+
+    $stmtM->bindParam("SenderId", $user_id );  
+    $stmtM->bindParam("RecieverId", $id);
+    $stmtM->bindParam("message",  $message);
+    $stmtM->bindParam("status", $status);
+    $stmtM->bindParam("SendedDate", $Date);
+    $stmtM->bindParam("link", $link);  
+    $stmtM->bindParam("splstatus", $splstatus); 
+
+    $stmtAF->bindParam("SenderId", $user_id);  
+    $stmtAF->bindParam("RecieverId", $id);
+    $stmtAF->bindParam("SendedDate", $Date);
+    $stmtAF->bindParam("st", $st); 
+
+
+    $stmt->execute();
+    $stmtM->execute();
+    $stmtAF->execute();
+    echo 'true';
+    } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+}
+
+function historyFeeling() {
+   $user_id  = getUserId();
+   
+  $sql = "SELECT sf.RecieverId,sf.SenderId,sf.Status,u.first_name,u.last_name FROM `SpecialFeeling` as sf inner join users as u on sf.RecieverId = u.user_id WHERE sf.SenderId = :user_id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);  
+    $stmt->bindParam("user_id", $user_id );
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    // echo 'true';
+    for ($i=0; $i<count($wine); $i++) {
+      if ($wine[$i]->Status == 1) {
+        $wine[$i]->mess = $wine[$i]->first_name . ' ' .$wine[$i]->last_name. ' says, he is Not Sure about your brewing request.';
+      }else if ($wine[$i]->Status == 2){
+        $wine[$i]->mess = $wine[$i]->first_name . ' ' .$wine[$i]->last_name. ' says, he Not Yet decided about your brewing request.';
+      }else if ($wine[$i]->Status == 3){
+        $wine[$i]->mess = $wine[$i]->first_name . ' ' .$wine[$i]->last_name. ' says, he Needs More Time to respond your brewing request.';
+      }else{
+        $wine[$i]->mess = $wine[$i]->first_name . ' ' .$wine[$i]->last_name. ' Accepted your brewing request.';
+      }
+    }
+       
      echo json_encode($wine);
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}'; 

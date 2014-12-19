@@ -384,6 +384,18 @@ angular
         templateUrl: 'views/leftbar-quiz.html',
         controller: 'LeftbarQuizCtrl'
       })
+      .when('/special-feeling-request', {
+        templateUrl: 'views/special-feeling-request.html',
+        controller: 'SpecialFeelingRequestCtrl'
+      })
+      .when('/special-feeling-accept', {
+        templateUrl: 'views/special-feeling-accept.html',
+        controller: 'SpecialFeelingAcceptCtrl'
+      })
+      .when('/special-feeling-history', {
+        templateUrl: 'views/special-feeling-history.html',
+        controller: 'SpecialFeelingHistoryCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
