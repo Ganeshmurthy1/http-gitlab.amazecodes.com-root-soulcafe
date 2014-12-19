@@ -27,6 +27,7 @@ $app->post('/need_TimeFeelings/:id', 'needTimeFeelings');
 $app->post('/accept_Feeling/:id', 'acceptFeeling');
 $app->get('/history_Feeling', 'historyFeeling');
 
+$app->get('/check_feelings_status/:id', 'checkFeeling');
 
 function getUserMatch() {
  
@@ -803,6 +804,96 @@ function historyFeeling() {
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}'; 
   }
+
+}
+
+
+function checkFeeling($id) {
+  $user_id  = getUserId();
+  $st = 0;
+  //exit();
+  
+  $sql = "SELECT * FROM `Restriction` ";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+   // $stmt->bindParam("user_id", $user_id );
+    $stmt->execute();
+    $wineRes = $stmt->fetchObject();
+    //$db = null;
+    // echo 'true';
+    // echo json_encode($wineRes);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  
+  
+  $sql = "SELECT SendedDate FROM `SpecialFeeling`  WHERE SenderId = :user_id order by SendedDate desc Limit 0, 1 ";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("user_id", $user_id );
+    $stmt->execute();
+    $wine = $stmt->fetchObject();
+    //$db = null;
+    // echo 'true';
+   // echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  
+  if (!empty($wine)) {
+  $birthdate = date('Y-m-d', strtotime($wine->SendedDate));
+  $tdate = date('Y-m-d');
+  
+   $diff = abs(strtotime($tdate) - strtotime($birthdate));
+  
+  $years = floor($diff / (365*60*60*24));
+  $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+  $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+ 
+   if($days < $wineRes->Resend){
+     $st = 1;
+     echo 'Sorry the special feeling is meant to be shared with one friend at a time :)'; 
+   }
+  }
+ if($st == 0){
+   
+   $sql = "SELECT SendedDate FROM `SpecialFeeling`  WHERE SenderId = :user_id and RecieverId = :rid order by SendedDate desc Limit 0, 1 ";
+   try {
+     //$db = getConnection();
+     $stmt = $db->prepare($sql);
+     $stmt->bindParam("user_id", $user_id );
+     $stmt->bindParam("rid", $id );
+     $stmt->execute();
+     $wine = $stmt->fetchObject();
+     $db = null;
+     // echo 'true';
+     // echo json_encode($wine);
+   } catch(PDOException $e) {
+     echo '{"error":{"text":'. $e->getMessage() .'}}';
+   }
+   if (!empty($wine)) {
+   $birthdate = date('Y-m-d', strtotime($wine->SendedDate));
+   $tdate = date('Y-m-d');
+   
+   $diff = abs(strtotime($tdate) - strtotime($birthdate));
+   
+   $years = floor($diff / (365*60*60*24));
+   $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+   $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+   
+     if ($days < $wineRes->ResendSame) {
+       $st = 1;
+       echo 'You Already sent the request ' . $days . ' days ago.';
+     }
+   }
+   
+ }
+ if($st == 0) 
+ echo 'true';
+  
+  
 
 }
 

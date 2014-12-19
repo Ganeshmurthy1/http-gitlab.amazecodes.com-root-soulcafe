@@ -16,6 +16,15 @@ angular.module('sassApp')
     ];
 
     $scope.user_id = $routeParams.user_id;
+    $scope.status = true;
+    profileOperations.checkFeelingStatus($scope.user_id).then(function(response) {
+  		console.log(response);
+      if(response.data != "true") {
+        $scope.status = false;
+        $scope.Message = response.data;
+      }
+ 	});
+    
     
     $scope.feelingSend = function(){
     	console.log($scope.user_id);
