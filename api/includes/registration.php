@@ -790,24 +790,29 @@ function addlinkedinData() {
     $highestEducation .= '-'.$user->values[0]->educations->values[0]->fieldOfStudy;
    }
 
-   if (isset($user->values[0]->skills->values[0]->skill->name)) {
-     $endorsedSkills = $user->values[0]->skills->values[0]->skill->name;
-   }
-   if (isset($user->values[0]->skills->values[1]->skill->name)) {
-     $endorsedSkills .= ','.$user->values[0]->skills->values[1]->skill->name;
-   }
-   if (isset($user->values[0]->skills->values[2]->skill->name)) {
-     $endorsedSkills .= ','.$user->values[0]->skills->values[2]->skill->name;
-   }
-   if (isset($user->values[0]->skills->values[3]->skill->name)) {
-     $endorsedSkills .= ','.$user->values[0]->skills->values[3]->skill->name;
-   }
-   if (isset($user->values[0]->skills->values[4]->skill->name)) {
-     $endorsedSkills .= ','.$user->values[0]->skills->values[4]->skill->name;
-   }
+//    if (isset($user->values[0]->skills->values[0]->skill->name)) {
+//      $endorsedSkills = $user->values[0]->skills->values[0]->skill->name;
+//    }
+//    if (isset($user->values[0]->skills->values[1]->skill->name)) {
+//      $endorsedSkills .= ','.$user->values[0]->skills->values[1]->skill->name;
+//    }
+//    if (isset($user->values[0]->skills->values[2]->skill->name)) {
+//      $endorsedSkills .= ','.$user->values[0]->skills->values[2]->skill->name;
+//    }
+//    if (isset($user->values[0]->skills->values[3]->skill->name)) {
+//      $endorsedSkills .= ','.$user->values[0]->skills->values[3]->skill->name;
+//    }
+//    if (isset($user->values[0]->skills->values[4]->skill->name)) {
+//      $endorsedSkills .= ','.$user->values[0]->skills->values[4]->skill->name;
+//    }
    if (isset($user->values[0]->publicProfileUrl)) {
      $PictureUrl = $user->values[0]->publicProfileUrl;
    }
+   
+   if (isset($user->values[0]->positions->values[0]->title)) {
+     $endorsedSkills = $user->values[0]->positions->values[0]->title;
+   }
+   
    // $endorsedSkills = $user->values[0]->skills->values[0]->skill->name . ','  .$user->values[0]->skills->values[1]->skill->name. ','  .$user->values[0]->skills->values[2]->skill->name. ','  .$user->values[0]->skills->values[3]->skill->name. ','  .$user->values[0]->skills->values[4]->skill->name;
   // foreach($user as $obj) {
  
@@ -940,7 +945,7 @@ function getProfileDetail() {
   // print_r( $user );
    $user_id  = getUserId();
    
-  $sql = "select u.*,pd.CurrentEmployment,pd.HighestEducation,pd.Endorsedskills,pd.ProfileUrl from users AS u left join ProfessionalDetails As pd on u.user_id = pd.UserId where u.user_id=:user_id";
+  $sql = "select u.*,pd.CurrentEmployment,pd.HighestEducation,pd.Endorsedskills,pd.ProfileUrl, pd.CurrentRole from users AS u left join ProfessionalDetails As pd on u.user_id = pd.UserId where u.user_id=:user_id";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);  

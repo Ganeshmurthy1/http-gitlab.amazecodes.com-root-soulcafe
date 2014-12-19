@@ -764,4 +764,5 @@ header:after{content:" "; background-image:url(../images/header-bg-shape.png); w
 
 .ui-datepicker {
 	background: #fff !important;
+	z-index: 999 !important;
 }
