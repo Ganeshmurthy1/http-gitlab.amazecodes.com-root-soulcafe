@@ -43,6 +43,10 @@ angular.module('sassApp')
         //console.log(results.data);
         $scope.userData = results.data;
         
+        var d1 = new Date($scope.userData.birthdate);
+        var d2 = new Date();
+        $scope.diff = d2.getFullYear()-d1.getFullYear();
+        
 //      if ($scope.userData.linked_update == 1){
 //      $scope.thumbup = 'false';
 //      $scope.profileverify = '75%';
