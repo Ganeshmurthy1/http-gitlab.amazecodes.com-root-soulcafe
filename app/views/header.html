@@ -32,7 +32,7 @@
                 
               </a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Settings</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#/home">Settings</a></li>
                 <li role="presentation" data-ng-controller="LoginCtrl"><a role="menuitem" tabindex="-1" href="#" data-ng-click="logout()">Logout</a></li>
               </ul>
             </div>
@@ -144,7 +144,7 @@
 
             <a ng-class="{'pull-right home':true,'bcolor-white':defaulth}" href="#/home"><strong>Home</strong></a>
             <a ng-class="{'pull-right home1':true,'bcolor-white':defaultp}" href="#/myprofile" > 
-                <img class="rounded-x" ng-src="{{pict}}" alt="" style="width:20px;height:auto;">
+                <img class="rounded-x" ng-src="{{pict}}" alt="" style="width:20px;height:20px;">
                 <strong>{{datau.first_name}} {{datau.last_name}}</strong>
             </a>
 

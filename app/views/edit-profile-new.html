@@ -365,7 +365,7 @@
                                         <div class="media media-v2" style="float:left;margin: 0 !important;
                                     padding: 0 !important;">
                                         <a class="pull-left" href="#">
-                                            <img class="media-object media-object1 rounded-x" ng-src="{{pict}}" alt="">
+                                            <img class="media-object media-object1 rounded-x" ng-src="{{pict}}" alt="" style="height: 100px; width: 100px !important;">
                                         </a>
                                     </div>
                                     </div>
@@ -431,9 +431,10 @@
                                 <div class="col-lg-9">
                                     <label class="select" >
                                         <select class="select-chg" name="location" data-ng-model="profileDetail.Drinking" required  >
-                                            <option>Mild Social Drinker</option> 
                                             <option>I don't drink</option>
-                                            <option>I drink often</option>
+                                            <option>Mild Social Drinker</option> 
+                                            <option>I drink on weekends</option>
+                                            <option>I party everyday</option>
                                         </select>
                                     </label>
                                 </div>
@@ -443,9 +444,10 @@
                                 <div class="col-lg-9">
                                     <label class="select" >
                                         <select class="select-chg"s name="location" data-ng-model="profileDetail.Smoking" required  >
+                                             <option>I Smoke often</option>
+                                             <option>I smoke occassionally</option>
                                             <option>I don't Smoke</option>
-                                            <option>I Smoke often</option>
-                                            <option>I avoid passive smokings</option> 
+                                           <option>I cannot stand smokers</option> 
                                         </select>
                                     </label>
                                 </div>

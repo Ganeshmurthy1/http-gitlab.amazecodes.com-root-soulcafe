@@ -615,7 +615,7 @@ function sendFeeling($id) {
 function getFeelings() {
    $user_id  = getUserId();
    
-  $sql = "SELECT sf.SenderId,u.first_name,u.last_name FROM `SpecialFeeling` as sf inner join users as u on sf.SenderId = u.user_id WHERE sf.RecieverId = :user_id";
+  $sql = "SELECT sf.SenderId,sf.Status,u.first_name,u.last_name FROM `SpecialFeeling` as sf inner join users as u on sf.SenderId = u.user_id WHERE sf.RecieverId = :user_id";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);  

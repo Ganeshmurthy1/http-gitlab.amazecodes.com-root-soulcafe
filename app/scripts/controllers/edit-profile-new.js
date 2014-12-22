@@ -72,6 +72,9 @@ angular.module('sassApp')
           $scope.linkedinData = result;
           regService.addLinkedinDataf($scope.linkedinData).then(function(response) {
             // console.log(response.data);
+          $scope.temp = localStorageService.get('authorizationData');
+          $scope.temp.employment =  $scope.linkedinData.CurrentEmployment;
+          localStorageService.set('authorizationData', $scope.temp);
             if (response.data == 'true') {
               console.log('success'); 
               // $location.path('/edit-profile-new');
@@ -105,6 +108,11 @@ angular.module('sassApp')
      regService.getEditProfileDetail().then(function (response) {
          // console.log(response);
           $scope.profileDetail = response.data.profile;
+          // console.log($scope.profileDetail);
+          $scope.temp = localStorageService.get('authorizationData');
+          // console.log($scope.temp);
+          $scope.temp.employment =  $scope.profileDetail.CurrentEmployment;
+          localStorageService.set('authorizationData', $scope.temp);
           $scope.questions = response.data.question;
           $scope.religion = response.data.religion[0].Answer;
           $scope.pict = $scope.imagepath + $scope.profileDetail.Picture;
