@@ -23,6 +23,7 @@ angular.module('sassApp')
 
      $scope.thumbup='true';
      $scope.user_id = $routeParams.user_id;
+     
      //console.log( $scope.user_id);
 
      profileOperations.getforumsOther($scope.user_id).then(function(response) {
@@ -31,6 +32,10 @@ angular.module('sassApp')
          $scope.discussion=response.data.forums;
          $scope.discussionTotal = response.data.forums_total;
          $scope.interest =response.data.intrst;
+         $scope.udata = response.data.userdata;
+         var d1 = new Date($scope.udata.birthdate);
+        var d2 = new Date();
+        $scope.diff = d2.getFullYear()-d1.getFullYear();
         console.log($scope.discussion);
         console.log($scope.interest);        
      });

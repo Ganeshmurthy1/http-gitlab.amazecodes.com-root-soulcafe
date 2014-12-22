@@ -74,7 +74,7 @@ function getBuddies() {
   //$j = $k/0;
   $user_id  = getUserId();
    
-  $sql = "SELECT u.first_name, u.last_name, u.Picture, u.Moto,b.BuddyId FROM `Buddies` as b inner join users as u on b.BuddyId = u.user_id  WHERE b.SenderId = :user_id and b.Status = 1 Limit 0, 10";
+  $sql = "SELECT u.first_name, u.last_name, u.Picture, u.Moto,b.BuddyId FROM `Buddies` as b inner join users as u on b.BuddyId = u.user_id  WHERE b.SenderId = :user_id and b.Status = 1 and u.status = 1 Limit 0, 10";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);  
@@ -87,7 +87,7 @@ function getBuddies() {
     echo '{"error":{"text":'. $e->getMessage() .'}}'; 
   }
   
-  $sqlcount = "SELECT count(1) as total_friends FROM `Buddies` as b inner join users as u on b.BuddyId = u.user_id  WHERE b.SenderId = :user_id and b.Status = 1";
+  $sqlcount = "SELECT count(1) as total_friends FROM `Buddies` as b inner join users as u on b.BuddyId = u.user_id  WHERE b.SenderId = :user_id and b.Status = 1 and u.status=1";
   try {
    // $db = getConnection();
     $stmtCount = $db->prepare($sqlcount);
@@ -211,9 +211,23 @@ function getforumsOther($id) {
     echo '{"error":{"text":'. $e->getMessage() .'}}'; 
   }
 
+  $sql = "select u.user_id,u.birthdate,u.Moto,u.Picture,u.first_name,u.last_name,u.hometown,pd.CurrentEmployment FROM users as u left join ProfessionalDetails as pd on u.user_id = pd.UserId where user_id = :id ORDER BY user_id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("id", $id);
+    $stmt->execute();
+    $wine = $stmt->fetchObject();
+    $db = null;
+    // echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
   $other['forums'] = $wineForums;
   $other['forums_total'] = $wineForumsTotal->totalForum;
   $other['intrst'] = $wineInt;
+  $other['userdata'] = $wine;
   echo json_encode($other);
 }
 

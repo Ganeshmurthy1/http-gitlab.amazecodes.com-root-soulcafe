@@ -1,18 +1,18 @@
 
 	<div class="align-center margin-top-10">
-		<img class="rounded-x imagelr" ng-src="{{imagepath}}{{userData.Picture}}" alt="" >
-		<div class="name">{{userData.first_name}} {{userData.last_name}} , {{diff}}</div>
+		<img class="rounded-x imagelr" ng-src="{{imagepath}}{{udata.Picture}}" alt="" >
+		<div class="name">{{udata.first_name}} {{udata.last_name}} , {{diff}}</div>
 		<img src="images/div.png" alt="" >
-		<div class="add">Lives In : {{userData.location}}</div>
-		<div class="add">From : {{userData.hometown}}
-			<a class="pull-right" style="color:#5bc0de;" href="#/edit-profile-other?user_id={{userData.user_id}}">More...</a>
+		<div class="add">Lives In : {{udata.location}}</div>
+		<div class="add">Works at : {{udata.CurrentEmployment}}
+			<a class="pull-right" style="color:#5bc0de;" href="#/edit-profile-other?user_id={{udata.user_id}}">More...</a>
 		</div>
-		<div class="pull-left"><a style="color:#ff0000 !important;" href="#/report-abuse-user?user_id={{userData.user_id}}"> <i class="fa fa-times-circle-o "></i> Report Abuse</a></div>
+		<div class="pull-left"><a style="color:#ff0000 !important;" href="#/report-abuse-user?user_id={{udata.user_id}}"> <i class="fa fa-times-circle-o "></i> Report Abuse</a></div>
 	</div>
 
 	<div class="clearfix align-center quote  gredient">
 		<h1 class="color-brown">"QUOTE I LIVE BY"</h1>
-		<h3 class="color-brown-light">I{{userDataO.Moto}}</h3>
+		<h3 class="color-brown-light">I{{udata.Moto}}</h3>
 	</div>
 	
 	<div class="margin-top-10">

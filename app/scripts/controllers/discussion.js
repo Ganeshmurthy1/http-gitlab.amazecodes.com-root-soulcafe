@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('DiscussionCtrl', function ($scope,$routeParams,$facebook,localStorageService,regService,$location, $window, $modal, $log, config) {
+  .controller('DiscussionCtrl', function ($scope,$routeParams,$facebook,localStorageService,regService,$location, $window, $modal, $log, config,$anchorScroll) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -78,13 +78,17 @@ console.log( $scope.comments);
             });
     }
 
-    $scope.otherProfile = function(userId){
-        
+    $scope.otherProfile = function(data){
+          // console.log(userId);
           console.log($scope.comments[0].status);
-           if ($scope.comments[0].status == 0) {
-            alert("Your profile is deactive. Please contact Customer care.");
+           if (data.status == 0) {
+            $scope.hide=false;
+            $scope.abuseSuccessMessage="This profile is currently deactivated in SoulCafe.";
+            $location.hash('msg');
+             $anchorScroll();
+            // alert("Your profile is deactive. Please contact Customer care.");
           }else{
-            $location.url("/otherprofile?user_id="+$scope.comments[0].UserId);
+            $location.url("/otherprofile?user_id="+data.UserId);
           }
        
           
@@ -204,6 +208,7 @@ $scope.addRating = function(rating){
 angular.module('sassApp')
 .controller('modalLikesCtrl', function ($scope, regService, profileOperations, localStorageService, $location, $modalInstance, items, config) {
 
+  $scope.hide=true;
   $scope.items = items;
   console.log($scope.items);
 
@@ -225,11 +230,13 @@ angular.module('sassApp')
           $scope.userD = results.data; 
           console.log($scope.userD);
            if ($scope.userD.status == 0) {
-            alert("Your profile is deactive. Please contact Customer care.");
-            $modalInstance.dismiss();
+             $scope.hide=false;
+            $scope.abuseSuccessMessage="This profile is currently deactivated in SoulCafe.";
+            
+            // $modalInstance.dismiss();
           }else{
             $location.url("/otherprofile?user_id="+userId);
-            $modalInstance.dismiss();
+            // $modalInstance.dismiss();
           }
         });
           
