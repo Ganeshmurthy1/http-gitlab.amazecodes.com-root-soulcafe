@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('QuestionEditCtrl', function ($scope, Questionnaire, $location, $routeParams) {
+  .controller('QuestionEditCtrl', function ($scope, Questionnaire, $location, $routeParams, $anchorScroll) {
 	    $scope.awesomeThings = [
     'HTML5 Boilerplate',
     'AngularJS',
@@ -153,7 +153,8 @@ angular.module('sassApp')
 	}
   	else {
   		if ($scope.QuestionObj.Questions.MaxOptions == $scope.multipleOrdered.length) {
-  			alert('Maximum Selection is ' + $scope.QuestionObj.Questions.MaxOptions );
+  			$scope.errMessage = 'Maximum Selection is ' + $scope.QuestionObj.Questions.MaxOptions;
+  			$anchorScroll();
   			return;
   			
   		}
@@ -185,14 +186,16 @@ angular.module('sassApp')
   	if ($scope.QuestionObj.Questions.AnswerSelectionType == 1) {
   		//console.log($scope.singleSelected);
   		if ($scope.singleSelected == null) {
-  			alert('Please select something :(');
+  			$scope.errMessage = "Please select something :(";			
+            $anchorScroll();
   			return;
   		}
   		
   	}
   	if ($scope.QuestionObj.Questions.AnswerSelectionType == 3) {
   		if ($scope.multipleOrdered.length == 0) {
-  			alert('Please select something :(');
+  			$scope.errMessage = "Please select something :(";			
+            $anchorScroll();
   			return;
 		}
   		
