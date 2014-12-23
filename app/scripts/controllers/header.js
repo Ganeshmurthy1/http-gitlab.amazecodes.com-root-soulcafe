@@ -59,8 +59,19 @@ angular.module('sassApp')
       $scope.sysMessage = function() {  
     	  regService.sysMarkMessage().then(function (response) { 
     		  $scope.messages = response.data;
-    		  $scope.totalSysMessage = 0;
-    		  $scope.popup = true;
+          console.log($scope.messages);
+          if($scope.messages.length == 0){
+            // console.log("Nooo");
+            $scope.messages[0] = {};
+            $scope.messages[0] = {
+              mess:"No message for you now",
+              Link: "home"
+            }
+
+            console.log($scope.messages[0].mess );
+          }
+    		  // $scope.totalSysMessage = 0;
+    		  // $scope.popup = true;
       		
       	});
       };
@@ -69,17 +80,33 @@ angular.module('sassApp')
     	  regService.MarkMessage().then(function (response) {
 
     		  $scope.messages = response.data;
-           console.log($scope.messages);
-    		  $scope.totalMessage = 0;
-    		  $scope.popup = true;
+           console.log($scope.messages[0]);
+           if($scope.messages.length == 0){
+            // console.log("Nooo");
+            $scope.messages[0] = {};
+            $scope.messages[0] = {
+              mess:"No message for you now",
+              Link: "home"
+            }
+          }
+    		  // $scope.totalMessage = 0;
+    		  // $scope.popup = true;
       		
       	});
       };
       $scope.forumMessage = function() {  
     	  regService.forumMarkMessage().then(function (response) { 
     		  $scope.messages = response.data;
-    		  $scope.totalForumMessage = 0;
-    		  $scope.popup = true;
+          if($scope.messages.length == 0){
+            // console.log("Nooo");
+            $scope.messages[0] = {};
+            $scope.messages[0] = {
+              mess:"No message for you now",
+              Link: "home"
+            }
+          }
+    		  // $scope.totalForumMessage = 0;
+    		  // $scope.popup = true;
       		
       	});
       };

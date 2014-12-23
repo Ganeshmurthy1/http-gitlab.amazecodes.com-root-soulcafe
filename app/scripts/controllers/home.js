@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('HomeCtrl',['$scope','$location','localStorageService','regService', '$routeParams','profileOperations', function ($scope, $location, localStorageService, regService, $routeParams, profileOperations) {
+  .controller('HomeCtrl',['$scope','$location','localStorageService','regService', '$routeParams','profileOperations','$anchorScroll', function ($scope, $location, localStorageService, regService, $routeParams, profileOperations,$anchorScroll) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -161,13 +161,19 @@ angular.module('sassApp')
 //         $scope.updates=response.data;         
 //      });
       
+      $scope.hide=false;
 
       $scope.otherProfile = function(userId){
       regService.getUserDetails(userId).then(function (results) {
         $scope.userD = results.data; 
         //console.log($scope.userD);
          if ($scope.userD.status == 0) {
-          alert("Your profile is deactive. Please contact Customer care.");
+          // console.log("Ajbcmas");
+            $scope.hide=true;
+            // console.log($scope.hide);
+            $scope.abuseSuccessMessage="This profile is currently deactivated in SoulCafe.";
+            $location.hash('msg');
+             $anchorScroll();
         }else{
           $location.url("/otherprofile?user_id="+userId);
         }

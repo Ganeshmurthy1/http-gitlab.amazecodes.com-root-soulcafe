@@ -149,7 +149,7 @@ function getUsers($id) {
 }
 
 function getAllUsers($id) {
-  $sql = "select * FROM users where user_id = :id ORDER BY user_id";
+  $sql = "select u.*,pd.CurrentEmployment FROM users as u left join ProfessionalDetails as pd on u.user_id = pd.UserId where user_id = :id ORDER BY user_id";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);

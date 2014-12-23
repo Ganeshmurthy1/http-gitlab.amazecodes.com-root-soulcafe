@@ -18,6 +18,11 @@
     </div>
 	</div>
 </div>
+<div class="padding-bottom row clear" ng-show="{{msg == 1}}">
+			        <div class="alert alert-success fade in">
+			               Thank You!!!! We have Send the request!
+			        </div>
+			    </div>
 	<div class="row home-block">
 	<h3 class="panel-title">
 		<i class="fa fa-comments color-deep-red"></i> PROFILE COMPLETION
@@ -64,7 +69,7 @@
 		</div>
 		
 		<div class="col-xs-12 col-sm-5 col-md-3 pull-right" ng-show="GTKY1">
-			<button type="button" ng-click="acceptGTKY()" class="btn btn-comp uppercase123 width100">GTKY Sent</button>
+			<button type="button" title="Request already sent." class="btn btn-comp uppercase123 width100">Say Hello</button>
 		</div>
 		<div class="col-xs-12 col-sm-5 col-md-3 pull-right" ng-show="GTKY3">
 			<button type="button" ng-click="acceptGTKY()" class="btn btn-comp uppercase123 width100">Accept GTKY</button>

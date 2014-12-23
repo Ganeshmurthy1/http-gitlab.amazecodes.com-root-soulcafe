@@ -1,4 +1,4 @@
-<div data-ng-controller="HeaderCtrl" data-ng-include="Header"></div>
+<div id="msg" data-ng-controller="HeaderCtrl" data-ng-include="Header"></div>
 
 
 
@@ -15,6 +15,7 @@
 			                Your response of brewing request is sent !!!!
 			        </div>
 			    </div>
+			    <div class="alert alert-success fade in" ng-show="hide">{{abuseSuccessMessage}}</div>
 				<div class="row home-block my-border  ">
 				<h3 class="panel-title">
 								<i class="fa fa-list-alt color-deep-red"></i> PROFILE COMPLETION

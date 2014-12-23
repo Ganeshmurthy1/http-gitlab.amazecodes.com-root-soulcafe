@@ -18,6 +18,7 @@ angular.module('sassApp')
     $scope.UserId ={ };
      $scope.confirmGTKY = function(){
         $scope.UserId.id = $routeParams.user_id;
+        console.log( $scope.UserId.id);
          profileOperations.addGTKYRequest($scope.UserId).then(function(response) {
           console.log(response.data);
           if (response.data == 'Already Present'){
@@ -26,8 +27,8 @@ angular.module('sassApp')
             $location.path('/otherprofile');
           }else if (response.data == 'true'){
             $scope.GTKY ="true";
-            alert("Thank You. We have Send the request!");
-            $location.path('/otherprofile');
+            // alert("Thank You. We have Send the request!");
+            $location.url('/otherprofile?user_id='+$scope.UserId.id +'&msg=1');
           }            
         });
 
