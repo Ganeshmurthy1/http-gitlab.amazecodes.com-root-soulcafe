@@ -11,11 +11,17 @@
 	</div>
 
 	<div class="clearfix align-center quote  gredient">
-		<h1 class="color-brown">"QUOTE I LIVE BY"</h1>
-		<h3 class="color-brown-light">I{{udata.Moto}}</h3>
+		<div class="row home-block">
+			<h3 class="panel-title">
+				<i class="fa fa-quote-left color-deep-red"></i> QUOTE I LIVE BY
+			</h3>
+			<blockquote class="bq-text-lg">
+                <p>{{udata.Moto}}</p>
+            </blockquote>
+		</div>
 	</div>
 	
-	<div class="margin-top-10">
+	<div class="margin-top-10 hideblck">
 		<div class=" clearfix">
 			<div class="clabel row" ><a class="color-white" href="#/discussion-list">FORUMS ({{discussionTotal}})</a></div>
 				<span ng-repeat="diss in discussion">
