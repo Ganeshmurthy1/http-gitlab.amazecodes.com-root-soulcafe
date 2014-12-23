@@ -502,11 +502,8 @@ min-width:220px !important;
 }
 .gredientSB{
 
-
 background: linear-gradient(270deg, #d8d6d2 6%, #f2f2f2 17%) repeat scroll 0 0 transparent;
-min-height: 1150px;
 
-    
 }
 .gredientTP{
 
@@ -647,6 +644,14 @@ background: linear-gradient(270deg, #f2f2f2 80%, #d8d6d2 88%) repeat scroll 0 0 
 
 /*--------------Media Queries-------------*/
 @media (min-width: 768px) {
+.gredientSB{
+
+
+background: linear-gradient(270deg, #d8d6d2 6%, #f2f2f2 17%) repeat scroll 0 0 transparent;
+min-height: 1150px;
+
+    
+}
 .message-list {
 	margin: 15px 25px 0 15px !important;
 }
@@ -761,6 +766,14 @@ background: linear-gradient(270deg, #f2f2f2 80%, #d8d6d2 88%) repeat scroll 0 0 
 
 
 @media (min-width: 992px) {
+.gredientSB{
+
+
+background: linear-gradient(270deg, #d8d6d2 6%, #f2f2f2 17%) repeat scroll 0 0 transparent;
+min-height: 1150px;
+
+    
+}
 .message-list {
 	margin: 15px 25px 0 15px !important;
 }
@@ -872,6 +885,14 @@ background: linear-gradient(270deg, #f2f2f2 80%, #d8d6d2 88%) repeat scroll 0 0 
 }
 
 @media (min-width: 1200px) {
+.gredientSB{
+
+
+background: linear-gradient(270deg, #d8d6d2 6%, #f2f2f2 17%) repeat scroll 0 0 transparent;
+min-height: 1150px;
+
+    
+}
   .margint{
  	margin-top:5px;
  	margin-bottom:5px;
