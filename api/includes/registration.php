@@ -17,7 +17,7 @@ $app->post('/add_linkedinData', 'addlinkedinData');
 
 $app->get('/getProffesionaldetails/:id', 'get_Proffesionaldetails');
 $app->post('/saveDiscussionBoardAbuse', 'save_DiscussionBoardAbuse');
-$app->get('/discussionAll', 'checkUser', 'getAllDiscussions');
+$app->get('/discussionAll', 'getAllDiscussions');
 $app->get('/discussionTopicAll/:DiscussionBoardId', 'getAllDiscussionsTopics');
 $app->get('/discussionTopicComments/:topic', 'getdiscussionTopicComments');
 $app->get('/getdiscussionListTopicName/:topicId', 'getdiscussionListTopicName');
