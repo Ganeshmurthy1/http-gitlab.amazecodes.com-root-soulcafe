@@ -26,14 +26,14 @@
             		<img class="rounded-x" ng-src="{{imagepath}}{{frnd.Picture}}" alt="{{frnd.first_name}} {{frnd.last_name}}" style="width:100px;height:100px;float:left;">
                 <div class="friendN">
                     <div class="color-brown-light col-md-12" style="font-size:20px;"><strong>{{frnd.first_name}} {{frnd.last_name}}</strong></div>
-                    <div class="col-md-12">{{frnd.location}}, {{frnd.hometown}}</div>
+                    <div class="col-md-12">{{frnd.Moto | limitTo : 20}}..</div>
                     <div class="row"> 
                     	<div class="col-xs-4 col-md-1">
                     	 	<a title="Send message" href="#/reply-message?sid={{frnd.user_id}}"><i class="fa fa-2x fa-envelope-o"></i></a>
                     	</div>
                     	<div class="col-xs-6 no-padding">
 		                    <a title="Express your  special feeling" href="#/special-feeling-request?user_id={{frnd.user_id}}">
-		                    <img ng-src="images/heart.jpg" alt="" style="width:25px;height:25px;float:left;">
+		                    <img ng-src="images/logo_soul.png" alt="" style="width:25px;height:25px;float:left;">
 		                    </a>
                     	</div>
                     </div>
