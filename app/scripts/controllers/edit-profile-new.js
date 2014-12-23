@@ -165,7 +165,7 @@ angular.module('sassApp')
           });
          	 
          }else {
-        	 $scope.errorMessage = 'Please select a valid birthdate';
+        	 $scope.errorMessage = response.data;
         	 
          }
       });
