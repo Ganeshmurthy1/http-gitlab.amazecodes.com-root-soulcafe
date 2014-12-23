@@ -17,7 +17,7 @@ $app->post('/add_linkedinData', 'addlinkedinData');
 
 $app->get('/getProffesionaldetails/:id', 'get_Proffesionaldetails');
 $app->post('/saveDiscussionBoardAbuse', 'save_DiscussionBoardAbuse');
-$app->get('/discussionAll', 'checkUser', 'getAllDiscussions');
+$app->get('/discussionAll', 'getAllDiscussions');
 $app->get('/discussionTopicAll/:DiscussionBoardId', 'getAllDiscussionsTopics');
 $app->get('/discussionTopicComments/:topic', 'getdiscussionTopicComments');
 $app->get('/getdiscussionListTopicName/:topicId', 'getdiscussionListTopicName');
@@ -1020,7 +1020,11 @@ function updateProfileDetail() {
   $diff = abs(strtotime($tdate) - strtotime($birthdate));
   $years = floor($diff / (365*60*60*24));
   if($years < 22) {
-    echo 'false';
+    echo 'Please select a valid birthdate';
+    exit();
+  }
+  if(!is_numeric($user->Height)) {
+    echo 'Please select a valid Height';
     exit();
   }
   

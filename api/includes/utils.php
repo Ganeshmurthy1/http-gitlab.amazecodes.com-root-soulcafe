@@ -17,6 +17,27 @@ function getUserId() {
       
 }
 
+// function getUserId() {
+   
+
+//   $headers = $_SERVER['Authorization'];
+//   //print_r($headers);
+
+//   if (isset($headers)) {
+//     $split = explode(' ', $headers);
+//     $token = $split[1];
+//     $user_id  = $split[3];
+//   }
+// //   else if (isset($headers)) {
+// //     $split = explode(' ', $headers);
+// //     $token = $split[1];
+// //     $user_id  = $split[3];
+// //   }
+//   //$user_id;
+//   return $user_id;
+
+// }
+
 function checkAdmin() {
   $headers = apache_request_headers();
   // echo $headers['authorization'];
