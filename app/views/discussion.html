@@ -40,7 +40,7 @@
                     <div class="panel-body" >
                         <div class="media media-v2" data-ng-repeat="comment in comments">
                             <a class="pull-left" ng-click="otherProfile(comment)">
-                                <img class="media-object rounded-x" ng-src="{{imagepath}}{{comment.Picture}}" alt="">
+                                <img class="media-object rounded-x" ng-src="{{imagepath}}{{comment.Picture}}" alt="{{comment.first_name}}" title="{{comment.first_name}}">
                             </a>
                             <div class="media-body">
                                 <h4 class="media-heading">
@@ -75,7 +75,7 @@
                     </div><!-- comment  -->
                     <div class="media media-v2">
                         <a class="pull-left" href="#">
-                            <img class="media-object rounded-x" ng-src="{{pict}}" alt="">
+                            <img class="media-object rounded-x" ng-src="{{pict}}" alt="Me" title="Me">
                         </a>
                         <div class="media-body">
                             <h4 class="media-heading">
@@ -113,7 +113,7 @@
               <div class="alert alert-success fade in" ng-hide="hide">{{abuseSuccessMessage}}</div>
                     <div class="media media-v2" ng-repeat="like in likeData">
                         <a class="pull-left" href="#">
-                            <img class="media-object rounded-x" ng-src="{{imagepath}}{{like.Picture}}" alt="" style="width:50px !important; height:50px !important;">
+                            <img class="media-object rounded-x" ng-src="{{imagepath}}{{like.Picture}}" alt="{{like.first_name}} {{like.last_name}}" title="{{like.first_name}} {{like.last_name}}" style="width:50px !important; height:50px !important;">
                         </a>
                         <div class="media-body">
                             <h4 class="media-heading">

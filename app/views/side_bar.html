@@ -1,12 +1,12 @@
 
 
     <div class="align-center padding-20px">
-        <img class="rounded-x imagel" ng-src="{{sideData.picture}}" alt="" >
+        <img class="rounded-x imagel" ng-src="{{sideData.picture}}" title="{{sideData.first_name}} {{sideData.last_name}}" alt="{{sideData.first_name}} {{sideData.last_name}}" >
         <div class="name">{{sideData.first_name}} {{sideData.last_name}} , {{diff}}</div>
-        <img src="images/div.png" alt="" >
+        <img src="images/div.png" alt="Seperator" title="Seperator" >
         <div class="add">Lives In : {{sideData.location}}</div>
         <div class="add">Works at : {{sideData.employment}}
-         <!--    <a class="pull-right" style="color:#5bc0de;" href="#/edit-profile-new">More..</a> -->
+            <a ng-hide="moreHide" class="pull-right" style="color:#5bc0de;" href="#/edit-profile-new">More..</a>
         </div>
         <!-- <div class="pull-right morebutton add"><a style="color:#5bc0de;" href="#/edit-profile-new">More...</a></div> -->
     </div>
@@ -20,7 +20,7 @@
             <div class="clabel row"><i title="Private" class="fa fa-lock"></i> <a class="color-white" href="#/friends">FRIENDS ({{totalfriends}})</a></div>
             <div class="row margin-top-5"  ng-repeat="frnd in friends">
             	<div class ="col-md-3">
-               		<a class="profile_link" ng-click="otherProfile({{frnd.BuddyId}})"> <img class="rounded-x" ng-src="{{imagepath}}{{frnd.Picture}}" alt="" style="width:50px;height:auto;float:left;"></a>
+               		<a class="profile_link" ng-click="otherProfile({{frnd.BuddyId}})"> <img class="rounded-x" ng-src="{{imagepath}}{{frnd.Picture}}" title="{{frnd.first_name}} {{frnd.last_name}}" alt="{{frnd.first_name}} {{frnd.last_name}}" style="width:50px;height:auto;float:left;"></a>
                	</div>
                <div class ="col-md-9">
                     <div class="color-brown-light"><a class="profile_link" ng-click="otherProfile({{frnd.BuddyId}})"><strong>{{frnd.first_name}} {{frnd.last_name}}</strong></a></div>
@@ -52,7 +52,7 @@
         <div class=" clearfix">
             <div class="clabel row">INTERESTS</div>
             <span class="interests float-left align-center" ng-repeat="intst in interest">
-                <span><img src="{{imagepath}}interest/{{intst.OptionId}}.png"></span>
+                <span><img src="{{imagepath}}interest/{{intst.OptionId}}.png" title="{{intst.Answer}}" alt="{{intst.Answer}}"></span>
                 <div class="font">{{intst.Answer}}</div>
             </span>
             

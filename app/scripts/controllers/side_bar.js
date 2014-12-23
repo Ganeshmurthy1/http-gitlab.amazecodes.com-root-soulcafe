@@ -17,6 +17,12 @@ angular.module('sassApp')
       'Karma'
     ];
 
+    if($location.path() == '/edit-profile-new'){
+      $scope.moreHide = 'true';
+    }else{
+      $scope.moreHide = 'false';
+    }
+
     var config = localStorageService.get('config');
     $scope.imagepath = config.image_path;
 
