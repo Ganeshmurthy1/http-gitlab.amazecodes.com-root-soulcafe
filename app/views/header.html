@@ -6,7 +6,7 @@
 
             <div class="col-xs-1 no-padding hidden-sm visible-xs menuicon">
                 
-                <button type="button" class="navbar-toggle top-navbar-toogle no-margin no-padding"  data-toggle="collapse" data-target=".top-navigation"><img src="images/menu-new.png" style="width:30px;top:55px !important;"></button>
+                <button type="button" class="navbar-toggle top-navbar-toogle no-margin no-padding"  data-toggle="collapse" data-target=".top-navigation"><img src="images/menu-new.png" title="Menu icon" alt="Menu icon" style="width:30px;top:55px !important;"></button>
                     <ul class="nav collapse top-navigation" style="top:55px !important;">
                         <li><a href="#/home">Home </a></li>
                         <li><a href="#/myprofile">My Profile</a></li>        
@@ -22,7 +22,7 @@
                           
             </div>
             <div class="col-md-1 hideblock">
-            	<div class="pull-left  "><img src="images/logo_soul.png" alt="" ></div>
+            	<div class="pull-left  "><img src="images/logo_soul.png" alt="Logo" title="Logo" ></div>
             </div>
 
 			 <div class="col-md-6 col-xs-10 pull-right">
@@ -42,7 +42,7 @@
 			<div class="message-list pull-right ">
 			<ul class="list-inline badge-lists badge-icons ">
                 <li class="dropdown">
-              <a class="dropdown-toggle" ng-click="sysMessage()" type="button" id="dropdownMenu1" data-toggle="dropdown"><i class="fa fa-globe fa-2x color-white"></i>
+              <a title="System notification" class="dropdown-toggle" ng-click="sysMessage()" type="button" id="dropdownMenu1" data-toggle="dropdown"><i class="fa fa-globe fa-2x color-white"></i>
               </a>
               <span class="badge badge-green rounded-x" ng-show="totalSysMessage">{{totalSysMessage}}</span>
               <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
@@ -58,7 +58,7 @@
                 
                 
                 <li class="dropdown">
-                    <a class="dropdown-toggle" ng-click="Message()"><i class="fa fa-2x fa-envelope-o color-white"></i></a>
+                    <a title="Message" class="dropdown-toggle" ng-click="Message()"><i class="fa fa-2x fa-envelope-o color-white"></i></a>
                     <span ng-show="totalMessage" class="badge badge-dark-blue rounded">{{totalMessage}}</span>
                 	 <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
 		                <div class="alert alert-success fade in no-bottom" data-ng-repeat = "message in messages">
@@ -69,7 +69,7 @@
 		              </ul>
                 </li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" ng-click="forumMessage()"><i class="fa fa-2x fa-comments color-white"></i></a>
+                    <a title="Forum notification" class="dropdown-toggle" ng-click="forumMessage()"><i class="fa fa-2x fa-comments color-white"></i></a>
                     <span ng-show="totalForumMessage" class="badge badge-red rounded-x">{{totalForumMessage}}</span>
                 	 <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
 		                <div class="alert alert-success fade in no-bottom" data-ng-repeat = "message in messages">
@@ -140,7 +140,7 @@
 
             <a ng-class="{'pull-right home':true,'bcolor-white':defaulth}" href="#/home"><strong>Home</strong></a>
             <a ng-class="{'pull-right home1':true,'bcolor-white':defaultp}" href="#/myprofile" > 
-                <img class="rounded-x" ng-src="{{pict}}" alt="" style="width:20px;height:20px;">
+                <img class="rounded-x" ng-src="{{pict}}" title="{{datau.first_name}} {{datau.last_name}}" alt="{{datau.first_name}} {{datau.last_name}}" style="width:20px;height:20px;">
                 <strong>{{datau.first_name}} {{datau.last_name}}</strong>
             </a>
 

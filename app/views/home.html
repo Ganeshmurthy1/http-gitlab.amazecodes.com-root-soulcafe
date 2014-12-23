@@ -31,15 +31,15 @@
 							<div class="col-md-offset-3">
 								<div class="padding-left">
 									<ul class="list-inline badge-lists badge-icons badge-icons1">
-										<li><img src="images/facebook.png"> <span
+										<li><img src="images/facebook.png" title="Facebook" alt="Facebook"> <span
 											class="badge1 badge-green rounded-x"><i
 												class="fa fa-check  color-white"></i></span></li>
-										<li><img src="images/linkedin.png"> <span
+										<li><img src="images/linkedin.png" title="Linkedin" alt="Linkedin"> <span
 											class="badge1 badge-green rounded-x" ng-hide="thumbup"><i
 												class="fa fa-check  color-white"></i></span> <span
 											class="badge1 badge-red rounded-x color-white"
 											ng-show="thumbup">x</span></li>
-										<li><img src="images/icon-mobile.png"> <span
+										<li><img src="images/icon-mobile.png" title="Mobile" alt="Mobile"> <span
 											class="badge1 badge-green rounded-x"><i
 												class="fa fa-check  color-white"></i></span></li>
 										<!-- <li>
@@ -79,7 +79,7 @@
 				<div class="row" ng-repeat="image in recomandation">
 					<div class="col-md-12 image">
 						<a ng-click="otherProfile({{image.SoulId}})"><img
-							class="" data-lazy="{{imagepath}}{{image.Picture}}" /></a>
+							class="" data-lazy="{{imagepath}}{{image.Picture}}" alt="{{image.first_name}} {{image.last_name}}" title="{{image.first_name}} {{image.last_name}}" /></a>
 					</div>
 					<div class="col-md-12 age align-center">
 						<a ng-click="otherProfile({{image.SoulId}})">
@@ -101,7 +101,7 @@
 					<div class="row margin-bottom margin-top" >
 					<div class="col-md-2">
 					<div class="row">
-						<img class="rounded-x" ng-src="{{imagepath}}{{updts.Image}}"
+						<img class="rounded-x" alt="{{updts.first_name}} {{updts.last_name}}" title="{{updts.first_name}} {{updts.last_name}}" ng-src="{{imagepath}}{{updts.Image}}"
 							alt="" style="width: 70px; height: auto; float: left;"></div>
 					<div class="row color-brown-light">{{updts.first_name}} {{updts.last_name}}</div>
 					</div>

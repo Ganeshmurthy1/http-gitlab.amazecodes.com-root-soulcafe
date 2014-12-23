@@ -38,7 +38,7 @@
                 	<div  ng-repeat="diss in discussionData" ng-show="diss.show">
                     <div class="col-md-4 " >
                         <div class="thumbnails thumbnail-style" >
-                            <a href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}"><img class="img-responsive img-class" src="{{imagepath}}{{diss.Image}}" alt="" /></a>
+                            <a href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}"><img class="img-responsive img-class" src="{{imagepath}}{{diss.Image}}" alt="{{diss.Topic}}" title="{{diss.Topic}}"/></a>
                             <div class="caption">
                                 <div class="clefarfix">
                                      <h3 ><a class="color-brown" href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}">{{diss.Topic}}</a></h3>

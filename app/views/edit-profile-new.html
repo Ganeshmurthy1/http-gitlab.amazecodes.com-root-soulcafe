@@ -365,7 +365,7 @@
                                         <div class="media media-v2" style="float:left;margin: 0 !important;
                                     padding: 0 !important;">
                                         <a class="pull-left" href="#">
-                                            <img class="media-object media-object1 rounded-x" ng-src="{{pict}}" alt="" style="height: 100px; width: 100px !important;">
+                                            <img class="media-object media-object1 rounded-x" ng-src="{{pict}}" title="{{profileDetail.first_name}} {{profileDetail.last_name}}" alt="{{profileDetail.first_name}} {{profileDetail.last_name}}" style="height: 100px; width: 100px !important;">
                                         </a>
                                     </div>
                                     </div>
@@ -574,8 +574,8 @@
          <div class="alert fade in margin-bottom-40" ng-repeat="question in questions">
              <h4>{{question.QuestionTitle}}</h4>
                           
-            <p>
-                <a class="btn-u btn-u-sea  " href="#/question-edit?qid={{question.Qid}}">Edit</a>
+            <p class="pull-right">
+                <a href="#/question-edit?qid={{question.Qid}}"><i class="fa fa-pencil">...</i></a>
             </p>
                
         </div>
