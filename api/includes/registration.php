@@ -1020,7 +1020,11 @@ function updateProfileDetail() {
   $diff = abs(strtotime($tdate) - strtotime($birthdate));
   $years = floor($diff / (365*60*60*24));
   if($years < 22) {
-    echo 'false';
+    echo 'Please select a valid birthdate';
+    exit();
+  }
+  if(!is_numeric($user->Height)) {
+    echo 'Please select a valid Height';
     exit();
   }
   
