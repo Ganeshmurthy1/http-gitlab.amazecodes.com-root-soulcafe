@@ -8,14 +8,15 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('QuizCtrl', function ($scope, Questionnaire, $location) {
+  .controller('QuizCtrl', function ($scope, Questionnaire, $location, $anchorScroll) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
     
-    
+    $location.hash('msg');
+    $anchorScroll();
     $scope.demo6 = {
 		    valueA: 5,
 		    valueB: 3000
@@ -151,6 +152,7 @@ angular.module('sassApp')
     		if ($scope.QuestionObj.Questions.MaxOptions == $scope.multipleOrdered.length) {
     			$scope.errMessage = 'Maximum Selection is ' + $scope.QuestionObj.Questions.MaxOptions;
     			//alert('Maximum Selection is ' + $scope.QuestionObj.Questions.MaxOptions );
+    			$anchorScroll();
     			return;
     			
     		}
@@ -184,6 +186,8 @@ angular.module('sassApp')
     		if ($scope.singleSelected == null) {
     			//alert('Please select something :(');
     			$scope.errMessage = "Please select something :(";
+    			
+                $anchorScroll();
     			return;
     		}
     		
@@ -192,6 +196,7 @@ angular.module('sassApp')
     		//alert('ppp');
     		if ($scope.intensitySel == 0) {
     			$scope.errMessage = "Please select something :(";
+    			$anchorScroll();
     			return;
 			}
     		
@@ -200,6 +205,7 @@ angular.module('sassApp')
     		if ($scope.multipleOrdered.length == 0) {
     			//alert('Please select something :(');
     			$scope.errMessage = "Please select something :(";
+    			$anchorScroll();
     			return;
 			}
     		

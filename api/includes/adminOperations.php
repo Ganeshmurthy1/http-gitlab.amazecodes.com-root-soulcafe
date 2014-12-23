@@ -21,9 +21,9 @@ $app->get('/forum_mark_message', 'ForumMarkMessage');
 
 $app->get('/get_my_message', 'getMyMessage');
 
-$app->get('/get_picture_name/:id', 'checkUser','getPictureName');
+$app->get('/get_picture_name/:id', 'getPictureName');
 
-$app->post('/sent_message','checkUser','sentMessage');
+$app->post('/sent_message', 'sentMessage');
 
 $app->get('/get_all_forum', 'GetAllForum');
 
