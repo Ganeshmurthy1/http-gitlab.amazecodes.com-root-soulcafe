@@ -241,6 +241,14 @@ function AddAnswer() {
   $DateTime=  date("Y-m-d h:i:s") ;
   $user_id = getUserId();
   
+  $db = getConnection();
+  $sqldel = "Delete from QuestionnaireAnswer  WHERE QId=:id and UserId = :userid";
+  $stmt = $db->prepare($sqldel);
+  $stmt->bindParam("id", $answer->question->Qid);
+  $stmt->bindParam("userid", $user_id);
+  $stmt->execute();
+  
+  
   if ($answer->question->AnswerSelectionType == 1) {
     //  print_r($answer);
     
@@ -581,7 +589,7 @@ function getThisQuestionById($qid) {
     $wineAn = $stmtAn->fetchAll(PDO::FETCH_OBJ);;
     $result->Options = $wineAn;
     
-    $sqlAnswers = "SELECT OptionId, RankScale from QuestionnaireAnswer where Qid = :Qid AND UserId = :user_id order by RankScale";
+    $sqlAnswers = "SELECT OptionId, RankScale from QuestionnaireAnswer where QId = :Qid AND UserId = :user_id order by RankScale";
     $stmtAnswers = $db->prepare($sqlAnswers);
     $stmtAnswers->bindParam("Qid", $wineQ->Qid);
     $stmtAnswers->bindParam("user_id", $user_id);
