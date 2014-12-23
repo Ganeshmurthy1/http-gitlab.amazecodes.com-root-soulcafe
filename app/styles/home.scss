@@ -1,3 +1,15 @@
+.myborder{
+	border:1px solid red;
+}
+.custm{
+	padding:20px;	
+}
+.margin-5{
+	margin:5px !important;
+}
+.progresscustom{
+	margin-top:7px;
+}
 body{
 	font-family:Arial !important;
 }
@@ -86,6 +98,9 @@ a{
 }
 .color-red{
 	color:#FF0000 !important;
+}
+.color-black{
+	color:#000000 !important;
 }
 .color-brown-light{
 	color:#98754f !important;
@@ -301,11 +316,7 @@ a:hover{
 .rightmargin{
 	margin-left:10px !important;
 }
-.progresscustom{
-	border-radius:5px !important;
-	background: none repeat scroll 0 0 #e6c39d !important;
-	clear:both;
-}
+
 
 .progress-barcustom {
     background-image: linear-gradient(to bottom, #800000 0%, #800000 100%) !important;
