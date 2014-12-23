@@ -12,15 +12,23 @@
     </div>
 
     <div class="clearfix align-center quote marginleft gredient">
-        <h1 class="color-brown">"QUOTE I LIVE BY"</h1>
-        <h3 class="color-brown-light">{{sideData.Moto}}</h3>
+        <div class="row home-block">
+                <h3 class="panel-title">
+                                <i class="fa fa-quote-left color-deep-red"></i> QUOTE I LIVE BY
+                            </h3>
+                <blockquote class="bq-text-lg">
+                            <p>{{sideData.Moto}}</p>
+                            
+                        </blockquote>
+                
+                </div>
     </div>
     <div class="margin-top-10 hideblck">
         <div class=" clearfix">
             <div class="clabel row"><i title="Private" class="fa fa-lock"></i> <a class="color-white" href="#/friends">FRIENDS ({{totalfriends}})</a></div>
             <div class="row margin-top-5"  ng-repeat="frnd in friends">
             	<div class ="col-md-3">
-               		<a class="profile_link" ng-click="otherProfile({{frnd.BuddyId}})"> <img class="rounded-x" ng-src="{{imagepath}}{{frnd.Picture}}" title="{{frnd.first_name}} {{frnd.last_name}}" alt="{{frnd.first_name}} {{frnd.last_name}}" style="width:50px;height:auto;float:left;"></a>
+               		<a class="profile_link" ng-click="otherProfile({{frnd.BuddyId}})"> <img class="rounded-x" ng-src="{{imagepath}}{{frnd.Picture}}" title="{{frnd.first_name}} {{frnd.last_name}}" alt="{{frnd.first_name}} {{frnd.last_name}}" style="width:50px;height:50px;float:left;"></a>
                	</div>
                <div class ="col-md-9">
                     <div class="color-brown-light"><a class="profile_link" ng-click="otherProfile({{frnd.BuddyId}})"><strong>{{frnd.first_name}} {{frnd.last_name}}</strong></a></div>
