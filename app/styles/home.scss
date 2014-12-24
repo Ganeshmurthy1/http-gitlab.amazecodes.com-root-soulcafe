@@ -1,14 +1,19 @@
 .myborder{
-	border:1px solid red;
+	
 }
 .custm{
-	padding:20px;	
+	padding:10px 20px;	
 }
 .margin-5{
 	margin:5px !important;
 }
 .progresscustom{
 	margin-top:7px;
+}
+.transperent{
+	background-color: #ffffff;
+    border: 1px solid black;
+    opacity: 0.6;
 }
 body{
 	font-family:Arial !important;
@@ -81,7 +86,9 @@ a{
     padding-bottom: 20px;
     min-height: 1150px;
 }
-
+.modal-dialog {
+    width: 600px !important;
+}
 .color-white{
 	color:#FFFFFF !important;
 }

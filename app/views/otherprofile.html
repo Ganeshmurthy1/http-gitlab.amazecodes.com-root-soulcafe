@@ -143,8 +143,8 @@
 
 
 <script type="text/ng-template" id="myModalContent.html">
-	<div class="custm bcolor-white">
-        <div class="modal-header align-center myborder">
+	<div class="custm bcolor-brown">
+        <div class="modal-header no-padding align-center myborder" style="border-bottom:0px solid white;">
             <h1 class="modal-title color-black"><strong>You and {{buddyname}}</strong></h1>
         </div>
         <div class="modal-body myborder">
@@ -165,33 +165,42 @@
             <!-- Boxes -->
             <div class="row myborder">
             	<div class="col-md-6" ng-repeat="(key, value) in matchDetails.scores" style="margin:5px 0px !important;padding-right:0px !important;">
-            	<div class="bcolor-brown padding-20">
+            	<div class="transperent padding-15">
             		<div class="align-center"><h4 class="color-black"><strong>{{key}}</strong></h4></div>
-            		<div class="progress progresscustom">
-			  			<div class="progress-bar progress-barcustom" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="100" style="width: {{value}}%;">
-			    			{{value}}%
-			  			</div>
-					</div>
+            		<div class="row">
+            			<div class="col-md-offset-2 col-md-8"> 
+            				<div class="progress progresscustom">
+					  			<div class="progress-bar progress-barcustom" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="100" style="width: {{value}}%;">
+					    			{{value}}%
+					  			</div>
+					  		</div>
+            			</div>
+            			<div class="col-md-2 no-padding" style="margin-top: 7px;">{{value}}%</div>
+					
+            		</div>
             	</div>
             		
             	</div>
             </div>
             <div class="row myborder">
-            	<div class="col-sm-offset-3 col-md-6" style="margin:5px 0px !important;padding-right:0px !important;">
-            	<div class="bcolor-brown padding-20">
-            		<div class="align-center"><h4 class="color-black"><strong>Hhhh</strong></h4></div>
-            		<div class="progress progresscustom">
-			  			<div class="progress-bar progress-barcustom" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="100" style="width: 66%;">
-			    			66%
-			  			</div>
-					</div>
+            	<div class="col-md-6" style="margin:5px 26% !important;padding-right:0px !important;">
+            	<div class="transperent padding-15">
+            		<div class="align-center"><h4 class="color-black"><strong>Personality Match</strong></h4>
+            		</div>
+            		<div class="row">
+            			<div class="col-md-offset-1 col-md-4"> 
+            				<img ng-src="images/pm.png" style="width:50px;height:50px;"/>
+            			</div>
+            			<div class="col-md-7 no-padding" style="margin-top: 7px;">Abhik Jawandhiya</div>
+					
+            		</div>
             	</div>
             		
             	</div>
             </div>
         </div>
-        <div class="modal-footer align-center">
-        	 <button type="button" ng-click="ok()" class="btn btn-comp">OK</button>
+        <div class="modal-footer align-center" style="margin-top:0px !important;">
+        	 <button type="button" ng-click="ok()" class="btn btn-comp" style="padding:5px 45px;text-align:center;">OK</button>
             
         </div>
     </div>
