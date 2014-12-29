@@ -2,7 +2,11 @@
 	
 }
 .custm{
-	padding:10px 20px;	
+	padding:10px 23px 0px 20px;
+	background-image:url(/images/pop.png);
+	
+	background-repeat: no-repeat;
+    background-size: 100%;	
 }
 .margin-5{
 	margin:5px !important;
@@ -11,9 +15,9 @@
 	margin-top:7px;
 }
 .transperent{
-	background-color: #ffffff;
-    border: 1px solid black;
-    opacity: 0.6;
+	background: rgba(#ffffff, 0.5);	
+	border: 1px solid black;
+	
 }
 body{
 	font-family:Arial !important;
@@ -64,11 +68,9 @@ a{
 	
 }
 .container-fluid{
-
-
 	.row{
-	margin-left:0px !important;
-	margin-right:0px !important;
+		margin-left:0px !important;
+		margin-right:0px !important;
 	}
 
 }
@@ -661,14 +663,38 @@ background: linear-gradient(270deg, #f2f2f2 80%, #d8d6d2 88%) repeat scroll 0 0 
 }
 
 /*--------------Media Queries-------------*/
+@media (min-width: 600px) {
+.alignment-tab {
+    margin-left: 0% !important;
+}
+.mobile-clear {
+    clear: none !important;
+}
+.alignment-tab1 {
+    margin-left: 0% !important;
+}
+.mobile-align1 {
+    margin-left: 0% !important;
+}
+}
 @media (min-width: 768px) {
+.alignment-tab {
+    margin-left: 35% !important;
+}
+.alignment-tab1 {
+    clear: both;
+    margin-left: 20% !important;
+    width: 100%;
+}
+.mobile-clear {
+    clear: both;
+}
+.mobile-align1 {
+    margin-left: 22% !important;
+}
 .gredientSB{
-
-
 background: linear-gradient(270deg, #d8d6d2 6%, #f2f2f2 17%) repeat scroll 0 0 transparent;
 min-height: 1150px;
-
-    
 }
 .message-list {
 	margin: 15px 25px 0 15px !important;
@@ -1015,6 +1041,14 @@ min-height: 1150px;
 }
 .message-list {
 	margin: 15px 25px 0 15px !important;
+}
+.alignment-tab {
+    margin-left: 0% !important;
+}
+.alignment-tab1 {
+    clear: none;
+    margin-left: 0% !important;
+    width: 40%;
 }
 }
 

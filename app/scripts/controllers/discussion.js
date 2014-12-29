@@ -59,7 +59,7 @@ angular.module('sassApp')
 
       regService.getdiscussionTopicComments($routeParams.topic).then(function (results) {
         $scope.comments = results.data; 
-console.log( $scope.comments);
+        console.log( $scope.comments);
         regService.getPicturesComments($routeParams.topic).then(function (results) {
              $scope.picture=results.data;
               console.log( $scope.picture);
