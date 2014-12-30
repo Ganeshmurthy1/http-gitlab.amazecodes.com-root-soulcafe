@@ -46,11 +46,11 @@
               </a>
               <span class="badge badge-green rounded-x" ng-show="totalSysMessage">{{totalSysMessage}}</span>
               <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                <div class="alert alert-success fade in no-bottom" data-ng-repeat = "message in messages">
-                <a href="#/{{message.Link}}" style="display:block; text-decoration:none;">
+                <div class="alert alert-success fade in no-bottom" data-ng-repeat = "sysmessage in sysmessages">
+                <a href="#/{{sysmessage.Link}}" style="display:block; text-decoration:none;">
+                     {{sysmessage.Message}}
+                     {{sysmessage.mess}}
                     
-                    
-                     {{message.mess}}
                 </a>
                 </div>
               </ul>
@@ -61,9 +61,10 @@
                     <a title="Message" class="dropdown-toggle" ng-click="Message()"><i class="fa fa-2x fa-envelope-o color-white"></i></a>
                     <span ng-show="totalMessage" class="badge badge-dark-blue rounded">{{totalMessage}}</span>
                 	 <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
-		                <div class="alert alert-success fade in no-bottom" data-ng-repeat = "message in messages">
-		                <a href="#/{{message.Link}}" style="display:block; text-decoration:none;">
-		                     {{message.mess}}
+		                <div class="alert alert-success fade in no-bottom" data-ng-repeat = "mymessage in mymessages">
+		                <a href="#/{{mymessage.Link}}" style="display:block; text-decoration:none;">
+		                    {{mymessage.Message}}
+                     		{{mymessage.mess}}
 		                </a>
 		                </div>
 		              </ul>
@@ -74,7 +75,8 @@
                 	 <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
 		                <div class="alert alert-success fade in no-bottom" data-ng-repeat = "message in messages">
 		                <a href="#/{{message.Link}}" style="display:block; text-decoration:none;">
-		                     {{message.mess}}
+		                      {{message.Message}}
+                     		  {{message.mess}}
 		                </a>
 		                </div>
 		              </ul>
