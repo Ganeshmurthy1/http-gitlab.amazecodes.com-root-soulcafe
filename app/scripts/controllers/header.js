@@ -57,34 +57,37 @@ angular.module('sassApp')
     //   });
 
       $scope.sysMessage = function() {  
+    	  $scope.sysmessages ={};
     	  regService.sysMarkMessage().then(function (response) { 
-    		  $scope.messages = response.data;
-          console.log($scope.messages);
-          if($scope.messages.length == 0){
+    		  $scope.sysmessages = response.data;
+         
+          if($scope.sysmessages.length == 0){
             // console.log("Nooo");
-            $scope.messages[0] = {};
-            $scope.messages[0] = {
+            $scope.sysmessages[0] = {};
+            $scope.sysmessages[0] = {
               mess:"No message for you now",
               Link: "home"
             }
 
-            console.log($scope.messages[0].mess );
+            //console.log($scope.messages[0].mess );
           }
     		  // $scope.totalSysMessage = 0;
     		  // $scope.popup = true;
-      		
+          //console.log($scope.messages[0].mess );
+          //console.log($scope.messages);
       	});
       };
       
-      $scope.Message = function() {  
+      $scope.Message = function() { 
+    	  $scope.mymessages = {};
     	  regService.MarkMessage().then(function (response) {
 
-    		  $scope.messages = response.data;
-           console.log($scope.messages[0]);
-           if($scope.messages.length == 0){
+    		  $scope.mymessages = response.data;
+           console.log($scope.mymessages);
+           if($scope.mymessages.length == 0){
             // console.log("Nooo");
-            $scope.messages[0] = {};
-            $scope.messages[0] = {
+            $scope.mymessages[0] = {};
+            $scope.mymessages[0] = {
               mess:"No message for you now",
               Link: "home"
             }
