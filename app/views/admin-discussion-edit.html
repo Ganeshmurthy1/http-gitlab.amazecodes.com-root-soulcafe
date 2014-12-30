@@ -69,25 +69,24 @@
 						<div class="row" data-ng-show="discussion.Restricted">
 						<section class="col col-4">
                             <label class="select">
-                                <select name="gender" data-ng-model="discussion.RestrictedGender">
-                                    <option disabled="" selected="" value="0">Gender</option>
+                                <select name="gender"  data-ng-model="discussion.gender">
+                                     <option value="">All</option>
                                     <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                    <option value="Other">Other</option>
+                                    <option value="female">Female</option>                                    
                                 </select>
-                                <i></i>
+                                
                             </label>
                         </section> 
                         <section class="col col-4">
                                 <label class="input">
-                                    <input type="number" name="name" ng-model="value" placeholder="Age Limit" >
-                                    <!-- <input type="text" name="name" data-ng-model="discussion.RestrictedAge" ui-mask="{{'99'}}"/> -->
-
+                                    <input type="text" name="name" placeholder="Age Limit " data-ng-model="discussion.age">
+                                    Eg. 30 <br>
+                                    Note: Please enter the minimum age to whom forum should display. 
                                 </label>
                        </section>
                        <section class="col col-4">
                                 <label class="select" >
-                                <select name="location" data-ng-model="discussion.location" class="loc-drop" multiple size="3" height="50px" >
+                                <select name="location" data-ng-model="discussion.RestrictedLocation" class="loc-drop" multiple size="3" height="50px" >
 <option selected="selected">-Select-</option>
 <option disabled="disabled" style="background-color:#3E3E3E"><font color="#000000"><i>-Top Metropolitan Cities-</i></font></option>
 <option>Ahmedabad</option> 

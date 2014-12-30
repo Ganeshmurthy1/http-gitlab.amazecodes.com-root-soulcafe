@@ -27,32 +27,12 @@ angular.module('sassApp')
 var config = localStorageService.get('config');
     $scope.imagepath = config.image_path;
 
-  //   $scope.userData = {};
-  //   function getUSerdata() {
-  //    var authData = localStorageService.get('authorizationData');
-  //    // console.log(authData);
-  //    regService.getUserDetails(authData.user_id).then(function (results) {
-  //      // console.log(results.data);
-  //      $scope.userData = results.data; 
-  //      console.log($scope.userData.birthdate);
-  //       var d1 = new Date($scope.userData.birthdate);
-  // console.log($scope.userData.birthdate);
-  //    var d2 = new Date();
-    // var diff = d2.getFullYear()-d1.getFullYear();
-    // console.log(diff); 
-  //    });
-    
-  //     }
-  //    getUSerdata();
-      
   $scope.showd=false;
     
      regService.getDiscussionDetails().then(function (results) {
 
-       // console.log(results.data[14].RestrictedLocation);
-       // console.log(results.data[14].Topic);
        $scope.discussionData = results.data;
-       // console.log($scope.discussionData.length);
+       console.log($scope.discussionData);
        var authData = localStorageService.get('authorizationData');
          regService.getUserDetails(authData.user_id).then(function (results) {
             regService.getDiscussionListStatus().then(function (res) {
@@ -78,7 +58,6 @@ var config = localStorageService.get('config');
 
               if (res.data.DiscussionBoardId != '') {
                   var joinFlag = true;
-
               };
             
             // console.log(results.data);
@@ -88,6 +67,7 @@ var config = localStorageService.get('config');
             var d2 = new Date();
             var diff = d2.getFullYear()-d1.getFullYear();
             // console.log(diff); 
+             var authData = localStorageService.get('authorizationData');
             for (var i = 0; i < $scope.discussionData.length; i++) {
             	
             //	console.log($scope.discussionData[i].RestrictedLocation);
@@ -96,20 +76,8 @@ var config = localStorageService.get('config');
               $scope.discussionData[i].view="false";
               $scope.discussionData[i].sr=i+1;
               $scope.isAdmin = false;
-                var authData = localStorageService.get('authorizationData');
-
-              if(authData.user_role == 1) {  
-                $scope.discussionData[i].join="true";
-                $scope.discussionData[i].show="true";
-              for (var x  in $scope.DiscussionJoin) {
-                  // console.log("inside for loop " ,$scope.DiscussionJoin[x].DiscussionBoardId);
-                  if ($scope.discussionData[i].DiscussionBoardId == $scope.DiscussionJoin[x].DiscussionBoardId ){
-                    // console.log("Inside if");
-                    $scope.discussionData[i].join="false";
-                    $scope.discussionData[i].view="true";
-                  }
-                }
-              }else if( $scope.discussionData[i].Restricted == 0){
+// console.log(authData);
+               if( $scope.discussionData[i].Restricted == 0){
                 // console.log($scope.DiscussionJoin.length);
                 $scope.discussionData[i].join="true";
                 $scope.discussionData[i].show="true";
@@ -132,8 +100,8 @@ var config = localStorageService.get('config');
                   // console.log("AbhikAge");
                   if($scope.discussionData[i].RestrictedGender == null){
                     // console.log("AbhikGender");
-                     if($scope.discussionData[i].RestrictedLocation == null){
-
+                     if($scope.discussionData[i].RestrictedLocation == false){
+                         console.log("AbhikElse");
                         $scope.discussionData[i].join="true";
                         $scope.discussionData[i].show="true";
                         for (var x  in $scope.DiscussionJoin) {
@@ -160,7 +128,8 @@ var config = localStorageService.get('config');
                         // console.log("AbhikElse");
                      };
                     }else if ($scope.userData.gender === $scope.discussionData[i].RestrictedGender) {
-                    if ($scope.discussionData[i].RestrictedLocation == null) {
+                   
+                    if ($scope.discussionData[i].RestrictedLocation == false) {
                        $scope.discussionData[i].join="true";
                        $scope.discussionData[i].show="true";
                        for (var x  in $scope.DiscussionJoin) {
@@ -190,7 +159,7 @@ var config = localStorageService.get('config');
                 }else if (diff >=$scope.discussionData[i].RestrictedAge) {
 
                     if ($scope.discussionData[i].RestrictedGender == null) {
-                       if($scope.discussionData[i].RestrictedLocation == null){
+                       if($scope.discussionData[i].RestrictedLocation == false){
                           $scope.discussionData[i].join="true";
                           $scope.discussionData[i].show="true";
                           for (var x  in $scope.DiscussionJoin) {
@@ -217,7 +186,7 @@ var config = localStorageService.get('config');
                         };
                     }else if ($scope.userData.gender === $scope.discussionData[i].RestrictedGender) {
                       // alert("age not ok");
-                        if($scope.discussionData[i].RestrictedLocation == null){
+                        if($scope.discussionData[i].RestrictedLocation == false){
                           $scope.discussionData[i].join="true";
                           $scope.discussionData[i].show="true";
                           for (var x  in $scope.DiscussionJoin) {

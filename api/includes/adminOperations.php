@@ -63,6 +63,9 @@ $app->get('/admin_GetAllProfileData', 'adminGetAllProfileData');
 $app->post('/add_RestrictionFeeling', 'addRestrictionFeeling');
 $app->post('/get_RestrictionFeeling', 'getRestrictionFeeling');
 
+$app->get('/heart_Statics', 'heartStatics');
+
+
 function checkAdminLogin() {
   $request = Slim::getInstance()->request();
   $user = json_decode($request->getBody());
@@ -1129,4 +1132,43 @@ function getRestrictionFeeling() {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
 }
+
+function heartStatics() {
+  
+  $sql = "SELECT count(1) as total FROM `SpecialFeeling` WHERE Status=0";
+  $sql1 = "SELECT count(1) as total FROM `SpecialFeeling` WHERE Status=1";
+  $sql2 = "SELECT count(1) as total FROM `SpecialFeeling` WHERE Status=2";
+  $sql3 = "SELECT count(1) as total FROM `SpecialFeeling` WHERE Status=3";
+  $sql4 = "SELECT (count(1)/2) as total FROM `SpecialFeeling` WHERE Status=4";
+
+  try {
+    $db = getConnection();
+      $stmt = $db->prepare($sql);
+      $stmt1 = $db->prepare($sql1);
+      $stmt2 = $db->prepare($sql2);
+      $stmt3 = $db->prepare($sql3);
+      $stmt4 = $db->prepare($sql4);
+      $stmt->execute();
+      $stmt1->execute();
+      $stmt2->execute();
+      $stmt3->execute();
+      $stmt4->execute();
+      $wine = $stmt->fetchObject();
+      $wine1 = $stmt1->fetchObject();
+      $wine2 = $stmt2->fetchObject();
+      $wine3 = $stmt3->fetchObject();
+      $wine4 = $stmt4->fetchObject();
+      $db = null;
+    // echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  $statics['NA'] = $wine;
+  $statics['NS'] = $wine1;
+  $statics['NY'] = $wine2;
+  $statics['NMT'] = $wine3;
+  $statics['A'] = $wine4;
+  echo json_encode($statics);
+}
+
 

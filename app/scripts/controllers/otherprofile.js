@@ -220,6 +220,20 @@ angular.module('sassApp').controller('ModalInstanceCtrlMatch', function ($scope,
 
 	 profileOperations.getMyMatch(items.user_id).then(function(resp) {
 		 $scope.matchDetails = resp.data;
+     console.log($scope.matchDetails.personality_match);
+     if ($scope.matchDetails.personality_match == 1) {
+      $scope.comp = true;
+      $scope.same = false;
+      $scope.no = false;
+     }else if ($scope.matchDetails.personality_match == 2) {
+      $scope.comp = false;
+      $scope.same = true;
+      $scope.no = false;
+     }else if ($scope.matchDetails.personality_match == 3) {
+      $scope.comp = false;
+      $scope.same = false;
+      $scope.no = true;
+     }
 	 });
 	
 	

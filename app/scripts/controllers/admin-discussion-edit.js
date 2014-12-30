@@ -46,12 +46,12 @@ $scope.adminEditDiscussion = function() {
   	$scope.discussion.Restricted = 0;
   }
 console.log($scope.discussion);
-	adminDiscussion.updatediscussionTopicDetail($scope.discussion).then(function (response) {
-	    		console.log(response);
-	    		if(response.data == "true"){
-	    			$location.path('/admin-topic-list');
-	    		}
-	    	});
+    	adminDiscussion.updatediscussionTopicDetail($scope.discussion).then(function (response) {
+    	    		console.log(response);
+    	    		if(response.data == "true"){
+    	    			$location.path('/admin-topic-list');
+    	    		}
+    	    	});
 };
 
 

@@ -409,6 +409,10 @@ angular
         controller: 'AdminRestrictionCtrl',
         access:      access.admin
       })
+      .when('/heart-statics', {
+        templateUrl: 'views/heart-statics.html',
+        controller: 'HeartStaticsCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -501,7 +501,7 @@ function getHomeData() {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
   
-  $sqlDiss = "SELECT db.Topic,dbt.DiscussionTopicId,dbt.TopicTitle,dbt.CreatedDate,u.first_name,u.last_name,db.Image FROM DiscussionBoardUsers as dbu inner join DiscussionBoard as db on dbu.DiscussionBoardId = db.DiscussionBoardId inner join DiscussionBoardTopic as dbt on db.DiscussionBoardId=dbt.DiscussionBoardId inner join users as u on dbu.UserId=u.user_id WHERE dbu.UserId=:user_id order by dbt.CreatedDate desc limit 0,10";
+  $sqlDiss = "SELECT db.Topic,dbt.DiscussionTopicId,dbt.TopicTitle,dbt.CreatedDate,u.first_name,u.last_name,db.Image FROM DiscussionBoardUsers as dbu inner join DiscussionBoard as db on dbu.DiscussionBoardId = db.DiscussionBoardId inner join DiscussionBoardTopic as dbt on db.DiscussionBoardId=dbt.DiscussionBoardId inner join users as u on dbu.UserId=u.user_id WHERE dbu.UserId=:user_id and db.Status = 1 order by dbt.CreatedDate desc limit 0,10";
   try {
     //$db = getConnection();
     $stmtDiss = $db->prepare($sqlDiss);

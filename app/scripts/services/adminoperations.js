@@ -193,6 +193,13 @@ angular.module('sassApp')
                 return response;
             });
 		};
+		dataFactory.heartStatics = function () {
+	    	// console.log(param);
+	    	return $http.get(urlBase + 'heart_Statics').then(function(response) {
+	    		//console.log(response);
+                return response;
+            });
+		};
 	    return dataFactory;
 	}]);
 
