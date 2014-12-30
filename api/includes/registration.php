@@ -581,7 +581,7 @@ echo 'true';
 
 
 function getdiscussionListTopicName($topicId) {
-   $sql = "SELECT Topic,Description from DiscussionBoard where DiscussionBoardId=:disTopicId" ;
+   $sql = "SELECT Topic,Description,Image from DiscussionBoard where DiscussionBoardId=:disTopicId" ;
    try {   
       $db = getConnection();   
       $stmt = $db->prepare($sql);
