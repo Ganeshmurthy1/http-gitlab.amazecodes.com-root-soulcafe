@@ -46,10 +46,7 @@
 					            <a href="#"><img src="images/stamp1.jpg"></a>
 					            <span class="badge1 badge-red rounded-x color-white">x</span>
 					        </li> -->
-
-
-
-									</ul>
+								</ul>
 								</div>
 							</div>
 						</div>
@@ -62,12 +59,6 @@
 									 	</div>
 									 
 									 </div>
-				
-					
-				
-				
-				
-					
 				</div>
 				<div class="row home-block my-border">
 				<h3 class="panel-title">
@@ -88,9 +79,6 @@
 				</div>
 
 				</slick>
-				
-				
-					
 				</div>
 
 				<div class="row home-block my-border">
@@ -99,55 +87,45 @@
 				</h3>
 				<div class="borderbottom" ng-repeat="updts in updates">
 					<div class="row margin-bottom margin-top" >
-					<div class="col-md-2">
+					<div class="col-xs-6 col-sm-4 col-md-2">
 					<div class="row">
 						<img class="rounded-x" alt="{{updts.first_name}} {{updts.last_name}}" title="{{updts.first_name}} {{updts.last_name}}" ng-src="{{imagepath}}{{updts.Image}}"
 							alt="" style="width: 70px; height: 70px; float: left;"></div>
 					<div class="row color-brown-light">{{updts.first_name}} {{updts.last_name}}</div>
 					</div>
 							
-					<div class="col-md-10">
-						
-							
-							<div>
+					<div class="col-xs-6 col-sm-8 col-md-10">
+				
 								<div class="font-20 color-brown-light">{{updts.Topic}}</div>
-							</div>
-							<a href="#/discussion?topic={{updts.DiscussionTopicId}}"><div class="font-16 color-brown-light">{{updts.TopicTitle}}</div>
+								<a href="#/discussion?topic={{updts.DiscussionTopicId}}"><div class="font-16 color-brown-light">{{updts.TopicTitle}}</div>
 							</a>
 							<div>{{updts.CreatedDate}} ago</div>
-
-						
-					</div>	
+							
+							
+						</div>	
 						
 					</div>
 
 				</div>
 				<div class="row pull-right"> <a style="color:#5bc0de;" href="#/discussion-list" > More >></a> </div>
-
-
-
-
-
-
-
 				</div>
-
-				<!-- 	<div class="carousel-demo">
-                    <ul rn-carousel  rn-carousel-auto-slide="3" class="mycarousel" rn-carousel-controls>
-                        <li> <img alt="" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c0.7.200.200/p200x200/10610908_805092252845086_8387047502213134303_n.jpg?oh=bb3fba424ef77348d7071149e83cdf1b&oe=54F5F631&__gda__=1423668902_63bb520a144e19da7b7ded1ad9f6b268">
-                        	<img alt="" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c0.7.200.200/p200x200/10610908_805092252845086_8387047502213134303_n.jpg?oh=bb3fba424ef77348d7071149e83cdf1b&oe=54F5F631&__gda__=1423668902_63bb520a144e19da7b7ded1ad9f6b268">
-                        </li>
-                        <li> <img alt="" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c0.7.200.200/p200x200/10610908_805092252845086_8387047502213134303_n.jpg?oh=bb3fba424ef77348d7071149e83cdf1b&oe=54F5F631&__gda__=1423668902_63bb520a144e19da7b7ded1ad9f6b268"> </li>
-                        <li> <img alt="" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c0.7.200.200/p200x200/10610908_805092252845086_8387047502213134303_n.jpg?oh=bb3fba424ef77348d7071149e83cdf1b&oe=54F5F631&__gda__=1423668902_63bb520a144e19da7b7ded1ad9f6b268"> </li>
-                        
-                    </ul>
-                </div> -->
-
-
-
-
 
 			</div>
 		</div>
 	</div>
 </div>
+
+<script type="text/ng-template" id="modalWelcome.html">
+        
+        <div class="modal-header">
+         	<h2>"Congratulations! You are now a SoulCafe member"</h2>
+ 		</div>   
+ 		<div class="modal-body">
+ 			 1) Complete your Profile using <a href="#/edit-profile-new">Edit Profile</a><br>
+			 2) Be part of the forums you like and start conversations in these forums:<a href="#/discussion-list">Forums List</a><br>
+			 3) Start by saying "Hello" to people you want to connect with.
+ 		</div>
+       	<div class="modal-footer">
+       		<button class="btn btn-warning" ng-click="cancel()">Skip</button>
+       	</div>
+    </script>

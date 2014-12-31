@@ -173,5 +173,12 @@ angular.module('sassApp')
             return response;
           });  
       };
+      dataFactory.updateLogin = function () {
+        // console.log(id); 
+          return $http.get(urlBase + 'update_Login').then(function(response) {
+           //console.log(response);
+            return response;
+          });  
+      };
     return dataFactory;
   }]);

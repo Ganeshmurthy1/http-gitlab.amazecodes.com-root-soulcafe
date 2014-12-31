@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('HomeCtrl',['$scope','$location','localStorageService','regService', '$routeParams','profileOperations','$anchorScroll', function ($scope, $location, localStorageService, regService, $routeParams, profileOperations,$anchorScroll) {
+  .controller('HomeCtrl',['$scope','$location','localStorageService','regService', '$routeParams','profileOperations','$anchorScroll','$modal', '$log', function ($scope, $location, localStorageService, regService, $routeParams, profileOperations,$anchorScroll,$modal, $log) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -44,16 +44,17 @@ angular.module('sassApp')
     
     //$scope.recomandation=localStorageService.get('recomm');
      regService.getHomeData().then(function (results) {
+      console.log(results.data);
     	 $scope.updates=results.data.forum;
+       $scope.loginCount = results.data.login[0].LoginCount;
+       console.log($scope.loginCount);
        //console.log($scope.getForumUpdates);
-       for (var i = 0; i < $scope.updates.length; i++) {
+      for (var i = 0; i < $scope.updates.length; i++) {
         var d2 = $scope.updates[i].CreatedDate;
-       var d1 = new Date();
-       //console.log(d1);
+        var d1 = new Date();
         var dt=new Date(d2.replace(/-/g, '/'));
-       
-       $scope.updates[i].CreatedDate =timeSince(dt);
-        };
+        $scope.updates[i].CreatedDate =timeSince(dt);
+      };
 
      function timeSince(date) {
     if (typeof date !== 'object') {
@@ -116,7 +117,10 @@ angular.module('sassApp')
     	                         'http://2.bp.blogspot.com/-dZKdgsUW2y0/Une2h3IIVMI/AAAAAAAAC1o/tqJJFHKzHfY/s640/katrina-kaif-Complete-Profile.jpg','http://4.bp.blogspot.com/--fWusEFYKHg/UT8Wr9TVAlI/AAAAAAAAABY/9_HoTCeoA3c/s1600/url.jpeg']; 
     	  
          
-
+      if ($scope.loginCount == 0) {
+        // console.log("Abjdba");
+        $scope.open(123);
+      };
          
      });
 
@@ -184,4 +188,51 @@ angular.module('sassApp')
 
       // #/otherprofile?user_id={{rec.user_id}}
 
+      $scope.items = ['item1', 'item2', 'item3'];
+
+  $scope.open = function (id) {
+    console.log(id);
+    var modalInstance = $modal.open({
+      templateUrl: 'modalWelcome.html',
+      controller: 'modalWelcomeCtrl',
+      resolve: {
+        items: function () {
+          return id;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selected = selectedItem;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
+    
+
    }]);
+
+angular.module('sassApp')
+.controller('modalWelcomeCtrl', function ($scope, regService, profileOperations, localStorageService, $location, $modalInstance, items, config) {
+
+  
+
+  $scope.ok = function () {
+    $modalInstance.close($scope.selected.item);
+  };
+
+  $scope.cancel = function () {
+
+    profileOperations.updateLogin().then(function(response) {
+     
+      console.log(response);    
+               
+    });
+    $modalInstance.dismiss('cancel');
+  };
+
+
+    
+
+    
+});
