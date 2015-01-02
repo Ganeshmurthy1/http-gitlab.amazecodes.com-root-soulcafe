@@ -20,7 +20,15 @@
 .transperent{
 	background: rgba(#ffffff, 0.5);	
 	border: 1px solid black;
-	
+}
+.caret-custm{
+	margin-left:5px !important;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) { 
+ .caret-custm{
+	margin-left:5px !important;
+	margin-bottom:11px;
+}
 }
 body{
 	font-family:Arial !important;
