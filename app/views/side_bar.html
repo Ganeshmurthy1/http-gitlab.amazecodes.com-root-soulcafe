@@ -26,6 +26,7 @@
     <div class="margin-top-10 hideblck">
         <div class=" clearfix">
             <div class="clabel row"><i title="Private" class="fa fa-lock"></i> <a class="color-white" href="#/friends">FRIENDS ({{totalfriends}})</a></div>
+            
             <div class="row margin-top-5"  ng-repeat="frnd in friends">
             	<div class ="col-md-3">
                		<a class="profile_link" ng-click="otherProfile({{frnd.BuddyId}})"> <img class="rounded-x" ng-src="{{imagepath}}{{frnd.Picture}}" title="{{frnd.first_name}} {{frnd.last_name}}" alt="{{frnd.first_name}} {{frnd.last_name}}" style="width:50px;height:50px;float:left;"></a>
@@ -44,6 +45,9 @@
         <div class="margin-top-10 hideblck">
             <div class=" clearfix">
             <div class="clabel row" ><a class="color-white" href="#/discussion-list">FORUMS ({{totalforum}})</a> </div>
+            <div class="col-md-12" ng-show="noforum">
+                No forums Please go to <a href="#/discussion-list" style="color:#5bc0de;">Forums List</a>
+            </div>
             <div class="col-md-12">
 	            <span ng-repeat="diss in discussion">
 	                <a class="sublabel uppercase123" href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}">{{diss.Topic}}</a>

@@ -35,7 +35,8 @@ angular.module('sassApp')
     var d2 = new Date();
     $scope.diff = d2.getFullYear()-d1.getFullYear();
 
-
+$scope.noforum = "false";
+$scope.nofriend = "false";
     profileOperations.getBuddies().then(function(response) {
       
       //console.log(response);    
@@ -44,7 +45,15 @@ angular.module('sassApp')
          $scope.interest=response.data.Interest;
          // console.log($scope.discussion); 
           $scope.totalfriends=response.data.frineds_count; 
-          $scope.totalforum=response.data.forum_count; 
+          $scope.totalforum=response.data.forum_count;
+          if ($scope.totalforum == 0) {
+            console.log("Annjdsksd");
+            $scope.noforum = "true";
+          };
+          if ($scope.totalfriends == 0) {
+            console.log("Annjdsksd");
+            $scope.nofriend = "true";
+          }; 
 
        
      
