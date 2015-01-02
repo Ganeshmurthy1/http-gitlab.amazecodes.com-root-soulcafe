@@ -22,9 +22,9 @@ angular.module('sassApp')
          profileOperations.addGTKYRequest($scope.UserId).then(function(response) {
           console.log(response.data);
           if (response.data == 'Already Present'){
-            
-            alert("GTKY Already Send.");
-            $location.path('/otherprofile');
+             $location.url('/otherprofile?user_id='+$scope.UserId.id +'&already=1');
+            // alert("GTKY Already Send.");
+            // $location.path('/otherprofile');
           }else if (response.data == 'true'){
             $scope.GTKY ="true";
             // alert("Thank You. We have Send the request!");

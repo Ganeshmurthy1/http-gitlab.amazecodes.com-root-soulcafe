@@ -15,6 +15,11 @@
 			                Your response of brewing request is sent !!!!
 			        </div>
 			    </div>
+			    <div class="padding-bottom row clear" ng-show="{{reject == 1}}">
+			        <div class="alert alert-success fade in">
+			                You rejected the friend request !!!!
+			        </div>
+			    </div>
 			    <div class="alert alert-success fade in" ng-show="hide">{{abuseSuccessMessage}}</div>
 				<div class="row home-block my-border  ">
 				<h3 class="panel-title">
@@ -121,8 +126,8 @@
          	<h2>"Congratulations! You are now a SoulCafe member"</h2>
  		</div>   
  		<div class="modal-body">
- 			 1) Complete your Profile using <a href="#/edit-profile-new">Edit Profile</a><br>
-			 2) Be part of the forums you like and start conversations in these forums:<a href="#/discussion-list">Forums List</a><br>
+ 			 1) Complete your Profile using <a href="#/edit-profile-new" style="color:#5bc0de;">Edit Profile</a><br>
+			 2) Be part of the forums you like and start conversations in these forums:<a href="#/discussion-list" style="color:#5bc0de;">Forums List</a><br>
 			 3) Start by saying "Hello" to people you want to connect with.
  		</div>
        	<div class="modal-footer">

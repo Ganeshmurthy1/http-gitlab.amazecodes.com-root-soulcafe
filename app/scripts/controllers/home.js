@@ -22,7 +22,7 @@ angular.module('sassApp')
     var k = 'name';
     
     
-    
+    $scope.reject = $routeParams.reject;
     console.log(ddd[k].age);
     
     var config = localStorageService.get('config');

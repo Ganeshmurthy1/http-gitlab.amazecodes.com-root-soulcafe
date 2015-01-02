@@ -272,7 +272,6 @@ function addGTKYRequest() {
 
   if($wineB != false) {
     echo 'Already Present';
-    exit();
   }else{
    $message =  'Friend request from ' . $fname . ' ' . $lname . 'is waiting for your approval.';
    $cmtDateTime=  date("Y-m-d") ;

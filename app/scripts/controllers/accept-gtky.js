@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('AcceptGtkyCtrl', function ($scope,profileOperations) {
+  .controller('AcceptGtkyCtrl', function ($scope,profileOperations,$location) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -26,11 +26,11 @@ $scope.acceptButtonClick=function(id){
   profileOperations.acceptGTKY(id).then(function(response) {
       console.log(response.data);
       if (response.data = 'true'){
-        profileOperations.getUserSendedGTKY().then(function(response) {
-          console.log(response.data);
-          $scope.GTKYrequest =  response.data;         
-        });
-
+        // profileOperations.getUserSendedGTKY().then(function(response) {
+        //   console.log(response.data);
+        //   $scope.GTKYrequest =  response.data;         
+        // });
+        $location.url("/otherprofile?user_id="+id+"&accept=1");
       }
       // $scope.GTKYrequest =  response.data;         
   });
@@ -42,10 +42,11 @@ $scope.rejectButtonClick=function(id){
   profileOperations.rejectGTKY(id).then(function(response) {
     console.log(response.data);
     if (response.data = 'true'){
-        profileOperations.getUserSendedGTKY().then(function(response) {
-          console.log(response.data);
-          $scope.GTKYrequest =  response.data;         
-        });
+        // profileOperations.getUserSendedGTKY().then(function(response) {
+        //   console.log(response.data);
+        //   $scope.GTKYrequest =  response.data;         
+        // });
+    $location.url("/home?reject=1");
 
       }        
   });
