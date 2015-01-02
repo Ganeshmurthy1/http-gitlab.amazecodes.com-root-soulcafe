@@ -14,10 +14,13 @@
         <div class="headline">
         <h1 class="heading-sm"> Buddies List</h1>
     </div>
-    <div class="padding-bottom row clear" ng-show="{{status == 1}}">
+    <!-- <div class="padding-bottom row clear" ng-show="{{status == 1}}">
         <div class="alert alert-success fade in">
                 Your brewing request is sent !!!!
         </div>
+    </div> -->
+    <div class="alert alert-{{q.type}} fade in" ng-show="q">{{q.msg}}
+         <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
     </div>
 	<div class="">
         <div class="marginleft clearfix margin-right-12p">

@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('DiscussionListCtrl', function ($scope,$location,localStorageService,regService, config, $routeParams) {
+  .controller('DiscussionListCtrl', function ($scope,$location,localStorageService,regService, config, $routeParams,messageCodes) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -18,6 +18,12 @@ angular.module('sassApp')
     var abs = $routeParams.abm;
     if(abs != undefined) {
     	$scope.repotabuseMessage = true;
+    }
+    $scope.q = '';
+    var q = $routeParams.q;
+    if (q != null) {
+      console.log(messageCodes.Messages[q]);
+      $scope.q = messageCodes.Messages[q];
     }
     var disp = $routeParams.disp;
     if(disp != undefined) {

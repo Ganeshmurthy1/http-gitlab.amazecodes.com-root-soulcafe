@@ -24,7 +24,7 @@ angular.module('sassApp')
 			  $scope.savedSuccessfully = true;
               //alert("The Forum will be posted soon after review.");
               //$location.path('/discussion-list');
-              $location.url('/discussion-list?abm=1' );
+              $location.url('/discussion-list?q=110' );
               
               $scope.errMessage = false;
               $scope.discussion = false;

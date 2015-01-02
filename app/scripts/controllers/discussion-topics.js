@@ -140,7 +140,7 @@ angular.module('sassApp')
   
 });
 angular.module('sassApp')
-.controller('modalMemberCtrl', function ($scope, regService, profileOperations, localStorageService, $location, $modalInstance, items, config) {
+.controller('modalMemberCtrl', function ($scope, regService, profileOperations, localStorageService, $location, $modalInstance, items, config,messageCodes) {
 
   $scope.hide=true;
   $scope.items = items;
@@ -165,7 +165,13 @@ angular.module('sassApp')
           console.log($scope.userD);
            if ($scope.userD.status == 0) {
              $scope.hide=false;
-            $scope.abuseSuccessMessage="This profile is currently deactivated in SoulCafe.";
+             $scope.q = '';
+              var q = 105;
+              if (q != null) {
+                console.log(messageCodes.Messages[q]);
+                $scope.q = messageCodes.Messages[q];
+            }
+            // $scope.abuseSuccessMessage="This profile is currently deactivated in SoulCafe.";
             
             // $modalInstance.dismiss();
           }else{

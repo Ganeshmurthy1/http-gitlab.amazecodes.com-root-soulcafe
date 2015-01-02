@@ -25,7 +25,7 @@ angular.module('sassApp')
       profileOperations.notSureFeelings(id).then(function(response) {
           console.log(response);
           if(response.data == "true"){
-            $location.url("/home?status=1")
+            $location.url("/home?q=103")
           }
     });
     }
@@ -35,7 +35,7 @@ angular.module('sassApp')
       profileOperations.notYetFeelings(id).then(function(response) {
           console.log(response);
           if(response.data == "true"){
-            $location.url("/home?status=1")
+            $location.url("/home?q=103")
           }
     });
     }
@@ -45,7 +45,7 @@ angular.module('sassApp')
       profileOperations.needTimeFeelings(id).then(function(response) {
           console.log(response);
           if(response.data == "true"){
-            $location.url("/home?status=1")
+            $location.url("/home?q=103")
           }
     });
     }
@@ -55,7 +55,7 @@ angular.module('sassApp')
       profileOperations.acceptFeeling(id).then(function(response) {
           console.log(response);
           if(response.data == "true"){
-            $location.url("/home?status=1")
+            $location.url("/home?q=103")
           }
     });
     }

@@ -26,7 +26,7 @@ $scope.reportAbuse ={};
           console.log(response.data);
           if (response.data = 'true'){
            // alert("Thank You. We will take Necessary action!");
-            $location.url('/otherprofile?user_id=' + $routeParams.user_id + '&abm=1' );
+            $location.url('/otherprofile?user_id=' + $routeParams.user_id + '&q=106' );
           }            
         });
       };

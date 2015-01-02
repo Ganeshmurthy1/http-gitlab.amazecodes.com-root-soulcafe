@@ -9,7 +9,10 @@
                 <!--Profile Body-->
                 <div class="profile no-padding">
                 <div class="profiled-body no-padding">  
-                    <div class="alert alert-success fade in" ng-hide="hide">{{abuseSuccessMessage}}</div>
+                    
+                    <div class="alert alert-{{q.type}} fade in" ng-show="q">{{q.msg}}
+         <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+    </div>
                     <div class="panel panel-profile">
                         <div class="headline" style="margin-bottom:5px !important;">
                             <div class="row">
@@ -84,7 +87,9 @@
                             <h4 class="media-heading">
                                 <strong><a href="#">me</a></strong>
                             </h4>
-                            <div class="alert alert-danger fade in" data-ng-show="errMessage">{{errMessage}}</div>
+                           <div class="alert alert-{{mod.type}} fade in" ng-show="mod">{{mod.msg}}
+         <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+    </div>
                             <form id="sky-form4" class="sky-form" name="adminDiscussion">
                                 <fieldset>     
                                     <label class="textarea">
@@ -113,7 +118,9 @@
          <div class="modal-home-body">
             <div>
               <div class="col-lg-offset-2 col-lg-8 servive-block-light min-300">
-              <div class="alert alert-success fade in" ng-hide="hide">{{abuseSuccessMessage}}</div>
+              <div class="alert alert-{{q.type}} fade in" ng-show="q">{{q.msg}}
+         <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+    </div>
                     <div class="media media-v2" ng-repeat="like in likeData">
                         <a class="pull-left" ng-click="otherProfile({{like.UserId}})">
                             <img class="media-object rounded-x" ng-src="{{imagepath}}{{like.Picture}}" alt="{{like.first_name}} {{like.last_name}}" title="{{like.first_name}} {{like.last_name}}" style="width:50px !important; height:50px !important;">

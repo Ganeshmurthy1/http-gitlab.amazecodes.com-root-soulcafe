@@ -31,7 +31,7 @@ angular.module('sassApp')
     	profileOperations.sendFeeling($scope.user_id).then(function(response) {
       		console.log(response);
           if(response.data == "true"){
-            $location.url("/friends?status=1")
+            $location.url("/friends?q=102")
           }
      	});
     }

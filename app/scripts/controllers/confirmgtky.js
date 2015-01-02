@@ -22,13 +22,13 @@ angular.module('sassApp')
          profileOperations.addGTKYRequest($scope.UserId).then(function(response) {
           console.log(response.data);
           if (response.data == 'Already Present'){
-             $location.url('/otherprofile?user_id='+$scope.UserId.id +'&already=1');
+             $location.url('/otherprofile?user_id='+$scope.UserId.id +'&q=109');
             // alert("GTKY Already Send.");
             // $location.path('/otherprofile');
           }else if (response.data == 'true'){
             $scope.GTKY ="true";
             // alert("Thank You. We have Send the request!");
-            $location.url('/otherprofile?user_id='+$scope.UserId.id +'&msg=1');
+            $location.url('/otherprofile?user_id='+$scope.UserId.id +'&q=107');
           }            
         });
 

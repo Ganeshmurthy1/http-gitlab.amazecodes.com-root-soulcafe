@@ -81,7 +81,10 @@
             <div class="modal-home-body">
             <div>
               <div class="col-lg-offset-2 col-lg-8 servive-block-light min-300">
-              <div class="alert alert-success fade in" ng-hide="hide">{{abuseSuccessMessage}}</div>
+            
+              <div class="alert alert-{{q.type}} fade in" ng-show="q">{{q.msg}}
+         <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+    </div>
                     <div class="media media-v2" ng-repeat="mem in memData">
                         <a class="pull-left" ng-click="otherProfile({{mem.UserId}})">
                             <img class="media-object rounded-x" ng-src="{{imagepath}}{{mem.Picture}}" alt="{{mem.first_name}} {{mem.last_name}}" title="{{mem.first_name}} {{mem.last_name}}" style="width:50px !important; height:50px !important;">

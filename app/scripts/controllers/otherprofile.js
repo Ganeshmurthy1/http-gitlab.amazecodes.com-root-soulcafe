@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('OtherprofileCtrl', ['$scope','$location','$rootScope','localStorageService','regService', 'FlickrApi','$routeParams','profileOperations', '$facebook', '$modal', function ($scope, $location, $rootScope, localStorageService, regService,flickr,$routeParams,profileOperations, $facebook, $modal) {
+  .controller('OtherprofileCtrl', ['$scope','$location','$rootScope','localStorageService','regService', 'FlickrApi','$routeParams','profileOperations', '$facebook', '$modal','messageCodes', function ($scope, $location, $rootScope, localStorageService, regService,flickr,$routeParams,profileOperations, $facebook, $modal,messageCodes) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -19,7 +19,12 @@ angular.module('sassApp')
     	$scope.repotabuseMessage = true;
     }
     
-    
+    $scope.q = '';
+    var q = $routeParams.q;
+    if (q != null) {
+      console.log(messageCodes.Messages[q]);
+      $scope.q = messageCodes.Messages[q];
+  }
     
     $scope.thumbup = 'true';
     $scope.user_id = $routeParams.user_id;

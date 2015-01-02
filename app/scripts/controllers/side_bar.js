@@ -50,19 +50,32 @@ angular.module('sassApp')
      
      });
     
-    $scope.otherProfile = function(userId){
-        regService.getUserDetails(userId).then(function (results) {
-          $scope.userD = results.data; 
-          //console.log($scope.userD);
-           if ($scope.userD.status == 0) {
-            alert("Your profile is deactive. Please contact Customer care.");
-          }else{
-            $location.url("/otherprofile?user_id="+userId);
-          }
-        });
-          
-          
+     $scope.hide=false;
+
+      $scope.otherProfile = function(userId){
+      regService.getUserDetails(userId).then(function (results) {
+        $scope.userD = results.data; 
+        //console.log($scope.userD);
+         if ($scope.userD.status == 0) {
+          // console.log("Ajbcmas");
+            $scope.hide=true;
+            // console.log($scope.hide);
+            $scope.q = '';
+              var q = 105;
+              if (q != null) {
+                console.log(messageCodes.Messages[q]);
+                $scope.q = messageCodes.Messages[q];
+            }
+            // $scope.abuseSuccessMessage="This profile is currently deactivated in SoulCafe.";
+            $location.hash('msg');
+             $anchorScroll();
+        }else{
+          $location.url("/otherprofile?user_id="+userId);
         }
+      });
+        
+        
+      }
 
    
   });

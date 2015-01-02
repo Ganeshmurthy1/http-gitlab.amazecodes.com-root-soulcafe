@@ -30,7 +30,7 @@ $scope.acceptButtonClick=function(id){
         //   console.log(response.data);
         //   $scope.GTKYrequest =  response.data;         
         // });
-        $location.url("/otherprofile?user_id="+id+"&accept=1");
+        $location.url("/otherprofile?user_id="+id+"&q=108");
       }
       // $scope.GTKYrequest =  response.data;         
   });
@@ -46,7 +46,7 @@ $scope.rejectButtonClick=function(id){
         //   console.log(response.data);
         //   $scope.GTKYrequest =  response.data;         
         // });
-    $location.url("/home?reject=1");
+    $location.url("/home?q=104");
 
       }        
   });
