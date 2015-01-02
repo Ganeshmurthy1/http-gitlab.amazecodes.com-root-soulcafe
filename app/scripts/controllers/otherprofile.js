@@ -50,6 +50,10 @@ angular.module('sassApp')
       regService.getUserDetails($scope.user_id).then(function (results) {
         //console.log(results.data);
         $scope.userData = results.data;
+        $scope.matchSex = false;
+        if ($scope.userData.gender == $scope.udata.Gender) {
+			$scope.matchSex = true;
+		}
         
         var d1 = new Date($scope.userData.birthdate);
         var d2 = new Date();
