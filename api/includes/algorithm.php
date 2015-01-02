@@ -237,6 +237,7 @@ function getTheBatch() {
 
 
 function algController($x, $y) {
+  print '<pre>';
   $questions = algorithmGetAllQuestions();
   //$x = 116;
  // $y = 117;
@@ -246,6 +247,8 @@ function algController($x, $y) {
   print '</br>';
   print 'Personality Score: ' .  $y_personalityScore = getPersonalityScore($y);
   $personality_match  = getPersonalityMatch($x_personalityScore, $y_personalityScore);
+  Print '</br>Personality Match: ';
+  print_r($personality_match->Value);
   print '</br> Compatibility type: 1 = CM, 2 = SM, 3 = NM </br>';
   print_r($algScores);
 }
