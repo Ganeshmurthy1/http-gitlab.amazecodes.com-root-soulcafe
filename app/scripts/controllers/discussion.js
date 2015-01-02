@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('DiscussionCtrl', function ($scope,$routeParams,$facebook,localStorageService,regService,$location, $window, $modal, $log, config,$anchorScroll) {
+  .controller('DiscussionCtrl', function ($scope,$routeParams,$facebook,localStorageService,regService,$location, $window, $modal, $log, config,$anchorScroll,messageCodes) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -83,7 +83,13 @@ angular.module('sassApp')
           console.log($scope.comments[0].status);
            if (data.status == 0) {
             $scope.hide=false;
-            $scope.abuseSuccessMessage="This profile is currently deactivated in SoulCafe.";
+             // $scope.abuseSuccessMessage="This profile is currently deactivated in SoulCafe.";
+            $scope.q = '';
+              var q = 105;
+              if (q != null) {
+                console.log(messageCodes.Messages[q]);
+                $scope.q = messageCodes.Messages[q];
+            }
             $location.hash('msg');
              $anchorScroll();
             // alert("Your profile is deactive. Please contact Customer care.");
@@ -99,8 +105,18 @@ angular.module('sassApp')
       console.log(arg);
         regService.saveDiscussionBoardAbuse(arg).then(function (results) {
           $scope.hide=false;
-          $scope.abuseSuccessMessage="Comment Reported";
-            });
+          console.log(results.data);
+            if (results.data == 'true') {
+              // console.log("anmsf");
+              $scope.q = '';
+              var q = 113;
+              if (q != null) {
+                console.log(messageCodes.Messages[q]);
+                $scope.q = messageCodes.Messages[q];
+            }
+            };
+              
+             });
         };
 
 
@@ -119,8 +135,14 @@ angular.module('sassApp')
             $scope.comment="";
             regService.saveComments(args).then(function (results) {
             	if(results.data == 'profane') {
-            		$scope.errMessage = "Your comment will be posted only after moderation";
-            	}
+            		// $scope.errMessage = "Your comment will be posted only after moderation";
+            	   $scope.mod = '';
+              var mod = 112;
+              if (mod != null) {
+                console.log(messageCodes.Messages[mod]);
+                $scope.mod = messageCodes.Messages[mod];
+            }
+              }
             	else {
             		$scope.errMessage ='';
             	}
@@ -206,7 +228,7 @@ $scope.addRating = function(rating){
 
   });
 angular.module('sassApp')
-.controller('modalLikesCtrl', function ($scope, regService, profileOperations, localStorageService, $location, $modalInstance, items, config) {
+.controller('modalLikesCtrl', function ($scope, regService, profileOperations, localStorageService, $location, $modalInstance, items, config, messageCodes) {
 
   $scope.hide=true;
   $scope.items = items;
@@ -231,8 +253,13 @@ angular.module('sassApp')
           console.log($scope.userD);
            if ($scope.userD.status == 0) {
              $scope.hide=false;
-            $scope.abuseSuccessMessage="This profile is currently deactivated in SoulCafe.";
-            
+             // $scope.abuseSuccessMessage="This profile is currently deactivated in SoulCafe.";
+            $scope.q = '';
+              var q = 105;
+              if (q != null) {
+                console.log(messageCodes.Messages[q]);
+                $scope.q = messageCodes.Messages[q];
+            }
             // $modalInstance.dismiss();
           }else{
             $location.url("/otherprofile?user_id="+userId);

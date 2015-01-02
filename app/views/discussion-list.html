@@ -15,6 +15,10 @@
                     <h1 class="heading-sm">The Cafe Conversation Corner</h1>
                     <p>"Nothing compares to a beautiful conversation with a beautiful mind"</p>
                 </div>
+                <div class="alert alert-{{q.type}} fade in" ng-show="q">{{q.msg}}
+                     <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                </div>
+    
              	<div class="row" ng-show="repotabuseMessage">
 					<div class="col-md-12">
 					<div class="alert alert-success fade in">

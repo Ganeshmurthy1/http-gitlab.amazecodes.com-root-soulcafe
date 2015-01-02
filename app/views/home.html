@@ -10,18 +10,21 @@
 				data-ng-controller="SideBarCtrl" data-ng-include="SideBar"></div>
 
 			<div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px ">
-				<div class="padding-bottom row clear" ng-show="{{status == 1}}">
+				<!-- <div class="padding-bottom row clear" ng-show="{{status == 1}}">
 			        <div class="alert alert-success fade in">
 			                Your response of brewing request is sent !!!!
 			        </div>
-			    </div>
-			    <div class="padding-bottom row clear" ng-show="{{reject == 1}}">
+			    </div> -->
+			    <!-- <div class="padding-bottom row clear" ng-show="{{reject == 1}}">
 			        <div class="alert alert-success fade in">
 			                You rejected the friend request !!!!
 			        </div>
+			    </div> -->
+			    <!-- <div class="alert alert-success fade in" ng-show="hide">{{abuseSuccessMessage}}</div> -->
+			    
+			    <div class="alert alert-{{q.type}} fade in" ng-show="q">{{q.msg}}
+			         <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
 			    </div>
-			    <div class="alert alert-success fade in" ng-show="hide">{{abuseSuccessMessage}}</div>
-			    <div class="alert alert-{{q.type}} fade in" ng-show="q">{{q.msg}}</div>
 			    
 				<div class="row home-block my-border  ">
 				<h3 class="panel-title">

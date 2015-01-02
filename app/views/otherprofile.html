@@ -11,27 +11,34 @@
 
 <div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px ">
 
-<div class="row" ng-show="repotabuseMessage">
+<div class="alert alert-{{q.type}} fade in" ng-show="q">{{q.msg}}
+         <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+    </div>
+    
+<!-- <div class="row" ng-show="repotabuseMessage">
 	<div class="col-md-12">
 	<div class="alert alert-success fade in">
       Thank You. We will take Necessary action!
     </div>
 	</div>
-</div>
-<div class="padding-bottom row clear" ng-show="{{msg == 1}}">
+</div> -->
+<!-- <div class="padding-bottom row clear" ng-show="{{msg == 1}}">
     <div class="alert alert-success fade in">
            Thank You!!!! We have Send the request!
     </div>
-</div>
-<div class="padding-bottom row clear" ng-show="{{accept == 1}}">
+</div> -->
+<!-- <div class="padding-bottom row clear" ng-show="{{accept == 1}}">
     <div class="alert alert-success fade in">
           Now you are friends!!!!
     </div>
-</div>
+</div> -->
 <div class="padding-bottom row clear" ng-show="{{already == 1}}">
     <div class="alert alert-success fade in">
            Your request is already sent!!!!
+           <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
     </div>
+
+
 </div>
 	<div class="row home-block">
 	<h3 class="panel-title">

@@ -181,7 +181,13 @@ angular.module('sassApp')
           // console.log("Ajbcmas");
             $scope.hide=true;
             // console.log($scope.hide);
-            $scope.abuseSuccessMessage="This profile is currently deactivated in SoulCafe.";
+            $scope.q = '';
+              var q = 105;
+              if (q != null) {
+                console.log(messageCodes.Messages[q]);
+                $scope.q = messageCodes.Messages[q];
+            }
+            // $scope.abuseSuccessMessage="This profile is currently deactivated in SoulCafe.";
             $location.hash('msg');
              $anchorScroll();
         }else{
