@@ -115,7 +115,7 @@
               <div class="col-lg-offset-2 col-lg-8 servive-block-light min-300">
               <div class="alert alert-success fade in" ng-hide="hide">{{abuseSuccessMessage}}</div>
                     <div class="media media-v2" ng-repeat="like in likeData">
-                        <a class="pull-left" href="#">
+                        <a class="pull-left" ng-click="otherProfile({{like.UserId}})">
                             <img class="media-object rounded-x" ng-src="{{imagepath}}{{like.Picture}}" alt="{{like.first_name}} {{like.last_name}}" title="{{like.first_name}} {{like.last_name}}" style="width:50px !important; height:50px !important;">
                         </a>
                         <div class="media-body">

@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('DiscussionTopicsCtrl', function ($routeParams,$scope,localStorageService,regService,$location, config) {
+  .controller('DiscussionTopicsCtrl', function ($routeParams,$scope,localStorageService,regService,$location, config, $modal, $log) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -23,7 +23,8 @@ angular.module('sassApp')
     regService.getdiscussionListTopicName($scope.discussionid).then(function (topicTotal) {
       console.log(topicTotal);
         $scope.topicName = topicTotal.data[0].Topic;
-        $scope.desc = topicTotal.data[0].Description;    
+        $scope.desc = topicTotal.data[0].Description;
+        $scope.img = topicTotal.data[0].Image;    
       });
 
      regService.getdiscussionTopicDetails($scope.discussionid).then(function (results) {
@@ -74,7 +75,10 @@ angular.module('sassApp')
      regService.getTotalMembers($scope.discussionid).then(function (totalMembers) {
          console.log(totalMembers);
         $scope.total = totalMembers.data[0].total; 
-        console.log( $scope.total);       
+        console.log( $scope.total); 
+        if ($scope.total == 0) {
+          $scope.memhide = true;
+        };      
      });
 
 
@@ -112,5 +116,78 @@ angular.module('sassApp')
       });
     }
 
+    $scope.items = ['item1', 'item2', 'item3'];
+
+  $scope.open = function (id) {
+    console.log(id);
+    var modalInstance = $modal.open({
+      templateUrl: 'modalMember.html',
+      controller: 'modalMemberCtrl',
+      resolve: {
+        items: function () {
+          return id;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selected = selectedItem;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
+    
   
+});
+angular.module('sassApp')
+.controller('modalMemberCtrl', function ($scope, regService, profileOperations, localStorageService, $location, $modalInstance, items, config) {
+
+  $scope.hide=true;
+  $scope.items = items;
+  console.log($scope.items);
+
+  var config = localStorageService.get('config');
+    $scope.imagepath = config.image_path;
+
+  // $scope.selected = {
+  //   item: $scope.items[0]
+  // };
+
+    profileOperations.getMember($scope.items).then(function(response) {
+     
+      console.log(response);    
+      $scope.memData=response.data;         
+    });
+
+    $scope.otherProfile = function(userId){
+        regService.getUserDetails(userId).then(function (results) {
+          $scope.userD = results.data; 
+          console.log($scope.userD);
+           if ($scope.userD.status == 0) {
+             $scope.hide=false;
+            $scope.abuseSuccessMessage="This profile is currently deactivated in SoulCafe.";
+            
+            // $modalInstance.dismiss();
+          }else{
+            $location.url("/otherprofile?user_id="+userId);
+             $modalInstance.dismiss();
+          }
+        });
+          
+          
+        }
+
+
+  $scope.ok = function () {
+    $modalInstance.close($scope.selected.item);
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+
+
+    
+
+    
 });

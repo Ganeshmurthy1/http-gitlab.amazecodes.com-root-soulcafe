@@ -28,6 +28,8 @@ $app->post('/accept_Feeling/:id', 'acceptFeeling');
 $app->get('/history_Feeling', 'historyFeeling');
 
 $app->get('/check_feelings_status/:id', 'checkFeeling');
+$app->get('/get_Member/:id', 'getMember');
+$app->get('/update_Login', 'updateLogin');
 
 function getUserMatch() {
  
@@ -508,6 +510,19 @@ function getHomeData() {
     $stmtDiss->bindParam("user_id",  $user_id );
     $stmtDiss->execute();
     $wineDiss = $stmtDiss->fetchAll(PDO::FETCH_OBJ);
+      
+   // echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
+  $sqlWelCme = "SELECT LoginCount from users where user_id = :user_id";
+  try {
+    //$db = getConnection();
+    $stmtWelCme = $db->prepare($sqlWelCme);
+    $stmtWelCme->bindParam("user_id",  $user_id );
+    $stmtWelCme->execute();
+    $wineWelCme = $stmtWelCme->fetchAll(PDO::FETCH_OBJ);
     $db = null;
    // echo json_encode($wine);
   } catch(PDOException $e) {
@@ -516,6 +531,7 @@ function getHomeData() {
   
   $result['matches'] = $wineMatches;
   $result['forum'] = $wineDiss;
+  $result['login'] = $wineWelCme;
   echo json_encode($result);
   
 }
@@ -906,8 +922,45 @@ function checkFeeling($id) {
  }
  if($st == 0) 
  echo 'true';
-  
-  
+
+}
+
+
+function getMember($id) {
+   // $user_id  = getUserId();
+   
+  $sql = "SELECT dbu.UserId,dbu.DiscussionBoardId,u.first_name,u.last_name,u.Picture FROM DiscussionBoardUsers as dbu inner join users as u on dbu.UserId = u.user_id WHERE DiscussionBoardId = :id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);  
+    $stmt->bindParam("id", $id );
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    // echo 'true';
+     echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+
+}
+
+function updateLogin() {
+    $user_id  = getUserId();
+   
+  $sql = "Update users set LoginCount = 1 where user_id = :user_id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);  
+    $stmt->bindParam("user_id", $user_id );
+    $stmt->execute();
+    
+    $db = null;
+     echo 'true';
+     // echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
 
 }
 

@@ -166,5 +166,19 @@ angular.module('sassApp')
             return response;
           });  
       };
+      dataFactory.getMember = function (id) {
+        // console.log(id); 
+          return $http.get(urlBase + 'get_Member/'+id).then(function(response) {
+           //console.log(response);
+            return response;
+          });  
+      };
+      dataFactory.updateLogin = function () {
+        // console.log(id); 
+          return $http.get(urlBase + 'update_Login').then(function(response) {
+           //console.log(response);
+            return response;
+          });  
+      };
     return dataFactory;
   }]);

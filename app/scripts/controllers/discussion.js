@@ -236,7 +236,7 @@ angular.module('sassApp')
             // $modalInstance.dismiss();
           }else{
             $location.url("/otherprofile?user_id="+userId);
-            // $modalInstance.dismiss();
+            $modalInstance.dismiss();
           }
         });
           

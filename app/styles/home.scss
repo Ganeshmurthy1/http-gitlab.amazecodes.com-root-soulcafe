@@ -662,7 +662,9 @@ background: linear-gradient(270deg, #f2f2f2 80%, #d8d6d2 88%) repeat scroll 0 0 
 .feelingBtn{
 	margin:20px 10px 0px 0px;
 }
-
+.sky-form fieldset {
+		width:100%;
+	}
 /*--------------Media Queries-------------*/
 @media (min-width: 320px) {
 	.mobile-clear {
@@ -671,6 +673,7 @@ background: linear-gradient(270deg, #f2f2f2 80%, #d8d6d2 88%) repeat scroll 0 0 
 	.mobile-align1 {
 	    margin-left: 0% !important;
 	}
+
 }
 @media (min-width: 360px) {
 	.mobile-clear {
@@ -827,6 +830,9 @@ min-height: 1150px;
 
 
 @media (min-width: 992px) {
+.sky-form fieldset {
+		width:80%;
+	}
 .gredientSB{
 
 
@@ -946,6 +952,9 @@ min-height: 1150px;
 }
 
 @media (min-width: 1200px) {
+.sky-form fieldset {
+		width:80%;
+	}
 .gredientSB{
 
 
