@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('HomeCtrl',['$scope','$location','localStorageService','regService', '$routeParams','profileOperations','$anchorScroll','$modal', '$log', function ($scope, $location, localStorageService, regService, $routeParams, profileOperations,$anchorScroll,$modal, $log) {
+  .controller('HomeCtrl',['$scope','$location','localStorageService','regService', '$routeParams','profileOperations','$anchorScroll','$modal', '$log', 'messageCodes', function ($scope, $location, localStorageService, regService, $routeParams, profileOperations,$anchorScroll,$modal, $log, messageCodes) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -21,6 +21,12 @@ angular.module('sassApp')
     
     var k = 'name';
     
+    $scope.q = '';
+    var q = $routeParams.q;
+    if (q != null) {
+    	console.log(messageCodes.Messages[q]);
+    	$scope.q = messageCodes.Messages[q];
+	}
     
     $scope.reject = $routeParams.reject;
     console.log(ddd[k].age);
