@@ -14,6 +14,11 @@ function algControllerOneOne($y) {
   $algObject = algObjectCreator($x, $y, $questions);
   $algScores = algProcessor($algObject);
   //print_r($algScores);
+  
+  $categoryWeight = getQnCategory();
+  //print_r($categoryWeight);
+  
+  
   $cal_index = 0;
   $total_percentage_score = 0;
   $total_percentage = 0;
@@ -25,8 +30,9 @@ function algControllerOneOne($y) {
       $total += $val;
       $index++;
     }
-  
+    //print $categoryWeight[$key];
     $scoreper = $total/$index;
+    $scoreper = ceil($scoreper * $categoryWeight[$key]);
     $score_per_obj[$key] = $scoreper;
     $total_percentage_score += $scoreper;
     $cal_index++;
@@ -51,15 +57,35 @@ function algControllerOneOne($y) {
   //print_r($algScores);
 }
 
+function getQnCategory() {
+
+  $sql = "SELECT * from QuestionnaireCategory where QcId NOT IN (6,7,8,9,10)";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    // $stmt->bindParam("id", $id);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    for ($i = 0; $i < count($wine); $i++) {
+      $res[$wine[$i]->Category] = $wine[$i]->Weight;
+    }
+    
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  return $res;
+  //echo json_encode($wine);
+}
 
 function algBatch() {
   print '<pre>';
   $user_list = getTheBatch();
   //print_r($user_list);
   // get the filterd users
-   
+  $categoryWeight = getQnCategory();
   for ($i = 0; $i < count($user_list); $i++) {
-    matchProcessor($user_list[$i]);
+    matchProcessor($user_list[$i], $categoryWeight);
   }
   
   
@@ -71,13 +97,13 @@ function algBatch() {
   
 }
 
-function matchProcessor($user_obj) {
+function matchProcessor($user_obj, $categoryWeight) {
   $filterd_users = getTheFilteredUsers($user_obj);  
   deleteMatch($user_obj->user_id);
-  findMatches($user_obj->user_id, $filterd_users);
+  findMatches($user_obj->user_id, $filterd_users, $categoryWeight);
 }
 
-function findMatches($user_id, $filterd_users) {
+function findMatches($user_id, $filterd_users, $categoryWeight) {
   
 
   //get the match and scores of all filtered users
@@ -102,6 +128,7 @@ function findMatches($user_id, $filterd_users) {
         }
         
         $scoreper = $total/$index;
+        $scoreper = ceil($scoreper * $categoryWeight[$key]);
         $score_per_obj[$key] = $scoreper;
         $total_percentage_score += $scoreper;
         $cal_index++;
@@ -144,7 +171,7 @@ function deleteMatch($user_id) {
 function addMatch($user_id, $match_id, $score_percentage, $match_type) {
   
   $tdate = date('Y-m-d h:i:s');
-  print_r($match_type);
+  //print_r($match_type);
   $sql = "INSERT INTO SoulMatches (UserId, SoulId, ScorePercentage, MatchType, DateAdded) VALUES ( :UserId, :SoulId, :ScorePercentage , :MatchType, :DateAdded)";
   try {
     $db = getConnection();
@@ -251,6 +278,47 @@ function algController($x, $y) {
   print_r($personality_match->Value);
   print '</br> Compatibility type: 1 = CM, 2 = SM, 3 = NM </br>';
   print_r($algScores);
+  
+
+  $categoryWeight = getQnCategory();
+  //print_r($categoryWeight);
+  
+  
+  $cal_index = 0;
+  $total_percentage_score = 0;
+  $total_percentage = 0;
+  // calculate the total in one category
+  foreach ($algScores as $key => $value ) {
+    $total = 0;
+    $index = 0;
+    foreach ($value as $val) {
+      $total += $val;
+      $index++;
+    }
+    //print $categoryWeight[$key];
+    $scoreper = $total/$index;
+    $scoreper = ceil($scoreper * $categoryWeight[$key]);
+    $score_per_obj[$key] = $scoreper;
+    $total_percentage_score += $scoreper;
+    $cal_index++;
+  
+  
+  }
+  
+  $x_personalityScore = getPersonalityScore($x);
+  $y_personalityScore = getPersonalityScore($y);
+  $personality_match  = getPersonalityMatch($x_personalityScore, $y_personalityScore);
+  
+  //print_r($score_per_obj);
+  $total_percentage = ceil($total_percentage_score/$cal_index);
+  $result_obj['scores'] = $score_per_obj;
+  $result_obj['total_percentage'] = $total_percentage;
+  $result_obj['personality_match'] = $personality_match->Value;
+  
+  print "====================Final Score card after weightage =====================\n";
+  
+  print_r($result_obj);
+  
 }
 
 function getPersonalityMatch($x, $y) {
