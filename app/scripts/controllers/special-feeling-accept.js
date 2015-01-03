@@ -14,10 +14,15 @@ angular.module('sassApp')
       'AngularJS',
       'Karma'
     ];
-
+    $scope.nosplfeeling = false;
     profileOperations.getFeelings().then(function(response) {
       		console.log(response);
       		$scope.request = response.data;
+          console.log($scope.request.length);
+          if ($scope.request.length == 0) {
+            $scope.nosplfeeling = true;
+            console.log($scope.nosplfeeling);
+          };
     });
 
     $scope.notSure=function(id){

@@ -200,6 +200,13 @@ angular.module('sassApp')
                 return response;
             });
 		};
+		dataFactory.searchHeartStatics = function (param) {
+	    	console.log(param);
+	    	return $http.post(urlBase + 'search_HeartStatics', param).then(function(response) {
+	    		//console.log(response);
+                return response;
+            });
+		};
 	    return dataFactory;
 	}]);
 

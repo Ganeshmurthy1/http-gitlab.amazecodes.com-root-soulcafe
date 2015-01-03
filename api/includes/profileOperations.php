@@ -273,7 +273,7 @@ function addGTKYRequest() {
   if($wineB != false) {
     echo 'Already Present';
   }else{
-   $message =  'Friend request from ' . $fname . ' ' . $lname . 'is waiting for your approval.';
+   $message =  'Friend request from ' . $fname . ' ' . $lname . ' is waiting for your approval.';
    $cmtDateTime=  date("Y-m-d") ;
    $status  = 0;
   $link = 'accept-gtky';
@@ -644,7 +644,7 @@ function sendFeeling($id) {
 function getFeelings() {
    $user_id  = getUserId();
    
-  $sql = "SELECT sf.SenderId,sf.Status,u.first_name,u.last_name FROM `SpecialFeeling` as sf inner join users as u on sf.SenderId = u.user_id WHERE sf.RecieverId = :user_id";
+  $sql = "SELECT sf.SenderId,sf.Status,u.first_name,u.last_name FROM `SpecialFeeling` as sf inner join users as u on sf.SenderId = u.user_id WHERE sf.RecieverId = :user_id and sf.Status = 0";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);  
