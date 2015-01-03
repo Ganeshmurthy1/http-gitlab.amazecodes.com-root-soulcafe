@@ -111,6 +111,7 @@ function findMatches($user_id, $filterd_users, $categoryWeight) {
     //$alg_objar[$filterd_users[$i]->user_id] = algBatchController($user_id, $filterd_users[$i]->user_id);
     $alg_obj = algBatchController($user_id, $filterd_users[$i]->user_id);
      
+    print_r($alg_obj);
     //filter for language match
     if($alg_obj['scores']['Language Compatibility'][56] != 0 ) { 
   
