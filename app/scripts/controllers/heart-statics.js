@@ -15,9 +15,25 @@ angular.module('sassApp')
       'Karma'
     ];
 
+    $scope.dateOptions = {
+            changeYear: true,
+            changeMonth: true,
+            dateFormat:'yy-mm-dd',
+            
+        };
+
     adminOperations.heartStatics().then(function(response) {
 		  console.log(response.data);
 		  $scope.statics = response.data;
 	});
+
+    $scope.search = function (a){
+      console.log(a.from);
+      adminOperations.searchHeartStatics(a).then(function(response) {
+      console.log(response.data);
+       $scope.statics = response.data;
+  });
+
+    }
 
   });

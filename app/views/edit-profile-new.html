@@ -572,12 +572,11 @@
            Soul Questionnaire <i style="margin-top:4px;" class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.isThirdOpen, 'glyphicon-chevron-right': !status.isThirdOpen}"></i>
         </accordion-heading>
          <div class="alert fade in margin-bottom-40" ng-repeat="question in questions">
-             <h4>{{question.QuestionTitle}}</h4>
-                          
-            <p class="pull-right">
-                <a class="btn-u btn-sea-u" href="#/question-edit?qid={{question.Qid}}">Edit response</i></a>
-            </p>
-               
+            <div class="row">
+                <h4>{{question.QuestionTitle}}</h4>
+                <div class="pull-right"> <a class="btn-u btn-sea-u" href="#/question-edit?qid={{question.Qid}}">Edit response</i></a></div>
+            </div>
+           
         </div>
     </accordion-group>
     </div>

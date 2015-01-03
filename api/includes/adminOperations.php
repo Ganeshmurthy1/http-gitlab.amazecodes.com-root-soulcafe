@@ -64,6 +64,7 @@ $app->post('/add_RestrictionFeeling', 'addRestrictionFeeling');
 $app->post('/get_RestrictionFeeling', 'getRestrictionFeeling');
 
 $app->get('/heart_Statics', 'heartStatics');
+$app->post('/search_HeartStatics', 'searchHeartStatics');
 
 
 function checkAdminLogin() {
@@ -320,7 +321,7 @@ function getTotalForumMessage($id) {
 function sysMarkMessage() {
   $user_id  = getUserId();
   
-  $sql = "SELECT * from SystemNotification where userId=:user_id order by AddedDate desc limit 0,10";
+  $sql = "SELECT * from SystemNotification where userId=:user_id order by AddedDate desc, Id desc limit 0,10";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
@@ -353,7 +354,7 @@ function sysMarkMessage() {
 function MarkMessage() {
   $user_id  = getUserId();
 
-  $sql = "SELECT u.first_name, m.* from Messages m JOIN users u on m.SenderId=u.user_id where m.UserId=:user_id order by m.AddedDate desc limit 0,10";
+  $sql = "SELECT u.first_name, m.* from Messages m JOIN users u on m.SenderId=u.user_id where m.UserId=:user_id order by m.AddedDate desc,m.Id desc limit 0,10";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
@@ -367,7 +368,7 @@ function MarkMessage() {
     for ($i=0; $i<count($wine); $i++) {
       if ($wine[$i]->SpecialMessage == 1) {
         // echo "spcl";
-        $wine[$i]->mess = $wine[$i]->first_name . ' has sent you a special message';
+        $wine[$i]->mess = $wine[$i]->first_name . ' has sent response to your brewing request.';
         unset($wine[$i]->Message);
       }else{
         $wine[$i]->mess = $wine[$i]->first_name . ' has sent you a message';
@@ -401,7 +402,7 @@ function MarkMessage() {
   function ForumMarkMessage() {
     $user_id  = getUserId();
   
-    $sql = "SELECT * from ForumNotification where UserId=:user_id order by AddedDate desc limit 0,10";
+    $sql = "SELECT * from ForumNotification where UserId=:user_id order by AddedDate desc,Id desc limit 0,10";
     try {
       $db = getConnection();
       $stmt = $db->prepare($sql);
@@ -1171,4 +1172,56 @@ function heartStatics() {
   echo json_encode($statics);
 }
 
+function searchHeartStatics() {
+  $request = Slim::getInstance()->request();
+  $res = json_decode($request->getBody());
+  // print_r($res);
+  $sql = "SELECT count(1) as total FROM `SpecialFeeling` WHERE Status=0 and SendedDate BETWEEN :from AND :to";
+  $sql1 = "SELECT count(1) as total FROM `SpecialFeeling` WHERE Status=1 and SendedDate BETWEEN :from AND :to";
+  $sql2 = "SELECT count(1) as total FROM `SpecialFeeling` WHERE Status=2 and SendedDate BETWEEN :from AND :to";
+  $sql3 = "SELECT count(1) as total FROM `SpecialFeeling` WHERE Status=3 and SendedDate BETWEEN :from AND :to";
+  $sql4 = "SELECT (count(1)/2) as total FROM `SpecialFeeling` WHERE Status=4 and SendedDate BETWEEN :from AND :to";
+
+  try {
+    $db = getConnection();
+      $stmt = $db->prepare($sql);
+      $stmt1 = $db->prepare($sql1);
+      $stmt2 = $db->prepare($sql2);
+      $stmt3 = $db->prepare($sql3);
+      $stmt4 = $db->prepare($sql4);
+
+         $stmt->bindParam("from", $res->from);
+         $stmt->bindParam("to", $res->to);
+         $stmt1->bindParam("from", $res->from);
+         $stmt1->bindParam("to", $res->to);
+         $stmt2->bindParam("from", $res->from);
+         $stmt2->bindParam("to", $res->to);
+         $stmt3->bindParam("from", $res->from);
+         $stmt3->bindParam("to", $res->to);
+         $stmt4->bindParam("from", $res->from);
+         $stmt4->bindParam("to", $res->to);
+
+      $stmt->execute();
+      $stmt1->execute();
+      $stmt2->execute();
+      $stmt3->execute();
+      $stmt4->execute();
+
+      $wine = $stmt->fetchObject();
+      $wine1 = $stmt1->fetchObject();
+      $wine2 = $stmt2->fetchObject();
+      $wine3 = $stmt3->fetchObject();
+      $wine4 = $stmt4->fetchObject();
+      $db = null;
+    // echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  $statics['NA'] = $wine;
+  $statics['NS'] = $wine1;
+  $statics['NY'] = $wine2;
+  $statics['NMT'] = $wine3;
+  $statics['A'] = $wine4;
+  echo json_encode($statics);
+}
 

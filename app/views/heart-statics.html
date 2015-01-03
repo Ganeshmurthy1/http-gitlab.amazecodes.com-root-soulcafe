@@ -17,6 +17,40 @@
             <div class="col-md-9">
             	<h1>Heart Statistics</h1>
             	<!--Basic Table-->
+                <div class="row">
+                    <form id="sky-form4" class="sky-form" name="srch">
+                        <div class="col-md-12">
+                            <div class="col-md-5">
+                                <div class="form-group row">
+                                    <label class="col-lg-2 control-label">From</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" name="name" ng-model="srch.from" ui-date="dateOptions" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group row">
+                                <label class="col-lg-1 control-label">To</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" name="name" ng-model="srch.to" ui-date="dateOptions" required>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" data-ng-click="search(srch)" class="btn-u btn-u-blue">Search</button>
+                            </div>
+                        </div>
+                        
+                        
+                        <!-- <fieldset>     
+                            <label class="textarea">
+                                <textarea rows="4" name="message" id="message" data-ng-model="comment" ></textarea>
+                            </label>
+                            <button data-ng-click="addcomment()" class="btn-u btn-u-blue">Submit</button>
+                        </fieldset> -->
+                    </form>
+                </div>
+
                 <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
