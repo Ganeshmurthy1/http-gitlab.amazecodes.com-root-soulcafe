@@ -23,7 +23,6 @@ angular.module('sassApp')
 
     $scope.user_id = $routeParams.user_id;
     regService.getProfileDetailOther($scope.user_id).then(function (response) {
-         console.log(response);
          $scope.profileDetail = response.data;
          $scope.userData = response.data;
       });

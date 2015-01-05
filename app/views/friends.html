@@ -14,11 +14,7 @@
         <div class="headline">
         <h1 class="heading-sm"> Buddies List</h1>
     </div>
-    <!-- <div class="padding-bottom row clear" ng-show="{{status == 1}}">
-        <div class="alert alert-success fade in">
-                Your brewing request is sent !!!!
-        </div>
-    </div> -->
+    
     <div class="alert alert-{{q.type}} fade in" ng-show="q">{{q.msg}}
          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
     </div>
@@ -32,7 +28,7 @@
                     <div class="col-md-12">{{frnd.Moto | limitTo : 20}}..</div>
                     <div class="row"> 
                     	<div class="col-xs-4 col-md-1">
-                    	 	<a title="Send message" href="#/reply-message?sid={{frnd.user_id}}"><i class="fa fa-2x fa-envelope-o"></i></a>
+                    	 	<a title="Send message" class="color-deep-red" href="#/reply-message?sid={{frnd.user_id}}"><i class="fa fa-2x fa-envelope" style="font-size: 20px !important;"></i></a>
                     	</div>
                     	<div class="col-xs-6 no-padding">
 		                    <a title="Express your  special feeling" href="#/special-feeling-request?user_id={{frnd.user_id}}">

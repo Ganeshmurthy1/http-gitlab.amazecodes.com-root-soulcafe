@@ -1,7 +1,7 @@
 <div class="wrapper">
     <!--=== Header ===-->    
-  <div data-ng-controller="AdminheaderCtrl" data-ng-include="Header">
-</div>
+    <div data-ng-controller="AdminheaderCtrl" data-ng-include="Header">
+    </div>
     <!--=== End Header ===-->  
 
     <!--=== Profile ===-->
@@ -13,32 +13,29 @@
             <!--End Left Sidebar-->
             
             <div class="col-md-9">
-			<div class="headline"><h2 class="heading-sm">Discussion List</h2></div>
-                <div class="funny-boxes funny-boxes-top-sea" data-ng-repeat = "discussion in discussions" data-ng-hide="discussion.deleted">
+             <div class="headline"><h2 class="heading-sm">Discussion List</h2></div>
+             <div class="funny-boxes funny-boxes-top-sea" data-ng-repeat = "discussion in discussions" data-ng-hide="discussion.deleted">
 
-                    <div class="media media-v2" style="float:left;margin: 0 !important;
-                                    padding: 0 !important;">
-                    <a class="pull-left" href="#">
-                        <img class="media-object rounded-x" ng-src="{{imagepath}}{{discussion.Image}}" alt="">
-                    </a>
-                     </div>
-                    <h4>{{discussion.Topic}}</h4>
-                    <p>{{discussion.Description}}</p>
-                    <p>
-                        <a class="btn-u " href="#/admin-topic-list?discussId={{discussion.DiscussionBoardId}}">View</a>
-                        <a class="btn-u btn-u-blue" href="#/admin-discussion-edit?discussId={{discussion.DiscussionBoardId}}">Edit</a>
-                    	<a class="btn-u btn-u-green"  data-ng-hide="{{discussion.Status == 1}}" data-ng-click="activateForum(discussion.DiscussionBoardId)">Activate</a>
-                        <a class="btn-u btn-u-brown" data-ng-show="{{discussion.Status == 1}}" data-ng-click="deactivateForum(discussion.DiscussionBoardId)">Deactivate</a>
-                        <a class="btn-u btn-u-red"  data-ng-click="deleteForum(discussion.DiscussionBoardId)" >Delete</a>
-                    </p>
-                </div>            	
+                <div class="media media-v2" style="float:left;margin: 0 !important;
+                padding: 0 !important;">
+                <a class="pull-left" href="#">
+                    <img class="media-object rounded-x" ng-src="{{imagepath}}{{discussion.Image}}" alt="">
+                </a>
             </div>
-        </div>
-
+            <h4>{{discussion.Topic}}</h4>
+            <p>{{discussion.Description}}</p>
+            <p>
+                <a class="btn-u " href="#/admin-topic-list?discussId={{discussion.DiscussionBoardId}}">View</a>
+                <a class="btn-u btn-u-blue" href="#/admin-discussion-edit?discussId={{discussion.DiscussionBoardId}}">Edit</a>
+                <a class="btn-u btn-u-green"  data-ng-hide="{{discussion.Status == 1}}" data-ng-click="activateForum(discussion.DiscussionBoardId)">Activate</a>
+                <a class="btn-u btn-u-brown" data-ng-show="{{discussion.Status == 1}}" data-ng-click="deactivateForum(discussion.DiscussionBoardId)">Deactivate</a>
+                <a class="btn-u btn-u-red"  data-ng-click="deleteForum(discussion.DiscussionBoardId)" >Delete</a>
+            </p>
+        </div>            	
     </div>
-    <!--=== End Profile ===-->
+</div>
 
-
-
+</div>
+<!--=== End Profile ===-->
 </div>
 <!--=== End Wrapper ===-->

@@ -17,17 +17,12 @@ angular.module('sassApp')
 
 
     $scope.addDiscussion = function() {
-    	console.log($scope.discussion);
     	regService.addUserDiscussion($scope.discussion).then(function(response) {
-		  console.log(response);
 		  if (response.data == 'true') {
 			  $scope.savedSuccessfully = true;
-              //alert("The Forum will be posted soon after review.");
-              //$location.path('/discussion-list');
-              $location.url('/discussion-list?q=110' );
-              
-              $scope.errMessage = false;
-              $scope.discussion = false;
+        $location.url('/discussion-list?q=110' );
+        $scope.errMessage = false;
+        $scope.discussion = false;
 		  }
 		  else {
 			  $scope.successmessage = false;

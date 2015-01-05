@@ -20,21 +20,11 @@ angular.module('sassApp')
     $scope.q = '';
     var q = $routeParams.q;
     if (q != null) {
-      console.log(messageCodes.Messages[q]);
       $scope.q = messageCodes.Messages[q];
   }
     $scope.status = $routeParams.status;
-    profileOperations.getBuddiesAll().then(function(response) {
-      
-      console.log(response);    
+    profileOperations.getBuddiesAll().then(function(response) {    
          $scope.friends=response.data;
-       // if($scope.friends.UpdatedPicture == null){
-       //    $scope.friends.pict = $scope.userData.Picture;
-       //    localStorageService.set('fbpicture', {fbpicture:$scope.pict});
-       //  }else{
-       //    $scope.friends.pict = $scope.imagepath + $scope.userData.UpdatedPicture;
-       //    console.log($scope.pict);
-       //    localStorageService.set('fbpicture', {fbpicture:$scope.pict});
-       //  }
+      
      });
   });

@@ -16,25 +16,20 @@ angular.module('sassApp')
     ];
 
     adminOperations.getRestrictionFeeling().then(function(response) {
-	   console.log(response);
 	   $scope.res = {};
-	  $scope.res.resend = response.data.Resend;
-	  $scope.res.sameresend = response.data.ResendSame;
-   });
+	   $scope.res.resend = response.data.Resend;
+	   $scope.res.sameresend = response.data.ResendSame;
+    });
 
     $scope.saveButtonClick = function(res){
-    	console.log(res);
     	$scope.res = res;
 
-	 adminOperations.addRestrictionFeeling($scope.res).then(function(response) {
-	   console.log(response);
-	   
+	 adminOperations.addRestrictionFeeling($scope.res).then(function(response) {	   
 	   adminOperations.getRestrictionFeeling().then(function(response) {
-	   console.log(response);
-	   $scope.res = {};
-	  $scope.res.resend = response.data.Resend;
-	  $scope.res.sameresend = response.data.ResendSame;
-   });
+  	   $scope.res = {};
+  	   $scope.res.resend = response.data.Resend;
+  	   $scope.res.sameresend = response.data.ResendSame;
+      });
 	  
    });
     }

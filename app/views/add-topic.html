@@ -1,63 +1,45 @@
 <div data-ng-controller="HeaderCtrl" data-ng-include="Header"></div>
-
-
-
-
 <div class="container-fluid body-pattern ">
     <div class="container my-border body-pattern ">
         <div class="row">
             <div class="my-border col-xs-12 col-sm-4 col-md-3 gredientSB hideblock" data-ng-controller="SideBarCtrl" data-ng-include="SideBar"></div>
 
             <div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px ">
-            <div class="headline"><h2 class="heading-sm">Add Discussion Topic</h2></div>
-             <div class="row pull-right"><a class="btn-u btn-u-default glow " href="#/discussion-topics?discussionid={{discussId}}">View Discussion Forum</a></div>
-            
-            
-            <form id="sky-form4" class="sky-form" name="adminTopic" data-ng-submit="AddTopic(adminTopic.$valid)">
-            
-            <fieldset>                
+                <div class="headline"><h2 class="heading-sm">Add Discussion Topic</h2></div>
+                <div class="row pull-right"><a class="btn-u btn-u-default glow " href="#/discussion-topics?discussionid={{discussId}}">View Discussion Forum</a></div>
+
+
+                <form id="sky-form4" class="sky-form" name="adminTopic" data-ng-submit="AddTopic(adminTopic.$valid)">
+
+                    <fieldset>                
             <!-- <div class="alert alert-danger fade in" data-ng-show="errMessage">{{errMessage}}</div>
             <div class="alert alert-success fade in" data-ng-show="successmessage">{{successmessage}}</div> -->
-                        <section>
-                            <label class="label">Discussion Topic</label>
-                            <label class="input">
-                                <input type="text" name="subject" id="subject" data-ng-model="topic.title" required>
-                            </label>
-                        </section>
-                        
-                        <section>
-                            <label class="label">Description</label>
-                            <label class="textarea">
-                                <textarea rows="4" name="message" id="message" data-ng-model="topic.description" required></textarea>
-                            </label>
-                        </section>  
-                     
-					
-                    </fieldset>
-                    <footer>
-                        <button class="btn-u" type="submit" ng-disabled="adminAddDiscussion.$invalid">Submit</button>
-                        <button onclick="window.history.back();" class="btn-u btn-u-default" type="button">Back</button>
+            <section>
+                <label class="label">Discussion Topic</label>
+                <label class="input">
+                    <input type="text" name="subject" id="subject" data-ng-model="topic.title" required>
+                </label>
+            </section>
 
-                    </footer>
-            </form>
-
-            </div>
+            <section>
+                <label class="label">Description</label>
+                <label class="textarea">
+                    <textarea rows="4" name="message" id="message" data-ng-model="topic.description" required></textarea>
+                </label>
+            </section>  
 
 
+        </fieldset>
+        <footer>
+            <button class="btn-u" type="submit" ng-disabled="adminAddDiscussion.$invalid">Submit</button>
+            <button onclick="window.history.back();" class="btn-u btn-u-default" type="button">Back</button>
 
+        </footer>
+    </form>
 
-
-
-
-
-
-        </div><!--/end row-->
-    </div><!--/container-->    
-    <!--=== End Profile ===-->
-
-
-
-
-    
+</div>
+</div><!--/end row-->
+</div><!--/container-->    
+<!--=== End Profile ===-->
 </div>
  <!-- End wrapper -->

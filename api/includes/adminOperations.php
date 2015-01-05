@@ -321,7 +321,7 @@ function getTotalForumMessage($id) {
 function sysMarkMessage() {
   $user_id  = getUserId();
   
-  $sql = "SELECT * from SystemNotification where userId=:user_id order by AddedDate desc, Id desc limit 0,10";
+  $sql = "SELECT * from SystemNotification where userId=:user_id order by Id desc limit 0,10";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
@@ -354,7 +354,7 @@ function sysMarkMessage() {
 function MarkMessage() {
   $user_id  = getUserId();
 
-  $sql = "SELECT u.first_name, m.* from Messages m JOIN users u on m.SenderId=u.user_id where m.UserId=:user_id order by m.AddedDate desc,m.Id desc limit 0,10";
+  $sql = "SELECT u.first_name, m.* from Messages m JOIN users u on m.SenderId=u.user_id where m.UserId=:user_id order by m.Id desc limit 0,10";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
@@ -406,7 +406,7 @@ function MarkMessage() {
   function ForumMarkMessage() {
     $user_id  = getUserId();
   
-    $sql = "SELECT * from ForumNotification where UserId=:user_id order by AddedDate desc,Id desc limit 0,10";
+    $sql = "SELECT * from ForumNotification where UserId=:user_id order by Id desc limit 0,10";
     try {
       $db = getConnection();
       $stmt = $db->prepare($sql);
@@ -439,7 +439,7 @@ function MarkMessage() {
   function getMyMessage() {
     $user_id  = getUserId();
   
-    $sql = "SELECT u.first_name, u.Picture, m.* from Messages m JOIN users u on m.SenderId=u.user_id where m.UserId=:user_id order by m.AddedDate desc";
+    $sql = "SELECT u.first_name, u.Picture, m.* from Messages m JOIN users u on m.SenderId=u.user_id where m.UserId=:user_id order by m.Id desc";
     try {
       $db = getConnection();
       $stmt = $db->prepare($sql);

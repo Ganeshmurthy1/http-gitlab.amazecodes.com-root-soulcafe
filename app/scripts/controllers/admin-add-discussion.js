@@ -15,13 +15,8 @@ angular.module('sassApp')
       'Karma'
     ];
     $scope.adminAddDiscussion = function() {
-
-        // if($scope.image != null) {
-    	   console.log($scope.discussion);
-           $scope.discussion.image=$scope.image;
-           // console.log($scope.image);
-    	   adminDiscussion.addDiscussion($scope.discussion).then(function(response) {
-		   console.log(response);
+        $scope.discussion.image=$scope.image;
+    	adminDiscussion.addDiscussion($scope.discussion).then(function(response) {
 		  if (response.data == 'true') {
 			  $scope.savedSuccessfully = true;
               $scope.successmessage = "Forum added sucessfully.";
@@ -33,12 +28,6 @@ angular.module('sassApp')
 			  $scope.errMessage = response.data;
 		  }
        });
-    // } else {
-    //     $scope.successmessage = false;
-    //     $scope.errMessage = "Please Upload the File";
-    // }
-
-
     };
     
  var uploader = $scope.uploader = adminDiscussion.setUploader();
@@ -56,55 +45,52 @@ angular.module('sassApp')
         // CALLBACKS
 
         uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
-            console.info('onWhenAddingFileFailed', item, filter, options);
+            // console.info('onWhenAddingFileFailed', item, filter, options);
         };
         uploader.onAfterAddingFile = function(fileItem) {
-            console.info('onAfterAddingFile', fileItem);
+            // console.info('onAfterAddingFile', fileItem);
         };
         uploader.onAfterAddingAll = function(addedFileItems) {
-            console.info('onAfterAddingAll', addedFileItems);
+            // console.info('onAfterAddingAll', addedFileItems);
         };
         uploader.onBeforeUploadItem = function(item) {
-            console.info('onBeforeUploadItem', item);
+            // console.info('onBeforeUploadItem', item);
         };
         uploader.onProgressItem = function(fileItem, progress) {
-            console.info('onProgressItem', fileItem, progress);
+            // console.info('onProgressItem', fileItem, progress);
         };
         uploader.onProgressAll = function(progress) {
-            console.info('onProgressAll', progress);
+            // console.info('onProgressAll', progress);
         };
         uploader.onSuccessItem = function(fileItem, response, status, headers) {
-            console.info('onSuccessItem', fileItem, response, status, headers);
+            // console.info('onSuccessItem', fileItem, response, status, headers);
         };
         uploader.onErrorItem = function(fileItem, response, status, headers) {
-            console.info('onErrorItem', fileItem, response, status, headers);
+            // console.info('onErrorItem', fileItem, response, status, headers);
         };
         uploader.onCancelItem = function(fileItem, response, status, headers) {
-            console.info('onCancelItem', fileItem, response, status, headers);
+            // console.info('onCancelItem', fileItem, response, status, headers);
         };
         uploader.onCompleteItem = function(fileItem, response, status, headers) {
           if (response == 'max_size_exceeded') {
-                console.log('Maximum size is 2 mb');
+                // console.log('Maximum size is 2 mb');
                 $scope.imageErr = 'Maximum image size is 2mb';
             } 
             else if(response.filename != '') {
-                console.info('onCompleteItem', fileItem, response, status, headers);
+                // console.info('onCompleteItem', fileItem, response, status, headers);
                 $scope.image=response.filename;
                 $scope.imageSucc = 'Image got Uploaded, Please save the change.';
                 $scope.disable_save = false;
                 
             }
 
-            console.info('onCompleteItem', fileItem, response, status, headers);
+            // console.info('onCompleteItem', fileItem, response, status, headers);
             $scope.image=response.filename;
-            console.log( $scope.image);
-            console.log(status);
-            console.log(headers);
         };
         uploader.onCompleteAll = function() {
         //     console.info('onCompleteAll');
         //     alert("Image Uploaded.");
         };
 
-        console.info('uploader', uploader);
+        // console.info('uploader', uploader);
   }]);

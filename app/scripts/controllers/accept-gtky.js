@@ -15,40 +15,27 @@ angular.module('sassApp')
       'Karma'
     ];
 
-      profileOperations.getUserSendedGTKY().then(function(response) {
-          console.log(response.data);
-          $scope.GTKYrequest =  response.data;         
-        });
+profileOperations.getUserSendedGTKY().then(function(response) {
+    console.log(response.data);
+    $scope.GTKYrequest =  response.data;         
+});
 
 
 $scope.acceptButtonClick=function(id){
   console.log(id);
   profileOperations.acceptGTKY(id).then(function(response) {
-      console.log(response.data);
       if (response.data = 'true'){
-        // profileOperations.getUserSendedGTKY().then(function(response) {
-        //   console.log(response.data);
-        //   $scope.GTKYrequest =  response.data;         
-        // });
         $location.url("/otherprofile?user_id="+id+"&q=108");
-      }
-      // $scope.GTKYrequest =  response.data;         
+      }      
   });
 
 }
 
 $scope.rejectButtonClick=function(id){
-  console.log(id);
   profileOperations.rejectGTKY(id).then(function(response) {
-    console.log(response.data);
     if (response.data = 'true'){
-        // profileOperations.getUserSendedGTKY().then(function(response) {
-        //   console.log(response.data);
-        //   $scope.GTKYrequest =  response.data;         
-        // });
-    $location.url("/home?q=104");
-
-      }        
+      $location.url("/home?q=104");
+    }        
   });
 }
 

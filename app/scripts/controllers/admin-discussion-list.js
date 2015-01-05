@@ -21,7 +21,6 @@ angular.module('sassApp')
 
     function getAdminForum() {
     	adminDiscussion.getAdminDiscussionTotal().then(function (total) {
-    		// console.log(total.data);
     		 $scope.totalItems = total.data.total;          	
     	});
     	
@@ -33,7 +32,6 @@ angular.module('sassApp')
     	param.limit = $scope.pagePerItem;
     	
     	adminDiscussion.getAdminDiscussion(param).then(function (results) {
-    	    console.log(results.data);
     		$scope.discussions = results.data;          	
     	});
     	
@@ -50,7 +48,6 @@ angular.module('sassApp')
         setTimeout(function(){
         	
         	adminDiscussion.getAdminDiscussion(param).then(function (res) {
-        		//console.log(results.data);
         		delete $scope.discussions;
         		$scope.discussions = res.data;          	
         	});
@@ -73,13 +70,11 @@ angular.module('sassApp')
     $scope.activateForum = function(id) {  
     	adminDiscussion.adminActivateDiscussion(id).then(function (total) {    			
     		$scope.pageChanged();
-    		//delete $scope.discussions;
     	});
     };
     $scope.deactivateForum = function(id) {  
     	adminDiscussion.adminDeActivateDiscussion(id).then(function (total) {
     		$scope.pageChanged();
-    		//delete $scope.discussions;
     	});
     };
 

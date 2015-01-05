@@ -17,15 +17,12 @@ angular.module('sassApp')
   getAllQuestionCategory();
   function getAllQuestionCategory(){
 	  Questionnaire.getAdminAllQuestionCategory().then(function (response) {
-			console.log(response.data);
 			$scope.admins = response.data;
 	});
   }
 
   $scope.sequence = function(category){
-    //console.log(a);
     Questionnaire.updateQuestionCategorySeq(category).then(function (response) {
-      console.log(response.data);
   });
   }
 

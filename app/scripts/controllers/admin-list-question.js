@@ -17,27 +17,24 @@ angular.module('sassApp')
     getAllQuestion();
     function getAllQuestion(){
 	    adminOperations.getAllQuestions().then(function (response) {
-				console.log(response.data);
 				$scope.admins = response.data;
 		});
     }
 
     $scope.sequence = function(a){
-      console.log(a);
       adminOperations.updateQuestionSeq(a).then(function (response) {
-        console.log(response.data);
+        
     });
     }
 
     $scope.deleteQuestion = function(id){
-      console.log(id);
+      
       adminOperations.deleteQuestion(id).then(function (response) {
-        console.log(response.data);
+        
         if (response.data == 'true') {
           adminOperations.getAllQuestions().then(function (response) {
-        console.log(response.data);
-        $scope.admins = response.data;
-    });
+            $scope.admins = response.data;
+          });
         };
     });
     }

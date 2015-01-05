@@ -212,16 +212,7 @@ angular.module('sassApp')
             $log.info('Modal dismissed at: ' + new Date());
           });
         };
- 
-
-
-
- 
-
 }]);
-
-
-
 
 //Please note that $modalInstance represents a modal window (instance) dependency.
 //It is not the same as the $modal service used above.
@@ -231,21 +222,8 @@ angular.module('sassApp').controller('ModalInstanceCtrlMatch', function ($scope,
 
 	 profileOperations.getMyMatch(items.user_id).then(function(resp) {
 		 $scope.matchDetails = resp.data;
-     console.log($scope.matchDetails.scores);
-
-     // for overall
-     // if($scope.matchDetails.total_percentage > 0 || $scope.matchDetails.total_percentage < 25){
-     //    console.log("0-25");
-     //    $scope.overall="1-4th.png";
-     // } else if($scope.matchDetails.total_percentage > 25 || $scope.matchDetails.total_percentage < 50){
-     //    console.log("25-50");
-     // } else if($scope.matchDetails.total_percentage > 50 || $scope.matchDetails.total_percentage < 75){
-     //    console.log("50-75");
-     // } else if($scope.matchDetails.total_percentage > 75 || $scope.matchDetails.total_percentage < 100){
-     //    console.log("75-100");
-     // } 
-
-     // for Personality match box
+     
+      
      if ($scope.matchDetails.personality_match == 1) {
       $scope.comp = true;
       $scope.same = false;

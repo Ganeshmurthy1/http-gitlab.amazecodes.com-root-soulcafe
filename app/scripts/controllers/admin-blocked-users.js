@@ -17,7 +17,6 @@ angular.module('sassApp')
     
     function loadBlockedUsers() {
 	  adminOperations.adminGetBlockedUsers().then(function (response) {
-			console.log(response);
 			 $scope.comm = response.data;
 	  });
     }
@@ -25,7 +24,6 @@ angular.module('sassApp')
     $scope.activateUser = function(id) {  
     	adminOperations.adminActivateUser(id).then(function (total) {    			
     		loadBlockedUsers();
-    		//delete $scope.discussions;
     	});
     };
     

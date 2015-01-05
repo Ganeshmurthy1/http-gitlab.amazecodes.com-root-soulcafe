@@ -15,10 +15,9 @@ angular.module('sassApp')
       'Karma'
     ];
 
-   adminDiscussion.getRequestedTopic().then(function (total) {
-	    		console.log(total.data);
-	    		$scope.rtopics = total.data;          	
-	    	});
+    adminDiscussion.getRequestedTopic().then(function (total) {
+  		$scope.rtopics = total.data;          	
+  	});
 
    $scope.deleteTopic = function(id) {  
     	adminDiscussion.adminDeleteTopic(id).then(function (total) {
@@ -30,25 +29,20 @@ angular.module('sassApp')
                 }    		 	
     		}  
     		adminDiscussion.getRequestedTopic().then(function (total) {
-	    		console.log(total.data);
 	    		$scope.rtopics = total.data;          	
 	    	});  		 	
     	});
     };
     $scope.activateTopic = function(id) {  
     	adminDiscussion.adminActivateTopic(id).then(function (total) {    			
-    		// $scope.pageChanged();
     		 adminDiscussion.getRequestedTopic().then(function (total) {
-	    		console.log(total.data);
 	    		$scope.rtopics = total.data;          	
 	    	});
     	});
     };
     $scope.deactivateTopic = function(id) {  
     	adminDiscussion.adminDeActivateTopic(id).then(function (total) {
-    		// $scope.pageChanged();
     		 adminDiscussion.getRequestedTopic().then(function (total) {
-	    		console.log(total.data);
 	    		$scope.rtopics = total.data;          	
 	    	});
     	});

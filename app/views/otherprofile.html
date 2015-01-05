@@ -15,23 +15,6 @@
          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
     </div>
     
-<!-- <div class="row" ng-show="repotabuseMessage">
-	<div class="col-md-12">
-	<div class="alert alert-success fade in">
-      Thank You. We will take Necessary action!
-    </div>
-	</div>
-</div> -->
-<!-- <div class="padding-bottom row clear" ng-show="{{msg == 1}}">
-    <div class="alert alert-success fade in">
-           Thank You!!!! We have Send the request!
-    </div>
-</div> -->
-<!-- <div class="padding-bottom row clear" ng-show="{{accept == 1}}">
-    <div class="alert alert-success fade in">
-          Now you are friends!!!!
-    </div>
-</div> -->
 <div class="padding-bottom row clear" ng-show="{{already == 1}}">
     <div class="alert alert-success fade in">
            Your request is already sent!!!!
@@ -68,12 +51,6 @@
 					            <img src="images/icon-mobile.png" alt="Mobile" title="Mobile">
 					            <span class="badge1 badge-green rounded-x"><i class="fa fa-check  color-white"></i></span>
 					        </li>
-					        <!-- <li>
-					            <a href="#"><img src="images/stamp1.jpg"></a>
-					            <span class="badge1 badge-red rounded-x color-white">x</span>
-					        </li> -->
-					        
-					       
 					        
 					    </ul>
 					</div>
@@ -147,13 +124,8 @@
 										colors="{{colors}}" delay="10" steps="7"></jqcloud>
 				
 				</div>
-	
-	
-
-
 
 </div>
-
 
 </div>	
 </div>
@@ -163,7 +135,7 @@
 <script type="text/ng-template" id="myModalContent.html">
 	<div class="custm">
         <div class="modal-header no-padding align-center myborder" style="border-bottom:0px solid white;">
-            <h1 class="modal-title color-black"><strong>You and {{buddyname}}</strong></h1>
+            <h1 class="modal-title color-brown">You and {{buddyname}}</h1>
         </div>
         <div class="modal-body myborder">
         	<!-- Overall bar -->
@@ -172,7 +144,7 @@
             <div class="row myborder">
             	<div class="col-md-6" ng-repeat="(key, value) in matchDetails.scores" style="margin:5px 0px !important;padding-right:0px !important;">
             	<div class="transperent padding-15">
-            		<div class="align-center"><h4 class="color-black"><strong>{{key}}</strong></h4></div>
+            		<div class="align-center"><h4 class="color-brown">{{key}}</h4></div>
             		<div class="row">
             			<div class="col-md-offset-2 col-md-8"> 
             				<div ng-show="(value >= 0 && value <=25)">
@@ -197,7 +169,7 @@
             <div class="row myborder">
             	<div class="col-md-6" style="margin:5px 26% !important;padding-right:0px !important;">
             	<div class="transperent padding-15">
-            		<div class="align-center"><h4 class="color-black"><strong>Personality Match</strong></h4>
+            		<div class="align-center"><h4 class="color-brown">Personality Match</h4>
             		</div>
             		<div class="row" ng-show="comp">
             			<div class="col-md-offset-3 col-md-4"> 

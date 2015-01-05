@@ -20,10 +20,7 @@ angular.module('sassApp')
 
     $scope.isAdmin = false;
     var authData = localStorageService.get('authorizationData');
-    console.log(authData);
     $scope.datau = authData;
-     console.log($scope.datau);
-
      var fbpic = localStorageService.get('fbpicture');
      $scope.pic=fbpic.fbpicture.data.url;
     if(authData.user_role == 1) {
@@ -35,19 +32,13 @@ angular.module('sassApp')
 
 
     regService.getTotalSysMessage(authData.user_id).then(function(response) {
-    	  console.log(response.data.total);
           $scope.totalSysMessage = response.data.total; 
-          // console.log($scope.pic.Picture);
       });
       regService.getTotalMessage(authData.user_id).then(function(response) {
-        console.log(response.data.total);
           $scope.totalMessage = response.data.total; 
-          // console.log($scope.pic.Picture);
       });
       regService.getTotalForumMessage(authData.user_id).then(function(response) {
-        console.log(response.data.total);
           $scope.totalForumMessage = response.data.total; 
-          // console.log($scope.pic.Picture);
       });
 
       $scope.sysMessage = function() {  

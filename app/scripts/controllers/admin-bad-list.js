@@ -16,23 +16,18 @@ angular.module('sassApp')
     ];
     
     function getAdminBadList() {    	
-    	
     	adminDiscussion.getAdminBadList().then(function (results) {
-    	    // console.log(results.data);
     		$scope.discussions = results.data;          	
     	});   	
-    	
     }
     $scope.notASpam = function(id) {  
     	adminDiscussion.adminNotASpam(id).then(function (total) {    			
         getAdminBadList();
-    		//delete $scope.discussions;
     	});
     };
     $scope.markAsSpam = function(id) {  
     	adminDiscussion.adminMarkAsSpam(id).then(function (total) {    			
         getAdminBadList();
-    		//delete $scope.discussions;
     	});
     };
     getAdminBadList();

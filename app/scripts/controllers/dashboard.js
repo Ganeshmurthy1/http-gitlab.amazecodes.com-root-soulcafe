@@ -37,28 +37,28 @@ angular.module('sassApp')
          
         linkedinService.getProfile(function(err, result){
             if(err){
-                console.log('error occured');
+                
             }else{
-                console.log('result', result);
+                
                 $scope.linkedinData = result;
                regService.addLinkedinDataf($scope.linkedinData).then(function(response) {
-                  // console.log(response.data);
+                  
                   if (response.data == 'true') {
-                    console.log('success'); 
-                    // $location.path('/dashboard');
+                    
+                   
                     var authData = localStorageService.get('authorizationData');
                     regService.getUserDetails(authData.user_id).then(function (results) {
-        // console.log(results.data);
+       
         $scope.userData = results.data; 
-        console.log($scope.userData);
+        
          if ($scope.userData.linked_update == 1){
            $scope.updateButton = 'true';
-           console.log("Abhik");
+          
 
           regService.getLinkedinProffesionaldetails(authData.user_id).then(function(response) {
-                  // console.log(response);
+                  
                   $scope.proffesionalDetails = response;
-                  console.log($scope.proffesionalDetails);
+                  
                 });
       
          }     
@@ -66,7 +66,7 @@ angular.module('sassApp')
      
                   }
                   else {
-                    console.log('failed');
+                   
                   }
                 });
 
@@ -82,16 +82,16 @@ angular.module('sassApp')
     	
      
     	regService.getUserDetails(authData.user_id).then(function (results) {
-    		console.log(results.data);
+    		
     		$scope.userData = results.data; 
-        console.log($scope.userData);
+        
          if ($scope.userData.linked_update == 1){
            $scope.updateButton = 'true';
-           console.log("Abhik");
+           
           regService.getLinkedinProffesionaldetails(authData.user_id).then(function(response) {
-                  // console.log(response);
+                 
                   $scope.proffesionalDetails = response;
-                  console.log($scope.proffesionalDetails);
+                  
                 });
       
         }   	
@@ -102,25 +102,25 @@ angular.module('sassApp')
     getUSerdata();
 
     $scope.editButton = function () {
-      console.log("AAAAAAAAAAAA");
+      
       $scope.hideEdit="true";
          }
     $scope.saveButton = function () {
-    console.log($scope.userData);
+    
     regService.updateProfileDetail($scope.userData).then(function (response) {
-         console.log(response);
+         
          if(response.data == "true"){
           $scope.hideEdit="false";
            $location.path("dashboard");
 
          }
       });
-      // console.log("AAAAAAAAAAAA");
+      
       }
 
       profileOperations.getUserMatch().then(function(response) {
       
-      console.log(response);    
+      
          $scope.recommendation=response.data;         
       });
  
@@ -167,12 +167,10 @@ angular.module('sassApp')
     ];
     return {
       getPhotos: function(page) {
-        // console.log(page);
-        // Ideally, go off and fetch the next page of data fromt he server, but we'll do it locally in the sample
+        
         return pages[page];
       },
       getPhotoUrl: function(photo) {
-        // console.log("Photo",photo);
         return 'http://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '_s.jpg';
       }
     };

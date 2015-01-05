@@ -19,16 +19,12 @@ angular.module('sassApp')
     $scope.action="true";
 
     adminDiscussion.adminAbuseList().then(function (response) {
-	    		console.log(response.data[0].cFirst);
-	    		$scope.disscusionAbuseDetails = response.data;
-	    	});
+	    $scope.disscusionAbuseDetails = response.data;
+	  });
 
 
     $scope.appropriateButtonClick = function(commentId){
-    	console.log(commentId);
-
-    	  adminDiscussion.updateAppropriate(commentId).then(function (response) {
-	    	 	console.log(response);
+    	 adminDiscussion.updateAppropriate(commentId).then(function (response) {
           
 	    	});
 
@@ -36,25 +32,11 @@ angular.module('sassApp')
     
 
     $scope.inappropriateButtonClick = function(commentId){
-    	console.log(commentId);
-
     	  adminDiscussion.updateInAppropriate(commentId).then(function (response) {
-	    	 	console.log(response);
-          
             adminDiscussion.adminAbuseList().then(function (response) {
-          console.log(response);
-          $scope.disscusionAbuseDetails = response.data;
+              $scope.disscusionAbuseDetails = response.data;
+            });
         });
-          
-	    	});
 
     }
-
-    // $scope.viewButtonClick = function(){
-    // 	$location.path("discussion");
-    // }
-
-
-
-    
-  });
+ });

@@ -1,12 +1,8 @@
 <div class="wrapper">
     <!--=== Header ===-->    
-  <div data-ng-controller="AdminheaderCtrl" data-ng-include="Header">
-</div>
+    <div data-ng-controller="AdminheaderCtrl" data-ng-include="Header">
+    </div>
     <!--=== End Header ===-->  
-
-
-
-
     <!--=== Profile ===-->
     <div class="profile container content" style="border-color:red">
         <div class="row">
@@ -16,15 +12,15 @@
             <!--End Left Sidebar-->
             
             <div class="col-md-9">
-            <div class="headline"><h2 class="heading-sm">Add Discussion Topic</h2></div>
-             <div class="row pull-right"><a class="btn-u btn-u-default glow " href="#/admin-topic-list?discussId={{discussId}}">View Discussion Forum</a></div>
-            
-            
-            <form id="sky-form4" class="sky-form" name="adminTopic" data-ng-submit="adminAddTopic(adminTopic.$valid)">
-            
-            <fieldset>                
-            <div class="alert alert-danger fade in" data-ng-show="errMessage">{{errMessage}}</div>
-            <div class="alert alert-success fade in" data-ng-show="successmessage">{{successmessage}}</div>
+                <div class="headline"><h2 class="heading-sm">Add Discussion Topic</h2></div>
+                <div class="row pull-right"><a class="btn-u btn-u-default glow " href="#/admin-topic-list?discussId={{discussId}}">View Discussion Forum</a></div>
+
+
+                <form id="sky-form4" class="sky-form" name="adminTopic" data-ng-submit="adminAddTopic(adminTopic.$valid)">
+
+                    <fieldset>                
+                        <div class="alert alert-danger fade in" data-ng-show="errMessage">{{errMessage}}</div>
+                        <div class="alert alert-success fade in" data-ng-show="successmessage">{{successmessage}}</div>
                         <section>
                             <label class="label">Discussion Topic</label>
                             <label class="input">
@@ -38,20 +34,19 @@
                                 <textarea rows="4" name="message" id="message" data-ng-model="topic.description" required></textarea>
                             </label>
                         </section>  
-                     
-					
+
+
                     </fieldset>
                     <footer>
                         <button class="btn-u" type="submit" ng-disabled="adminAddDiscussion.$invalid" data-ng-submit="adminAddDiscussion(adminDiscussion.$valid)">Submit</button>
                         <button onclick="window.history.back();" class="btn-u btn-u-default" type="button">Back</button>
                     </footer>
-            </form>
+                </form>
 
             </div>
         </div><!--/end row-->
     </div><!--/container-->    
     <!--=== End Profile ===-->
 
- 
 </div>
  <!-- End wrapper -->

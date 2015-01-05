@@ -17,15 +17,11 @@ angular.module('sassApp')
     $scope.id=$routeParams.id;
 
     adminOperations.getAdminData($scope.id).then(function (response) {
-			console.log(response);
 			$scope.admin=response.data[0];
-			console.log($scope.admin);
 		});
 
 
     $scope.editAdmin=function(){
-    	console.log("AAAAAaAAAAAAaaaa");
-    	console.log($scope.admin); 
     	 adminOperations.updateAdminData($scope.admin).then(function (response) {
     		 if (response.data == 'true') {
      			  $scope.savedSuccessfully = true;

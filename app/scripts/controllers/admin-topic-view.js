@@ -37,14 +37,11 @@ angular.module('sassApp')
 
    $scope.abuseReport = function(arg) {
        regService.saveDiscussionboardAbuse(arg).then(function (results) {
-        console.log("aaaaaa");
-           });
+        });
        };
 
 
    $scope.commentLike = function(arg) {
-     
-      console.log("commentLike",arg);
        regService.setCommentsLike(arg).then(function (results) {
     	   getForumComments();
        });
@@ -55,13 +52,9 @@ angular.module('sassApp')
 	      var comm=$scope.comment;	       
 	      var args=new Object();	
 	      args.topicId=$routeParams.topicId;
-	      args.comment=$scope.comment;	     
-	      console.log(args);	
+	      args.comment=$scope.comment;	     	
 	      regService.saveComments(args).then(function (results) {
-	    	  
-	    	  getForumComments();
-	        // console.log("aaaaaa");
-	  	  console.log(results);
+	    	 getForumComments();
 	   });
 
 

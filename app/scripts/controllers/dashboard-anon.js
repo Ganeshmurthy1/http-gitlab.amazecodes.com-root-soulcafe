@@ -24,16 +24,15 @@ angular.module('sassApp')
     	
      
     	regService.getUserDetails($scope.user_id).then(function (results) {
-    		//console.log(results.data);
     		$scope.userData = results.data; 
-        console.log($scope.userData);
+        
          if ($scope.userData.linked_update == 1){
            $scope.updateButton = 'true';
-           console.log("Abhik");
+           
           regService.getLinkedinProffesionaldetails($scope.user_id).then(function(response) {
-                  // console.log(response);
+                 
                   $scope.proffesionalDetails = response;
-                  console.log($scope.proffesionalDetails);
+                  
                 });
       
         }   	

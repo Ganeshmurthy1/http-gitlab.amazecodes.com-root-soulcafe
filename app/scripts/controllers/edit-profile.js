@@ -16,15 +16,12 @@ angular.module('sassApp')
     ];
 
   regService.getProfileDetail().then(function (response) {
-         console.log(response);
          $scope.profileDetail = response.data;
       });
 
 
   $scope.saveButtonClick = function(){
-  	console.log($scope.profileDetail);
   	regService.updateProfileDetail($scope.profileDetail).then(function (response) {
-         console.log(response);
          if(response.data == "true"){
          	 $location.path("dashboard");
          }

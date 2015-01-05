@@ -16,7 +16,6 @@ angular.module('sassApp')
     ];
     function loadAllusers() {
 	    adminOperations.adminGetAllUsers().then(function (response) {
-			console.log(response);
 			 $scope.comm = response.data;
 		});
     }
@@ -24,7 +23,6 @@ angular.module('sassApp')
     $scope.deactivateUser = function(id) {  
     	adminOperations.admindeActivateUser(id).then(function (total) {    			
     		loadAllusers();
-    		//delete $scope.discussions;
     	});
     };
     

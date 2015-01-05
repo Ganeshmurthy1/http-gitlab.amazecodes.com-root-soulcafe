@@ -1,12 +1,8 @@
 <div class="wrapper">
     <!--=== Header ===-->    
-  <div data-ng-controller="AdminheaderCtrl" data-ng-include="Header">
-</div>
+    <div data-ng-controller="AdminheaderCtrl" data-ng-include="Header">
+    </div>
     <!--=== End Header ===-->  
-
-
-
-
     <!--=== Profile ===-->
     <div class="profile container content" style="border-color:red">
         <div class="row">
@@ -16,38 +12,35 @@
             <!--End Left Sidebar-->
             
             <div class="col-md-9">
-             <div class="headline"><h2>Soulcafe Blocked Users</h2></div>
-            	 <!--Basic Table-->
-                <table class="table table-hover table-bordered">
-                    <thead>
-                        <tr>
-                            <th>User ID</th>
-                            <th>Full name</th>
-                            <th>Email</th>
-                            <th>Gender</th>
+               <div class="headline"><h2>Soulcafe Blocked Users</h2></div>
+               <!--Basic Table-->
+               <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Full name</th>
+                        <th>Email</th>
+                        <th>Gender</th>
 
-                        </tr>
-                    </thead>
-                    <tbody ng-repeat=" com in comm">
-                        <tr>
-                        	<td>{{com.user_id}}</td>
-                            <td>{{com.first_name}} {{com.last_name}}</td> 
-                            <td>{{com.email}}</td>
-                            <td>{{com.gender}}</td>
-                            <td>  <a class="btn-u btn-u-sea" ng-click="activateUser(com.user_id)">Reactivate</a></td>                         
-                        </tr>
-                     
-                    </tbody>
-                </table>
-                <!--End Basic Table-->
+                    </tr>
+                </thead>
+                <tbody ng-repeat=" com in comm">
+                    <tr>
+                       <td>{{com.user_id}}</td>
+                       <td>{{com.first_name}} {{com.last_name}}</td> 
+                       <td>{{com.email}}</td>
+                       <td>{{com.gender}}</td>
+                       <td>  <a class="btn-u btn-u-sea" ng-click="activateUser(com.user_id)">Reactivate</a></td>                         
+                   </tr>
 
-
-
-                </div>
-            </div>
+               </tbody>
+           </table>
+           <!--End Basic Table-->
         </div>
+   </div>
+</div>
 
-    </div>
+</div>
 
 
 </div>

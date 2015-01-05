@@ -16,7 +16,6 @@ angular.module('sassApp')
     ];
 
     adminDiscussion.adminInappropriateComment().then(function (response) {
-	    		console.log(response);
 	    		 $scope.comm = response.data;
 	    	});
 

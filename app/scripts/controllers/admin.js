@@ -16,12 +16,9 @@ angular.module('sassApp')
     ];
     
     $scope.signIn = function() {
-    	
-    	console.log($scope.fbdata);
     	adminOperations.signIn($scope.fbdata).then(function(response) {
-		  console.log(response);
 		  if (response.data == 'Status') {
-		  	alert ("Your account is deactive please contact Jiby to make it active.");
+		  	alert ("Your account is deactive please contact Customer Care.");
 		  }else if (response.data != 'false') {
 			  localStorageService.set('authorizationData', {
 	                user_id: response.data.AdminId,

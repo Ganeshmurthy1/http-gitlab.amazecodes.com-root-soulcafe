@@ -16,35 +16,23 @@ angular.module('sassApp')
     ];
 
 
-        $scope.discussId = $routeParams.discussId;
+      $scope.discussId = $routeParams.discussId;
 
-   		$scope.AddTopic = function() {
-   			
-    	$scope.topic.discussId = $routeParams.discussId;
-    	console.log($scope.topic);
-
-    	regService.addTopic($scope.topic).then(function(response) {
-
-		  console.log("response object"+response);
-
-
-
-
-		  if (response.data == 'true') {
-			  $scope.savedSuccessfully = true;
-             // alert("The topic will be posted soon after review.");
-              $location.url('/discussion-list?q=111' );
-              $scope.errMessage = false;
-              $scope.topic = false;
-		  }
-		  else {
-			  $scope.successmessage = false;
-			  $scope.errMessage = response.data;
-		  }
-       });
-
-
-    };
+   		$scope.AddTopic = function() {	
+      	$scope.topic.discussId = $routeParams.discussId;
+      	regService.addTopic($scope.topic).then(function(response) {
+  		  if (response.data == 'true') {
+  			  $scope.savedSuccessfully = true;
+          $location.url('/discussion-list?q=111' );
+          $scope.errMessage = false;
+          $scope.topic = false;
+  		  }
+  		  else {
+  			  $scope.successmessage = false;
+  			  $scope.errMessage = response.data;
+  		  }
+         });
+      };
 
 
   });

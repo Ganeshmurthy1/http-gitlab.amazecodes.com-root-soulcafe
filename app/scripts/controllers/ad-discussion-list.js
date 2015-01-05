@@ -41,13 +41,11 @@ angular.module('sassApp')
     $scope.activateForum = function(id) {  
     	adminDiscussion.adminActivateDiscussion(id).then(function (total) {    			
     		loadAllMessage();
-    		//delete $scope.discussions;
     	});
     };
     $scope.deactivateForum = function(id) {  
     	adminDiscussion.adminDeActivateDiscussion(id).then(function (total) {
     		loadAllMessage();
-    		//delete $scope.discussions;
     	});
     };
   });

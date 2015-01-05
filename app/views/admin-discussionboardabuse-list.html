@@ -1,12 +1,8 @@
 <div class="wrapper">
     <!--=== Header ===-->    
-  <div data-ng-controller="AdminheaderCtrl" data-ng-include="Header">
-</div>
+    <div data-ng-controller="AdminheaderCtrl" data-ng-include="Header">
+    </div>
     <!--=== End Header ===-->  
-
-
-
-
     <!--=== Profile ===-->
     <div class="profile container content" style="border-color:red">
         <div class="row">
@@ -14,13 +10,13 @@
             <div data-ng-controller="SideBarSuperadminCtrl" data-ng-include="SideBarSuperAdmin">
             </div>
             <!--End Left Sidebar-->
-           <!-- Begin Content -->
+            <!-- Begin Content -->
             <div class="col-md-9">
                 <!--Basic Table-->
-              
+
 
                 <div class="headline"><h2>User SPAM Request</h2></div>
-                  
+
                 
                 <!--Basic Table-->
                 <table class="table">
@@ -29,7 +25,7 @@
                             <th>Reported By</th>
                             <th class="hidden-sm">Comment By</th>
                             <th>Comments</th>
-                             <th>Discussion</th>
+                            <th>Discussion</th>
                             <th>Topic</th>
                             <th>Reported Date</th>
                             <th>Action</th>
@@ -47,29 +43,29 @@
                             <td>
                                 <!-- <a class="btn-u btn-u-blue" href="#/discussion?topic={{abusedetails.DiscussionTopicId}}"><i class="fa fa-file-text-o"></i></a> -->
                                 <div ng-hide="abusedetails.Status">
-                                <a class="btn-u btn-u-green" title="Posted" ng-click="appropriateButtonClick(abusedetails.CommentId)"><i class="fa fa-check"></i></a>
-                                <a class="btn-u btn-u-red" title="Removed" ng-click="inappropriateButtonClick(abusedetails.CommentId)"><i class="fa fa-times"></i></a>
+                                    <a class="btn-u btn-u-green" title="Posted" ng-click="appropriateButtonClick(abusedetails.CommentId)"><i class="fa fa-check"></i></a>
+                                    <a class="btn-u btn-u-red" title="Removed" ng-click="inappropriateButtonClick(abusedetails.CommentId)"><i class="fa fa-times"></i></a>
                                 </div>
                                 <div ng-show="abusedetails.Status">
-                                <a class="btn-u btn-sucess" title="Action Taken">Action Taken</a>
-                                 </div>
+                                    <a class="btn-u btn-sucess" title="Action Taken">Action Taken</a>
+                                </div>
                                 <!-- <a href="#" class="btn-u">Appropriate</a>
                                 <a href="#" class="btn-u btn-u-red">InAppropriate</a>
-                                 -->
-                            </td>                          
-                        </tr>
-                     
-                    </tbody>
-                </table>
-                <!--End Basic Table-->
+                            -->
+                        </td>                          
+                    </tr>
 
-        
-            </div>
-            <!-- End Content -->
+                </tbody>
+            </table>
+            <!--End Basic Table-->
+
+
         </div>
-
+        <!-- End Content -->
     </div>
-    <!--=== End Profile ===-->
+
+</div>
+<!--=== End Profile ===-->
 
 </div>
 <!--=== End Wrapper ===-->
