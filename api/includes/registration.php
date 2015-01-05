@@ -240,8 +240,9 @@ function addUser() {
          $name = $user->first_name. ' ' . $user->last_name;
          $role = 2;
          $status = 1;
+         $tdate = date('Y-m-d h:i:s');
       
-          $sql = "INSERT INTO users (status,fb_id, first_name, last_name, email, gender, birthdate, hometown, location, relationship_status, mobile, act_code, user_role,Picture) VALUES (:status, :fb_id, :first_name, :last_name, :email, :gender, :birthdate, :hometown, :location, :relationship_status, :mobile, :act_code, :user_role,:Picture)";
+          $sql = "INSERT INTO users (status,fb_id, first_name, last_name, email, gender, birthdate, hometown, location, relationship_status, mobile, act_code, user_role,Picture, DateJoined) VALUES (:status, :fb_id, :first_name, :last_name, :email, :gender, :birthdate, :hometown, :location, :relationship_status, :mobile, :act_code, :user_role,:Picture, :tdate)";
           try {
             $db = getConnection();
             $stmt = $db->prepare($sql);  
@@ -259,6 +260,7 @@ function addUser() {
             $stmt->bindParam("act_code", $mobile_rand);
             $stmt->bindParam("user_role", $role);
             $stmt->bindParam("Picture", $img);
+            $stmt->bindParam("tdate", $tdate);
             
             $stmt->execute();
             
@@ -1275,7 +1277,7 @@ function getRating($topicId) {
 
 function getPicture($id) {
   // $user_id  = getUserId();
-  $sql = "SELECT u.Picture, u.linked_update, p.CurrentEmployment, u.location, u.birthdate,u.Moto from users u LEFT JOIN ProfessionalDetails p ON u.user_id = p.UserId where u.user_id = :id";
+  $sql = "SELECT u.Picture, u.linked_update, p.CurrentEmployment, u.location, u.birthdate,u.Moto,u.gender from users u LEFT JOIN ProfessionalDetails p ON u.user_id = p.UserId where u.user_id = :id";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);

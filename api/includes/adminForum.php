@@ -671,22 +671,34 @@ function adminMarkSpam($id) {
 }
 
 function imageupload() {
-  $img = 'photo'.rand().'.jpg';
+  
 
  if ( !empty( $_FILES ) ) {
 
     if( $tempPath = $_FILES[ 'file' ][ 'size' ] <   2000000) {
       $tempPath = $_FILES[ 'file' ][ 'tmp_name' ];
+      $fname = $_FILES[ 'file' ][ 'name' ];
+      $parts = explode('.', $fname);
+      $ext =  $parts[count($parts) - 1];
+     // exit();
+      
+      
+      $img = 'photo' . rand() . '.' . $ext;
+      $imgres = 'photo' . rand() . '.' . $ext;
+      
       //print_r($tempPath);
       $uploadPath = dirname(dirname( __FILE__ )) . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . $img;
   
-     
+      $resizePath = dirname(dirname( __FILE__ )) . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . $imgres;
       
       move_uploaded_file( $tempPath, $uploadPath );
+     // print $uploadPath;
+      //exit();
+      smart_resize_image($uploadPath , null, 200 , 200 , false , $resizePath , false , false ,100 );
       //exit();
       // $answer = array( 'answer' => 'File transfer completed' );
       // $json = json_encode( $answer );
-      $result['filename'] = $img;
+      $result['filename'] = $imgres;
       $json = json_encode( $result );
       echo $json;
     }

@@ -213,7 +213,7 @@ function getforumsOther($id) {
     echo '{"error":{"text":'. $e->getMessage() .'}}'; 
   }
 
-  $sql = "select u.user_id,u.birthdate,u.Moto,u.Picture,u.first_name,u.last_name,u.hometown,pd.CurrentEmployment FROM users as u left join ProfessionalDetails as pd on u.user_id = pd.UserId where user_id = :id ORDER BY user_id";
+  $sql = "select u.user_id,u.birthdate,u.Moto,u.Picture,u.first_name,u.last_name,u.location,pd.CurrentEmployment FROM users as u left join ProfessionalDetails as pd on u.user_id = pd.UserId where user_id = :id ORDER BY user_id";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
@@ -489,7 +489,7 @@ function rejectGTKY($id) {
 
 function getHomeData() {
   $user_id  = getUserId();
-  $sql = "SELECT s.SoulId,u.Picture,u.first_name,u.last_name, u.birthdate FROM SoulMatches as s inner join users as u on s.SoulId=u.user_id WHERE s.UserId=:userId and u.status = 1";
+  $sql = "SELECT s.SoulId,u.Picture,u.first_name,u.last_name, u.birthdate FROM SoulMatches as s inner join users as u on s.SoulId=u.user_id WHERE s.UserId=:userId and u.status = 1 ORDER BY s.ScorePercentage DESC, s.MatchType, u.DateJoined DESC";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);

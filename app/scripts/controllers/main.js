@@ -95,7 +95,8 @@ angular.module('sassApp')
 			                employment : response.data.CurrentEmployment,
 			                location: response.data.location,
 			                birthdate:response.data.birthdate,
-			                Moto:response.data.Moto
+			                Moto:response.data.Moto,
+			                Gender: response.data.gender
 		            });
 		            var fbbbbdata = localStorageService.get('authorizationData');
 					 //console.log(fbbbbdata);
@@ -301,7 +302,8 @@ angular.module('sassApp')
   			                employment : response.data.CurrentEmployment,
   			                location: response.data.location,
   			                birthdate:response.data.birthdate,
-  			                Moto:response.data.Moto
+  			                Moto:response.data.Moto,
+  			                Gender: response.data.gender
   		            });
   		            var fbbbbdata = localStorageService.get('authorizationData');
   					 //console.log(fbbbbdata);
