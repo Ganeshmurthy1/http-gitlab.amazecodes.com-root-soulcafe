@@ -111,39 +111,42 @@ function findMatches($user_id, $filterd_users, $categoryWeight) {
     //$alg_objar[$filterd_users[$i]->user_id] = algBatchController($user_id, $filterd_users[$i]->user_id);
     $alg_obj = algBatchController($user_id, $filterd_users[$i]->user_id);
      
-    print_r($alg_obj);
-    //filter for language match
-    if($alg_obj['scores']['Language Compatibility'][56] != 0 ) { 
-  
-      
-      $cal_index = 0;
-      $total_percentage_score = 0;
-      $total_percentage = 0;
-      // calculate the total in one category
-      foreach ($alg_obj['scores'] as $key => $value ) {
-        $total = 0;
-        $index = 0;
-        foreach ($value as $val) {
-          $total += $val;
-          $index++;
-        }
+    //print_r($alg_obj);
+    //filter for belief match
+    if ($alg_obj != false) {   
+      //filter for language match
+      if($alg_obj['scores']['Language Compatibility'][56] != 0 ) { 
+    
         
-        $scoreper = $total/$index;
-        $scoreper = ceil($scoreper * $categoryWeight[$key]);
-        $score_per_obj[$key] = $scoreper;
-        $total_percentage_score += $scoreper;
-        $cal_index++;
-  
-  
+        $cal_index = 0;
+        $total_percentage_score = 0;
+        $total_percentage = 0;
+        // calculate the total in one category
+        foreach ($alg_obj['scores'] as $key => $value ) {
+          $total = 0;
+          $index = 0;
+          foreach ($value as $val) {
+            $total += $val;
+            $index++;
+          }
+          
+          $scoreper = $total/$index;
+          $scoreper = ceil($scoreper * $categoryWeight[$key]);
+          $score_per_obj[$key] = $scoreper;
+          $total_percentage_score += $scoreper;
+          $cal_index++;
+    
+    
+        }
+        $total_percentage = ceil($total_percentage_score/$cal_index);
+        addMatch($user_id, $filterd_users[$i]->user_id, $total_percentage, $alg_obj['match_type']);
+        
+        
+      //  $scoreper_user_obj[$filterd_users[$i]->user_id]['calculate_scores'] = $score_per_obj;
+       // $scoreper_user_obj[$filterd_users[$i]->user_id]['total_percentage'] = $total_percentage;
+    
+    
       }
-      $total_percentage = ceil($total_percentage_score/$cal_index);
-      addMatch($user_id, $filterd_users[$i]->user_id, $total_percentage, $alg_obj['match_type']);
-      
-      
-    //  $scoreper_user_obj[$filterd_users[$i]->user_id]['calculate_scores'] = $score_per_obj;
-     // $scoreper_user_obj[$filterd_users[$i]->user_id]['total_percentage'] = $total_percentage;
-  
-  
     }
   
      
@@ -202,13 +205,36 @@ function algBatchController($x, $y) {
   //$x = 116;
   // $y = 117;
   $algObject = algObjectCreator($x, $y, $questions);
-  $algScores = algProcessor($algObject);
-  $x_personalityScore = getPersonalityScore($x);
-  $y_personalityScore = getPersonalityScore($y);
-  $personality_match  = getPersonalityMatch($x_personalityScore, $y_personalityScore);
-  $result_obj['scores'] = $algScores;
-  $result_obj['match_type'] = $personality_match;
-  return $result_obj;
+  //print_r($algObject[53]);
+  
+  if ($algObject[54]->x_answer[0]->OptionId == 160) {
+   // print_r($algObject[53]);
+    //print 'hello';
+    if ($algObject[53]->x_answer[0]->OptionId == $algObject[53]->y_answer[0]->OptionId) {
+      $algScores = algProcessor($algObject);
+      $x_personalityScore = getPersonalityScore($x);
+      $y_personalityScore = getPersonalityScore($y);
+      $personality_match  = getPersonalityMatch($x_personalityScore, $y_personalityScore);
+      $result_obj['scores'] = $algScores;
+      $result_obj['match_type'] = $personality_match;
+      return $result_obj;
+    }
+    else {
+      return false;
+    }
+  }
+  else {
+    $algScores = algProcessor($algObject);
+    $x_personalityScore = getPersonalityScore($x);
+    $y_personalityScore = getPersonalityScore($y);
+    $personality_match  = getPersonalityMatch($x_personalityScore, $y_personalityScore);
+    $result_obj['scores'] = $algScores;
+    $result_obj['match_type'] = $personality_match;
+    return $result_obj;
+  }
+  
+  
+  
   //print '</br> Compatibility type: 1 = CM, 2 = SM, 3 = NM </br>';
   //print_r($personality_match);
 }
