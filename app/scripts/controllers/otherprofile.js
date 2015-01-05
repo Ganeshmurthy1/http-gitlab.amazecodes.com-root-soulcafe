@@ -231,19 +231,36 @@ angular.module('sassApp').controller('ModalInstanceCtrlMatch', function ($scope,
 
 	 profileOperations.getMyMatch(items.user_id).then(function(resp) {
 		 $scope.matchDetails = resp.data;
-     console.log($scope.matchDetails.personality_match);
+     console.log($scope.matchDetails.scores);
+
+     // for overall
+     // if($scope.matchDetails.total_percentage > 0 || $scope.matchDetails.total_percentage < 25){
+     //    console.log("0-25");
+     //    $scope.overall="1-4th.png";
+     // } else if($scope.matchDetails.total_percentage > 25 || $scope.matchDetails.total_percentage < 50){
+     //    console.log("25-50");
+     // } else if($scope.matchDetails.total_percentage > 50 || $scope.matchDetails.total_percentage < 75){
+     //    console.log("50-75");
+     // } else if($scope.matchDetails.total_percentage > 75 || $scope.matchDetails.total_percentage < 100){
+     //    console.log("75-100");
+     // } 
+
+     // for Personality match box
      if ($scope.matchDetails.personality_match == 1) {
       $scope.comp = true;
       $scope.same = false;
       $scope.no = false;
+      $scope.m1 = "23-4th.png";
      }else if ($scope.matchDetails.personality_match == 2) {
       $scope.comp = false;
       $scope.same = true;
       $scope.no = false;
+      $scope.m2 = "22-4th.png";
      }else if ($scope.matchDetails.personality_match == 3) {
       $scope.comp = false;
       $scope.same = false;
       $scope.no = true;
+      $scope.m3 = "21-4th.png";
      }
 	 });
 	

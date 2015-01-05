@@ -167,19 +167,7 @@
         </div>
         <div class="modal-body myborder">
         	<!-- Overall bar -->
-            <div class="row myborder">
-            	<div class="col-md-2">
-            		<h4 class="color-black"><strong>Overall</strong></h4>
-            	</div>
-            	<div class="col-md-10">
 
-            		<div class="progress progresscustom">
-			  <div class="progress-bar progress-barcustom" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="100" style="width: {{matchDetails.total_percentage}}%;">
-			    {{matchDetails.total_percentage}}%
-			  </div>
-			</div>
- 	    	</div>
-            </div>
             <!-- Boxes -->
             <div class="row myborder">
             	<div class="col-md-6" ng-repeat="(key, value) in matchDetails.scores" style="margin:5px 0px !important;padding-right:0px !important;">
@@ -187,14 +175,20 @@
             		<div class="align-center"><h4 class="color-black"><strong>{{key}}</strong></h4></div>
             		<div class="row">
             			<div class="col-md-offset-2 col-md-8"> 
-            				<div class="progress progresscustom">
-					  			<div class="progress-bar progress-barcustom" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="100" style="width: {{value}}%;">
-					    			{{value}}%
-					  			</div>
+            				<div ng-show="(value >= 0 && value <=25)">
+					  			<img ng-src="app-images/1-4th.png">
+					  		</div>
+					  		<div ng-show="(value > 25 && value <=50)">
+					  			<img ng-src="app-images/2-4th.png">
+					  		</div>
+					  		<div ng-show="(value > 50 && value <=75)">
+					  			<img ng-src="app-images/3-4th.png">
+					  		</div>
+					  		<div ng-show="(value > 75 && value <=100)">
+					  			<img ng-src="app-images/4-4th.png">
 					  		</div>
             			</div>
-            			<div class="col-md-2 no-padding" style="margin-top: 7px;">{{value}}%</div>
-					
+            			<div class="col-md-2 no-padding" style="margin-top: 7px;">{{value}}%</div>					
             		</div>
             	</div>
             		
@@ -206,24 +200,24 @@
             		<div class="align-center"><h4 class="color-black"><strong>Personality Match</strong></h4>
             		</div>
             		<div class="row" ng-show="comp">
-            			<div class="col-md-offset-1 col-md-4"> 
-            				<img ng-src="images/pm.png" style="width:50px;height:50px;"/>
+            			<div class="col-md-offset-3 col-md-4"> 
+            				<img ng-src="app-images/{{m1}}" />
             			</div>
-            			<div class="col-md-7 no-padding" style="margin-top: 7px;">Complimantry Match</div>
+            			
 					
             		</div>
             		<div class="row" ng-show="same">
-            			<div class="col-md-offset-1 col-md-4"> 
-            				<img ng-src="images/pm.png" style="width:50px;height:50px;"/>
+            			<div class="col-md-offset-3 col-md-4"> 
+            				<img ng-src="app-images/{{m2}}" />
             			</div>
-            			<div class="col-md-7 no-padding" style="margin-top: 7px;">Same Match</div>
+            			
 					
             		</div>
             		<div class="row" ng-show="no">
-            			<div class="col-md-offset-1 col-md-4"> 
-            				<img ng-src="images/pm.png" style="width:50px;height:50px;"/>
+            			<div class="col-md-offset-3 col-md-4"> 
+            				<img ng-src="app-images/{{m3}}"/>
             			</div>
-            			<div class="col-md-7 no-padding" style="margin-top: 7px;">No Match</div>
+            			
 					
             		</div>
 
