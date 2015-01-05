@@ -368,6 +368,10 @@ function MarkMessage() {
     for ($i=0; $i<count($wine); $i++) {
       if ($wine[$i]->SpecialMessage == 1) {
         // echo "spcl";
+        $wine[$i]->mess = $wine[$i]->first_name . ' has sent you a special message.';
+        unset($wine[$i]->Message);
+      }else if ($wine[$i]->SpecialMessage == 2) {
+        // echo "spcl";
         $wine[$i]->mess = $wine[$i]->first_name . ' has sent response to your brewing request.';
         unset($wine[$i]->Message);
       }else{

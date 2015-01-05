@@ -664,7 +664,7 @@ function notSureFeelings($id) {
    $user_id  = getUserId();
    $Date=  date("Y-m-d h:i:sa") ;
    $status = 0;
-   $splstatus = 1;
+   $splstatus = 2;
    $message ="Not sure";
    $link ="special-feeling-history";
   $sql = "UPDATE `SpecialFeeling` SET `Status`= :splstatus WHERE SenderId = :RecieverId and RecieverId = :SenderId";
@@ -698,7 +698,7 @@ function notYetFeelings($id) {
    $Date=  date("Y-m-d h:i:sa") ;
    $st = 2;
    $status = 0;
-   $splstatus = 1;
+   $splstatus = 2;
    $message ="Not yet";
    $link ="special-feeling-history";
   $sql = "UPDATE `SpecialFeeling` SET `Status`= :st WHERE SenderId = :RecieverId and RecieverId = :SenderId";
@@ -732,7 +732,7 @@ function needTimeFeelings($id) {
    $Date=  date("Y-m-d h:i:sa") ;
    $st = 3;
    $status = 0;
-   $splstatus = 1;
+   $splstatus = 2;
    $message ="Need Some time";
    $link ="special-feeling-history";
   $sql = "UPDATE `SpecialFeeling` SET `Status`= :st WHERE SenderId = :RecieverId and RecieverId = :SenderId";
@@ -766,7 +766,7 @@ function acceptFeeling($id) {
    $Date=  date("Y-m-d h:i:sa") ;
    $st = 4;
    $status = 0;
-   $splstatus = 1;
+   $splstatus = 2;
    $message ="Yes I think";
    $link ="special-feeling-history";
   $sql = "UPDATE `SpecialFeeling` SET `Status`= :st WHERE SenderId = :RecieverId and RecieverId = :SenderId";
