@@ -18,15 +18,14 @@ angular.module('sassApp')
 
     function getadmin(){
 	    adminOperations.getAllAdmins().then(function (response) {
-				console.log(response.data);
 				$scope.admins = response.data;
 		});
     }
 
      $scope.activateAdminUser = function(id){
-    	console.log(id);
+    	
     	adminOperations.activateUser(id).then(function (response) {
-			console.log(response.data);
+		
 			if (response.data == 'true'){
 				getadmin();
 			}
@@ -34,9 +33,9 @@ angular.module('sassApp')
     }
 
     $scope.deactivateAdminUser = function(id){
-    	console.log(id);
+    	
     	adminOperations.deactivateUser(id).then(function (response) {
-			console.log(response.data);
+			
 			if (response.data == 'true'){
 				getadmin();
 			}

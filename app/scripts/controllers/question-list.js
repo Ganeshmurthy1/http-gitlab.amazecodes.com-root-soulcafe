@@ -18,7 +18,6 @@ angular.module('sassApp')
     getAllQuestion();
     function getAllQuestion(){
     	Questionnaire.getAllQuestionsUser().then(function (response) {
-				console.log(response.data);
 				$scope.questions = response.data;
 		});
     }

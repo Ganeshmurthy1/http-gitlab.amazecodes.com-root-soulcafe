@@ -22,7 +22,6 @@ angular.module('sassApp')
     $scope.q = '';
     var q = $routeParams.q;
     if (q != null) {
-      console.log(messageCodes.Messages[q]);
       $scope.q = messageCodes.Messages[q];
   }
     
@@ -38,17 +37,12 @@ angular.module('sassApp')
     	$location.path('/myprofile');
     }
     
-    
-    
-    // console.log($scope.udata.user_id);
     profileOperations.getMyLifeValues($scope.user_id).then(function(response) {
       console.log(response.data);
       $scope.interests = response.data;
-      // console.log($scope.interest);
      });
 
       regService.getUserDetails($scope.user_id).then(function (results) {
-        //console.log(results.data);
         $scope.userData = results.data;
         $scope.matchSex = false;
         if ($scope.userData.gender == $scope.udata.Gender) {
@@ -59,88 +53,62 @@ angular.module('sassApp')
         var d2 = new Date();
         $scope.diff = d2.getFullYear()-d1.getFullYear();
         
-//      if ($scope.userData.linked_update == 1){
-//      $scope.thumbup = 'false';
-//      $scope.profileverify = '75%';
-//      // console.log("Abhik");
-//    }else{
-//      $scope.thumbup = 'true';
-//    }
         var id= $scope.userData.fb_id;
-        //console.log(id);
         var likeData = [];
 	    $facebook.api(id +"/books").then(function(pic) {
 	      
 	      if (pic.data == null) {
-	        //var likeData = [];
 	      }else {
-	        //var likeData = [];
 		      for ( var int = 0; int < pic.data.length; int++) {
-		    	//if (pic.data[int].category == 'Book' || pic.data[int].category == 'Movie' || pic.data[int].category == 'Musician/band' || pic.data[int].category == 'Tv show') {
 			        var tmpdata = {};
 			        tmpdata.text = pic.data[int].name;
 			        tmpdata.weight = Math.floor(Math.random() * (25 - 15 + 1)) + 15;
 			        likeData.push(tmpdata);
-		    	//}
 		      }
 	      }
 	    });
 	      $facebook.api(id +"/movies").then(function(pic) {
-	    	  //console.log(pic.data);
 	    	  if (pic.data != null) {
 		    	  for ( var int = 0; int < pic.data.length; int++) {
-		  	    	//if (pic.data[int].category == 'Book' || pic.data[int].category == 'Movie' || pic.data[int].category == 'Musician/band' || pic.data[int].category == 'Tv show') {
 		  		        var tmpdata = {};
 		  		        tmpdata.text = pic.data[int].name;
 		  		        tmpdata.weight = Math.floor(Math.random() * (25 - 15 + 1)) + 15;
 		  		        likeData.push(tmpdata);
-		  	    	//}
 		  	      }
 	    	  }
 	    	  
 	      });
 	      
 	      $facebook.api(id +"/music").then(function(pic) {
-	    	  //console.log(pic.data);
 	    	  if (pic.data != null) {
 		    	  for ( var int = 0; int < pic.data.length; int++) {
-		  	    	//if (pic.data[int].category == 'Book' || pic.data[int].category == 'Movie' || pic.data[int].category == 'Musician/band' || pic.data[int].category == 'Tv show') {
 		  		        var tmpdata = {};
 		  		        tmpdata.text = pic.data[int].name;
 		  		        tmpdata.weight = Math.floor(Math.random() * (25 - 15 + 1)) + 15;
 		  		        likeData.push(tmpdata);
-		  	    	//}
 		  	      }
 	    	  }
 	    	  
 	      });
 	      
 	      $facebook.api(id +"/likes").then(function(pic) {
-	    	  //console.log(pic.data);
 	    	  if (pic.data != null) {
 		    	  for ( var int = 0; int < pic.data.length; int++) {
-		  	    	//if (pic.data[int].category == 'Book' || pic.data[int].category == 'Movie' || pic.data[int].category == 'Musician/band' || pic.data[int].category == 'Tv show') {
 		  		        var tmpdata = {};
 		  		        tmpdata.text = pic.data[int].name;
 		  		        tmpdata.weight = Math.floor(Math.random() * (15 - 5 + 1)) + 5;
 		  		        likeData.push(tmpdata);
-		  	    	//}
+		  	    	
 		  	      }
 	    	  }
 	    	  
 	      });
 	      
-	     // $scope.colors = ["#ccc", "#00ff00", "#ff0000", "#0000ff", "#0000ff", "#0000ff", "#ff0000"];
-	
-	     
-	      
-	   
 	    $scope.words = likeData;
 	    
          if ($scope.userData.linked_update == 1){
            $scope.thumbup = 'false';
            $scope.profileverify = '100%';
-           // console.log("Abhik");
          }else{
            $scope.thumbup = 'true';
          }
@@ -161,28 +129,23 @@ angular.module('sassApp')
 
 
         profileOperations.checkGTKYRequest($scope.user_id).then(function(resp) {
-          //console.log(resp.data);
           $scope.chkuser = resp.data;
           if ($scope.chkuser == 'Say Hello'){
-            //console.log("Say Hello");
             $scope.GTKY ="true";
             $scope.GTKY1 ="false";
             $scope.GTKY2 ="false";
             $scope.GTKY3 ="false";
           }else if($scope.chkuser == 'GTKY Send'){
-            //console.log("GTKY Send");
             $scope.GTKY ="false";
             $scope.GTKY1 ="true";
             $scope.GTKY2 ="false";
             $scope.GTKY3 ="false";
           }else if($scope.chkuser == 'Send Message'){
-            //console.log("Send Message");
             $scope.GTKY ="false";
             $scope.GTKY1 ="false";
             $scope.GTKY2 ="true";
             $scope.GTKY3 ="false";
           }else if ($scope.chkuser == 'Accept GTKY') {
-            //console.log("Accept GTKY");
             $scope.GTKY ="false";
             $scope.GTKY1 ="false";
             $scope.GTKY2 ="false";

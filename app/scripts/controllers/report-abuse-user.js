@@ -17,15 +17,10 @@ angular.module('sassApp')
 $scope.reportAbuse ={};
 
     $scope.sendReportAbuse = function(mess){
-        // $location.path('/dashboard-anon');
         $scope.reportAbuse.id = $routeParams.user_id;
         $scope.reportAbuse.message = mess;
-        console.log($scope.reportAbuse);
-
         profileOperations.addAbuseUser($scope.reportAbuse).then(function(response) {
-          console.log(response.data);
           if (response.data = 'true'){
-           // alert("Thank You. We will take Necessary action!");
             $location.url('/otherprofile?user_id=' + $routeParams.user_id + '&q=106' );
           }            
         });

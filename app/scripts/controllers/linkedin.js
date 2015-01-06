@@ -19,18 +19,18 @@ angular.module('sassApp')
          
         linkedinService.getProfile(function(err, result){
             if(err){
-                console.log('error occured');
+                
             }else{
-                console.log('result', result);
+                
                 $scope.linkedinData = result;
                regService.addLinkedinDataf($scope.linkedinData).then(function(response) {
-                  // console.log(response.data);
+                  
                   if (response.data == 'true') {
-                    console.log('success'); 
+                    
                     $location.path('/dashboard');
                   }
                   else {
-                    console.log('failed');
+                    
                   }
                 });
 

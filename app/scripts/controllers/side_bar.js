@@ -38,12 +38,10 @@ angular.module('sassApp')
 $scope.noforum = "false";
 $scope.nofriend = "false";
     profileOperations.getBuddies().then(function(response) {
-      
-      //console.log(response);    
+         
          $scope.friends=response.data.friends;
          $scope.discussion=response.data.forum;
          $scope.interest=response.data.Interest;
-         // console.log($scope.discussion); 
           $scope.totalfriends=response.data.frineds_count; 
           $scope.totalforum=response.data.forum_count;
           if ($scope.totalforum == 0) {
@@ -64,18 +62,18 @@ $scope.nofriend = "false";
       $scope.otherProfile = function(userId){
       regService.getUserDetails(userId).then(function (results) {
         $scope.userD = results.data; 
-        //console.log($scope.userD);
+        
          if ($scope.userD.status == 0) {
-          // console.log("Ajbcmas");
+          
             $scope.hide=true;
-            // console.log($scope.hide);
+            
             $scope.q = '';
               var q = 105;
               if (q != null) {
                 console.log(messageCodes.Messages[q]);
                 $scope.q = messageCodes.Messages[q];
             }
-            // $scope.abuseSuccessMessage="This profile is currently deactivated in SoulCafe.";
+            
             $location.hash('msg');
              $anchorScroll();
         }else{

@@ -17,9 +17,9 @@ angular.module('sassApp')
     
     function loadAllMessage() {
 	    adminOperations.adminGetAllMessage().then(function (response) {
-			 console.log(response.data);
+			 
 			 $scope.comm = response.data;
-       console.log($scope.comm);
+       
 		});
     }
     
@@ -27,10 +27,8 @@ angular.module('sassApp')
 
 
     $scope.viewUser = function(a){
-      console.log(a);
-      
+     
       adminOperations.viewStatusAbuse(a.SenderId).then(function (response) {
-      console.log(response.data);
        $location.url("/superadmin-view-user?userid="+a.UserId);
     });
     }
