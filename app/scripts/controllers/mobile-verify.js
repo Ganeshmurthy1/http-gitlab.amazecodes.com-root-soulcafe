@@ -21,9 +21,7 @@ angular.module('sassApp')
     	phn.user_id = authData.user_id;
     	phn.act_code = $scope.act_code;
     	  regService.VerifyMobile(phn).then(function(response) {
-    		  console.log(response);
     		  if (response.data == 'true') {
-    			  console.log('success');
     			  $location.path('/quiz');
     			  
     			  
@@ -34,8 +32,6 @@ angular.module('sassApp')
 
                   $scope.savedSuccessfully = true;
                   $scope.message = "User has been registered successfully, you will be redicted to login page in 2 seconds.";
-                  // startTimer();
-
-              });
+                 });
       };
   });

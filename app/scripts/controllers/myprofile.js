@@ -16,7 +16,6 @@ angular.module('sassApp')
     ];
     var likeData = [];
     $facebook.api("/me/books").then(function(pic) {
-    	//console.log(pic.data);
       if (pic.data != null) {
         for ( var int = 0; int < pic.data.length; int++) {
 	        	var tmpdata = {};
@@ -27,7 +26,6 @@ angular.module('sassApp')
       }
     });   
     $facebook.api("/me/movies").then(function(pic) {
-    	//console.log(pic.data);
       if (pic.data != null) {
         for ( var int = 0; int < pic.data.length; int++) {
 	        	var tmpdata = {};
@@ -38,7 +36,6 @@ angular.module('sassApp')
       }
     });   
     $facebook.api("/me/music").then(function(pic) {
-    	//console.log(pic.data);
       if (pic.data != null) {
         for ( var int = 0; int < pic.data.length; int++) {
 	        	var tmpdata = {};
@@ -50,7 +47,7 @@ angular.module('sassApp')
     });  
     
     $facebook.api("/me/likes").then(function(pic) {
-    	//console.log(pic.data);
+    	
       if (pic.data != null) {
         for ( var int = 0; int < pic.data.length; int++) {
 	        	var tmpdata = {};
@@ -67,20 +64,15 @@ angular.module('sassApp')
     $scope.profileverify = '75%';
     var authData = localStorageService.get('authorizationData');
     $scope.userData = authData;
-    //console.log(authData.linked_update);
     if (authData.linked_update == 1){
         $scope.thumbup = 'false';
         $scope.profileverify = '100%';
-         // console.log("1");
       }else{
-        // console.log("1");
         $scope.thumbup = 'true';
       }
 
 profileOperations.getMyProfileDetails().then(function(response) {
-    //console.log(response);    
     $scope.interests = response.data.values;
     $scope.ownwords = response.data.ownwords.OwnWords;
-    //console.log($scope.ownwords); 
   }); 
  }]);

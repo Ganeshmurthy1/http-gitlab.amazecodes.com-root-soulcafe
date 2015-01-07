@@ -17,7 +17,6 @@ angular.module('sassApp')
     $scope.SideBarSuperAdmin = 'views/side-bar-superadmin.html';
     $scope.isAdmin = false;
     var authData = localStorageService.get('authorizationData');
-    console.log(authData);
     if(authData.user_role == 1) {
     	$scope.isAdmin = true;
         $scope.isUser = true;

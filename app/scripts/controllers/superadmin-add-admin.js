@@ -17,9 +17,9 @@ angular.module('sassApp')
     $scope.adminAddAdmin = function() {
 
     	$scope.discussion.frs = $scope.Forums;
-        console.log($scope.discussion);
+        
         adminOperations.addAdmin($scope.discussion).then(function(response) {
-  		  console.log(response);
+  		  
   		  if (response.data == 'true') {
   			  $scope.savedSuccessfully = true;
                 $scope.successmessage = "Admin added sucessfully.";
@@ -34,14 +34,13 @@ angular.module('sassApp')
   		  }
          });
         
-        console.log( $scope.Forums);
 
     };
     $scope.Forums= [];
     $scope.AddForum = function(id) {  
-    	 console.log(id);
+    	 
     	 var tt = $scope.Forums.indexOf(id);
-    	 console.log(tt);
+    	 
     	 if(tt < 0 ) {
     		// $scope.Forums.splice(1);
         	 $scope.Forums.push(id);    	 
@@ -49,13 +48,13 @@ angular.module('sassApp')
     	 } else {
     		 $scope.Forums.splice(tt);
     	 }
-    	 console.log( $scope.Forums);
+    	 
     	
     };
     
     function loadAllForum() {
 	    adminOperations.getAllForum().then(function (response) {
-			//console.log(response);
+			
 			$scope.forums = response.data;
 	    	$scope.checkboxes = [
 	    	                     {"text": "text1", checked:false},

@@ -29,8 +29,6 @@ angular.module('sassApp')
       $scope.education = {};
       var edu = new Object();
       var authData = localStorageService.get('authorizationData');
-        console.log(authData);
-        //param.user_id = authData.user_id;
       for (var i = 0 ; i < totalEdu; i++) {
         edu.schoolName = $rootScope.educations.values[i].schoolName;
         edu.fieldOfStudy = $rootScope.educations.values[i].fieldOfStudy;
@@ -99,51 +97,39 @@ angular.module('sassApp')
         threePast = {};
       }
     }  
-     console.log($scope.education);
-    console.log(angular.isObject($scope.education));
-
     if (Object.getOwnPropertyNames($scope.education).length != 0){
-      console.log("Abhuikkkkkkkkkkk");
     }
 
     $scope.addData = function() {
-      console.log("Abhuikkkkkkkkkkk");
       if (Object.getOwnPropertyNames($scope.education).length != 0){
-        console.log("Abhuikkkkkkkkkkk");
         regService.addEducationData($scope.education).then(function(response) {
-          // console.log(response.data);
           if (response.data == 'true') {
-            console.log('success'); 
-            // $location.path('/linkedin-success');
+            
           }
           else {
-            console.log('failed');
           }
         });
       }
 
       if (Object.getOwnPropertyNames($scope.contact).length != 0){
         regService.addContactData($scope.contact).then(function(response) {
-          // console.log(response.data);
           if (response.data == 'true') {
-            console.log('success'); 
-             // $location.path('/linkedin-success');
+            
           }
           else {
-            console.log('failed');
+           
           }
         });
       }
 
       if (Object.getOwnPropertyNames($scope.currentPosition).length != 0){
         regService.addCurrentPositionData($scope.currentPosition).then(function(response) {
-          // console.log(response.data);
+          
           if (response.data == 'true') {
-            console.log('success');
-             // $location.path('/linkedin-success'); 
+            
           }
           else {
-            console.log('failed');
+            
           }
         });
       }
@@ -151,22 +137,20 @@ angular.module('sassApp')
       if (Object.getOwnPropertyNames($scope.pastPosition).length != 0){
         regService.addPastPositionData($scope.pastPosition).then(function(response) {
           if (response.data == 'true') {
-            console.log('success'); 
-             // $location.path('/linkedin-success');
+           
           }
           else {
-            console.log('failed');
+            
           }
         });
       }
       regService.updateUser($scope.id).then(function(response) {
-          // console.log(response.data);
+          
           if (response.data == 'true') {
-            console.log('success'); 
-             // $location.path('/dashboard');
+            
           }
           else {
-            console.log('failed');
+            
           }
         });
 
@@ -178,10 +162,10 @@ angular.module('sassApp')
     $scope.getConnections = function(){
       linkedinService.getConnections(function(error, result){
         if(error){
-          console.log('error',error);
+          
         }
         else{
-          console.log(result);
+          
           $scope.connections = result;
         }
 

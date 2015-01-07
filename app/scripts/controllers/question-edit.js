@@ -69,7 +69,6 @@ angular.module('sassApp')
 		singleOptions[options[int].Qoid] = options[int];
 	}
   	$scope.singleOptions = singleOptions;
-  	console.log(singleOptions);
   }
   
   function getMultiSelection() {
@@ -82,7 +81,6 @@ angular.module('sassApp')
   		multipleOptions[options[int].Qoid] = options[int];
 	}
   	$scope.multipleOptions = multipleOptions;
-  	console.log(multipleOptions);
   }
   
   function getMultiIntensitySelection() {
@@ -94,7 +92,6 @@ angular.module('sassApp')
   		multiIntensityOptions[options[int].Qoid] = options[int];
 	}
   	$scope.multiIntensityOptions = multiIntensityOptions;
-  	console.log(multiIntensityOptions);
   }
   
   $scope.selectSingle = function(id) {
@@ -104,7 +101,6 @@ angular.module('sassApp')
 	}   	
 	$scope.singleOptions[id].selected = true;
 	$scope.singleSelected = id;
-	console.log($scope.singleSelected);
   }
   $scope.selectMultipleIntensity = function(id) {        
   	
@@ -176,15 +172,13 @@ angular.module('sassApp')
   		$scope.multipleOrdered.push(id);
   		
   	}
-  	console.log($scope.multipleOrdered);
-		
+  	
 	
   }
   
   $scope.addAnswer = function() {
   	
   	if ($scope.QuestionObj.Questions.AnswerSelectionType == 1) {
-  		//console.log($scope.singleSelected);
   		if ($scope.singleSelected == null) {
   			$scope.errMessage = "Please select something :(";			
             $anchorScroll();
@@ -207,7 +201,6 @@ angular.module('sassApp')
   	var answerSet = new Object();
   	answerSet.question = $scope.QuestionObj.Questions;
   	if (typeof($scope.singleSelected) != "undefined") {
-  		console.log($scope.singleSelected);
   		answerSet.answer = $scope.singleSelected;
   	}
   	
@@ -216,8 +209,6 @@ angular.module('sassApp')
   	
   	if (typeof($scope.multipleOptions) != "undefined")
   	answerSet.answerMulti = $scope.multipleOptions;
-  	
-  	console.log(answerSet);
   	Questionnaire.updateAnswer(answerSet).then(function(response) {
   		$location.url('/edit-profile-new?exp=true');
   		

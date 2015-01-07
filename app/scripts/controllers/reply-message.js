@@ -26,15 +26,12 @@ angular.module('sassApp')
       $scope.comment="";
       adminOperations.sentMessage(args).then(function(response) {
     	  $location.path('my-messages');
-          // console.log($scope.pic.Picture);
       }); 
      };
     
     function getUser() {
     	adminOperations.getPictureAndName($scope.sid).then(function(response) {
             $scope.pic=response.data;
-            
-            // console.log($scope.pic.Picture);
     });    	
 	    
     }
