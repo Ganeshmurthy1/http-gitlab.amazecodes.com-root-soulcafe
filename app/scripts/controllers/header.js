@@ -43,6 +43,7 @@ angular.module('sassApp')
     	  $scope.sysmessages ={};
     	  regService.sysMarkMessage().then(function (response) { 
     		  $scope.sysmessages = response.data;
+    		  $scope.totalSysMessage = 0;
          
           if($scope.sysmessages.length == 0){
             $scope.sysmessages[0] = {};
@@ -59,6 +60,7 @@ angular.module('sassApp')
     	  regService.MarkMessage().then(function (response) {
 
     		  $scope.mymessages = response.data;
+    		  $scope.totalMessage = 0;
            if($scope.mymessages.length == 0){
             $scope.mymessages[0] = {};
             $scope.mymessages[0] = {
@@ -71,6 +73,7 @@ angular.module('sassApp')
       $scope.forumMessage = function() {  
     	  regService.forumMarkMessage().then(function (response) { 
     		  $scope.messages = response.data;
+    		  $scope.totalForumMessage = 0;
           if($scope.messages.length == 0){
             $scope.messages[0] = {};
             $scope.messages[0] = {
