@@ -9,10 +9,15 @@
 }
 .custm{
 	padding:10px 23px 0px 20px;
-	background-image:url(/images/pop.png);
+	background-image:url(../images/pop.png);
 	
 	background-repeat: no-repeat;
     background-size: 100%;	
+}
+.step2 { 
+	img{
+		margin-bottom:30px;
+	}
 }
 .margin-5{
 	margin:5px !important;
@@ -1152,7 +1157,7 @@ min-height: 1150px;
 	 img {
 		 display:block;
 		 width:100%;
-		 border-radius: 5px !important;
+		 border-radius: 50% !important;
 		 
 	 }
  }
