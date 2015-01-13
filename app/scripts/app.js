@@ -482,4 +482,11 @@ angular.module('sassApp').run( function($rootScope, $location, $http, regService
 
 angular.module('sassApp').config(['$httpProvider', function($httpProvider) {
     $httpProvider.interceptors.push('authInterceptorService');
+
+    //Initialise get if not there
+    if (!$httpProvider.defaults.headers.get) {
+        $httpProvider.defaults.headers.get = {};    
+    }
+    //disable IE ajax request caching
+    $httpProvider.defaults.headers.get['If-Modified-Since'] = '0';
 }]);
