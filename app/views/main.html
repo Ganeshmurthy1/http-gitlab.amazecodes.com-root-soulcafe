@@ -117,37 +117,40 @@
 
 
 
-<div >
-    <script type="text/ng-template" id="myModalContent.html">
+<div>
+  <script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-home-body">
+      <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-4 min-300 gredientSB">
+            <label class="home-desc padding-20px">
+              <div class="name">Why Facebook Sign up?</div>
+              <p><q><i> We want to make sure our members have a valid social media presence </i></q></p>
+            </label>
+        </div>
+        <div class="col-xs-12 col-sm-8 col-md-8 min1-300 body-background">
+          <div class="">
+          <div class="fb-btn-modal">
+            <button class="btn  btn-img" ng-click="login()"></button>     
+            <div class="row-space-top-2" id="tos_outside">
+              <small>
+              By signing up, I agree to Soulcafe's 
+                <a data-popup="true" href="/terms">Terms of Service</a>, 
+                <a data-popup="true" href="/terms/privacy_policy">Privacy Policy</a>, 
+                <a data-popup="true" href="/terms/guest_refund_policy">Guest Refund Policy</a>, 
+                and <a data-popup="true" href="/terms/host_guarantee">Host Guarantee Terms</a>.
+              </small>
+            </div>    
+          </div>
+          <div class="cancel-btn-modal pull-right">
+            <button class="btn btn-warning" ng-click="cancel()">Not now!.</button>
+          </div>
+        </div>
+        </div>
         
-		 <div class="modal-home-body">
-			<div>
-              <label class="col-lg-4 gredientSB min-300 home-desc padding-20px">
- 				<div class="name">Why Facebook Sign up?</div>
-				<p><q><i> We want to make sure our members have a valid social media presence </i></q></p>
-			  </label>
-              <div class="col-lg-8 body-background min-300">
-				<div class="fb-btn-modal">
-                  <button class="btn  btn-img" ng-click="login()"></button>			
-<div class="row-space-top-2" id="tos_outside">
-      <small>
-  By signing up, I agree to Soulcafe's <a data-popup="true" href="/terms">Terms of Service</a>, <a data-popup="true" href="/terms/privacy_policy">Privacy Policy</a>, <a data-popup="true" href="/terms/guest_refund_policy">Guest Refund Policy</a>, and <a data-popup="true" href="/terms/host_guarantee">Host Guarantee Terms</a>.
-</small>
 
-    </div>	  
-				</div>
-
-				<div class="cancel-btn-modal pull-right">
-					<button class="btn btn-warning" ng-click="cancel()">Not now!.</button>
-				</div>
-              </div>
-            </div>
-			
-		</div>
-
-       
-    </script>
-
-    
-    <div ng-show="selected">Selection from a modal: {{ selected }}</div>
+        
+      </div>
+    </div>
+  </script>
+  <div ng-show="selected">Selection from a modal: {{ selected }}</div>
 </div>

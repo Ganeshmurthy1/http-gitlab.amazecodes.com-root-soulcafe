@@ -704,7 +704,7 @@ function saveComments() {
     foreach($wineTopicUser as $obj) {
       $tname = $obj->TopicTitle;
       $id = $obj->DiscussionTopicId;
-      $link = 'discussion?id='.$id;
+      $link = 'discussion?topic='.$id;
       $message = $fname.' '.$lname.' has commented on the topic '.$tname.'.';
         $sqlFN = "INSERT INTO ForumNotification (UserId,Message,ViewStatus,AddedDate,Link,CommentId) VALUES (:UserId, :Message, :ViewStatus, :AddedDate,:Link,:CommentId)";
     try {

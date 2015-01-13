@@ -337,7 +337,7 @@ function adminAddTopic() {
    $status = 1;
    $viewstatus = 0;
    $title = $forum->title;
-   $message = 'The '.$title.'is got added to Forum.';
+   $message = 'The '.$title.' got added to Forum.';
    $sqlUser = "SELECT UserId from DiscussionBoardUsers where DiscussionBoardId = :id";
     try {
       $db = getConnection();
