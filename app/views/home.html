@@ -10,17 +10,6 @@
 				data-ng-controller="SideBarCtrl" data-ng-include="SideBar"></div>
 
 			<div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px ">
-				<!-- <div class="padding-bottom row clear" ng-show="{{status == 1}}">
-			        <div class="alert alert-success fade in">
-			                Your response of brewing request is sent !!!!
-			        </div>
-			    </div> -->
-			    <!-- <div class="padding-bottom row clear" ng-show="{{reject == 1}}">
-			        <div class="alert alert-success fade in">
-			                You rejected the friend request !!!!
-			        </div>
-			    </div> -->
-			    <!-- <div class="alert alert-success fade in" ng-show="hide">{{abuseSuccessMessage}}</div> -->
 			    
 			    <div class="alert alert-{{q.type}} fade in" ng-show="q">{{q.msg}}
 			         <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -33,10 +22,10 @@
 				<div class="row">
 									 	<div class="col-md-8">
 						<div class="progress progresscustom">
-							<div class="progress-bar progress-barcustom" role="progressbar"
-								aria-valuenow="2" aria-valuemin="0" aria-valuemax="100"
-								style="width: {{profileverify}}">{{profileverify}}</div>
-						</div>
+       <div class="progress-bar progress-barcustom" ng-class=" profileverify == 75 ? 'width75' : 'width100'" role="progressbar"
+        aria-valuenow="2" aria-valuemin="0" aria-valuemax="100"
+        >{{profileverify}}%</div>
+      </div>
 						<div class="row margin-right-0">
 							<div class="col-md-offset-3">
 								<div class="padding-left">
@@ -52,10 +41,7 @@
 										<li><img src="images/icon-mobile.png" title="Mobile" alt="Mobile"> <span
 											class="badge1 badge-green rounded-x"><i
 												class="fa fa-check  color-white"></i></span></li>
-										<!-- <li>
-					            <a href="#"><img src="images/stamp1.jpg"></a>
-					            <span class="badge1 badge-red rounded-x color-white">x</span>
-					        </li> -->
+										
 								</ul>
 								</div>
 							</div>

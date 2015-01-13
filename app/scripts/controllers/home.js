@@ -108,11 +108,11 @@ angular.module('sassApp')
 
 
     $scope.thumbup = 'true';
-    $scope.profileverify = '75%';
+    $scope.profileverify = '75';
     var authData = localStorageService.get('authorizationData');
     if (authData.linked_update == 1){
         $scope.thumbup = 'false';
-        $scope.profileverify = '100%';
+        $scope.profileverify = '100';
       }else{
         $scope.thumbup = 'true';
       }

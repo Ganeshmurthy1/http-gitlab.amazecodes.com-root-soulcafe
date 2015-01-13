@@ -30,7 +30,7 @@ angular.module('sassApp')
     $scope.msg = $routeParams.msg;
     $scope.already = $routeParams.already;
     $scope.accept = $routeParams.accept;
-    $scope.profileverify = '75%';
+    $scope.profileverify = '75';
     var authData = localStorageService.get('authorizationData');
     $scope.udata = authData;
     if($scope.user_id == authData.user_id) {
@@ -108,7 +108,7 @@ angular.module('sassApp')
 	    
          if ($scope.userData.linked_update == 1){
            $scope.thumbup = 'false';
-           $scope.profileverify = '100%';
+           $scope.profileverify = '100';
          }else{
            $scope.thumbup = 'true';
          }
