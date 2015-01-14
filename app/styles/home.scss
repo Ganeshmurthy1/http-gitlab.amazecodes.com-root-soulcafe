@@ -15,7 +15,7 @@
 	padding:10px 23px 0px 20px;
 	background-image:url(../images/pop.png);
 	
-	background-repeat: no-repeat;
+		background-repeat: repeat-y;
     background-size: 100%;	
 }
 .step2 { 
@@ -238,7 +238,7 @@ margin-right:5px !important;
 	padding-top: 80px;
 }
 .min600 {
-	min-height: 550px;
+	min-height: 300px;
 }
 .min-80p {
 	min-height: 80px;
@@ -536,7 +536,7 @@ min-width:220px !important;
 }
 
 .left-signup {
-	padding-top:100px;
+	padding-top:50px;
 	p {
 		font-size: 16px;
 	}
@@ -790,8 +790,15 @@ background: linear-gradient(270deg, #f2f2f2 80%, #d8d6d2 88%) repeat scroll 0 0 
 	border:1px solid red;
 }
 
+.okmargin{
+	margin-left:28% !important;
+}
+
 /*--------------Media Queries-------------*/
 @media (min-width: 320px) {
+.okmargin{
+	margin-left:28% !important;
+}
 	.mobile-clear {
 	    clear: none !important;
 	}
@@ -801,6 +808,9 @@ background: linear-gradient(270deg, #f2f2f2 80%, #d8d6d2 88%) repeat scroll 0 0 
 
 }
 @media (min-width: 360px) {
+.okmargin{
+	margin-left:28% !important;
+}
 	.mobile-clear {
 	    clear:both;
 	}
@@ -809,6 +819,13 @@ background: linear-gradient(270deg, #f2f2f2 80%, #d8d6d2 88%) repeat scroll 0 0 
 	}
 }
 @media (min-width: 600px) {
+
+.min600 {
+	min-height: 550px;
+}
+.okmargin{
+	margin-left:28% !important;
+}
 .alignment-tab {
     margin-left: 0% !important;
 }
@@ -823,6 +840,15 @@ background: linear-gradient(270deg, #f2f2f2 80%, #d8d6d2 88%) repeat scroll 0 0 
 }
 }
 @media (min-width: 768px) {
+.left-signup {
+	padding-top:100px;
+	p {
+		font-size: 16px;
+	}
+}
+.okmargin{
+	margin-left:0% !important;
+}
 .perMatch{
 	margin:5px 26% !important;
 	padding-right:0px !important;
@@ -970,6 +996,18 @@ min-height: 1150px;
 
 
 @media (min-width: 992px) {
+.left-signup {
+	padding-top:100px;
+	p {
+		font-size: 16px;
+	}
+}
+.min600 {
+	min-height: 550px;
+}
+.okmargin{
+	margin-left:0% !important;
+}
 .perMatch{
 	margin:5px 26% !important;
 	padding-right:0px !important;
@@ -1107,6 +1145,18 @@ min-height: 1150px;
 }
 
 @media (min-width: 1200px) {
+.left-signup {
+	padding-top:100px;
+	p {
+		font-size: 16px;
+	}
+}
+.min600 {
+	min-height: 550px;
+}
+.okmargin{
+	margin-left:0% !important;
+}
 .perMatch{
 	margin:5px 26% !important;
 	padding-right:0px !important;

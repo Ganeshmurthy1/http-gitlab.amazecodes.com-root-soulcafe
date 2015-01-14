@@ -413,6 +413,10 @@ angular
         templateUrl: 'views/heart-statics.html',
         controller: 'HeartStaticsCtrl'
       })
+      .when('/privacy-policy', {
+        templateUrl: 'views/privacy-policy.html',
+        controller: 'PrivacyPolicyCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
