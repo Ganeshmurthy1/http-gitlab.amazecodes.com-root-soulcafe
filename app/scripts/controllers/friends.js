@@ -25,6 +25,6 @@ angular.module('sassApp')
     $scope.status = $routeParams.status;
     profileOperations.getBuddiesAll().then(function(response) {    
          $scope.friends=response.data;
-      
+          console.log($scope.friends);
      });
   });

@@ -680,7 +680,7 @@ background: linear-gradient(270deg, #f2f2f2 80%, #d8d6d2 88%) repeat scroll 0 0 
 	background: none !important;
 }
 .feelingBtn{
-	margin:20px 10px 0px 0px;
+	margin:10px 10px 0px 0px;
 }
 .sky-form fieldset {
 		width:100%;
@@ -794,6 +794,11 @@ background: linear-gradient(270deg, #f2f2f2 80%, #d8d6d2 88%) repeat scroll 0 0 
 	margin-left:28% !important;
 }
 
+.video{
+	width:100%;
+	min-height:300px;
+}
+
 /*--------------Media Queries-------------*/
 @media (min-width: 320px) {
 .okmargin{
@@ -819,7 +824,10 @@ background: linear-gradient(270deg, #f2f2f2 80%, #d8d6d2 88%) repeat scroll 0 0 
 	}
 }
 @media (min-width: 600px) {
-
+.fortab{
+	float:right !important;
+	width: 50% !important;
+}
 .min600 {
 	min-height: 550px;
 }
@@ -840,6 +848,14 @@ background: linear-gradient(270deg, #f2f2f2 80%, #d8d6d2 88%) repeat scroll 0 0 
 }
 }
 @media (min-width: 768px) {
+.video{
+	width:70%;
+	min-height:300px;
+}
+.fortab{
+	float:none !important;
+	width: 100% !important;
+}
 .left-signup {
 	padding-top:100px;
 	p {
@@ -996,6 +1012,10 @@ min-height: 1150px;
 
 
 @media (min-width: 992px) {
+.video{
+	width:70%;
+	min-height:400px;
+}
 .left-signup {
 	padding-top:100px;
 	p {
@@ -1145,6 +1165,10 @@ min-height: 1150px;
 }
 
 @media (min-width: 1200px) {
+.video{
+	width:70%;
+	min-height:400px;
+}
 .left-signup {
 	padding-top:100px;
 	p {

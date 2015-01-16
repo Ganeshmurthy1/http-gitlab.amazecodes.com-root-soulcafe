@@ -417,6 +417,12 @@ angular
         templateUrl: 'views/privacy-policy.html',
         controller: 'PrivacyPolicyCtrl'
       })
+      .when('/why-soulcafe', {
+        templateUrl: 'views/why-soulcafe.html',
+      })
+      .when('/no-no', {
+        templateUrl: 'views/no-no.html',
+      })
       .otherwise({
         redirectTo: '/'
       });
