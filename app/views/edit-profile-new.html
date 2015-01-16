@@ -10,6 +10,7 @@
 <div class ="my-border col-xs-12 col-sm-4 col-md-3 gredientSB hideblock" data-ng-controller="SideBarCtrl" data-ng-include="SideBar"></div>
 
 <div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px ">
+    
 	<accordion close-others="oneAtATime">
         <div class="row">
         <div class="col-xs-12 col-md-6">
@@ -114,10 +115,9 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 control-label">Where I Live</label>
                                 <div class="col-lg-9">
-                                  <div class="input-group">
-                                   <label class="select" >
-                                     <select class="select-chg" name="location" data-ng-model="profileDetail.location" required  >
-
+                                    <select name="Location" ui-select2="{width:'100%'}" data-ng-model="profileDetail.location" data-placeholder="-----Choose ----">
+                                        <option></option>
+                                        
                                     <option disabled="disabled" style="background-color:#3E3E3E"><font color="#000000"><i>-Top Metropolitan Cities-</i></font></option>
                                     <option>Ahmedabad</option> 
                                     <option>Bengaluru/Bangalore</option>
@@ -353,8 +353,7 @@
                                     <option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Other-</i></font></option>
                                     <option>Other</option>
                                     </select>
-                                    </label>
-                                     </div> 
+                                    
                                   </div>
                                 </div>
         
@@ -416,40 +415,40 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 control-label">Food Habits</label>
                                 <div class="col-lg-9">
-                                    <label class="select" >
-                                        <select class="select-chg" name="location" data-ng-model="profileDetail.FoodHabits" required  >
-                                            <option>Vegetarian</option> 
-                                            <option>Non Vegetarian</option>
-                                            <option>Eggetarian</option>
-                                            <option>Vegan</option>
-                                        </select>
-                                    </label>
+                                     <select name="FoodHabits" ui-select2="{width:'100%'}" data-ng-model="profileDetail.FoodHabits" data-placeholder="-----Choose ----">
+                                        <option></option>
+                                        <option>Vegetarian</option> 
+                                        <option>Non Vegetarian</option>
+                                        <option>Eggetarian</option>
+                                        <option>Vegan</option>  
+                                    </select>
+                                    
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 control-label">Drinking</label>
                                 <div class="col-lg-9">
-                                    <label class="select" >
-                                        <select class="select-chg" name="location" data-ng-model="profileDetail.Drinking" required  >
-                                            <option>I don't drink</option>
-                                            <option>Mild Social Drinker</option> 
-                                            <option>I drink on weekends</option>
-                                            <option>I party everyday</option>
-                                        </select>
-                                    </label>
+                                    <select name="Drinking" ui-select2="{width:'100%'}" data-ng-model="profileDetail.Drinking" data-placeholder="-----Choose ----">
+                                        <option></option>
+                                        <option>I don't drink</option>
+                                        <option>Mild Social Drinker</option> 
+                                        <option>I drink on weekends</option>
+                                        <option>I party everyday</option>  
+                                    </select>
+                                    
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 control-label">Smoking</label>
                                 <div class="col-lg-9">
-                                    <label class="select" >
-                                        <select class="select-chg"s name="location" data-ng-model="profileDetail.Smoking" required  >
-                                             <option>I Smoke often</option>
-                                             <option>I smoke occassionally</option>
-                                            <option>I don't Smoke</option>
-                                           <option>I cannot stand smokers</option> 
-                                        </select>
-                                    </label>
+                                   <select name="Smoking" ui-select2="{width:'100%'}" data-ng-model="profileDetail.Smoking" data-placeholder="-----Choose ----">
+                                        <option></option>
+                                        <option>I Smoke often</option>
+                                        <option>I smoke occassionally</option>
+                                        <option>I don't Smoke</option>
+                                        <option>I cannot stand smokers</option>  
+                                    </select>
+        
                                 </div>
                             </div>
                             <h4>{{errMessage}}</h4>

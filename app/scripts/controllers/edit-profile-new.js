@@ -8,12 +8,13 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('EditProfileNewCtrl', ['$scope','$rootScope','$location','$route','$routeParams','linkedinService','localStorageService','regService','profileOperations','Questionnaire','FileUploader','adminDiscussion','config','$filter', function ($scope, $rootScope, $location, $route, $routeParams, linkedinService, localStorageService, regService,profileOperations,Questionnaire,FileUploader,adminDiscussion,config,$filter) {
+  .controller('EditProfileNewCtrl', ['$scope','$rootScope','$location','$route','$routeParams','linkedinService','localStorageService','regService','profileOperations','Questionnaire','FileUploader','adminDiscussion','config','$filter','messageCodes', function ($scope, $rootScope, $location, $route, $routeParams, linkedinService, localStorageService, regService,profileOperations,Questionnaire,FileUploader,adminDiscussion,config,$filter,messageCodes) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+    
     $scope.dateOptions = {
             changeYear: true,
             changeMonth: true,
@@ -100,9 +101,13 @@ angular.module('sassApp')
 
      $scope.errorMessage = '';
   $scope.saveButtonClick = function(){
+    console.log($scope.profileDetail);
   	$scope.profileDetail.UpdatedPicture=$scope.image;
   	regService.updateProfileDetail($scope.profileDetail).then(function (response) {
         if(response.data == "true"){
+
+          
+
           regService.getProfileDetail().then(function (response) {
              $scope.profileDetail = response.data;
              $scope.pict = $scope.imagepath + $scope.profileDetail.Picture;
@@ -120,7 +125,7 @@ angular.module('sassApp')
               $scope.disable = 'true';
              }
              $route.reload();
-
+             
           });
          	 
          }else {

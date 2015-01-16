@@ -29,7 +29,8 @@ angular
     'angular-carousel',
     'slick',
     'angular-loading-bar',
-    'ui.date'
+    'ui.date',
+    'ui.select2'
   ])
   .config(['$routeProvider', '$facebookProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $facebookProvider, $locationProvider, $httpProvider) {
 	
