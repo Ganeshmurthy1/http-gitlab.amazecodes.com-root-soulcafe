@@ -705,15 +705,24 @@ background: linear-gradient(270deg, #f2f2f2 80%, #d8d6d2 88%) repeat scroll 0 0 
 		font-weight:normal;
 	}
 }
-
+.min-fix{
+	min-height:200px !important;
+}
 .fb-btn-modal {
 	
 	margin-top:35px;
 	margin-left: 5%;
 }
-
+.fb-btn-modal1 {
+    margin-left: 2%;
+    margin-top: 50px;
+    width: 90%;
+}
 .cancel-btn-modal {
 	margin-top: 70px;
+}
+.cancel-btn-modal1 {
+	margin-top: 25px;
 }
 
 .margin-50 {
