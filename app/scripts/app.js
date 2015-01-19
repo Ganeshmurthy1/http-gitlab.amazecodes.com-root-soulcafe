@@ -424,6 +424,10 @@ angular
       .when('/no-no', {
         templateUrl: 'views/no-no.html',
       })
+      .when('/contact-us', {
+        templateUrl: 'views/contact-us.html',
+        controller: 'ContactUsCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
