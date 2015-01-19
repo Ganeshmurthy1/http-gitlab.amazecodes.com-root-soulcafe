@@ -207,6 +207,20 @@ angular.module('sassApp')
                 return response;
             });
 		};
+		dataFactory.getContactUs = function () {
+	    	// console.log(param);
+	    	return $http.get(urlBase + 'get_ContactUs').then(function(response) {
+	    		//console.log(response);
+                return response;
+            });
+		};
+		dataFactory.getContactDetail = function (id) {
+	    	 // console.log(id);
+	    	return $http.get(urlBase + 'get_ContactDetail/'+ id).then(function(response) {
+	    		// console.log(response);
+                return response;
+            });
+		};
 	    return dataFactory;
 	}]);
 

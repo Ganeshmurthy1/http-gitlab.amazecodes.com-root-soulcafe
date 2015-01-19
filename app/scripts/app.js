@@ -428,6 +428,14 @@ angular
         templateUrl: 'views/contact-us.html',
         controller: 'ContactUsCtrl'
       })
+      .when('/admin-contactus-listing', {
+        templateUrl: 'views/admin-contactus-listing.html',
+        controller: 'AdminContactusListingCtrl'
+      })
+      .when('/admin-contactus-detail', {
+        templateUrl: 'views/admin-contactus-detail.html',
+        controller: 'AdminContactusDetailCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
