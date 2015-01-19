@@ -1,6 +1,18 @@
 .myborder{
 	
 }
+.bck-img-contctus{
+	background:url("../images/banner.jpg") no-repeat scroll center center / cover rgba(0, 0, 0, 0);
+	
+	width:100%;
+	min-height:750px;
+
+}
+.transperent1{
+	background: rgba(#ffffff, 0.5);	
+	width:100%;
+	min-height:750px;
+}
 .perMatch{
 	margin:5px 0% !important;
 	padding-right:0px !important;
@@ -32,7 +44,9 @@
 .transperent{
 	background: rgba(#ffffff, 0.5);	
 	border: 1px solid black;
+
 }
+
 .caret-custm{
 	margin-left:5px !important;
 }
