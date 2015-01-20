@@ -1,6 +1,20 @@
 .myborder{
 	
 }
+.carousel-control.right {
+background-image: none !important;
+}
+.carousel-control.left {
+background-image: none !important;
+}
+.bck-img-why{
+	background:url("../images/banner.jpg") no-repeat scroll center center / cover rgba(0, 0, 0, 0);
+	width:100%;
+}
+.transperent-why{
+	background: rgba(#ffffff, 0.5);	
+	width:100%;
+}
 .bck-img-contctus{
 	background:url("../images/banner.jpg") no-repeat scroll center center / cover rgba(0, 0, 0, 0);
 	

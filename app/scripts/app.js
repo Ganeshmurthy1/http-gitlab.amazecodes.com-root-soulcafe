@@ -19,14 +19,11 @@ angular
     'linkedinServices',
     'ngFacebook',
     'LocalStorageModule',
-    'perfect_scrollbar',
     'ui.bootstrap',
-    'fundoo.directives',
     'angularFileUpload',
     'ui-rangeSlider',
     'ui.tree',
     'angular-jqcloud',
-    'angular-carousel',
     'slick',
     'angular-loading-bar',
     'ui.date',
@@ -435,6 +432,10 @@ angular
       .when('/admin-contactus-detail', {
         templateUrl: 'views/admin-contactus-detail.html',
         controller: 'AdminContactusDetailCtrl'
+      })
+      .when('/why-soul', {
+        templateUrl: 'views/why-soul.html',
+        controller: 'WhySoulCtrl'
       })
       .otherwise({
         redirectTo: '/'
