@@ -1,6 +1,11 @@
 .myborder{
 	
 }
+span {
+&:hover{
+    cursor:pointer !important;
+}
+}
 .carousel-control.right {
 background-image: none !important;
 }
@@ -280,6 +285,7 @@ margin-right:5px !important;
 
 a:hover{
 	color:#593a1d !important;
+	cursor:pointer;
 }
 .morebutton{
 	margin-right:17%;
@@ -332,6 +338,7 @@ a:hover{
 
 	a:hover{
 	color:#ffffff !important;
+	cursor:pointer;
 }
 
 }

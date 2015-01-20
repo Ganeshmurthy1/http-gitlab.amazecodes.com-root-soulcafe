@@ -350,11 +350,6 @@ angular
         controller: 'EditProfileNewCtrl',
         access:      access.user
       })
-      .when('/admin-requested', {
-        templateUrl: 'views/admin-requested.html',
-        controller: 'AdminRequestedCtrl',
-        access:      access.admin
-      })
       .when('/admin-requested-topic', {
         templateUrl: 'views/admin-requested-topic.html',
         controller: 'AdminRequestedTopicCtrl',
@@ -436,6 +431,10 @@ angular
       .when('/why-soul', {
         templateUrl: 'views/why-soul.html',
         controller: 'WhySoulCtrl'
+      })
+      .when('/about-us', {
+        templateUrl: 'views/about-us.html',
+        controller: 'AboutUsCtrl'
       })
       .otherwise({
         redirectTo: '/'
