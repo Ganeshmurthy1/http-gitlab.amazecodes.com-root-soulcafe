@@ -1,6 +1,9 @@
 .myborder{
 	
 }
+.height-adjust{
+	height:800px;
+}
 span {
 &:hover{
     cursor:pointer !important;
@@ -899,6 +902,9 @@ background: linear-gradient(270deg, #f2f2f2 80%, #d8d6d2 88%) repeat scroll 0 0 
 }
 }
 @media (min-width: 768px) {
+.height-adjust{
+	height:550px;
+}
 .video{
 	width:70%;
 	min-height:300px;
@@ -1063,6 +1069,9 @@ min-height: 1150px;
 
 
 @media (min-width: 992px) {
+.height-adjust{
+	height:550px;
+}
 .video{
 	width:70%;
 	min-height:400px;
@@ -1216,6 +1225,9 @@ min-height: 1150px;
 }
 
 @media (min-width: 1200px) {
+.height-adjust{
+	height:550px;
+}
 .video{
 	width:70%;
 	min-height:400px;
