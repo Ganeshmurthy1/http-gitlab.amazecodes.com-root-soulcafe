@@ -12,45 +12,47 @@ function algControllerOneOne($y) {
   // $y = 117;
   $x  = getUserId();
   $algObject = algObjectCreator($x, $y, $questions);
-  $algScores = algProcessor($algObject);
-  //print_r($algScores);
-  
-  $categoryWeight = getQnCategory();
-  //print_r($categoryWeight);
-  
-  
-  $cal_index = 0;
-  $total_percentage_score = 0;
-  $total_percentage = 0;
-  // calculate the total in one category
-  foreach ($algScores as $key => $value ) {
-    $total = 0;
-    $index = 0;
-    foreach ($value as $val) {
-      $total += $val;
-      $index++;
+  if(!empty($algObject)) {
+    $algScores = algProcessor($algObject);
+    //print_r($algScores);
+    
+    $categoryWeight = getQnCategory();
+    //print_r($categoryWeight);
+    
+    
+    $cal_index = 0;
+    $total_percentage_score = 0;
+    $total_percentage = 0;
+    // calculate the total in one category
+    foreach ($algScores as $key => $value ) {
+      $total = 0;
+      $index = 0;
+      foreach ($value as $val) {
+        $total += $val;
+        $index++;
+      }
+      //print $categoryWeight[$key];
+      $scoreper = $total/$index;
+      $scoreper = ceil($scoreper * $categoryWeight[$key]);
+      $score_per_obj[$key] = $scoreper;
+      $total_percentage_score += $scoreper;
+      $cal_index++;
+    
+    
     }
-    //print $categoryWeight[$key];
-    $scoreper = $total/$index;
-    $scoreper = ceil($scoreper * $categoryWeight[$key]);
-    $score_per_obj[$key] = $scoreper;
-    $total_percentage_score += $scoreper;
-    $cal_index++;
-  
-  
+    
+    $x_personalityScore = getPersonalityScore($x);
+    $y_personalityScore = getPersonalityScore($y);
+    $personality_match  = getPersonalityMatch($x_personalityScore, $y_personalityScore);
+    
+    //print_r($score_per_obj);
+    $total_percentage = ceil($total_percentage_score/$cal_index);
+    $result_obj['scores'] = $score_per_obj;
+    $result_obj['total_percentage'] = $total_percentage;
+    $result_obj['personality_match'] = $personality_match->Value;
+    
+    echo json_encode($result_obj);
   }
-  
-  $x_personalityScore = getPersonalityScore($x);
-  $y_personalityScore = getPersonalityScore($y);
-  $personality_match  = getPersonalityMatch($x_personalityScore, $y_personalityScore);
-  
-  //print_r($score_per_obj);
-  $total_percentage = ceil($total_percentage_score/$cal_index);
-  $result_obj['scores'] = $score_per_obj;
-  $result_obj['total_percentage'] = $total_percentage;
-  $result_obj['personality_match'] = $personality_match->Value;
-  
-  echo json_encode($result_obj);
   
 
   //print '</br> Compatibility type: 1 = CM, 2 = SM, 3 = NM </br>';
@@ -101,7 +103,31 @@ function matchProcessor($user_obj, $categoryWeight) {
   $filterd_users = getTheFilteredUsers($user_obj);  
   deleteMatch($user_obj->user_id);
   findMatches($user_obj->user_id, $filterd_users, $categoryWeight);
+  AddProcessedUsers($user_obj->user_id);
 }
+
+function AddProcessedUsers($user_id) {
+  
+  $tdate = date('Y-m-d h:i:s');
+  //print_r($match_type);
+  $sql = "INSERT INTO AlgorithamProcessed (UserId, DateAdded) VALUES ( :UserId, :DateAdded)";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("UserId", $user_id);
+    $stmt->bindParam("DateAdded", $tdate);
+    $stmt->execute();
+  
+    $db = null;
+    //   echo 'true';
+    //$app->redirect('login.html');
+  }
+  catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  
+}
+
 
 function findMatches($user_id, $filterd_users, $categoryWeight) {
   
@@ -205,12 +231,27 @@ function algBatchController($x, $y) {
   //$x = 116;
   // $y = 117;
   $algObject = algObjectCreator($x, $y, $questions);
-  //print_r($algObject[53]);
-  
-  if ($algObject[54]->x_answer[0]->OptionId == 160) {
-   // print_r($algObject[53]);
-    //print 'hello';
-    if ($algObject[53]->x_answer[0]->OptionId == $algObject[53]->y_answer[0]->OptionId) {
+ // print_r($algObject);
+ // print $x;
+  //exit;
+  if (!empty($algObject)) {
+    if ($algObject[54]->x_answer[0]->OptionId == 160) {
+     // print_r($algObject[53]);
+      //print 'hello';
+      if ($algObject[53]->x_answer[0]->OptionId == $algObject[53]->y_answer[0]->OptionId) {
+        $algScores = algProcessor($algObject);
+        $x_personalityScore = getPersonalityScore($x);
+        $y_personalityScore = getPersonalityScore($y);
+        $personality_match  = getPersonalityMatch($x_personalityScore, $y_personalityScore);
+        $result_obj['scores'] = $algScores;
+        $result_obj['match_type'] = $personality_match;
+        return $result_obj;
+      }
+      else {
+        return false;
+      }
+    }
+    else {
       $algScores = algProcessor($algObject);
       $x_personalityScore = getPersonalityScore($x);
       $y_personalityScore = getPersonalityScore($y);
@@ -219,18 +260,8 @@ function algBatchController($x, $y) {
       $result_obj['match_type'] = $personality_match;
       return $result_obj;
     }
-    else {
-      return false;
-    }
-  }
-  else {
-    $algScores = algProcessor($algObject);
-    $x_personalityScore = getPersonalityScore($x);
-    $y_personalityScore = getPersonalityScore($y);
-    $personality_match  = getPersonalityMatch($x_personalityScore, $y_personalityScore);
-    $result_obj['scores'] = $algScores;
-    $result_obj['match_type'] = $personality_match;
-    return $result_obj;
+  } else {
+    return false;
   }
   
   
@@ -272,7 +303,7 @@ function getTheFilteredUsers($user_obj) {
 
 function getTheBatch() {
   // $user_id  = getUserId();
-  $sql = "SELECT user_id, gender, birthdate FROM users where status = 1 LIMIT 0, 10";
+  $sql = "SELECT user_id, gender, birthdate FROM users where status = 1  AND user_id NOT IN (SELECT UserId FROM AlgorithamProcessed) ORDER BY DateJoined DESC LIMIT 0, 10";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
@@ -280,11 +311,17 @@ function getTheBatch() {
    // $stmt->bindParam("col", $y);
     $stmt->execute();
     $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
-    $db = null;
-    return $wine;
+    //$db = null;
+   // print_r($wine);
+    if (empty($wine)) {
+      $sql = "TRUNCATE TABLE AlgorithamProcessed";
+      $stmt = $db->prepare($sql);
+      $stmt->execute();
+    }
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
+  return $wine;
 }
 
 
@@ -296,55 +333,60 @@ function algController($x, $y) {
   //$x = 116;
  // $y = 117;
   $algObject = algObjectCreator($x, $y, $questions);
-  $algScores = algProcessor($algObject);
-  print 'Personality Score: ' . $x_personalityScore = getPersonalityScore($x);
-  print '</br>';
-  print 'Personality Score: ' .  $y_personalityScore = getPersonalityScore($y);
-  $personality_match  = getPersonalityMatch($x_personalityScore, $y_personalityScore);
-  Print '</br>Personality Match: ';
-  print_r($personality_match->Value);
-  print '</br> Compatibility type: 1 = CM, 2 = SM, 3 = NM </br>';
-  print_r($algScores);
+  if (!empty($algObject)) {
+    
+  //print 'jello';
+  //exit;
+    $algScores = algProcessor($algObject);
+    print 'Personality Score: ' . $x_personalityScore = getPersonalityScore($x);
+    print '</br>';
+    print 'Personality Score: ' .  $y_personalityScore = getPersonalityScore($y);
+    $personality_match  = getPersonalityMatch($x_personalityScore, $y_personalityScore);
+    Print '</br>Personality Match: ';
+    print_r($personality_match->Value);
+    print '</br> Compatibility type: 1 = CM, 2 = SM, 3 = NM </br>';
+    print_r($algScores);
+    
   
-
-  $categoryWeight = getQnCategory();
-  //print_r($categoryWeight);
-  
-  
-  $cal_index = 0;
-  $total_percentage_score = 0;
-  $total_percentage = 0;
-  // calculate the total in one category
-  foreach ($algScores as $key => $value ) {
-    $total = 0;
-    $index = 0;
-    foreach ($value as $val) {
-      $total += $val;
-      $index++;
+    $categoryWeight = getQnCategory();
+    //print_r($categoryWeight);
+    
+    
+    $cal_index = 0;
+    $total_percentage_score = 0;
+    $total_percentage = 0;
+    // calculate the total in one category
+    foreach ($algScores as $key => $value ) {
+      $total = 0;
+      $index = 0;
+      foreach ($value as $val) {
+        $total += $val;
+        $index++;
+      }
+      //print $categoryWeight[$key];
+      $scoreper = $total/$index;
+      $scoreper = ceil($scoreper * $categoryWeight[$key]);
+      $score_per_obj[$key] = $scoreper;
+      $total_percentage_score += $scoreper;
+      $cal_index++;
+    
+    
     }
-    //print $categoryWeight[$key];
-    $scoreper = $total/$index;
-    $scoreper = ceil($scoreper * $categoryWeight[$key]);
-    $score_per_obj[$key] = $scoreper;
-    $total_percentage_score += $scoreper;
-    $cal_index++;
-  
-  
+    
+    $x_personalityScore = getPersonalityScore($x);
+    $y_personalityScore = getPersonalityScore($y);
+    $personality_match  = getPersonalityMatch($x_personalityScore, $y_personalityScore);
+    
+    //print_r($score_per_obj);
+    $total_percentage = ceil($total_percentage_score/$cal_index);
+    $result_obj['scores'] = $score_per_obj;
+    $result_obj['total_percentage'] = $total_percentage;
+    $result_obj['personality_match'] = $personality_match->Value;
+    
+    print "====================Final Score card after weightage =====================\n";
+    
+    print_r($result_obj);
   }
-  
-  $x_personalityScore = getPersonalityScore($x);
-  $y_personalityScore = getPersonalityScore($y);
-  $personality_match  = getPersonalityMatch($x_personalityScore, $y_personalityScore);
-  
-  //print_r($score_per_obj);
-  $total_percentage = ceil($total_percentage_score/$cal_index);
-  $result_obj['scores'] = $score_per_obj;
-  $result_obj['total_percentage'] = $total_percentage;
-  $result_obj['personality_match'] = $personality_match->Value;
-  
-  print "====================Final Score card after weightage =====================\n";
-  
-  print_r($result_obj);
   
 }
 
@@ -576,6 +618,7 @@ function algObjectCreator($x, $y, $questions) {
   
   $algArray = array();
   //print '<pre>';
+  $ans_flag = 0;
 
   for ($i = 0; $i < count($questions); $i++) {
     $algObject = new stdClass();
@@ -594,14 +637,23 @@ function algObjectCreator($x, $y, $questions) {
     }
     $algObject->x_answer = $ansx;
     $algObject->y_answer = $ansy;
-    
+    if (empty($ansx) OR empty($ansy)) {
+      $ans_flag = 1;
+    }
     
     
     $algArray[$questions[$i]->Qid] = $algObject;
     
-   // print_r($algArray);
+    //print_r($algArray);
   }
-  return $algArray;
+  if ($ans_flag) {
+    return false;
+  }else {
+    return $algArray;
+  }
+  
+  
+ 
   //print_r($algArray);
 
   
