@@ -315,6 +315,11 @@ angular.module('sassApp')
                 return response;
             });	
 	    };
+	    dataFactory.addContact = function (param) {	
+	     	return $http.post(urlBase + 'add_Contact_us', param).then(function(response) {
+                return response;
+            });	
+	    };
 	    
 	    return dataFactory;
 	}]);

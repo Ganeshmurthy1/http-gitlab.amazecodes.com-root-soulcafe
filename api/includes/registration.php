@@ -50,7 +50,7 @@ $app->post('/resend_code', 'resendCode');
 $app->get('/get_Recomendations', 'getRecomendations');
 $app->get('/get_Profile_Detail_Other/:id', 'get_ProfileDetailOther');
 
-
+$app->post('/add_Contact_us', 'addContactUs');
 
 
 function checkUser() { 
@@ -1414,5 +1414,35 @@ function get_ProfileDetailOther($id) {
     echo '{"error":{"text":'. $e->getMessage() .'}}'; 
   }
 }
+
+function addContactUs() {
+  $request = Slim::getInstance()->request();
+  $contact = json_decode($request->getBody());
+  
+  $tdate = date('Y-m-d h:i:s');
+  
+  $sql = "INSERT INTO `ContactUs`(`Name`, `Email`, `Number`, `Address`, `Message`, `AddedDate`) 
+  VALUES (:name, :email, :num, :address, :message, :addeddate)";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("name", $contact->name);
+    $stmt->bindParam("email", $contact->email);
+    $stmt->bindParam("num", $contact->num);
+    $stmt->bindParam("address", $contact->address);
+    $stmt->bindParam("message", $contact->message);
+    $stmt->bindParam("addeddate", $tdate);
+   
+    $stmt->execute();
+
+
+    echo 'true';
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
+}
+
+
 
 ?>

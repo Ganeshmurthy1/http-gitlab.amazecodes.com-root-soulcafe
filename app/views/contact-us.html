@@ -14,30 +14,64 @@
                 <div class="inline-block"><a title="SoulCafe Blog" target="_blank" href="http://dsoulcafe.wordpress.com/"><img src="images/blogger.png"></a></div>
       </div>
     
-       <!-- <div class="col-xs-3 col-sm-4 padding-top-20 pull-left" style="padding-bottom:0px !important;">
-        <div class=" visible-xs hidden-sm"> 
-        <button type="button" class="navbar-toggle top-navbar-toogle no-margin no-padding"  data-toggle="collapse" data-target=".top-navigation"><img src="images/menu.png" style="width:30px"></button>
-        <ul class="nav collapse top-navigation">
-            <li><a href="#">Why SoulCafe </a></li>
-            <li><a href="#">How It Works</a></li>
-            <li><a href="#">The strict “NO-NO” on Soul Cafe</a></li>
-            <div class="clearfix"></div>
-        </ul>
-        </div>            
-        </div> -->
+       
         </div>
 
   </div>
 </header>
 <!--HEADER ENDS HERE-->
+<!--Main Content -->
+<div class="bck-img-contctus">
+	<div class="transperent1">
+		<div class="col-md-offset-3 col-md-6">
+			<div class="headline"><h1 class="heading-sm">Contact Us</h1></div>
+			<form id="sky-form4" class="sky-form" name="contact" data-ng-submit="contact.$valid && cnctUs()">
+				<fieldset>
 
-<!--BANNER START HERE-->
-<div class="container" style="text-align:center;margin-top:30px;margin-bottom:30px;">
- <iframe class="video" src="http://www.youtube.com/embed/jS6-2gVQS4Y" frameborder="0" allowfullscreen></iframe>
+					<section>
+						<label>Name</label>
+						<label class="input">
+							<input type="text" name="subject" id="subject" data-ng-model="cnct.name" required>
+						</label>
+					</section>
+					<section>
+						<label>Email</label>
+						<label class="input">
+							<input type="email" name="subject" id="subject" data-ng-model="cnct.email" required>
+						</label>
+					</section>
+					<section>
+						<label>Contact Number</label>
+						<label class="input">
+							<input type="text" ng-pattern="/^\d{0,10}(\.\d{1,10})?$/" name="cnctus" id="subject" data-ng-model="cnct.num" required>
+							<div ng-show="contact.cnctus.$error.pattern" style="color:#a94442;">Please Enter Valid Number</div>
+						</label>
+					</section>
+					<section>
+						<label>Address</label>
+						<label class="textarea">
+							<textarea rows="4" name="message" id="message" data-ng-model="cnct.address" required></textarea>
+						</label>
+					</section>
+					<section>
+						<label>Message</label>
+						<label class="textarea">
+							<textarea rows="4" name="message" id="message" data-ng-model="cnct.message" required></textarea>
+						</label>
+					</section>  
+
+				</fieldset>
+
+				<footer>
+					<button class="btn-u" type="submit" ng-disabled="contact.$invalid">Submit</button>
+				</footer>
+			</form>
+		</div>
+	</div>
 </div>
 
-<!--BANNER ENDS HERE-->
-  
+<!--Main Content ends here -->
+ 
 <!--FOOTER STARTS HERE-->
 <footer>
   <div class="container">

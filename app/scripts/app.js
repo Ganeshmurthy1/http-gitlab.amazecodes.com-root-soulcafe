@@ -19,14 +19,11 @@ angular
     'linkedinServices',
     'ngFacebook',
     'LocalStorageModule',
-    'perfect_scrollbar',
     'ui.bootstrap',
-    'fundoo.directives',
     'angularFileUpload',
     'ui-rangeSlider',
     'ui.tree',
     'angular-jqcloud',
-    'angular-carousel',
     'slick',
     'angular-loading-bar',
     'ui.date',
@@ -353,11 +350,6 @@ angular
         controller: 'EditProfileNewCtrl',
         access:      access.user
       })
-      .when('/admin-requested', {
-        templateUrl: 'views/admin-requested.html',
-        controller: 'AdminRequestedCtrl',
-        access:      access.admin
-      })
       .when('/admin-requested-topic', {
         templateUrl: 'views/admin-requested-topic.html',
         controller: 'AdminRequestedTopicCtrl',
@@ -423,6 +415,26 @@ angular
       })
       .when('/no-no', {
         templateUrl: 'views/no-no.html',
+      })
+      .when('/contact-us', {
+        templateUrl: 'views/contact-us.html',
+        controller: 'ContactUsCtrl'
+      })
+      .when('/admin-contactus-listing', {
+        templateUrl: 'views/admin-contactus-listing.html',
+        controller: 'AdminContactusListingCtrl'
+      })
+      .when('/admin-contactus-detail', {
+        templateUrl: 'views/admin-contactus-detail.html',
+        controller: 'AdminContactusDetailCtrl'
+      })
+      .when('/why-soul', {
+        templateUrl: 'views/why-soul.html',
+        controller: 'WhySoulCtrl'
+      })
+      .when('/about-us', {
+        templateUrl: 'views/about-us.html',
+        controller: 'AboutUsCtrl'
       })
       .otherwise({
         redirectTo: '/'

@@ -65,6 +65,8 @@ $app->post('/get_RestrictionFeeling', 'getRestrictionFeeling');
 
 $app->get('/heart_Statics', 'heartStatics');
 $app->post('/search_HeartStatics', 'searchHeartStatics');
+$app->get('/get_ContactUs', 'getContactUs');
+$app->get('/get_ContactDetail/:id', 'getContactDetail');
 
 
 function checkAdminLogin() {
@@ -1229,3 +1231,33 @@ function searchHeartStatics() {
   echo json_encode($statics);
 }
 
+function getContactUs() {
+  
+  $sql = "select * from `ContactUs` where 1";
+  try {
+    $db = getConnection();
+      $stmt = $db->prepare($sql);
+      $stmt->execute();
+      $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+      $db = null;
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}
+
+function getContactDetail($id) {
+  
+  $sql = "select * from `ContactUs` where Id=:id";
+  try {
+    $db = getConnection();
+      $stmt = $db->prepare($sql);
+      $stmt->bindParam("id", $id);
+      $stmt->execute();
+      $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+      $db = null;
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+}

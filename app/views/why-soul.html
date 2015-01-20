@@ -1,4 +1,4 @@
-<!--HEADER STARTS HERE-->
+  <!--HEADER STARTS HERE-->
 <header>
   <div class = "row" style="margin-right:10px !important;">
     <div class="row col-sm-8">
@@ -13,18 +13,6 @@
                 <div class="inline-block"><a title="Follow Us" target="_blank" href="http://www.pinterest.com/sophiasanju/soul-cafe/"><img src="images/pinterest.png"></a></div>
                 <div class="inline-block"><a title="SoulCafe Blog" target="_blank" href="http://dsoulcafe.wordpress.com/"><img src="images/blogger.png"></a></div>
       </div>
-    
-       <!-- <div class="col-xs-3 col-sm-4 padding-top-20 pull-left" style="padding-bottom:0px !important;">
-        <div class=" visible-xs hidden-sm"> 
-        <button type="button" class="navbar-toggle top-navbar-toogle no-margin no-padding"  data-toggle="collapse" data-target=".top-navigation"><img src="images/menu.png" style="width:30px"></button>
-        <ul class="nav collapse top-navigation">
-            <li><a href="#">Why SoulCafe </a></li>
-            <li><a href="#">How It Works</a></li>
-            <li><a href="#">The strict “NO-NO” on Soul Cafe</a></li>
-            <div class="clearfix"></div>
-        </ul>
-        </div>            
-        </div> -->
         </div>
 
   </div>
@@ -32,10 +20,34 @@
 <!--HEADER ENDS HERE-->
 
 <!--BANNER START HERE-->
-<div class="container" style="text-align:center;margin-top:30px;margin-bottom:30px;">
- <iframe class="video" src="http://www.youtube.com/embed/jS6-2gVQS4Y" frameborder="0" allowfullscreen></iframe>
+<div class="bck-img-why">
+  <div class="transperent-why">
+<div class="container" style="text-align:center; padding-top:30px;padding-bottom:30px;">
+   
+  <div class="container" > 
+    <!-- Carousel
+        ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carouselw"> 
+      <!-- Indicators -->
+      
+      <div class="carousel-inner">
+        <div ng-class="{item: true, active : (img.no === 0)}" ng-repeat="img in images"> <img ng-src="{{img.src}}" alt="Slide numder {{img.no}}" style="width:100%;  height: 500px;">
+          <div class="container">
+            <div class="carousel-caption"> </div>
+          </div>
+          <a ng-hide="img.hide" class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left" style="color:#4c2500;"></span></a> 
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right" style="color:#4c2500;"></span></a> 
+        </div>
+      </div>
+      </div>
+    <!-- /.carousel --> 
+    
+    <!-- Fixed navbar -->
+    
+  </div>
 </div>
-
+</div>
+</div>
 <!--BANNER ENDS HERE-->
   
 <!--FOOTER STARTS HERE-->

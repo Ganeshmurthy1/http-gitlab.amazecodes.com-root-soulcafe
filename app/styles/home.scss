@@ -1,6 +1,40 @@
 .myborder{
 	
 }
+.height-adjust{
+	height:800px;
+}
+span {
+&:hover{
+    cursor:pointer !important;
+}
+}
+.carousel-control.right {
+background-image: none !important;
+}
+.carousel-control.left {
+background-image: none !important;
+}
+.bck-img-why{
+	background:url("../images/banner.jpg") no-repeat scroll center center / cover rgba(0, 0, 0, 0);
+	width:100%;
+}
+.transperent-why{
+	background: rgba(#ffffff, 0.5);	
+	width:100%;
+}
+.bck-img-contctus{
+	background:url("../images/banner.jpg") no-repeat scroll center center / cover rgba(0, 0, 0, 0);
+	
+	width:100%;
+	min-height:750px;
+
+}
+.transperent1{
+	background: rgba(#ffffff, 0.5);	
+	width:100%;
+	min-height:750px;
+}
 .perMatch{
 	margin:5px 0% !important;
 	padding-right:0px !important;
@@ -32,7 +66,9 @@
 .transperent{
 	background: rgba(#ffffff, 0.5);	
 	border: 1px solid black;
+
 }
+
 .caret-custm{
 	margin-left:5px !important;
 }
@@ -252,6 +288,7 @@ margin-right:5px !important;
 
 a:hover{
 	color:#593a1d !important;
+	cursor:pointer;
 }
 .morebutton{
 	margin-right:17%;
@@ -304,6 +341,7 @@ a:hover{
 
 	a:hover{
 	color:#ffffff !important;
+	cursor:pointer;
 }
 
 }
@@ -864,6 +902,9 @@ background: linear-gradient(270deg, #f2f2f2 80%, #d8d6d2 88%) repeat scroll 0 0 
 }
 }
 @media (min-width: 768px) {
+.height-adjust{
+	height:550px;
+}
 .video{
 	width:70%;
 	min-height:300px;
@@ -1028,6 +1069,9 @@ min-height: 1150px;
 
 
 @media (min-width: 992px) {
+.height-adjust{
+	height:550px;
+}
 .video{
 	width:70%;
 	min-height:400px;
@@ -1181,6 +1225,9 @@ min-height: 1150px;
 }
 
 @media (min-width: 1200px) {
+.height-adjust{
+	height:550px;
+}
 .video{
 	width:70%;
 	min-height:400px;
