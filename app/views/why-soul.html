@@ -24,14 +24,21 @@
   <div class="transperent-why">
 <div class="container" style="text-align:center; padding-top:30px;padding-bottom:30px;">
    
-  <div class="container" > 
     <!-- Carousel
         ================================================== -->
-    <div id="myCarousel" class="carousel slide" data-ride="carouselw"> 
+      <div class="pos-rel">
+       <a class=" fixer" title="Close" href="#/" >
+        <i class="icon-custom rounded-x icon-bg-u fa fa-times" ></i>
+      </a>
+      </div>
+        
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" > 
       <!-- Indicators -->
       
-      <div class="carousel-inner">
+      <div class="carousel-inner" >
+        
         <div ng-class="{item: true, active : (img.no === 0)}" ng-repeat="img in images"> <img ng-src="{{img.src}}" alt="Slide numder {{img.no}}" style="width:100%;  height: 500px;">
+
           <div class="container">
             <div class="carousel-caption"> </div>
           </div>
@@ -44,7 +51,7 @@
     
     <!-- Fixed navbar -->
     
-  </div>
+
 </div>
 </div>
 </div>

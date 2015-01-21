@@ -33,8 +33,8 @@ angular.module('sassApp')
 	  dataFactory.Messages['111'] = {'msg': 'The Topic will be posted soon after review!!!!	 ', 'type': 'success'};
 	  dataFactory.Messages['112'] = {'msg': 'Your comment will be posted only after moderation!!!!	 ', 'type': 'danger'};
 	  dataFactory.Messages['113'] = {'msg': 'You reported comment as Spam!!!!	 ', 'type': 'success'};
-	   dataFactory.Messages['114'] = {'msg': 'Profile updated sucessfully!!!!	 ', 'type': 'success'};
-	  
+	  dataFactory.Messages['114'] = {'msg': 'Profile updated sucessfully!!!!	 ', 'type': 'success'};
+	  dataFactory.Messages['115'] = {'msg': 'Thank You for reaching out. We will respond to you soon!!!!	 ', 'type': 'success'};
 		
  
 	  return dataFactory;

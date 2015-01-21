@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('ContactUsCtrl', function ($scope,regService) {
+  .controller('ContactUsCtrl', function ($scope,regService,messageCodes) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -19,7 +19,11 @@ angular.module('sassApp')
     	console.log($scope.cnct);
     	regService.addContact($scope.cnct).then(function(response) {
   		  if (response.data == 'true') {
-  			 console.log("Abhik");
+  			 $scope.q = '';
+    var q = 115;
+    if (q != null) {
+      $scope.q = messageCodes.Messages[q];
+  }
   		  }
   		  else {
   			  
