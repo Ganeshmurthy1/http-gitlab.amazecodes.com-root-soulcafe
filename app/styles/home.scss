@@ -3,7 +3,7 @@
 }
 
 .height-adjust{
-	height:800px;
+	height:550px;
 }
 
 
@@ -241,12 +241,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6e6e6', end
 .float-left{float:left;}
 
 .footer-style{
-	padding:0% 10% 0% 10%; 
+	padding:0% 4% 0% 4%; 
 	border-left:1px solid #4c2500;
 }
 .padding-top-4p{padding-top:4% ! important;}
 .padding-left-10p{padding-left:10% ! important;}
-.padding-right-10p{padding-right:10% ! important;}
+.padding-right-10p{padding-right:4% ! important;}
 .padding-10{
 	padding:10px;
 }
@@ -899,10 +899,26 @@ background: linear-gradient(270deg, #f2f2f2 80%, #d8d6d2 88%) repeat scroll 0 0 
 	min-height:300px;
 }
 
+.footer-logo{
+	text-align:center;
+}
+
+.footer-link{
+	text-align:center;
+}
+footer{
+	padding:0px !important;
+	padding-bottom:5px !important;
+}
+
 /*-------------------------------------Media Queries------------------------------------*/
 
 /*-----------Mobile Potrait-----------*/
 @media (min-width: 320px) {
+.footer-logo{
+	text-align:center;
+}
+
 .fixer {
     left: 92%;
     position: absolute;
@@ -935,6 +951,11 @@ background: linear-gradient(270deg, #f2f2f2 80%, #d8d6d2 88%) repeat scroll 0 0 
 
 /*-----------Mobile Landscape-----------*/
 @media (min-width: 480px) {
+.alignment-tab1 {
+    
+    margin-left: 5% !important;
+   
+}
 	.fixer {
     	left: 94.5%;
 	}
@@ -943,6 +964,9 @@ background: linear-gradient(270deg, #f2f2f2 80%, #d8d6d2 88%) repeat scroll 0 0 
 	}
 	.fixer-contact {
    left: 94.5%;
+}
+.height-adjust{
+	height:650px;
 }
 	
 
@@ -967,6 +991,9 @@ background: linear-gradient(270deg, #f2f2f2 80%, #d8d6d2 88%) repeat scroll 0 0 
 }
 .fixer-contact {
     left: 95.5%;
+}
+.height-adjust{
+	height:450px;
 }
 
 
@@ -1005,11 +1032,18 @@ background: linear-gradient(270deg, #f2f2f2 80%, #d8d6d2 88%) repeat scroll 0 0 
 .fixer-contact {
     left: 95.5%;
 }
+.footer-link{
+	padding-left:15%;
+}
 
 }
 
 /*----------- Tablet Potrait-----------*/
 @media (min-width: 768px) {
+.footer-link{
+	padding-left:15%;
+}
+
 .fixer {
     left: 97%;
 }
@@ -1192,6 +1226,13 @@ min-height: 1150px;
 
 /*----------- Tablet Landscape-----------*/
 @media (min-width: 1024px) {
+.footer-link{
+	padding-left:20%;
+}
+
+.height-adjust{
+	height:600px;
+}
 	.carousel-control .glyphicon-chevron-right, .carousel-control .icon-next {
     margin-right: -70px;
 }
@@ -1214,7 +1255,7 @@ min-height: 1150px;
     margin-left: -70px;
 }
 .height-adjust{
-	height:550px;
+	height:600px;
 }
 .video{
 	width:70%;
@@ -1369,6 +1410,20 @@ min-height: 1150px;
 }
 
 @media (min-width: 1200px) {
+.footer-logo{
+	text-align:left;
+}
+.footer-link{
+	padding-top:4%;
+	padding-left:0%;
+}
+.footer-style{
+	padding:0% 2% 0% 2%; 
+	border-left:1px solid #4c2500;
+}
+.contact-form{
+	margin-left:10%;
+}
 .fixer-no {
     left: 83%;
 }

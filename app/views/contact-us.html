@@ -36,8 +36,9 @@
 			 <div class="alert alert-{{q.type}} fade in" ng-show="q">{{q.msg}}
 			         <a class="close" href="#/" type="button">×</a>
 			    </div>
+			    <div class="col-md-12">
 			<form id="sky-form4" class="sky-form" name="contact" data-ng-submit="contact.$valid && cnctUs()" novalidate>
-				<fieldset>
+				<fieldset class="contact-form">
 
 					<section>
 						<label>Name <span class="color-red">*</span></label>
@@ -70,13 +71,13 @@
 					</section>
 
 					<section>
-						<label>Contact Number<span class="color-red">*</span></label>
+						<label>Contact Number</label>
 						<label class="input">
 						<div data-ng-class="{ 'has-error' : contact.cnctus.$invalid && !contact.cnctus.$pristine || contact.cnctus.$invalid  &&submitted }">
-		                  		<input type="text" ng-pattern="/^\d{0,10}(\.\d{1,10})?$/" name="cnctus" id="subject" data-ng-model="cnct.num" placeholder="Enter Contact Number" required>
-		                  		<p data-ng-show="(contact.cnctus.$invalid && !contact.cnctus.$pristine) || (contact.cnctus.$invalid  &&submitted) " class="help-block">Numder is required.</p>												  
+		                  		<input type="text" ng-pattern="/^\d{0,10}(\.\d{1,10})?$/" name="cnctus" id="subject" data-ng-model="cnct.num" placeholder="Enter Contact Number" >
+		                  														  
                         	</div> 
-							<!-- <div ng-show="contact.cnctus.$error.pattern" style="color:#a94442;">Please Enter Valid Number</div> -->
+							<div ng-show="contact.cnctus.$error.pattern" style="color:#a94442;">Please Enter Valid Number</div>
 						</label>
 					</section>
 				
@@ -85,7 +86,7 @@
 						<label class="textarea">
 							
 							<div data-ng-class="{ 'has-error' : contact.message.$invalid && !contact.message.$pristine || contact.message.$invalid  &&submitted }">
-		                  		<textarea rows="4" name="message" data-ng-model="cnct.message" required></textarea>
+		                  		<textarea rows="4" name="message" data-ng-model="cnct.message" placeholder="Enter Message" required></textarea>
 		                  		<p data-ng-show="(contact.message.$invalid && !contact.message.$pristine) || (contact.message.$invalid  &&submitted) " class="help-block">Message is required.</p>												  
                         	</div> 
 						</label>
@@ -93,10 +94,14 @@
 
 				</fieldset>
 
-				<footer>
+				<footer >
+				<div class="pull-right">
 					<button class="btn-u" type="submit" data-ng-click="submitted=true">Submit</button>
+				</div>
+					
 				</footer>
 			</form>
+			</div>
 			</div>
 		</div>
 	</div>
