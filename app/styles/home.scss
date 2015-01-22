@@ -6,7 +6,9 @@
 	height:550px;
 }
 
-
+.top-navigation:before {
+    left: -1px !important;
+}
 
 .fixer {
 	position: absolute;
@@ -516,9 +518,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6e6e6', end
 .settingicon{
 	display:none;
 }
-.top-navigation:before{
-	left:5px !important;
-}
+
 
 .uppercase123 {
     text-transform: uppercase;
