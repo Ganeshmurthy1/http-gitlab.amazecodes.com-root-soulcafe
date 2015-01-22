@@ -1,10 +1,11 @@
 .myborder{
-	
+	border:1px solid red;
 }
 
 .height-adjust{
 	height:550px;
 }
+
 
 
 .fixer {
@@ -491,6 +492,7 @@ a:hover{
 .hideblock{
 	display:none;	
 }
+
 .wordcloud{
 	display:none;
 }
@@ -891,7 +893,7 @@ background: linear-gradient(270deg, #f2f2f2 80%, #d8d6d2 88%) repeat scroll 0 0 
 }
 
 .okmargin{
-	margin-left:28% !important;
+	margin-left:20% !important;
 }
 
 .video{
@@ -910,15 +912,26 @@ footer{
 	padding:0px !important;
 	padding-bottom:5px !important;
 }
+.socio-hide{
+	display:none;
+}
 
 /*-------------------------------------Media Queries------------------------------------*/
 
 /*-----------Mobile Potrait-----------*/
 @media (min-width: 320px) {
+.okmargin{
+	margin-left:20% !important;
+}
 .footer-logo{
 	text-align:center;
 }
-
+.dropdown-menu {
+	left:-20px;
+}
+.socio-hide{
+	display:none;
+}
 .fixer {
     left: 92%;
     position: absolute;
@@ -937,9 +950,6 @@ footer{
     z-index: 999;
 }
 
-.okmargin{
-	margin-left:28% !important;
-}
 	.mobile-clear {
 	    clear: none !important;
 	}
@@ -951,6 +961,15 @@ footer{
 
 /*-----------Mobile Landscape-----------*/
 @media (min-width: 480px) {
+.okmargin{
+	margin-left:33% !important;
+}
+.socio-hide{
+	display:none;
+}
+.dropdown-menu {
+	left:-20px;
+}
 .alignment-tab1 {
     
     margin-left: 5% !important;
@@ -972,20 +991,15 @@ footer{
 
 }
 
-@media (min-width: 360px) {
-.okmargin{
-	margin-left:28% !important;
-}
-	.mobile-clear {
-	    clear:both;
-	}
-	.mobile-align1 {
-	    margin-left: 22% !important;
-	}
-}
 
 /*-----------Small Tablet Potrait-----------*/
 @media (min-width: 600px) {
+.dropdown-menu {
+	left:-20px;
+}
+.socio-hide{
+	display:block;
+}
 .fixer {
     	left: 95%;
 }
@@ -996,7 +1010,9 @@ footer{
 	height:450px;
 }
 
-
+.hideblock{
+	display:none;	
+}
 .fortab{
 	float:right !important;
 	width: 50% !important;
@@ -1005,7 +1021,7 @@ footer{
 	min-height: 550px;
 }
 .okmargin{
-	margin-left:28% !important;
+	margin-left:38% !important;
 }
 .alignment-tab {
     margin-left: 0% !important;
@@ -1023,6 +1039,15 @@ footer{
 
 /*-----------Small Tablet Landscape-----------*/
 @media (min-width: 800px) {
+.dropdown-menu {
+	left:-20px;
+}
+.socio-hide{
+	display:block;
+}
+.hideblock{
+	display:none;	
+}
 .fixer {
     	left: 97%;
 	}
@@ -1043,7 +1068,9 @@ footer{
 .footer-link{
 	padding-left:15%;
 }
-
+.socio-hide{
+	display:block;
+}
 .fixer {
     left: 97%;
 }
@@ -1229,7 +1256,9 @@ min-height: 1150px;
 .footer-link{
 	padding-left:20%;
 }
-
+.socio-hide{
+	display:block;
+}
 .height-adjust{
 	height:600px;
 }
@@ -1250,7 +1279,9 @@ min-height: 1150px;
 .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next {
     margin-right: -70px;
 }
-
+.socio-hide{
+	display:block;
+}
 .carousel-control .glyphicon-chevron-left, .carousel-control .icon-prev {
     margin-left: -70px;
 }
