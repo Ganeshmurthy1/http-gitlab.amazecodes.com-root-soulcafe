@@ -303,7 +303,7 @@ function getTheFilteredUsers($user_obj) {
 
 function getTheBatch() {
   // $user_id  = getUserId();
-  $sql = "SELECT user_id, gender, birthdate FROM users where status = 1  AND user_id NOT IN (SELECT UserId FROM AlgorithamProcessed) ORDER BY DateJoined DESC LIMIT 0, 10";
+  $sql = "SELECT user_id, gender, birthdate FROM users where status = 1  AND user_id NOT IN (SELECT UserId FROM AlgorithamProcessed) ORDER BY DateJoined DESC LIMIT 0, 20";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
