@@ -17,7 +17,7 @@ angular.module('sassApp')
       dataFactory.setConfigruation = function () {
         localStorageService.set('config', {
                   base_path:'/SASS/api/',
-                  image_path:'http://192.168.1.129/SASS/api/uploads/'                
+                  image_path:'http://192.168.1.130/SASS/api/uploads/'                
               });        
       }
 
