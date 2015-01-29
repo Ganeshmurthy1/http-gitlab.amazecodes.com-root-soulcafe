@@ -81,7 +81,9 @@ function getQnCategory() {
 }
 
 function algBatch() {
-  print '<pre>';
+  
+  $start = microtime(true);
+  //print '<pre>';
   $user_list = getTheBatch();
   //print_r($user_list);
   // get the filterd users
@@ -90,7 +92,8 @@ function algBatch() {
     matchProcessor($user_list[$i], $categoryWeight);
   }
   
-  
+  $time_elapsed_us = microtime(true) - $start;
+  print $time_elapsed_us;
   
   
 
@@ -303,7 +306,7 @@ function getTheFilteredUsers($user_obj) {
 
 function getTheBatch() {
   // $user_id  = getUserId();
-  $sql = "SELECT user_id, gender, birthdate FROM users where status = 1  AND user_id NOT IN (SELECT UserId FROM AlgorithamProcessed) ORDER BY DateJoined DESC LIMIT 0, 20";
+  $sql = "SELECT user_id, gender, birthdate FROM users where status = 1  AND user_id NOT IN (SELECT UserId FROM AlgorithamProcessed) ORDER BY DateJoined DESC LIMIT 0, 10";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
