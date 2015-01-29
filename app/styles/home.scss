@@ -2,6 +2,20 @@
 	border:1px solid red;
 }
 
+i.icon-custom1{
+	border: 1px solid #555;
+    color: #555;
+    display: inline-block;
+    font-size: 33px;
+    font-weight: 100 !important;
+    height: 32px;
+    line-height: 29px;
+   
+    padding-top: 0 !important;
+    text-align: center;
+    width: 32px;
+}
+
 .height-adjust{
 	height:550px;
 }
@@ -898,7 +912,7 @@ background: linear-gradient(270deg, #f2f2f2 80%, #d8d6d2 88%) repeat scroll 0 0 
 
 .video{
 	width:100%;
-	min-height:300px;
+	height:300px;
 }
 
 .footer-logo{
@@ -935,7 +949,7 @@ footer{
 .fixer {
     left: 92%;
     position: absolute;
-    top: -21px;
+    top: -19px;
     z-index: 999;
 }
 .fixer-no {
@@ -1052,7 +1066,7 @@ footer{
     	left: 97%;
 	}
 .fixer-no {
-    left: 81.5%;
+    left: 97%;
 }
 .fixer-contact {
     left: 95.5%;
@@ -1076,7 +1090,7 @@ footer{
 }
 
 .fixer-no {
-    left: 82%;
+    left: 97%;
 }
 
 .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next {
@@ -1090,8 +1104,8 @@ footer{
 	height:550px;
 }
 .video{
-	width:70%;
-	min-height:300px;
+	width:100%;
+	min-height:400px;
 }
 .fortab{
 	float:none !important;
@@ -1289,8 +1303,8 @@ min-height: 1150px;
 	height:600px;
 }
 .video{
-	width:70%;
-	min-height:400px;
+	width:100%;
+	min-height:640px;
 }
 .left-signup {
 	padding-top:100px;
@@ -1456,7 +1470,7 @@ min-height: 1150px;
 	margin-left:10%;
 }
 .fixer-no {
-    left: 83%;
+    left: 98%;
 }
 .fixer{
 	left:98.5%;
@@ -1472,8 +1486,8 @@ min-height: 1150px;
 	height:550px;
 }
 .video{
-	width:70%;
-	min-height:400px;
+	width:100%;
+	min-height:640px;
 }
 .left-signup {
 	padding-top:100px;
