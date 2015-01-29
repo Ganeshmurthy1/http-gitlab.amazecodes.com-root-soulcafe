@@ -489,7 +489,7 @@ function rejectGTKY($id) {
 
 function getHomeData() {
   $user_id  = getUserId();
-  $sql = "SELECT s.SoulId,u.Picture,u.first_name,u.last_name, u.birthdate FROM SoulMatches as s inner join users as u on s.SoulId=u.user_id WHERE s.UserId=:userId and u.status = 1 ORDER BY s.ScorePercentage DESC, s.MatchType, u.DateJoined DESC";
+  $sql = "SELECT s.SoulId,u.Picture,u.first_name,u.last_name, u.birthdate FROM SoulMatches as s inner join users as u on s.SoulId=u.user_id WHERE s.UserId=:userId and u.status = 1 ORDER BY s.ScorePercentage DESC, s.MatchType, u.DateJoined DESC LIMIT 0, 20";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
