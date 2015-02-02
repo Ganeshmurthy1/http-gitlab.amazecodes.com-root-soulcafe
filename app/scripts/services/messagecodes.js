@@ -35,7 +35,8 @@ angular.module('sassApp')
 	  dataFactory.Messages['113'] = {'msg': 'You reported comment as Spam!!!!	 ', 'type': 'success'};
 	  dataFactory.Messages['114'] = {'msg': 'Profile updated sucessfully!!!!	 ', 'type': 'success'};
 	  dataFactory.Messages['115'] = {'msg': 'Thank You for reaching out. We will respond to you soon!!!!	 ', 'type': 'success'};
-		
+	  dataFactory.Messages['116'] = {'msg': 'Sorry, we are yet to find a match for you. Please be part of the conversations groups and make sure your profile information is complete. We will have the right recommendations for you soon.	 ', 'type': 'danger'};
+			
  
 	  return dataFactory;
   });
