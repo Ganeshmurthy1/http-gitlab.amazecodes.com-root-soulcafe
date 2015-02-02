@@ -75,6 +75,16 @@
 				</div>
 
 				</slick>
+				<div ng-show="matchWizard" class="row">
+				<div class="cafe-throbber" ng-show="throbber"> </div>
+				<div class="alert alert-{{err.type}} fade in" ng-show="err">{{err.msg}}
+			         <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+			    </div>
+				<div class="col-md-12"><a ng-click="checkMatch()" style="color:#5bc0de;">Check Recommendations</a></div>
+				
+				 </div>
+				
+				
 				</div>
 
 				<div class="row home-block my-border">

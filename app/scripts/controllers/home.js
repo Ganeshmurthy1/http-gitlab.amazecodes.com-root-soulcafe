@@ -8,7 +8,7 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('HomeCtrl',['$scope','$location','localStorageService','regService', '$routeParams','profileOperations','$anchorScroll','$modal', '$log', 'messageCodes', function ($scope, $location, localStorageService, regService, $routeParams, profileOperations,$anchorScroll,$modal, $log, messageCodes) {
+  .controller('HomeCtrl',['$scope','$location','localStorageService','regService', '$routeParams','profileOperations','$anchorScroll','$modal', '$log', 'messageCodes', '$route', function ($scope, $location, localStorageService, regService, $routeParams, profileOperations,$anchorScroll,$modal, $log, messageCodes, $route) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -30,7 +30,8 @@ angular.module('sassApp')
     $scope.reject = $routeParams.reject;    
     var config = localStorageService.get('config');
     $scope.imagepath = config.image_path;
-    
+    getTheHomedata();
+function getTheHomedata() {
      regService.getHomeData().then(function (results) {
     	 $scope.updates=results.data.forum;
        $scope.loginCount = results.data.login[0].LoginCount;
@@ -83,29 +84,39 @@ angular.module('sassApp')
 
     return interval + ' ' + intervalType;
 };
-    	 var tt = {};
-    	 $scope.recomandation = [];
-    	 for ( var int = 0; int < results.data.matches.length; int++) {
-    		 	var d1 = new Date(results.data.matches[int].birthdate);
-    		    var d2 = new Date();
-    		    var diff = d2.getFullYear()-d1.getFullYear();
-    		    $scope.recomandation[int] = results.data.matches[int];
-    		    $scope.recomandation[int].age = diff;
-    		    	
-    	 }
-    	
-    	 $scope.caroselImage=['http://www.chem.uit.no/KJEMI/ghosh.jpg','http://www.american.edu/uploads/profiles/large/chris_palmer_profile_11.jpg',
-    	                         'http://media.cirrusmedia.com.au/LW_Media_Library/594partner-profile-pic-An.jpg',
-    	                         'http://2.bp.blogspot.com/-dZKdgsUW2y0/Une2h3IIVMI/AAAAAAAAC1o/tqJJFHKzHfY/s640/katrina-kaif-Complete-Profile.jpg','http://4.bp.blogspot.com/--fWusEFYKHg/UT8Wr9TVAlI/AAAAAAAAABY/9_HoTCeoA3c/s1600/url.jpeg']; 
-    	  
-         
+	 var tt = {};
+	 $scope.recomandation = [];
+	 for ( var int = 0; int < results.data.matches.length; int++) {
+		 	var d1 = new Date(results.data.matches[int].birthdate);
+		    var d2 = new Date();
+		    var diff = d2.getFullYear()-d1.getFullYear();
+		    $scope.recomandation[int] = results.data.matches[int];
+		    $scope.recomandation[int].age = diff;		    	
+	 }
+	 if (!$scope.recomandation.length) {
+		 $scope.matchWizard = 1;
+	 }
+          
       if ($scope.loginCount == 0) {
         $scope.open(123);
       };
          
      });
-
-
+  }
+     $scope.checkMatch = function(){
+    	 $scope.throbber = 1;  
+    	 regService.getMyRecommendations().then(function (resresults) {
+    		 $scope.throbber = false;     
+    		 console.log(resresults.data.totalMatch);
+    		 if(resresults.data.totalMatch == 0) {
+    			 $scope.noMatchMessage = 1;
+    			 $scope.err = messageCodes.Messages[116];
+    		 } else {
+    			 $route.reload();
+    		 }
+    	 });
+    	 
+     }
 
     $scope.thumbup = 'true';
     $scope.profileverify = '75';

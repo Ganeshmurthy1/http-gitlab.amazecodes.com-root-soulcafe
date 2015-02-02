@@ -320,6 +320,11 @@ angular.module('sassApp')
                 return response;
             });	
 	    };
+	    dataFactory.getMyRecommendations = function () {	
+	     	return $http.get(urlBase + 'get_my_recommendation').then(function(response) {
+                return response;
+            });	
+	    };
 	    
 	    return dataFactory;
 	}]);

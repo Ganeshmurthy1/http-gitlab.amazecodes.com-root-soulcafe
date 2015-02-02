@@ -5,8 +5,37 @@ $app->get('/alg_batch_process', 'algBatch');
 
 $app->get('/alg_processor_one_one/:y', 'algControllerOneOne');
 
+$app->get('/get_my_recommendation', 'getMyRecommendation');
 
-function algControllerOneOne($y) {
+function getMyRecommendation() {
+  $start = microtime(true);
+  $x  = getUserId();
+  $my_details = getMyBatch();
+  //print_r($my_details);
+  $categoryWeight = getQnCategory();
+  for ($i = 0; $i < count($my_details); $i++) {
+    matchProcessor($my_details[$i], $categoryWeight);
+   // print $i;
+  }
+  $sql = "SELECT COUNT(1) as totalMatch FROM SoulMatches WHERE UserId = :userId";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("userId", $x);
+    $stmt->execute();
+    $wineMatches = $stmt->fetchObject();
+    //$db = null;
+  
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  echo json_encode($wineMatches);
+  $time_elapsed_us = microtime(true) - $start;
+  //print $time_elapsed_us;
+}
+
+function algControllerOneOne($y) {  $time_elapsed_us = microtime(true) - $start;
+  print $time_elapsed_us;
   $questions = algorithmGetAllQuestions();
   //$x = 116;
   // $y = 117;
@@ -304,9 +333,29 @@ function getTheFilteredUsers($user_obj) {
   }
 }
 
+function getMyBatch() {
+  $x  = getUserId();
+  $sql = "SELECT user_id, gender, birthdate FROM users where status = 1 AND user_id = :user_id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("user_id", $x);
+    // $stmt->bindParam("col", $y);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    //$db = null;
+    // print_r($wine);
+  
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  return $wine;
+  
+}
+
 function getTheBatch() {
   // $user_id  = getUserId();
-  $sql = "SELECT user_id, gender, birthdate FROM users where status = 1  AND user_id NOT IN (SELECT UserId FROM AlgorithamProcessed) ORDER BY DateJoined DESC LIMIT 0, 10";
+  $sql = "SELECT user_id, gender, birthdate FROM users where status = 1  AND user_id NOT IN (SELECT UserId FROM AlgorithamProcessed) ORDER BY DateJoined  LIMIT 0, 10";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
