@@ -30,6 +30,9 @@ $app->get('/history_Feeling', 'historyFeeling');
 $app->get('/check_feelings_status/:id', 'checkFeeling');
 $app->get('/get_Member/:id', 'getMember');
 $app->get('/update_Login', 'updateLogin');
+$app->get('/get_Likes', 'getLikes');
+$app->post('/insert_Likes', 'insertLikes');
+
 
 function getUserMatch() {
  
@@ -564,10 +567,33 @@ function getMyProfileDetails() {
     echo '{"error":{"text":'. $e->getMessage() .'}}'; 
   }
 
-  $data['values'] = $wine;
-  $data['ownwords'] = $wineOW;
+  $sqlL = "Select * from Likes where UserId = :user_id";
+  try {
+    $db = getConnection();
+    $stmtL = $db->prepare($sqlL);  
+    $stmtL->bindParam("user_id", $user_id );
+    $stmtL->execute();
+    $wineL = $stmtL->fetchObject();
+    $db = null;
 
-  echo json_encode($data);
+    if($wineL != null){
+      $wineL->Text = unserialize($wineL->Text);
+      $data['values'] = $wine;
+      $data['ownwords'] = $wineOW;
+      $data['likes'] = $wineL;
+      echo json_encode($data);
+       // echo json_encode($wineL);
+    } else{
+     $data['values'] = $wine;
+      $data['ownwords'] = $wineOW;
+      $data['likes'] = $wineL;
+      echo json_encode($data);
+    }
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+
+
 }
 
 function getCommentLike($id) {
@@ -963,3 +989,55 @@ function updateLogin() {
 
 }
 
+function getLikes() {
+    $user_id  = getUserId();
+   
+  $sql = "Select * from Likes where UserId = :user_id";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);  
+    $stmt->bindParam("user_id", $user_id );
+    $stmt->execute();
+    $wine = $stmt->fetchObject();
+    $db = null;
+
+    if($wine != null){
+      $wine->Text = unserialize($wine->Text);
+       echo json_encode($wine);
+    } else{
+      echo json_encode($wine);
+    }
+    
+     // echo 'true';
+      
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+
+}
+
+function insertLikes() {
+  $request = Slim::getInstance()->request();
+  $user = json_decode($request->getBody());
+  //print_r($user);
+  $like = serialize($user->likes);
+  
+  $user_id  = getUserId();
+
+  
+  $sql = "Insert into Likes (UserId,Text) values (:UserId,:text)";
+  
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);  
+    $stmt->bindParam("UserId", $user_id);
+    $stmt->bindParam("text", $like);
+    $stmt->execute();
+    $db = null;
+
+     echo 'true';
+    //$app->redirect('login.html');
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+  }
+ }

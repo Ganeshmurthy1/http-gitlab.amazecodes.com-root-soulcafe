@@ -180,5 +180,21 @@ angular.module('sassApp')
             return response;
           });  
       };
+      dataFactory.getLikes = function () {
+        // console.log(id); 
+          return $http.get(urlBase + 'get_Likes').then(function(response) {
+           //console.log(response);
+            return response;
+          });  
+      };
+      dataFactory.insertLikes = function (param) {        
+          var args=new Object();
+          args.likes = param;
+          
+          return $http.post(urlBase + 'insert_Likes',args).then(function(response) {
+          //console.log(response);
+                return response;
+            });  
+     };
     return dataFactory;
   }]);

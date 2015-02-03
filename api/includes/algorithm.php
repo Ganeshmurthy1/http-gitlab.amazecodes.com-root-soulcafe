@@ -34,8 +34,7 @@ function getMyRecommendation() {
   //print $time_elapsed_us;
 }
 
-function algControllerOneOne($y) {  $time_elapsed_us = microtime(true) - $start;
-  print $time_elapsed_us;
+function algControllerOneOne($y) { 
   $questions = algorithmGetAllQuestions();
   //$x = 116;
   // $y = 117;

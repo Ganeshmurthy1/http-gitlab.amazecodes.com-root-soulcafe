@@ -129,7 +129,9 @@ angular.module('sassApp')
           });
          	 
          }else {
+          
         	 $scope.errorMessage = response.data;
+           
         	 
          }
       });
