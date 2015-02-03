@@ -14,7 +14,7 @@
                                 <img class="rounded-x" src="{{imagepath}}{{img}}" style="width:80px;height:80px;">
                             </div>
                             <div class="col-sm-9 col-xs-12" >
-                                <h1 class="heading-sm">{{topicName}} (<a ng-hide="memhide" ng-click="open(discussionid)">Members: {{total}}</a><a ng-show="memhide">Members: {{total}}</a>)</h1>
+                                <h1 class="heading-sm">{{topicName}} (<ins><a ng-hide="memhide" ng-click="open(discussionid)">Members: {{total}}</a><a ng-show="memhide">Members: {{total}}</a></ins>)</h1>
                                 <p style="font-size:18px !important;">{{desc}}</p>
                             </div>
                         </div>
@@ -28,7 +28,7 @@
                             <div class="pull-right">
                                 <a class="btn-u btn-u-default glow " ng-click="removeUser()" ng-hide="disable">Get Removed</a>
                             
-                                <a class="btn-u btn-u-default glow " href="#/add-topic?discussId={{discussionid}}" ng-hide="disable">Add New Topic</a>
+                                <a class="btn-u btn-u-primary glow " href="#/add-topic?discussId={{discussionid}}" ng-hide="disable">Add New Topic</a>
                            
                                 <a class="btn-u btn-u-sea" ng-click="joinButtonClick(discussionid)" ng-show="disable">Join</a>
                             </div>
@@ -80,7 +80,7 @@
         
             <div class="modal-home-body">
             <div>
-              <div class="col-lg-offset-2 col-lg-8 servive-block-light min-300">
+              <div class="col-lg-offset-2 col-lg-8 servive-block-light min-300" style="padding:15px 15px 0px 15px;">
             
               <div class="alert alert-{{q.type}} fade in" ng-show="q">{{q.msg}}
          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -90,15 +90,17 @@
                             <img class="media-object rounded-x" ng-src="{{imagepath}}{{mem.Picture}}" alt="{{mem.first_name}} {{mem.last_name}}" title="{{mem.first_name}} {{mem.last_name}}" style="width:50px !important; height:50px !important;">
                         </a>
                         <div class="media-body">
-                            <h4 class="media-heading">
+                            <h4 class="media-heading" style="padding-top:10px;">
                                 <a ng-click="otherProfile({{mem.UserId}})" style="cursor:pointer;">{{mem.first_name}} {{mem.last_name}}</a>
                             </h4>
                         </div>
                     </div>
-
-                <div class=" pull-right">
+                    <div class="modal-footer" style="margin-top:0px !important;">
+       <div class=" pull-right">
                     <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
                 </div>
+      </div>
+                
               </div>
             </div>
             
