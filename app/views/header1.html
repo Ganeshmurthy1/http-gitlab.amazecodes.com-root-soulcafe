@@ -1,135 +1,32 @@
-<div class="container-fluid no-padding">
-	<div class="row cheader">
-
-		<div class="col-xs-12 col-sm-12 col-md-12 margint no-padding">
-			
-
-			<div class="col-xs-1 no-padding hidden-sm visible-xs menuicon">
-			    
-			    <button type="button" class="navbar-toggle top-navbar-toogle no-margin no-padding"  data-toggle="collapse" data-target=".top-navigation"><img src="images/menu.png" style="width:30px;top:55px !important;"></button>
-			        <ul class="nav collapse top-navigation" style="top:55px !important;">
-			            <li><a href="#">Home </a></li>
-			            <li><a href="#">My Profile</a></li>        
-			            <li><a href="#">Interests</a></li>
-			            <li><a href="#">Forums</a></li>
-			            <li><a href="#">Friends</a></li>
-			            <li><a href="#">Edit Profile</a></li>
-			            <li><a href="#">Complete Verification</a></li>
-			            <li><a href="#">Settings</a></li>
-			            <li><a href="#">Logout</a></li>
-			            <div class="clearfix"></div>
-			        </ul>
-			              
-	        </div>
-	        <div class="pull-left logoimg"><img src="images/logo_soul.png" alt="" ></div>
-
-
-			<div class="dropdown pull-right settingicon" style="padding-top:5px;">
-			  <a class="btn dropdown-toggle bcolor-brown" type="button" id="dropdownMenu1" data-toggle="dropdown">
-			    <div class="color-white"><i class="fa fa-cog fa-lg"><span class="caret" style="margin-left:5px;"></span></i></div>
-			    
-			  </a>
-			  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Settings</a></li>
-			    <li role="presentation" data-ng-controller="LoginCtrl"><a role="menuitem" tabindex="-1" href="#" data-ng-click="logout()">Logout</a></li>
-			  </ul>
-			</div>
-
-
-
-
-			<!-- <div class="pull-right notify no-padding">
-				<ul class="list-inline badge-lists badge-icons">
-
-			        <li>
-			            <a ng-click="sysMessage()" class="rounded my-pointer"><i class="fa fa-envelope-o fa-2x color-white"></i></a>
-			            <span class="badge badge-yellow rounded-x" ng-show="totalSysMessage">{{totalSysMessage}}</span>
-			        </li>
-			        <li>
-			            <a ng-click="Message()" class="rounded my-pointer"><i class="fa fa-comments fa-2x color-white"></i></a>
-			            <span class="badge badge-blue rounded-x" ng-show="totalMessage">{{totalMessage}}</span>
-			        </li>
-			        <li>
-			            <a ng-click="forumMessage()" class="rounded my-pointer"><i class="fa fa-globe fa-2x color-white"></i></a>
-			            <span class="badge badge-red rounded-x" ng-show="totalForumMessage">{{totalForumMessage}}</span>
-			     	</li>
-			    </ul>
-			</div>
- -->		
-
- 			<div class="dropdown pull-right notifydropdown">
-			  <a class="btn dropdown-toggle rounded my-pointer bcolor-brown" ng-click="forumMessage()" type="button" id="dropdownMenu1" data-toggle="dropdown"><i class="fa fa-globe fa-2x color-white"></i>
-			     <span class="badge badge-red rounded-x" ng-show="totalForumMessage">{{totalForumMessage}}</span>
-			  </a>
-			  <ul class="dropdown-menu" id=" alignright" role="menu" aria-labelledby="dropdownMenu1">
-			    <div class="alert alert-success fade in no-bottom" data-ng-repeat = "message in messages">
-		    	<a href="#/{{message.Link}}" style="display:block; text-decoration:none;">
-		            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-		            {{message.Message}}
-		             {{message.mess}}
-		        </a>
-		        </div>
-			  </ul>
-			</div>	
-
- 			<div class="dropdown pull-right alignright1" style="padding-top:5px;">
-			  <a class="btn dropdown-toggle rounded my-pointer bcolor-brown" ng-click="Message()" type="button" id="dropdownMenu1" data-toggle="dropdown"><i class="fa fa-comments fa-2x color-white"></i>
-			     <span class="badge badge-green rounded-x" ng-show="totalMessage">{{totalMessage}}</span>
-			  </a>
-			  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-			    <div class="alert alert-success fade in no-bottom" data-ng-repeat = "message in messages">
-		    	<a href="#/{{message.Link}}" style="display:block; text-decoration:none;">
-		            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-		            {{message.Message}}
-		             {{message.mess}}
-		        </a>
-		        </div>
-			  </ul>
-			</div>
-
-			<div class="dropdown pull-right alignright2" style="padding-top:5px;">
-			  <a class="btn dropdown-toggle rounded my-pointer bcolor-brown" ng-click="sysMessage()" type="button" id="dropdownMenu1" data-toggle="dropdown"><i class="fa fa-envelope-o fa-2x color-white"></i>
-			     <span class="badge badge-yellow rounded-x" ng-show="totalSysMessage">{{totalSysMessage}}</span>
-			  </a>
-			  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-			    <div class="alert alert-success fade in no-bottom" data-ng-repeat = "message in messages">
-		    	<a href="#/{{message.Link}}" style="display:block; text-decoration:none;">
-		            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-		            {{message.Message}}
-		             {{message.mess}}
-		        </a>
-		        </div>
-			  </ul>
-			</div>	
-
-			
-
-				
-
-
-
-
-
-<!-- <div class="pull-right notice_pop" data-ng-show="popup">    
-    	<div class="alert alert-success fade in no-bottom" data-ng-repeat = "message in messages">
-    	<a href="#/{{message.Link}}" style="display:block; text-decoration:none;">
-            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-            {{message.Message}}
-             {{message.mess}}
-        </a>
+<!--HEADER STARTS HERE-->
+<header>
+  <div class = "row" style="margin-right:10px !important;">
+    <div class="row col-sm-8">
+      <div class="col-sm-offset-7 col-xs-offset-3 col-xs-6 col-sm-4 text-col-xs-center" style="text-align:center;">
+       <a href="#/"><img src="images/logo.png" class="img-responsive"></a>
+      </div>
+      </div>
+      <div class="row col-sm-4">
+      <div class="inline-block pull-right" style="padding-top:20px;">
+              <!-- <div class="inline-block" style="font-weight:600;font-size:17px;padding-top:20px;color:#4c2500;">Follow us</div> -->
+                <div class="inline-block"><a title="Follow Us" target="_blank" href="https://www.facebook.com/SoulCafeIndia"><img src="images/facebook.png"></a></div>
+                <div class="inline-block"><a title="Follow Us" target="_blank" href="http://www.pinterest.com/sophiasanju/soul-cafe/"><img src="images/pinterest.png"></a></div>
+                <div class="inline-block"><a title="SoulCafe Blog" target="_blank" href="http://dsoulcafe.wordpress.com/"><img src="images/blogger.png"></a></div>
+      </div>
+    
+       <div class="col-xs-3 col-sm-4 padding-top-20 pull-left" style="padding-bottom:0px !important;">
+        <div class=" visible-xs hidden-sm"> 
+        <button type="button" class="navbar-toggle top-navbar-toogle no-margin no-padding"  data-toggle="collapse" data-target=".top-navigation"><img src="images/menu.png" style="width:30px"></button>
+        <ul class="nav collapse top-navigation">
+            <li><a href="#/why-soul">Why SoulCafe </a></li>
+            <li><a href="#/why-soulcafe">How It Works</a></li>
+            <li><a href="#/no-no">The strict “NO-NO” on Soul Cafe</a></li>
+            <div class="clearfix"></div>
+        </ul>
+        </div>            
         </div>
-</div> -->
+        </div>
 
-
-			<a class="pull-right home" href="#/home"><strong>Home</strong></a>
-			<a class="pull-right home1" href="#/myprofile"> 
-				<img class="rounded-x" ng-src="{{pic}}" alt="" style="width:20px;height:auto;">
-				<strong>{{datau.userName}} {{datau.lastName}}</strong>
-			</a>
-
-			
-
-		</div>
-	</div>
-
-</div>
+  </div>
+</header>
+<!--HEADER ENDS HERE-->
