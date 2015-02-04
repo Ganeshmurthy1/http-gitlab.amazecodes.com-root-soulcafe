@@ -104,10 +104,10 @@ profileOperations.getMyProfileDetails().then(function(response) {
     $scope.likesdata = response.data.likes;
         if ($scope.likesdata != false) {
           $scope.words = response.data.likes.Text;
-          console.log("Data");
+          
         } else {
           likes();
-          console.log("Update");
+          
         }
      
 

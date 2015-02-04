@@ -23,7 +23,7 @@ angular.module('sassApp')
     var q = $routeParams.q;
     if (q != null) {
       $scope.q = messageCodes.Messages[q];
-  }
+    }
     
     $scope.thumbup = 'true';
     $scope.user_id = $routeParams.user_id;
@@ -38,86 +38,32 @@ angular.module('sassApp')
     }
     
     profileOperations.getMyLifeValues($scope.user_id).then(function(response) {
-      console.log(response.data);
+      // console.log(response.data);
       $scope.interests = response.data;
-     });
+    });
 
-      regService.getUserDetails($scope.user_id).then(function (results) {
-        $scope.userData = results.data;
-        $scope.matchSex = false;
-        if ($scope.userData.gender == $scope.udata.Gender) {
+    regService.getUserDetails($scope.user_id).then(function (results) {
+      $scope.userData = results.data.ud;
+      $scope.words = results.data.likes.Text;
+
+      $scope.matchSex = false;
+      if ($scope.userData.gender == $scope.udata.Gender) {
 			$scope.matchSex = true;
-		}
+		  }
         
-        var d1 = new Date($scope.userData.birthdate);
-        var d2 = new Date();
-        $scope.diff = d2.getFullYear()-d1.getFullYear();
+      var d1 = new Date($scope.userData.birthdate);
+      var d2 = new Date();
+      $scope.diff = d2.getFullYear()-d1.getFullYear();
         
-        var id= $scope.userData.fb_id;
-        var likeData = [];
-	    $facebook.api(id +"/books").then(function(pic) {
-	      
-	      if (pic.data == null) {
-	      }else {
-		      for ( var int = 0; int < pic.data.length; int++) {
-			        var tmpdata = {};
-			        tmpdata.text = pic.data[int].name;
-			        tmpdata.weight = Math.floor(Math.random() * (25 - 15 + 1)) + 15;
-			        likeData.push(tmpdata);
-		      }
-	      }
-	    });
-	      $facebook.api(id +"/movies").then(function(pic) {
-	    	  if (pic.data != null) {
-		    	  for ( var int = 0; int < pic.data.length; int++) {
-		  		        var tmpdata = {};
-		  		        tmpdata.text = pic.data[int].name;
-		  		        tmpdata.weight = Math.floor(Math.random() * (25 - 15 + 1)) + 15;
-		  		        likeData.push(tmpdata);
-		  	      }
-	    	  }
-	    	  
-	      });
-	      
-	      $facebook.api(id +"/music").then(function(pic) {
-	    	  if (pic.data != null) {
-		    	  for ( var int = 0; int < pic.data.length; int++) {
-		  		        var tmpdata = {};
-		  		        tmpdata.text = pic.data[int].name;
-		  		        tmpdata.weight = Math.floor(Math.random() * (25 - 15 + 1)) + 15;
-		  		        likeData.push(tmpdata);
-		  	      }
-	    	  }
-	    	  
-	      });
-	      
-	      $facebook.api(id +"/likes").then(function(pic) {
-	    	  if (pic.data != null) {
-		    	  for ( var int = 0; int < pic.data.length; int++) {
-		  		        var tmpdata = {};
-		  		        tmpdata.text = pic.data[int].name;
-		  		        tmpdata.weight = Math.floor(Math.random() * (15 - 5 + 1)) + 5;
-		  		        likeData.push(tmpdata);
-		  	    	
-		  	      }
-	    	  }
-	    	  
-	      });
-	      
-	    $scope.words = likeData;
-	    
-         if ($scope.userData.linked_update == 1){
-           $scope.thumbup = 'false';
-           $scope.profileverify = '100';
-         }else{
-           $scope.thumbup = 'true';
-         }
-      });
-
-
-     
       
-      
+       if ($scope.userData.linked_update == 1){
+         $scope.thumbup = 'false';
+         $scope.profileverify = '100';
+       }else{
+         $scope.thumbup = 'true';
+       }
+    });
+
       $scope.sendGTKY = function(){
               
       $location.path('/confirmGTKY');

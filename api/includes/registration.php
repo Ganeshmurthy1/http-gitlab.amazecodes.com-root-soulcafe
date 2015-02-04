@@ -157,9 +157,33 @@ function getAllUsers($id) {
     $stmt->execute();
     $wine = $stmt->fetchObject();
     $db = null;
-    echo json_encode($wine);
+    // echo json_encode($wine);
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
+  $sqlL = "Select * from Likes where UserId = :user_id";
+  try {
+    $db = getConnection();
+    $stmtL = $db->prepare($sqlL);  
+    $stmtL->bindParam("user_id", $id );
+    $stmtL->execute();
+    $wineL = $stmtL->fetchObject();
+    $db = null;
+
+    if($wineL != null){
+      $wineL->Text = unserialize($wineL->Text);
+      $data['ud'] = $wine;
+      $data['likes'] = $wineL;
+      echo json_encode($data);
+       // echo json_encode($wineL);
+    } else{
+     $data['ud'] = $wine;
+      $data['likes'] = $wineL;
+      echo json_encode($data);
+    }
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}'; 
   }
 }
 
