@@ -8,13 +8,14 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('AddForumCtrl', function ($scope, $location, regService, $routeParams) {
+  .controller('AddForumCtrl', function ($scope, $location, regService, $routeParams, analytics) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
 
+    analytics.logPageLoad($scope, $location.absUrl(), $location.path());
 
     $scope.addDiscussion = function() {
     	regService.addUserDiscussion($scope.discussion).then(function(response) {

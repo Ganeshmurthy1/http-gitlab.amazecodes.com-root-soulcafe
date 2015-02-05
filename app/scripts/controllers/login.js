@@ -14,6 +14,8 @@ angular.module('sassApp')
       'AngularJS',
       'Karma'
     ];
+
+    
    $rootScope.loggedin = false;
    var authData = localStorageService.get('authorizationData');
    if (authData != null){

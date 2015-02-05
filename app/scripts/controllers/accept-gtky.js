@@ -8,12 +8,14 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('AcceptGtkyCtrl', function ($scope,profileOperations,$location) {
+  .controller('AcceptGtkyCtrl', function ($scope,profileOperations,$location,analytics) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
+    analytics.logPageLoad($scope, $location.absUrl(), $location.path());
 
 profileOperations.getUserSendedGTKY().then(function(response) {
     console.log(response.data);

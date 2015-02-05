@@ -8,12 +8,14 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('DiscussionListCtrl', function ($scope,$location,localStorageService,regService, config, $routeParams,messageCodes) {
+  .controller('DiscussionListCtrl', function ($scope,$location,localStorageService,regService, config, $routeParams,messageCodes,analytics) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
+    analytics.logPageLoad($scope, $location.absUrl(), $location.path());
 
     var abs = $routeParams.abm;
     if(abs != undefined) {

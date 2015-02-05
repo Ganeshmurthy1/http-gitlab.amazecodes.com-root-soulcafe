@@ -8,12 +8,14 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('DiscussionTopicsCtrl', function ($routeParams,$scope,localStorageService,regService,$location, config, $modal, $log) {
+  .controller('DiscussionTopicsCtrl', function ($routeParams,$scope,localStorageService,regService,$location, config, $modal, $log, analytics) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
+    analytics.logPageLoad($scope, $location.absUrl(), $location.path());
 
     var config = localStorageService.get('config');
     $scope.imagepath = config.image_path;
@@ -87,6 +89,14 @@ angular.module('sassApp')
     $scope.joinButtonClick = function(id){
        $scope.disable = "false";
       regService.joinDiscussion(id).then(function(response) {
+
+        regService.getTotalMembers($scope.discussionid).then(function (totalMembers) {
+        $scope.total = totalMembers.data[0].total; 
+        if ($scope.total == 0) {
+          $scope.memhide = true;
+        };      
+     });
+
         
       });
     }

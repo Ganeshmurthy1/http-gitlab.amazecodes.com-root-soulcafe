@@ -8,13 +8,14 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('QuestionEditCtrl', function ($scope, Questionnaire, $location, $routeParams, $anchorScroll) {
+  .controller('QuestionEditCtrl', function ($scope, Questionnaire, $location, $routeParams, $anchorScroll, analytics) {
 	    $scope.awesomeThings = [
     'HTML5 Boilerplate',
     'AngularJS',
     'Karma'
   ];
-  
+
+  analytics.logPageLoad($scope, $location.absUrl(), $location.path());  
   
   $scope.demo6 = {
 	    valueA: 5,

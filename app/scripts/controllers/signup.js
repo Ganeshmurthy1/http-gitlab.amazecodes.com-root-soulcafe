@@ -8,12 +8,14 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('SignupCtrl', function ($scope,$rootScope,$location,localStorageService,regService) {
+  .controller('SignupCtrl', function ($scope,$rootScope,$location,localStorageService,regService,analytics) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
+    analytics.logPageLoad($scope, $location.absUrl(), $location.path());
 
     $scope.mobileVerified = false;
     $scope.mobileVerifiedMessage = false;

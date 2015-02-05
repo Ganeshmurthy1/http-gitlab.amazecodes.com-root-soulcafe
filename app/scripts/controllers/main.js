@@ -8,14 +8,15 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('MainCtrl', function ($scope, $rootScope, $facebook, regService, localStorageService, $location, $modal, $log, config) {
+  .controller('MainCtrl', function ($scope, $rootScope, $facebook, regService, localStorageService, $location, $modal, $log, config,analytics) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
 
-    
+    analytics.logPageLoad($scope, $location.absUrl(), $location.path());
+
     config.setConfigruation();
     
     var config = localStorageService.get('config');
@@ -166,6 +167,8 @@ angular.module('sassApp')
 
   $scope.open = function (size) {
 
+    
+    
     var modalInstance = $modal.open({
       templateUrl: 'myModalContent.html',
       controller: 'ModalInstanceCtrl',

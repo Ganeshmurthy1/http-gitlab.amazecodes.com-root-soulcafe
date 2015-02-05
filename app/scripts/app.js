@@ -410,12 +410,6 @@ angular
         templateUrl: 'views/privacy-policy.html',
         controller: 'PrivacyPolicyCtrl'
       })
-      .when('/why-soulcafe', {
-        templateUrl: 'views/why-soulcafe.html',
-      })
-      .when('/no-no', {
-        templateUrl: 'views/no-no.html',
-      })
       .when('/contact-us', {
         templateUrl: 'views/contact-us.html',
         controller: 'ContactUsCtrl'
@@ -436,12 +430,20 @@ angular
         templateUrl: 'views/about-us.html',
         controller: 'AboutUsCtrl'
       })
+      .when('/how-works', {
+        templateUrl: 'views/how-works.html',
+        controller: 'HowWorksCtrl'
+      })
+      .when('/strict-no', {
+        templateUrl: 'views/strict-no.html',
+        controller: 'StrictNoCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
     
        // $facebookProvider.setAppId('305118313022402'); // for localhost
-     // $facebookProvider.setAppId('273647349502832');
+      // $facebookProvider.setAppId('273647349502832');
       $facebookProvider.setAppId('316788255188741'); //For ip address testing
 
     

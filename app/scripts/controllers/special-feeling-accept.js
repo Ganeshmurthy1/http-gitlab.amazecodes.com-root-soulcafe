@@ -8,12 +8,15 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('SpecialFeelingAcceptCtrl', function ($scope,$location,profileOperations) {
+  .controller('SpecialFeelingAcceptCtrl', function ($scope,$location,profileOperations,analytics) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
+    analytics.logPageLoad($scope, $location.absUrl(), $location.path());
+
     $scope.nosplfeeling = false;
     profileOperations.getFeelings().then(function(response) {
       		console.log(response);

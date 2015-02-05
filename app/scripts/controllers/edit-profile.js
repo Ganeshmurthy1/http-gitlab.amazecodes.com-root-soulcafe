@@ -8,12 +8,14 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('EditProfileCtrl', function ($scope,regService,$location) {
+  .controller('EditProfileCtrl', function ($scope,regService,$location, analytics) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
+    analytics.logPageLoad($scope, $location.absUrl(), $location.path());
 
   regService.getProfileDetail().then(function (response) {
          $scope.profileDetail = response.data;

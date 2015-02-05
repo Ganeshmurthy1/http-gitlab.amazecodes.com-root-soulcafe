@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name sassApp.controller:AboutUsCtrl
+ * @name sassApp.controller:StrictNoCtrl
  * @description
- * # AboutUsCtrl
+ * # StrictNoCtrl
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('AboutUsCtrl', function ($scope,$location,analytics) {
+  .controller('StrictNoCtrl', function ($scope, $location, analytics) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -16,4 +16,5 @@ angular.module('sassApp')
     ];
 
     analytics.logPageLoad($scope, $location.absUrl(), $location.path());
+
   });

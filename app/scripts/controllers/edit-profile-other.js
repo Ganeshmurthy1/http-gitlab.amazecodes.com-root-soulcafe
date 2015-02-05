@@ -8,12 +8,14 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('EditProfileOtherCtrl', function ($scope,$routeParams,regService) {
+  .controller('EditProfileOtherCtrl', function ($scope,$routeParams,regService, $location, analytics) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
+    analytics.logPageLoad($scope, $location.absUrl(), $location.path());
 
       $scope.status = {
     isFirstOpen: true,

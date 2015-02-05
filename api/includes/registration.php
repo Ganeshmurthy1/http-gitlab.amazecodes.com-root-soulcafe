@@ -918,20 +918,40 @@ function joinDiscussion($id) {
   // print_r( $user );
    $user_id  = getUserId();
    $cdate = date('Y-m-d h:i:s');
-  $sql = "INSERT INTO DiscussionBoardUsers (DiscussionBoardId, UserId,JoinedDate) VALUES (:DiscussionBoardId, :UserId,:JoinedDate)";
+
+   $sql = "select * from DiscussionBoardUsers where UserId = :UserId and DiscussionBoardId = :DiscussionBoardId";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);  
-    $stmt->bindParam("DiscussionBoardId", $id);
     $stmt->bindParam("UserId",  $user_id );
-    $stmt->bindParam("JoinedDate",  $cdate);
+    $stmt->bindParam("DiscussionBoardId", $id);
     $stmt->execute();
-    
+    $wine = $stmt->fetchObject();
     //$app->redirect('login.html');
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}'; 
   }
-echo 'true';
+
+  if($wine != null){
+     echo 'true';
+  } else {
+       $sql = "INSERT INTO DiscussionBoardUsers (DiscussionBoardId, UserId,JoinedDate) VALUES (:DiscussionBoardId, :UserId,:JoinedDate)";
+          try {
+            $db = getConnection();
+            $stmt = $db->prepare($sql);  
+            $stmt->bindParam("DiscussionBoardId", $id);
+            $stmt->bindParam("UserId",  $user_id );
+            $stmt->bindParam("JoinedDate",  $cdate);
+            $stmt->execute();
+            
+            //$app->redirect('login.html');
+          } catch(PDOException $e) {
+            echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+          }
+        echo 'true';
+  }
+
+  
 }
 
 function getDiscussionListStatus() {

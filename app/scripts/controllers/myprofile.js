@@ -8,12 +8,14 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('MyprofileCtrl',['$facebook', '$scope','$location','localStorageService','regService', 'FlickrApi','$routeParams','profileOperations', function ($facebook, $scope, $location, localStorageService, regService,flickr,$routeParams,profileOperations) {
+  .controller('MyprofileCtrl',['$facebook', '$scope','$location','localStorageService','regService', 'FlickrApi','$routeParams','profileOperations','analytics', function ($facebook, $scope, $location, localStorageService, regService,flickr,$routeParams,profileOperations,analytics) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
+    analytics.logPageLoad($scope, $location.absUrl(), $location.path());
 
     function likes(){
 

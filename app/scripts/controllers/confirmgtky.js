@@ -8,12 +8,14 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('ConfirmgtkyCtrl', function ($scope,$location,$routeParams,profileOperations) {
+  .controller('ConfirmgtkyCtrl', function ($scope,$location,$routeParams,profileOperations,analytics) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
+    analytics.logPageLoad($scope, $location.absUrl(), $location.path()); 
 
     $scope.UserId ={ };
      $scope.confirmGTKY = function(){

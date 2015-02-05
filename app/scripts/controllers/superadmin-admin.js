@@ -16,6 +16,8 @@ angular.module('sassApp')
     ];
 
 
+    
+
     function getadmin(){
 	    adminOperations.getAllAdmins().then(function (response) {
 				$scope.admins = response.data;

@@ -8,12 +8,14 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('FriendsCtrl', function ($scope,$routeParams,profileOperations,config,localStorageService,messageCodes) {
+  .controller('FriendsCtrl', function ($scope,$routeParams, $location, profileOperations,config,localStorageService,messageCodes, analytics) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
+    analytics.logPageLoad($scope, $location.absUrl(), $location.path());
 
      var config = localStorageService.get('config');
     $scope.imagepath = config.image_path;
