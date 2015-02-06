@@ -8,14 +8,12 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('HomeCtrl',['$scope','$location','localStorageService','regService', '$routeParams','profileOperations','$anchorScroll','$modal', '$log', 'messageCodes', '$route','analytics', function ($scope, $location, localStorageService, regService, $routeParams, profileOperations,$anchorScroll,$modal, $log, messageCodes, $route,analytics) {
+  .controller('HomeCtrl',['$scope','$location','localStorageService','regService', '$routeParams','profileOperations','$anchorScroll','$modal', '$log', 'messageCodes', '$route', function ($scope, $location, localStorageService, regService, $routeParams, profileOperations,$anchorScroll,$modal, $log, messageCodes, $route) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-
-    analytics.logPageLoad($scope, $location.absUrl(), $location.path());
     
      $scope.status = $routeParams.status;
     var d = {"name": "jiby", "age": '345'};

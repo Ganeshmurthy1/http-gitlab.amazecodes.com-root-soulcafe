@@ -8,14 +8,12 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('SpecialFeelingRequestCtrl', function ($scope,$routeParams,$location,profileOperations, analytics) {
+  .controller('SpecialFeelingRequestCtrl', function ($scope,$routeParams,$location,profileOperations) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-
-    analytics.logPageLoad($scope, $location.absUrl(), $location.path());
 
     $scope.user_id = $routeParams.user_id;
     $scope.status = true;

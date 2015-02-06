@@ -8,14 +8,13 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('DiscussionTopicsCtrl', function ($routeParams,$scope,localStorageService,regService,$location, config, $modal, $log, analytics) {
+  .controller('DiscussionTopicsCtrl', function ($routeParams,$scope,localStorageService,regService,$location, config, $modal, $log) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
 
-    analytics.logPageLoad($scope, $location.absUrl(), $location.path());
 
     var config = localStorageService.get('config');
     $scope.imagepath = config.image_path;

@@ -8,14 +8,12 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('QuestionListCtrl', function ($scope, Questionnaire, $location, analytics) {
+  .controller('QuestionListCtrl', function ($scope, Questionnaire, $location) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-
-    analytics.logPageLoad($scope, $location.absUrl(), $location.path()); 
     
     getAllQuestion();
     function getAllQuestion(){

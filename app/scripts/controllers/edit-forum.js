@@ -8,14 +8,13 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('EditForumCtrl', function ($scope,adminDiscussion,$routeParams,$location,analytics) {
+  .controller('EditForumCtrl', function ($scope,adminDiscussion,$routeParams,$location) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
 
-    analytics.logPageLoad($scope, $location.absUrl(), $location.path());
 $scope.discussId = $routeParams.id;
 
     adminDiscussion.getforum($scope.discussId).then(function (results) {

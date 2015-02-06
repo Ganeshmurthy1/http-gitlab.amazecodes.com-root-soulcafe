@@ -8,14 +8,12 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('AddTopicCtrl', function ($scope,$location,regService,$routeParams,analytics) {
+  .controller('AddTopicCtrl', function ($scope,$location,regService,$routeParams) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-
-    analytics.logPageLoad($scope, $location.absUrl(), $location.path()); 
 
       $scope.discussId = $routeParams.discussId;
 

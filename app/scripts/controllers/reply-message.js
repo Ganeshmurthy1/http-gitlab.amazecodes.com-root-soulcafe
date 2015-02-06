@@ -8,16 +8,12 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('ReplyMessageCtrl', function ($scope, adminOperations, regService, $routeParams, $location,config,localStorageService,$anchorScroll, analytics) {
+  .controller('ReplyMessageCtrl', function ($scope, adminOperations, regService, $routeParams, $location,config,localStorageService,$anchorScroll) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-
-    analytics.logPageLoad($scope, $location.absUrl(), $location.path());
-    // $location.hash('msg');
-    //  $anchorScroll();
 
     $scope.sid=$routeParams.sid;
 

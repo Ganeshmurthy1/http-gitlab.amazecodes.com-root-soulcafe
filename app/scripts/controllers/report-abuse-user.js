@@ -8,14 +8,12 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('ReportAbuseUserCtrl', function ($scope,$location,$routeParams,profileOperations, analytics) {
+  .controller('ReportAbuseUserCtrl', function ($scope,$location,$routeParams,profileOperations) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-
-    analytics.logPageLoad($scope, $location.absUrl(), $location.path());
 
 $scope.reportAbuse ={};
 

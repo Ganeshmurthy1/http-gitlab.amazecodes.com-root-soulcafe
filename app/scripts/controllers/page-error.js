@@ -8,13 +8,11 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('PageErrorCtrl', function ($scope, $location, analytics) {
+  .controller('PageErrorCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-
-    analytics.logPageLoad($scope, $location.absUrl(), $location.path());
 
   });
