@@ -8,12 +8,16 @@
  * Controller of the sassApp
  */
 angular.module('sassApp')
-  .controller('MainCtrl', function ($scope, $rootScope, $facebook, regService, localStorageService, $location, $modal, $log, config) {
+  .controller('MainCtrl', function ($scope, $rootScope, $facebook, regService, localStorageService, $location, $modal, $log, config, Angularytics) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
+    $scope.click = function() {
+        Angularytics.trackEvent("Home Category", "Button clicked");
+    }
 
     config.setConfigruation();
     

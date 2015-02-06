@@ -27,7 +27,8 @@ angular
     'slick',
     'angular-loading-bar',
     'ui.date',
-    'ui.select2'
+    'ui.select2',
+    'angularytics'
   ])
   .config(['$routeProvider', '$facebookProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $facebookProvider, $locationProvider, $httpProvider) {
 	
@@ -392,7 +393,7 @@ angular
         controller: 'SpecialFeelingHistoryCtrl',
         access:      access.user
 	  })      
-	 .when('/page-error', {
+	    .when('/page-error', {
         templateUrl: 'views/page-error.html',
         controller: 'PageErrorCtrl',
         access:      access.public
@@ -445,6 +446,7 @@ angular
        // $facebookProvider.setAppId('305118313022402'); // for localhost
       // $facebookProvider.setAppId('273647349502832');
       $facebookProvider.setAppId('316788255188741'); //For ip address testing
+
 
     
     $facebookProvider.setPermissions("email,user_likes,user_birthday,user_relationships,user_work_history,user_hometown,user_location,user_friends");
@@ -517,3 +519,9 @@ angular.module('sassApp').config(['$httpProvider', function($httpProvider) {
     //disable IE ajax request caching
     $httpProvider.defaults.headers.get['If-Modified-Since'] = '0';
 }]);
+ angular.module('sassApp').config(function(AngularyticsProvider) {
+    AngularyticsProvider.setEventHandlers(['Console', 'GoogleUniversal']);
+  });
+ angular.module('sassApp').run(function(Angularytics) {
+    Angularytics.init();
+  });
