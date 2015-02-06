@@ -1465,7 +1465,7 @@ function addContactUs() {
   
   $tdate = date('Y-m-d h:i:s');
   
-  $sql = "INSERT INTO `ContactUs`(`Name`, `Email`, `Number`, `Address`, `Message`, `AddedDate`) 
+  $sql = "INSERT INTO `ContactUs`(`Name`, `Email`, `Number`, `RequestType`, `Message`, `AddedDate`) 
   VALUES (:name, :email, :num, :address, :message, :addeddate)";
   try {
     $db = getConnection();
@@ -1473,7 +1473,7 @@ function addContactUs() {
     $stmt->bindParam("name", $contact->name);
     $stmt->bindParam("email", $contact->email);
     $stmt->bindParam("num", $contact->num);
-    $stmt->bindParam("address", $contact->address);
+    $stmt->bindParam("address", $contact->request);
     $stmt->bindParam("message", $contact->message);
     $stmt->bindParam("addeddate", $tdate);
    

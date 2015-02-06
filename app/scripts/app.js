@@ -423,7 +423,7 @@ angular
         templateUrl: 'views/admin-contactus-detail.html',
         controller: 'AdminContactusDetailCtrl'
       })
-      .when('/why-soul', {
+      .when('/why-join-soulcafe', {
         templateUrl: 'views/why-soul.html',
         controller: 'WhySoulCtrl'
       })
@@ -431,11 +431,11 @@ angular
         templateUrl: 'views/about-us.html',
         controller: 'AboutUsCtrl'
       })
-      .when('/how-works', {
+      .when('/how-soulcafe-works', {
         templateUrl: 'views/how-works.html',
         controller: 'HowWorksCtrl'
       })
-      .when('/strict-no', {
+      .when('/strictly-not-allowed-on-soulcafe', {
         templateUrl: 'views/strict-no.html',
         controller: 'StrictNoCtrl'
       })
@@ -444,8 +444,8 @@ angular
       });
     
        // $facebookProvider.setAppId('305118313022402'); // for localhost
-      // $facebookProvider.setAppId('273647349502832');
-      $facebookProvider.setAppId('316788255188741'); //For ip address testing
+      $facebookProvider.setAppId('273647349502832');
+      // $facebookProvider.setAppId('316788255188741'); //For ip address testing
 
 
     

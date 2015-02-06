@@ -12,7 +12,7 @@
       </a>
       </div>
 
-		<div class="col-md-offset-3 col-md-6" style="background-color:#ffffff;">
+		<div class="col-md-offset-3 col-md-6" style="background-color:#ffffff; opacity: 0.85;">
 			<div class="headline"><h1 class="heading-sm">Contact Us</h1></div>
 			 <div class="alert alert-{{q.type}} fade in" ng-show="q">{{q.msg}}
 			         <a class="close" href="#/" type="button">×</a>
@@ -45,7 +45,18 @@
 					<div data-ng-class="{ 'has-error select2-has-error' : contact.companyName.$invalid && !contact.companyName.$pristine || contact.companyName.$invalid  && submitted  }">
 	               		<select ui-select2="{width:'100%'}" name="companyName" data-ng-model="cnct.request" required>
 	               			<option value="" >---Select Request type---</option>
+						    <option value="Any">Any</option>
 						    <option value="Deactivate profile">Deactivate profile</option>
+						    <option value="I have a suggestion">I have a suggestion</option>
+						    <option value="I have an administrative question">I have an administrative question</option>
+						    <option value="I have a technical question">I have a technical question</option>
+						    <option value="I have found a bug">I have found a bug</option>
+						    <option value="I recieved an error message">I recieved an error message</option>
+						    <option value="I will like to partner with SoulCafe">I will like to partner with SoulCafe</option>
+						    <option value="Media Relations">Media Relations</option>
+						    <option value="Subscription">Subscription</option>
+						    <option value="Other">Other</option>
+
 						    
 						</select>
 						<strong><p data-ng-show="contact.companyName.$invalid && !contact.companyName.$pristine || contact.companyName.$invalid && submitted" class="help-block">Request type is required.</p></strong>

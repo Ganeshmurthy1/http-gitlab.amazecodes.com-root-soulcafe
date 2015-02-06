@@ -12,7 +12,7 @@
       <div class="pos-rel">
        <a class=" fixer" title="Close" href="#/" >
         <!-- <i class="icon-custom1 rounded-x fa fa-times" ></i> -->
-        <img ng-src="images/close-button1.png" style="width:35px;">
+        <img ng-src="images/close-button1.png" style="width:35px;" alt="Close">
       </a>
       </div>
         
@@ -21,7 +21,7 @@
       
       <div class="carousel-inner" >
         
-        <div ng-class="{item: true, active : (img.no === 0)}" ng-repeat="img in images"> <img ng-src="{{img.src}}" alt="Slide numder {{img.no}}" style="width:100%;">
+        <div ng-class="{item: true, active : (img.no === 0)}" ng-repeat="img in images"> <img ng-src="{{img.src}}" alt="{{img.name}}" style="width:100%;opacity:0.75;">
 
           <div class="container">
             <div class="carousel-caption"> </div>
