@@ -190,7 +190,7 @@ angular.module('sassApp')
         	else if(response.filename != '') {
         		// console.info('onCompleteItem', fileItem, response, status, headers);
                 $scope.image=response.filename;
-                $scope.imageSucc = 'Image got Uploaded, Please save the change.';
+                $scope.imageSucc = 'PERFECTO! Don’t forget to hit the SAVE button below.';
                 $scope.disable_save = false;
         		
         	}

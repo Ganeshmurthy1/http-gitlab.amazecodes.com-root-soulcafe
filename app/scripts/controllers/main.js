@@ -38,11 +38,11 @@ angular.module('sassApp')
 	    result.message = '';
 	    if (param.total_friends < 20) {
 	    	result.status = false;
-		    result.message = 'You dont have enough friends in your facebook profile';
+		    result.message = 'Oopsie! Your facebook profile failed our social validation criteria.';
 		}	 
 	    if (param.relationship_status == 'Married' || param.relationship_status == 'In a relationship' || param.relationship_status == 'Engaged' || param.relationship_status == 'In an open relationship' || param.relationship_status == 'It\'s complicated' || param.relationship_status == 'In a civil union') {
 	    	result.status = false;
-		    result.message = 'Your Relationship status is not suitable for an account in Soulcafe';
+		    result.message = 'Oopsie! Your social profile shows you are already in a relationship. ';
 		}
 	    var d1 = new Date(param.birthday);
     	var d2 = new Date();
@@ -50,7 +50,7 @@ angular.module('sassApp')
 	    if (param.gender == 'male') {
 	    	if (diff < 22) {
 	    		result.status = false;
-			    result.message = 'You have to be above 24 years old to register in soulcafe';				
+			    result.message = 'Oops! Your social profile suggests you are below our minimum eligible age.';				
 			}
 			
 		}
