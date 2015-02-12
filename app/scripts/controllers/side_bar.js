@@ -45,7 +45,7 @@ $scope.nofriend = "false";
           $scope.totalfriends=response.data.frineds_count; 
           $scope.totalforum=response.data.forum_count;
           if ($scope.totalforum == 0) {
-            console.log("Annjdsksd");
+            //console.log("Annjdsksd");
             $scope.noforum = "true";
           };
           if ($scope.totalfriends == 0) {

@@ -18,8 +18,8 @@
     <div class="alert alert-{{q.type}} fade in" ng-show="q">{{q.msg}}
          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
     </div>
-    <div ng-repeat="frnd in friends">
-      <div class="col-xs-12 col-sm-12 col-md-6  border-bottom" style="margin-bottom:10px;">
+   
+      <div ng-repeat="frnd in friends" ng-class-odd="'clearfix'" class="friend-box col-xs-12 col-sm-12 col-md-6">
         <div class="col-xs-5 col-sm-3 col-md-3 color-brown-light">
             <a href="#/otherprofile?user_id={{frnd.user_id}}"><img class="rounded-x" ng-src="{{imagepath}}{{frnd.Picture}}" alt="{{frnd.first_name}} {{frnd.last_name}}" style="width:75px;height:75px;float:left;"></a>
         </div>
@@ -28,7 +28,7 @@
                     <div class="col-md-12">{{frnd.Moto | limitTo : 20}}..</div>
                     <div class="row"> 
                         <div class="col-xs-6 col-sm-3 col-md-3">
-                            <a title="Send message" class="color-deep-red" href="#/reply-message?sid={{frnd.user_id}}"><i class="icon-custom rounded-x icon-bg-grey fa fa-envelope"></i
+                            <a title="Send message" class="color-deep-red" href="#/reply-message?sid={{frnd.user_id}}"><i class="icon-custom rounded-x icon-bg-grey fa fa-envelope"></i>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 no-padding">
                             <a title="Express your  special feeling" href="#/special-feeling-request?user_id={{frnd.user_id}}">
@@ -38,7 +38,7 @@
                     </div> 
         </div>
       </div>
-    </div>
+  
     
 	<!-- <div class="">
         <div class="marginleft clearfix margin-right-12p">

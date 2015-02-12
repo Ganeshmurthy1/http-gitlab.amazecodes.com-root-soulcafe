@@ -14,20 +14,20 @@ angular.module('sassApp')
       dataFactory.base_path = '/SASS/api/';
       var urlBase = '/SASS/api/';
 //
-     dataFactory.setConfigruation = function () {
-       localStorageService.set('config', {
-                 base_path:'/SASS/api/',
-                 image_path:'http://192.168.1.147/SASS/api/uploads/'                
-             });        
-     }
+//     dataFactory.setConfigruation = function () {
+//       localStorageService.set('config', {
+//                 base_path:'/SASS/api/',
+//                 image_path:'http://192.168.1.147/SASS/api/uploads/'                
+//             });        
+//     }
 
 
-      // dataFactory.setConfigruation = function () {
-      //   localStorageService.set('config', {
-      //             base_path:'/SASS/api/',
-      //             image_path:'http://localhost/SASS/api/uploads/'                
-      //         });        
-      // }
+       dataFactory.setConfigruation = function () {
+         localStorageService.set('config', {
+                   base_path:'/SASS/api/',
+                   image_path:'http://localhost/SASS/api/uploads/'                
+               });        
+       }
 
         //  dataFactory.setConfigruation = function () {
         // localStorageService.set('config', {

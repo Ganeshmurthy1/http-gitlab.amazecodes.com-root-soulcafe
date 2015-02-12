@@ -315,6 +315,12 @@ function AddAnswer() {
     
   }
   
+  $sqldel = "Delete from QuestionnaireUserAnswer  WHERE QnId=:id and UserId = :userid";
+  $stmt = $db->prepare($sqldel);
+  $stmt->bindParam("id", $answer->question->Qid);
+  $stmt->bindParam("userid", $user_id);
+  $stmt->execute();
+  
   $sqlQ = "Insert into QuestionnaireUserAnswer (QnId, UserId) values (:QId,:UserId)";
   try {
     $db = getConnection();

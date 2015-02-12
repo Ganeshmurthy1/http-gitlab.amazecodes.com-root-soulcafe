@@ -31,7 +31,10 @@ angular.module('sassApp')
     		$scope.QuestionObj = response.data;	
     		var max = $scope.QuestionObj.totalQn.totalQn;
     		var value = $scope.QuestionObj.totalAnsQn.totalAnsQn;
-    		if(value == max) {
+    		//console.log(Number(value));
+    		//console.log(Number(max));
+    		if(Number(value) >= Number(max)) {
+    			//console.log('hello');
     			$location.path('/home');
     		}
     		var per = value/max;

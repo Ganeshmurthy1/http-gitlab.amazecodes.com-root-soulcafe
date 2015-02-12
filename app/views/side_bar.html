@@ -24,10 +24,10 @@
                <div class ="col-md-9">
                     <div class="color-brown-light"><a class="profile_link" ng-click="otherProfile({{frnd.BuddyId}})"><strong>{{frnd.first_name}} {{frnd.last_name}}</strong></a></div>
                     <div>{{ frnd.Moto | limitTo : 15}}..</div>
-                </div>
-                <div ng-show="totalfriends > 10" class="col-md-12">
-            	<a class= "clearfix pull-right" style="color:#5bc0de;font-size:15px;" href="#/friends">More..</a>
+                </div>                
             </div>
+            <div ng-show="totalfriends > 10" class="col-md-12">
+            	<a class= "clearfix pull-right" style="color:#5bc0de;font-size:15px;" href="#/friends">More..</a>
             </div>
         </div>
     </div>
