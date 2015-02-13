@@ -52,10 +52,10 @@
                                 </h4>
                                 <p>{{comment.Comment}}.</p>
                                 <ul ng-show ="{{comment.likes}}" class="list-inline results-list pull-left">
-                                    <li><a ng-click="open(comment.CommentId)" style="cursor:pointer;">{{comment.likes}} Likes</a></li>
+                                    <li><a ng-click="open(comment.CommentId)" style="cursor:pointer;">{{comment.likes}} Cheers</a></li>
                                 </ul>
                                 <ul ng-hide ="{{comment.likes}}" class="list-inline results-list pull-left">
-                                    <li><a style="cursor:pointer;">{{comment.likes}} Likes</a></li>
+                                    <li><a style="cursor:pointer;">{{comment.likes}} Cheers</a></li>
                                 </ul>     
                                 <ul class="list-inline pull-right">
                                     <li data-ng-show="{{comment.likeflag==1}}">
@@ -64,7 +64,7 @@
                                         </a>
                                     </li>
                                      <li data-ng-hide="{{comment.likeflag==1}}">
-                                        <a title="Like" data-ng-hide="{{userId == comment.UserId}}" href="" data-ng-click="commentLike({{comment.CommentId}})">
+                                        <a title="Cheers" data-ng-hide="{{userId == comment.UserId}}" href="" data-ng-click="commentLike({{comment.CommentId}})">
                                         <i class="icon-custom rounded-x icon-bg-grey fa fa-thumbs-up" ></i></a>
                                     </li>
                                     <li data-ng-show="{{userId == comment.UserId}}">

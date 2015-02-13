@@ -149,16 +149,16 @@
             			<div class="col-md-12"> 
             			<div class="align-center">
             				<div ng-show="(value >= 0 && value <=25)">
-					  			<img ng-src="app-images/1-4th.png">
+					  			<img ng-src="app-images/1-4th.png" title="Not so great Blend">
 					  		</div>
 					  		<div ng-show="(value > 25 && value <=50)">
-					  			<img ng-src="app-images/2-4th.png">
+					  			<img ng-src="app-images/2-4th.png" title="Average Blend">
 					  		</div>
 					  		<div ng-show="(value > 50 && value <=75)">
-					  			<img ng-src="app-images/3-4th.png">
+					  			<img ng-src="app-images/3-4th.png" title="Good Blend">
 					  		</div>
 					  		<div ng-show="(value > 75 && value <=100)">
-					  			<img ng-src="app-images/4-4th.png">
+					  			<img ng-src="app-images/4-4th.png" title="Great Blend">
 					  		</div>
 					  	</div>
             			</div>
@@ -175,7 +175,7 @@
             		<div class="row" ng-show="comp">
             			<div class="col-xs-12 col-sm-12 col-md-12"> 
             			<div class="align-center">
-            				<img ng-src="app-images/{{m1}}" />
+            				<img ng-src="app-images/{{m1}}" title="Great Blend" />
             			</div>
             			</div>
 					
@@ -183,7 +183,7 @@
             		<div class="row" ng-show="same">
 						<div class="col-xs-12 col-sm-12 col-md-12"> 
             			<div class="align-center">
-            				<img ng-src="app-images/{{m2}}" />
+            				<img ng-src="app-images/{{m2}}" title="Good Blend"/>
             			</div>
             			</div>
 					
@@ -191,7 +191,7 @@
             		<div class="row" ng-show="no">
             			<div class="col-xs-12 col-sm-12 col-md-12"> 
             			<div class="align-center">
-            				<img ng-src="app-images/{{m3}}" />
+            				<img ng-src="app-images/{{m3}}" title="Not so great Blend"/>
             			</div>
             			</div>
             			

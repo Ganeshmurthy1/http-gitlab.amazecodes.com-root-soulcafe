@@ -44,8 +44,9 @@ a{
 }
 .sugg{
 	
-	font-size:20px;
+	font-size:20px !important;
 	color:#000000 !important;
+	text-align: justify;
 		
 }
 .fixer-how{
@@ -176,6 +177,11 @@ background-image: none !important;
 	background-image:url(../images/pop.png);
 	background-repeat: repeat-y;
     background-size: 100%;	
+}
+.why-qns { 
+	padding-top: 30px;
+	text-align:justify;
+	font-size: 16px;
 }
 
 .step2 { 
@@ -455,7 +461,10 @@ a:hover{
 	
 }
 .add{
-	font-size:15px;
+	font-size:15px;	
+}
+.padd-20 {
+	margin-top: 20px;
 }
 .clabel{
 	background-color:#593a1d;
