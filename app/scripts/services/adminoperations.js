@@ -8,215 +8,215 @@
  * Factory in the sassApp.
  */
 angular.module('sassApp')
-  .factory('adminOperations', ['$http', 'localStorageService', function($http, localStorageService) {
+  .factory('adminOperations', ['Transporter', 'localStorageService', function(Transporter, localStorageService) {
 	  	
 	  
-	    var urlBase = localStorageService.get('apiContext').base_path;
+	    //var urlBase = localStorageService.get('apiContext').base_path;
 	    var dataFactory = {};
 	    dataFactory.signIn = function (param) {
 	    	// console.log(param);
-	    	return $http.post(urlBase + 'admin_login', param).then(function(response) {
+	    	return Transporter.post('admin_login', param).then(function(response) {
 	    		//console.log(response);
                 return response;
             });	    	
 	    };
 	    dataFactory.adminGetAllUsers = function () {	
-	      	return $http.get(urlBase + 'admin_get_all_users').then(function(response) {
+	      	return Transporter.get('admin_get_all_users').then(function(response) {
 	    		//console.log(response);
                 return response;
             });	 
 	      };
 	    dataFactory.adminGetBlockedUsers = function () {	
-		      	return $http.get(urlBase + 'admin_get_blocked_users').then(function(response) {
+		      	return Transporter.get('admin_get_blocked_users').then(function(response) {
 		    		//console.log(response);
 	                return response;
 	            });	 
 		  };
 		 dataFactory.adminActivateUser = function (param) {
 		    	//console.log(param);
-		    	var fbUrl = urlBase + 'admin_activate_user/' + param;
-		        return $http.get(fbUrl);
+		    	var fbUrl = 'admin_activate_user/' + param;
+		        return Transporter.get(fbUrl);
 		  };
 		  dataFactory.admindeActivateUser = function (param) {
 		    	//console.log(param);
-		    	var fbUrl = urlBase + 'admin_deactivate_user/' + param;
-		        return $http.get(fbUrl);
+		    	var fbUrl = 'admin_deactivate_user/' + param;
+		        return Transporter.get(fbUrl);
 		  };
 		  
 		  dataFactory.adminGetAllMessage = function () {	
-		      	return $http.get(urlBase + 'admin_get_all_message').then(function(response) {
+		      	return Transporter.get('admin_get_all_message').then(function(response) {
 		    		//console.log(response);
 	                return response;
 	            });	 
 		      };
 	      dataFactory.getMyMessage = function () {	
-		      	return $http.get(urlBase + 'get_my_message').then(function(response) {
+		      	return Transporter.get('get_my_message').then(function(response) {
 		    		//console.log(response);
 	                return response;
 	            });	 
 		  };
 		  dataFactory.getPictureAndName = function (id) {	
-		     	return $http.get(urlBase + 'get_picture_name/'+ id).then(function(response) {
+		     	return Transporter.get('get_picture_name/'+ id).then(function(response) {
 	                return response;
 	            });	
 		    };
 	     dataFactory.sentMessage = function (comment) {	
-	     	return $http.post(urlBase + 'sent_message', comment).then(function(response) {
+	     	return Transporter.post('sent_message', comment).then(function(response) {
                 return response;
             });	
 	    };
 	    dataFactory.getAllForum = function () {	
-	      	return $http.get(urlBase + 'get_all_forum').then(function(response) {
+	      	return Transporter.get('get_all_forum').then(function(response) {
 	    		//console.log(response);
                 return response;
             });	 
 	      };
 	      dataFactory.addAdmin = function (param) {
 		    	// console.log(param);
-		    	return $http.post(urlBase + 'admin_add_admin', param).then(function(response) {
+		    	return Transporter.post('admin_add_admin', param).then(function(response) {
 		    		//console.log(response);
 	                return response;
 	            });
 		};
 		dataFactory.getAllAdmins = function () {	
-	      	return $http.get(urlBase + 'get_all_admins').then(function(response) {
+	      	return Transporter.get('get_all_admins').then(function(response) {
 	    		//console.log(response);
                 return response;
             });	 
 	    };
 		dataFactory.adminGetMyForums = function () {	
-		      	return $http.get(urlBase + 'admin_get_my_forums').then(function(response) {
+		      	return Transporter.get('admin_get_my_forums').then(function(response) {
 		    		//console.log(response);
 	                return response;
 	            });	 
 		};
 		dataFactory.activateUser = function (id) {	
-		     	return $http.get(urlBase + 'activate_user/'+ id).then(function(response) {
+		     	return Transporter.get('activate_user/'+ id).then(function(response) {
 	                return response;
 	            });	
 		};
 		dataFactory.deactivateUser = function (id) {	
-		     	return $http.get(urlBase + 'deactivate_user/'+ id).then(function(response) {
+		     	return Transporter.get('deactivate_user/'+ id).then(function(response) {
 	                return response;
 	            });	
 		};
 		dataFactory.getAdminData = function (id) {	
-		     	return $http.get(urlBase + 'get_admin_data/'+ id).then(function(response) {
+		     	return Transporter.get('get_admin_data/'+ id).then(function(response) {
 	                return response;
 	            });	
 		};
 		dataFactory.updateAdminData = function (param) {
 		    	// console.log(param);
-		    	return $http.post(urlBase + 'update_admin_data', param).then(function(response) {
+		    	return Transporter.post('update_admin_data', param).then(function(response) {
 		    		//console.log(response);
 	                return response;
 	            });
 		};
 		dataFactory.viewProfileData = function (id) {	
-		     	return $http.get(urlBase + 'view_profile_data/'+ id).then(function(response) {
+		     	return Transporter.get('view_profile_data/'+ id).then(function(response) {
 	                return response;
 	            });	
 		};
 		dataFactory.userActivate = function (id) {	
-		     	return $http.get(urlBase + 'user_activate/'+ id).then(function(response) {
+		     	return Transporter.get('user_activate/'+ id).then(function(response) {
 	                return response;
 	            });	
 		};
 		dataFactory.userDeactivate = function (id) {	
-		     	return $http.get(urlBase + 'user_deactivate/'+ id).then(function(response) {
+		     	return Transporter.get('user_deactivate/'+ id).then(function(response) {
 	                return response;
 	            });	
 		};
 		dataFactory.deleteQuestion = function (id) {
 		console.log(id);	
-		     	return $http.get(urlBase + 'delete_Question/'+ id).then(function(response) {
+		     	return Transporter.get('delete_Question/'+ id).then(function(response) {
 	                return response;
 	            });	
 		};
 		
 		dataFactory.adminGetThisUser = function (id) {	
-	     	return $http.get(urlBase + 'admin_get_this_user/'+ id).then(function(response) {
+	     	return Transporter.get('admin_get_this_user/'+ id).then(function(response) {
                 return response;
             });	
 		};
 		dataFactory.addAdminMessage = function (param) {
 	    	// console.log(param);
-	    	return $http.post(urlBase + 'admin_add_message', param).then(function(response) {
+	    	return Transporter.post('admin_add_message', param).then(function(response) {
 	    		//console.log(response);
                 return response;
             });
 		};
 		dataFactory.getSysMessage = function () {	
-	      	return $http.get(urlBase + 'get_sys_message').then(function(response) {
+	      	return Transporter.get('get_sys_message').then(function(response) {
 	    		//console.log(response);
                 return response;
             });	 
 	  };
 	  dataFactory.getAllQuestions = function () {	
-	      	return $http.get(urlBase + 'get_all_questions').then(function(response) {
+	      	return Transporter.get('get_all_questions').then(function(response) {
 	    		//console.log(response);
               return response;
           });	 
 	    };
 	    dataFactory.updateQuestionSeq = function (param) {
 	    	// console.log(param);
-	    	return $http.post(urlBase + 'update_Question_Seq', param).then(function(response) {
+	    	return Transporter.post('update_Question_Seq', param).then(function(response) {
 	    		//console.log(response);
                 return response;
             });
 		};
 		dataFactory.viewStatusAbuse = function (id) {
 	    	// console.log(param);
-	    	return $http.get(urlBase + 'view_StatusAbuse/'+ id).then(function(response) {
+	    	return Transporter.get('view_StatusAbuse/'+ id).then(function(response) {
 	    		//console.log(response);
                 return response;
             });
 		};
 		dataFactory.adminGetAllProfileData = function (id) {
 	    	// console.log(param);
-	    	return $http.get(urlBase + 'admin_GetAllProfileData').then(function(response) {
+	    	return Transporter.get('admin_GetAllProfileData').then(function(response) {
 	    		//console.log(response);
                 return response;
             });
 		};
 		dataFactory.addRestrictionFeeling = function (param) {
 	    	// console.log(param);
-	    	return $http.post(urlBase + 'add_RestrictionFeeling', param).then(function(response) {
+	    	return Transporter.post('add_RestrictionFeeling', param).then(function(response) {
 	    		//console.log(response);
                 return response;
             });
 		};
 		dataFactory.getRestrictionFeeling = function () {
 	    	// console.log(param);
-	    	return $http.post(urlBase + 'get_RestrictionFeeling').then(function(response) {
+	    	return Transporter.post('get_RestrictionFeeling').then(function(response) {
 	    		//console.log(response);
                 return response;
             });
 		};
 		dataFactory.heartStatics = function () {
 	    	// console.log(param);
-	    	return $http.get(urlBase + 'heart_Statics').then(function(response) {
+	    	return Transporter.get('heart_Statics').then(function(response) {
 	    		//console.log(response);
                 return response;
             });
 		};
 		dataFactory.searchHeartStatics = function (param) {
 	    	console.log(param);
-	    	return $http.post(urlBase + 'search_HeartStatics', param).then(function(response) {
+	    	return Transporter.post('search_HeartStatics', param).then(function(response) {
 	    		//console.log(response);
                 return response;
             });
 		};
 		dataFactory.getContactUs = function () {
 	    	// console.log(param);
-	    	return $http.get(urlBase + 'get_ContactUs').then(function(response) {
+	    	return Transporter.get('get_ContactUs').then(function(response) {
 	    		//console.log(response);
                 return response;
             });
 		};
 		dataFactory.getContactDetail = function (id) {
 	    	 // console.log(id);
-	    	return $http.get(urlBase + 'get_ContactDetail/'+ id).then(function(response) {
+	    	return Transporter.get('get_ContactDetail/'+ id).then(function(response) {
 	    		// console.log(response);
                 return response;
             });
