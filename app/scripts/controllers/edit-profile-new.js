@@ -15,6 +15,12 @@ angular.module('sassApp')
       'Karma'
     ];
 
+    $scope.q = '';
+    var q = $routeParams.q;
+    if (q != null) {
+      $scope.q = messageCodes.Messages[q];
+  }
+
     $scope.dateOptions = {
             changeYear: true,
             changeMonth: true,
@@ -101,13 +107,10 @@ angular.module('sassApp')
 
      $scope.errorMessage = '';
   $scope.saveButtonClick = function(){
-    console.log($scope.profileDetail);
+    // console.log($scope.profileDetail);
   	$scope.profileDetail.UpdatedPicture=$scope.image;
   	regService.updateProfileDetail($scope.profileDetail).then(function (response) {
         if(response.data == "true"){
-
-          
-
           regService.getProfileDetail().then(function (response) {
              $scope.profileDetail = response.data;
              $scope.pict = $scope.imagepath + $scope.profileDetail.Picture;
@@ -124,15 +127,13 @@ angular.module('sassApp')
              }else if ($scope.profileDetail.linked_update == 0) {
               $scope.disable = 'true';
              }
-             $route.reload();
-             
+             // $route.reload();
+             $location.url('/edit-profile-new?q=117');
           });
          	 
          }else {
           
         	 $scope.errorMessage = response.data;
-           
-        	 
          }
       });
   	

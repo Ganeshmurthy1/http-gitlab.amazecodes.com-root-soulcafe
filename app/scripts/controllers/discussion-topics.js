@@ -137,11 +137,12 @@ angular.module('sassApp')
     $scope.otherProfile = function(userId){
         regService.getUserDetails(userId).then(function (results) {
           $scope.userD = results.data; 
-           if ($scope.userD.status == 0) {
+           if ($scope.userD.ud.status == 0) {
              $scope.hide=false;
              $scope.q = '';
               var q = 105;
               if (q != null) {
+
                 $scope.q = messageCodes.Messages[q];
             }
           }else{

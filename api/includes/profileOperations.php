@@ -851,7 +851,7 @@ function historyFeeling() {
       }else if ($wine[$i]->Status == 3){
         $wine[$i]->mess = $wine[$i]->first_name . ' ' .$wine[$i]->last_name. ' says, he Needs More Time to respond your brewing request.';
       }else{
-        $wine[$i]->mess = $wine[$i]->first_name . ' ' .$wine[$i]->last_name. ' Accepted your brewing request.';
+        $wine[$i]->mess = $wine[$i]->first_name . ' ' .$wine[$i]->last_name. ' accepted your sweet expresso shot.';
       }
     }
        
