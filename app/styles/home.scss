@@ -1,6 +1,12 @@
 .myborder{
 	border:1px solid red;
 }
+.panel-title{
+	text-transform: uppercase !important;
+}
+.heading-sm{
+	text-transform: uppercase !important;
+}
 .footer-sugg{
 	font-size:13px;
 	font-family:Arial;
@@ -26,14 +32,13 @@
  }
 .headline{
 	h1{
-		font-weight:bold !important;
 	color:#7f6244 !important;
-	font-size:20px;
+	font-size:25px;
 
 	}
 }
 .panel-title{
-	font-weight:bold !important;
+	
 	color:#7f6244 !important;
 }
 
@@ -45,7 +50,6 @@ a{
 .sugg{
 	
 	font-size:20px !important;
-	color:#000000 !important;
 	text-align: justify;
 		
 }
