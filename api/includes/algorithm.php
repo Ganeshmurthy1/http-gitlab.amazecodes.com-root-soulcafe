@@ -114,6 +114,7 @@ function algBatch() {
   //print '<pre>';
   $user_list = getTheBatch();
   //print_r($user_list);
+  //exit;
   // get the filterd users
   $categoryWeight = getQnCategory();
   for ($i = 0; $i < count($user_list); $i++) {
@@ -132,6 +133,7 @@ function algBatch() {
 
 function matchProcessor($user_obj, $categoryWeight) {
   $filterd_users = getTheFilteredUsers($user_obj);  
+  //print_r($filterd_users);
   deleteMatch($user_obj->user_id);
   findMatches($user_obj->user_id, $filterd_users, $categoryWeight);
   AddProcessedUsers($user_obj->user_id);
@@ -315,13 +317,14 @@ function getTheFilteredUsers($user_obj) {
     $lower_date = date('Y-m-d', strtotime('-10 years', strtotime($user_obj->birthdate)));
   }
   
-  $sql = "SELECT user_id, gender, birthdate FROM users WHERE birthdate >= :lower and birthdate <= :upper and gender = :gender and status = 1";
+  $sql = "SELECT user_id, gender, birthdate FROM users WHERE birthdate >= :lower and birthdate <= :upper and gender = :gender and status = 1 and user_id NOT IN (SELECT BuddyId FROM Buddies where SenderId = :user_id and Status = 1)";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);   
     $stmt->bindParam("lower", $lower_date);
     $stmt->bindParam("upper", $upper_date);
     $stmt->bindParam("gender", $gender_search);
+    $stmt->bindParam("user_id", $user_obj->user_id);
     $stmt->execute();
     $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
     $db = null;
@@ -354,7 +357,7 @@ function getMyBatch() {
 
 function getTheBatch() {
   // $user_id  = getUserId();
-  $sql = "SELECT user_id, gender, birthdate FROM users where status = 1  AND user_id NOT IN (SELECT UserId FROM AlgorithamProcessed) ORDER BY DateJoined  LIMIT 0, 10";
+  $sql = "SELECT user_id, gender, birthdate FROM users where status = 1  AND user_id NOT IN (SELECT UserId FROM AlgorithamProcessed) ORDER BY DateJoined desc  LIMIT 0, 10";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
