@@ -26,7 +26,7 @@ angular.module('sassApp')
 	  dataFactory.Messages['104'] = {'msg': 'You rejected the friend request!!!!	 ', 'type': 'danger'};
 	  dataFactory.Messages['105'] = {'msg': 'This profile is currently deactivated in SoulCafe!!!!', 'type': 'danger'};
 	  dataFactory.Messages['106'] = {'msg': 'We hate coffee stains.  Thanks for letting us know, we\'ll clean the mess! ', 'type': 'success'};
-	  dataFactory.Messages['107'] = {'msg': 'Woo Hoo! Your message was speed posted.', 'type': 'success'};
+	  dataFactory.Messages['107'] = {'msg': 'Woo Hoo! Your message has been speed posted.', 'type': 'success'};
 	  dataFactory.Messages['108'] = {'msg': 'Now you are friends!!!!	 ', 'type': 'success'}; 
 	  dataFactory.Messages['109'] = {'msg': 'Your request is already sent!!!!	 ', 'type': 'success'};
 	  dataFactory.Messages['110'] = {'msg': 'A quick review & we will get this added on our Café Menu!', 'type': 'success'};
@@ -36,7 +36,7 @@ angular.module('sassApp')
 	  dataFactory.Messages['114'] = {'msg': 'Profile updated sucessfully!!!!	 ', 'type': 'success'};
 	  dataFactory.Messages['115'] = {'msg': 'Thank You for reaching out. We will respond to you soon!!!!	 ', 'type': 'success'};
 	  dataFactory.Messages['116'] = {'msg': 'Sorry, we are yet to find a match for you. Please be part of the conversations groups and make sure your profile information is complete. We will have the right recommendations for you soon.	 ', 'type': 'danger'};
-	  dataFactory.Messages['117'] = {'msg': 'Make sure you don’t fake it up :)', 'type': 'sucess'};
+	  dataFactory.Messages['117'] = {'msg': ' Saved! Thank you for being you!', 'type': 'sucess'};
 			
  
 	  return dataFactory;

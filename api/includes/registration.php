@@ -545,14 +545,13 @@ function setCommentLikes($commentId) {
 
    $viewstatus = 0;
    
-   $sqlCommentUser = "SELECT dbc.Comment,dbc.DiscussionTopicId , dbt.DiscussionBoardId,dbu.UserId  from DiscussionBoardComments as dbc inner join DiscussionBoardTopic as dbt on dbc.DiscussionTopicId = dbt.DiscussionTopicId inner join DiscussionBoardUsers as dbu on dbt.DiscussionBoardId = dbu.DiscussionBoardId where dbc.CommentId = :commentid and dbu.UserId != :user_id ";
+   $sqlCommentUser = "SELECT * from DiscussionBoardComments where CommentId = :commentid";
     try {
       $db = getConnection();
       $stmtCommentUser = $db->prepare($sqlCommentUser);
       $stmtCommentUser->bindParam("commentid", $commentId);
-      $stmtCommentUser->bindParam("user_id", $user_id);
       $stmtCommentUser->execute();
-      $winCUser = $stmtCommentUser->fetchAll(PDO::FETCH_OBJ);
+      $winCUser = $stmtCommentUser->fetchObject();
       $db = null;
     //echo $total = $wine->'count(1)';
      // echo json_encode($wineUser);
@@ -562,16 +561,16 @@ function setCommentLikes($commentId) {
       echo '{"error":{"text":'. $e->getMessage() .'}}';
     }
 
-    foreach($winCUser as $obj) {
-      $comment = $obj->Comment;
-      $id = $obj->DiscussionTopicId;
+ 
+      $comment = $winCUser->Comment;
+      $id = $winCUser->DiscussionTopicId;
       $link = 'discussion?topic='.$id;
       $message = $fname.' '.$lname.' has liked your comment "'.$comment.'".';
         $sqlFN = "INSERT INTO ForumNotification (UserId,Message,ViewStatus,AddedDate,Link) VALUES (:UserId, :Message, :ViewStatus, :AddedDate, :Link)";
     try {
       $db = getConnection();
       $stmtFN = $db->prepare($sqlFN);
-      $stmtFN->bindParam("UserId", $obj->UserId);
+      $stmtFN->bindParam("UserId", $winCUser->UserId);
       $stmtFN->bindParam("Message", $message);
       $stmtFN->bindParam("ViewStatus", $viewstatus);
       $stmtFN->bindParam("AddedDate", $likeDateTime);
@@ -583,7 +582,7 @@ function setCommentLikes($commentId) {
     } catch(PDOException $e) {
       echo '{"error":{"text":'. $e->getMessage() .'}}';
     }
-    }
+ 
 
   $sql = "INSERT INTO DiscussionBorardLikes (CommentId, UserId, LikeDateTime) VALUES (:commentId, :userId, :likeDateTime)";
   try {

@@ -910,7 +910,7 @@ function checkFeeling($id) {
  
    if($days < $wineRes->Resend){
      $st = 1;
-     echo 'Ooops You can only have one Sweet Expresso shot in a Day! '; 
+     echo 'Ooops! You can only have one Sweet Expresso shot in a Day. '; 
    }
   }
  if($st == 0){
@@ -941,7 +941,7 @@ function checkFeeling($id) {
    
      if ($days < $wineRes->ResendSame) {
        $st = 1;
-       echo 'Ooops you just accepted a sweet expresso shot. Give it a day for the next!';
+       echo 'Ooops! Ysou just accepted a sweet expresso shot. Give it a day for the next.';
      }
    }
    

@@ -405,39 +405,53 @@ angular
       })
       .when('/heart-statics', {
         templateUrl: 'views/heart-statics.html',
-        controller: 'HeartStaticsCtrl'
+        controller: 'HeartStaticsCtrl',
+        access:      access.admin
       })
       .when('/privacy-policy', {
         templateUrl: 'views/privacy-policy.html',
-        controller: 'PrivacyPolicyCtrl'
+        controller: 'PrivacyPolicyCtrl',
+        access:      access.public
       })
       .when('/contact-us', {
         templateUrl: 'views/contact-us.html',
-        controller: 'ContactUsCtrl'
+        controller: 'ContactUsCtrl',
+        access:      access.public
       })
       .when('/admin-contactus-listing', {
         templateUrl: 'views/admin-contactus-listing.html',
-        controller: 'AdminContactusListingCtrl'
+        controller: 'AdminContactusListingCtrl',
+        access:      access.admin
       })
       .when('/admin-contactus-detail', {
         templateUrl: 'views/admin-contactus-detail.html',
-        controller: 'AdminContactusDetailCtrl'
+        controller: 'AdminContactusDetailCtrl',
+        access:      access.admin
       })
       .when('/why-join-soulcafe', {
         templateUrl: 'views/why-soul.html',
-        controller: 'WhySoulCtrl'
+        controller: 'WhySoulCtrl',
+        access:      access.public
       })
-      .when('/about-us', {
+      .when('/soulcafestory', {
         templateUrl: 'views/about-us.html',
-        controller: 'AboutUsCtrl'
+        controller: 'AboutUsCtrl',
+        access:      access.public
       })
       .when('/how-soulcafe-works', {
         templateUrl: 'views/how-works.html',
-        controller: 'HowWorksCtrl'
+        controller: 'HowWorksCtrl',
+        access:      access.public
       })
       .when('/strictly-not-allowed-on-soulcafe', {
         templateUrl: 'views/strict-no.html',
-        controller: 'StrictNoCtrl'
+        controller: 'StrictNoCtrl',
+        access:      access.public
+      })
+      .when('/term-condition', {
+        templateUrl: 'views/term-condition.html',
+        controller: 'TermConditionCtrl',
+        access:      access.public
       })
       .otherwise({
         redirectTo: '/'
