@@ -451,13 +451,14 @@ function acceptGTKY($id) {
     $user_id  = getUserId();
     $cmtDateTime=  date("Y-m-d") ;
    $status = 1;
-  $sql = " update Buddies SET Status = 1 where SenderId =:id";
+  $sql = " update Buddies SET Status = 1 where SenderId =:id and BuddyId = :user_id";
   $sql1 = "Insert into Buddies (SenderId,BuddyId,Status,AddedDate) values (:buddyid,:senderid,:status,:AddedDate)";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);
     $stmt1 = $db->prepare($sql1);    
     $stmt->bindParam("id", $id);
+    $stmt->bindParam("user_id", $user_id);
     $stmt1->bindParam("senderid", $id);
     $stmt1->bindParam("buddyid", $user_id);
     $stmt1->bindParam("status", $status);
