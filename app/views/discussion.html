@@ -80,22 +80,22 @@
                         </div><!--/end media media v2--> 
                     </div><!-- comment  -->
                     <div class="media media-v2">
-                        <a class="pull-left" href="#">
+                        <a class="pull-left" href="#/myprofile">
                             <img class="media-object rounded-x" ng-src="{{pict}}" alt="Me" title="Me">
                         </a>
                         <div class="media-body">
                             <h4 class="media-heading">
-                                <strong><a href="#">me</a></strong>
+                                <strong><a href="#myprofile">me</a></strong>
                             </h4>
                            <div class="alert alert-{{mod.type}} fade in" ng-show="mod">{{mod.msg}}
          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
     </div>
-                            <form id="sky-form4" class="sky-form" name="adminDiscussion">
+                            <form id="comment" class="comment sky-form" name="adminDiscussion" ng-submit="addcomment()">
                                 <fieldset>     
                                     <label class="textarea">
-                                        <textarea rows="4" name="message" id="message" data-ng-model="comment" ></textarea>
+                                        <textarea rows="4" name="message" id="message" data-ng-model="comment" required></textarea>
                                     </label>
-                                    <button data-ng-click="addcomment()" class="btn-u btn-u-blue">Submit</button>
+                                    <button type="submit" class="btn-u btn-u-blue" ng-disabled="comment.$invalid">Submit</button>
                                 </fieldset>
                             </form>
                         </div>
