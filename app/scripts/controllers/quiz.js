@@ -98,15 +98,30 @@ angular.module('sassApp')
 		$scope.singleSelected = id;
     }
     $scope.intensitySel = 0;
+    $scope.intensityMaximum = 0; 
     $scope.selectMultipleIntensity = function(id) {        
     	
     	if ($scope.multiIntensityOptions[id].selected == true) {
     		$scope.multiIntensityOptions[id].selected = false;
     		$scope.intensitySel--;
+    		$scope.intensityMaximum--;
     	}
     	else {
-    		$scope.multiIntensityOptions[id].selected = true;
-    		$scope.intensitySel++;
+    		if ($scope.QuestionObj.Questions.MaxOptions == $scope.intensityMaximum) {
+    			$scope.errMessage = 'Maximum Selection is ' + $scope.QuestionObj.Questions.MaxOptions;
+    			//alert('Maximum Selection is ' + $scope.QuestionObj.Questions.MaxOptions );
+    			$anchorScroll();
+    			return;
+    			
+    		}
+    		else {
+    			$scope.multiIntensityOptions[id].selected = true;
+        		$scope.intensitySel++;
+        		console.log($scope.QuestionObj.Questions.MaxOptions);
+        		$scope.intensityMaximum++;    			
+    		}
+    		
+    		
     	}
 		
     }
