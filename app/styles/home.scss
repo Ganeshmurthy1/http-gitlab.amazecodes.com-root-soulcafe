@@ -74,15 +74,15 @@ a{
 		
 }
 .fixer-about{
-	 left: 86%;
+	 left: 100%;
     position: absolute;
-    top: 7px;
+    top: -57px;
     z-index: 999;
 }
 .fixer-how{
-    left: 89%;
+    left: 95%;
     position: absolute;
-    top: 7px;
+    top: -22px;
     z-index: 999;
 }
 .min-200 {
@@ -1078,13 +1078,8 @@ footer{
 
 /*-----------Mobile Landscape-----------*/
 @media (min-width: 480px) {
-.fixer-about{
-	 left: 90%;
-}
 
-.fixer-how{
-    left: 93%;
-    }
+
 .okmargin{
 	margin-left:33% !important;
 }
@@ -1118,16 +1113,11 @@ footer{
 
 /*-----------Small Tablet Potrait-----------*/
 @media (min-width: 600px) {
-.fixer-about{
-	 left: 92%;
-}
+
 
 .dropdown-menu {
 	left:-20px;
 }
-.fixer-how{
-    left: 93%;
-    }
 .socio-hide{
 	display:block;
 }
@@ -1170,11 +1160,11 @@ footer{
 
 /*-----------Small Tablet Landscape-----------*/
 @media (min-width: 800px) {
+.fixer-how {
+    left: 97%;
+ }
 .footer-link {
     padding-left: 0%;
-}
-.fixer-about{
-	 left: 95%;
 }
 
 .dropdown-menu {
@@ -1201,9 +1191,10 @@ footer{
 
 /*----------- Tablet Potrait-----------*/
 @media (min-width: 768px) {
-.fixer-how{
-    left: 94%;
+.fixer-how {
+    left: 97%;
     }
+
 .footer-link{
 	padding-left:15%;
 }
@@ -1392,7 +1383,9 @@ min-height: 1150px;
 
 /*----------- Tablet Landscape-----------*/
 @media (min-width: 1024px) {
-
+.fixer-how{
+    left: 99%;
+ }
 .footer-link{
 	padding-left:20%;
 }
@@ -1584,15 +1577,11 @@ min-height: 1150px;
 }
 
 @media (min-width: 1200px) {
-.fixer-about{
-	 left: 86%;
-}
+
 .about-pad{
 	padding:155px 20px;
 }
-.fixer-how{
-    left: 85%;
-    }
+
 .footer-logo{
 	text-align:left;
 }
