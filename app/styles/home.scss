@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Shadows+Into+Light+Two);
+
 .myborder{
 	border:1px solid red;
 }
@@ -5,7 +7,9 @@
 .shadow-font{
 	font-family: 'Shadows Into Light Two', cursive !important;
 }
-
+.pad-tc{
+	padding-left:10px;
+}
 .myheight{
 	min-height:103px;
 	padding:20px;
@@ -578,7 +582,7 @@ a:hover{
 }
 .btn-comp{
 	border-radius:10px !important;
-	
+	background-color:#f94d0a;
 	color:#ffffff;
 	float:left;
 }

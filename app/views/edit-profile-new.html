@@ -462,6 +462,9 @@
     	<accordion-heading>
             Professional Details <i style="margin-top:4px;" class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.isSecondOpen, 'glyphicon-chevron-right': !status.isSecondOpen}"></i>
         </accordion-heading>
+         <div class="alert alert-success fade in" ng-show="pq">{{pq.msg}}
+                     <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+        </div>
         <div class="row" ng-hide="updateButton">
         <div class="col-md-3 padding-top">
         	Get it From-
@@ -487,7 +490,7 @@
 	   </div>
 
 
-        <form name="editprofileform" class="panel panel-blue margin-bottom-40" ng-submit="saveButtonClick(editprofileform.$invalid)" ng-hide="disable">
+        <form name="editlinkedinprofileform" class="panel panel-blue margin-bottom-40" ng-hide="disable">
                     <!-- <div class="panel-heading">
                         <h3 class="panel-title"><i class="fa fa-tasks"></i> Basic Form</h3>
                     </div> -->
@@ -496,25 +499,25 @@
                             <div class="form-group row" ng-show="updateButton">
                                 <label class="col-lg-3 control-label">Linkedin Profile Url</label>
                                 <div class="col-lg-9">
-                                   <a target="_blank" style="color:#5bc0de;"href="{{profileDetail.ProfileUrl}}">{{profileDetail.ProfileUrl}}</a> 
+                                   <a target="_blank" style="color:#5bc0de;"href="{{proff.ProfileUrl}}">{{proff.ProfileUrl}}</a> 
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 control-label">Current Employment</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" name="cemployee" ng-model="profileDetail.CurrentEmployment" ng-disabled="disable">
+                                    <input type="text" class="form-control" name="cemployee" ng-model="proff.CurrentEmployment" ng-disabled="disable">
                                 </div>
                             </div>
                              <div class="form-group row">
                                 <label class="col-lg-3 control-label">Highest Education</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" name="education" ng-model="profileDetail.HighestEducation" ng-disabled="disable">
+                                    <input type="text" class="form-control" name="education" ng-model="proff.HighestEducation" ng-disabled="disable">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 control-label">Roles</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" name="skill" ng-model="profileDetail.CurrentRole" ng-disabled="disable">
+                                    <input type="text" class="form-control" name="skill" ng-model="proff.CurrentRole" ng-disabled="disable">
                                 </div>
                             </div>
                            
@@ -522,34 +525,34 @@
                     </div>
                 </form>
                 <!-- End Basic Form -->
-                 <form name="editprofileform" class="panel panel-blue margin-bottom-40" ng-submit="saveButtonClick(editprofileform.$invalid)" ng-show="disable">
+                 <form name="editlinkedinprofileform" class="panel panel-blue margin-bottom-40" ng-submit="saveLinkedinButtonClick(proff)" ng-show="disable">
                       <div class="panel-body">                                                      
-                        <form class="margin-bottom-40" role="form">
+                       
                             <div class="form-group row">
                                 <label class="col-lg-3 control-label">Current Employment</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" name="cemployee" ng-model="profileDetail.CurrentEmployment">
+                                    <input type="text" class="form-control" name="cemployee" ng-model="proff.CurrentEmployment">
                                 </div>
                             </div>
                              <div class="form-group row">
                                 <label class="col-lg-3 control-label">Highest Education</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" name="education" ng-model="profileDetail.HighestEducation">
+                                    <input type="text" class="form-control" name="education" ng-model="proff.HighestEducation">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 control-label">Roles</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" name="skill" ng-model="profileDetail.CurrentRole">
+                                    <input type="text" class="form-control" name="skill" ng-model="proff.CurrentRole">
                                 </div>
                             </div>
                             <h4>{{errMessage}}</h4>
                           
                             
                             <div class="pull-right">
-                                 <button type="submit" class="btn-u btn-u-blue" ng-disabled="editprofileform.$invalid">Save</button>
+                                 <button type="submit" class="btn-u btn-u-blue" ng-disabled="editlinkedinprofileform.$invalid">Save</button>
                             </div>
-                        </form>
+                       
                     </div>
                 </form>
                 <!-- End Basic Form -->

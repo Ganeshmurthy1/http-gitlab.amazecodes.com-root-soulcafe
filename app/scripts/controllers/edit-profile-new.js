@@ -21,6 +21,12 @@ angular.module('sassApp')
       $scope.q = messageCodes.Messages[q];
   }
 
+    $scope.pq = '';
+    var pq = $routeParams.pq;
+    if (pq != null) {
+      $scope.pq = messageCodes.Messages[pq];
+  }
+
     $scope.dateOptions = {
             changeYear: true,
             changeMonth: true,
@@ -75,14 +81,23 @@ angular.module('sassApp')
         else{
           $scope.linkedinData = result;
           regService.addLinkedinDataf($scope.linkedinData).then(function(response) {
-          $scope.temp = localStorageService.get('authorizationData');
-          $scope.temp.employment =  $scope.linkedinData.CurrentEmployment;
-          localStorageService.set('authorizationData', $scope.temp);
-            if (response.data == 'true') {
-              $route.reload();
-            }
-            else{
-            }
+            
+            regService.getEditProfileDetail().then(function (response) {
+              // console.log(response);
+               $scope.profileDetail = response.data.user;
+                $scope.proff = response.data.proff;
+                $scope.temp = localStorageService.get('authorizationData');
+            $scope.temp.employment =  $scope.proff.CurrentEmployment;
+            localStorageService.set('authorizationData', $scope.temp);
+               if ($scope.profileDetail.linked_update == 1) {
+                $scope.updateButton = 'true';
+                $scope.disable = 'false';
+               }else if ($scope.profileDetail.linked_update == 0) {
+                $scope.disable = 'true';
+               }
+               // $route.reload();
+               $location.url('/edit-profile-new?pq=117');
+            });
           });
         }
       });
@@ -90,28 +105,35 @@ angular.module('sassApp')
 
 
      regService.getEditProfileDetail().then(function (response) {
-          $scope.profileDetail = response.data.profile;
+        console.log(response);
+           $scope.profileDetail = response.data.user;
+          $scope.proff = response.data.proff;
           $scope.temp = localStorageService.get('authorizationData');
-          $scope.temp.employment =  $scope.profileDetail.CurrentEmployment;
+          $scope.temp.employment =  $scope.proff.CurrentEmployment;
           localStorageService.set('authorizationData', $scope.temp);
           $scope.questions = response.data.question;
           $scope.religion = response.data.religion[0].Answer;
           $scope.pict = $scope.imagepath + $scope.profileDetail.Picture;
+          // console.log($scope.profileDetail.linked_update);
           if ($scope.profileDetail.linked_update == 1) {
            $scope.updateButton = 'true';
            $scope.disable = 'false';
+           // console.log($scope.updateButton);
+           // console.log($scope.disable);
           }else if ($scope.profileDetail.linked_update == 0) {
           	$scope.disable = 'true';
+            // console.log($scope.disable);
           }
        });
 
      $scope.errorMessage = '';
   $scope.saveButtonClick = function(){
-    // console.log($scope.profileDetail);
+    // console.log($scope.proff);
   	$scope.profileDetail.UpdatedPicture=$scope.image;
   	regService.updateProfileDetail($scope.profileDetail).then(function (response) {
         if(response.data == "true"){
           regService.getProfileDetail().then(function (response) {
+            // console.log(response);
              $scope.profileDetail = response.data;
              $scope.pict = $scope.imagepath + $scope.profileDetail.Picture;
              $scope.temp = localStorageService.get('authorizationData');
@@ -121,12 +143,12 @@ angular.module('sassApp')
              $scope.temp.birthdate = $scope.profileDetail.birthdate;
              localStorageService.set('authorizationData', $scope.temp);
              $scope.temp = localStorageService.get('authorizationData');
-             if ($scope.profileDetail.linked_update == 1) {
-              $scope.updateButton = 'true';
-              $scope.disable = 'false';
-             }else if ($scope.profileDetail.linked_update == 0) {
-              $scope.disable = 'true';
-             }
+             // if ($scope.profileDetail.linked_update == 1) {
+             //  $scope.updateButton = 'true';
+             //  $scope.disable = 'false';
+             // }else if ($scope.profileDetail.linked_update == 0) {
+             //  $scope.disable = 'true';
+             // }
              // $route.reload();
              $location.url('/edit-profile-new?q=117');
           });
@@ -138,6 +160,42 @@ angular.module('sassApp')
       });
   	
   }
+
+
+
+ $scope.saveLinkedinButtonClick = function(a){
+  // console.log("$scope.proff");
+  // console.log(a);
+  $scope.proff = a;
+
+    regService.insertLinkedinProfileDetail($scope.proff).then(function (response) {
+      console.log(response);
+
+       regService.getEditProfileDetail().then(function (response) {
+            // console.log(response);
+             $scope.profileDetail = response.data.user;
+              $scope.proff = response.data.proff;
+              $scope.temp = localStorageService.get('authorizationData');
+          $scope.temp.employment =  $scope.proff.CurrentEmployment;
+          localStorageService.set('authorizationData', $scope.temp);
+             if ($scope.profileDetail.linked_update == 1) {
+              $scope.updateButton = 'true';
+              $scope.disable = 'false';
+             }else if ($scope.profileDetail.linked_update == 0) {
+              $scope.disable = 'true';
+             }
+             // $route.reload();
+             $location.url('/edit-profile-new?pq=117');
+          });
+    });
+
+
+
+ }
+
+
+
+
     $scope.imageErr = '';
     $scope.imageSucc = '';
     $scope.disable_save = false;

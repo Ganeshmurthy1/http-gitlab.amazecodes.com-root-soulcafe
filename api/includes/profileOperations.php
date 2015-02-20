@@ -431,7 +431,7 @@ function checkAbuseUser($id) {
 function getUserSendedGTKY() {
    $user_id  = getUserId();
    
-  $sql = "SELECT b.SenderId,u.first_name,u.last_name from Buddies as b inner join users as u on b.SenderId=u.user_id where SenderId Not IN(select user_id from users where user_id=:user_id) and b.Status = 0";
+  $sql = "SELECT b.SenderId,u.first_name,u.last_name from Buddies as b inner join users as u on b.SenderId=u.user_id where SenderId Not IN(select user_id from users where user_id=:user_id) and b.Status = 0 Order by b.AddedDate desc";
   try {
     $db = getConnection();
     $stmt = $db->prepare($sql);  

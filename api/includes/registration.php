@@ -33,6 +33,8 @@ $app->get('/deleteComment/:commentId', 'deleteComment');
 $app->get('/get_Profile_Detail', 'getProfileDetail');
 
 $app->get('/get_Edit_Profile_Detail', 'getEditProfileDetail');
+$app->post('/insert_Linkedin_Profile_Detail',  'insertLinkedinProfileDetail');
+
 $app->post('/add_User_Discussion',  'addUserDiscussion');
 $app->get('/get_Total_Members/:DiscussionBoardId', 'getTotalMembers');
 $app->get('/remove_User/:DiscussionBoardId', 'removeUser');
@@ -1013,18 +1015,33 @@ function getEditProfileDetail() {
   // print_r( $user );
   $user_id  = getUserId();
   $result = new stdClass();
-  $sql = "select u.*,pd.CurrentEmployment,pd.HighestEducation,pd.Endorsedskills,pd.ProfileUrl, pd.CurrentRole from users AS u left join ProfessionalDetails As pd on u.user_id = pd.UserId where u.user_id=:user_id";
+
+  $sqlU = "select * from users where user_id=:user_id";
   try {
     $db = getConnection();
-    $stmt = $db->prepare($sql);
-    $stmt->bindParam("user_id",  $user_id );
-    $stmt->execute();
-    $wine = $stmt->fetchObject();
+    $stmtU = $db->prepare($sqlU);
+    $stmtU->bindParam("user_id",  $user_id );
+    $stmtU->execute();
+    $wineUser = $stmtU->fetchObject();
     //$db = null;
    // echo json_encode($wine);
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
+
+  $sqlP = "select * from  ProfessionalDetails where UserId=:user_id";
+  try {
+    $db = getConnection();
+    $stmtP = $db->prepare($sqlP);
+    $stmtP->bindParam("user_id",  $user_id );
+    $stmtP->execute();
+    $wineP = $stmtP->fetchObject();
+    //$db = null;
+   // echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+
   $sql = "SELECT q.*, qc.Category, at.AlgTypeTitle FROM `Questionnaire` q JOIN QuestionnaireCategory qc ON q.QuestionCategory = qc.QcId  JOIN AlgorithamType at ON q.AlgorithamType=at.AlgTypeId";
   try {
    // $db = getConnection();
@@ -1049,9 +1066,10 @@ function getEditProfileDetail() {
   } catch(PDOException $e) {
     echo '{"error":{"text":'. $e->getMessage() .'}}';
   }
-  
+
+  $result->user = $wineUser;
   $result->religion = $wineInterest;
-  $result->profile = $wine;
+  $result->proff = $wineP;
   $result->question = $wineq;
   echo json_encode($result);
 }
@@ -1078,7 +1096,7 @@ function updateProfileDetail() {
     // print_r($user);
   if (!empty($user->UpdatedPicture)) {
     $sqlusers = "update users  set birthdate=:birthdate, first_name=:first_name,last_name=:last_name,email=:email,mobile=:mobile,location=:location,Moto=:moto,OwnWords=:OwnWords,AboutMe=:AboutMe,Height=:Height,FoodHabits=:FoodHabits,Drinking=:Drinking,Smoking=:Smoking,Picture=:UpdatedPicture where user_id = :user_id ";
-   $sqlpd = "update ProfessionalDetails set CurrentEmployment = :CurrentEmployment,Endorsedskills=:Endorsedskills,HighestEducation=:HighestEducation where UserId = :user_id ";  
+   
       try {
         $db = getConnection();
         $stmt = $db->prepare($sqlusers);
@@ -1099,13 +1117,6 @@ function updateProfileDetail() {
         $stmt->bindParam("UpdatedPicture", $user->UpdatedPicture);
         
         $stmt->execute();
-
-        $stmtpd = $db->prepare($sqlpd);
-        $stmtpd->bindParam("user_id", $user_id);
-        $stmtpd->bindParam("CurrentEmployment", $user->CurrentEmployment);
-        $stmtpd->bindParam("Endorsedskills", $user->Endorsedskills);
-        $stmtpd->bindParam("HighestEducation", $user->HighestEducation);
-        $stmtpd->execute();
       echo 'true';
         //$app->redirect('login.html');
       } catch(PDOException $e) {
@@ -1113,7 +1124,7 @@ function updateProfileDetail() {
       }
   }else{
     $sqlusers = "update users  set birthdate=:birthdate, first_name=:first_name,last_name=:last_name,email=:email,mobile=:mobile,location=:location,Moto=:moto,OwnWords=:OwnWords,AboutMe=:AboutMe,Height=:Height,FoodHabits=:FoodHabits,Drinking=:Drinking,Smoking=:Smoking where user_id = :user_id ";
-   $sqlpd = "update ProfessionalDetails set CurrentEmployment = :CurrentEmployment,Endorsedskills=:Endorsedskills,HighestEducation=:HighestEducation where UserId = :user_id ";  
+
       try {
         $db = getConnection();
         $stmt = $db->prepare($sqlusers);
@@ -1124,7 +1135,7 @@ function updateProfileDetail() {
         $stmt->bindParam("email", $user->email);
         $stmt->bindParam("mobile", $user->mobile);
         $stmt->bindParam("moto", $user->Moto);
-         $stmt->bindParam("location", $user->location);
+        $stmt->bindParam("location", $user->location);
         $stmt->bindParam("OwnWords", $user->OwnWords);
         $stmt->bindParam("AboutMe", $user->AboutMe);
         $stmt->bindParam("Height", $user->Height);
@@ -1134,13 +1145,6 @@ function updateProfileDetail() {
         
         
         $stmt->execute();
-
-        $stmtpd = $db->prepare($sqlpd);
-        $stmtpd->bindParam("user_id", $user_id);
-        $stmtpd->bindParam("CurrentEmployment", $user->CurrentEmployment);
-        $stmtpd->bindParam("Endorsedskills", $user->Endorsedskills);
-        $stmtpd->bindParam("HighestEducation", $user->HighestEducation);
-        $stmtpd->execute();
       echo 'true';
         //$app->redirect('login.html');
       } catch(PDOException $e) {
@@ -1149,6 +1153,63 @@ function updateProfileDetail() {
   }
   
  }
+
+function insertLinkedinProfileDetail() {   
+  $request = Slim::getInstance()->request();
+  $user = json_decode($request->getBody());
+  
+  
+  $user_id  = getUserId();
+    // print_r($user);
+  $tdate = date('Y-m-d h:i:s');
+  $link = 1;
+
+   
+   $sqlD = "DELETE FROM `ProfessionalDetails` where UserId = :user_id ";
+    try {
+        $db = getConnection();
+        $stmtD = $db->prepare($sqlD);
+        $stmtD->bindParam("user_id", $user_id);
+        $stmtD->execute();
+      
+        //$app->redirect('login.html');
+      } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+      }
+
+
+   $sqlpd = "Insert into ProfessionalDetails (UserId, CurrentEmployment ,CurrentRole,HighestEducation,ModifiedDate) values (:user_id, :CurrentEmployment,:CurrentRole,:HighestEducation,:ModifiedDate)";  
+   
+      try {
+        $db = getConnection();
+        $stmtpd = $db->prepare($sqlpd);
+        $stmtpd->bindParam("user_id", $user_id);
+        $stmtpd->bindParam("CurrentEmployment", $user->CurrentEmployment);
+        $stmtpd->bindParam("CurrentRole", $user->CurrentRole);
+        $stmtpd->bindParam("HighestEducation", $user->HighestEducation);
+        $stmtpd->bindParam("ModifiedDate", $tdate);
+        $stmtpd->execute();
+      // echo 'true';
+        //$app->redirect('login.html');
+      } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+      }
+
+  $sql = "Update users set linked_update = :link where user_id = :user_id ";
+    try {
+        $db = getConnection();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("user_id", $user_id);
+        $stmt->bindParam("link", $link);
+        $stmt->execute();
+      echo 'true';
+        //$app->redirect('login.html');
+      } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+      }
+  
+ }
+
 
 function addUserDiscussion() {
   $request = Slim::getInstance()->request();

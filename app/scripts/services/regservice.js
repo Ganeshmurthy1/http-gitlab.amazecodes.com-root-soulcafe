@@ -196,6 +196,14 @@ angular.module('sassApp')
             });
 	    	
 	    };
+	    dataFactory.insertLinkedinProfileDetail = function (param) {
+	    	//console.log(param);
+	    	return Transporter.post('insert_Linkedin_Profile_Detail', param).then(function(response) {
+	    		// console.log(response);
+                return response;
+            });
+	    	
+	    };
 	    dataFactory.addUserDiscussion = function (param) {
 	    	// console.log(param);
 	    	return Transporter.post('add_User_Discussion', param).then(function(response) {
