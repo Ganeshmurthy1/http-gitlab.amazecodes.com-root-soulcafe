@@ -296,7 +296,7 @@ function addUser() {
             // Set some options - we are passing in a useragent too here
             curl_setopt_array($curl, array(
             CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_URL => 'http://bulksms.marketsolutions.co.in/sendsms?uname=thumbamon&pwd=thumbamon123&senderid=TUMBMN&to=' . $user->mobile . '&msg=Dear%20' . $my_name . ',%20%20Thank%20you%20for%20your%20donation%20amount%20of%20INR.%20' .$mobile_rand . '/-%20towards%20Tithe%20Collection%20of%20MOSC%20Diocese%20of%20Thumpamon.%20Best%20Regards,%20Dio.%20Office,%20Thumpamon&route=T',
+            CURLOPT_URL => 'http://bulksms.marketsolutions.co.in/sendsms?uname=amazecodes&pwd=amaze123&senderid=SLCAFE&to=' . $user->mobile . '&msg=Dear%20' . $my_name . ',%20%20Thank%20you%20for%20your%20interest%20in%20soulcafe.singles.%20Your%20activation%20code%20is%20' .$mobile_rand . '.%20Best%20Regards,%20SoulCafe&route=T',
             CURLOPT_USERAGENT => 'Jiby Sample cURL Request'
             ));
             // Send the request & save response to $resp
