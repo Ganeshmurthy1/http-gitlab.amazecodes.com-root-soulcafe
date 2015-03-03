@@ -265,7 +265,7 @@ function addUser() {
          $mobile_rand = rand(11111, 99999);
          $name = $user->first_name. ' ' . $user->last_name;
          $role = 2;
-         $status = 1;
+         $status = 0;
          $tdate = date('Y-m-d h:i:s');
       
           $sql = "INSERT INTO users (status,fb_id, first_name, last_name, email, gender, birthdate, hometown, location, relationship_status, mobile, act_code, user_role,Picture, DateJoined) VALUES (:status, :fb_id, :first_name, :last_name, :email, :gender, :birthdate, :hometown, :location, :relationship_status, :mobile, :act_code, :user_role,:Picture, :tdate)";
@@ -290,14 +290,14 @@ function addUser() {
             
             $stmt->execute();
             
-            $my_name = $user->first_name .'%20' . $user->last_name;
+            $my_name = str_replace(' ', '%20', $user->first_name .'%20' . $user->last_name); ;
             // Get cURL resource
             $curl = curl_init();
             // Set some options - we are passing in a useragent too here
             curl_setopt_array($curl, array(
             CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_URL => 'http://bulksms.marketsolutions.co.in/sendsms?uname=amazecodes&pwd=amaze123&senderid=SLCAFE&to=' . $user->mobile . '&msg=Dear%20' . $my_name . ',%20%20Thank%20you%20for%20your%20interest%20in%20soulcafe.singles.%20Your%20activation%20code%20is%20' .$mobile_rand . '.%20Best%20Regards,%20SoulCafe&route=T',
-            CURLOPT_USERAGENT => 'Jiby Sample cURL Request'
+            CURLOPT_USERAGENT => 'Soulcafe Sample cURL Request'
             ));
             // Send the request & save response to $resp
             $resp = curl_exec($curl);
@@ -1461,16 +1461,22 @@ function resendCode() {
     $db = null;
     
     if (isset($wine->act_code)) {
-      $my_name = $wine->first_name;
+      $my_name =  str_replace(' ', '%20', $wine->first_name) ;
       $mobile_rand = $wine->act_code;
       //exit();
       // Get cURL resource
       $curl = curl_init();
       // Set some options - we are passing in a useragent too here
+//       curl_setopt_array($curl, array(
+//       CURLOPT_RETURNTRANSFER => 1,
+//       CURLOPT_URL => 'http://bulksms.marketsolutions.co.in/sendsms?uname=thumbamon&pwd=thumbamon123&senderid=TUMBMN&to=' . $user->mobile . '&msg=Dear%20' . $my_name . ',%20%20Thank%20you%20for%20your%20donation%20amount%20of%20INR.%20' .$mobile_rand . '/-%20towards%20Tithe%20Collection%20of%20MOSC%20Diocese%20of%20Thumpamon.%20Best%20Regards,%20Dio.%20Office,%20Thumpamon&route=T',
+//       CURLOPT_USERAGENT => 'Jiby Sample cURL Request'
+//           ));
+      
       curl_setopt_array($curl, array(
       CURLOPT_RETURNTRANSFER => 1,
-      CURLOPT_URL => 'http://bulksms.marketsolutions.co.in/sendsms?uname=thumbamon&pwd=thumbamon123&senderid=TUMBMN&to=' . $user->mobile . '&msg=Dear%20' . $my_name . ',%20%20Thank%20you%20for%20your%20donation%20amount%20of%20INR.%20' .$mobile_rand . '/-%20towards%20Tithe%20Collection%20of%20MOSC%20Diocese%20of%20Thumpamon.%20Best%20Regards,%20Dio.%20Office,%20Thumpamon&route=T',
-      CURLOPT_USERAGENT => 'Jiby Sample cURL Request'
+      CURLOPT_URL => 'http://bulksms.marketsolutions.co.in/sendsms?uname=amazecodes&pwd=amaze123&senderid=SLCAFE&to=' . $user->mobile . '&msg=Dear%20' . $my_name . ',%20%20Thank%20you%20for%20your%20interest%20in%20soulcafe.singles.%20Your%20activation%20code%20is%20' .$mobile_rand . '.%20Best%20Regards,%20SoulCafe&route=T',
+      CURLOPT_USERAGENT => 'Soulcafe Sample cURL Request'
           ));
           // Send the request & save response to $resp
           $resp = curl_exec($curl);
