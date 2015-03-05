@@ -60,12 +60,14 @@ var config = localStorageService.get('config');
                   var joinFlag = true;
               };
             
-            $scope.userData = results.data; 
+            $scope.userData = results.data.ud; 
             var d1 = new Date($scope.userData.birthdate);
             var d2 = new Date();
             var diff = d2.getFullYear()-d1.getFullYear(); 
              var authData = localStorageService.get('authorizationData');
-            for (var i = 0; i < $scope.discussionData.length; i++) {             
+            for (var i = 0; i < $scope.discussionData.length; i++) { 
+            console.log( $scope.discussionData[i]);
+            console.log($scope.userData) ;           
               $scope.discussionData[i].view="false";
               $scope.discussionData[i].sr=i+1;
               $scope.isAdmin = false;
@@ -82,9 +84,11 @@ var config = localStorageService.get('config');
               }
               else
               {
-                
+                console.log("Abhik");
                 if($scope.discussionData[i].RestrictedAge == null){
+                  console.log("Abhik1");
                   if($scope.discussionData[i].RestrictedGender == null){
+                    console.log("Abhik2ss");
                      if($scope.discussionData[i].RestrictedLocation == false){
                         $scope.discussionData[i].join="true";
                         $scope.discussionData[i].show="true";
@@ -107,7 +111,7 @@ var config = localStorageService.get('config');
                           }
                      };
                     }else if ($scope.userData.gender === $scope.discussionData[i].RestrictedGender) {
-                   
+                        console.log("AbhikGender");
                     if ($scope.discussionData[i].RestrictedLocation == false) {
                        $scope.discussionData[i].join="true";
                        $scope.discussionData[i].show="true";
