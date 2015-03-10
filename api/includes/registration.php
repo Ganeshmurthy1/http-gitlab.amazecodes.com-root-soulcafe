@@ -2,6 +2,7 @@
 
 $app->get('/users/:id', 'getUsers');
 $app->post('/add_user', 'addUser');
+$app->post('/add_fb_temp_data', 'addFbTempData');
 $app->post('/verify', 'verifyUser');
 $app->post('/add_education', 'addEducation');
 $app->post('/add_contact', 'addContact');
@@ -236,6 +237,31 @@ function getLinkedinUsers($id) {
 //  $obj_merged = (object) array_merge((array) $wineEdu, (array) $wineCp, (array) $winePp);
  // echo json_encode($obj_merged);
 }
+
+function addFbTempData() {
+  $request = Slim::getInstance()->request();
+  $user = json_decode($request->getBody());
+ // print_r($user);
+  $tdate = date('Y-m-d h:i:s');
+  $fb_id = $user->id;
+  $data = serialize($user);
+  $sql = "INSERT INTO TempFBData (FbId, Data, DateAdded) VALUES (:fb_id, :data, :tdate)";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("fb_id", $fb_id);
+    $stmt->bindParam("data", $data);
+    $stmt->bindParam("tdate", $tdate);
+  
+    $stmt->execute();
+  
+    
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  
+}
+
 
 function addUser() {
   $request = Slim::getInstance()->request();

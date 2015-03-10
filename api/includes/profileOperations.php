@@ -13,7 +13,7 @@ $app->get('/accept_GTKY/:id', 'acceptGTKY');
 $app->get('/reject_GTKY/:id', 'rejectGTKY');
 $app->get('/get_Buddies_All', 'getBuddiesAll');
 
-$app->get('/get_home_data', 'getHomeData');
+$app->get('/get_home_data', 'checkUser', 'getHomeData');
 $app->get('/get_MyProfileDetails', 'getMyProfileDetails');
 $app->get('/get_CommentLike/:id', 'getCommentLike');
 

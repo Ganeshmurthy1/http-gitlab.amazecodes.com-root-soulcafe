@@ -50,6 +50,13 @@ angular.module('sassApp')
                 return response;
             });	    	
 	    };
+	    dataFactory.saveFbTempData = function (param) {
+	    	//console.log(param);
+	    	return Transporter.post('add_fb_temp_data', param).then(function(response) {
+                return response;
+            });	    	
+	    };
+	    
 	    dataFactory.getDiscussionListStatus = function () {
 	    	return Transporter.get('get_DiscussionListStatus').then(function(response) {
                 return response;

@@ -457,9 +457,9 @@ angular
         redirectTo: '/'
       });
     
-         // $facebookProvider.setAppId('305118313022402'); // for localhost
+      $facebookProvider.setAppId('305118313022402'); // for localhost
       //$facebookProvider.setAppId('273647349502832');
-      $facebookProvider.setAppId('316788255188741'); //For ip address testing
+      //$facebookProvider.setAppId('316788255188741'); //For ip address testing
 
 
     

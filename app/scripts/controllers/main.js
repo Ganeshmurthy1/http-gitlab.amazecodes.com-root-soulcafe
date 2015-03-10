@@ -339,6 +339,10 @@ angular.module('sassApp')
   			}else {// register//	        	        	
   	        		regService.getFbFriendsCount().then(function(data) {
   	                response.total_friends = data.summary.total_count;
+	  	              regService.saveFbTempData(response).then(function(tresponse) {
+	  	            	  
+	  	              });
+  	                
   	                var res = validateUser(response);
   	                if (res.status) {
   	                	 $scope.fbdata = response;
