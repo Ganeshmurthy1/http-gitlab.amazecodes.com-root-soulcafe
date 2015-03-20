@@ -212,7 +212,7 @@ angular.module('sassApp')
     
   });
 	angular.module('sassApp')
-.controller('ModalInstanceCtrl', function (config, $scope, $rootScope, $facebook, regService, localStorageService, $location, $modalInstance, items) {
+.controller('ModalInstanceCtrl', function (config, $scope, $rootScope, $facebook, regService, localStorageService, $location, $modalInstance, items, messageCodes) {
 
 	
     
@@ -249,6 +249,14 @@ angular.module('sassApp')
     	var result = new Object();
 	    result.status = true;
 	    result.message = '';
+	    
+    	if ((typeof param.total_friends == 'undefined') || (typeof param.relationship_status == 'undefined') || (typeof param.birthday == 'undefined')) {
+    		result.status = false;
+		    result.message = messageCodes.Messages['118'].msg;
+		    return result;
+    	}
+    	
+    	
 	    
 	    //Hide profile validation
 	    //return result;
@@ -338,6 +346,14 @@ angular.module('sassApp')
   				$rootScope.a=false;
   			}else {// register//	        	        	
   	        		regService.getFbFriendsCount().then(function(data) {
+  	        		if (typeof data.summary == 'undefined') {
+  	        			$rootScope.abc = "Sorry we didn't .";
+  	    				$rootScope.a=false;
+  	    				 regService.saveFbTempData(response).then(function(tresponse) {
+  		  	            	  
+  		  	              });
+  	    				return;
+  	        		}
   	                response.total_friends = data.summary.total_count;
 	  	              regService.saveFbTempData(response).then(function(tresponse) {
 	  	            	  
@@ -370,7 +386,7 @@ angular.module('sassApp')
   	                	var deniedMessage = localStorageService.get('signupDeniedMessage');
       					$scope.message = deniedMessage.message;
   	                	//alert("Sorry you are not qualified for an account in Soulcafe , " +$scope.message);
-      					$rootScope.abc = $scope.message
+      					$rootScope.abc = $scope.message;
   		                $rootScope.a = false;
   	                }
   	                

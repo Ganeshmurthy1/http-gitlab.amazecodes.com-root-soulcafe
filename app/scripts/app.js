@@ -463,7 +463,7 @@ angular
 
 
     
-    $facebookProvider.setPermissions("email,user_likes,user_birthday,user_relationships,user_work_history,user_hometown,user_location,user_friends");
+    $facebookProvider.setPermissions("email,user_likes,user_birthday,user_relationships,user_friends");
     
 //    $httpProvider.interceptors.push(function($q, $location, localStorageService) {
 //        return {
