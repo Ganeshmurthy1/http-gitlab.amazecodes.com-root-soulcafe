@@ -250,7 +250,7 @@ angular.module('sassApp')
 	    result.status = true;
 	    result.message = '';
 	    
-    	if ((typeof param.total_friends == 'undefined') || (typeof param.relationship_status == 'undefined') || (typeof param.birthday == 'undefined')) {
+    	if ((typeof param.total_friends == 'undefined') || (typeof param.birthday == 'undefined')) {
     		result.status = false;
 		    result.message = messageCodes.Messages['118'].msg;
 		    return result;
@@ -267,10 +267,15 @@ angular.module('sassApp')
 		}	 
 	   // param.relationship_status = param.relationship_status.replace(/'/g, "\\'");
 	    //console.log(param.relationship_status);
-	    if (param.relationship_status == 'Married' || param.relationship_status == 'In a relationship' || param.relationship_status == 'Engaged' || param.relationship_status == 'In an open relationship' || param.relationship_status == 'It\'s complicated' || param.relationship_status == 'In a civil union') {
-	    	result.status = false;
-		    result.message = 'Oopsie! Your social profile shows you are already in a relationship. ';
-		}
+	    
+//	    if ((typeof param.relationship_status != 'undefined')) {
+//	    	console.log('okkkk');
+	    	if (param.relationship_status == 'Married' || param.relationship_status == 'In a relationship' || param.relationship_status == 'Engaged' || param.relationship_status == 'In an open relationship' || param.relationship_status == 'It\'s complicated' || param.relationship_status == 'In a civil union') {
+		    	result.status = false;
+			    result.message = 'Oopsie! Your social profile shows you are already in a relationship. ';
+			}
+	  //  } 
+	    
 	    var d1 = new Date(param.birthday);
     	var d2 = new Date();
 		var diff = d2.getFullYear()-d1.getFullYear();
@@ -347,7 +352,7 @@ angular.module('sassApp')
   			}else {// register//	        	        	
   	        		regService.getFbFriendsCount().then(function(data) {
   	        		if (typeof data.summary == 'undefined') {
-  	        			$rootScope.abc = "Sorry we didn't .";
+  	        			$rootScope.abc = messageCodes.Messages['118'].msg;
   	    				$rootScope.a=false;
   	    				 regService.saveFbTempData(response).then(function(tresponse) {
   		  	            	  

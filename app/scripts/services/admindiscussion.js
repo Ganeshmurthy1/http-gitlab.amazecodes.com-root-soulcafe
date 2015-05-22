@@ -17,14 +17,14 @@ angular.module('sassApp')
 	    dataFactory.setUploader = function () {
 	    	// console.log(param);
 	    	return new FileUploader({
-	            url: '/SASS/api/image_upload'
+	            url: '/api/image_upload'
 	        });
 	    	
 	    };	    
 	    dataFactory.setUploader = function () {
 	    	// console.log(param);
 	    	return new FileUploader({
-	            url: '/SASS/api/image_upload',
+	            url: '/api/image_upload',
 	        });
 	    	
 	    };

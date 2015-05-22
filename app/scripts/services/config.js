@@ -22,19 +22,19 @@ angular.module('sassApp')
 //    }
 
 
-        dataFactory.setConfigruation = function () {
-          localStorageService.set('config', {
-                    base_path:'/SASS/api/',
-                    image_path:'http://localhost/SASS/api/uploads/'                
-                });        
-        }
+//        dataFactory.setConfigruation = function () {
+//          localStorageService.set('config', {
+//                    base_path:'/SASS/api/',
+//                    image_path:'http://localhost/SASS/api/uploads/'                
+//                });        
+//        }
 
-        //  dataFactory.setConfigruation = function () {
-        // localStorageService.set('config', {
-        //           base_path:'/SASS/api/',
-        //           image_path:'http://soulcafe.singles/SASS/api/uploads/'                
-        //       });        
-        // }
+          dataFactory.setConfigruation = function () {
+         localStorageService.set('config', {
+                   base_path:'/api/',
+                   image_path:'http://soulcafe.co.in/api/uploads/'                
+               });        
+         }
 
 
     // Public API here

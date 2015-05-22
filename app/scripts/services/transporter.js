@@ -13,8 +13,8 @@ angular.module('sassApp')
 	  
 	   
 	    var dataFactory = {};
-	    dataFactory.base_path = '/SASS/api/';
-	    var urlBase = '/SASS/api/';
+	    dataFactory.base_path = '/api/';
+	    var urlBase = '/api/';
 	    
 //	    dataFactory.base_path = '/SASS/api/index.php/';
 //	    var urlBase = '/SASS/api/index.php/';

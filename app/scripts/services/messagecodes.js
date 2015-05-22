@@ -36,8 +36,8 @@ angular.module('sassApp')
 	  dataFactory.Messages['114'] = {'msg': 'Profile updated sucessfully!!!!	 ', 'type': 'success'};
 	  dataFactory.Messages['115'] = {'msg': 'Thank You for reaching out. We will respond to you soon!!!!	 ', 'type': 'success'};
 	  dataFactory.Messages['116'] = {'msg': 'Sorry, we are yet to find a match for you. Please be part of the conversations groups and make sure your profile information is complete. We will have the right recommendations for you soon.	 ', 'type': 'danger'};
-	  dataFactory.Messages['117'] = {'msg': ' Saved! Thank you for being you!', 'type': 'sucess'};
-	  dataFactory.Messages['118'] = {'msg': ' OOpsie! We haven\'t got a response from Facebook. This could be due to App settings on your Facebook Profile. 1)Click on "app settings" - make sure the platform is set to "enabled". 2) On your "apps others use" - make sure you allow allow access to your data 3) Please check if "SoulCafe" is already added as an app. If "yes", please remove it and try signing up once again. You can always "Contact Us" and we will guide you through.', 'type': 'danger'};
+	  dataFactory.Messages['117'] = {'msg': 'Saved! Thank you for being you!', 'type': 'sucess'};
+	  dataFactory.Messages['118'] = {'msg': 'We haven\'t got your required facebook data for our validation. OOpsie! Please remove "SoulCafe" app under your Facebook app list and try Signing up once again. Grant permission to access your required data for our validation.You can always reach out to us using "Your Feedback" option and we will be happy to guide you through.', 'type': 'danger'};
 			
  
 	  return dataFactory;
