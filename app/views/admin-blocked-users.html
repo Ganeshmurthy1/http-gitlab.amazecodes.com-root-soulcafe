@@ -20,7 +20,10 @@
                         <th>User ID</th>
                         <th>Full name</th>
                         <th>Email</th>
+                        <th>Mobile</th>
+                        <th>FB ID</th>
                         <th>Gender</th>
+                        <th>Date Joined</th>
 
                     </tr>
                 </thead>
@@ -29,7 +32,10 @@
                        <td>{{com.user_id}}</td>
                        <td>{{com.first_name}} {{com.last_name}}</td> 
                        <td>{{com.email}}</td>
+                       <td>{{com.mobile}}</td>
+                       <td><a style="color:blue" target="_blank" href="http://facebook.com/app_scoped_user_id/{{com.fb_id}}">{{com.fb_id}}</a></td>
                        <td>{{com.gender}}</td>
+                       <td>{{com.DateJoined}}</td>
                        <td>  <a class="btn-u btn-u-sea" ng-click="activateUser(com.user_id)">Reactivate</a></td>                         
                    </tr>
 

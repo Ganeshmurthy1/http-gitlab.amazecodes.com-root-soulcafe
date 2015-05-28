@@ -20,12 +20,25 @@ angular.module('sassApp')
                 return response;
             });	    	
 	    };
+	    dataFactory.adminGetTotalUsersCount = function () {	
+	      	return Transporter.get('admin_get_all_users_count').then(function(response) {
+	    		//console.log(response);
+                return response;
+            });	 
+	      };
+	    
 	    dataFactory.adminGetAllUsers = function () {	
 	      	return Transporter.get('admin_get_all_users').then(function(response) {
 	    		//console.log(response);
                 return response;
             });	 
 	      };
+	      dataFactory.adminGetAllUsersPagination = function (param) {	    	  
+	    	  return Transporter.post('admin_get_all_users_page', param).then(function(response) {
+		    		//console.log(response);
+	                return response;
+	            });	   		      	
+		  };
 	    dataFactory.adminGetBlockedUsers = function () {	
 		      	return Transporter.get('admin_get_blocked_users').then(function(response) {
 		    		//console.log(response);

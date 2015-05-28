@@ -2,6 +2,10 @@
 
 $app->post('/admin_login', 'checkAdminLogin');
 $app->get('/admin_get_all_users', 'adminGetAllUsers');
+$app->get('/admin_get_all_users_count', 'adminGetAllUsersCount');
+
+$app->post('/admin_get_all_users_page', 'adminGetAllUsersPage');
+
 $app->get('/admin_get_blocked_users', 'adminGetBlockedUsers');
 
 $app->get('/admin_activate_user/:id', 'adminActivateUser');
@@ -126,6 +130,28 @@ function checkAdminLogin() {
 }
 }
 
+function adminGetAllUsersPage() {
+  $request = Slim::getInstance()->request();
+  $forum = json_decode($request->getBody());
+
+  $sql = "SELECT * from users where status=1";
+  $lm = ' Limit ' . $forum->start . ',' . $forum->limit;
+  $sql .= $lm;
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    // $stmt->bindParam("id", $id);
+    $stmt->execute();
+    $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    //echo $total = $wine->'count(1)';
+
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  //echo json_encode($wine);
+}
 
 function adminGetAllUsers() {
 
@@ -136,6 +162,25 @@ function adminGetAllUsers() {
     // $stmt->bindParam("id", $id);
     $stmt->execute();
     $wine = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+    //echo $total = $wine->'count(1)';
+
+    echo json_encode($wine);
+  } catch(PDOException $e) {
+    echo '{"error":{"text":'. $e->getMessage() .'}}';
+  }
+  //echo json_encode($wine);
+}
+
+function adminGetAllUsersCount() {
+
+  $sql = "SELECT count(1) as total from users where status=1";
+  try {
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    // $stmt->bindParam("id", $id);
+    $stmt->execute();
+    $wine = $stmt->fetchObject();
     $db = null;
     //echo $total = $wine->'count(1)';
 

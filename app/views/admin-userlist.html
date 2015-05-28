@@ -24,6 +24,9 @@
                             <th>User ID</th>
                             <th>Full name</th>
                             <th>Email</th>
+                            <th>Mobile</th>
+                            <th>FBID</th>
+                            <th>Date Joined</th>
                             <th>Gender</th>
 
                         </tr>
@@ -33,12 +36,16 @@
                         	<td>{{com.user_id}}</td>
                             <td>{{com.first_name}} {{com.last_name}}</td> 
                             <td>{{com.email}}</td>
+                            <td>{{com.mobile}}</td>
+                             <td><a style="color:blue" target="_blank" href="http://facebook.com/app_scoped_user_id/{{com.fb_id}}">{{com.fb_id}}</a></td>
                             <td>{{com.gender}}</td>
+                            <td>{{com.DateJoined}}</td>
                             <td>  <a class="btn-u btn-u-red" ng-click="deactivateUser(com.user_id)">Deactivate</a></td>                         
                         </tr>
                      
                     </tbody>
                 </table>
+                <pagination items-per-page="pagePerItem" max-size="maxSize " total-items="totalItems" ng-model="currentPage" ng-click="pageChanged()"></pagination>
                 <!--End Basic Table-->
 
 
