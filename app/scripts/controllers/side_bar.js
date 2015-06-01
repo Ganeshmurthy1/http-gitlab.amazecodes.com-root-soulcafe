@@ -32,11 +32,22 @@ angular.module('sassApp')
     $scope.sideData = localStorageService.get('authorizationData');
     //console.log($scope.sideData); 
     var d1 = new Date($scope.sideData.birthdate);
+    //var d1 = new Date('1987-10-6');
     var d2 = new Date();
-    $scope.diff = d2.getFullYear()-d1.getFullYear();
+    //$scope.diff = d2.getFullYear()-d1.getFullYear();
+    
+    
+    var d1Y = d1.getFullYear();
+    var d2Y = d2.getFullYear();
+    var d1M = d1.getMonth();
+    var d2M = d2.getMonth();
+    
+    $scope.diff = Math.floor(((d2M+12*d2Y)-(d1M+12*d1Y))/12);
+    //console.log(Math.floor(trt/12));
+    
 
-$scope.noforum = "false";
-$scope.nofriend = "false";
+	$scope.noforum = "false";
+	$scope.nofriend = "false";
     profileOperations.getBuddies().then(function(response) {
          
          $scope.friends=response.data.friends;
