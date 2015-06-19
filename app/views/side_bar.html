@@ -1,0 +1,66 @@
+
+
+    <div class="align-center padding-20px">
+        <img class="rounded-x imagel" ng-src="{{sideData.picture}}" title="{{sideData.first_name}} {{sideData.last_name}}" alt="{{sideData.first_name}} {{sideData.last_name}}" >
+        <div class="name">{{sideData.first_name}} {{sideData.last_name}} , {{diff}}</div>
+        <img src="images/div.png" alt="Seperator" title="Seperator" >
+        <div class="add">Lives In : {{sideData.location}}</div>
+        <div class="add">Works at : {{sideData.employment}}
+            <a ng-hide="moreHide" class="pull-right" style="color:#5bc0de;" href="#/edit-profile-new">More..</a>
+        </div>
+        <!-- <div class="pull-right morebutton add"><a style="color:#5bc0de;" href="#/edit-profile-new">More...</a></div> -->
+    </div>
+
+
+    <div class="margin-top-10 hideblck">
+        <div class=" clearfix">
+            <div class="clabel row"> <a class="color-white" href="#/friends">CAFEMATES ({{totalfriends}})</a>
+            <i title="Private Info" class="fa fa-lock pull-right" style="margin-right:5px;margin-top:5px;"></i></div>
+            
+            <div class="row margin-top-5"  ng-repeat="frnd in friends">
+            	<div class ="col-md-3">
+               		<a class="profile_link" ng-click="otherProfile({{frnd.BuddyId}})"> <img class="rounded-x" ng-src="{{imagepath}}{{frnd.Picture}}" title="{{frnd.first_name}} {{frnd.last_name}}" alt="{{frnd.first_name}} {{frnd.last_name}}" style="width:50px;height:50px;float:left;"></a>
+               	</div>
+               <div class ="col-md-9">
+                    <div class="color-brown-light"><a class="profile_link" ng-click="otherProfile({{frnd.BuddyId}})"><strong>{{frnd.first_name}} {{frnd.last_name}}</strong></a></div>
+                    <div>{{ frnd.Moto | limitTo : 15}}..</div>
+                </div>                
+            </div>
+            <div ng-show="totalfriends > 10" class="col-md-12">
+            	<a class= "clearfix pull-right" style="color:#5bc0de;font-size:15px;" href="#/friends">More..</a>
+            </div>
+        </div>
+    </div>
+
+        <div class="margin-top-10 hideblck">
+            <div class=" clearfix">
+            <div class="clabel row" ><a class="color-white" href="#/discussion-list">CONVERSATION CORNER ({{totalforum}})</a> </div>
+            <div class="col-md-12" ng-show="noforum">
+                Be part of some really cool conversations. <a href="#/discussion-list" style="color:#5bc0de;">Check Café Conversations</a>
+            </div>
+            <div class="col-md-12">
+	            <span ng-repeat="diss in discussion">
+	                <a class="sublabel uppercase123" href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}">{{diss.Topic}}</a>
+	            </span>
+	            
+            </div>
+            <div ng-show="totalforum > 10" class="col-md-12">
+            	<a class= "clearfix pull-right" style="color:#5bc0de;font-size:15px;" href="#/discussion-list">More..</a>
+            </div>
+            </div>
+        </div>
+
+    <div class="margin-top-10 hideblck">
+        <div class=" clearfix">
+            <div class="clabel row">INTERESTS</div>
+            <span class="interests float-left align-center" ng-repeat="intst in interest">
+                <span><img src="{{imagepath}}interest/{{intst.OptionId}}.png" title="{{intst.Answer}}" alt="{{intst.Answer}}"></span>
+                <div class="font">{{intst.Answer}}</div>
+            </span>
+            
+                
+                
+            
+        </div>
+        
+    </div>

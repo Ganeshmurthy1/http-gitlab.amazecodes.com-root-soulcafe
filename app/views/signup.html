@@ -1,0 +1,370 @@
+<!--HEADER STARTS HERE-->
+<div class="signup-page" data-ng-controller="HeaderSignupCtrl" data-ng-include="Header"></div>
+<!--HEADER ENDS HERE-->
+
+<div class="container-fluid body-pattern ">
+	<div class="container my-border body-pattern ">
+		<div class="row">
+			<div class="my-border col-xs-12 col-sm-4 col-md-3 gredientSB"
+				data-ng-controller="LeftbarSignupCtrl" data-ng-include="LeftBar"></div>
+
+			<div class="col-xs-12 col-sm-8 col-md-9 body-background padding-20px min600 signup-page">
+			<div class="row step2 margin-bottom"><img alt="Step" src="app-images/steps.png"> </div>
+
+	<form id="sky-form4" class="sky-form" name="fbdataform" class="form-horizontal group-border-dashed"  style="border-radius: 0px;" data-ng-submit="fbdataform.$valid && signUp()" novalidate >                        
+
+   
+
+        <div class="padding-bottom row clear">
+        	<div class="col-lg-4"> Location</div>
+        	<div class="col-lg-6">
+	            <div  ng-class="{ 'has-error' : fbdataform.location.$invalid && !fbdataform.location.$pristine || fbdataform.location.$invalid  && submitted }">
+		
+	        	<!--  <input type="text" name="location"  class="form-control" data-ng-model="fbdata.location.name" placeholder="Location" required>-->
+	        	<label class="select" >
+	<select name="location" data-ng-model="fbdata.mylocation" required  >
+<option value="">Select City</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#000000"><i>-Top Metropolitan Cities-</i></font></option>
+<option>Ahmedabad</option> 
+<option>Bengaluru/Bangalore</option>
+<option>Chandigarh</option>
+<option>Chennai</option>
+<option>Delhi</option>
+<option>Gurgaon</option>
+<option>Hyderabad/Secunderabad</option>
+<option>Kolkatta</option>
+<option>Mumbai</option>
+<option>Noida</option>
+<option>Pune</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Andhra Pradesh-</i></font></option>
+<option>Anantapur</option>
+<option>Guntakal</option>
+<option>Guntur</option>
+<option>Hyderabad/Secunderabad</option>
+<option>kakinada</option>
+<option>kurnool</option>
+<option>Nellore</option>
+<option>Nizamabad</option>
+<option>Rajahmundry</option>
+<option>Tirupati</option>
+<option>Vijayawada</option>
+<option>Visakhapatnam</option>
+<option>Warangal</option>
+<option>Andra Pradesh-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Arunachal Pradesh-</i></font></option>
+<option>Itanagar</option>
+<option>Arunachal Pradesh-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Assam-</i></font></option>
+<option>Guwahati</option>
+<option>Silchar</option>
+<option>Assam-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Bihar-</i></font></option>
+<option>Bhagalpur</option>
+<option>Patna</option>
+<option>Bihar-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Chhattisgarh-</i></font></option>
+<option>Bhillai</option>
+<option>Bilaspur</option>
+<option>Raipur</option>
+<option>Chhattisgarh-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Goa-</i></font></option>
+<option>Panjim/Panaji</option>
+<option>Vasco Da Gama</option>
+<option>Goa-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Gujarat-</i></font></option>
+<option>Ahmedabad</option>
+<option>Anand</option>
+<option>Ankleshwar</option>
+<option>Bharuch</option>
+<option>Bhavnagar</option>
+<option>Bhuj</option>
+<option>Gandhinagar</option>
+<option>Gir</option>
+<option>Jamnagar</option>
+<option>Kandla</option>
+<option>Porbandar</option>
+<option>Rajkot</option>
+<option>Surat</option>
+<option>Vadodara/Baroda</option>
+<option>Valsad</option>
+<option>Vapi</option>
+<option>Gujarat-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Haryana-</i></font></option>
+<option>Ambala</option>
+<option>Chandigarh</option>
+<option>Faridabad</option>
+<option>Gurgaon</option>
+<option>Hisar</option>
+<option>Karnal</option>
+<option>Kurukshetra</option>
+<option>Panipat</option>
+<option>Rohtak</option>
+<option>Haryana-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Himachal Pradesh-</i></font></option>
+<option>Dalhousie</option>
+<option>Dharmasala</option>
+<option>Kulu/Manali</option>
+<option>Shimla</option>
+<option>Himachal Pradesh-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Jammu and Kashmir-</i></font></option>
+<option>Jammu</option>
+<option>Srinagar</option>
+<option>Jammu and Kashmir-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Jharkhand-</i></font></option>
+<option>Bokaro</option>
+<option>Dhanbad</option>
+<option>Jamshedpur</option>
+<option>Ranchi</option>
+<option>Jharkhand-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Karnataka-</i></font></option>
+<option>Bengaluru/Bangalore</option>
+<option>Belgaum</option>
+<option>Bellary</option>
+<option>Bidar</option>
+<option>Dharwad</option>
+<option>Gulbarga</option>
+<option>Hubli</option>
+<option>Kolar</option>
+<option>Mangalore</option>
+<option>Mysoru/Mysore</option>
+<option>Karnataka-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Kerala-</i></font></option>
+<option>Calicut</option>
+<option>Cochin</option>
+<option>Ernakulam</option>
+<option>Kannur</option>
+<option>Kochi</option>
+<option>Kollam</option>
+<option>Kottayam</option>
+<option>Kozhikode</option>
+<option>Palakkad</option>
+<option>Palghat</option>
+<option>Thrissur</option>
+<option>Trivandrum</option>
+<option>Kerela-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Madhya Pradesh-</i></font></option>
+<option>Bhopal</option>
+<option>Gwalior</option>
+<option>Indore</option>
+<option>Jabalpur</option>
+<option>Ujjain</option>
+<option>Madhya Pradesh-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Maharashtra-</i></font></option>
+<option>Ahmednagar</option>
+<option>Aurangabad</option>
+<option>Jalgaon</option>
+<option>Kolhapur</option>
+<option>Mumbai</option>
+<option>Mumbai Suburbs</option>
+<option>Nagpur</option>
+<option>Nasik</option>
+<option>Navi Mumbai</option>
+<option>Pune</option>
+<option>Solapur</option>
+<option>Wardha</option>
+<option>Maharashtra-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Manipur-</i></font></option>
+<option>Imphal</option>
+<option>Manipur-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Meghalaya-</i></font></option>
+<option>Shillong</option>
+<option>Meghalaya-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Mizoram-</i></font></option>
+<option>Aizawal</option>
+<option>Mizoram-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Nagaland-</i></font></option>
+<option>Dimapur</option>
+<option>Nagaland-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Orissa-</i></font></option>
+<option>Bhubaneshwar</option>
+<option>Cuttak</option>
+<option>Paradeep</option>
+<option>Puri</option>
+<option>Rourkela</option>
+<option>Orissa-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Punjab-</i></font></option>
+<option>Amritsar</option>
+<option>Bathinda</option>
+<option>Chandigarh</option>
+<option>Jalandhar</option>
+<option>Ludhiana</option>
+<option>Mohali</option>
+<option>Pathankot</option>
+<option>Patiala</option>
+<option>Punjab-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Rajasthan-</i></font></option>
+<option>Ajmer</option>
+<option>Jaipur</option>
+<option>Jaisalmer</option>
+<option>Jodhpur</option>
+<option>Kota</option>
+<option>Udaipur</option>
+<option>Rajasthan-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Sikkim-</i></font></option>
+<option>Gangtok</option>
+<option>Sikkim-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Tamil Nadu-</i></font></option>
+<option>Chennai</option>
+<option>Coimbatore</option>
+<option>Cuddalore</option>
+<option>Erode</option>
+<option>Hosur</option>
+<option>Madurai</option>
+<option>Nagerkoil</option>
+<option>Ooty</option>
+<option>Salem</option>
+<option>Thanjavur</option>
+<option>Tirunalveli</option>
+<option>Trichy</option>
+<option>Tuticorin</option>
+<option>Vellore</option>
+<option>Tamil Nadu-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Tripura-</i></font></option>
+<option>Agartala</option>
+<option>Tripura-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Union Territories-</i></font></option>
+<option>Chandigarh</option>
+<option>Dadra & Nagar Haveli-Silvassa</option>
+<option>Daman & Diu</option>
+<option>Delhi</option>
+<option>Pondichery</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Uttar Pradesh-</i></font></option>
+<option>Agra</option>
+<option>Aligarh</option>
+<option>Allahabad</option>
+<option>Bareilly</option>
+<option>Faizabad</option>
+<option>Ghaziabad</option>
+<option>Gorakhpur</option>
+<option>Kanpur</option>
+<option>Lucknow</option>
+<option>Mathura</option>
+<option>Meerut</option>
+<option>Moradabad</option>
+<option>Noida</option>
+<option>Varanasi/Banaras</option>
+<option>Uttar Pradesh-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Uttaranchal-</i></font></option>
+<option>Dehradun</option>
+<option>Roorkee</option>
+<option>Uttaranchal-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-West Bengal-</i></font></option>
+<option>Asansol</option>
+<option>Durgapur</option>
+<option>Haldia</option>
+<option>Kharagpur</option>
+<option>Kolkatta</option>
+<option>Siliguri</option>
+<option>West Bengal - Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Other-</i></font></option>
+<option>Other</option>
+</select>
+</label>
+	             <p ng-show="(fbdataform.location.$invalid && !fbdataform.location.$pristine) || (fbdataform.location.$invalid  && submitted) " class="help-block">Add Current Location.</p>
+	            </div>
+            </div>
+        </div>
+
+	 <div class="padding-bottom row clear">
+        <div class="col-lg-4"> Relationship Status</div>
+        	<div class="col-lg-6">
+	            <div  ng-class="{ 'has-error' : fbdataform.relation.$invalid && !fbdataform.relation.$pristine || fbdataform.relation.$invalid  && submitted }">
+	
+	        	<label class="select" >
+				<select name="relation" data-ng-model="fbdata.relation" required  >	
+					<option value="">Relationship status</option> 		
+					<option>I'm Single</option> 
+					<option>Divorced/Separated</option>	
+					<option>Widowed</option>				
+				</select>
+				</label>
+	            <p ng-show="(fbdataform.relation.$invalid && !fbdataform.relation.$pristine) || (fbdataform.relation.$invalid  && submitted) " class="help-block">Add Valid Relationship Status.</p>
+	            </div>
+            </div>
+
+        </div>
+        <div class="padding-bottom row clear">
+        <div class="col-lg-4"> Mobile</div>
+        	<div class="col-lg-6">
+	            <div  ng-class="{ 'has-error' : fbdataform.mobile.$invalid && !fbdataform.mobile.$pristine || fbdataform.mobile.$invalid  && submitted }">
+	
+	        	<input type="text" name="mobile" class="form-control" data-ng-model="fbdata.mobile" placeholder="Mobile" ng-minlength="10" ng-maxlength="11" required>
+	
+	            <p ng-show="(fbdataform.mobile.$invalid && !fbdataform.mobile.$pristine) || (fbdataform.mobile.$invalid  && submitted) " class="help-block">Add Valid Mobile Number.</p>
+	            </div>
+            </div>
+            <div class="col-lg-2">             
+           		 <input type="submit" value="Verify" class="btn-u " ng-click="submitted=true">
+            </div>
+        </div>
+        </form>
+        <div class="padding-bottom row clear" ng-show="mobileVerifiedMessage">
+        <div class="col-lg-4"> </div>
+        	<div class="col-lg-6">
+        	<div class="alert alert-success fade in">
+                <strong>Well done!</strong> Please enter the activation code below
+            </div>
+        	</div>
+        </div>
+         <div class="padding-bottom row clear" ng-show="errMessage">
+        <div class="col-lg-4"> </div>
+        	<div class="col-lg-6">
+        	<div class="alert alert-danger fade in">
+                {{errMessage}}
+            </div>
+        	</div>
+        </div>
+     
+        <form ng-show="mobileVerified" name="mobile-verify" class="form-horizontal group-border-dashed"  style="border-radius: 0px;" data-ng-submit="actcode.$valid && mobileVerify()" novalidate >                        
+        
+        <div class="padding-bottom row clear" >
+        	<div class="col-lg-4"> Enter Code</div>
+        	<div class="col-lg-6">
+	            <div  ng-class="{ 'has-error' : fbdataform.location.$invalid && !fbdataform.location.$pristine || fbdataform.location.$invalid  && submitted }">
+	
+	        	<input type="text" name="Activation code"  class="form-control" data-ng-model="actcode" placeholder="Activation code" required>
+	
+	             <p ng-show="(actcode.$invalid && !actcode.$pristine) || (actcode.$invalid  && submitted) " class="help-block">Add Verification code</p>
+	            </div>
+            </div>
+           
+        </div>
+        
+        <div class="padding-bottom row clear" ng-show="errMobileMessage">
+        <div class="col-lg-4"> </div>
+        	<div class="col-lg-6">
+        	<div class="alert alert-danger fade in">
+                {{errMobileMessage}}
+            </div>
+        	</div>
+        </div>
+        <div class="padding-bottom row clear" ng-show="resMessage">
+        <div class="col-lg-4"> </div>
+        	<div class="col-lg-6">
+        	<div class="alert alert-success fade in">
+                Verification code sent again.. 
+            </div>
+        	</div>
+        </div>
+  
+        <div class="padding-bottom row clear">
+        <div class="col-lg-4"> </div>
+        	<div class="col-lg-6 resend-link"><a ng-click="resendCode()" >Resend Activation Code</a>
+        	</div>
+        </div>
+        
+        <div class="padding-bottom row clear">
+        <div class="col-lg-4"> </div>
+        	<div class="col-lg-2 pull-right resend-link">
+        	<input type="submit" value="Next" class="btn btn-lg btn-primary btn-block " ng-click="mobileVerify()">
+        	</div>
+        </div>
+       </form>             
+                    
+      
+</div>
+</div>
+</div>
+</div>
+
+

@@ -1,0 +1,59 @@
+<div id = "msg" data-ng-controller="HeaderCtrl" data-ng-include="Header">
+</div>
+
+
+
+
+<div class="container-fluid body-pattern ">
+<div class="container my-border body-pattern ">
+<div class="row">
+<div class ="my-border col-xs-12 col-sm-4 col-md-3 gredientSB hideblock" data-ng-controller="SideBarCtrl" data-ng-include="SideBar"></div>
+
+<div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px ">
+                <!--Profile Body-->
+                <div class="profile no-padding">
+                <div class="profile-body no-padding">  
+                    <!--Service Block v3-->
+
+                  
+
+                    <div class="panel panel-profile">
+                        <div class="panel panel-profile">
+                        <div class="headline">
+                        <h1 class="heading-sm"><i class="fa fa-envelope-o"></i>Send new Messages</h1>
+                    </div>          
+              
+                             <div class="media media-v2">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object rounded-x" ng-src="{{imagepath}}{{pic.Picture}}" alt="">
+                                    </a>
+                                <div class="media-body">
+                                            <h4 class="media-heading">
+                                                <strong><a href="#">To {{pic.first_name}}, </a></strong>
+                                            </h4>
+                                             <div class="alert alert-danger fade in" data-ng-show="errMessage">{{errMessage}}</div>
+                                    <form id="sky-form4" class="sky-form" name="adminDiscussion">
+                                        <fieldset>     
+                                            <label class="textarea">
+                                                 <textarea rows="4" name="message" id="message" data-ng-model="comment" ></textarea>
+                                            </label>
+                                            <button data-ng-click=sendMyMessage() class="btn-u btn-u-blue">Submit</button>
+                                        </fieldset>
+                                    </form>
+                                 </div>
+                                </div><!--/end media media v2--> 
+                             
+
+                        </div>  
+
+				</div>
+                </div>
+                <!--End Profile Body-->
+            </div>
+        </div><!--/end row-->
+    </div><!--/container-->    
+    <!--=== End Profile ===-->
+
+
+</div>
+ <!-- End wrapper -->

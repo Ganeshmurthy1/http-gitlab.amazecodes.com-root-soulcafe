@@ -1,0 +1,76 @@
+<div data-ng-controller="HeaderSignupCtrl" data-ng-include="Header">
+</div>
+
+
+
+
+<div class="container-fluid body-pattern ">
+<div class="container my-border body-pattern ">
+<div class="row">
+<div class ="my-border col-xs-12 col-sm-4 col-md-3 gredientSB" data-ng-controller="LeftbarQuizCtrl" data-ng-include="LeftBar"></div>
+
+<div id="msg" class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px quiz ">
+
+            	<div class="headline"><h2 class="heading-sm">Soul Questionnaire</h2>
+            	<p>This is the last step of registration. In case of time crunch, you may "save & exit" to continue later from where you left.</p>
+            	</div>  
+            	
+            	<div class="shadow-wrapper margin-bottom-60">
+	            	<div class="tag-box tag-box-v1 box-shadow shadow-effect-2">
+						<progressbar animate="false" value="dynamic" type="success"><b>{{dynamic}}%</b></progressbar>
+						<h4 class="ng-binding">{{QuestionObj.Questions.QuestionTitle}}</h4>
+						<p class="ng-binding">{{QuestionObj.Questions.Description}}</p>
+	                    
+	                </div>
+                </div>
+                
+                <div class="padding-bottom row clear" ng-show="errMessage">
+		      
+		        	<div class="col-md-12">
+		        	<div class="alert alert-danger fade in">
+		                {{errMessage}}
+		            </div>
+		        	</div>
+		        </div>
+            	
+            	<div class="row margin-bottom-10" ng-show="QuestionObj.Questions.AnswerSelectionType == '1'">
+                    <div class="col-md-6 col-sm-6 col-xs-12" data-ng-repeat = "option in singleOptions" ng-class="{'isSelected' : option.selected}">                    
+                        <div class="servive-block   raw-option" data-ng-click="selectSingle(option.Qoid)" ng-class="option.selected ? 'servive-block-sea' : 'servive-block-grey'">                           
+                            <p>{{option.Answer}}</p>                        
+                        </div>
+                    </div>                  
+                </div>
+                
+                <div class="row margin-bottom-10" ng-show="QuestionObj.Questions.AnswerSelectionType == '2'">
+                    <div class="col-md-6 col-sm-6 col-xs-12" data-ng-repeat = "option in multiIntensityOptions" ng-class="{'isSelected' : option.selected}">                    
+                        <div class="servive-block raw-intensity  raw-option" data-ng-click="selectMultipleIntensity(option.Qoid)" ng-class="option.selected ? 'servive-block-sea' : 'servive-block-grey'">                           
+                            <p>{{option.Answer}}</p>   
+                             <div title="Click and drag to the selected intensity" range-slider min="0" max="5" model-max="option.intensity" ng-show="option.selected" pin-handle="min"></div>                    
+                        </div>
+                    </div>                  
+                </div>
+                
+                <div class="row margin-bottom-10" ng-show="QuestionObj.Questions.AnswerSelectionType == '3'">
+                    <div class="col-md-6 col-sm-6 col-xs-12" data-ng-repeat = "option in multipleOptions" >                    
+                        
+                        <div class="servive-block   raw-option" data-ng-click="selectMultipe(option.Qoid)" ng-class="option.selected ? 'servive-block-sea' : 'servive-block-grey'">                           
+                         <b class="quiz-answer-rank-indicator">{{option.orderText}}</b>
+                            <p>{{option.Answer}}</p>                        
+                        </div>
+                    </div>                  
+                </div>
+	
+			 <div class="padding-bottom row pull-right" >
+    			<a class="btn-u " type="submit" href="#/" >Save and Exit</a>                    
+               <button class="btn-u btn-u-default" type="submit"  data-ng-click="addAnswer()">Next</button>
+      		</div>  
+            </div>
+        </div>
+
+    </div>
+    <!--=== End Profile ===-->
+
+
+
+</div>
+<!--=== End Wrapper ===-->

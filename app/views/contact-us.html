@@ -1,0 +1,106 @@
+<div data-ng-controller="Header1Ctrl" data-ng-include="Header1">
+</div>
+
+<!--Main Content -->
+<div class="bck-img-contctus">
+	<div class="transperent1">
+	<div class="container" style="padding-top:30px;padding-bottom:30px;">
+
+	 <div class="pos-rel">
+       <a class=" fixer-contact" title="Close" href="#/" >
+       <img ng-src="images/close-button1.png" style="width:35px;">
+      </a>
+      </div>
+
+		<div class="col-md-offset-3 col-md-6" style="background-color:#ffffff; opacity: 0.85;">
+			<div class="headline"><h1 class="heading-sm">Contact Us</h1></div>
+			 <div class="alert alert-{{q.type}} fade in" ng-show="q">{{q.msg}}
+			         <a class="close" href="#/" type="button">×</a>
+			    </div>
+			    <div class="col-md-12">
+			<form id="sky-form4" class="sky-form" name="contact" data-ng-submit="contact.$valid && cnctUs()" novalidate>
+				<fieldset class="contact-form">
+
+					<section>
+						<label>Name <span class="color-red">*</span></label>
+						<label class="input">
+							<div data-ng-class="{ 'has-error' : contact.fname.$invalid && !contact.fname.$pristine || contact.fname.$invalid  &&submitted }">
+		                  		<input class="form-control" type="text" name="fname" data-ng-model="cnct.name" placeholder="Enter Your Name" required>
+		                  		<p data-ng-show="(contact.fname.$invalid && !contact.fname.$pristine) || (contact.fname.$invalid  &&submitted) " class="help-block"> Name is required.</p>												  
+                        	</div> 
+						</label>
+					</section>
+					<section>
+						<label>E-mail<span class="color-red">*</span></label>
+						<label class="input">
+							<div data-ng-class="{ 'has-error' : contact.email.$invalid && !contact.email.$pristine || contact.email.$invalid  &&submitted }">
+		                  		<input class="form-control" type="email" name="email" data-ng-model="cnct.email" placeholder="Enter Your E-mail" required>
+		                  		<p data-ng-show="(contact.email.$invalid && !contact.email.$pristine) || (contact.email.$invalid  &&submitted) " class="help-block">E-mail is required.</p>												  
+                        	</div> 
+						</label>
+					</section>
+
+					<section>
+					<label class="control-label" >Add Request Type<span class="color-red">*</span></label>
+					<div data-ng-class="{ 'has-error select2-has-error' : contact.companyName.$invalid && !contact.companyName.$pristine || contact.companyName.$invalid  && submitted  }">
+	               		<select ui-select2="{width:'100%'}" name="companyName" data-ng-model="cnct.request" required>
+	               			<option value="" >---Select Request type---</option>
+						    <option value="Any">Any</option>
+						    <option value="Deactivate profile">Deactivate profile</option>
+						    <option value="I have a suggestion">I have a suggestion</option>
+						    <option value="I have an administrative question">I have an administrative question</option>
+						    <option value="I have a technical question">I have a technical question</option>
+						    <option value="I have found a bug">I have found a bug</option>
+						    <option value="I recieved an error message">I recieved an error message</option>
+						    <option value="I will like to partner with SoulCafe">I will like to partner with SoulCafe</option>
+						    <option value="Media Relations">Media Relations</option>
+						    <option value="Subscription">Subscription</option>
+						    <option value="Other">Other</option>
+
+						    
+						</select>
+						<strong><p data-ng-show="contact.companyName.$invalid && !contact.companyName.$pristine || contact.companyName.$invalid && submitted" class="help-block">Request type is required.</p></strong>
+					</section>
+
+					<section>
+						<label>Contact Number</label>
+						<label class="input">
+						<div data-ng-class="{ 'has-error' : contact.cnctus.$invalid && !contact.cnctus.$pristine || contact.cnctus.$invalid  &&submitted }">
+		                  		<input type="text" ng-pattern="/^\d{0,10}(\.\d{1,10})?$/" name="cnctus" id="subject" data-ng-model="cnct.num" placeholder="Enter Contact Number" >
+		                  														  
+                        	</div> 
+							<div ng-show="contact.cnctus.$error.pattern" style="color:#a94442;">Please Enter Valid Number</div>
+						</label>
+					</section>
+				
+					<section>
+						<label>Message<span class="color-red">*</span></label>
+						<label class="textarea">
+							
+							<div data-ng-class="{ 'has-error' : contact.message.$invalid && !contact.message.$pristine || contact.message.$invalid  &&submitted }">
+		                  		<textarea rows="4" name="message" data-ng-model="cnct.message" placeholder="Enter Message" required></textarea>
+		                  		<p data-ng-show="(contact.message.$invalid && !contact.message.$pristine) || (contact.message.$invalid  &&submitted) " class="help-block">Message is required.</p>												  
+                        	</div> 
+						</label>
+					</section>  
+
+				</fieldset>
+
+				<footer >
+				<div class="pull-right">
+					<button class="btn-u" type="submit" data-ng-click="submitted=true">Submit</button>
+				</div>
+					
+				</footer>
+			</form>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--Main Content ends here -->
+ 
+  
+<div data-ng-controller="FooterCtrl" data-ng-include="Footer">
+</div>

@@ -1,0 +1,82 @@
+<div class="wrapper">
+    <!--=== Header ===-->    
+  <div data-ng-controller="AdminheaderCtrl" data-ng-include="Header">
+</div>
+    <!--=== End Header ===-->  
+
+
+
+
+    <!--=== Profile ===-->
+    <div class="profile container content" style="border-color:red">
+        <div class="row">
+            <!--Left Sidebar-->
+            <div data-ng-controller="SideBarSuperadminCtrl" data-ng-include="SideBarSuperAdmin">
+            </div>
+            <!--End Left Sidebar-->
+            
+            <div class="col-md-9">
+            	<h1>All Questions</h1>
+                <div class="row">
+                    <div class="col-md-1 borderpad">Sr No</div>
+                    <div class="col-md-4 borderpad">Question</div>
+                    <div class="col-md-3 borderpad">Question Category</div>
+                    <div class="col-md-3 borderpad">Algorithm Type</div>
+                    <div class="col-md-1 borderpad">Operations</div>
+                </div>
+               
+<div ui-tree>
+  <ol ui-tree-nodes="" ng-model="admins">
+     
+    <li ng-repeat="ad in admins" ui-tree-node>
+      <div class="row" ui-tree-handle>
+        <div class="col-md-1 borderpad">{{$index+1}}</div>
+        <div class="col-md-4 borderpad">{{ad.QuestionTitle}}</div>
+        <div class="col-md-3 borderpad">{{ad.Category}}</div>
+        <div class="col-md-3 borderpad">{{ad.AlgTypeTitle}}</div>
+       
+       <div class="col-md-1" style="border:1px solid black;padding:2px;">
+            <a style="padding:4px 9px !important;" href="#/admin-edit-question?qid={{ad.Qid}}" data-nodrag="" class="btn btn-primary btn-xs"><span class="fa fa-pencil"></span></a>
+            <a style="padding:4px 9px !important;" ng-click="deleteQuestion(ad.Qid)" data-nodrag="" class="btn btn-primary btn-xs"><span class="fa fa-times"></span></a>
+       </div>
+        
+      </div>
+      
+    </li>
+  </ol>
+</div>
+
+
+<button class="btn btn-primary" ng-click="sequence(admins)">Update Sequence</button>
+            	<!--Basic Table-->
+                <!-- <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Question Category</th>
+                            <th>Algortitham Type</th>
+                            <th>Operations</th>
+                             
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="ad in admins">
+                            <td>{{ad.QuestionTitle}}</td>
+                             <td>{{ad.Category}}</td>
+                             <td>{{ad.AlgTypeTitle}}</td>
+                            <td> <a class="btn-u btn-u-blue" href="#/admin-edit-question?qid={{ad.Qid}}" ><i class="fa fa-pencil"></i></a></td>
+                                                      
+                        </tr>
+                     
+                    </tbody>
+                </table> -->
+                <!--End Basic Table-->
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

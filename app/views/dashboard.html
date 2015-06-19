@@ -1,0 +1,181 @@
+<div class="wrapper">
+    <!--=== Header ===-->    
+  <div data-ng-controller="HeaderCtrl" data-ng-include="Header">
+</div>
+    <!--=== End Header ===-->  
+
+
+
+
+    <!--=== Profile ===-->
+    <div class="profile container content" style="border-color:red">
+        <div class="row">
+            <!--Left Sidebar-->
+            <div data-ng-controller="SideBarCtrl" data-ng-include="SideBar">
+            </div>
+            <!--End Left Sidebar-->
+            
+            <div class="col-md-9">
+                <h1 style="background-color:#ed719e;padding:5px;text-align:center;">Motto I Live By - "{{userData.Moto}}"<a class="pull-right" ng-click="editButton()" ng-hide="hideEdit"><i class="fa fa-pencil" style="color:black;"></i></a></h1>
+                <div class="col-lg-10" ng-show="hideEdit" Style="margin-bottom:10px;">
+                    <div class="col-lg-6">
+                    <input type="text" class="form-control" name="name" ng-model="userData.Moto">
+                    </div>
+                    <div class="col-lg-2"><button class="btn-u btn-u-blue" ng-click="saveButton()">Save</button></div>
+                </div>
+
+                <div class="row margin-bottom-20">
+                           <!--Alert-->
+                        <div class="col-sm-6 sm-margin-bottom-30">
+                            <div class="panel panel-profile">
+                                <h3 style="background-color:#aad1fc;padding:5px;">Pattrick Passions<a class="pull-right"><i class="fa fa-pencil" style="color:black;"></i></a></h3>
+                                <div ng-controller="Caurosel1Ctrl">
+                                   <div class="carousel-class">
+    <a data-ng-show="hasPrevious()" data-ng-click="previous()">&lt;</a>
+    <span class="link" data-ng-hide="hasPrevious()">&lt;</span>
+    <div class="photo-container" data-my-carousel data-carousel-class="photo-carousel" data-on-page-upcoming="loadPage(page, tmplCb)" data-give-carousel-to="onCarouselAvailable(carousel)">
+      <div class="photo-grid">
+      <span data-ng-repeat="photo in photos">
+        <img ng-src="{{getPhotoUrl(photo)}}">
+      </span>
+      </div>
+    </div>
+    <a data-ng-show="hasNext()" style="right: 84px;margin-right:8px;" data-ng-click="next()">&gt;</a>
+    <span class="link" style="right: 84px;" data-ng-hide="hasNext()">&gt;</span>
+  </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End Alert-->
+                         <div class="col-sm-6">
+                            <div class="panel panel-profile">
+                                <h3 style="background-color:#aad1fc;padding:5px;">Chat Forums<a class="pull-right" ng-href="#/discussion-list"><i class="fa fa-pencil" style="color:black;"></i></a></h3>
+                                <div ng-controller="Caurosel2Ctrl">
+                                    <div class="carousel-class">
+    <a data-ng-show="hasPrevious()" data-ng-click="previous()">&lt;</a>
+    <span class="link" data-ng-hide="hasPrevious()">&lt;</span>
+    <div class="photo-container" data-my-carousel data-carousel-class="photo-carousel" data-on-page-upcoming="loadPage(page, tmplCb)" data-give-carousel-to="onCarouselAvailable(carousel)">
+      <div class="photo-grid">
+      <span data-ng-repeat="photo in photos">
+        <img ng-src="{{getPhotoUrl(photo)}}">
+      </span>
+      </div>
+    </div>
+    <a data-ng-show="hasNext()" style="right: 84px;margin-right:8px;" data-ng-click="next()">&gt;</a>
+    <span class="link" style="right: 84px;" data-ng-hide="hasNext()">&gt;</span>
+  </div>
+                                </div>
+                            </div>    
+                        </div>
+                        
+                </div><!--/end row-->
+                <!--Profile Body-->
+                <div class="profile-body">
+                    <!--Service Block v3-->
+                    <div class="row margin-bottom-10">
+                        <div class="col-sm-6" style="min-height:225px;">
+                            <div class=" servive-block-u" style="min-height:250px;padding:20px;">
+                                <a class="pull-right" ng-show="updateButton" ng-href="#/edit-profile"><i class="fa fa-pencil fa-2x" style="color:black;"></i></a>
+                                <h1 class="counter" style="margin-bottom:20px;">{{userData.first_name}} {{userData.last_name}}</h1>
+                                <span style="color:#FFFFFF;font-size:15px;">Email-Id - {{userData.email}}</span>
+                                <p style="color:#FFFFFF;font-size:15px;margin-top:15px;">Mobile No. - {{userData.mobile}}</p>
+                                 <p style="color:#FFFFFF;font-size:15px;margin-top:15px;">Location - {{userData.location}}</p>
+                                <p style="color:#FFFFFF;font-size:15px;">RelationShip Status - {{userData.relationship_status}}
+                                    </p>
+                                <div class="clearfix margin-bottom-10"></div>
+                                
+                                           
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-6" style="min-height:225px;">
+                            <div class="service-block-v3 servive-block-blue" style="min-height:250px;">
+                                <i class="icon-screen-desktop"></i>
+                                <h3 style="color:#FFFFFF;float:left;margin-right:5px;">Proffesional Details</h3>
+                                 <!-- <a href="#" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs pull-right"  ng-hide="updateButton" ng-href="#/linkedin">Update Profile</a> -->
+                                 <div class="container" id="appBody">
+                                    <div class="container-fixed">
+                                        <div class="hero-unit" style="margin-top:10px;" ng-hide="updateButton">
+                                            <!-- <p>Please sign in with your LinkedIn account. How cool is that?</p> -->
+                                            <script type="in/Login" ></script>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p style="color:#FFFFFF;font-size:15px;">Current Employment - {{proffesionalDetails.data.CurrentEmployment}}</p>
+                                <p style="color:#FFFFFF;font-size:15px;">Current Role - {{proffesionalDetails.data.CurrentRole}}</p>
+                                <p style="color:#FFFFFF;font-size:15px;margin-top:10px;">Highest Education - {{proffesionalDetails.data.HighestEducation}}</p>
+                                 <p style="color:#FFFFFF;font-size:15px;margin-top:13px;">Endorsed Skills - {{proffesionalDetails.data.Endorsedskills}}</p>
+                                        
+                            </div>
+                        </div>
+                    </div><!--/end row-->
+                    <!--End Service Block v3-->
+                    </div>
+                    <hr>
+                    
+                    <!--Profile Blog-->
+                     <div class="panel panel-profile">
+                        <div class="panel-heading overflow-h">
+                            <h2 class="panel-title heading-sm pull-left"><i class="fa fa-tasks"></i>Soul Match Recommendations</h2>
+                            <a href="profile_users.html" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs pull-right">View All</a>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="profile-blog blog-border">
+                                        <img class="rounded-x" src="images/testimonials/img1.jpg" alt="">
+                                        <div class="name-location">
+                                            <strong>Mikel Andrews</strong>
+                                            <span><i class="fa fa-map-marker"></i><a href="#">California,</a> <a href="#">US</a></span>
+                                        </div>
+                                        <div class="clearfix margin-bottom-20"></div>    
+                                        <p>Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
+                                        <hr>
+                                        <ul class="list-inline share-list">
+                                            <li><i class="fa fa-bell"></i><a href="#">12 Notifications</a></li>
+                                            <li><i class="fa fa-group"></i><a href="#">54 Followers</a></li>
+                                            <li><i class="fa fa-twitter"></i><a href="#">Retweet</a></li>
+                                        </ul>
+                                    </div>
+                                </div>        
+
+                                <div class="col-sm-6">
+                                    <div class="profile-blog blog-border">
+                                        <img class="rounded-x" src="images/testimonials/img4.jpg" alt="">
+                                        <div class="name-location">
+                                            <strong>Natasha Kolnikova</strong>
+                                            <span><i class="fa fa-map-marker"></i><a href="#">Moscow,</a> <a href="#">Russia</a></span>
+                                        </div>
+                                        <div class="clearfix margin-bottom-20"></div>    
+                                        <p>Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
+                                        <hr>
+                                        <ul class="list-inline share-list">
+                                            <li><i class="fa fa-bell"></i><a href="#">37 Notifications</a></li>
+                                            <li><i class="fa fa-group"></i><a href="#">46 Followers</a></li>
+                                            <li><i class="fa fa-twitter"></i><a href="#">Retweet</a></li>
+                                        </ul>
+                                    </div> 
+                                </div>    
+                            </div>
+                        </div>  
+                        <div class="panel-body">
+                            <h2 class="panel-title heading-sm pull-left"><i class="fa fa-tasks"></i>Users Recommendations</h2>
+                            <div class="panel-body row" ng-repeat="rec in recommendation">
+                                <h3><a href="#/dashboard-anon?user_id={{rec.user_id}}">{{rec.first_name}} {{rec.last_name}}</a></h3>
+                            </div>  
+                        </div>    
+                    </div><!--/end row   
+                    <!--End Profile Blog-->
+
+                    <hr>
+
+                    
+                </div>
+                <!--End Profile Body-->
+            </div>
+        </div><!--/end row-->
+    </div><!--/container-->    
+    <!--=== End Profile ===-->
+
+</div>
+ <!-- End wrapper -->

@@ -1,0 +1,177 @@
+<div class="col-md-3 md-margin-bottom-40">
+                <img class="img-responsive profile-img margin-bottom-20" ng-src="{{pic.Picture}}" alt=""></img>
+            <div style="clear:both;">
+                <h4 style="background-color:#ed719e;padding:5px;text-align:center;color:black;margin-bottom:10px;"><a style="color:black;">Check Compatiblity</a></h4>
+                <div ng-show="GTKY">
+               <a style="color:black;" ng-click="sendGTKY()"> <h4 style="background-color:#ed719e;padding:5px;text-align:center;color:black;margin-bottom:10px;">Send GTKY</h4></a></div>
+               <div ng-show="GTKY1">
+               <a style="color:black;"> <h4 style="background-color:#ed719e;padding:5px;text-align:center;color:black;margin-bottom:10px;">GTKY Already Send</h4></a></div>
+               <div ng-show="GTKY2">
+               <a href="#/reply-message?sid={{user_id}}" style="color:black;"> <h4 style="background-color:#ed719e;padding:5px;text-align:center;color:black;margin-bottom:10px;">Send Message</h4></a></div>
+               <div ng-hide="abuseHide">
+                <a style="color:black;" ng-click="reportAbuse()"><h4 style="background-color:#ed719e;padding:5px;text-align:center; color:black; margin-bottom:10px;">Report Abuse</h4></a></div>
+            </div>  
+
+                <div class="panel-heading-v2 overflow-h">
+                    <h2 class="heading-xs pull-left"><i class="fa fa-bar-chart-o"></i> Verification Progress</h2>
+                   
+                </div>
+                <div style="width:auto;">
+                    <img class="img-responsive profile-img margin-bottom-20" src="images/facebook.png"></img>
+                    <i class="fa fa-thumbs-up fa-2x" style="margin-left:23%;color:#7ec31b;"></i>
+                </div>
+                <div style="width:auto;">
+                    <img class="img-responsive profile-img margin-bottom-20" src="images/linkedin.png"></img>
+                    <i class="fa fa-thumbs-up fa-2x" ng-hide="thumbup" style="margin-left:23%;color:#7ec31b;"></i>
+                    <i class="fa fa-thumbs-down fa-2x" ng-show="thumbup" style="margin-left:20%;color:red;"></i>
+                </div>
+                <div style="width:auto;">
+                    <img class="img-responsive profile-img margin-bottom-20" src="images/icon-mobile.png"></img>
+                    <i class="fa fa-thumbs-up fa-2x" style="margin-left:20%;color:#7ec31b;"></i>
+                    
+                </div>
+                <div style="width:auto;">
+                    <img class="img-responsive profile-img margin-bottom-20" src="images/stamp1.jpg"></img>
+                    <i class="fa fa-thumbs-down fa-2x" style="margin-left:20%;color:red;"></i>
+                </div>
+                 <h3 class="heading-xs">Profile Verification <span class="pull-right">{{profileverify}}</span></h3>
+                <div class="progress progress-u progress-xxs">
+                    <div style="width:{{profileverify}}" aria-valuemax="100" aria-valuemin="0" aria-valuenow="92" role="progressbar" class="progress-bar progress-bar-u">
+                    </div>
+                </div>
+                <h3 class="heading-xs">Questionnaire Status  <span class="pull-right">0%</span></h3>
+                <div class="progress progress-u progress-xxs">
+                    <div style="width: 0%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="85" role="progressbar" class="progress-bar progress-bar-blue">
+                    </div>
+                </div>
+                <hr>
+                <div class="">
+                            <div class="panel panel-profile">
+                                <div class="panel-heading overflow-h">
+                                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments-o"></i> Discussions</h2>
+                                    <a href="#/profile_comments" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs pull-right">View All</a>
+                                </div>
+                        
+                                <perfect-scrollbar class="panel-body contentHolder" wheel-propagation="true" wheel-speed="50" >
+
+                                    <div class="comment">
+                                        <img src="images/testimonials/img6.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong>Taylor Lee<small class="pull-right"> 25m</small></strong> 
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                            <ul class="list-inline comment-list">
+                                                <li><i class="fa fa-heart"></i> <a href="#">23</a></li>
+                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
+                                            </ul>
+                                        </div>    
+                                    </div>
+                                    <div class="comment">
+                                        <img src="images/testimonials/img2.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong>Miranda Clarsson<small class="pull-right"> 44m</small></strong> 
+                                            <p>Donec cursus, orci non posuere luctus, risus massa luctus nisi, sit amet cursus leo massa id arcu. Nunc tincidunt magna sit amet sapien congue.</p>
+                                            <ul class="list-inline comment-list">
+                                                <li><i class="fa fa-heart"></i> <a href="#">23</a></li>
+                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
+                                            </ul>
+                                        </div>    
+                                    </div>
+                                    <div class="comment">
+                                        <img src="images/testimonials/img4.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong>Natasha Kolnikova<small class="pull-right"> 7h</small></strong> 
+                                            <p>Suspendisse est est, sollicitudin eget auctor et, pharetra eu sapien. Mauris mollis libero ac auctor iaculis.</p>
+                                            <ul class="list-inline comment-list">
+                                                <li><i class="fa fa-heart"></i> <a href="#">23</a></li>
+                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
+                                            </ul>
+                                        </div>    
+                                    </div>
+                                    <div class="comment">
+                                        <img src="images/testimonials/img1.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong>Mikel Andrews<small class="pull-right"> 15h</small></strong> 
+                                            <p>Nam ut dolor cursus nibh aliquet bibendum in eget risus.</p>
+                                            <ul class="list-inline comment-list">
+                                                <li><i class="fa fa-heart"></i> <a href="#">20</a></li>
+                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
+                                            </ul>
+                                        </div>    
+                                    </div>
+                                    <div class="comment">
+                                        <img src="images/testimonials/img7.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong>Edward Rooster<small class="pull-right"> 1d</small></strong> 
+                                            <p>Nam ut dolor cursus nibh aliquet bibendum in eget risus. Mauris mollis libero ac auctor iaculis.</p>
+                                            <ul class="list-inline comment-list">
+                                                <li><i class="fa fa-heart"></i> <a href="#">23</a></li>
+                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
+                                            </ul>
+                                        </div>    
+                                    </div>
+                                
+
+                         </perfect-scrollbar>  
+                               
+                            </div>    
+                        </div>
+                <!--Notification-->
+               <!--  <div class="panel-heading-v2 overflow-h">
+                    <h2 class="heading-xs pull-left"><i class="fa fa-bell-o"></i> Notification</h2>
+                    <a href="#"><i class="fa fa-cog pull-right"></i></a>
+                </div>
+
+               
+                <perfect-scrollbar class="list-unstyled contentHolder margin-bottom-20" wheel-propagation="true" wheel-speed="50" >
+                    <li class="notification">
+                        <i class="icon-custom icon-sm rounded-x icon-bg-red icon-line icon-envelope"></i>
+                        <div class="overflow-h">
+                            <span><strong>Albert Heller</strong> has sent you email.</span>
+                            <small>Two minutes ago</small>
+                        </div>    
+                    </li>
+                    <li class="notification">
+                        <img class="rounded-x" src="images/testimonials/img6.jpg" alt="">
+                        <div class="overflow-h">
+                            <span><strong>Taylor Lee</strong> started following you.</span>
+                            <small>Today 18:25 pm</small>
+                        </div>    
+                    </li>
+                    <li class="notification">
+                        <i class="icon-custom icon-sm rounded-x icon-bg-yellow icon-line fa fa-bolt"></i>
+                        <div class="overflow-h">
+                            <span><strong>Natasha Kolnikova</strong> accepted your invitation.</span>
+                            <small>Yesterday 1:07 pm</small>
+                        </div>    
+                    </li>
+                    <li class="notification">
+                        <img class="rounded-x" src="images/testimonials/img1.jpg" alt="">
+                        <div class="overflow-h">
+                            <span><strong>Mikel Andrews</strong> commented on your Timeline.</span>
+                            <small>23/12 11:01 am</small>
+                        </div>    
+                    </li>
+                    <li class="notification">
+                        <i class="icon-custom icon-sm rounded-x icon-bg-blue icon-line fa fa-comments"></i>
+                        <div class="overflow-h">
+                            <span><strong>Bruno Js.</strong> added you to group chating.</span>
+                            <small>Yesterday 1:07 pm</small>
+                        </div>    
+                    </li>
+                    <li class="notification">
+                        <img class="rounded-x" src="images/testimonials/img6.jpg" alt="">
+                        <div class="overflow-h">
+                            <span><strong>Taylor Lee</strong> changed profile picture.</span>
+                            <small>23/12 15:15 pm</small>
+                        </div>    
+                    </li>
+                
+
+              </perfect-scrollbar>  
+                <button type="button" class="btn-u btn-u-default btn-u-sm btn-block">Load More</button> -->
+                <!--End Notification-->
+
+                <div class="margin-bottom-50"></div>
+
+           
+            </div>

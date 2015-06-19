@@ -1,23 +1,137 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
+<div data-ng-controller="Header1Ctrl" data-ng-include="Header1">
 </div>
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
+<!--BANNER START HERE-->
 
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
+      <div class="position-relative ">
+    <div id="index-banner" class="height-adjust" >
+      <div class="padding-holder">
+        <div class="container">
+            <div class="text-center paddingman">
+                  <div class="alert alert-danger fade in" data-ng-hide="a">{{abc}}</div>
+                 
+                    <h2 class="text-capital text-shadow"><span class="inline-block">A long term</span> <span class="inline-block text-bold" Style="font-weight:500;">“Soul Relationship”</span> <span class="inline-block">starts here</span></h2>
+                     <h2 class="text-capital text-shadow" style="font-weight:600;">Find Yours!</h2>
 
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
+                     
+
+                    <div class="btn-spacer" style="padding:10px;">
+                      <a href="#" class="btn btn-primary text-capital btn-lg text-shadow" style="border-radius:6px !important;background: none repeat scroll 0 0 #0cb8f0 !important; font-size:15px;font-weight:600;padding:10px 30px;" ng-click="open()">Sign up</a>&nbsp;&nbsp;
+
+                      <a href="#" class="btn btn-danger text-capital btn-lg text-shadow" style="border-radius:6px !important;background: none repeat scroll 0 0 #f94d0a !important; font-size:15px;font-weight:600;padding:10px 30px;" ng-click="open1('sm') | trackEvent:'Home Category':'Button clicked'">Log In</a>
+                    </div>
+                
+            </div>
+        </div>
+       
+
+
+        
+        <div class="banner-bottom-button  text-center text-capital">
+        <div class="container">
+          <div class="row" style="margin-top:2%;">
+              <div class="col-xs-4 col-sm-4">
+                  <a href="#/why-join-soulcafe">
+                      <div ><img src="images/banner-icon-1.png" style="width:100px;height:auto;" title="WHY SoulCafe"></div>
+                        <div class="hidden-xs" style="color:#ffffff;font-weight:600;font-size:16px;">WHY SoulCafe</div>
+                    </a>
+                </div>
+                <div class="col-xs-4 col-sm-4">
+                  <a href="#/how-soulcafe-works">
+                      <div><img src="images/banner-icon-2.png" style="width:100px;height:auto;" title="How it Works"></div>
+                        <div class="hidden-xs" style="color:#ffffff;font-weight:600;font-size:16px;">How it Works</div>
+                    </a>
+                </div>
+                <div class="col-xs-4 col-sm-4">
+                  <a href="#/strictly-not-allowed-on-soulcafe">
+                      <div><img src="images/banner-icon-3.png" style="width:100px;height:auto;" title="The strict “NO-NO” on Soul Cafe"></div>
+                        <div class="hidden-xs" style="color:#ffffff;font-weight:600;font-size:16px;">The strict “NO-NO”<br>on Soul Cafe</div>
+                    </a>
+                </div>
+            
+          </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<!--BANNER ENDS HERE-->
+ <div data-ng-controller="FooterCtrl" data-ng-include="Footer">
+</div>
+ 
+
+
+
+
+<div>
+  <script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-home-body">
+      <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-4 min-300 gredientSB">
+            <label class="home-desc padding-20px">
+              <div class="name">Why Facebook Sign up?</div>
+				<img src="images/div.png" alt="" >
+              <p class="sugg"><i> We want to make sure our members have a valid social media presence </i></p>
+            </label>
+        </div>
+        <div class="col-xs-12 col-sm-8 col-md-8 min1-300 body-background">
+          <div class="">
+          <div class="fb-btn-modal">
+            <button class="btn  btn-img" ng-click="login()"></button>     
+            <div class="row-space-top-2" id="tos_outside">
+              <small>
+              By signing up, I agree to Soulcafe's 
+                <a data-popup="true" href="#/term-condition"> Terms & Conditions </a>and
+                <a data-popup="true" href="#/privacy-policy">Privacy Policy</a>.
+                
+              </small>
+            </div>    
+          </div>
+          <div class=" modal-footer cancel-btn-modal ">
+          <div class="row pull-right">
+            <button class="btn-u btn-u-default" ng-click="cancel()">Not now</button>
+          </div>
+          
+          </div>
+<div class="row"><strong>Note:</strong> We never post anything to your Facebook account.</div>
+        </div>
+ 
+        </div>
+       
+
+        
+      </div>
+    </div>
+  </script>
+  <div ng-show="selected">Selection from a modal: {{ selected }}</div>
+</div>
+
+<script type="text/ng-template" id="myLoginContent.html">
+    <div class="modal-home-body">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 min-fix body-background">
+          <div class="">
+          <div class="fb-btn-modal1">
+            <button class="btn  btn-img-login" ng-click="login()"></button> 
+          </div>
+           <div class="" style="padding-top:10px;clear:both;">
+              Not a member yet? <a  style="color:#5bc0de;" ng-click="open()">Sign up</a>
+            </div>
+        </div>
+          <div class="cancel-btn-modal1 pull-right">
+            <button class="btn-u btn-u-default" ng-click="cancel()">Not now</button>
+          </div>
+        </div>
+     
+       
+     
+        
+
+        
+      </div>
+      
+    </div>
+  </script>
+  <div ng-show="selected">Selection from a modal: {{ selected }}</div>
 </div>

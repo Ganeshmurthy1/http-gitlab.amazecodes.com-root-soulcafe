@@ -1,0 +1,110 @@
+<div data-ng-controller="HeaderCtrl" data-ng-include="Header">
+</div>
+    <div class="container-fluid body-pattern ">
+        <div class="container my-border body-pattern ">
+            <div class="row">
+                <div class ="my-border col-xs-12 col-sm-4 col-md-3 gredientSB hideblock" data-ng-controller="SideBarCtrl" data-ng-include="SideBar"></div>
+
+                <div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px ">
+
+                     <!--=== Content Part ===-->
+                    <div class="headline" style="margin-bottom:5px !important;">
+                        <div class="row">
+                            <div class="col-sm-2 col-xs-12">
+                                <img class="rounded-x" src="{{imagepath}}{{img}}" style="width:80px;height:80px;">
+                            </div>
+                            <div class="col-sm-9 col-xs-12" >
+                                <h1 class="heading-sm">{{topicName}} (<ins><a ng-hide="memhide" ng-click="open(discussionid)">Members: {{total}}</a><a ng-show="memhide">Members: {{total}}</a></ins>)</h1>
+                                <p style="font-size:18px !important;">{{desc}}</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="row my-border">
+                        <div class=" clearfix">
+                            <div class="pull-left">
+                                 <h4><a href="#/discussion-list" style="color:#5bc0de;">Discussion List</a></h4>
+                            </div>
+                            <div class="pull-right">
+                                <a class="btn-u btn-u-default glow " ng-click="removeUser()" ng-hide="disable">Get Removed</a>
+                            
+                                <a class="btn-u btn-u-primary glow " href="#/add-topic?discussId={{discussionid}}" ng-hide="disable">Add New Topic</a>
+                           
+                                <a class="btn-u btn-u-sea" ng-click="joinButtonClick(discussionid)" ng-show="disable">Join</a>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                     
+     
+        <ul class="timeline-v1">
+            <li ng-class-even="'timeline-inverted'" data-ng-repeat="discussion in discussions">
+                <div class="timeline-badge primary"><i class="glyphicon glyphicon-record"></i></div>
+                <div ng-class-odd="'timeline-panel gredientTP'" ng-class-even="'timeline-panel gredientTPI'">
+                    <div class="timeline-body text-justify">
+                        <h2 ng-hide="disable" ><a class="color-brown" href="#/discussion?topic={{discussion.DiscussionTopicId}}">{{discussion.TopicTitle}}</a></h2>
+                        <h2 ng-show="disable" class="color-brown">{{discussion.TopicTitle}}</h2>
+                        <p>{{discussion.TopicDescription}}</p>
+                    </div>
+                    <div class="timeline-footer" ng-hide="disable">
+                        <ul class="list-unstyled list-inline blog-info">
+                            <li style="list-style:none;"><a href="#/discussion?topic={{discussion.DiscussionTopicId}}"><i class="fa fa-comments color-deep-red" ng-hide="disable"  style="margin-right:5px;"></i>{{discussion.totalComments}} Comments </a></li>
+                            
+                        </ul>
+                        
+                    </div>
+                    <div class="timeline-footer" ng-show="disable">
+                        <ul  class="list-unstyled list-inline blog-info">
+                        <li style="list-style:none;"><i class="fa fa-comments color-deep-red" ng-hide="disable"  style="margin-right:5px;"></i>{{discussion.totalComments}} Comments</li>
+                    </ul>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="clearfix" style="float: none;"></li>
+        </ul>
+    </div><!--/container-->     
+    <!-- End Content Part -->
+
+
+    		 </div>
+    	</div>
+    	 <!--===End Profile ===-->
+
+    </div>
+
+     <!--=== End Wrapper ===-->
+
+ <script type="text/ng-template" id="modalMember.html">
+        
+            <div class="modal-home-body">
+            <div>
+              <div class="col-lg-offset-2 col-lg-8 servive-block-light" style="padding:15px 15px 0px 15px;">
+            
+              <div class="alert alert-{{q.type}} fade in" ng-show="q">{{q.msg}}
+         <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+    </div>
+                    <div class="media media-v2" ng-repeat="mem in memData">
+                        <a class="pull-left" ng-click="otherProfile({{mem.UserId}})">
+                            <img class="media-object rounded-x" ng-src="{{imagepath}}{{mem.Picture}}" alt="{{mem.first_name}} {{mem.last_name}}" title="{{mem.first_name}} {{mem.last_name}}" style="width:50px !important; height:50px !important;">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading" style="padding-top:10px;">
+                                <a ng-click="otherProfile({{mem.UserId}})" style="cursor:pointer;">{{mem.first_name}} {{mem.last_name}}</a>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="margin-top:0px !important;">
+       <div class=" pull-right">
+                    <button class="btn-u btn-u-default" ng-click="cancel()">Cancel</button>
+                </div>
+      </div>
+                
+              </div>
+            </div>
+            
+        </div>
+            
+       
+    </script>

@@ -1,0 +1,33 @@
+ <!--=== Header ===-->    
+  <div data-ng-controller="HeaderCtrl" data-ng-include="Header">
+</div>
+    <!--=== End Header ===--> 
+
+<div class="container" id="appBody">
+<div class="container-fixed"></br>
+
+<form name="mobileVer" class="form-horizontal group-border-dashed"  style="border-radius: 0px;" data-ng-submit="mobileVerify(mobileVer.$valid)">
+                      
+                       
+                     
+
+<div class="form-group">
+		<label class="col-sm-3 control-label">Activation Code</label>
+		<div class="col-sm-6">
+			<input type="text" name="birthdate" class="form-control"
+				data-ng-model="act_code" placeholder="Activation Code" required>
+		</div>
+	</div>
+<h4>{{errMessage}}</h4>
+<div class="form-group">
+		<label class="col-sm-3 control-label"> </label>
+		<div class="col-sm-6">
+			<button type="submit" class="btn btn-primary wizard-next" ng-disabled="mobileVer.$invalid" >Save <i class="fa fa-caret-right" ></i></button>
+		</div>
+	</div>
+
+</form>
+
+</div>
+</div>
+

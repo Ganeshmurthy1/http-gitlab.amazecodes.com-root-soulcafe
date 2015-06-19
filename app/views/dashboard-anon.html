@@ -1,0 +1,103 @@
+<div class="wrapper">
+    <!--=== Header ===-->    
+  <div data-ng-controller="HeaderCtrl" data-ng-include="Header">
+</div>
+    <!--=== End Header ===-->  
+
+
+
+
+    <!--=== Profile ===-->
+    <div class="profile container content" style="border-color:red">
+        <div class="row">
+            <!--Left Sidebar-->
+            <div data-ng-controller="SideBarAnonCtrl" data-ng-include="SideBarAnon">
+            </div>
+            <!--End Left Sidebar-->
+            
+            <div class="col-md-9">
+            	<h1 style="background-color:#ed719e;padding:5px;text-align:center;">Motto I Live By - "{{userData.Moto}}"</h1>
+
+
+                 
+<!-- <div style="background-color: #eee; font-size:18px">
+
+    <div class="photo-container" data-my-carousel data-carousel-class="photo-carousel" data-on-page-upcoming="loadPage(page, tmplCb)" data-give-carousel-to="onCarouselAvailable(carousel)">
+      <div class="photo-grid span12">
+       
+        <span data-ng-repeat="photo in photos">
+          <img ng-src="{{getPhotoUrl(photo)}}">
+         
+        </span>
+      </div>
+    </div>
+    <a style="float: left;" data-ng-show="hasPrevious()" data-ng-click="previous()">&lt;&lt; Previous</a>
+    <span style="float: left;" data-ng-hide="hasPrevious()">&lt;&lt; Previous</span>
+    <a style="float: left;" data-ng-show="hasNext()" data-ng-click="next()">Next &gt;&gt;</a>
+    <span style="float: left;" data-ng-hide="hasNext()">Next &gt;&gt;</span>
+
+    
+  </div> -->
+<div class="carousel-class">
+    <a data-ng-show="hasPrevious()" data-ng-click="previous()">&lt;</a>
+    <span class="link" data-ng-hide="hasPrevious()">&lt;</span>
+    <div class="photo-container" data-my-carousel data-carousel-class="photo-carousel" data-on-page-upcoming="loadPage(page, tmplCb)" data-give-carousel-to="onCarouselAvailable(carousel)">
+      <div class="photo-grid">
+      <span data-ng-repeat="photo in photos">
+        <img ng-src="{{getPhotoUrl(photo)}}">
+      </span>
+      </div>
+    </div>
+    <a data-ng-show="hasNext()" style="right: 84px;" data-ng-click="next()">&gt;</a>
+    <span class="link" style="right: 84px;" data-ng-hide="hasNext()">&gt;</span>
+  </div>
+
+
+
+                <!--Profile Body-->
+                <div class="profile-body">
+                	
+                    <!--Service Block v3-->
+                    <div class="row margin-bottom-10">
+                        <div class="col-sm-6" style="min-height:225px;">
+                            <div class="service-block-v3 servive-block-u" style="min-height:250px;">
+                                <i class="icon-users"></i>
+                                
+                                <span class="counter" style="margin-bottom:20px;">{{userData.first_name}} {{userData.last_name}}</span>
+                                <span style="color:#FFFFFF;font-size:15px;">Email-Id - {{userData.email}}</span>
+                                <p style="color:#FFFFFF;font-size:15px;margin-top:15px;">Mobile No. - {{userData.mobile}}</p>
+                                 <p style="color:#FFFFFF;font-size:15px;margin-top:15px;">Location - {{userData.location}}</p>
+                                <p style="color:#FFFFFF;font-size:15px;">RelationShip Status - {{userData.relationship_status}}
+                                <div class="clearfix margin-bottom-10"></div>
+                                
+                                           
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-6" style="min-height:225px;">
+                            <div class="service-block-v3 servive-block-blue" style="min-height:250px;">
+                                <i class="icon-screen-desktop"></i>
+                                <h3 style="color:#FFFFFF;">Proffesional Details</h3>
+                                <p style="color:#FFFFFF;font-size:15px;">Current Employment - {{proffesionalDetails.data.CurrentEmployment}}</p>
+                                <p style="color:#FFFFFF;font-size:15px;">Current Role - {{proffesionalDetails.data.CurrentRole}}</p>
+                                <p style="color:#FFFFFF;font-size:15px;margin-top:10px;">Highest Education - {{proffesionalDetails.data.HighestEducation}}</p>
+                                 <p style="color:#FFFFFF;font-size:15px;margin-top:13px;">Endorsed Skills - {{proffesionalDetails.data.Endorsedskills}}</p>
+                                        
+                            </div>
+                        </div>
+                    </div><!--/end row-->
+                    <!--End Service Block v3-->
+                   
+                    </div>
+                    <hr>
+                  <div id="vis" class="demo"></div>                      
+                </div>
+                <!--End Profile Body-->
+
+            </div>
+        </div><!--/end row-->
+    </div><!--/container-->    
+    <!--=== End Profile ===-->
+  
+</div>
+ <!-- End wrapper -->

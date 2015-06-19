@@ -1,0 +1,70 @@
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name sassApp.controller:SuperadminAddAdminCtrl
+ * @description
+ * # SuperadminAddAdminCtrl
+ * Controller of the sassApp
+ */
+angular.module('sassApp')
+  .controller('SuperadminAddAdminCtrl', function ($scope, adminOperations, $location) {
+    $scope.awesomeThings = [
+      'HTML5 Boilerplate',
+      'AngularJS',
+      'Karma'
+    ];
+    $scope.adminAddAdmin = function() {
+
+    	$scope.discussion.frs = $scope.Forums;
+        
+        adminOperations.addAdmin($scope.discussion).then(function(response) {
+  		  
+  		  if (response.data == 'true') {
+  			  $scope.savedSuccessfully = true;
+                $scope.successmessage = "Admin added sucessfully.";
+                $scope.errMessage = false;
+                $scope.discussion = false;
+                $scope.Forums = [];
+                $location.path('superadmin-add-admin');
+  		  }
+  		  else {
+  			  $scope.successmessage = false;
+  			  $scope.errMessage = response.data;
+  		  }
+         });
+        
+
+    };
+    $scope.Forums= [];
+    $scope.AddForum = function(id) {  
+    	 
+    	 var tt = $scope.Forums.indexOf(id);
+    	 
+    	 if(tt < 0 ) {
+    		// $scope.Forums.splice(1);
+        	 $scope.Forums.push(id);    	 
+        	
+    	 } else {
+    		 $scope.Forums.splice(tt);
+    	 }
+    	 
+    	
+    };
+    
+    function loadAllForum() {
+	    adminOperations.getAllForum().then(function (response) {
+			
+			$scope.forums = response.data;
+	    	$scope.checkboxes = [
+	    	                     {"text": "text1", checked:false},
+	    	                     {"text": "text2", checked:false},
+	    	                     {"text": "text3", checked:false},
+	    	                     {"text": "text4", checked:false}
+	    	                 ];
+		});
+    }
+    
+    loadAllForum();
+    
+  });

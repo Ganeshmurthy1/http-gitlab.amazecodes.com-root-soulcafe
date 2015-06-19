@@ -1,0 +1,138 @@
+<div id="msg" data-ng-controller="HeaderCtrl" data-ng-include="Header"></div>
+
+
+
+
+<div class="container-fluid body-pattern ">
+	<div class="container my-border body-pattern ">
+		<div class="row">
+			<div class="my-border col-xs-12 col-sm-4 col-md-3 gredientSB"
+				data-ng-controller="SideBarCtrl" data-ng-include="SideBar"></div>
+
+			<div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px ">
+			    
+			    <div class="alert alert-{{q.type}} fade in" ng-show="q">{{q.msg}}
+			         <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+			    </div>
+			    
+				<div class="row home-block my-border hideblck ">
+				<h3 class="panel-title">
+								<i class="fa fa-list-alt color-deep-red"></i> PROFILE COMPLETION
+							</h3>
+				<div class="row">
+									 	<div class="col-md-8">
+						<div class="progress progresscustom">
+       <div class="progress-bar progress-barcustom" ng-class=" profileverify == 75 ? 'width75' : 'width100'" role="progressbar"
+        aria-valuenow="2" aria-valuemin="0" aria-valuemax="100"
+        >{{profileverify}}%</div>
+      </div>
+						<div class="row margin-right-0">
+							<div class="col-md-offset-3">
+								<div class="padding-left">
+									<ul class="list-inline badge-lists badge-icons badge-icons1">
+										<li><img src="images/facebook.png" title="Facebook" alt="Facebook"> <span
+											class="badge1 badge-green rounded-x"><i
+												class="fa fa-check  color-white"></i></span></li>
+										<li><img src="images/linkedin.png" title="Linkedin" alt="Linkedin"> <span
+											class="badge1 badge-green rounded-x" ng-hide="thumbup"><i
+												class="fa fa-check  color-white"></i></span> <span
+											class="badge1 badge-red rounded-x color-white"
+											ng-show="thumbup">x</span></li>
+										<li><img src="images/icon-mobile.png" title="Mobile" alt="Mobile"> <span
+											class="badge1 badge-green rounded-x"><i
+												class="fa fa-check  color-white"></i></span></li>
+										
+								</ul>
+								</div>
+							</div>
+						</div>
+									 	</div>
+									 	
+									 	<div class="col-md-3 pull-right">
+									 		<a type="button" href="#/edit-profile-new"
+							class="btn btn-comp uppercase123 width100">Edit Profile</a>
+									 	
+									 	</div>
+									 
+									 </div>
+				</div>
+				<div class="row home-block my-border">
+				<h3 class="panel-title">
+								<i class="fa fa-heart color-deep-red"></i> CAFE RECOMMENDATIONS
+				</h3>
+				<slick init-onload=true data="recomandation"
+										lazy-load='ondemand' slides-to-show=4 slides-to-scroll=1
+										class="slider lazy margin-right-left-5P">
+				<div class="row" ng-repeat="image in recomandation">
+					<div class="col-md-12 image">
+						<a ng-click="otherProfile({{image.SoulId}})"><img
+							class="" data-lazy="{{imagepath}}{{image.Picture}}" alt="{{image.first_name}} {{image.last_name}}" title="{{image.first_name}} {{image.last_name}}" /></a>
+					</div>
+					<div class="col-md-12 age align-center">
+						<a ng-click="otherProfile({{image.SoulId}})">
+							{{image.first_name}} {{image.last_name}} ({{image.age}})</a>
+					</div>
+				</div>
+
+				</slick>
+				<div ng-show="matchWizard" class="row">
+				<div class="cafe-throbber" ng-show="throbber"> </div>
+				<div class="alert alert-{{err.type}} fade in" ng-show="err">{{err.msg}}
+			         <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+			    </div>
+				<div class="col-md-12"><a ng-click="checkMatch()" style="color:#5bc0de;">Check Recommendations</a></div>
+				
+				 </div>
+				
+				
+				</div>
+
+				<div class="row home-block my-border">
+				<h3 class="panel-title">
+					<i class="fa fa-comments color-deep-red"></i> CAFE CONVERSATIONS
+				</h3>
+				<div class="borderbottom" ng-repeat="updts in updates">
+					<div class="row margin-bottom margin-top" >
+					<div class="col-xs-6 col-sm-4 col-md-2">
+					<div class="row">
+						<img class="rounded-x" alt="{{updts.first_name}} {{updts.last_name}}" title="{{updts.first_name}} {{updts.last_name}}" ng-src="{{imagepath}}{{updts.Image}}"
+							alt="" style="width: 70px; height: 70px; float: left;"></div>
+					<!-- <div class="row color-brown-light">{{updts.first_name}} {{updts.last_name}}</div> -->
+					</div>
+							
+					<div class="col-xs-6 col-sm-8 col-md-10">
+				
+								<div class="font-20 color-brown-light">{{updts.Topic}}</div>
+								<a href="#/discussion?topic={{updts.DiscussionTopicId}}"><div class="font-16 color-brown-light">{{updts.TopicTitle}}</div>
+							</a>
+							<div>{{updts.CreatedDate}} ago</div>
+							
+							
+						</div>	
+						
+					</div>
+
+				</div>
+				<div class="row pull-right"> <a style="color:#5bc0de;" href="#/discussion-list" > More >></a> </div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/ng-template" id="modalWelcome.html">
+        
+        <div class="modal-header">
+         	<h2>"EPIC! You are Now a SoulCafe member."</h2>
+         	<br><h2>The Next Steps:</h2
+ 		</div>   
+ 		<div class="modal-body">
+ 			 1) Complete your Profile using <a href="#/edit-profile-new" style="color:#5bc0de;">Edit Profile</a><br>
+			 2) Be part of the forums you like and start conversations in these forums:<a href="#/discussion-list" style="color:#5bc0de;">Forums List</a><br>
+			 3) Start by saying "Hello" to people you want to connect with.
+ 		</div>
+       	<div class="modal-footer">
+       		<button class="btn btn-warning" ng-click="cancel()">Skip</button>
+       	</div>
+    </script>

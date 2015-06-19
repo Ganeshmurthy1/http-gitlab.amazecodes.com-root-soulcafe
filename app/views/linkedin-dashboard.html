@@ -1,0 +1,73 @@
+<div class="container">
+	<h1>Hi, {{firstName}} {{lastName}}</h1>
+	<a href="{{userprofile.publicProfileUrl}}" target="_blank"> 
+		<img class="img-polaroid" ng-src="{{profilePic}}"/>
+	</a>
+</div>
+<!-- <button ng-click="getConnections()"  type="button" class="btn btn-primary">Connections</button> -->
+<div class="container">
+	<div class="form-group">
+		<label class="col-sm-3 control-label heading">Education Details</label>
+		<div class="col-sm-12 row">
+			<div class="col-lg-3 heading1">School Name </div>
+			<div class="col-lg-3 heading1">Field Of Study</div>
+			<div class="col-lg-2 heading1">End Date</div>
+			<div class="col-lg-4 heading1">Start Date</div>
+		</div>
+		<div class="col-sm-12 row"  ng-repeat="edu in education">
+			<div class="col-lg-3">{{edu.schoolName }}</div>
+			<div class="col-lg-3">{{edu.fieldOfStudy}}</div>
+			<div class="col-lg-2">{{edu.endDate}}</div>
+			<div class="col-lg-4">{{ edu.startDate}}</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-3 control-label heading">Contact Details</label>
+		<div class="col-sm-12 row">
+			<div class="col-lg-3 heading1">Mobile Type </div>
+			<div class="col-lg-3 heading1">Mobile Number</div>
+		</div>
+		<div class="col-sm-12 row"  ng-repeat="cnct in contact">
+			<div class="col-lg-3">{{cnct.phoneNumber }}</div>
+			<div class="col-lg-3">{{cnct.phoneType}}</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-3 control-label heading">Current Job</label>
+		<div class="col-sm-12 row">
+			<div class="col-lg-3 heading1">Compant Name </div>
+			<div class="col-lg-3 heading1">Title</div>
+			<div class="col-lg-2 heading1">Start Month</div>
+			<div class="col-lg-2 heading1">Start Year</div>
+		</div>
+		<div class="col-sm-12 row"  ng-repeat="cp in currentPosition">
+			<div class="col-lg-3">{{cp.company }}</div>
+			<div class="col-lg-3">{{cp.title}}</div>
+			<div class="col-lg-2">{{cp.month}}</div>
+			<div class="col-lg-2">{{ cp.year}}</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-3 control-label heading">Past Job Details</label>
+		<div class="col-sm-12 row">
+			<div class="col-lg-2 heading1">Compant Name </div>
+			<div class="col-lg-2 heading1">Title</div>
+			<div class="col-lg-2 heading1">Start Month</div>
+			<div class="col-lg-2 heading1">Start Year</div>
+			<div class="col-lg-2 heading1">End Month</div>
+			<div class="col-lg-2 heading1">End Year</div>
+		</div>
+		<div class="col-sm-12 row"  ng-repeat="pp in pastPosition">
+			<div class="col-lg-2">{{pp.company }}</div>
+			<div class="col-lg-2">{{pp.title}}</div>
+			<div class="col-lg-2">{{pp.smonth}}</div>
+			<div class="col-lg-2">{{ pp.syear}}</div>
+			<div class="col-lg-2">{{pp.emonth}}</div>
+			<div class="col-lg-2">{{ pp.eyear}}</div>
+		</div>
+	</div>
+</div>
+<button ng-click="addData()"  type="button" class="btn btn-primary" style="margin-left:500px;margin-top:25px;margin-bottom:10px;">Update Profile</button>
+
+
+

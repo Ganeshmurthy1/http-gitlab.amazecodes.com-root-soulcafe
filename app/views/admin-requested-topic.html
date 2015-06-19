@@ -1,0 +1,51 @@
+<div class="wrapper">
+    <!--=== Header ===-->    
+  <div data-ng-controller="AdminheaderCtrl" data-ng-include="Header">
+</div>
+    <!--=== End Header ===-->  
+
+
+
+
+    <!--=== Profile ===-->
+    <div class="profile container content" style="border-color:red">
+        <div class="row">
+            <!--Left Sidebar-->
+            <div data-ng-controller="SideBarSuperadminCtrl" data-ng-include="SideBarSuperAdmin">
+            </div>
+            <!--End Left Sidebar-->
+            
+            <div class="col-md-9">
+			<div class="headline"><h2 class="heading-sm">Requested Topics by User </h2></div>
+			
+			<br>
+			<!-- <div class="row"><p>{{Forum.Description}}</p></div> -->
+			
+			
+			
+                <div class="funny-boxes funny-boxes-left-orange" data-ng-repeat = "rtopic in rtopics" data-ng-hide="topic.deleted">
+                    
+                    <h4>Topic Name - {{rtopic.TopicTitle}}</h4>
+                    <p class="pull-right">{{rtopic.CreatedDate}}</p>
+                      <p>Topic Description - {{rtopic.TopicDescription}}</p>
+
+                      <p>Forum Name - {{rtopic.Topic}}</p>
+                     <h5>User Name - <a href="#/superadmin-view-user?userid={{rtopic.CreatedBy}}">{{rtopic.first_name}} {{rtopic.last_name}}</a></h5>
+                    <p>
+                        <a class="btn-u " href="#/admin-topic-view?topicId={{rtopic.DiscussionTopicId}}">View</a>
+                    	<a class="btn-u btn-u-green"  data-ng-hide="{{rtopic.Status == 1}}" data-ng-click="activateTopic(rtopic.DiscussionTopicId)">Activate</a>
+                        <a class="btn-u btn-u-brown" data-ng-show="{{rtopic.Status == 1}}" data-ng-click="deactivateTopic(rtopic.DiscussionTopicId)">Deactivate</a>
+                        <a class="btn-u btn-u-red"  data-ng-click="deleteTopic(rtopic.DiscussionTopicId)" >Delete</a>
+                    </p>
+                </div>            	
+             <!-- <pagination items-per-page="pagePerItem" max-size="maxSize " total-items="totalItems" ng-model="currentPage" ng-click="pageChanged()"></pagination> -->
+            </div>
+        </div>
+
+    </div>
+    <!--=== End Profile ===-->
+
+
+
+</div>
+<!--=== End Wrapper ===-->

@@ -1,0 +1,110 @@
+<div class="container-fluid no-padding cheader ">
+    <div class="container my-border  ">
+
+        <div class="row margint no-padding my-border ">
+            
+
+            <div class="col-xs-1 no-padding hidden-sm visible-xs menuicon">
+                
+                <button type="button" class="navbar-toggle top-navbar-toogle no-margin no-padding"  data-toggle="collapse" data-target=".top-navigation"><img src="images/menu-new.png" title="Menu icon" alt="Menu icon" style="width:30px;top:37px !important;"></button>
+                    <ul class="nav collapse top-navigation" style="top:55px !important;">
+                        <li><a href="#/home">Home </a></li>
+                        <li><a href="#/myprofile">My Profile</a></li>        
+                        <!-- <li><a href="#">Interests</a></li> -->
+                        <li><a href="#/discussion-list">Forums</a></li>
+                        <li><a href="#/friends">Friends</a></li>
+                        <li><a href="#/edit-profile-new">Edit Profile</a></li>
+                        <!--  <li><a href="#">Complete Verification</a></li>-->
+                        <!--  <li><a href="#">Settings</a></li>-->
+                        <li><a target="_blank" href="#/contact-us">Contact Us</a></li>
+                        <li><a href="#" data-ng-click="logout()">Logout</a></li>
+                        <div class="clearfix"></div>
+                    </ul>
+                          
+            </div>
+            <div class="col-md-1 hideblock">
+            	<div class="pull-left  "><img src="app-images/logo_soul.png" alt="Logo" title="Logo" ></div>
+            </div>
+
+			 <div class="col-md-7 col-xs-10 pull-right">
+            <div class="dropdown pull-right settingicon" style="padding-top:8px;">
+              <a class="btn dropdown-toggle bcolor-brown no-paddi ng" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                <div class="color-white"><i class="fa fa-cog fa-2x" style="font-size:25px !important;"><span class="caret caret-custm"></span></i></div>
+                
+              </a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+               
+                <li role="presentation" data-ng-controller="LoginCtrl"><a role="menuitem" tabindex="-1" href="#" data-ng-click="logout()">Logout</a></li>
+                <li class="divider"></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" target="_blank" href="#/term-condition">Terms and Condition</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" target="_blank" href="#/privacy-policy">Privacy Policy</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" target="_blank" href="#/contact-us">Contact Us</a></li>
+              </ul>
+            </div>
+
+
+
+			<div class="message-list pull-right ">
+			<ul class="list-inline badge-lists badge-icons ">
+                <li class="dropdown">
+              <a title="System notification" class="dropdown-toggle" ng-click="sysMessage()" type="button" id="dropdownMenu1" data-toggle="dropdown"><i class="fa fa-globe fa-2x color-white"></i>
+              </a>
+              <span class="badge badge-green rounded-x" ng-show="totalSysMessage">{{totalSysMessage}}</span>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <div class="alert alert-success fade in no-bottom" data-ng-repeat = "sysmessage in sysmessages">
+                <a href="#/{{sysmessage.Link}}" style="display:block; text-decoration:none;">
+                     {{sysmessage.Message}}
+                     {{sysmessage.mess}}
+                    
+                </a>
+                </div>
+              </ul>
+                </li>
+                
+                
+                <li class="dropdown">
+                    <a title="Message" class="dropdown-toggle" ng-click="Message()"><i class="fa fa-2x fa-envelope-o color-white"></i></a>
+                    <span ng-show="totalMessage" class="badge badge-dark-blue rounded">{{totalMessage}}</span>
+                	 <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
+		                <div class="alert alert-success fade in no-bottom" data-ng-repeat = "mymessage in mymessages">
+		                <a href="#/{{mymessage.Link}}" style="display:block; text-decoration:none;">
+		                    {{mymessage.Message}}
+                     		{{mymessage.mess}}
+		                </a>
+		                </div>
+		              </ul>
+                </li>
+                <li class="dropdown">
+                    <a title="Forum notification" class="dropdown-toggle" ng-click="forumMessage()"><i class="fa fa-2x fa-comments color-white"></i></a>
+                    <span ng-show="totalForumMessage" class="badge badge-red rounded-x">{{totalForumMessage}}</span>
+                	 <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
+		                <div class="alert alert-success fade in no-bottom" data-ng-repeat = "message in messages">
+		                <a href="#/{{message.Link}}" style="display:block; text-decoration:none;">
+		                      {{message.Message}}
+                     		  {{message.mess}}
+		                </a>
+		                </div>
+		              </ul>
+                
+                </li>
+                               
+            </ul>
+			
+			</div>
+
+
+
+
+            <a ng-class="{'pull-right home':true,'bcolor-white':defaulth}" href="#/home"><strong>Home</strong></a>
+            <a ng-class="{'pull-right home1':true,'bcolor-white':defaultp}" href="#/myprofile" > 
+                <img class="rounded-x" ng-src="{{pict}}" title="{{datau.first_name}} {{datau.last_name}}" alt="{{datau.first_name}} {{datau.last_name}}" style="width:20px;height:20px;">
+                <strong>{{datau.first_name}} {{datau.last_name}}</strong>
+            </a>
+
+         </div>   
+
+        </div>
+    </div>
+
+</div>
+

@@ -1,0 +1,82 @@
+<div class="wrapper">
+    <!--=== Header ===-->    
+  <div data-ng-controller="AdminheaderCtrl" data-ng-include="Header">
+</div>
+    <!--=== End Header ===-->  
+
+
+
+
+    <!--=== Profile ===-->
+    <div class="profile container content" style="border-color:red">
+        <div class="row">
+            <!--Left Sidebar-->
+            <div data-ng-controller="SideBarSuperadminCtrl" data-ng-include="SideBarSuperAdmin">
+            </div>
+            <!--End Left Sidebar-->
+            <div class="col-md-9">
+            	<h1>Heart Statistics</h1>
+            	<!--Basic Table-->
+                <div class="row">
+                    <form id="sky-form4" class="sky-form" name="srch">
+                        <div class="col-md-12">
+                            <div class="col-md-5">
+                                <div class="form-group row">
+                                    <label class="col-lg-2 control-label">From</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" name="name" ng-model="srch.from" ui-date="dateOptions" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group row">
+                                <label class="col-lg-1 control-label">To</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" name="name" ng-model="srch.to" ui-date="dateOptions" required>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" data-ng-click="search(srch)" class="btn-u btn-u-blue">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <br>
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Accepted</th>
+                            <th>Need Some Time</th>
+                            <th>Not Yet</th>
+                            <th>Not Sure</th>
+                            <th>No Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr >
+                            <td>{{statics.A.total | number:0}}</td>
+                            <td>{{statics.NMT.total}}</td>
+                            <td>{{statics.NY.total}}</td>
+                            <td>{{statics.NS.total}}</td>
+                            <td>{{statics.NA.total}}</td>
+                                                      
+                        </tr>
+                     
+                    </tbody>
+                </table>
+                <!--End Basic Table-->
+
+
+                </div>
+            
+           
+            
+        </div>
+
+    </div>
+   
+
+
+</div>

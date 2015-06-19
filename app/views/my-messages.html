@@ -1,0 +1,66 @@
+<div data-ng-controller="HeaderCtrl" data-ng-include="Header">
+</div>
+
+
+
+
+<div class="container-fluid body-pattern ">
+<div class="container my-border body-pattern ">
+<div class="row">
+<div class ="my-border col-xs-12 col-sm-4 col-md-3 gredientSB hideblock" data-ng-controller="SideBarCtrl" data-ng-include="SideBar"></div>
+
+<div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px ">
+                <!--Profile Body-->
+                <div class="profile no-padding">
+                <div class="profile-body no-padding">  
+                    <!--Service Block v3-->
+                    <div class="panel panel-profile">
+                        <div class="headline">
+                        <h1 class="heading-sm"><i class="fa fa-envelope-o"></i> tête-à-tête</h1>
+                    </div>
+                            <!-- <div class="panel-heading overflow-h">
+                                <h2 class="panel-title heading-sm pull-left"><i class="fa fa-envelope-o"></i> tête-à-tête</h2>
+                            
+                            </div>  -->       
+                            <div class="pull-right">
+                                   <a class="btn-u btn-u-primary glow" href="#/friends">New message to friend</a>
+                               </div>    
+              
+                            <div class="panel-body margin-bottom-50" >
+                                
+
+                                <div class="media media-v2" data-ng-repeat="comment in comments">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object rounded-x" ng-src="{{imagepath}}{{comment.Picture}}" alt="">
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">
+                                            <strong><a href="#">{{comment.first_name}}</a></strong>
+                                            <small>{{comment.adDate | date:'yyyy-MM-dd'}}</small>
+                                        </h4>
+                                        <p>{{comment.Message}}.</p>
+                                        <ul class="list-inline results-list pull-left">
+                                            <li><a href="#/reply-message?sid={{comment.SenderId}}"><img class="img-responsive" src="app-images/reply.ico" style="width:30px;"></a></li>
+                                         
+                                        </ul>  
+                                        
+                                    </div>
+                                </div><!--/end media media v2--> 
+                                
+                                                   
+                            </div><!-- comment  -->
+
+                             
+
+                        </div>  
+
+				</div>
+                </div>
+                <!--End Profile Body-->
+            </div>
+        </div><!--/end row-->
+    </div><!--/container-->    
+    <!--=== End Profile ===-->
+
+</div>
+ <!-- End wrapper -->

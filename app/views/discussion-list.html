@@ -1,0 +1,75 @@
+<div data-ng-controller="HeaderCtrl" data-ng-include="Header">
+</div>
+
+
+
+
+<div class="container-fluid body-pattern ">
+<div class="container my-border body-pattern ">
+<div class="row">
+<div class ="my-border col-xs-12 col-sm-4 col-md-3 gredientSB hideblock" data-ng-controller="SideBarCtrl" data-ng-include="SideBar"></div>
+
+<div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px ">
+
+             	<div class="headline">
+                    <h1 class="heading-sm">The Cafe Conversation Corner</h1>
+                    <p>"Nothing compares to a beautiful conversation with a beautiful mind"</p>
+                </div>
+                <div class="alert alert-{{q.type}} fade in" ng-show="q">{{q.msg}}
+                     <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                </div>
+    
+             	<div class="row" ng-show="repotabuseMessage">
+					<div class="col-md-12">
+					<div class="alert alert-success fade in">
+				      The Forum will be posted soon after review.
+				    </div>
+					</div>
+				</div>
+				<div class="row" ng-show="topicMessage">
+					<div class="col-md-12">
+					<div class="alert alert-success fade in">
+				      The Topic will be posted soon after review.
+				    </div>
+					</div>
+				</div>
+                <div class="row pull-right margin-bottom10">
+                <div class="col-md-12">
+                    <a class="btn-u btn-u-primary glow" href="#/add-forum">Request For New forum</a>
+                </div>
+                    
+                </div> 
+                
+                <!-- Thumbnails v2 -->
+                <div class="clearfix row">
+                	<div  ng-repeat="diss in discussionData" ng-show="diss.show">
+                    <div class="col-md-4 " >
+                        <div class="thumbnails thumbnail-style" >
+                            <a href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}"><img class="img-responsive img-class" src="{{imagepath}}{{diss.Image}}" alt="{{diss.Topic}}" title="{{diss.Topic}}"/></a>
+                            <div class="caption">
+                                <div class="clefarfix">
+                                     <h3 ><a class="color-brown" href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}">{{diss.Topic}}</a></h3>
+                                </div>
+                                <div class="clearffix">
+                                    <p>{{diss.Description | limitTo : 60}}..</p>
+                                </div>                                
+                              </div>
+                              <div class="clefarfix">
+                                    <p class="pull-right"><a class="btn-u btn-u-xs" ng-click="joinButtonClick(diss.DiscussionBoardId)" ng-show="diss.join" href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}">Join</a>
+                                    <a class="btn-u btn-u-xs" ng-click="removeUser(diss)" ng-show="diss.view">Exit</a>
+                                </p>
+                                </div>
+                        </div>
+                    </div>
+                  </div>  
+                </div><!--/row-->
+                <!-- End Thumbnails v2 -->
+
+            </div>
+        </div>
+
+    </div>
+    <!--=== End Profile ===-->
+
+</div>
+<!--=== End Wrapper ===-->

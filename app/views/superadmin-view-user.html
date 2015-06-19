@@ -1,0 +1,242 @@
+<div class="wrapper">
+    <!--=== Header ===-->    
+  <div data-ng-controller="AdminheaderCtrl" data-ng-include="Header">
+</div>
+    <!--=== End Header ===-->  
+
+
+
+
+    <!--=== Profile ===-->
+    <div class="profile container content" style="border-color:red">
+        <div class="row">
+            <!--Left Sidebar-->
+            <div data-ng-controller="SideBarSuperadminCtrl" data-ng-include="SideBarSuperAdmin">
+            </div>
+            <!--End Left Sidebar-->
+            
+            <div class="col-md-9">
+            	<div class="pull-right">
+		            <a class="btn-u" data-ng-hide="btn" data-ng-click="activateUser()">Activate</a>
+		            <a class="btn-u" data-ng-show="btn" data-ng-click="deactivateUser()">Deactivate</a>
+             	</div>
+                <div class="clearfix"></div>
+                <div class="row margin-top-2">
+                    <accordion close-others="oneAtATime">
+                        <accordion-group is-open="status.isFourthOpen">
+                            <accordion-heading>
+                                Message Detail <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.isFourthOpen, 'glyphicon-chevron-right': !status.isFourthOpen}"></i>
+                            </accordion-heading>
+                            <!--Basic Table-->
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th width="10%" class="size-17">Sent To</th>
+                                        <th width="10%" class="size-17">Date</th>
+                                        <th width="10%" class="size-17">Message</th>
+                                     </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="mes in message">
+                                        <td>{{mes.first_name}} {{mes.last_name}}</td>
+                                         <td>{{mes.AddedDate}}</td>
+                                        <td>{{mes.Message}}</td>
+                                     </tr>
+                                </tbody>
+                            </table>
+                            <!--End Basic Table--> 
+                        </accordion-group>
+                    </accordion>
+                </div>
+
+                <div class="row">
+                    <accordion close-others="oneAtATime">
+                        <accordion-group is-open="status.isFourthOpen">
+                            <accordion-heading>
+                                GTKY Detail <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.isFourthOpen, 'glyphicon-chevron-right': !status.isFourthOpen}"></i>
+                            </accordion-heading>
+                            <!--Basic Table-->
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th width="10%" class="size-17">Sent To</th>
+                                        <th width="10%" class="size-17">Date</th>
+                                        <th width="10%" class="size-17">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="g in gtky">
+                                        <td>{{g.first_name}} {{g.last_name}}</td>
+                                         <td>{{g.AddedDate}}</td>
+                                        <td>{{g.Status}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!--End Basic Table-->  
+                        </accordion-group>
+                    </accordion>
+                </div>
+
+                <div class="row">
+                    <accordion close-others="oneAtATime">
+                        <accordion-group is-open="status.isFourthOpen">
+                            <accordion-heading>
+                                Comments Detail <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.isFourthOpen, 'glyphicon-chevron-right': !status.isFourthOpen}"></i>
+                            </accordion-heading>
+                            <!--Basic Table-->
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th width="10%" class="size-17">Forum Name</th>
+                                        <th width="10%" class="size-17">Topic</th>
+                                        <th width="10%" class="size-17">Date</th>
+                                        <th width="10%" class="size-17">Comment</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="com in comments">
+                                        <td>{{com.Topic}}</td>
+                                         <td>{{com.TopicTitle}}</td>
+                                        <td>{{com.CommentDateTime}}</td>
+                                        <td>{{com.Comment}}</td>                            
+                                    </tr>
+                                 
+                                </tbody>
+                            </table>
+                            <!--End Basic Table--> 
+                        </accordion-group>
+                    </accordion>
+                </div>
+
+                <div class="row">
+                    <accordion close-others="oneAtATime">
+                        <accordion-group is-open="status.isFourthOpen">
+                            <accordion-heading>
+                                Topics Added Detail <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.isFourthOpen, 'glyphicon-chevron-right': !status.isFourthOpen}"></i>
+                            </accordion-heading>
+                            <!--Basic Table-->
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th width="10%" class="size-17">Forum Name</th>
+                                        <th width="10%" class="size-17">Topic</th>
+                                        <th width="10%" class="size-17">Date</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="top in topics">
+                                        <td>{{top.Topic}}</td>
+                                         <td>{{top.TopicTitle}}</td>
+                                        <td>{{top.CreatedDate}}</td>
+                                                                   
+                                    </tr>
+                                 
+                                </tbody>
+                            </table>
+                            <!--End Basic Table-->  
+                        </accordion-group>
+                    </accordion>
+                </div>
+
+             <!-- <h1>Message Detail</h1> -->
+            	<!--Basic Table-->
+                <!-- <table class="table">
+                    <thead>
+                        <tr>
+                            <th width="10%">Sent To</th>
+                            <th width="10%">Date</th>
+                            <th width="10%">Message</th>
+                         </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="mes in message">
+                            <td>{{mes.first_name}} {{mes.last_name}}</td>
+                             <td>{{mes.AddedDate}}</td>
+                            <td>{{mes.Message}}</td>
+                         </tr>
+                    </tbody>
+                </table> -->
+                <!--End Basic Table-->   
+
+
+                <!-- <h1>GTKY Detail</h1> -->
+            	<!--Basic Table-->
+                <!-- <table class="table">
+                    <thead>
+                        <tr>
+                            <th width="10%">Sent To</th>
+                            <th width="10%">Date</th>
+                            <th width="10%">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="g in gtky">
+                            <td>{{g.first_name}} {{g.last_name}}</td>
+                             <td>{{g.AddedDate}}</td>
+                            <td>{{g.Status}}</td>
+                        </tr>
+                    </tbody>
+                </table> -->
+                <!--End Basic Table-->  
+
+
+                <!-- <h1>Comments Detail</h1> -->
+            	<!--Basic Table-->
+                <!-- <table class="table">
+                    <thead>
+                        <tr>
+                            <th width="10%">Forum Name</th>
+                            <th width="10%">Topic</th>
+                            <th width="10%">Date</th>
+                            <th width="10%">Comment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="com in comments">
+                            <td>{{com.Topic}}</td>
+                             <td>{{com.TopicTitle}}</td>
+                            <td>{{com.CommentDateTime}}</td>
+                            <td>{{com.Comment}}</td>                            
+                        </tr>
+                     
+                    </tbody>
+                </table> -->
+                <!--End Basic Table-->  
+
+
+
+                <!-- <h1>Topics Added Detail</h1> -->
+            	<!--Basic Table-->
+                <!-- <table class="table">
+                    <thead>
+                        <tr>
+                            <th width="10%">Forum Name</th>
+                            <th width="10%">Topic</th>
+                            <th width="10%">Date</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="top in topics">
+                            <td>{{top.Topic}}</td>
+                             <td>{{top.TopicTitle}}</td>
+                            <td>{{top.CreatedDate}}</td>
+                                                       
+                        </tr>
+                     
+                    </tbody>
+                </table> -->
+                <!--End Basic Table-->  
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+
+
+</div>

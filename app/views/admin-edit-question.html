@@ -1,0 +1,216 @@
+<div class="wrapper">
+    <!--=== Header ===-->    
+    <div data-ng-controller="AdminheaderCtrl" data-ng-include="Header">
+    </div>
+    <!--=== End Header ===-->  
+    <!--=== Profile ===-->
+    <div class="profile container content" style="border-color:red">
+        <div class="row">
+            <!--Left Sidebar-->
+            <div data-ng-controller="SideBarSuperadminCtrl" data-ng-include="SideBarSuperAdmin">
+            </div>
+            <!--End Left Sidebar-->
+            
+            <div class="col-md-9">
+                <div class="headline"><h2 class="heading-sm">Add Questionnaire</h2></div>
+                <form id="sky-form4" class="sky-form" name="adminQuestion" data-ng-submit="adminAddQuestion(adminQuestion.$valid)">
+                    <div class="alert alert-danger fade in" data-ng-show="errMessage">{{errMessage}}</div>
+                    <div class="alert alert-success fade in" data-ng-show="successmessage">{{successmessage}}</div>
+                    <fieldset>                
+                        <section>
+                            <label class="label">Question</label>
+                            <label class="input">
+                                <input type="text" name="subject" id="subject" data-ng-model="question.title" required>
+                            </label>
+                        </section>
+                        <section>
+                            <label class="label">Hint</label>
+                            <label class="textarea textarea-resizable">
+                                <textarea rows="3" id="hint" data-ng-model="question.hint" ></textarea>
+                            </label>
+                        </section>
+                        
+                        <div class="row">
+                         <div class="col-md-6">
+                            <section>
+                                <label class="select">
+                                    <select name="Question Type" data-ng-model="question.ansType" ng-change="ToggleMaxInput(question.ansType)" required  ng-disabled="true">
+                                        <option value="" selected disabled>Answer Selection Type</option>
+                                        <option value="{{qnsType.QuestionTypeId}}" data-ng-repeat="qnsType in qnsTypes">{{qnsType.QuestionTypeTitle}}</option>                             
+                                    </select>
+                                    <i></i>
+                                </label>
+                            </section>
+                        </div>
+                        <div class="col-md-6">
+                            <section>
+                                <label class="select">
+                                    <select name="Question Type" data-ng-model="question.qnsCategory" data-placeholder="---- Choose Company Name ----" required ng-disabled="true">
+                                        <option value="" selected disabled>Question Category</option> 
+                                        <option value="{{category.QcId}}" data-ng-repeat="category in qnsCategory">{{category.Category}}</option>
+                                        <select>
+                                            <i></i>
+                                        </label>
+                                    </section>
+                                </div>
+                            </div>
+                            <section ng-show="multipleSelection">
+                                <label class="label">Max Selection</label>
+                                <label class="input">
+                                    <input type="text" name="subject" id="subject" data-ng-model="question.maxselection" ng-disabled="true">
+                                </label>
+                            </section>
+                        </fieldset>    
+                        <div class="headline"><h3 class="heading-sm">Answers</h3></div>
+                        <fieldset>    
+
+                            <section>
+                               <div class="row">
+                                 <div class="col-md-10">
+                                    <section>
+                                        <label class="input">
+                                            <input type="text" name="answer" id="answer" data-ng-model="options.title" placeholder="Answer">
+                                        </label>
+                                    </section>
+                                </div>
+                                <div class="col-md-2">
+                                   <section>
+                                      <a class="btn-u btn-u-green" ng-click="addItem()">Add</a>                        		
+                                  </section>
+                              </div>
+                          </div>
+                          <div class="alert alert-danger fade in" data-ng-show="ansMessage">{{ansMessage}}</div>
+                      </section>
+
+                      <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="col-md-10">Answer</th>
+                                <th>Operations</th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="ans in answers">
+                            <tr>
+                               <td class="col-md-10">{{ans}}</td> 
+                               <td><a class="btn btn-danger btn-xs" data-ng-click="remove(ans)"><i class="fa fa-trash-o"></i> Delete</a></td>                            
+                           </tr>
+
+                       </tbody>
+                   </table>
+
+                   <table class="table table-bordered">
+
+                    <tbody ng-repeat="ans in selectedOptions">
+
+                    	<tr>
+                           <td class="col-md-10">
+                               <label class="input">
+                                   <input type="text" name="subject" id="subject" data-ng-model="ans.Answer" >
+                               </label>
+                           </td> 
+                           <td><a class="btn btn-xs" data-ng-click="editOption(ans)"><i class="fa fa-pencil"></i></a></td>                            
+                       </tr>       
+                   </tbody>
+               </table>
+
+           </fieldset>
+           <div class="headline"><h3 class="headinsg-sm">Algorithm</h3></div>
+           <fieldset>
+               <section >
+                <label class="label">Max Score</label>
+                <label class="input">
+                    <input type="text" name="subject" id="subject" data-ng-model="question.max_score" ng-disabled = "true" >
+                </label>
+            </section>
+            <section>
+               <label class="select">
+                   <select name="Algorithm Type" data-ng-model="question.algType" ng-change="ToggleAlgorithanType(question.algType)" required ng-disabled = "true" >
+                       <option value="" selected disabled>Algorithm input Type</option>
+                       <option value="{{algType.AlgTypeId}}" data-ng-repeat="algType in algTypes">{{algType.AlgTypeTitle}}</option>                             
+                       <select>
+                           <i></i>
+                       </label>
+                   </section>
+                   <div class="alert alert-danger fade in" data-ng-show="maxCountErrorMessage">{{maxCountErrorMessage}}</div>
+                   <section ng-show="algorithamBoxSingle">
+                       <div >
+                          <div class="row" >
+                             <div class="col-xs-12 col-sm-6 col-md-3"  ng-repeat="key in notSorted(algSingleMatrix)" ng-init="value = data[key]">
+                               <label class="label">{{key}}</label>
+                               <label class="input">
+                                   <input type="text" name="subject" id="subject" data-ng-model="algSingleMatrix[key]" >
+                               </label>
+                           </div>							
+                       </div>
+
+                   </div>					
+               </section> 
+
+               <section ng-show="algorithamBoxMultiple">
+                   <div >
+                      <div class="row" >
+                         <div class="col-xs-12 col-sm-6 col-md-3"  ng-repeat="key in notSorted(algMultipleMatrix)" ng-init="value = data[key]">
+                           <label class="label">{{key}}</label>
+                           <label class="input">
+                               <input type="text" name="subject" id="subject" data-ng-model="algMultipleMatrix[key]" >
+                           </label>
+                       </div>							
+                   </div>
+
+               </div>					
+           </section> 
+           <section ng-show="algorithamBoxPersonality">
+               <div >
+                  <div class="row" >
+                     <div class="col-xs-12 col-sm-6 col-md-3"  ng-repeat="key in notSorted(algPersonalityMatch)" ng-init="value = data[key]">
+                       <label class="label">{{key}}</label>
+                       <label class="select">
+                        <select name="Question Type" data-ng-model="algPersonalityMatch[key]" data-placeholder="---- Choose Personality Type ----" required>
+                            <option value="" selected disabled>Personality Type</option>
+                            <option value="I" >Introvert</option> 
+                            <option value="E" >Extrovert</option> 
+                            <option value="N" >Intuition</option> 
+                            <option value="S" >Sensing</option> 
+                            <option value="T" >Thinking</option> 
+                            <option value="F" >Feeling</option> 
+                            <option value="J" >Judging</option> 
+                            <option value="P" >Perceiving</option> 
+                            <select>
+                                <i></i>
+                            </label>
+
+                        </div>							
+                    </div>
+
+                </div>					
+            </section>
+
+            <section ng-show="algorithamBoxDifference">
+               <div >
+                  <div class="row" >
+                     <div class="col-xs-12 col-sm-6 col-md-3"  ng-repeat="key in notSorted(algDifferenceMatch)" ng-init="value = data[key]">
+                       <label class="label">{{key}}</label>		
+                       <label class="input">					 
+                           <input type="text" name="subject" id="Difference" data-ng-model="algDifferenceMatch[key]" > 
+                       </label>  
+                   </div>							
+               </div>
+
+           </div>					
+       </section>
+
+   </fieldset>
+   <footer>
+
+    <button class="btn-u" type="submit" ng-disabled="adminQuestion.$invalid" data-ng-submit="adminAddQuestion(adminQuestion.$valid)">Submit</button>
+    <button onclick="window.history.back();" class="btn-u btn-u-default" type="button">Back</button>
+</footer>
+</form>
+
+
+</div><!--/end row-->
+</div><!--/container-->    
+<!--=== End Profile ===-->
+
+</div>
+ <!-- End wrapper -->

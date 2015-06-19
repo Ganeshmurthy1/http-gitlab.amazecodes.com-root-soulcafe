@@ -1,0 +1,66 @@
+<div class="wrapper">
+    <!--=== Header ===-->    
+  <div data-ng-controller="AdminheaderCtrl" data-ng-include="Header">
+</div>
+    <!--=== End Header ===-->  
+
+
+
+
+    <!--=== Profile ===-->
+    <div class="profile container content" style="border-color:red">
+        <div class="row">
+            <!--Left Sidebar-->
+            <div data-ng-controller="SideBarSuperadminCtrl" data-ng-include="SideBarSuperAdmin">
+            </div>
+            <!--End Left Sidebar-->
+            
+            <div class="col-md-9">
+            	<h1>Manage Algorithm</h1>
+<form id="sky-form4" class="sky-form" name="adminQuestion" data-ng-submit="adminAddQuestion(adminQuestion.$valid)">
+				<!--Basic Table-->
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Weightage</th>  
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="ad in admins">                           
+                           <td>{{ad.Category}}</td>
+                           <td> <label class="select">
+                                    <select name="Question Type" data-ng-model="ad.Weight" data-placeholder="" required>
+                                        <option value="" selected disabled>Weight</option>
+                                        <option value="0" >0</option> 
+                                        <option value="0.1" >1</option> 
+                                        <option value="0.2" >2</option> 
+                                        <option value="0.3" >3</option> 
+                                        <option value="0.4" >4</option> 
+                                        <option value="0.5" >5</option> 
+                                        <option value="0.6" >6</option> 
+                                        <option value="0.7" >7</option> 
+                                        <option value="0.8" >8</option> 
+                                        <option value="0.9" >9</option> 
+                                        <option value="1" >10</option> 
+                                    <select>
+                                    <i></i>
+                                </label></td>
+                        </tr>                     
+                    </tbody>
+                </table>
+                <!--End Basic Table-->
+                </form>
+
+
+<button class="btn btn-primary" ng-click="sequence(admins)">Save</button>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

@@ -68,23 +68,42 @@ module.exports = function (grunt) {
       options: {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
-        hostname: 'localhost',
+        hostname: '0.0.0.0',
         livereload: 35729
       },
+      proxies: [{
+          context: '/', // the context of the data service
+          host: 'localhost', // wherever the data service is running
+         // port: 8080 // the port that the data service is running on
+      }],
       livereload: {
-        options: {
-          open: true,
-          middleware: function (connect) {
-            return [
-              connect.static('.tmp'),
-              connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
-              ),
-              connect.static(appConfig.app)
-            ];
+          options: {
+              open: true,
+              middleware: function(connect, options) {
+                  var middlewares = [
+                      connect.static('.tmp'),
+                      connect().use(
+                          '/bower_components',
+                          connect.static('./bower_components')
+                      ),
+                      connect.static(appConfig.app)
+                  ];
+                  if (!Array.isArray(options.base)) {
+                      options.base = [options.base];
+                  }
+
+                  // Setup the proxy
+                  middlewares.push(require('grunt-connect-proxy/lib/utils').proxyRequest);
+
+                  // Serve static files
+                  options.base.forEach(function(base) {
+                      middlewares.push(connect.static(base));
+                  });
+
+                  return middlewares;
+
+              }
           }
-        }
       },
       test: {
         options: {
@@ -399,6 +418,7 @@ module.exports = function (grunt) {
       'wiredep',
       'concurrent:server',
       'autoprefixer',
+      'configureProxies:server',
       'connect:livereload',
       'watch'
     ]);
@@ -439,4 +459,5 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+  grunt.loadNpmTasks('grunt-connect-proxy');
 };

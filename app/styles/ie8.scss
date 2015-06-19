@@ -1,0 +1,81 @@
+/*Header Fixed
+------------------------------------*/
+
+.ie8 {
+  .header-fixed .header.header-fixed-shrink {
+    background: #fff;
+  }
+  .blog-twitter .blog-twitter-inner {
+    &:after, &:before {
+      border: none;
+    }
+  }
+  .our-clients {
+    img {
+      width: 100%;
+      height: 100px;
+      vertical-align: inherit;
+    }
+    .img-hover {
+      display: none;
+    }
+  }
+  .sticker-left {
+    width: 90px;
+    text-align: right;
+    background: #72c02c;
+  }
+  .sticker-right {
+    width: 100px;
+    text-align: left;
+    background: #e74c3c;
+  }
+  .easy-bg-v2 {
+    width: 75px;
+    text-align: left;
+  }
+  .rgba-red {
+    background: #e74c3c;
+  }
+  .rgba-blue {
+    background: #3498db;
+  }
+  .rgba-default {
+    background: #72c02c;
+  }
+  .rgba-purple {
+    background: #9b6bcc;
+  }
+  .rgba-aqua {
+    background: #27d7e7;
+  }
+  .rgba-yellow {
+    background: #f1c40f;
+  }
+  .sky-form .icon-append {
+    right: 5px !important;
+    padding-left: 0;
+  }
+  .servive-block-v2 .servive-block-in {
+    background: url(../img/transparent/white.png) repeat;
+  }
+  .job-img {
+    .job-banner, .job-img-inputs {
+      background: url(../img/transparent/black.png) repeat;
+    }
+  }
+  .parallax-team:before, .image-block .company-description, .search-block:before, .parallax-counter .counters, .carousel-v1 .carousel-caption {
+    background: url(../img/transparent/black.png) repeat;
+  }
+}
+
+/*Blog Latest Tweets
+------------------------------------*/
+
+/*Pricing Stickers*/
+
+/*Easy Block*/
+
+/*Sky-Forms*/
+
+/*Background Opacity*/

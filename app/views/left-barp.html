@@ -1,0 +1,45 @@
+
+	<div class="align-center margin-top-10">
+		<img class="rounded-x imagelr" ng-src="{{imagepath}}{{udata.Picture}}" alt="{{udata.first_name}} {{udata.last_name}}" title="{{udata.first_name}} {{udata.last_name}}">
+		<div class="name">{{udata.first_name}} {{udata.last_name}} , {{diff}}</div>
+		<img src="images/div.png" alt="Separator" title="Separator" >
+		<div class="add">Lives In : {{udata.location}}</div>
+		<div class="add">Works at : {{udata.CurrentEmployment}}
+			<a class="pull-right" style="color:#5bc0de;" href="#/edit-profile-other?user_id={{udata.user_id}}">More...</a>
+		</div>
+		<div class="pull-left"><a style="color:#ff0000 !important;" href="#/report-abuse-user?user_id={{udata.user_id}}"> <i class="fa fa-times-circle-o "></i> Report Abuse</a></div>
+	</div>
+
+	<div class="clearfix quote">
+		<div class="row home-block">
+			<h3 class="panel-title">
+				<i class="fa fa-quote-left color-deep-red"></i> QUOTE I LIVE BY
+			</h3>
+			<blockquote class="bq-text-lg">
+                <p>{{udata.Moto}}</p>
+            </blockquote>
+		</div>
+	</div>
+	
+	<div class="margin-top-10">
+		<div class=" clearfix">
+			<div class="clabel row" ><a class="color-white" href="#/discussion-list">FORUMS ({{discussionTotal}})</a></div>
+				<span ng-repeat="diss in discussion">
+				<a class="sublabel uppercase123" href="#/discussion-topics?discussionid={{diss.DiscussionBoardId}}">{{diss.Topic}}</a>
+			</span>
+		</div>
+		
+	</div>
+
+	<div class="margin-top-10">
+		<div class=" clearfix ">
+			<div class="clabel row">INTERESTS</div>
+			<span class="interests float-left align-center" ng-repeat="intst in interest">
+                 <span><img src="{{imagepath}}interest/{{intst.OptionId}}.png" alt="{{intst.Answer}}" title="{{intst.Answer}}"></span>
+                <div class="font">{{intst.Answer}}</div>
+            </span>
+				
+			
+		</div>
+		
+	</div>

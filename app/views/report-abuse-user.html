@@ -1,0 +1,41 @@
+<div data-ng-controller="HeaderCtrl" data-ng-include="Header">
+</div>
+
+
+
+
+<div class="container-fluid body-pattern ">
+<div class="container my-border body-pattern ">
+<div class="row">
+<div class ="my-border col-xs-12 col-sm-4 col-md-3 gredientSB hideblock" data-ng-controller="LeftBarpCtrl" data-ng-include="LeftBarOther"></div>
+
+<div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px ">
+            	<div class="alert fade in margin-bottom-40">
+ 
+                     <h2> Report Abuse / Inappropriate behaviour of the member</h2>
+                     <div class="row">
+            			<form name="reportAbuse">
+            			<div class="form-group">
+                                <div class="col-lg-5">
+                                    <textarea type="text" class="form-control" ng-model="message" required> </textarea>
+                                </div>
+                        </div>
+                         <div class="pull-right">
+                 			<button type="button" class="btn-u" ng-disabled="reportAbuse.$invalid" data-ng-click="sendReportAbuse(message)">Send</button>
+             			</div>
+             			<form></div>
+                </div>
+               
+
+           
+              
+
+            </div>
+        </div><!--/end row-->
+    </div><!--/container-->    
+    <!--=== End Profile ===-->
+
+
+ 
+</div>
+ <!-- End wrapper -->

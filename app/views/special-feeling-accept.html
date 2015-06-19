@@ -1,0 +1,41 @@
+<div data-ng-controller="HeaderCtrl" data-ng-include="Header">
+</div>
+
+
+
+
+<div class="container-fluid body-pattern ">
+<div class="container my-border body-pattern ">
+<div class="row">
+<div class ="my-border col-xs-12 col-sm-4 col-md-3 gredientSB hideblock" data-ng-controller="SideBarCtrl" data-ng-include="SideBar"></div>
+
+<div class="col-xs-12 col-sm-8 col-md-9 body-background my-border padding-20px ">
+    
+        <div class="headline">
+        <h1 class="heading-sm"> Special Feeling</h1>
+    	</div>
+    	<div class="row" ng-show="nosplfeeling"><h1>No special feeling request.</h1></div>
+	<div class="margin-top-10 " ng-repeat="req in request" style="border-bottom:1px solid #CCC;">
+	<div class="row margin-bottom10" >
+		<div class="col-md-offset-1 col-md-2">
+			<img class="" ng-src="images/heart.jpg" alt="" style="width:100px;height:100px;float:left;">
+		</div>
+		<div class="col-md-8">
+			<h3>{{req.first_name}} {{req.last_name}} says “Feels like something special is brewing up between us”.</h3>
+			<div class="row">
+				<div class="pull-right feelingBtn" ng-show="{{req.Status == 0}}">
+					<button style="margin-top:10px;" type="button" class="btn-u" data-ng-click="notSure(req.SenderId)">Not Sure</button>
+					<button style="margin-top:10px;" type="button" class="btn-u" data-ng-click="notYet(req.SenderId)">Not Yet</button>
+					<button style="margin-top:10px;" type="button" class="btn-u" data-ng-click="needTime(req.SenderId)">Need some time</button>
+					<button style="margin-top:10px;" type="button" class="btn-u" data-ng-click="acceptFeeling(req.SenderId)">Yes, I think so.</button>
+				</div>
+				<!-- <div class="pull-right" ng-hide="{{req.Status == 0}}">
+					Action Already Taken.
+				</div> -->
+			</div>
+		</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>

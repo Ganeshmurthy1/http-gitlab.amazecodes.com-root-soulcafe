@@ -1,0 +1,58 @@
+<div class="wrapper">
+    <!--=== Header ===-->    
+  <div data-ng-controller="AdminheaderCtrl" data-ng-include="Header">
+</div>
+    <!--=== End Header ===-->  
+
+
+
+
+    <!--=== Profile ===-->
+    <div class="profile container content" style="border-color:red">
+        <div class="row">
+            <!--Left Sidebar-->
+            <div data-ng-controller="SideBarSuperadminCtrl" data-ng-include="SideBarSuperAdmin">
+            </div>
+            <!--End Left Sidebar-->
+            
+            <div class="col-md-9" data-ng-show="isSuper">
+            	<h1>Super Admin</h1>
+            	 
+            	
+            	<div class="row">
+	            	<div style="float:left;">
+                        <a href="#/superadmin-admin"><img class="img-responsive profile-img margin-bottom-20" src="images/4.png"></img></a>
+                        <span class="badge badge-red rounded" >{{admin[0].admins}}</span>
+                 </div>
+                 <div style="float:left;padding-left:100px;"> 
+                        <a href="#/admin-userlist" class="rounded"> 
+                            <img class="img-responsive profile-img margin-bottom-20" src="images/1.png"></img>
+                        </a>
+                     <span class="badge badge-red rounded" >{{act[0].active}}</span>
+                        
+                     </div>
+	            	 <div style="float:left;padding-left:100px;"><a href="#/superadmin-message"> <img class="img-responsive profile-img margin-bottom-20" src="images/3.png"></img></a>
+                        <span class="badge badge-red rounded" >{{un[0].unread}}</span>
+                     </div>
+	            	 <div style="float:left;padding-left:100px;"><a href="#/admin-blocked-users"> <img class="img-responsive profile-img margin-bottom-20" src="images/2.png"></img></a>
+                        <span class="badge badge-red rounded" >{{blk[0].blocked}}</span>
+                     </div>
+
+            	</div>
+            </div>
+            
+            <div class="col-md-9" data-ng-hide="isSuper">
+            	<h1>Admin</h1>
+            	 
+            	<div class="row">
+	            	 
+            	</div>
+            </div>
+            
+        </div>
+
+    </div>
+   
+
+
+</div>

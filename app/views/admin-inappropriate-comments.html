@@ -1,0 +1,63 @@
+<div class="wrapper">
+    <!--=== Header ===-->    
+  <div data-ng-controller="AdminheaderCtrl" data-ng-include="Header">
+</div>
+    <!--=== End Header ===-->  
+
+
+
+
+    <!--=== Profile ===-->
+    <div class="profile container content" style="border-color:red">
+        <div class="row">
+            <!--Left Sidebar-->
+            <div data-ng-controller="SideBarSuperadminCtrl" data-ng-include="SideBarSuperAdmin">
+            </div>
+            <!--End Left Sidebar-->
+           <!-- Begin Content -->
+            <div class="col-md-9">
+                <!--Basic Table-->
+              
+
+                <div class="headline"><h2>SPAM comments list</h2></div>
+                  
+                
+                <!--Basic Table-->
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Reported By</th>
+                            <th>Comment By</th>
+                            <th>Comments</th>
+                             <th>Discussion </th>
+                            <th>Topic </th>
+                            <th>ReportedDate</th>
+
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat=" com in comm">
+                        <tr>
+                            <td>{{com.rFirst}} {{com.rLast}}</td>
+                            <td>{{com.cFirst}} {{com.cLast}}</td>
+                            <td>{{com.Comments}}</td> 
+                            <td>{{com.Topic}}</td>
+                            <td>{{com.TopicTitle}}</td>
+                            <td>{{com.ReportedDate}}</td>
+                                                      
+                        </tr>
+                     
+                    </tbody>
+                </table>
+                <!--End Basic Table-->
+
+        
+            </div>
+            <!-- End Content -->
+        </div>
+
+    </div>
+    <!--=== End Profile ===-->
+
+
+</div>
+<!--=== End Wrapper ===-->

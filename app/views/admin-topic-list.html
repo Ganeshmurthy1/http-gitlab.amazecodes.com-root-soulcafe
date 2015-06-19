@@ -1,0 +1,53 @@
+<div class="wrapper">
+    <!--=== Header ===-->    
+  <div data-ng-controller="AdminheaderCtrl" data-ng-include="Header">
+</div>
+    <!--=== End Header ===-->  
+
+
+
+
+    <!--=== Profile ===-->
+    <div class="profile container content" style="border-color:red">
+        <div class="row">
+            <!--Left Sidebar-->
+            <div data-ng-controller="SideBarSuperadminCtrl" data-ng-include="SideBarSuperAdmin">
+            </div>
+            <!--End Left Sidebar-->
+            
+            <div class="col-md-9">
+			<div class="headline"><h2 class="heading-sm">Discussion Topic: {{Forum.Topic}}</h2></div>
+			<div class="row pull-right"><a class="btn-u btn-u-default glow" rel="glow" href="#/admin-add-topic?discussId={{discussId}}">Add more Topic</a></div>
+			
+			<br>
+			<div class="row"><p>{{Forum.Description}}</p></div>
+			
+			
+			
+                <div class="funny-boxes funny-boxes-left-orange" data-ng-repeat = "topic in topics" data-ng-hide="topic.deleted">
+                    <div class="media media-v2" style="float:left;margin: 0 !important;
+                                    padding: 0 !important;">
+                    <a class="pull-left" href="#">
+                        <img class="media-object rounded-x" ng-src="{{imagepath}}sc-logo.png" alt="">
+                    </a>
+                     </div>
+                    <h4>{{topic.TopicTitle}}</h4>
+                    <p>{{topic.TopicDescription}}</p>
+                    <p>
+                        <a class="btn-u " href="#/admin-topic-view?topicId={{topic.DiscussionTopicId}}">View</a>
+                    	<a class="btn-u btn-u-green"  data-ng-hide="{{topic.Status == 1}}" data-ng-click="activateTopic(topic.DiscussionTopicId)">Activate</a>
+                        <a class="btn-u btn-u-brown" data-ng-show="{{topic.Status == 1}}" data-ng-click="deactivateTopic(topic.DiscussionTopicId)">Deactivate</a>
+                        <a class="btn-u btn-u-red"  data-ng-click="deleteTopic(topic.DiscussionTopicId)" >Delete</a>
+                    </p>
+                </div>            	
+             <pagination items-per-page="pagePerItem" max-size="maxSize " total-items="totalItems" ng-model="currentPage" ng-click="pageChanged()"></pagination>
+            </div>
+        </div>
+
+    </div>
+    <!--=== End Profile ===-->
+
+
+
+</div>
+<!--=== End Wrapper ===-->
